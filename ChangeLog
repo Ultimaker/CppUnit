@@ -1,3 +1,10 @@
+2001-05-09 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Release as 1.5.5.
+	* Finished CppUnitW 1.2 merge. 
+	  Removed RTTI depency from TestSuite.
+	  Added TestCaller constructor for calling methods in existing
+	  TestCases.
+	
 2001-04-29 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Merged Baptiste Lepilleurs CppUnitW 1.2. Some differences:
 	  TypeInfo stuff (in TestSuite) compiled in only if USE_TYPEINFO 
