@@ -34,7 +34,7 @@ namespace CppUnit {
        */
       AutoRegisterSuite( const std::string &name )
       {
-        TestSuiteFactory *factory = new TestSuiteFactory<TestCaseType>();
+        TestFactory *factory = new TestSuiteFactory<TestCaseType>();
         TestFactoryRegistry::getRegistry( name ).registerFactory( factory );
       }
   };

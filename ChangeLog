@@ -1,3 +1,14 @@
+2001-05-29  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/extensions/HelperMacros.h: Rework documentation.
+	(CU_TEST_SUITE): Move definition of member function suite() ...
+	(CU_TEST_SUITE_END): ... to here.
+	(CU_TEST): Use '&' to take address of member function
+	"testMethod".
+
+	* include/cppunit/extensions/AutoRegisterSuite.h: Declare "factory"
+	as a TestFactory*.
+
 2001-05-28  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* doc/other_documentation.dox: Don't include "CppUnit" in

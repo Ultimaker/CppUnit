@@ -13,9 +13,8 @@
 // The macro __CU_SUITE_CTOR_ARGS expand to an expression used to construct
 // the TestSuiteBuilder with macro CU_TEST_SUITE.
 //
-// The name of the suite is extracted from the macro parameter
-// if CU_USE_TYPEINFO is not defined, otherwise it is extracted using
-// RTTI.
+// The name of the suite is obtained using RTTI if CU_USE_TYPEINFO is
+// defined, otherwise it is extracted from the macro parameter
 //
 // This macro is for cppunit internal and should not be use otherwise.
 #ifdef CU_USE_TYPEINFO
@@ -27,25 +26,16 @@
 #endif // CU_USE_TYPEINFO
 
 
-/** Begins the declaration of the test suite
+/** \file
+ * Macros intended to ease the definition of test suites.
  *
- * The CU_TEST_XXX macros are helper to define test suite that are 
- * automatically registered to the TestRegistry.
- * 
- * You just need to add a set of macro to declare the unit test method.
- * Those macros will create a template method named registerTests
- * with adds the test methods using TestCaller to the suite.
- *
- * This macro will also define a static method named suite() that
- * return a pointer on the suite associated to the test case type.
- * The method signature is: \code static CppUnit::TestSuite *suite().\endcode
- *
- * Notes that you must directly inherit from CppUnit::TestCase when using
- * this macro. See CU_TEST_SUB_SUITE if you need to declare a suite
- * for a sub-class inheriting a test case that use CU_TEST_SUITE.
+ * The macros
+ * CU_TEST_SUITE(), CU_TEST(), and CU_TEST_SUITE_END()
+ * are designed to facilitate easy creation of a test suite.
+ * For example,
  *
  * \code
- * #include <cppunit/AutoRegisterTests.h>
+ * #include <cppunit/extensions/HelperMacros.h>
  * class MyTest : public CppUnit::TestCase {
  *   CU_TEST_SUITE( MyTest );
  *   CU_TEST( testEquality );
@@ -57,14 +47,28 @@
  * };
  * \endcode
  * 
- * Somewhere in an implementation file:
+ * The effect of these macros is to define two methods in the
+ * class MyTest.  The first method is an auxiliary function
+ * named registerTests that you will not need to call directly.
+ * The second function
+ * \code static CppUnit::TestSuite *suite()\endcode
+ * returns a pointer to the suite of tests defined by the CU_TEST()
+ * macros.  
  *
+ * Rather than invoking suite() directly,
+ * the macro CU_TEST_SUITE_REGISTRATION() is
+ * used to create a static variable that automatically
+ * registers its test suite in a global registry.
+ * The registry yields a Test instance containing all the
+ * registered suites.
  * \code
  * CU_TEST_SUITE_REGISTRATION( MyTest );
- * \encode
+ * CppUnit::Test* tp =
+ *   CppUnit::TestFactoryRegistry::getRegistry().makeTest();
+ * \endcode
  * 
- * The great thing about that is that you can even used it on template test case.
- * You don't even need to specify the template parameters! For example:
+ * The test suite macros can even be used with templated test classes.
+ * For example:
  *
  * \code
  * template<typename CharType>
@@ -77,12 +81,20 @@
  * };
  * \endcode
  *
- * And you need to add in an implementation file:
+ * You need to add in an implementation file:
  *
  * \code
  * CU_TEST_SUITE_REGISTRATION( String<char> );
  * CU_TEST_SUITE_REGISTRATION( String<wchar_t> );
- * \encode
+ * \endcode
+ */
+
+
+/** Begin test suite
+ *
+ * This macro starts the declaration of a new test suite.
+ * Use CU_TEST_SUB_SUITE() instead, if you wish to include the
+ * test suite of the parent class.
  *
  * \param ATestCaseType Type of the test case class.
  * \see CU_TEST_SUB_SUITE, CU_TEST, CU_TEST_SUITE_END, CU_TEST_SUITE_REGISTRATION.
@@ -91,14 +103,6 @@
   private:                                                              \
     typedef ATestCaseType __ThisTestCaseType;                           \
   public:                                                               \
-    static CppUnit::Test *suite()                                       \
-    {                                                                   \
-      __ThisTestCaseType *test =NULL;                                   \
-      CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
-          suite __CU_SUITE_CTOR_ARGS( ATestCaseType );                  \
-      __ThisTestCaseType::registerTests( suite, test );                 \
-      return suite.takeSuite();                                         \
-    }                                                                   \
     template<typename TestCaseType>                                     \
     static void                                                         \
     registerTests( CppUnit::TestSuiteBuilder<TestCaseType> &suite,      \
@@ -106,17 +110,20 @@
     {
 
 
-/** Begins the declaration of the test suite
+/** Begin test suite (includes parent suite)
  * 
- * This macro works just the same as CU_TEST_SUITE, but allow you to specify
- * the base class. When the test are registered, the base class test
- * defined using the CU_TEST_SUITE macro or CU_TEST_SUB_SUITE macro are
- * added to the suite.
+ * This macro may only be used in a class whose parent class
+ * defines a test suite using CU_TEST_SUITE() or CU_TEST_SUB_SUITE().
  *
+ * This macro begins the declaration of a test suite, in the same
+ * manner as CU_TEST_SUITE().  In addition, the test suite of the
+ * parent is automatically inserted in the test suite being
+ * defined.
+ * 
  * Here is an example:
  *
  * \code
- * #include <cppunit/AutoRegisterTests.h>
+ * #include <cppunit/extensions/HelperMacros.h>
  * class MySubTest : public MyTest {
  *   CU_TEST_SUB_SUITE( MySubTest, MyTest );
  *   CU_TEST( testAdd );
@@ -129,6 +136,7 @@
  * \endcode
  *
  * \param ATestCaseType Type of the test case class.
+ * \param ASuperClass   Type of the parent class.
  * \see CU_TEST_SUITE.
  */
 #define CU_TEST_SUB_SUITE( ATestCaseType, ASuperClass )                       \
@@ -137,25 +145,34 @@
   CU_TEST_SUITE( ATestCaseType );                                             \
       __ThisSuperClassType::registerTests( suite, test )
 
-/** Adds a method to the suite.
+
+/** Add a method to the suite.
  * \param testMethod Name of the method of the test case to add to the
  *                   suite. The signature of the method must be of
  *                   type: void testMethod();
  * \see  CU_TEST_SUITE.
  */
 #define CU_TEST( testMethod )                                           \
-      suite.addTestCaller( #testMethod, testMethod ) 
+      suite.addTestCaller( #testMethod, &__ThisTestCaseType::testMethod ) 
 
-/** Ends the declaration of the test suite and automatically register
- * the test suite in the TestRegistry.
+
+/** End declaration of the test suite.
  *
  * After this macro, member access is set to "private".
  *
- * \see TestRegistry.
  * \see  CU_TEST_SUITE.
+ * \see  CU_TEST_SUITE_REGISTRATION.
  */
 #define CU_TEST_SUITE_END()                                             \
 }                                                                       \
+    static CppUnit::Test *suite()                                       \
+    {                                                                   \
+      __ThisTestCaseType *test =NULL;                                   \
+      CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
+          suite __CU_SUITE_CTOR_ARGS( ATestCaseType );                  \
+      __ThisTestCaseType::registerTests( suite, test );                 \
+      return suite.takeSuite();                                         \
+    }                                                                   \
   private:
 
 #define __CU_CONCATENATE_DIRECT( s1, s2 ) s1##s2
@@ -166,9 +183,15 @@
  */
 #define __CU_MAKE_UNIQUE_NAME( str ) __CU_CONCATENATE( str, __LINE__ )
 
-/** Implementation of the auto-registration of test into the TestRegistry.
- * Should be placed in the cpp file.
- * @param ATestCaseType Type of the test case class.
+
+/** Register test suite into global registry.
+ *
+ * This macro declares a static variable whose construction
+ * causes a test suite factory to be inserted in a global registry
+ * of such factories.  The registry is available by calling
+ * the static function CppUnit::TestFactoryRegistry::getRegistry().
+ * 
+ * \param ATestCaseType Type of the test case class.
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
  * \see  CU_TEST_SUITE, CppUnit::AutoRegisterSuite.
