@@ -10,6 +10,7 @@
 #pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
 #endif
 
+
 CPPUNIT_NS_BEGIN
 
 class TestSuite;
@@ -36,6 +37,8 @@ public:
   TestSuiteBuilderContextBase( TestSuite &suite,
                                const TestNamer &namer,
                                TestFixtureFactory &factory );
+
+  virtual ~TestSuiteBuilderContextBase();
 
   /*! \brief Adds a test to the fixture suite.
    *
@@ -74,11 +77,17 @@ public:
 protected:
   TestFixture *makeTestFixture() const;
 
-  typedef CppUnitMap<std::string,std::string> Properties;
+  // Notes: we use a vector here instead of a map to work-around the
+  // shared std::map in dll bug in VC6.
+  // See http://www.dinkumware.com/vc_fixes.html for detail.
+  typedef std::pair<std::string,std::string> Property;
+  typedef CppUnitVector<Property> Properties;
 
   TestSuite &m_suite;
   const TestNamer &m_namer;
   TestFixtureFactory &m_factory;
+
+private:
   Properties m_properties;
 };
 

@@ -17,6 +17,11 @@ TestSuiteBuilderContextBase::TestSuiteBuilderContextBase(
 }
 
 
+TestSuiteBuilderContextBase::~TestSuiteBuilderContextBase()
+{
+}
+
+
 void 
 TestSuiteBuilderContextBase::addTest( Test *test )
 {
@@ -50,17 +55,30 @@ void
 TestSuiteBuilderContextBase::addProperty( const std::string &key, 
                                           const std::string &value )
 {
-    m_properties[ key ] = value;
+  Properties::iterator it = m_properties.begin();
+  for ( ; it != m_properties.end(); ++it )
+  {
+    if ( (*it).first == key )
+    {
+      (*it).second = value;
+      return;
+    }
+  }
+
+  Property property( key, value );
+  m_properties.push_back( property );
 }
 
 const std::string 
 TestSuiteBuilderContextBase::getStringProperty( const std::string &key ) const
 {
-    Properties::const_iterator itFound = m_properties.find( key );
-    if ( itFound == m_properties.end() )
-        return "";
-
-    return (*itFound).second;
+  Properties::const_iterator it = m_properties.begin();
+  for ( ; it != m_properties.end(); ++it )
+  {
+    if ( (*it).first == key )
+      return (*it).second;
+  }
+  return "";
 }
 
 

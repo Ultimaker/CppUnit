@@ -1,3 +1,11 @@
+2004-06-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extension/TestSuiteBuilderContext.h:
+  * src/cppunit/TestSuiteBuilderContext.cpp: fixed bug #921843. This bug
+    was caused by a known STL bug in VC++ 6. 
+    See http://www.dinkumware.com/vc_fixes.html <xtree> issue with shared
+    std::map in dll. As a work-around the map has been replaced by a vector.
+
 2004-06-17 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Portability.h:

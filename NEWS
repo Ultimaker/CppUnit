@@ -7,6 +7,11 @@
   - Memory checker: bug #938753, array bound read in 
     splitPathString() with substr if an empty string is passed.
 
+  - Crash when using CPPUNIT_TEST_SUITE_REGISTRATION with cppunit dll.
+    Bug #921843. This bug was caused by a known STL bug in VC++ 6. 
+    See http://www.dinkumware.com/vc_fixes.html <xtree> issue with shared
+    std::map in dll.
+
 * Compilation:
 
   - Compilation: mingw & cigwin, bug #930338 & #945737 fixed.
