@@ -76,7 +76,7 @@ struct assertion_traits<double>
        const int precision = 15;
 #endif  // #ifdef DBL_DIG
        char buffer[128];
-       sprintf(buffer, "%.*g", DBL_DIG, x); 
+       sprintf(buffer, "%.*g", precision, x); 
        return buffer;
     }
 };

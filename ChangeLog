@@ -1,3 +1,8 @@
+2004-11-08 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/TestAssert.h: fixed portability bug pointed out by
+    Neil Ferguson.
+
 2004-11-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/TestAssert.h: integrated Neil Ferguson patch for high
@@ -5,6 +10,9 @@
     to works even if DBL_DIG C99 macro is not defined.
 
   * include/cppunit/Portability.h: fixed EVC++ 4 detection.
+
+  * src/cppunit/Win32DynamicLibraryManager.cpp: integrated patch #1024428,
+    MinGW compilation under Windows XP. 
 
 2004-11-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
