@@ -13,8 +13,8 @@
 #include <iostream>
 
 
-BoardGameTest<BoardGame> bgt();
-ChessTest<Chess> ct();
+BoardGameTest<BoardGame> bgt("BoardGameTest<BoardGame>");
+ChessTest<Chess> ct("ChessTest<Chess>");
 
 
 using namespace CppUnit;
@@ -32,8 +32,6 @@ main(int argc, char** argv)
   for(vector<Test*>::iterator it=tests.begin();
       it!=tests.end(); ++it) {
     
-    cout << "Running " << (*it)->toString() << endl;
-
     (*it)->run(&res);
 
   }

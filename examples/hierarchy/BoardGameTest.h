@@ -11,6 +11,8 @@
 #include "cppunit/TestSuite.h"
 #endif
 
+#include <stdio.h>
+
 template<class GAMECLASS> 
 class BoardGameTest : public CppUnit::TestCase {
   protected:
@@ -18,24 +20,47 @@ class BoardGameTest : public CppUnit::TestCase {
     
   public:
     BoardGameTest (string name) : CppUnit::TestCase (name) 
-    {}
+    {
+    }
     
-    BoardGameTest (CppUnit::TestSuite *suite) : CppUnit::TestCase ("") 
+    BoardGameTest (CppUnit::TestSuite *suite) 
     { 
       suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", testReset)); 
+    }
+    
+    void runTest () 
+    { 
+      printf("runTest()\n");
+      testReset();
+      testResetShouldFail();
     }
     
     int countTestCases () const
     { return 1; }
     
     void setUp () 
-    { m_game = new GAMECLASS; }
+    { 
+      m_game = new GAMECLASS; 
+    }
     
     void tearDown ()
-    { delete m_game; }
+    { 
+      delete m_game; 
+    }
     
     void testReset () 
-    { assert (m_game->reset ()); }
+    { 
+      printf("assertImpl()\n");
+      assertImplementation (m_game->reset (),"m_game->reset ()",__LINE__,__FILE__); 
+      printf("assertImpl() end\n");
+    }
+
+    void testResetShouldFail () 
+    { 
+      printf("!assertImpl()\n");
+      assertImplementation (!m_game->reset (),"!m_game->reset ()",__LINE__,__FILE__); 
+      printf("!assertImpl end()\n");
+    }
     
 };
 
