@@ -51,8 +51,8 @@ TestRunner::addTest( Test *test )
 /*! Runs the named test case.
  *
  * \param testName Name of the test case to run. If an empty is given, then
- *                 all added test are run. The name must be the name of
- *                 of an added test.
+ *                 all added tests are run. The name can be the name of any
+ *                 test in the hierarchy.
  * \param doWait if \c true then the user must press the RETURN key 
  *               before the run() method exit.
  * \param doPrintResult if \c true (default) then the test result are printed
@@ -64,9 +64,9 @@ TestRunner::addTest( Test *test )
  */
 bool
 TestRunner::run( std::string testName,
-                     bool doWait,
-                     bool doPrintResult,
-                     bool doPrintProgress )
+                 bool doWait,
+                 bool doPrintResult,
+                 bool doPrintProgress )
 {
   runTestByName( testName, doPrintProgress );
   printResult( doPrintResult );
@@ -77,16 +77,19 @@ TestRunner::run( std::string testName,
 
 bool
 TestRunner::runTestByName( std::string testName,
-                               bool doPrintProgress )
+                           bool doPrintProgress )
 {
   if ( testName.empty() )
     return runTest( m_suite, doPrintProgress );
 
-  Test *test = findTestByName( testName );
-  if ( test != NULL )
-    return runTest( test, doPrintProgress );
-
-  std::cout << "Test " << testName << " not found." << std::endl;
+  try
+  {
+    return runTest( m_suite->findTest( testName ), doPrintProgress );
+  }
+  catch ( std::invalid_argument &)
+  {
+    std::cout << "Test " << testName << " not found." << std::endl;
+  }
   return false;
 }
 
@@ -111,24 +114,9 @@ TestRunner::printResult( bool doPrintResult )
 }
 
 
-Test * 
-TestRunner::findTestByName( std::string name ) const
-{
-  for ( std::vector<Test *>::const_iterator it = m_suite->getTests().begin(); 
-        it != m_suite->getTests().end(); 
-        ++it )
-  {
-    Test *test = *it;
-    if ( test->getName() == name )
-      return test;
-  }
-  return NULL;
-}
-
-
 bool
 TestRunner::runTest( Test *test,
-                         bool doPrintProgress )
+                     bool doPrintProgress )
 {
   TextTestProgressListener progress;
   if ( doPrintProgress )

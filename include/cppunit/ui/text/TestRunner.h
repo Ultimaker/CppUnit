@@ -87,8 +87,6 @@ protected:
   virtual void wait( bool doWait );
   virtual void printResult( bool doPrintResult );
 
-  virtual Test *findTestByName( std::string name ) const;
-
   TestSuite *m_suite;
   TestResultCollector *m_result;
   TestResult *m_eventManager;

@@ -97,31 +97,31 @@ TestRunnerDlg::OnInitDialog()
 // It always fails!!! I don't understand why. Complain about not finding the resource name!
   ASSERT( m_hAccelerator !=NULL );
   
-  CListCtrl   *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
   CComboBox   *comboBox = (CComboBox *)GetDlgItem (IDC_COMBO_TEST);
 
-  ASSERT (listCtrl);
   ASSERT (comboBox);
-  ListCtrlFormatter formatter( *listCtrl );
 
   VERIFY( m_errorListBitmap.Create( IDB_ERROR_TYPE, 16, 1, 
                                     RGB( 255,0,255 ) ) );
 
   loadSettings();
       
-  listCtrl->SetImageList( &m_errorListBitmap, LVSIL_SMALL );
-  listCtrl->SetExtendedStyle( listCtrl->GetExtendedStyle() | LVS_EX_FULLROWSELECT );
+  m_listCtrl.SetImageList( &m_errorListBitmap, LVSIL_SMALL );
+  m_listCtrl.SetExtendedStyle( m_listCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT );
 
   int total_col_1_4 = m_settings.col_1 + m_settings.col_2 + 
 		      m_settings.col_3 + m_settings.col_4;
 
   CRect listBounds;
-  listCtrl->GetClientRect(&listBounds);
+  m_listCtrl.GetClientRect(&listBounds);
   int col_5_width = listBounds.Width() - total_col_1_4; // 5th column = rest of listview space
+  ListCtrlFormatter formatter( m_listCtrl );
   formatter.AddColumn( IDS_ERRORLIST_TYPE, m_settings.col_1, LVCFMT_LEFT, 0 );
   formatter.AddColumn( IDS_ERRORLIST_NAME, m_settings.col_2, LVCFMT_LEFT, 1 );
   formatter.AddColumn( IDS_ERRORLIST_FAILED_CONDITION, m_settings.col_3, LVCFMT_LEFT, 2 );
+  m_listCtrl.setLineNumberSubItem( formatter.GetNextColumnIndex() );
   formatter.AddColumn( IDS_ERRORLIST_LINE_NUMBER, m_settings.col_4, LVCFMT_LEFT, 3 );
+  m_listCtrl.setFileNameSubItem( formatter.GetNextColumnIndex() );
   formatter.AddColumn( IDS_ERRORLIST_FILE_NAME, col_5_width, LVCFMT_LEFT, 4 );
 
   m_testsProgress = new ProgressBar (this, CRect (50, 85, 50 + 425, 85 + 25));

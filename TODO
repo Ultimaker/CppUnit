@@ -1,16 +1,16 @@
 * CppUnit:
-  - Update TextTestRunner to use Test::findTest()
+  - [DONE] Update TextTestRunner to use Test::findTest()
   - [DONE] Introduce a new generic CppUnit::TestRunner
-  - [DONE]Update MfcTestRunner to use Test::findTest()
+  - [DONE] Update MfcTestRunner to use Test::findTest()
   - Update MfcTestRunner to use TestPath to store test in the registry
-  - [DONE]Update QtTestRunner to use findTest()
-  - Include DllPlugInTester, and update to use findTest() and TestPath().
+  - [DONE] Update QtTestRunner to use findTest()
+  - [DONE] Include DllPlugInTester, and update to use findTest() and TestPath().
   - [DONE] Add startSuite() and endSuite() to TestListener and TestResult
   - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception and other
     error catching (signal on Unix)
   - Add a global set up decorator for all test run to TestResult 
     (subclass TestSetupDecorator, and add a setTest() method ) => thread, CoInitInstance...
-  - [DONE]Change CompilerOutputter to be customized with parameter instead of subclassing:
+  - [DONE] Change CompilerOutputter to be customized with parameter instead of subclassing:
     provide a default string to the constructor that indicates the error report format:
 	%p => full path (D:\prg\..\File.cpp)
 	%f => just the file name (File.cpp)
@@ -35,8 +35,9 @@
   - STL orthodox template for container elements.
 
 * UnitTest
-  - add test for XmlOutputter::setStyleSheet (current assertion macro strip <?...> when
+  - add tests for XmlOutputter::setStyleSheet (current assertion macro strip <?...> when
     testing )
+  - add tests for TestRunner, TextUi::TestRunner, CompilerOutputter.
 
 * VC++ TestRunner:
   - Make it possible to specify the registry path where settings are stored.

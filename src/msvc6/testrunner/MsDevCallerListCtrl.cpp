@@ -6,7 +6,7 @@
 
 #include "MsDevCallerListCtrl.h"
 #include <msvc6/testrunner/TestRunner.h>
-#include <msvc6/DSPlugin/TestRunnerDSPlugin.h>
+#include <msvc6/DSPlugin/TestRunnerDSPluginVC6.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -17,15 +17,30 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // MsDevCallerListCtrl
 
-const int MsDevCallerListCtrl::s_lineNumberSubItem = 3;
-const int MsDevCallerListCtrl::s_fileNameSubItem = 4;
+
 
 MsDevCallerListCtrl::MsDevCallerListCtrl()
+    : m_lineNumberSubItem( 3 )
+    , m_fileNameSubItem( 4 )
 {
 }
 
 MsDevCallerListCtrl::~MsDevCallerListCtrl()
 {
+}
+
+
+void 
+MsDevCallerListCtrl::setLineNumberSubItem( int subItemIndex )
+{
+  m_lineNumberSubItem = subItemIndex;
+}
+
+
+void 
+MsDevCallerListCtrl::setFileNameSubItem( int fileNameItemIndex )
+{
+  m_fileNameSubItem = fileNameItemIndex;
 }
 
 
@@ -64,12 +79,12 @@ void MsDevCallerListCtrl::OnDblclk(NMHDR* pNMHDR, LRESULT* pResult)
 
     hotItem = HitTest( pt, &flags);
 
-    lineNumber = GetItemText( hotItem, s_lineNumberSubItem);
-    fileName = GetItemText( hotItem, s_fileNameSubItem);
+    lineNumber = GetItemText( hotItem, m_lineNumberSubItem);
+    fileName = GetItemText( hotItem, m_fileNameSubItem);
     
     pIDSPlugin->goToLineInSourceCode( CComBSTR( fileName), _ttoi( lineNumber));
 
   }
 
-	*pResult = 0;
+  *pResult = 0;
 }

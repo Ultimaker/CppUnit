@@ -62,11 +62,11 @@ public:
   // IDD is not use, it is just there for the wizard.
   //{{AFX_DATA(TestRunnerDlg)
   enum { IDD = IDD_DIALOG_TESTRUNNER };
-	MsDevCallerListCtrl	m_listCtrl;
-  CButton	m_buttonClose;
-  CButton	m_buttonStop;
-  CButton	m_buttonRun;
-  BOOL	m_bAutorunAtStartup;
+  MsDevCallerListCtrl m_listCtrl;
+  CButton m_buttonClose;
+  CButton m_buttonStop;
+  CButton m_buttonRun;
+  BOOL m_bAutorunAtStartup;
   //}}AFX_DATA
 
   //{{AFX_VIRTUAL(TestRunnerDlg)

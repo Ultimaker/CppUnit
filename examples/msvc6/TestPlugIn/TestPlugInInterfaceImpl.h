@@ -6,7 +6,6 @@
 #ifndef TESTPLUGININTERFACEIMPL_H
 #define TESTPLUGININTERFACEIMPL_H
 
-#include "TestPlugIn.h"
 #include <msvc6/testrunner/TestPlugInInterface.h>
 
 
@@ -37,11 +36,6 @@ private:
 private:
 };
 
-
-
-extern "C" {
-  TESTPLUGIN_API TestPlugInInterface *GetTestPlugInInterface();
-}
 
 
 #endif  // TESTPLUGININTERFACEIMPL_H

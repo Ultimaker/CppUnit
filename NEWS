@@ -9,8 +9,10 @@
 	- Style sheet support added to XML ouput.
 	- CompilerOutputter supports run-time parametrization of error location format.
 	- Tracking of test suite run.
+	- Debugging and post-build testing of DLL using DllPlugInTester.
+	- Easy creation a test plug-in and test plug-in new example
 
-* Test
+* Test:
 
   - Exploration of the test hierarchy without RTTI support:
     Added Test::getChildTestCount() and Test::getChildTestAt() to walk the test hierarchy
@@ -19,13 +21,13 @@
   - Utility methods to find a test in the hierarchy:
 	Added Test::findTest(), Test::findTestPath() and Test::resolveTestPath().
 
-* TestPath
+* TestPath:
 
   - A new class that store the path to a specific test (list of pointer). Can be
     converted into a string and constructed from a string. Typically used with 
 	TestRunner.
 
-* TestListener
+* TestListener:
 
   - Added startSuite() and endSuite() callback that are called before and after a
     test suite runs its child tests. See TestListener for detail and new example.
@@ -40,6 +42,20 @@
   - Added style sheet support.
 
   - XML structure change (see Compatibility break)
+
+* DllPlugInTester: (src/msvc6/DllPlugInTester, in src/CppUnitLibraries.dsw)
+
+  - An application to load a DLL test plug-in and run the specified test. Test
+    result are reported using a CompilerOutputter. It can be used for post-build
+	testing, but to debug DLL too! See examples/msvc6/TestPlugIn/TestPlugIn.dsp
+	which demonstrate both.
+
+* TestPlugInInterface (include/msvc6/TestPlugInInterface.h):
+
+  - Easy creation a test plug-in with the new macro CPPUNIT_TESTPLUGIN_IMPL
+    that implements and exports everything for you. 
+	See examples/msvc6/EasyTestPlugIn for an example.
+
 
 * Compatibility break:
 
@@ -74,6 +90,9 @@
   - XmlOutputter: did not escape content (bug #540944).
 
   - Included qt/examples in distribution
+
+  - Removed dependency of MfcTestRunner on DSPlugIn. It should now compile with
+    VC++ 7.
 
 
 	New in CppUnit 1.8.0:

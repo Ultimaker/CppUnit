@@ -63,3 +63,6 @@
 
 /*! \defgroup CreatingNewAssertions Creating custom assertions
  */
+
+/*! \defgroup WritingTestPlugIn Writing Test Plug-in
+ */
