@@ -17,7 +17,7 @@ m4data_DATA = cppunit.m4
 
 dist-hook:
 	cp -dpR examples/msvc6 $(distdir)/examples
-	find $(distdir) -name CVS -exec rm -rf {} \;
+	find $(distdir) -name CVS | xargs rm -rf
 
 .PHONY: release snapshot rpm docs doc-dist
 
