@@ -38,6 +38,8 @@ CppUnit's coding guidelines for portability:
 - don't use STL container at() method, instead use the array accessor [].
   at() is not supported on some gcc versions.
 
+- dereferencing containers must be done by (*ref_ptr).data instead of
+  ref_ptr->data.
 
 In brief, it should be possible to compile CppUnit on a C++ compiler that do
 not have the following features:
