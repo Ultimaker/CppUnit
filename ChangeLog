@@ -1,3 +1,9 @@
+2004-04-09 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * release 1.10.0
+
+  * install-UNIX.txt: added some notes concerning Sun CC 5.5 & AIX.
+
 2004-03-13 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * release 1.9.14
