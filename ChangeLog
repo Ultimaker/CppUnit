@@ -9,6 +9,9 @@
 	* src/cppunit/TestAssert.cpp:
 	Use NotEqualException to report equality failure.
 
+	* src/cppunit/TestFactoryRegistry.cpp: fixed makeTest(). It did not use m_name for
+	naming the suite.
+
 	* src/cppunit/TestResult.cpp:
 	Report expect/was on different line for assertEquals failure.
 

@@ -83,7 +83,7 @@ TestFactoryRegistry::registerFactory( TestFactory *factory )
 Test *
 TestFactoryRegistry::makeTest()
 {
-  TestSuite *suite = new TestSuite( "All Tests" );
+  TestSuite *suite = new TestSuite( m_name );
   addTestToSuite( suite );
   return suite;
 }
