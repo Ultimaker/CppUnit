@@ -1,3 +1,19 @@
+2001-06-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* src/cppunit/TypeInfoHelper.cpp: removed #include <config.h>, cppunit/config.h was already included.
+
+	* src/cppunit/cppunit.dsp: removed TestAssert.cpp from project.
+
+	* added/updated .cvsignore files for beter handling of windows projects.
+
+	* added include/cppunit/config.h with a default configuration for VC++ 6.0.
+
+	* include/cppunit/.cvsignore: removed config.h from the list of ignored file.
+
+	* renamed VC++ configurations without RTTI from "Debug No CU_USE_TYPEINFO" to "Debug Crossplatform".
+
+	* include/cppunit/TestAssert.h: added include <math.h> for fabs().
+
 2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* src/cppunit/Exception.cpp: Remove unnecessary namespace

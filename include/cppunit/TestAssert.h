@@ -1,6 +1,7 @@
 #ifndef CPPUNIT_TESTASSERT_H
 #define CPPUNIT_TESTASSERT_H
 
+#include <math.h>
 #include <string>
 #include <sstream>
 #include <cppunit/config.h>
