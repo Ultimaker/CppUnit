@@ -22,30 +22,30 @@ TestRegistry::getRegistry ()
 }
 
 void 
-TestRegistry::addTest(string name, Test *test)
+TestRegistry::addTest(std::string name, Test *test)
 { 
   s_registry_names.push_back (name);
   s_registry_tests.push_back (test); 
 }
 
-const vector<string>&
+const std::vector<std::string>&
 TestRegistry::getAllTestNames () const
 {
   return(s_registry_names);
 }
 
-const vector<Test*>& 
+const std::vector<Test*>& 
 TestRegistry::getAllTests() const
 {
   return(s_registry_tests);
 }
 
-vector<Test*> 
-TestRegistry::getTest (const string& testCase) const
+std::vector<Test*> 
+TestRegistry::getTest (const std::string& testCase) const
 {
-  vector<Test*> res;
-  vector<Test*>::iterator test_it;
-  vector<string>::iterator name_it;
+  std::vector<Test*> res;
+  std::vector<Test*>::iterator test_it;
+  std::vector<std::string>::iterator name_it;
   for (test_it = s_registry_tests.begin (),
        name_it = s_registry_names.begin ();
        test_it != s_registry_tests.end ();
@@ -60,7 +60,7 @@ TestRegistry::getTest (const string& testCase) const
 
 TestRegistry::~TestRegistry ()
 {
-    for (vector<Test*>::iterator it = s_registry_tests.begin ();
+    for (std::vector<Test*>::iterator it = s_registry_tests.begin ();
              it != s_registry_tests.end ();
              ++it)
         delete *it;

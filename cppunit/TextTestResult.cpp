@@ -51,7 +51,7 @@ TextTestResult::printErrors (ostream& stream)
 
         int i = 1;
 
-        for (vector<TestFailure *>::iterator it = errors ().begin (); it != errors ().end (); ++it) {
+        for (std::vector<TestFailure *>::iterator it = errors ().begin (); it != errors ().end (); ++it) {
             TestFailure             *failure    = *it;
             Exception        *e          = failure->thrownException ();
 
@@ -78,7 +78,7 @@ TextTestResult::printFailures (ostream& stream)
 
         int i = 1;
 
-        for (vector<TestFailure *>::iterator it = failures ().begin (); it != failures ().end (); ++it) {
+        for (std::vector<TestFailure *>::iterator it = failures ().begin (); it != failures ().end (); ++it) {
             TestFailure             *failure    = *it;
             Exception        *e          = failure->thrownException ();
 
