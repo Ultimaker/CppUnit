@@ -2,6 +2,7 @@
 
 	* Makefile.am (snapshot): Replace "date -I" GNUism with portable
 	specification for ISO date format.
+	(dist-hook): Correct rule to change line endings for INSTALL-WIN32.txt.
 
 	* include/cppunit/Portability.h: 
 	* config/ac_cxx_have_strstream.m4 (AC_CXX_HAVE_STRSTREAM): Extend

@@ -29,7 +29,7 @@ dist-hook:
 	cp -dpR $(top_srcdir)/examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf
 	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'` \
-		INSTALL-WIN32.txt
+		$(distdir)/INSTALL-WIN32.txt
 
 .PHONY: release snapshot rpm docs doc-dist
 
