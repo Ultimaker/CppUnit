@@ -2,12 +2,13 @@
 #define CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H
 
 #include <memory>
+#include <cppunit/config.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCaller.h>
 
-#ifdef CPPUNIT_USE_TYPEINFO
-#include <cppunit/extensions/TypeInfoHelper.h>
-#endif  // CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO
+#  include <cppunit/extensions/TypeInfoHelper.h>
+#endif
 
 namespace CppUnit {
 
@@ -17,7 +18,7 @@ namespace CppUnit {
     public:
       typedef void (Fixture::*TestMethod)();
 
-#ifdef CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO
       TestSuiteBuilder() : 
           m_suite( new TestSuite( 
               TypeInfoHelper::getClassName( typeid(Fixture) )  ) )

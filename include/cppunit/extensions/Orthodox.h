@@ -58,25 +58,25 @@ template <typename ClassUnderTest> void Orthodox<ClassUnderTest>::runTest ()
     ClassUnderTest   a, b, c;
 
     // make sure we have an equality operator
-    assert (a == b);
+    CPPUNIT_ASSERT (a == b);
 
     // check the inverse
     b.operator= (a.operator! ());
-    assert (a != b);
+    CPPUNIT_ASSERT (a != b);
 
     // double inversion
     b = !!a;
-    assert (a == b);
+    CPPUNIT_ASSERT (a == b);
 
     // invert again
     b = !a;
 
     // check calls
     c = a;
-    assert (c == call (a));
+    CPPUNIT_ASSERT (c == call (a));
 
     c = b;
-    assert (c == call (b));
+    CPPUNIT_ASSERT (c == call (b));
 
 }
 

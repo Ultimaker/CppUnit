@@ -1,14 +1,58 @@
 2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* include/cppunit/TestAssert.h: Declare generic assertion_traits
+	class.  Replace notEqualsMessage functions for long and double by
+	a generic, template function.  Replace assertEquals for longs by a
+	generic template function.  Inline all class methods.  Define new
+	assertion macros CPPUNIT_ASSERT, CPPUNIT_ASSERT_EQUAL, and
+	CPPUNIT_ASSERT_DOUBLES_EQUAL; the old names are available by
+	editing <cppunit/config.h>.
+
+	* src/cppunit/TestAssert.cpp: Removed.  Move code to inline
+	functions.
+
+	* config/ac_cxx_rtti.m4: New.  Taken from
+	http://cryp.to/autoconf-archive.
+
+	* include/cppunit/config.h.in: New.  Input file for installable,
+	generated config.h file.
+
+	* configure.in: Use AC_CXX_RTTI; generate include/cppunit/config.h.
+
+	* include/cppunit/extensions/HelperMacros.h: 
+	* include/cppunit/extensions/TestSuiteBuilder.h:
+	* include/cppunit/extensions/TypeInfoHelper.h:
+	* src/cppunit/TestCase.cpp:
+	* src/cppunit/TestFactoryRegistry.cpp:
+	* src/cppunit/TypeInfoHelper.cpp:
+	Use "#if CPPUNIT_USE_TYPEINFO" rather than "#ifdef".
+
+	* src/cppunit/TypeInfoHelper.cpp: Allow for std::string::compare()
+	that takes the string in the first argument.
+
+	* doc/cookbook.html:
+	* examples/cppunittest/TestCallerTest.cpp:
+	* examples/cppunittest/TestResultTest.cpp:
+	* examples/hierarchy/BoardGameTest.h:
+	* examples/hierarchy/ChessTest.h:
+	* examples/msvc6/HostApp/ExampleTestCase.cpp:
+	* include/cppunit/TestCase.h: 
+	* include/cppunit/extensions/Orthodox.h:
+ 	Replace assert by CPPUNIT_ASSERT.
+	Replace assertLongsEqual by CPPUNIT_ASSERT_EQUAL.
+	Replace assertDoublesEqual by CPPUNIT_ASSERT_DOUBLES_EQUAL.
+
 	* * (CU_TEST_SUITE, CU_TEST, CU_TEST_SUITE_END,
 	CU_TEST_SUITE_REGISTRATION): Replace prefix CU_ with CPPUNIT_.
 	
 	* examples/cppunittest/.cvsignore: Add UNIX generated files.
 
 2001-06-01 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* examples/cppunittest/Makefile.am: added
+
 	* configure.in: added examples/cppunittest/Makefile to AC_OUTPUT.
-	
+
 2001-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* added project cppunittest to examples/: unit tests to test cppunit.
@@ -24,6 +68,7 @@
 	* updated some .cvsignore to ignore files generated with VC++.
 
 2001-05-30 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* src/cppunit/TestCase.cpp (toString): put type_info in std 
 	namespace and inside CU_USE_TYPEINFO ifdef.
 	

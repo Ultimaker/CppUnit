@@ -42,13 +42,13 @@ class BoardGameTest : public CppUnit::TestCase {
     
     void testReset () 
     { 
-      assert( m_game->reset() );
+      CPPUNIT_ASSERT( m_game->reset() );
     }
 
     void testResetShouldFail () 
     { 
       std::cout << "The following test fails, this is intended:" << std::endl;
-      assert( !m_game->reset() );
+      CPPUNIT_ASSERT( !m_game->reset() );
     }
     
 };

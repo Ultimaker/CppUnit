@@ -41,12 +41,12 @@ namespace CppUnit {
    *
    * For each test implement a method which interacts
    * with the fixture. Verify the expected results with assertions specified
-   * by calling assert on the expression you want to test:
+   * by calling CPPUNIT_ASSERT on the expression you want to test:
    * 
    * \code
    *    protected: void testAdd () {
    *        int result = value1 + value2;
-   *        assert (result == 5);
+   *        CPPUNIT_ASSERT (result == 5);
    *    }
    * \endcode
    * 

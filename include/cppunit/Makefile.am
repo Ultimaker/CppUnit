@@ -2,6 +2,7 @@ SUBDIRS = extensions
 
 libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
+	config.h \
 	Exception.h \
 	Test.h \
 	TestAssert.h \

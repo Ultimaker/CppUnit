@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.4 2001-05-19 17:41:03 bastiaan Exp $
+# $Id: Makefile.am,v 1.5 2001-06-02 22:29:52 smr99 Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -8,7 +8,6 @@ INCLUDES = -I$(top_srcdir)/include
 lib_LTLIBRARIES = libcppunit.la
 
 libcppunit_la_SOURCES = \
-  TestAssert.cpp \
   TestCase.cpp \
   TestSuite.cpp \
   TestResult.cpp \

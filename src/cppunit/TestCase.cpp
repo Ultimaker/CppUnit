@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <cmath>
 
+#include "cppunit/config.h"
 #include "cppunit/TestCase.h"
 #include "cppunit/Exception.h"
 #include "cppunit/TestResult.h"
@@ -115,7 +116,7 @@ std::string
 { 
   std::string className;
 
-#ifdef CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO
   const std::type_info& thisClass = typeid (*this);
   className = thisClass.name();
 #else

@@ -5,12 +5,14 @@
 
 #include <sstream>
 #include <utility>
+#include "cppunit/config.h"
 #include "cppunit/TestSuite.h"
 #include "cppunit/extensions/TestFactoryRegistry.h"
 
-#ifdef CPPUNIT_USE_TYPEINFO
-#include "cppunit/extensions/TypeInfoHelper.h"
-#endif // CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO
+#  include "cppunit/extensions/TypeInfoHelper.h"
+#endif
+
 
 namespace CppUnit {
 

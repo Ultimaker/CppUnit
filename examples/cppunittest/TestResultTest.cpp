@@ -100,9 +100,9 @@ void
 TestResultTest::testAddErrorListener()
 {
   m_result->addError( m_dummyTest, makeDummyError() );
-  assert( m_listenerCallbackType == onAddError );
-  assert( m_listenerTest == m_dummyTest );
-  assert( m_listenerError == m_dummyError );
+  CPPUNIT_ASSERT( m_listenerCallbackType == onAddError );
+  CPPUNIT_ASSERT( m_listenerTest == m_dummyTest );
+  CPPUNIT_ASSERT( m_listenerError == m_dummyError );
 }
 
 
@@ -110,9 +110,9 @@ void
 TestResultTest::testAddFailureListener()
 {
   m_result->addFailure( m_dummyTest, makeDummyError() );
-  assert( m_listenerCallbackType == onAddFailure );
-  assert( m_listenerTest == m_dummyTest );
-  assert( m_listenerError == m_dummyError );
+  CPPUNIT_ASSERT( m_listenerCallbackType == onAddFailure );
+  CPPUNIT_ASSERT( m_listenerTest == m_dummyTest );
+  CPPUNIT_ASSERT( m_listenerError == m_dummyError );
 }
 
 
@@ -120,8 +120,8 @@ void
 TestResultTest::testStartTestListener()
 {
   m_result->startTest( m_dummyTest );
-  assert( m_listenerCallbackType == onStartTest );
-  assert( m_listenerTest == m_dummyTest );
+  CPPUNIT_ASSERT( m_listenerCallbackType == onStartTest );
+  CPPUNIT_ASSERT( m_listenerTest == m_dummyTest );
 }
 
 
@@ -129,8 +129,8 @@ void
 TestResultTest::testEndTestListener()
 {
   m_result->endTest( m_dummyTest );
-  assert( m_listenerCallbackType == onEndTest );
-  assert( m_listenerTest == m_dummyTest );
+  CPPUNIT_ASSERT( m_listenerCallbackType == onEndTest );
+  CPPUNIT_ASSERT( m_listenerTest == m_dummyTest );
 }
 
 
@@ -159,8 +159,8 @@ TestResultTest::testTwoListener()
   MockTestListener listener;
   m_result->addListener( &listener );
   m_result->startTest( m_dummyTest );
-  assert( m_listenerCallbackType == onStartTest );
-  assert( listener.wasCalled() );
+  CPPUNIT_ASSERT( m_listenerCallbackType == onStartTest );
+  CPPUNIT_ASSERT( listener.wasCalled() );
 }
 
 
@@ -171,8 +171,8 @@ TestResultTest::testRemoveFrontListener()
   m_result->addListener( &listener );
   m_result->removeListener( &listener );
   m_result->startTest( m_dummyTest );
-  assert( m_listenerCallbackType == onStartTest );
-  assert( !listener.wasCalled() );
+  CPPUNIT_ASSERT( m_listenerCallbackType == onStartTest );
+  CPPUNIT_ASSERT( !listener.wasCalled() );
 }
 
 
@@ -184,6 +184,6 @@ TestResultTest::testRemoveLastListener()
 
   m_result->removeListener( this );
   m_result->startTest( m_dummyTest );
-  assert( m_listenerCallbackType == undefined );
-  assert( listener.wasCalled() );
+  CPPUNIT_ASSERT( m_listenerCallbackType == undefined );
+  CPPUNIT_ASSERT( listener.wasCalled() );
 }

@@ -1,7 +1,9 @@
 #ifndef CPPUNIT_TYPEINFOHELPER_H
 #define CPPUNIT_TYPEINFOHELPER_H
 
-#ifdef CPPUNIT_USE_TYPEINFO
+#include <cppunit/config.h>
+
+#if CPPUNIT_USE_TYPEINFO
 
 #include <typeinfo>
 

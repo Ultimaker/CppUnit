@@ -39,7 +39,7 @@
   <P>
     Subclass the TestCase class. 
     Override the method <code>runTest ()</code>. When you 
-    want to check a value, call <code>assert (bool)</code> 
+    want to check a value, call <code>CPPUNIT_ASSERT (bool)</code> 
     and pass in an expression that is true if the 
     test succeeds. 
   </P>
@@ -51,8 +51,8 @@
 &#9;public: 
                     ComplexNumberTest (string name) : TestCase (name) {}
         void        runTest () {
-                        assert (Complex (10, 1) == Complex (10, 1));
-                        assert (!(Complex (1, 1) == Complex (2, 2)));
+                        CPPUNIT_ASSERT (Complex (10, 1) == Complex (10, 1));
+                        CPPUNIT_ASSERT (!(Complex (1, 1) == Complex (2, 2)));
                     }
         };</PRE>
     </TT>
@@ -166,11 +166,11 @@
 &#9;&#9;&#9;    delete m_10_1, delete m_1_1, delete m_11_2;
 &#9;&#9;&#9;}
 &#9;void&#9;&#9;testEquality ()  {
-&#9;&#9;&#9;    assert (*m_10_1 == *m_10_1);
-&#9;&#9;&#9;    assert (!(*m_10_1 == *m_11_2));
+&#9;&#9;&#9;    CPPUNIT_ASSERT (*m_10_1 == *m_10_1);
+&#9;&#9;&#9;    CPPUNIT_ASSERT (!(*m_10_1 == *m_11_2));
 &#9;&#9;&#9;}
 &#9;void&#9;&#9;testAddition ()  {
-&#9;&#9;&#9;    assert (*m_10_1 + *m_1_1 == *m_11_2);
+&#9;&#9;&#9;    CPPUNIT_ASSERT (*m_10_1 + *m_1_1 == *m_11_2);
                  &#9;}
 &#9;};</PRE>
 </TT><P>One may create and run instances for each test case like this:</P>
@@ -231,7 +231,7 @@ For example, to make a ComplexNumberTest suite available to a TestRunner, add th
 <LI>The name of the test case that failed</LI>
 <LI>The name of the source file that contains the test</LI>
 <LI>The line number where the failure occurred</LI>
-<LI>All of the text inside the call to assert which detected the failure</LI></OL>
+<LI>All of the text inside the call to CPPUNIT_ASSERT which detected the failure</LI></OL>
 
 <P>CppUnit distinguishes between <I>failures</I> and <I>errors</I>. A failure is anticipated and checked for with assertions. Errors are unanticipated problems like division by zero and other exceptions thrown by the C++ runtime or your code.</P>
 

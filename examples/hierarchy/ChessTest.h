@@ -24,7 +24,7 @@ class ChessTest : public BoardGameTest<GAMECLASS> {
     
     void testNumberOfPieces () 
     { 
-      assert (m_game->getNumberOfPieces () == 32); 
+      CPPUNIT_ASSERT (m_game->getNumberOfPieces () == 32); 
     }
 };
 

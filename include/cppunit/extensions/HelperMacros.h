@@ -7,6 +7,7 @@
 #define CPPUNIT_EXTENSIONS_HELPERMACROS_H
 
 #include <string>
+#include <cppunit/config.h>
 #include <cppunit/extensions/AutoRegisterSuite.h>
 #include <cppunit/extensions/TestSuiteBuilder.h>
 
@@ -17,13 +18,11 @@
 // defined, otherwise it is extracted from the macro parameter
 //
 // This macro is for cppunit internal and should not be use otherwise.
-#ifdef CPPUNIT_USE_TYPEINFO
-#define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType )
-
-#else  // CPPUNIT_USE_TYPEINFO
-#define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType ) (std::string(#ATestCaseType))
-
-#endif // CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO
+#  define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType )
+#else
+#  define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType ) (std::string(#ATestCaseType))
+#endif
 
 
 /** \file

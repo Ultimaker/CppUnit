@@ -96,6 +96,19 @@ AC_SUBST(enable_html_docs)
 AC_SUBST(enable_latex_docs)
 
 
+# Check for compiler characteristics 
+# ----------------------------------------------------------------------------
+
+AC_CXX_RTTI
+
+if test "$ac_cv_cxx_rtti" = yes; then
+    CPPUNIT_USE_TYPEINFO=1
+else
+    CPPUNIT_USE_TYPEINFO=0
+fi
+AC_SUBST(CPPUNIT_USE_TYPEINFO)
+
+
 AC_OUTPUT([
   Makefile 
   cppunit.spec
@@ -105,6 +118,7 @@ AC_OUTPUT([
   src/cppunit/Makefile
   include/Makefile
   include/cppunit/Makefile
+  include/cppunit/config.h
   include/cppunit/extensions/Makefile
   doc/Makefile
   doc/Doxyfile

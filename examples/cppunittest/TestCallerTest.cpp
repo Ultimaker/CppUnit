@@ -96,7 +96,7 @@ TestCallerTest::testBasicConstructor()
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
-  assertLongsEqual( 1, m_destructorCount );
+  CPPUNIT_ASSERT_EQUAL( 1, m_destructorCount );
 }
 
 
@@ -115,7 +115,7 @@ TestCallerTest::testReferenceConstructor()
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
-  assertLongsEqual( 0, m_destructorCount );
+  CPPUNIT_ASSERT_EQUAL( 0, m_destructorCount );
 }
 
 
@@ -134,32 +134,32 @@ TestCallerTest::testPointerConstructor()
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
-  assertLongsEqual( 1, m_destructorCount );
+  CPPUNIT_ASSERT_EQUAL( 1, m_destructorCount );
 }
 
 
 void 
 TestCallerTest::checkNothingButConstructorCalled()
 {
-  assertLongsEqual( 1, m_constructorCount );
-  assertLongsEqual( 0, m_destructorCount );
-  assertLongsEqual( 0, m_setUpCount );
-  assertLongsEqual( 0, m_tearDownCount );
-  assertLongsEqual( 0, m_testCount );
+  CPPUNIT_ASSERT_EQUAL( 1, m_constructorCount );
+  CPPUNIT_ASSERT_EQUAL( 0, m_destructorCount );
+  CPPUNIT_ASSERT_EQUAL( 0, m_setUpCount );
+  CPPUNIT_ASSERT_EQUAL( 0, m_tearDownCount );
+  CPPUNIT_ASSERT_EQUAL( 0, m_testCount );
 }
 
 
 void 
 TestCallerTest::checkRunningSequenceCalled()
 {
-  assertLongsEqual( 1, m_setUpCount );
-  assertLongsEqual( 1, m_testCount );
-  assertLongsEqual( 1, m_tearDownCount );
+  CPPUNIT_ASSERT_EQUAL( 1, m_setUpCount );
+  CPPUNIT_ASSERT_EQUAL( 1, m_testCount );
+  CPPUNIT_ASSERT_EQUAL( 1, m_tearDownCount );
 }
 
 
 void 
 TestCallerTest::checkTestName( std::string testName )
 {
-  assert( testName == m_testName );
+  CPPUNIT_ASSERT( testName == m_testName );
 }

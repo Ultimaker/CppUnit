@@ -4,15 +4,15 @@ CPPUNIT_TEST_SUITE_REGISTRATION( ExampleTestCase );
 
 void ExampleTestCase::example ()
 {
-	assertDoublesEqual (1.0, 1.1, 0.05);
-	assert (1 == 0);
-	assert (1 == 1);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL (1.0, 1.1, 0.05);
+	CPPUNIT_ASSERT (1 == 0);
+	CPPUNIT_ASSERT (1 == 1);
 }
 
 
 void ExampleTestCase::anotherExample ()
 {
-	assert (1 == 2);
+	CPPUNIT_ASSERT (1 == 2);
 }
 
 void ExampleTestCase::setUp ()
@@ -24,7 +24,7 @@ void ExampleTestCase::setUp ()
 void ExampleTestCase::testAdd ()
 {
 	double result = m_value1 + m_value2;
-	assert (result == 6.0);
+	CPPUNIT_ASSERT (result == 6.0);
 }
 
 
@@ -40,13 +40,13 @@ void ExampleTestCase::testEquals ()
     std::auto_ptr<long>	l1 (new long (12));
     std::auto_ptr<long>	l2 (new long (12));
 
-    assertLongsEqual (12, 12);
-    assertLongsEqual (12L, 12L);
-    assertLongsEqual (*l1, *l2);
+    CPPUNIT_ASSERT_EQUAL (12, 12);
+    CPPUNIT_ASSERT_EQUAL (12L, 12L);
+    CPPUNIT_ASSERT_EQUAL (*l1, *l2);
     
-	assert (12L == 12L);
-	assertLongsEqual (12, 13);
-	assertDoublesEqual (12.0, 11.99, 0.5);
+	CPPUNIT_ASSERT (12L == 12L);
+	CPPUNIT_ASSERT_EQUAL (12, 13);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL (12.0, 11.99, 0.5);
 
 
 
