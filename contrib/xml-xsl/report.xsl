@@ -52,11 +52,18 @@ SPAN.critical		{ color:#880000; font-weight:bold; }
 
 <xsl:template match="FailedTest">
 	<TR>
+  <TD align="right" valign='top'><xsl:value-of select="@id"/></TD>
+  <TD valign='top'><xsl:apply-templates select="Name"/></TD>
+  <TD valign='top'><xsl:apply-templates select="FailureType"/></TD>
+  <TD valign='top'><xsl:apply-templates select="Location"/></TD>
+  <TD valign='top'><pre><xsl:apply-templates select="Message"/></pre></TD>
+<--
 		<TD align="right"><xsl:value-of select="@id"/></TD>
 		<TD><xsl:apply-templates select="Name"/></TD>
 		<TD><xsl:apply-templates select="FailureType"/></TD>
 		<TD><xsl:apply-templates select="Location"/></TD>
 		<TD><xsl:apply-templates select="Message"/></TD>
+-->
 	</TR>
 </xsl:template>
 <xsl:template match="Name|FailureType|Message"><xsl:value-of select="."/></xsl:template>

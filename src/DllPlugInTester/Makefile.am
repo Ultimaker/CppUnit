@@ -2,14 +2,10 @@ EXTRA_DIST = DllPlugInTester.dsp
 
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 
-hierarchy_SOURCES= BoardGame.cpp \
-                   Chess.cpp \
-                   main.cpp \
-                   BoardGame.h \
-                   Chess.h \
-                   BoardGameTest.h \
-                   ChessTest.h
+bin_PROGRAMS=DllPlugInTester
 
-hierarchy_LDADD= \
+DllPlugInTester_SOURCES= DllPlugInTester.cpp
+
+DllPlugInTester_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 
 
