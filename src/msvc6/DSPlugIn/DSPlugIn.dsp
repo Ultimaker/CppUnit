@@ -62,7 +62,8 @@ InputPath=\prg\vc\Lib\cppunit\lib\TestRunnerDSPlugIn.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	"$(TargetPath)" /RegServer 
+	rem Following command disabled since it does not work 
+	rem "$(TargetPath)" /RegServer 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	echo Server registration done! 
 	
@@ -102,7 +103,8 @@ InputPath=\prg\vc\Lib\cppunit\lib\TestRunnerDSPlugInD.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	"$(TargetPath)" /RegServer 
+	rem Following command disabled since it does not work 
+	rem "$(TargetPath)" /RegServer 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	echo Server registration done! 
 	
@@ -144,7 +146,7 @@ SOURCE=.\TestRunnerDSPlugin.idl
 
 !IF  "$(CFG)" == "DSPlugIn - Win32 Release"
 
-# ADD MTL /tlb "../../../lib/TestRunnerDSPlugin.tlb" /h "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin.h" /iid "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin_i.c"
+# ADD MTL /tlb "TestRunnerDSPlugin.tlb" /h "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin.h" /iid "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin_i.c"
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
 

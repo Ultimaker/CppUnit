@@ -1,3 +1,20 @@
+2001-09-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* examples/cppunittest/makefile.am : added TestSetupTest.(cpp/h)
+
+	* examples/examples.dsw: removed some unnecessary dependencies. 
+
+	* examples/msvc6/HostApp/HostApp.dsp: fixed release configuration
+
+	* src/msvc6/DSPlugIn/DSPlugIn.dsp: fixed release configuration, and
+	disabled the custom build command that does not work.
+
+	* include/cppunit/extensions/HelperMacros.h: reordered header to remove
+	some warning with VC++.
+
+	* INSTALL-WIN32.txt : detailed what was in each project. Added a FAQ 
+	about the failing test case in cppunittest.
+
 2001-09-19  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* README: Describe how to check if libtool is fixed.
@@ -15,6 +32,7 @@
 	* include/cppunit/Portability.h: Qualify ostrstream with std.
 	Suggested by Patrick Hartling.
 
+>>>>>>> 1.69
 2001-09-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/examples.dsw:

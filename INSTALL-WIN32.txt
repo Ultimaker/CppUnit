@@ -1,29 +1,52 @@
 At the current time, the only supported WIN32 platform is 
 Microsoft Visual C++. You must have VC++ 6.0 at least.
 
+Quick Steps to compile & run a sample using the GUI TestRunner:
+- Open examples/examples.dsw in VC++ (contains all the samples)
+- Make HostApp the Active project
+- Compile & Run
 
-Build Targets:
---------------
 
-* cppunit.lib : unit testing framework library, the one you use to
-write unit tests.
+Project build Target:
+---------------------
 
-* testrunner.dll : a MFC extension DLL to run and browser unit tests 
-from a GUI.
+Framework & tools:
 
-* dspluging.dll : a VC++ add-in used by testrunner.dll to open the
-file containing a test failure by double-clicking on the failure
-in the GUI.
+* cppunit (cppunit.lib) : unit testing framework library, the one you use 
+to write unit tests.
 
-* testpluginrunner : (Warning: experimental) a VC++ application to run 
-test plug-in. A test plug-in is a DLL that publish a specified interface.
-This application is still incomplete (the auto-reload feature is missing).
+* TestRunner (testrunner.dll) : a MFC extension DLL to run and browser unit 
+tests from a GUI.
 
-  Quick Steps to compile & run a sample using the GUI TestRunner:
-  - Open examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsw in VC++
-    (A sample using the GUI TestRunner to run CppUnit one's unit tests)
-  - Make CppUnitTestApp the Active project
-  - Compile & Run
+* DSPlugIn (dspluging.dll) : a VC++ add-in used by testrunner.dll to open 
+the file containing a test failure by double-clicking on the failure in the 
+GUI.
+
+* TestPlugInRunner : (Warning: experimental) a VC++ 
+application to run test plug-in. A test plug-in is a DLL that publish a 
+specified interface. This application is still incomplete (the auto-reload 
+feature is missing).
+
+All libraries are placed in the Lib/ directory.
+
+
+Examples:
+
+* CppUnitTestMain : the actual test suite use to test CppUnit. Use a 
+TextTestRunner.
+
+* CppUnitTestApp : contains the same test suite as CppUnitTestMain, but
+run them using the MFC TestRunner.
+
+* hierarchy : a sample demonstrating how to sublcass test (you might rather
+want to use HelperMacros.h and the CPPUNIT_TEST_SUB_SUITE macro which does
+it in a 'cleaner' way. That sample has not been updated for a long time).
+
+* HostApp : a sample using the MFC TestRunner demonstrating different test
+failure.
+
+* TestPlugIn : a sample demonstrating how to write a TestPlugIn for the
+TestPlugInRunner (experimental).
 
 
 Configuration:
@@ -133,3 +156,10 @@ do so for all configurations.
    In Debug configurations, CppUnit use "Debug Multihreaded DLL".
    Check that Projects/Settings.../C++/Code Generation is indeed using
 the correct library.
+
+3) Why does the test ExceptionTest.testAssignment failed in CppUnit test 
+   suite ?
+
+   I've never been able to figure out why that test failed. It seems to
+specific to VC++ since it pass sucessfully with gcc. I you can figure that
+out, you're welcome!

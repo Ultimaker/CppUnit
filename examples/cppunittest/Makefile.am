@@ -41,6 +41,8 @@ cppunittestmain_SOURCES = \
 	TestFailureTest.h \
 	TestResultTest.cpp \
 	TestResultTest.h \
+	TestSetUpTest.cpp \
+	TestSetUpTest.h \
 	TestSuiteTest.cpp \
 	TestSuiteTest.h \
 	TrackedTestCase.cpp \

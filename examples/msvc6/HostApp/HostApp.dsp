@@ -54,7 +54,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 ..\..\..\lib\cppunit.lib ..\..\..\lib\testrunner.lib /nologo /subsystem:windows /machine:I386
+# ADD LINK32 ../../../Lib/cppunit.lib ../../../Lib/testrunner.lib /nologo /subsystem:windows /machine:I386
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PreLink_Cmds=copy ..\..\..\lib\testrunner.dll Release

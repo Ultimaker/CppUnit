@@ -7,9 +7,9 @@
 #define CPPUNIT_EXTENSIONS_HELPERMACROS_H
 
 #include <cppunit/Portability.h>
-#include <string>
 #include <cppunit/extensions/AutoRegisterSuite.h>
 #include <cppunit/extensions/TestSuiteBuilder.h>
+#include <string>
 
 // The macro __CPPUNIT_SUITE_CTOR_ARGS expand to an expression used to construct
 // the TestSuiteBuilder with macro CPPUNIT_TEST_SUITE.
