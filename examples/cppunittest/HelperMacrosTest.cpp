@@ -1,6 +1,7 @@
 #include "FailureException.h"
 #include "HelperMacrosTest.h"
 #include "HelperSuite.h"
+#include "MockTestCase.h"
 #include "SubclassedTestCase.h"
 #include <cppunit/TestResult.h>
 #include <memory>
@@ -9,9 +10,9 @@
  - no unit test for CPPUNIT_TEST_SUITE_REGISTRATION...
  */
 
-class FailTestCase : public CppUnit::TestCase
+class FailTestFixture : public CppUnit::TestFixture
 {
-  CPPUNIT_TEST_SUITE( FailTestCase );
+  CPPUNIT_TEST_SUITE( FailTestFixture );
   CPPUNIT_TEST_FAIL( testFail );
   CPPUNIT_TEST_SUITE_END();
 public:
@@ -22,9 +23,9 @@ public:
 };
 
 
-class FailToFailTestCase : public CppUnit::TestCase
+class FailToFailTestFixture : public CppUnit::TestFixture
 {
-  CPPUNIT_TEST_SUITE( FailToFailTestCase );
+  CPPUNIT_TEST_SUITE( FailToFailTestFixture );
   CPPUNIT_TEST_FAIL( testFailToFail );
   CPPUNIT_TEST_SUITE_END();
 public:
@@ -34,9 +35,9 @@ public:
 };
 
 
-class ExceptionTestCase : public CppUnit::TestCase
+class ExceptionTestFixture : public CppUnit::TestFixture
 {
-  CPPUNIT_TEST_SUITE( ExceptionTestCase );
+  CPPUNIT_TEST_SUITE( ExceptionTestFixture );
   CPPUNIT_TEST_EXCEPTION( testException, FailureException );
   CPPUNIT_TEST_SUITE_END();
 public:
@@ -47,15 +48,68 @@ public:
 };
 
 
-class ExceptionNotCaughtTestCase : public CppUnit::TestCase
+class ExceptionNotCaughtTestFixture : public CppUnit::TestFixture
 {
-  CPPUNIT_TEST_SUITE( ExceptionNotCaughtTestCase );
+  CPPUNIT_TEST_SUITE( ExceptionNotCaughtTestFixture );
   CPPUNIT_TEST_EXCEPTION( testExceptionNotCaught, FailureException );
   CPPUNIT_TEST_SUITE_END();
 public:
   void testExceptionNotCaught()
   {
   }
+};
+
+
+class CustomTestTestFixture : public CppUnit::TestFixture
+{
+  CPPUNIT_TEST_SUITE( CustomTestTestFixture );
+  CPPUNIT_TEST_CUSTOM( makeCustomTest );
+  CPPUNIT_TEST_SUITE_END();
+public:
+  static CppUnit::Test *makeCustomTest( const ThisTestFixtureFactory &factory,
+                                        const CppUnit::TestNamer &namer )
+  {
+    MockTestCase *test = new MockTestCase( namer.getTestNameFor( "myCustomTest" ) );
+    test->makeRunTestThrow();
+    return test;
+  }
+};
+
+
+class CustomsTestTestFixture : public CppUnit::TestFixture
+{
+  CPPUNIT_TEST_SUITE( CustomsTestTestFixture );
+  CPPUNIT_TEST_CUSTOMS( addCustomTests );
+  CPPUNIT_TEST_SUITE_END();
+public:
+  static void addCustomTests( CppUnit::TestSuite *suite,
+                              const ThisTestFixtureFactory &factory,
+                              const CppUnit::TestNamer &namer )
+  {
+    MockTestCase *test1 = new MockTestCase( namer.getTestNameFor( "myCustomTest1" ) );
+    test1->makeRunTestThrow();
+    MockTestCase *test2 = new MockTestCase( namer.getTestNameFor( "myCustomTest2" ) );
+    suite->addTest( test1 );
+    suite->addTest( test2 );
+  }
+};
+
+
+#undef TEST_ADD_N_MOCK
+#define TEST_ADD_N_MOCK( totalCount )                                              \
+  {                                                                                \
+    for ( int count = (totalCount); count > 0; --count )                           \
+      CPPUNIT_TEST_ADD( new MockTestCase( namer.getTestNameFor( "dummyName" ) ) ); \
+  }
+
+
+
+class AddTestTestFixture : public CppUnit::TestFixture
+{
+  CPPUNIT_TEST_SUITE( AddTestTestFixture );
+  TEST_ADD_N_MOCK( 7 );
+  CPPUNIT_TEST_SUITE_END();
+public:
 };
 
 
@@ -120,7 +174,7 @@ HelperMacrosTest::testSubclassing()
 void 
 HelperMacrosTest::testFail()
 {
-  std::auto_ptr<CppUnit::TestSuite> suite( FailTestCase::suite() );
+  std::auto_ptr<CppUnit::TestSuite> suite( FailTestFixture::suite() );
   m_testListener->setExpectedStartTestCall( 1 );
   m_testListener->setExpectNoFailure();
 
@@ -132,7 +186,7 @@ HelperMacrosTest::testFail()
 void 
 HelperMacrosTest::testFailToFail()
 {
-  std::auto_ptr<CppUnit::TestSuite> suite( FailToFailTestCase::suite() );
+  std::auto_ptr<CppUnit::TestSuite> suite( FailToFailTestFixture::suite() );
   m_testListener->setExpectedStartTestCall( 1 );
   m_testListener->setExpectedAddFailureCall( 1 );
 
@@ -144,7 +198,7 @@ HelperMacrosTest::testFailToFail()
 void 
 HelperMacrosTest::testException()
 {
-  std::auto_ptr<CppUnit::TestSuite> suite( ExceptionTestCase::suite() );
+  std::auto_ptr<CppUnit::TestSuite> suite( ExceptionTestFixture::suite() );
   m_testListener->setExpectedStartTestCall( 1 );
   m_testListener->setExpectNoFailure();
   
@@ -156,9 +210,45 @@ HelperMacrosTest::testException()
 void 
 HelperMacrosTest::testExceptionNotCaught()
 {
-  std::auto_ptr<CppUnit::TestSuite> suite( ExceptionNotCaughtTestCase::suite() );
+  std::auto_ptr<CppUnit::TestSuite> suite( ExceptionNotCaughtTestFixture::suite() );
   m_testListener->setExpectedStartTestCall( 1 );
   m_testListener->setExpectedAddFailureCall( 1 );
+
+  suite->run( m_result );
+  m_testListener->verify();
+}
+
+
+void 
+HelperMacrosTest::testCustomTest()
+{
+  std::auto_ptr<CppUnit::TestSuite> suite( CustomTestTestFixture::suite() );
+  m_testListener->setExpectedStartTestCall( 1 );
+  m_testListener->setExpectedAddFailureCall( 1 );
+
+  suite->run( m_result );
+  m_testListener->verify();
+}
+
+
+void 
+HelperMacrosTest::testCustomTests()
+{
+  std::auto_ptr<CppUnit::TestSuite> suite( CustomsTestTestFixture::suite() );
+  m_testListener->setExpectedStartTestCall( 2 );
+  m_testListener->setExpectedAddFailureCall( 1 );
+
+  suite->run( m_result );
+  m_testListener->verify();
+}
+
+
+void 
+HelperMacrosTest::testAddTest()
+{
+  std::auto_ptr<CppUnit::TestSuite> suite( AddTestTestFixture::suite() );
+  m_testListener->setExpectedStartTestCall( 7 );
+  m_testListener->setExpectedAddFailureCall( 0 );
 
   suite->run( m_result );
   m_testListener->verify();

@@ -1,6 +1,20 @@
 	New in CppUnit 1.9.8:
 	---------------------
 
+  - XmlDocument
+  - Custom test macros.
+
+* Custom test macros
+
+  - 3 new macros have been added for use when declaring test fixture suite:
+    - CPPUNIT_TEST_CUSTOM : to specify a method that returns an instance of Test
+      to add to the suite
+    - CPPUNIT_TEST_CUSTOM : to specify a method that add some tests to the suite
+    - CPPUNIT_TEST_ADD : to add a test to the suite. Used this to create custom 
+      CPPUNIT_TEST_xxx macros.
+
+    See macros documentation for examples and details.
+
 * DllPlugInTester:
 
   - added option -w / --wait to wait for the user to press a key before exiting.

@@ -111,7 +111,7 @@ namespace CppUnit
  */
 #define CPPUNIT_TEST_SUITE( ATestFixtureType )                            \
   private:                                                                \
-    typedef ATestFixtureType __ThisTestFixtureType;                       \
+    typedef ATestFixtureType ThisTestFixtureType;                       \
     class __ThisTestFixtureFactory : public CppUnit::TestFixtureFactory   \
     {                                                                     \
       virtual CppUnit::TestFixture *makeFixture()                         \
@@ -125,12 +125,28 @@ namespace CppUnit
       return testNamer;                                                   \
     }                                                                     \
   public:                                                                 \
+    class ThisTestFixtureFactory                                          \
+    {                                                                     \
+    public:                                                               \
+      ThisTestFixtureFactory( CppUnit::TestFixtureFactory *factory )      \
+        : m_factory( factory )                                            \
+      {                                                                   \
+      }                                                                   \
+      ThisTestFixtureType *makeFixture() const                          \
+      {                                                                   \
+        return (ThisTestFixtureType *)m_factory->makeFixture();         \
+      }                                                                   \
+    private:                                                              \
+      CppUnit::TestFixtureFactory *m_factory;                             \
+    };                                                                    \
+                                                                          \
     static void                                                           \
     __registerTests( CppUnit::TestSuite *suite,                           \
-                     CppUnit::TestFixtureFactory *factory,                \
+                     CppUnit::TestFixtureFactory *fixtureFactory,         \
                      const CppUnit::TestNamer &namer )                    \
     {                                                                     \
-      CppUnit::TestSuiteBuilder<__ThisTestFixtureType> builder( suite, namer )
+      const ThisTestFixtureFactory factory( fixtureFactory );             \
+      CppUnit::TestSuiteBuilder<ThisTestFixtureType> builder( suite, namer )
 
 
 /*! \brief Begin test suite (includes parent suite)
@@ -167,7 +183,7 @@ namespace CppUnit
   private:                                                       \
     typedef ASuperClass __ThisSuperClassType;                    \
     CPPUNIT_TEST_SUITE( ATestFixtureType );                      \
-      __ThisSuperClassType::__registerTests( suite, factory, namer )
+      __ThisSuperClassType::__registerTests( suite, fixtureFactory, namer )
 
 
 /*! \brief Add a method to the suite.
@@ -178,9 +194,57 @@ namespace CppUnit
  */
 #define CPPUNIT_TEST( testMethod )                                           \
       builder.addTestCaller( #testMethod,                                    \
-                             &__ThisTestFixtureType::testMethod ,            \
-                             (__ThisTestFixtureType*)factory->makeFixture() ) 
+                             &ThisTestFixtureType::testMethod ,            \
+                             factory.makeFixture() ) 
 
+/*! \brief Add a test to the suite (for custom test macro).
+ *
+ * The specified test will be added to the test suite being declared. This macro
+ * is intended for \e advanced usage, to extend %CppUnit by creating new macro such
+ * as CPPUNIT_TEST_EXCEPTION()...
+ *
+ * Between macro CPPUNIT_TEST_SUITE() and CPPUNIT_TEST_SUITE_END(), you can assume
+ * that the following variables can be used:
+ * \code
+ * const ThisTestFixtureFactory &factory;
+ * const CppUnit::TestNamer &namer;
+ * \endcode
+ *
+ * \c factory can be used to create a new instance of the TestFixture type 
+ * specified in CPPUNIT_TEST_SUITE():
+ * \code
+ *   factory.makeFixture()\endcode
+ *
+ * Below is an example that show how to use this macro to create new macro to add
+ * test to the fixture suite. The macro below show how you would add a new type
+ * of test case which fails if the execution last more than a given time limit.
+ * It relies on an imaginary TimeOutTestCaller class which has an interface similar
+ * to TestCaller.
+ * 
+ * \code
+ * #define CPPUNITEX_TEST_TIMELIMIT( testMethod, timeLimit )            \
+ *      CPPUNIT_TEST_ADD( (new TimeOutTestCaller<ThisTestFixtureType>(  \
+ *                  namer.getTestNameFor( #testMethod ),                \
+ *                  &ThisTestFixtureType::testMethod,                   \
+ *                  factory.makeFixture(),                              \
+ *                  timeLimit ) ) )
+ *   
+ * class PerformanceTest : CppUnit::TestFixture
+ * {
+ * public:
+ *   CPPUNIT_TEST_SUITE( PerformanceTest );
+ *   CPPUNITEX_TEST_TIMELIMIT( testSortReverseOrder, 5.0 );
+ *   CPPUNIT_TEST_SUITE_END();
+ *
+ *   void testSortReverseOrder();
+ * };
+ * \endcode
+ *
+ * \param test Test to add to the suite. Must be a subclass of Test. The test name
+ *             should have been obtained using TestNamer::getTestNameFor().
+ */
+#define CPPUNIT_TEST_ADD( test ) \
+      builder.addTest( test )
 
 /*! \brief Add a test which fail if the specified exception is not caught.
  *
@@ -205,13 +269,12 @@ namespace CppUnit
  * \param ExceptionType Type of the exception that must be thrown by the test 
  *                      method.
  */
-#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )                       \
-      builder.addTest( new CppUnit::TestCaller<__ThisTestFixtureType,             \
-                                               ExceptionType>(                    \
-                               namer.getTestNameFor( #testMethod ),               \
-                               &__ThisTestFixtureType::testMethod,                \
-                               (__ThisTestFixtureType*)factory->makeFixture() ) )
-
+#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )              \
+    CPPUNIT_TEST_ADD( (new CppUnit::TestCaller<ThisTestFixtureType,      \
+                                                ExceptionType>(          \
+                               namer.getTestNameFor( #testMethod ),      \
+                               &ThisTestFixtureType::testMethod,         \
+                               factory.makeFixture() ) ) )
 
 /*! \brief Adds a test case which is excepted to fail.
  *
@@ -233,12 +296,16 @@ namespace CppUnit
 
 /*! \brief Adds a custom test case.
  *
- * Use this to add a custom test case. The specified method must have the following
- * signature:
+ * Use this to add a test case that is returned by a given method to the fixture
+ * suite. The specified method must have the following signature:
  * \code
- * static CppUnit::Test *makeCustomTest( CppUnit::TestFixtureFactory *factory,
+ * static CppUnit::Test *makeCustomTest( const ThisTestFixtureFactory &factory,
  *                                       const CppUnit::TestNamer &namer );
  * \endcode
+ *
+ * \c ThisTestFixtureFactory is a class declared by CPPUNIT_TEST_SUITE(). It has a method
+ * \c makeFixture() which returns a pointer on a new fixture of the type passed to
+ * CPPUNIT_TEST_SUITE().
  *
  * Here is an example that add a custom test:
  *
@@ -250,12 +317,12 @@ namespace CppUnit
  *   CPPUNIT_TEST_CUSTOM( makeTimeOutTest1 );
  *   CPPUNIT_TEST_SUITE_END();
  * public:
- *   static CppUnit::Test *makeTimeOutTest1( CppUnit::TestFixtureFactory *factory,
+ *   static CppUnit::Test *makeTimeOutTest1( const ThisTestFixtureFactory &factory,
  *                                           const CppUnit::TestNamer &namer )
  *   {
  *     return new TimeOutTestCaller( namer.getTestNameFor( "test1" ),
  *                                   &MyTest::test1,
- *                                   (MyTest*)factory->makeFixture(),
+ *                                   factory.makeFixture(),
  *                                   5.0 );
  *   }
  *
@@ -271,12 +338,12 @@ namespace CppUnit
 
 /*! \brief Adds some custom test cases.
  *
- * Use this to add many custom test cases. The specified method must have the following
- * signature:
+ * Use this to add many custom test cases to the fixture suite. The specified method 
+ * must have the following signature:
  * \code
- * static CppUnit::Test *makeCustomTest( CppUnit::TestSuite *suite,                           \
- *                                       CppUnit::TestFixtureFactory *factory,
- *                                       const CppUnit::TestNamer &namer );
+ * static void addCustomTests( CppUnit::TestSuite *suite,
+ *                             const ThisTestFixtureFactory &factory,
+ *                             const CppUnit::TestNamer &namer );
  * \endcode
  *
  * Here is an example that add two custom tests:
@@ -286,20 +353,20 @@ namespace CppUnit
  *
  * class MyTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( MyTest );
- *   CPPUNIT_TEST_CUSTOMs( addTimeOutTests );
+ *   CPPUNIT_TEST_CUSTOMS( addTimeOutTests );
  *   CPPUNIT_TEST_SUITE_END();
  * public:
- *   static CppUnit::Test *makeTimeOutTest( CppUnit::TestSuite *suite,                           \
- *                                          CppUnit::TestFixtureFactory *factory,
- *                                          const CppUnit::TestNamer &namer )
+ *   static void addTimeOutTests( CppUnit::TestSuite *suite,                           \
+ *                                const ThisTestFixtureFactory &factory,
+ *                                const CppUnit::TestNamer &namer )
  *   {
  *     suite->addTest( new TimeOutTestCaller( namer.getTestNameFor( "test1" ) ),
  *                                   &MyTest::test1,
- *                                   (MyTest*)factory->makeFixture(),
+ *                                   factory.makeFixture(),
  *                                   5.0 );
  *     suite->addTest( new TimeOutTestCaller( namer.getTestNameFor( "test2" ) ),
  *                                   &MyTest::test2,
- *                                   (MyTest*)factory->makeFixture(),
+ *                                   factory.makeFixture(),
  *                                   5.0 );
  *   }
  *
@@ -318,6 +385,7 @@ namespace CppUnit
 #define CPPUNIT_TEST_CUSTOMS( testAdderMethod ) \
       testAdderMethod( suite, factory, namer )
 
+
 /*! \brief End declaration of the test suite.
  *
  * After this macro, member access is set to "private".
@@ -331,9 +399,9 @@ namespace CppUnit
     static CppUnit::TestSuite *suite()                                              \
     {                                                                               \
       const CppUnit::TestNamer &namer = __getTestNamer();                           \
-      CppUnit::TestSuiteBuilder<__ThisTestFixtureType> builder( namer );            \
+      CppUnit::TestSuiteBuilder<ThisTestFixtureType> builder( namer );            \
       __ThisTestFixtureFactory factory;                                             \
-      __ThisTestFixtureType::__registerTests( builder.suite(), &factory, namer );   \
+      ThisTestFixtureType::__registerTests( builder.suite(), &factory, namer );   \
       return builder.takeSuite();                                                   \
     }                                                                               \
   private: /* dummy typedef so that the macro can still end with ';'*/              \

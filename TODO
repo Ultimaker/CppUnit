@@ -1,44 +1,22 @@
 * CppUnit:
-  - [DONE] Update TextTestRunner to use Test::findTest()
-  - [DONE] Introduce a new generic CppUnit::TestRunner
-  - [DONE] Update MfcTestRunner to use Test::findTest()
   - Update MfcTestRunner to use TestPath to store test in the registry
-  - [DONE] Update QtTestRunner to use findTest()
-  - [DONE] Include DllPlugInTester, and update to use findTest() and TestPath().
-  - [DONE] Add startSuite() and endSuite() to TestListener and TestResult
-  - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception
-  - [DONE] Add a global set up decorator for all test run to TestResult 
-    => extends TestListener: startTestRun(), endTestRun().
-  - [DONE] Change CompilerOutputter to be customized with parameter instead of subclassing:
-    provide a default string to the constructor that indicates the error report format:
-	%p => full path (D:\prg\..\File.cpp)
-	%f => just the file name (File.cpp)
-	%l => line (123)
-	For VC++: "%p(%l):"
-	For GCC: "%f:%l:"
-	String could be defined in the configuration file, and be guessed by configure (?)
-	Assume GCC if not VC++ ?
-	Notes: gcc error format:
-		g++ -DHAVE_CONFIG_H -I. -I. -I../../config -I../../include -I../../include -g -O2 -c TextOutputter.cpp -Wp,-MD,.deps/TextOutputter.TPlo  -fPIC -DPIC
-		TextOutputter.cpp:5: cppunit/TextOutputter.h: No such file or directory
-  - [DISCARDED: UTF8 is enough] True Unicode support:
-    - Introduce a new CppUnit::String class. This class allow implicit construction from
-	const char *, std::string, wchar_t * and std::wstring. Provides accessor str() and
-	wstr() to retreive the string as either ANSI or UNICODE string.
-	- Update Asserter to use String instead of std::string
-	- Deprecate Exception::what(), and add String Exception::message().
-	- Compatibility break for NotEqualException::expected(), actual() and additionalInfo().
-	- Update MfcTestRuner to use wstr() in Unicode build => introduce a utility function
-	  toCString( CppUnit::String &) that returns a CString using the appropriate method.
-  - [DONE] Wrap test plug-in suite retreival in a TestPlugInSuite.
-  - [DONE] CrossPlatform TestPlugInSuite and TestPlugInInterface.
-  - [DONE] CrossPlatform test runner for TestPlugIn.
-  - [DONE] Advanced command line support for the plug-in runner 
-     (--xml, --compiler...) + plug-in parameter support.
-  - Custom Test macro helper
-    => naming convention Test *makeTest()
-
+  - Provide a mean for the user to catch 'custom' exception in TestCase::run 
+    (exception that do not subclass std::exception, such as MFC CException, or
+    RogueWave RWXMsg).
+  - [DONE] Custom Test macro helper
+  - Hook for XmlOutputter, to allow user to add extra information to the XmlDocument
+    (test & doc level).
+  - Allow test plug-in to 'hook' the XmlOutputter when used.
+  - TextUi::TestRunner should use CppUnit::TestRunner as a base class
+  - Modify MfcUi::TestRunner to expose TestResult (which allow specific TestListener
+    for global initialization).
+  - Make Exception message more flexible: introduce a Message object which contains:
+    - a short description ('assertion failed', 'equality assertion failed'...)
+    - detail strings: "Expected : 3", "Actual   : 5"...
+    => this provide a structured way to specify failure details, and let the ouputter
+    (or ui) format them for display.
   - STL orthodox template for container elements.
+  - Memory leak tracking: setUp/tearDown should be leak safe if no failure occured.
 
 * UnitTest
   - add tests for XmlOutputter::setStyleSheet (current assertion macro strip <?...> when
@@ -77,5 +55,4 @@ of a text (they disappear).
 	- other custmization stuff I haven't understood yet
 
 	CppUnit: architecture overview.
-	
-	- need to merge cookbook with Phil Verghese's contribution.
+

@@ -1,3 +1,22 @@
+2002-06-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * install-unix: added some hints extracted from bug #544684 on how to compile
+    for Solaris/Forte C++ compiler.
+
+  * TODO: cleaned-up and added new things.
+
+  * include/cppunit/extensions/HelperMacros.h: CPPUNIT_TEST_SUITE now declares
+    a class named ThisTestFixtureFactory which is a wrapper for the fixture
+    factory. This removes the need to cast the fixture to the correct type when
+    using the factory. Updated other macros implementation to use this new
+    factory. Modified CPPUNIT_TEST_CUSTOM(S) macros to use this new factory
+    class. Added macro CPPUNIT_TEST_ADD to help create new macros like
+    CPPUNIT_TEST_xxx.
+
+  * examples/cppunittest/HelperMacrosTest.h:
+  * examples/cppunittest/HelperMacrosTest.cpp: added unit tests for
+    CPPUNIT_TEST_CUSTOM, CPPUNIT_TEST_CUSTOMS and CPPUNIT_TEST_ADD.
+
 2002-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * doc/cookbook.dox: fixed bug.
