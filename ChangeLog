@@ -1,3 +1,24 @@
+2002-08-28 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/Portability.h: added CPPUNIT_STATIC_CAST.
+
+  * include/cppunit/extensions/TestFixtureFactory.h: extracted from
+    HelperMacros.h. Added template class ConcretTestFixtureFactory.
+
+  * include/cppunit/extensions/TestSuiteBuilderContext.h:
+  * src/cppunit/TestSuiteBuilderContext.cpp: added. Context used
+    to add test case to the fixture suite. Prevent future 
+    compatibility break for custom test API.
+
+  * include/cppunit/extensions/HelperMacros.h: mostly rewritten. No
+    longer use TestSuiteBuilder. Added support for abstract test fixture
+    through macro CPPUNIT_TEST_SUITE_END_ABSTRACT. Made custom test API
+    easier to use.
+
+  * examples/cppunittest/HelperMacrosTest.h:
+  * examples/cppunittest/HelperMacrosTest.cpp: updated against 
+    HelperMacros.h changes.
+
 2002-08-27 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * CodingGuideLines.txt: updated for OS/390 C++ limitation.

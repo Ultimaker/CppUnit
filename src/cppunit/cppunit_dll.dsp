@@ -187,6 +187,10 @@ SOURCE=..\..\include\cppunit\extensions\TestFactoryRegistry.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\extensions\TestFixtureFactory.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestNamer.cpp
 # End Source File
 # Begin Source File
@@ -196,6 +200,14 @@ SOURCE=..\..\include\cppunit\extensions\TestNamer.h
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\extensions\TestSuiteBuilder.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSuiteBuilderContext.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestSuiteBuilderContext.h
 # End Source File
 # Begin Source File
 

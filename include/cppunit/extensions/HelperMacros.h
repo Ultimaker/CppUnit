@@ -6,29 +6,14 @@
 #ifndef CPPUNIT_EXTENSIONS_HELPERMACROS_H
 #define CPPUNIT_EXTENSIONS_HELPERMACROS_H
 
-#include <cppunit/Portability.h>
+#include <cppunit/TestCaller.h>
+#include <cppunit/TestSuite.h>
 #include <cppunit/extensions/AutoRegisterSuite.h>
-#include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/ExceptionTestCaseDecorator.h>
-#include <string>
-
-CPPUNIT_NS_BEGIN
-
-
-  class TestFixture;
-
-  /*! \brief Abstract TestFixture factory.
-   */
-  class TestFixtureFactory
-  {
-  public:
-    //! Creates a new TestFixture instance.
-    virtual CPPUNIT_NS::TestFixture *makeFixture() =0;
-  };
-
-CPPUNIT_NS_END
-
-
+#include <cppunit/extensions/TestFixtureFactory.h>
+#include <cppunit/extensions/TestNamer.h>
+#include <cppunit/extensions/TestSuiteBuilderContext.h>
+#include <memory>
 
 
 /*! \addtogroup WritingTestFixture Writing test fixture
@@ -112,44 +97,25 @@ CPPUNIT_NS_END
  * \see CPPUNIT_TEST_SUB_SUITE, CPPUNIT_TEST, CPPUNIT_TEST_SUITE_END, 
  * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_EXCEPTION, CPPUNIT_TEST_FAIL.
  */
-#define CPPUNIT_TEST_SUITE( ATestFixtureType )                             \
-  private:                                                                 \
-    typedef ATestFixtureType ThisTestFixtureType;                          \
-    class __ThisTestFixtureFactory : public CPPUNIT_NS::TestFixtureFactory \
-    {                                                                      \
-      virtual CPPUNIT_NS::TestFixture *makeFixture()                       \
-      {                                                                    \
-        return new ATestFixtureType();                                     \
-      }                                                                    \
-    };                                                                     \
-    static const CPPUNIT_NS::TestNamer &__getTestNamer()                   \
-    {                                                                      \
-      static CPPUNIT_TESTNAMER_DECL( testNamer, ATestFixtureType );        \
-      return testNamer;                                                    \
-    }                                                                      \
-  public:                                                                  \
-    class ThisTestFixtureFactory                                           \
-    {                                                                      \
-    public:                                                                \
-      ThisTestFixtureFactory( CPPUNIT_NS::TestFixtureFactory *factory )    \
-        : m_factory( factory )                                             \
-      {                                                                    \
-      }                                                                    \
-      ThisTestFixtureType *makeFixture() const                             \
-      {                                                                    \
-        return (ThisTestFixtureType *)m_factory->makeFixture();            \
-      }                                                                    \
-    private:                                                               \
-      CPPUNIT_NS::TestFixtureFactory *m_factory;                           \
-    };                                                                     \
-                                                                           \
-    static void                                                            \
-    __registerTests( CPPUNIT_NS::TestSuite *suite,                         \
-                     CPPUNIT_NS::TestFixtureFactory *fixtureFactory,       \
-                     const CPPUNIT_NS::TestNamer &namer )                  \
-    {                                                                      \
-      const ThisTestFixtureFactory factory( fixtureFactory );              \
-      CPPUNIT_NS::TestSuiteBuilder<ThisTestFixtureType> builder( suite, namer )
+#define CPPUNIT_TEST_SUITE( ATestFixtureType )                              \
+  public:                                                                   \
+    typedef ATestFixtureType TestFixtureType;                               \
+                                                                            \
+  private:                                                                  \
+    static const CPPUNIT_NS::TestNamer &getTestNamer__()                    \
+    {                                                                       \
+      static CPPUNIT_TESTNAMER_DECL( testNamer, ATestFixtureType );         \
+      return testNamer;                                                     \
+    }                                                                       \
+                                                                            \
+  public:                                                                   \
+    typedef CPPUNIT_NS::TestSuiteBuilderContext<TestFixtureType>            \
+                TestSuiteBuilderContextType;                                \
+                                                                            \
+    static void                                                             \
+    addTestsToSuite( CPPUNIT_NS::TestSuiteBuilderContextBase &baseContext ) \
+    {                                                                       \
+      TestSuiteBuilderContextType context( baseContext )
 
 
 /*! \brief Begin test suite (includes parent suite)
@@ -183,22 +149,96 @@ CPPUNIT_NS_END
  * \see CPPUNIT_TEST_SUITE.
  */
 #define CPPUNIT_TEST_SUB_SUITE( ATestFixtureType, ASuperClass )  \
+  public:                                                        \
+    typedef ASuperClass ParentTestFixtureType;                   \
   private:                                                       \
-    typedef ASuperClass __ThisSuperClassType;                    \
     CPPUNIT_TEST_SUITE( ATestFixtureType );                      \
-      __ThisSuperClassType::__registerTests( suite, fixtureFactory, namer )
+      ParentTestFixtureType::addTestsToSuite( baseContext )
 
 
-/*! \brief Add a method to the suite.
- * \param testMethod Name of the method of the test case to add to the
- *                   suite. The signature of the method must be of
- *                   type: void testMethod();
+/*! \brief End declaration of the test suite.
+ *
+ * After this macro, member access is set to "private".
+ *
  * \see  CPPUNIT_TEST_SUITE.
+ * \see  CPPUNIT_TEST_SUITE_REGISTRATION.
  */
-#define CPPUNIT_TEST( testMethod )                                           \
-      builder.addTestCaller( #testMethod,                                    \
-                             &ThisTestFixtureType::testMethod ,            \
-                             factory.makeFixture() ) 
+#define CPPUNIT_TEST_SUITE_END()                                               \
+    }                                                                          \
+                                                                               \
+    static CPPUNIT_NS::TestSuite *suite()                                      \
+    {                                                                          \
+      const CPPUNIT_NS::TestNamer &namer = getTestNamer__();                   \
+      std::auto_ptr<CPPUNIT_NS::TestSuite> suite(                              \
+             new CPPUNIT_NS::TestSuite( namer.getFixtureName() ));             \
+      CPPUNIT_NS::ConcretTestFixtureFactory<TestFixtureType> factory;          \
+      CPPUNIT_NS::TestSuiteBuilderContextBase context( *suite.get(),           \
+                                                       namer,                  \
+                                                       factory );              \
+      TestFixtureType::addTestsToSuite( context );                             \
+      return suite.release();                                                  \
+    }                                                                          \
+  private: /* dummy typedef so that the macro can still end with ';'*/         \
+    typedef int CppUnitDummyTypedefForSemiColonEnding__
+
+/*! \brief End declaration of an abstract test suite.
+ *
+ * Use this macro to indicate that the %TestFixture is abstract. No
+ * static suite() method will be declared. 
+ *
+ * After this macro, member access is set to "private".
+ *
+ * Here is an example of usage:
+ *
+ * The abstract test fixture:
+ * \code
+ * #include <cppunit/extensions/HelperMacros.h>
+ * class AbstractDocument;
+ * class AbstractDocumentTest : public CppUnit::TestFixture {
+ *   CPPUNIT_TEST_SUITE( AbstractDocumentTest );
+ *   CPPUNIT_TEST( testInsertText );
+ *   CPPUNIT_TEST_SUITE_END_ABSTRACT();
+ * public:
+ *   void testInsertText();
+ * 
+ *   void setUp()
+ *   {
+ *     m_document = makeDocument();
+ *   }
+ *
+ *   void tearDown()
+ *   {
+ *     delete m_document;
+ *   }
+ * protected:
+ *   virtual AbstractDocument *makeDocument() =0;
+ *
+ *   AbstractDocument *m_document;
+ * };\endcode
+ *
+ * The concret test fixture:
+ * \code
+ * class RichTextDocumentTest : public AbstractDocumentTest {
+ *   CPPUNIT_TEST_SUB_SUITE( RichTextDocumentTest, AbstractDocumentTest );
+ *   CPPUNIT_TEST( testInsertFormatedText );
+ *   CPPUNIT_TEST_SUITE_END();
+ * public:
+ *   void testInsertFormatedText();
+ * protected:
+ *   AbstractDocument *makeDocument()
+ *   {
+ *     return new RichTextDocument();
+ *   }
+ * };\endcode
+ *
+ * \see  CPPUNIT_TEST_SUB_SUITE.
+ * \see  CPPUNIT_TEST_SUITE_REGISTRATION.
+ */
+#define CPPUNIT_TEST_SUITE_END_ABSTRACT()                                      \
+    }                                                                          \
+  private: /* dummy typedef so that the macro can still end with ';'*/         \
+    typedef int CppUnitDummyTypedefForSemiColonEnding__
+
 
 /*! \brief Add a test to the suite (for custom test macro).
  *
@@ -209,14 +249,12 @@ CPPUNIT_NS_END
  * Between macro CPPUNIT_TEST_SUITE() and CPPUNIT_TEST_SUITE_END(), you can assume
  * that the following variables can be used:
  * \code
- * const ThisTestFixtureFactory &factory;
- * const CppUnit::TestNamer &namer;
+ * typedef TestSuiteBuilder<TestFixtureType> TestSuiteBuilderType;
+ * TestSuiteBuilderType &context;
  * \endcode
  *
- * \c factory can be used to create a new instance of the TestFixture type 
- * specified in CPPUNIT_TEST_SUITE():
- * \code
- *   factory.makeFixture()\endcode
+ * \c context can be used to name test case, create new test fixture instance,
+ * or add test case to the test fixture suite.
  *
  * Below is an example that show how to use this macro to create new macro to add
  * test to the fixture suite. The macro below show how you would add a new type
@@ -226,9 +264,9 @@ CPPUNIT_NS_END
  * 
  * \code
  * #define CPPUNITEX_TEST_TIMELIMIT( testMethod, timeLimit )            \
- *      CPPUNIT_TEST_ADD( (new TimeOutTestCaller<ThisTestFixtureType>(  \
+ *      CPPUNIT_TEST_SUITE_ADD_TEST( (new TimeOutTestCaller<TestFixtureType>(  \
  *                  namer.getTestNameFor( #testMethod ),                \
- *                  &ThisTestFixtureType::testMethod,                   \
+ *                  &TestFixtureType::testMethod,                   \
  *                  factory.makeFixture(),                              \
  *                  timeLimit ) ) )
  *   
@@ -246,8 +284,21 @@ CPPUNIT_NS_END
  * \param test Test to add to the suite. Must be a subclass of Test. The test name
  *             should have been obtained using TestNamer::getTestNameFor().
  */
-#define CPPUNIT_TEST_ADD( test ) \
-      builder.addTest( test )
+#define CPPUNIT_TEST_SUITE_ADD_TEST( test ) \
+      context.addTest( test )
+
+/*! \brief Add a method to the suite.
+ * \param testMethod Name of the method of the test case to add to the
+ *                   suite. The signature of the method must be of
+ *                   type: void testMethod();
+ * \see  CPPUNIT_TEST_SUITE.
+ */
+#define CPPUNIT_TEST( testMethod )                        \
+    CPPUNIT_TEST_SUITE_ADD_TEST(                           \
+        ( new CPPUNIT_NS::TestCaller<TestFixtureType>(    \
+                  context.getTestNameFor( #testMethod),   \
+                  &TestFixtureType::testMethod,           \
+                  context.makeFixture() ) ) )
 
 /*! \brief Add a test which fail if the specified exception is not caught.
  *
@@ -272,18 +323,13 @@ CPPUNIT_NS_END
  * \param ExceptionType Type of the exception that must be thrown by the test 
  *                      method.
  */
-#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )              \
-  CPPUNIT_TEST_ADD(                                                      \
-      (new CPPUNIT_NS::ExceptionTestCaseDecorator< ExceptionType >(      \
-          new CPPUNIT_NS::TestCaller< ThisTestFixtureType >(             \
-                               namer.getTestNameFor( #testMethod ),      \
-                               &ThisTestFixtureType::testMethod,         \
-                               factory.makeFixture() ) ) ) )
-//    CPPUNIT_TEST_ADD( (new CPPUNIT_NS::TestCaller<ThisTestFixtureType,   \
-//                                                ExceptionType>(          \
-//                               namer.getTestNameFor( #testMethod ),      \
-//                               &ThisTestFixtureType::testMethod,         \
-//                               factory.makeFixture() ) ) )
+#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )          \
+  CPPUNIT_TEST_SUITE_ADD_TEST(                                        \
+      (new CPPUNIT_NS::ExceptionTestCaseDecorator< ExceptionType >(  \
+          new CPPUNIT_NS::TestCaller< TestFixtureType >(             \
+                               context.getTestNameFor( #testMethod ),  \
+                               &TestFixtureType::testMethod,         \
+                               context.makeFixture() ) ) ) )
 
 /*! \brief Adds a test case which is excepted to fail.
  *
@@ -303,57 +349,18 @@ CPPUNIT_NS_END
 #define CPPUNIT_TEST_FAIL( testMethod ) \
               CPPUNIT_TEST_EXCEPTION( testMethod, CPPUNIT_NS::Exception )
 
-/*! \brief Adds a custom test case.
- *
- * Use this to add a test case that is returned by a given method to the fixture
- * suite. The specified method must have the following signature:
- * \code
- * static CppUnit::Test *makeCustomTest( const ThisTestFixtureFactory &factory,
- *                                       const CppUnit::TestNamer &namer );
- * \endcode
- *
- * \c ThisTestFixtureFactory is a class declared by CPPUNIT_TEST_SUITE(). It has a method
- * \c makeFixture() which returns a pointer on a new fixture of the type passed to
- * CPPUNIT_TEST_SUITE().
- *
- * Here is an example that add a custom test:
- *
- * \code
- * #include <cppunit/extensions/HelperMacros.h>
- *
- * class MyTest : public CppUnit::TestFixture {
- *   CPPUNIT_TEST_SUITE( MyTest );
- *   CPPUNIT_TEST_CUSTOM( makeTimeOutTest1 );
- *   CPPUNIT_TEST_SUITE_END();
- * public:
- *   static CppUnit::Test *makeTimeOutTest1( const ThisTestFixtureFactory &factory,
- *                                           const CppUnit::TestNamer &namer )
- *   {
- *     return new TimeOutTestCaller( namer.getTestNameFor( "test1" ),
- *                                   &MyTest::test1,
- *                                   factory.makeFixture(),
- *                                   5.0 );
- *   }
- *
- *   void test1()
- *   {
- *     // Do some test that may never end...
- *   }
- * };
- * \endcode
- */
-#define CPPUNIT_TEST_CUSTOM( testMakerMethod ) \
-      builder.addTest( testMakerMethod( factory, namer ) )
-
 /*! \brief Adds some custom test cases.
  *
- * Use this to add many custom test cases to the fixture suite. The specified method 
- * must have the following signature:
+ * Use this to add one or more test cases to the fixture suite. The specified
+ * method is called with a context parameter that can be used to name, 
+ * instantiate fixture, and add instantiated test case to the fixture suite.
+ * The specified method must have the following signature:
  * \code
- * static void addCustomTests( CppUnit::TestSuite *suite,
- *                             const ThisTestFixtureFactory &factory,
- *                             const CppUnit::TestNamer &namer );
+ * static void aMethodName( TestSuiteBuilderContextType &context );
  * \endcode
+ *
+ * \c TestSuiteBuilderContextType is typedef to 
+ * TestSuiteBuilderContext<TestFixtureType> declared by CPPUNIT_TEST_SUITE().
  *
  * Here is an example that add two custom tests:
  *
@@ -362,21 +369,19 @@ CPPUNIT_NS_END
  *
  * class MyTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( MyTest );
- *   CPPUNIT_TEST_CUSTOMS( addTimeOutTests );
+ *   CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS( addTimeOutTests );
  *   CPPUNIT_TEST_SUITE_END();
  * public:
- *   static void addTimeOutTests( CppUnit::TestSuite *suite,                           \
- *                                const ThisTestFixtureFactory &factory,
- *                                const CppUnit::TestNamer &namer )
+ *   static void addTimeOutTests( TestSuiteBuilderContextType &context )
  *   {
- *     suite->addTest( new TimeOutTestCaller( namer.getTestNameFor( "test1" ) ),
- *                                   &MyTest::test1,
- *                                   factory.makeFixture(),
- *                                   5.0 );
- *     suite->addTest( new TimeOutTestCaller( namer.getTestNameFor( "test2" ) ),
- *                                   &MyTest::test2,
- *                                   factory.makeFixture(),
- *                                   5.0 );
+ *     context.addTest( new TimeOutTestCaller( context.getTestNameFor( "test1" ) ),
+ *                                             &MyTest::test1,
+ *                                             context.makeFixture(),
+ *                                             5.0 );
+ *     context.addTest( new TimeOutTestCaller( context.getTestNameFor( "test2" ) ),
+ *                                             &MyTest::test2,
+ *                                             context.makeFixture(),
+ *                                             5.0 );
  *   }
  *
  *   void test1()
@@ -390,31 +395,10 @@ CPPUNIT_NS_END
  *   }
  * };
  * \endcode
+ * @param testAdderMethod Name of the method called to add the test cases.
  */
-#define CPPUNIT_TEST_CUSTOMS( testAdderMethod ) \
-      testAdderMethod( suite, factory, namer )
-
-
-/*! \brief End declaration of the test suite.
- *
- * After this macro, member access is set to "private".
- *
- * \see  CPPUNIT_TEST_SUITE.
- * \see  CPPUNIT_TEST_SUITE_REGISTRATION.
- */
-#define CPPUNIT_TEST_SUITE_END()                                                    \
-      builder.takeSuite();                                                          \
-    }                                                                               \
-    static CPPUNIT_NS::TestSuite *suite()                                              \
-    {                                                                               \
-      const CPPUNIT_NS::TestNamer &namer = __getTestNamer();                           \
-      CPPUNIT_NS::TestSuiteBuilder<ThisTestFixtureType> builder( namer );            \
-      __ThisTestFixtureFactory factory;                                             \
-      ThisTestFixtureType::__registerTests( builder.suite(), &factory, namer );   \
-      return builder.takeSuite();                                                   \
-    }                                                                               \
-  private: /* dummy typedef so that the macro can still end with ';'*/              \
-    typedef __ThisTestFixtureFactory __CppUnitDummyTypedefTestFixture
+#define CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS( testAdderMethod ) \
+      testAdderMethod( context )
 
 /** @}
  */
@@ -439,7 +423,7 @@ CPPUNIT_NS_END
  */
 #define CPPUNIT_TEST_SUITE_REGISTRATION( ATestFixtureType )      \
   static CPPUNIT_NS::AutoRegisterSuite< ATestFixtureType >       \
-             CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
+             CPPUNIT_MAKE_UNIQUE_NAME(autoRegisterRegistry__ )
 
 
 /** Adds the specified fixture suite to the specified registry suite.
@@ -481,7 +465,7 @@ CPPUNIT_NS_END
  */
 #define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestFixtureType, suiteName ) \
   static CPPUNIT_NS::AutoRegisterSuite< ATestFixtureType >                   \
-             CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
+             CPPUNIT_MAKE_UNIQUE_NAME(autoRegisterRegistry__ )(suiteName)
 
 /*! Adds that the specified registry suite to another registry suite.
  * \ingroup CreatingTestSuite
@@ -512,7 +496,7 @@ CPPUNIT_NS_END
  */
 #define CPPUNIT_REGISTRY_ADD( which, to )                                     \
   static CPPUNIT_NS::AutoRegisterRegistry                                     \
-             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which, to )
+             CPPUNIT_MAKE_UNIQUE_NAME( autoRegisterRegistry__ )( which, to )
 
 /*! Adds that the specified registry suite to the default registry suite.
  * \ingroup CreatingTestSuite
@@ -525,7 +509,7 @@ CPPUNIT_NS_END
  */
 #define CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which )                         \
   static CPPUNIT_NS::AutoRegisterRegistry                                \
-             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which )
+             CPPUNIT_MAKE_UNIQUE_NAME( autoRegisterRegistry__ )( which )
 
 // Backwards compatibility
 // (Not tested!)

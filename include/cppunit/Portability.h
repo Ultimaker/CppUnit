@@ -79,8 +79,13 @@
 #if defined( CPPUNIT_HAVE_CPP_CAST )
 # define CPPUNIT_CONST_CAST( TargetType, pointer ) \
     const_cast<TargetType>( pointer )
+
+# define CPPUNIT_STATIC_CAST( TargetType, pointer ) \
+    static_cast<TargetType>( pointer )
 #else // defined( CPPUNIT_HAVE_CPP_CAST )
 # define CPPUNIT_CONST_CAST( TargetType, pointer ) \
+    ((TargetType)( pointer ))
+# define CPPUNIT_STATIC_CAST( TargetType, pointer ) \
     ((TargetType)( pointer ))
 #endif // defined( CPPUNIT_HAVE_CPP_CAST )
 

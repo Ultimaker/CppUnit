@@ -64,7 +64,7 @@ public:
    */
   virtual std::string getFixtureName() const;
 
-  /*! Returns the name of the test for the specified method.
+  /*! \Returns the name of the test for the specified method.
    * \param testMethodName Name of the method that implements a test.
    * \return A string that is the concatenation of the test fixture name 
    *         (returned by getFixtureName()) and\a testMethodName, 

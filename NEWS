@@ -6,6 +6,7 @@
   - Major portability improvement
   - Protector
   - Failure diagnostic
+  - HelperMacros
 
 * Asserter:
   
@@ -41,6 +42,25 @@
   - If RTTI is allowed to extract type info, CppUnit will report the
     actual exception type in the diagnostic.
 
+* Helper macros
+
+  - Mostly rewritten. It no longer use TestSuiteBuilder. A new object
+    TestSuiteBuilderContext was introduced. It is used to name test case,
+    create test fixture instance and add test to the fixture suite. It
+    is now much easier to add custom test cases using
+    CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS. Should also prevent most 
+    compability break concerning that macro.
+
+  - Useful typedef are now public: TestFixtureType, ParentTestFixtureType.
+
+  - New typedef for custom test method parameter: 
+    typedef TestSuiteBuilderContext<TestFixtureType> 
+       TestSuiteBuilderContextType;
+
+  - added support for abstract test fixture with
+    CPPUNIT_TEST_SUITE_END_ABSTRACT(). See documentation for further
+    detail.
+
 * Bug Fix:
 
   - MFC TestRunner: bug #530426 (conflict between TestRunner and host 
@@ -73,6 +93,17 @@
   - template <class T> void assertEquals() no longer has a default message 
     value (no impact, unless you used this function directly instead of
     assertion macros).
+  - HelperMacros: renamed CPPUNIT_TEST_ADD to 
+    CPPUNIT_TEST_SUITE_ADD_TEST.
+  - HelperMacros: removed CPPUNIT_TEST_CUSTOM. Instead use 
+    CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS and call context.addTest() 
+    passing the test that was returned.
+  - HelperMacros: renamed CPPUNIT_TEST_CUSTOMS to 
+    CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS. Changed method signature to
+    static void aMethodName( TestSuiteBuilderContextType &context ).
+    You can replace the 3 previous parameters by context. (See 
+    documentation for further detail). 
+
 
 
 	New in CppUnit 1.9.8:

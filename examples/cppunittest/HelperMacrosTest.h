@@ -14,7 +14,6 @@ class HelperMacrosTest : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( testFailToFail );
   CPPUNIT_TEST( testException );
   CPPUNIT_TEST( testExceptionNotCaught );
-  CPPUNIT_TEST( testCustomTest );
   CPPUNIT_TEST( testCustomTests );
   CPPUNIT_TEST( testAddTest );
   CPPUNIT_TEST_SUITE_END();

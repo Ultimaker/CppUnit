@@ -10,9 +10,11 @@ libcppunitinclude_HEADERS = \
 	TestCaseDecorator.h \
 	TestDecorator.h \
 	TestFactoryRegistry.h \
+	TestFixtureFactory.h \
 	TestNamer.h \
 	TestSetUp.h \
 	TestSuiteBuilder.h \
+	TestSuiteBuilderContext.h \
 	TestSuiteFactory.h \
 	TypeInfoHelper.h
 

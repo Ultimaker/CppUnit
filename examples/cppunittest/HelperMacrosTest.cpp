@@ -60,46 +60,29 @@ public:
 };
 
 
-class CustomTestTestFixture : public CPPUNIT_NS::TestFixture
-{
-  CPPUNIT_TEST_SUITE( CustomTestTestFixture );
-  CPPUNIT_TEST_CUSTOM( makeCustomTest );
-  CPPUNIT_TEST_SUITE_END();
-public:
-  static CPPUNIT_NS::Test *makeCustomTest( const ThisTestFixtureFactory &factory,
-                                           const CPPUNIT_NS::TestNamer &namer )
-  {
-    MockTestCase *test = new MockTestCase( namer.getTestNameFor( "myCustomTest" ) );
-    test->makeRunTestThrow();
-    return test;
-  }
-};
-
-
 class CustomsTestTestFixture : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( CustomsTestTestFixture );
-  CPPUNIT_TEST_CUSTOMS( addCustomTests );
+  CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS( addCustomTests );
   CPPUNIT_TEST_SUITE_END();
 public:
-  static void addCustomTests( CPPUNIT_NS::TestSuite *suite,
-                              const ThisTestFixtureFactory &factory,
-                              const CPPUNIT_NS::TestNamer &namer )
+  static void addCustomTests( TestSuiteBuilderContextType &context )
   {
-    MockTestCase *test1 = new MockTestCase( namer.getTestNameFor( "myCustomTest1" ) );
+    MockTestCase *test1 = new MockTestCase( context.getTestNameFor( "myCustomTest1" ) );
     test1->makeRunTestThrow();
-    MockTestCase *test2 = new MockTestCase( namer.getTestNameFor( "myCustomTest2" ) );
-    suite->addTest( test1 );
-    suite->addTest( test2 );
+    MockTestCase *test2 = new MockTestCase( context.getTestNameFor( "myCustomTest2" ) );
+    context.addTest( test1 );
+    context.addTest( test2 );
   }
 };
 
 
 #undef TEST_ADD_N_MOCK
 #define TEST_ADD_N_MOCK( totalCount )                                              \
-  {                                                                                \
-    for ( int count = (totalCount); count > 0; --count )                           \
-      CPPUNIT_TEST_ADD( new MockTestCase( namer.getTestNameFor( "dummyName" ) ) ); \
+  {                                                                 \
+    for ( int count = (totalCount); count > 0; --count )            \
+      CPPUNIT_TEST_SUITE_ADD_TEST(                                  \
+         new MockTestCase( context.getTestNameFor( "dummyName" ) ) ); \
   }
 
 
@@ -211,18 +194,6 @@ void
 HelperMacrosTest::testExceptionNotCaught()
 {
   std::auto_ptr<CPPUNIT_NS::TestSuite> suite( ExceptionNotCaughtTestFixture::suite() );
-  m_testListener->setExpectedStartTestCall( 1 );
-  m_testListener->setExpectedAddFailureCall( 1 );
-
-  suite->run( m_result );
-  m_testListener->verify();
-}
-
-
-void 
-HelperMacrosTest::testCustomTest()
-{
-  std::auto_ptr<CPPUNIT_NS::TestSuite> suite( CustomTestTestFixture::suite() );
   m_testListener->setExpectedStartTestCall( 1 );
   m_testListener->setExpectedAddFailureCall( 1 );
 
