@@ -1,5 +1,10 @@
 2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* src/cppunit/Exception.cpp: Remove unnecessary namespace
+	declaration; it confuses Doxygen.
+
+2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
 	* configure.in: Add AC_CXX_STRING_COMPARE_STRING_FIRST.
 
 	* autogen.sh: Add "-I config" to aclocal flags, to pick up 

@@ -1,7 +1,5 @@
 #include "cppunit/Exception.h"
 
-namespace CppUnit {
-
 const std::string 
 CppUnit::Exception::UNKNOWNFILENAME = 
   "<unknown>";
@@ -28,7 +26,7 @@ CppUnit::Exception::~Exception ()
 
 
 /// Perform an assignment
-Exception& 
+CppUnit::Exception& 
 CppUnit::Exception::operator= (const Exception& other)
 { 
   exception::operator= (other);
@@ -58,5 +56,3 @@ CppUnit::Exception::lineNumber ()
 std::string 
 CppUnit::Exception::fileName ()
 { return m_fileName; }
-
-} // namespace CppUnit
