@@ -67,7 +67,7 @@ TestFactoryRegistry::registerFactory( const std::string &name,
 void 
 TestFactoryRegistry::registerFactory( TestFactory *factory )
 {
-  static int serialNumber = 1;
+    static int serialNumber = 1;
 
     OStringStream ost;
     ost << "@Dummy@" << serialNumber++;
