@@ -18,7 +18,8 @@ CppUnit::Exception::Exception (const Exception& other)
 
 CppUnit::Exception::Exception (std::string message, long lineNumber, std::string fileName)
   : m_message (message), m_lineNumber (lineNumber), m_fileName (fileName)
-{}
+{
+}
 
 
 /// Destruct the exception
