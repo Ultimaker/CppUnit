@@ -58,6 +58,17 @@ TestAssertTest::testAssertFalse()
 }
 
 
+static int foo() { return 1; }
+
+
+void 
+TestAssertTest::testAssertEqual()
+{
+    CPPUNIT_ASSERT_EQUAL(1,1);
+    CPPUNIT_ASSERT_EQUAL( 1, foo() );
+}
+
+
 void 
 TestAssertTest::testAssertMessageTrue()
 {

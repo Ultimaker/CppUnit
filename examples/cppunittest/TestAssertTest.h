@@ -9,6 +9,7 @@ class TestAssertTest : public CppUnit::TestCase
   CPPUNIT_TEST_SUITE( TestAssertTest );
   CPPUNIT_TEST( testAssertTrue );
   CPPUNIT_TEST( testAssertFalse );
+  CPPUNIT_TEST( testAssertEqual );
   CPPUNIT_TEST( testAssertMessageTrue );
   CPPUNIT_TEST( testAssertMessageFalse );
   CPPUNIT_TEST( testAssertDoubleEquals );
@@ -28,6 +29,8 @@ public:
   void testAssertTrue();
   void testAssertFalse();
   
+  void testAssertEqual();
+
   void testAssertMessageTrue();
   void testAssertMessageFalse();
 
