@@ -272,6 +272,8 @@ namespace CppUnit
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
  * \see CPPUNIT_TEST_SUITE_NAMED_REGISTRATION
+ * \see CPPUNIT_REGISTRY_ADD_TO_DEFAULT
+ * \see CPPUNIT_REGISTRY_ADD
  * \see CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
  *      CppUnit::TestFactoryRegistry.
  */
@@ -312,6 +314,8 @@ namespace CppUnit
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
  * \see CPPUNIT_TEST_SUITE_REGISTRATION
+ * \see CPPUNIT_REGISTRY_ADD_TO_DEFAULT
+ * \see CPPUNIT_REGISTRY_ADD
  * \see CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
  *      CppUnit::TestFactoryRegistry..
  */
@@ -319,6 +323,49 @@ namespace CppUnit
   static CppUnit::AutoRegisterSuite< ATestFixtureType >                      \
              CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
 
+/*! Adds that the specified registry suite to another registry suite.
+ * \ingroup CreatingTestSuite
+ *
+ * Use this macros to automatically create test registry suite hierarchy. For example,
+ * if you want to create the following hierarchy:
+ * - Math
+ *   - IntegerMath
+ *   - FloatMath
+ *     - FastFloat
+ *     - StandardFloat
+ * 
+ * You can do this automatically with:
+ * \code
+ * CPPUNIT_REGISTRY_ADD( "FastFloat", "FloatMath" );
+ * CPPUNIT_REGISTRY_ADD( "IntegerMath", "Math" );
+ * CPPUNIT_REGISTRY_ADD( "FloatMath", "Math" );
+ * CPPUNIT_REGISTRY_ADD( "StandardFloat", "FloatMath" );
+ * \endcode
+ *
+ * There is no specific order of declaration. Think of it as declaring links.
+ *
+ * You register the test in each suite using CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
+ *
+ * \param which Name of the registry suite to add to the registry suite named \a to.
+ * \param to Name of the registry suite \a which is added to.
+ * \see CPPUNIT_REGISTRY_ADD_TO_DEFAULT, CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
+ */
+#define CPPUNIT_REGISTRY_ADD( which, to )                                     \
+  static CppUnit::AutoRegisterRegistry                                        \
+             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry)( which, to )
+
+/*! Adds that the specified registry suite to the default registry suite.
+ * \ingroup CreatingTestSuite
+ *
+ * This macro is just like CPPUNIT_REGISTRY_ADD except the specified registry
+ * suite is added to the default suite (root suite).
+ *
+ * \param which Name of the registry suite to add to the default registry suite.
+ * \see CPPUNIT_REGISTRY_ADD.
+ */
+#define CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which )                         \
+  static CppUnit::AutoRegisterRegistry                                   \
+             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry)( which )
 
 // Backwards compatibility
 // (Not tested!)

@@ -1,3 +1,121 @@
+	New in CppUnit 1.9.4:
+	----------------------
+
+	- More versatile, easier to make test plug-in.
+	- A PlugInManager to manage multiple test plug-ins.
+	- Crossplatform test plug-in runner.
+	- A brief progress listener 
+	- Easier test hierarchy creation
+	- Improved documentation.
+	- Tracking of test run start/end.
+	- Added simple example
+
+* TestPlugIn:
+
+  - A simple fact I realised while testing: if you link your test plug-in 
+    against the DLL version of cppunit (or shared library on Unix), then
+	test registered to the TestFactoryRegistry (it is what's hide behind
+	CPPUNIT_TEST_SUITE_REGISTRATION) are automatically shared. Changes
+	have been made to support that usage (CppUnit was crashing badly).
+	Using the TestFactoryRegistry provides much more flexiblity that
+	providing a single suite for the plug-in. As such:
+
+  - CppUnit plug-in should be linked against the dll version of CppUnit library.
+
+  - Plug-in should register their tests using the CPPUNIT_TEST_SUITE_xxx macros.
+
+  - 'homemade' suite can still be registred to the TestFactoryRegistry that is
+     passed as parameter on plug-in initialization. Notes that you must 
+	 unregister those suites during plug-in uninitialization, otherwise on
+	 destruction, the TestFactoryRegistry will attempt to destroy them... Your
+	 plug-in would have been already unloaded...
+
+  - Plug-in can accept parameters on initialization (notes that the Parameters
+    object is far from being stabilized, but whatever form it takes, it will be
+	a list of string).
+    
+  - Plug-in can register their one listener for a test run. This means that you
+    can extends 'DllPlugInTester' by creating test plug-in... This also means
+	than you can listen to startTestRun()/endTestRun() to do some global
+	setUp/tearDown (to initialize globales resources, such as COM...)
+
+* PlugInManager:
+
+  - The PlugInManager is used to load/unload plug-ins. It takes care of all
+    the 'plug-in' protocol and makes it easy to use multiple plug-ins at the
+	same time. It dispatches the addListener()/removeListener() message to
+	each plug-in.
+
+* Crossplatform test plug-in runner (src/DllPlugInRunner):
+
+  - This application can be used to run your test plug-ins. It can load
+    multiple test plug-ins and run all or a specific test in the test
+	hierarchy returned by TestFactoryRegistry::getRegistry().makeTest().
+
+  - Plug-in loaded by the plug-in may also be custom TestListener.
+
+  - It can be use for post-build check and to debug the plug-in.
+
+  - Why use it? It keep you away from CppUnit API changes!
+
+* Easier test hierarchy creation (TestFactoryRegistry/HelperMacros):
+
+  - added method addRegistry(name) to add a named registry to the registry.
+    see TestFactoryRegistry for an example of use.
+
+  - added macros CPPUNIT_REGISTRY_ADD( which, to ) and 
+    CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which ) to create test hierarchy at static
+	initialization (in the spirit of CPPUNIT_TEST_SUITE_xxx() macros).
+
+* VerboseTestProgressListener:
+
+  - A new TestListener that prints the test name before running it. Most useful when
+    a test crashing, mean a application crash.
+
+* Simple example (example/simple): 
+
+  - Added crossplatform simple example. Equivalent to VC++ HostApp example.
+
+* Documentation:
+
+  - More details about the test plug-in, how to use it, how does it works...
+    See module/Writing Test Plug-in.
+
+* Behavior changes:
+
+  - Test runner should call TestResult::runTest() to run the 'top level' test. This
+    will inform the TestListener of the test run start/end.
+
+* Compatiblity break:
+
+  - TestFactoryRegistry don't own register test anymore. AutoRegisterSuite has
+    been updated to preverse its apparent behavior. It should be of concern
+	if you created and registered custom TestFactory.
+
+* Compatiblity Break for 1.9.2 users:
+
+  - TestPlugIn.h: CppUnitTestPlugIn as been completly rewritten.
+
+  - TestPlugIn.h: macro CPPUNIT_PLUGIN_IMPLEMENT() don't take any arguments.
+
+  - TestSuitePlugIn: removed. A similar functionnality is provided by 
+    PlugInManager.
+
+  - TestPlugInDefaultImpl: renamed TestPlugInAdapter. It does not implements
+    any default behavior anymore.
+
+  - DllPlugInRunner: no longer support multiple specific tests. The test path must
+    be prefixed with ':'. Release and Debug configuration links against cppunit_dll.
+
+* Bug Fix:
+
+  - Crash when linking CppUnit DLL within another DLL that registered test. Caused
+    by the destruction of tests registered to TestFactoryRegistry. Fixed by
+	providing a register/unregister interface and removing the ownership of 
+	TestFactory to TestFactoryRegistry.
+ 
+
+
 	New in CppUnit 1.9.2:
 	----------------------
 

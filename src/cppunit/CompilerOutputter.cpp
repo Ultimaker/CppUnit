@@ -1,9 +1,9 @@
-#include <algorithm>
 #include <cppunit/NotEqualException.h>
 #include <cppunit/SourceLine.h>
 #include <cppunit/TestFailure.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
+#include <algorithm>
 
 
 namespace CppUnit

@@ -5,9 +5,13 @@
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
+#include <cppunit/plugin/Parameters.h>
+
 namespace CppUnit
 {
 class Test;
+class TestFactoryRegistry;
+class TestResult;
 }
 
 /*! \file
@@ -19,6 +23,14 @@ class Test;
  *
  * This class define the interface implemented by test plug-in. A pointer to that
  * interface is returned by the function exported by the test plug-in.
+ *
+ * Plug-in are loaded/unloaded by PlugInManager. When a plug-in is loaded, 
+ * initialize() is called. Before unloading the plug-in, the PlugInManager
+ * call uninitialize().
+ *
+ * addListener() and removeListener() are called respectively before and after
+ * the test run.
+ *
  * \see CPPUNIT_PLUGIN_IMPLEMENT, CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL
  * \see TestPlugInDefaultImpl.
  */
@@ -26,23 +38,44 @@ struct CppUnitTestPlugIn
 {
   /*! Called just after loading the dynamic library. 
    *
-   * Initializes the plug-in.
-   */
-  virtual void initialize() = 0;
-
-  /*! Returns the root test of the plug-in.
+   * Override this method to add additional suite to the registry, though this
+   * is preferably done using the macros (CPPUNIT_TEST_SUITE_REGISTRATION...).
+   * If you are creating a custom listener to extends the plug-in runner,
+   * you can use this to configure the listener using the \a parameters.
    *
-   * Caller does not assume ownership of the test.
-   * \return Pointer on a Test. Must never be \c NULL. The caller does not assume
-   *         ownership of the returned Test. The Test must remain valid until
-   *         uninitialize() is called.
+   * You could also use the parameters to specify some global parameter, such
+   * as test datas location, database name...
+   *
+   * N.B.: Parameters interface is not define yet, and the plug-in runner does
+   * not yet support plug-in parameter.
    */
-  virtual CppUnit::Test *getTestSuite() =0;
+  virtual void initialize( CppUnit::TestFactoryRegistry *registry,
+                           const CppUnit::Parameters &parameters ) =0;
+
+  /*! Gives a chance to the plug-in to register TestListener.
+   * 
+   * Override this method to add a TestListener for the test run. This is useful
+   * if you are writing a custom TestListener, but also if you need to
+   * setUp some global resource: listen to TestListener::startTestRun(), 
+   * and TestListener::endTestRun().
+   */
+  virtual void addListener( CppUnit::TestResult *eventManager ) =0;
+
+  /*! Gives a chance to the plug-in to remove its registered TestListener.
+   *
+   * Override this method to remove a TestListener that has been added.
+   */
+  virtual void removeListener( CppUnit::TestResult *eventManager ) =0;
 
   /*! Called just before unloading the dynamic library.
-   * Unitializes the plug-in.
+   * 
+   * Override this method to unregister test factory added in initialize().
+   * This is necessary to keep the TestFactoryRegistry 'clean'. When
+   * the plug-in is unloaded from memory, the TestFactoryRegistry will hold
+   * reference on test that are no longer available if they are not 
+   * unregistered.
    */
-  virtual void uninitialize() = 0;
+  virtual void uninitialize( CppUnit::TestFactoryRegistry *registry ) =0;
 };
 
 
@@ -60,7 +93,7 @@ struct CppUnitTestPlugIn
 /*! Type of the function exported by a plug-in.
  * \ingroup WritingTestPlugIn
  */
-typedef CppUnitTestPlugIn *(*CppUnitTestPlugInSignature)();
+typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 
 
 /*! Implements the function exported by the test plug-in
@@ -76,7 +109,7 @@ typedef CppUnitTestPlugIn *(*CppUnitTestPlugInSignature)();
 
 
 // Note: This include should remain after definition of CppUnitTestPlugIn
-#include <cppunit/plugin/TestPlugInDefaultImpl.h>
+#include <cppunit/plugin/TestPlugInAdapter.h>
 
 
 /*! \def CPPUNIT_PLUGIN_IMPLEMENT_MAIN()
@@ -116,8 +149,6 @@ typedef CppUnitTestPlugIn *(*CppUnitTestPlugInSignature)();
   }                                                   \
   typedef char __CppUnitPlugInImplementMainDummyTypeDef
 
-//     (void)argc; (void)argv;                           \ 
-
 
 // Other
 #else     // other platforms don't require anything specifics
@@ -128,24 +159,19 @@ typedef CppUnitTestPlugIn *(*CppUnitTestPlugInSignature)();
 /*! Implements and exports the test plug-in interface.
  * \ingroup WritingTestPlugIn
  *
- * This macro creates a subclass of CppUnitTestPlugInDefaultImpl to specify set
- * the name of the suite returned by CppUnitTestPlugIn::getTestSuite(), exports
- * the test plug-in function using the subclass, and implements the 'main' 
- * function for the plug-in using CPPUNIT_PLUGIN_IMPLEMENT_MAIN().
+ * This macro exports the test plug-in function using the subclass, 
+ * and implements the 'main' function for the plug-in using 
+ * CPPUNIT_PLUGIN_IMPLEMENT_MAIN().
  *
- * \see CppUnitTestPlugIn, CppUnitTestPlugInDefaultImpl
+ * When using this macro, CppUnit must be linked as a DLL (shared library).
+ * Otherwise, tests registered to the TestFactoryRegistry in the DLL will 
+ * not be visible to the DllPlugInTester.
+ *
+ * \see CppUnitTestPlugIn
  * \see CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL(), CPPUNIT_PLUGIN_IMPLEMENT_MAIN().
  */
-#define CPPUNIT_PLUGIN_IMPLEMENT( suiteName )                                        \
-  class __CppUnitTestPlugInNamedDefaultImpl : public CppUnit::TestPlugInDefaultImpl  \
-  {                                                                                  \
-    virtual std::string getSuiteName()                                               \
-    {                                                                                \
-      return suiteName;                                                              \
-    }                                                                                \
-  };                                                                                 \
-                                                                                     \
-  CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( __CppUnitTestPlugInNamedDefaultImpl );      \
+#define CPPUNIT_PLUGIN_IMPLEMENT()                                      \
+  CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( CppUnit::TestPlugInAdapter );  \
   CPPUNIT_PLUGIN_IMPLEMENT_MAIN()
 
 

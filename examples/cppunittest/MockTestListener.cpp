@@ -21,6 +21,14 @@ MockTestListener::MockTestListener( std::string name )
     , m_hasParametersExpectationForEndSuite( false )
     , m_expectedEndSuiteCallCount( 0 )
     , m_endSuiteCall( 0 )
+    , m_hasExpectationForStartTestRun( false )
+    , m_hasParametersExpectationForStartTestRun( false )
+    , m_expectedStartTestRunCallCount( 0 )
+    , m_startTestRunCall( 0 )
+    , m_hasExpectationForEndTestRun( false )
+    , m_hasParametersExpectationForEndTestRun( false )
+    , m_expectedEndTestRunCallCount( 0 )
+    , m_endTestRunCall( 0 )
     , m_hasExpectationForAddFailure( false )
     , m_hasExpectationForSomeFailure( false )
     , m_hasParametersExpectationForAddFailure( false )
@@ -143,6 +151,46 @@ MockTestListener::setExpectedEndSuiteCall( int callCount )
 
 
 void 
+MockTestListener::setExpectStartTestRun( CppUnit::Test *test,
+                                         CppUnit::TestResult *eventManager )
+{
+  m_hasExpectationForStartTestRun = true;
+  m_hasParametersExpectationForStartTestRun = true;
+  m_expectedStartTestRunCallCount = 1;
+  m_expectedStartTestRun = test;
+  m_expectedStartTestRun2 = eventManager;
+}
+
+
+void 
+MockTestListener::setExpectedStartTestRunCall( int callCount )
+{
+  m_hasExpectationForStartTestRun = true;
+  m_expectedStartTestRunCallCount = callCount;
+}
+
+
+void 
+MockTestListener::setExpectEndTestRun( CppUnit::Test *test,
+                                       CppUnit::TestResult *eventManager )
+{
+  m_hasExpectationForEndTestRun = true;
+  m_hasParametersExpectationForEndTestRun = true;
+  m_expectedEndTestRunCallCount = 1;
+  m_expectedEndTestRun = test;
+  m_expectedEndTestRun2 = eventManager;
+}
+
+
+void 
+MockTestListener::setExpectedEndTestRunCall( int callCount )
+{
+  m_hasExpectationForEndTestRun = true;
+  m_expectedEndTestRunCallCount = callCount;
+}
+
+
+void 
 MockTestListener::addFailure( const CppUnit::TestFailure &failure )
 {
   if ( m_hasExpectationForAddFailure  ||  m_hasExpectationForSomeFailure )
@@ -240,6 +288,48 @@ MockTestListener::endSuite( CppUnit::Test *test )
 
 
 void 
+MockTestListener::startTestRun( CppUnit::Test *test, 
+                                CppUnit::TestResult *eventManager )
+{
+  if ( m_hasExpectationForStartTestRun )
+  {
+    ++m_startTestRunCall;
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": unexpected call",
+                            m_startTestRunCall <= m_expectedStartTestRunCallCount );
+  }
+
+  if ( m_hasParametersExpectationForStartTestRun )
+  {
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": bad test",
+                            m_expectedStartTestRun == test );
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": bad eventManager",
+                            m_expectedStartTestRun2 == eventManager );
+  }
+}
+
+
+void 
+MockTestListener::endTestRun( CppUnit::Test *test, 
+                              CppUnit::TestResult *eventManager )
+{
+  if ( m_hasExpectationForEndTestRun )
+  {
+    ++m_endTestRunCall;
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": unexpected call",
+                            m_endTestRunCall <= m_expectedEndTestRunCallCount );
+  }
+
+  if ( m_hasParametersExpectationForEndTestRun )
+  {
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": bad test",
+                            m_expectedEndTestRun == test );
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": bad eventManager",
+                            m_expectedEndTestRun2 == eventManager );
+  }
+}
+
+
+void 
 MockTestListener::verify()
 {
   if ( m_hasExpectationForStartTest )
@@ -268,6 +358,20 @@ MockTestListener::verify()
     CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing endSuite calls",
                                   m_expectedEndSuiteCallCount, 
                                   m_endSuiteCall );
+  }
+
+  if ( m_hasExpectationForStartTestRun )
+  {
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing startTestRun calls",
+                                  m_expectedStartTestRunCallCount, 
+                                  m_startTestRunCall );
+  }
+
+  if ( m_hasExpectationForEndTestRun )
+  {
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing endTestRun calls",
+                                  m_expectedEndTestRunCallCount, 
+                                  m_endTestRunCall );
   }
 
   if ( m_hasExpectationForAddFailure )

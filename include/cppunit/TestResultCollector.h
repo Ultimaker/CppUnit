@@ -5,7 +5,7 @@
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( push )
-#pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
+#pragma warning( disable: 4251 4660 )  // X needs to have dll-interface to be used by clients of class Z
 #endif
 
 #include <cppunit/TestSuccessListener.h>

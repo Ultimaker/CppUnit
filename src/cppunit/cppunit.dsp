@@ -105,58 +105,6 @@ LIB32=link.exe -lib
 # Name "cppunit - Win32 Release"
 # Name "cppunit - Win32 Debug"
 # Name "cppunit - Win32 Debug Crossplatform Setting"
-# Begin Group "plugin"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\BeosDynamicLibraryManager.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\DynamicLibraryManager.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManager.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\DynamicLibraryManagerException.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManagerException.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestPlugInDefaultImpl.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\plugin\TestPlugInDefaultImpl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestPlugInSuite.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\plugin\TestPlugInSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\UnixDynamicLibraryManager.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\Win32DynamicLibraryManager.cpp
-# End Source File
-# End Group
 # Begin Group "documentation"
 
 # PROP Default_Filter ""
@@ -188,6 +136,22 @@ SOURCE=..\..\TODO
 # Begin Group "listener"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\BriefTestProgressListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\BriefTestProgressListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestResultCollector.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestResultCollector.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\TestSuccessListener.cpp
@@ -259,14 +223,6 @@ SOURCE=..\..\include\cppunit\CompilerOutputter.h
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\Outputter.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestResultCollector.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TestResultCollector.h
 # End Source File
 # Begin Source File
 
@@ -489,6 +445,66 @@ SOURCE=.\TestSetUp.cpp
 SOURCE=..\..\include\cppunit\extensions\TestSetUp.h
 # End Source File
 # End Group
+# Begin Group "plugin"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\BeOsDynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicLibraryManagerException.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManagerException.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\Parameters.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PlugInManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\PlugInManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPlugInAdapter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugInAdapter.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnixDynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Win32DynamicLibraryManager.cpp
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=..\..\configure.in
+# End Source File
 # Begin Source File
 
 SOURCE="..\..\INSTALL-WIN32.txt"

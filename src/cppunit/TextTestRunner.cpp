@@ -123,7 +123,7 @@ TestRunner::runTest( Test *test,
   if ( doPrintProgress )
     m_eventManager->addListener( &progress );
 
-  test->run( m_eventManager );
+  m_eventManager->runTest( test );
 
   if ( doPrintProgress )
     m_eventManager->removeListener( &progress );

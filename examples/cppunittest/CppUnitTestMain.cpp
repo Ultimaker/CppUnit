@@ -3,6 +3,7 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/TestRunner.h>
 #include <cppunit/TextTestProgressListener.h>
+#include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/XmlOutputter.h>
 #include "CppUnitTestSuite.h"
 #include <stdexcept>
@@ -24,7 +25,11 @@ main( int argc, char* argv[] )
   controller.addListener( &result );        
 
   // Add a listener that print dots as test run.
+#ifdef WIN32
   CppUnit::TextTestProgressListener progress;
+#else
+  CppUnit::BriefTestProgressListener progress;
+#endif
   controller.addListener( &progress );      
 
   // Add the top suite to the test runner

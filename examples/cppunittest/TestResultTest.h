@@ -17,6 +17,7 @@ class TestResultTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testEndTest );
   CPPUNIT_TEST( testStartSuite );
   CPPUNIT_TEST( testEndSuite );
+  CPPUNIT_TEST( testRunTest );
   CPPUNIT_TEST( testTwoListener );
   CPPUNIT_TEST_SUITE_END();
 
@@ -36,12 +37,9 @@ public:
   void testEndTest();
   void testStartSuite();
   void testEndSuite();
+  void testRunTest();
 
-  void testNoListener();
   void testTwoListener();
-
-  void testRemoveLastListener();
-  void testRemoveFrontListener();
 
 private:
   TestResultTest( const TestResultTest &copy );

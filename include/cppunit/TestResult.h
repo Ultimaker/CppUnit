@@ -64,8 +64,13 @@ public:
   virtual void startSuite( Test *test );
   virtual void endSuite( Test *test );
 
+  virtual void runTest( Test *test );
+
 protected:
   void addFailure( const TestFailure &failure );
+
+  virtual void startTestRun( Test *test );
+  virtual void endTestRun( Test *test );
   
 protected:
   typedef std::deque<TestListener *> TestListeners;

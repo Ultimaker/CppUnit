@@ -1,4 +1,72 @@
+2002-04-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* bumped version to 1.9.3
+
+	* FAQ: added question about 4786 warning on VC++.
+
+	* NEWS: updated.
+
+	* contrib/msvc/readme.txt: moved to contrib/readme.txt.
+
+	* contrib/xml-xsl/report.xsl: added XML style sheet contributed by 
+	'cuppa' project team (http://sourceforge.jp/projects/cuppa/)
+
+	* examples/cppunittest/TestResultTest.h:
+	* examples/cppunittest/TestResultTest.cpp: added tests for 
+	  startTestRun()/endTestRun().
+
+	* examples/simple/*: added. A simple example.
+
+	* include/cppunit/BriefTestProgressListener.h:
+	* src/cppunit/BriefTestProgressListener.cpp: added. Verbose progess listener
+	  that print the test name before running the test.
+
+	* include/cppunit/TestListener.h: added startTestRun()/endTestRun().
+
+	* include/cppunit/TestResult.h:
+	* src/cppunit/TestResult.cpp: added runTest(), to be called to run
+	  a test by test runner.
+
+	* src/cppunit/TextTestRunner.cpp:
+	* src/cppunit/TestRunner.cpp: updated to use TestResult::runTest().
+
+	* include/cppunit/plugin/PlugInManager.h:
+	* src/cppunit/PlugInManager.cpp: added. Managers for all loaded plug-ins.
+
+	* include/cppunit/plugin/TestPlugInDefaultImpl.h:
+	* src/cppunit/TestPlugInDefaultImpl.cpp: renamed TestPlugInAdapter. All 
+	  implementations are empty.
+
+	* include/cppunit/plugin/TestPlugInSuite.h: removed.
+	* src/cppunit/TestPlugInSuite.cpp: removed. Replaced by PlugInManager.
+
+	* include/cppunit/plugin/TestPlugIn.h: rewrote the plug-in interface to 
+	  provide more versatility. updated macros to match new interface.
+
+	* include/cppunit/extensions/TestFactoryRegistry.h:
+	* include/cppunit/extensions/TestFactoryRegistry.cpp: Added unregisterFactory(). 
+	  Added convenience method addRegistry(). Rewrote registry life cycle 
+	  management. AutoRegisterSuite can now detect that the registry has been
+	  destroy and not call to it to unregister its test factory.
+
+	* include/cppunit/extensions/AutoRegisterTest.h: on destruction, the registered
+	  factory is unregistered from the registry.
+
+	* include/cppunit/extensions/HelperMacros.h: added macros
+	  CPPUNIT_REGISTRY_ADD_TO_DEFAULT and CPPUNIT_REGISTRY_ADD to help
+	  build test suite hierarchy.
+
+	* src/cppunit/msvc/DllPlugInTester/*: moved to src/cppunit/DllPlugInTester/.
+
+	* src/cppunit/DllPlugInTester/DllPlugInTester.cpp: removed UNICODE stuffs. Use
+	  the PlugInManager instead of PlugInTestSuite. Simplified: only one test on
+	  command line, but many DLL can be specified. Added configurations to link
+	  against cppunit dll, those are now the default configuration (static linking
+	  don't make much sense for plug-in).
+
 2002-04-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* release 1.9.2.
 
 	* NEWS: updated.
 

@@ -1,6 +1,6 @@
-#include "cppunit/Exception.h"
-#include "cppunit/Test.h"
-#include "cppunit/TestFailure.h"
+#include <cppunit/Exception.h>
+#include <cppunit/Test.h>
+#include <cppunit/TestFailure.h>
 
 namespace CppUnit {
 

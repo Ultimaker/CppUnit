@@ -32,6 +32,7 @@ libcppunitinclude_HEADERS =  \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h \
+	VerboseTestProgressListener.h \
 	XmlOutputter.h
 
 dist-hook:

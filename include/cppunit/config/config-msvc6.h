@@ -1,6 +1,10 @@
 #ifndef _INCLUDE_CPPUNIT_CONFIG_MSVC6_H
 #define _INCLUDE_CPPUNIT_CONFIG_MSVC6_H 1
 
+#if _MSC_VER > 1000     // VC++
+#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
+#endif // _MSC_VER > 1000
+
 #define HAVE_CMATH 1
  
 /* include/cppunit/config-msvc6.h. Manually adapted from 
@@ -59,10 +63,6 @@
 // See class CompilerOutputter for format.
 #undef CPPUNIT_COMPILER_LOCATION_FORMAT
 #define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
-
-#if _MSC_VER > 1000     // VC++
-#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
-#endif // _MSC_VER > 1000
 
  
 /* _INCLUDE_CPPUNIT_CONFIG_MSVC6_H */

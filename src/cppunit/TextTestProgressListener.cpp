@@ -21,7 +21,6 @@ void
 TextTestProgressListener::startTest( Test *test )
 {
   std::cerr << ".";
-  std::cerr.flush();
 }
 
 
@@ -29,7 +28,6 @@ void
 TextTestProgressListener::addFailure( const TestFailure &failure )
 {
   std::cerr << ( failure.isError() ? "E" : "F" );
-  std::cerr.flush();
 }
 
 

@@ -1,3 +1,4 @@
+#include <cppunit/Test.h>
 #include <cppunit/TestFailure.h>
 #include <cppunit/TestListener.h>
 #include <cppunit/TestResult.h>
@@ -149,5 +150,37 @@ TestResult::removeListener ( TestListener *listener )
                                   listener ),
                      m_listeners.end());
 }
+
+
+void 
+TestResult::runTest( Test *test )
+{
+  startTestRun( test );
+  test->run( this );
+  endTestRun( test );
+}
+
+
+void 
+TestResult::startTestRun( Test *test )
+{
+  ExclusiveZone zone( m_syncObject ); 
+  for ( TestListeners::iterator it = m_listeners.begin();
+        it != m_listeners.end(); 
+        ++it )
+    (*it)->startTestRun( test, this );
+}
+
+
+void 
+TestResult::endTestRun( Test *test )
+{
+  ExclusiveZone zone( m_syncObject ); 
+  for ( TestListeners::iterator it = m_listeners.begin();
+        it != m_listeners.end(); 
+        ++it )
+    (*it)->endTestRun( test, this );
+}
+
 
 } // namespace CppUnit

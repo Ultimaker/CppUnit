@@ -126,6 +126,19 @@ TestResultTest::testEndSuite()
 
 
 void 
+TestResultTest::testRunTest()
+{
+  m_listener1->setExpectStartTestRun( m_dummyTest, m_result );
+  m_listener1->setExpectEndTestRun( m_dummyTest, m_result );
+  m_result->addListener( m_listener1 );
+  
+  m_result->runTest( m_dummyTest );
+
+  m_listener1->verify();
+}
+
+
+void 
 TestResultTest::testTwoListener()
 {
   m_listener1->setExpectStartTest( m_dummyTest );

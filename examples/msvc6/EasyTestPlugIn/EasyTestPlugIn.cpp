@@ -3,4 +3,4 @@
 
 #include <cppunit/plugin/TestPlugIn.h>
 
-CPPUNIT_PLUGIN_IMPLEMENT( "Easy Test Plug-in Suite" );
+CPPUNIT_PLUGIN_IMPLEMENT();

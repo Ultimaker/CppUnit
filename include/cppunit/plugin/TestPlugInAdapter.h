@@ -1,5 +1,5 @@
-#ifndef CPPUNIT_PLUGIN_TESTPLUGINDEFAULTIMPL
-#define CPPUNIT_PLUGIN_TESTPLUGINDEFAULTIMPL
+#ifndef CPPUNIT_PLUGIN_TESTPLUGINADAPTER
+#define CPPUNIT_PLUGIN_TESTPLUGINADAPTER
 
 #include <cppunit/Portability.h>
 
@@ -23,23 +23,21 @@ class TestSuite;
  * ( TestFactoryRegistry::getRegistry() ).
  *
  */
-class CPPUNIT_API TestPlugInDefaultImpl : public CppUnitTestPlugIn
+class CPPUNIT_API TestPlugInAdapter : public CppUnitTestPlugIn
 {
 public:
-  TestPlugInDefaultImpl();
+  TestPlugInAdapter();
 
-  virtual ~TestPlugInDefaultImpl();
+  virtual ~TestPlugInAdapter();
 
-  void initialize();
+  void initialize( TestFactoryRegistry *registry,
+                   const Parameters &parameters );
 
-  CppUnit::Test *getTestSuite();
+  void addListener( TestResult *eventManager );
 
-  void uninitialize();
+  void removeListener( TestResult *eventManager );
 
-protected:
-   virtual std::string getSuiteName();
-
-  TestSuite *m_suite;
+  void uninitialize( TestFactoryRegistry *registry );
 };
 
 
@@ -47,4 +45,4 @@ protected:
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)
 
-#endif // CPPUNIT_PLUGIN_TESTPLUGINDEFAULTIMPL
+#endif // CPPUNIT_PLUGIN_TESTPLUGINADAPTER

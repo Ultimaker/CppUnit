@@ -60,7 +60,7 @@
 
 // Otherwise, disable support for DllLoader
 #else
-#define CPPUNIT_NO_TESTPLUGIN
+#define CPPUNIT_NO_TESTPLUGIN 1
 #endif
 
 #if !defined(CPPUNIT_PLUGIN_EXPORT)

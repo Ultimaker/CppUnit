@@ -24,6 +24,8 @@ public:
   void startTest( Test *test );
   void addFailure( const TestFailure &failure );
 
+  /*! Call this method after running the tests.
+   */
   void done();
 
 private:

@@ -4,8 +4,6 @@
 #include <cppunit/Portability.h>
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
-#include <string>
-
 
 namespace CppUnit
 {

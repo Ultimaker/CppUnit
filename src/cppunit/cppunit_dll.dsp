@@ -455,23 +455,27 @@ SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManagerException.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\plugin\Parameters.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PlugInManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\PlugInManager.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestPlugInDefaultImpl.cpp
+SOURCE=.\TestPlugInAdapter.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\plugin\TestPlugInDefaultImpl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestPlugInSuite.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\plugin\TestPlugInSuite.h
+SOURCE=..\..\include\cppunit\plugin\TestPlugInAdapter.h
 # End Source File
 # Begin Source File
 

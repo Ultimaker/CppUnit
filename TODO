@@ -9,7 +9,7 @@
   - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception and other
     error catching (signal on Unix)
   - Add a global set up decorator for all test run to TestResult 
-    (subclass TestSetupDecorator, and add a setTest() method ) => thread, CoInitInstance...
+    => extends TestListener: startTestRun(), endTestRun().
   - [DONE] Change CompilerOutputter to be customized with parameter instead of subclassing:
     provide a default string to the constructor that indicates the error report format:
 	%p => full path (D:\prg\..\File.cpp)
@@ -22,7 +22,7 @@
 	Notes: gcc error format:
 		g++ -DHAVE_CONFIG_H -I. -I. -I../../config -I../../include -I../../include -g -O2 -c TextOutputter.cpp -Wp,-MD,.deps/TextOutputter.TPlo  -fPIC -DPIC
 		TextOutputter.cpp:5: cppunit/TextOutputter.h: No such file or directory
-  - True Unicode support:
+  - [DISCARDED: UTF8 is enough] True Unicode support:
     - Introduce a new CppUnit::String class. This class allow implicit construction from
 	const char *, std::string, wchar_t * and std::wstring. Provides accessor str() and
 	wstr() to retreive the string as either ANSI or UNICODE string.
@@ -33,6 +33,7 @@
 	  toCString( CppUnit::String &) that returns a CString using the appropriate method.
   - [DONE] Wrap test plug-in suite retreival in a TestPlugInSuite.
   - [DONE] CrossPlatform TestPlugInSuite and TestPlugInInterface.
+  - [DONE] CrossPlatform test runner for TestPlugIn.
 
   - STL orthodox template for container elements.
 

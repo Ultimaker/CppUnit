@@ -1,5 +1,6 @@
 #include <cppunit/TestRunner.h>
 #include <cppunit/TestPath.h>
+#include <cppunit/TestResult.h>
 
 
 namespace CppUnit
@@ -91,7 +92,7 @@ TestRunner::run( TestResult &controller,
   TestPath path = m_suite->resolveTestPath( testPath );
   Test *testToRun = path.getChildTest();
 
-  testToRun->run( &controller );
+  controller.runTest( testToRun );
 }
 
 

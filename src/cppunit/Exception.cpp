@@ -1,4 +1,4 @@
-#include "cppunit/Exception.h"
+#include <cppunit/Exception.h>
 
 
 namespace CppUnit {
