@@ -32,6 +32,12 @@
 
   - XmlOuputter::Node: class has been extracted and renamed XmlElement.
 
+  - TestSuiteBuilder: removed default constructor. All remaining constructors
+    take an additional argument of type TestNamer used to specify the fixture
+    named and generate test case name. Remove template method 
+    addTestCallerForException(). Use addTest() instead (see 
+    CPPUNIT_TEST_EXCEPTION implementation).
+
 
 	New in CppUnit 1.9.6:
 	---------------------

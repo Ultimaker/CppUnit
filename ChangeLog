@@ -1,3 +1,16 @@
+2002-05-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/TestSuiteBuilder.h: updated to use TestNamer. Removed
+    template method addTestCallerForException() which should solve the compilation
+    issue with Sun 5.0/6.0 compiler.
+
+  * include/cppunit/extensions/HelperMacros.h: updated against TestSuiteBuilder
+    change. Added CPPUNIT_TEST_CUSTOM and CPPUNIT_TEST_CUSTOMS to add custom 
+    tests to the fixture suite.
+  
+  * include/cppunit/extensions/TestNamer.h:
+  * src/cppunit/TestNamer.cpp: added, TestNamer to name test case and fixture.
+
 2002-05-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/XmlOutputter.h:

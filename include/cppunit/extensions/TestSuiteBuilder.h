@@ -2,101 +2,102 @@
 #define CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H
 
 #include <cppunit/Portability.h>
-#include <memory>
-#include <cppunit/TestSuite.h>
 #include <cppunit/TestCaller.h>
-#include <cppunit/extensions/TypeInfoHelper.h>
+#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/TestNamer.h>
+#include <memory>
 
 
 namespace CppUnit {
 
-  /*! \brief Helper to add tests to a TestSuite.
-   * \ingroup WritingTestFixture
-   *
-   * All tests added to the TestSuite are prefixed by TestSuite name. The resulting
-   * TestCase name has the following pattern:
-   *
-   * MyTestSuiteName.myTestName
-   */
-  template<typename Fixture>
-  class TestSuiteBuilder
+/*! \brief Helper to add tests to a TestSuite.
+ * \ingroup WritingTestFixture
+ *
+ * All tests added to the TestSuite are prefixed by TestSuite name. The resulting
+ * TestCase name has the following pattern:
+ *
+ * MyTestSuiteName.myTestName
+ * \see TestNamer.
+ */
+template<typename Fixture>
+class TestSuiteBuilder
+{
+public:
+  typedef void (Fixture::*TestMethod)();
+  TestSuiteBuilder( TestSuite *suite,
+                    const TestNamer &namer ) 
+    : m_suite( suite )
+    , m_testNamer( namer )
   {
-    public:
-      typedef void (Fixture::*TestMethod)();
+  }
 
-#if CPPUNIT_USE_TYPEINFO_NAME
-      TestSuiteBuilder() : 
-          m_suite( new TestSuite( 
-              TypeInfoHelper::getClassName( typeid(Fixture) )  ) )
-      {
-      }
-#endif
 
-      TestSuiteBuilder( TestSuite *suite ) : m_suite( suite ) 
-      {
-      }
+  TestSuiteBuilder( const TestNamer &namer ) 
+    : m_suite( new TestSuite( namer.getFixtureName() ) )
+    , m_testNamer( namer )
+  {
+  }
 
-      TestSuiteBuilder(std::string name) : m_suite( new TestSuite(name) ) 
-      {
-      }
+  
+  TestSuite *suite() const
+  {
+    return m_suite.get();
+  }
 
-      TestSuite *suite() const
-      {
-        return m_suite.get();
-      }
+  TestSuite *takeSuite()
+  {
+    return m_suite.release();
+  }
 
-      TestSuite *takeSuite()
-      {
-        return m_suite.release();
-      }
+  void addTest( Test *test )
+  {
+    m_suite->addTest( test );
+  }
 
-      void addTest( Test *test )
-      {
-        m_suite->addTest( test );
-      }
+  void addTestCaller( std::string methodName, 
+                      TestMethod testMethod )
+  {
+      Test *test = 
+          new TestCaller<Fixture>( makeTestName( methodName ), 
+                                   testMethod );
+      addTest( test );
+  }
 
-      void addTestCaller( std::string methodName, 
-                          TestMethod testMethod )
-      {
-          Test *test = 
-              new TestCaller<Fixture>( makeTestName( methodName ), 
-                                       testMethod );
-          addTest( test );
-      }
+  void addTestCaller( std::string methodName, 
+                      TestMethod testMethod, 
+                      Fixture *fixture )
+  {
+      Test *test = 
+          new TestCaller<Fixture>( makeTestName( methodName ), 
+                                   testMethod,
+                                   fixture);
+      addTest( test );
+  }
 
-      void addTestCaller( std::string methodName, 
-                          TestMethod testMethod, 
-                          Fixture *fixture )
-      {
-          Test *test = 
-              new TestCaller<Fixture>( makeTestName( methodName ), 
-                                       testMethod,
-                                       fixture);
-          addTest( test );
-      }
+  template<typename ExceptionType>
+  void addTestCallerForException( std::string methodName, 
+                                  TestMethod testMethod, 
+                                  Fixture *fixture,
+                                  ExceptionType *dummyPointer )
+  {
+      Test *test = new TestCaller<Fixture,ExceptionType>( 
+                                   makeTestName( methodName ), 
+                                   testMethod,
+                                   fixture);
+      addTest( test );
+  }
 
-      template<typename ExceptionType>
-      void addTestCallerForException( std::string methodName, 
-                                      TestMethod testMethod, 
-                                      Fixture *fixture,
-                                      ExceptionType *dummyPointer )
-      {
-          Test *test = new TestCaller<Fixture,ExceptionType>( 
-                                       makeTestName( methodName ), 
-                                       testMethod,
-                                       fixture);
-          addTest( test );
-      }
 
-    
-      std::string makeTestName( const std::string &methodName )
-      {
-        return m_suite->getName() + "." + methodName;
-      }
+  std::string makeTestName( const std::string &methodName )
+  {
+    return m_testNamer.getTestNameFor( methodName );
+  }
 
-    private:
-      std::auto_ptr<TestSuite> m_suite;
-  };
+private:
+  std::auto_ptr<TestSuite> m_suite;
+  const TestNamer &m_testNamer;
+};
+
 
 }  // namespace CppUnit
 

@@ -8,6 +8,7 @@ libcppunitinclude_HEADERS = \
 	RepeatedTest.h \
 	TestDecorator.h \
 	TestFactoryRegistry.h \
+	TestNamer.h \
 	TestSetUp.h \
 	TestSuiteBuilder.h \
 	TestSuiteFactory.h \

@@ -155,6 +155,14 @@ SOURCE=..\..\include\cppunit\extensions\TestFactoryRegistry.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestNamer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestNamer.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\extensions\TestSuiteBuilder.h
 # End Source File
 # Begin Source File
