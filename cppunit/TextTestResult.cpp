@@ -1,6 +1,7 @@
 #include "TextTestResult.h"
 #include "Exception.h"
 #include "estring.h"
+#include "Test.h"
 
 using namespace std;
 using namespace CppUnit;
@@ -32,8 +33,10 @@ TextTestResult::addFailure (Test *test, Exception *e)
 void 
 TextTestResult::startTest (Test *test)
 {
-    TestResult::startTest (test);
-    cerr << ".";
+
+  cerr << "Running " << test->getName() << " ";
+  TestResult::startTest (test);
+  cerr << ".\n";
 
 }
 
