@@ -3,9 +3,11 @@
 #include <cppunit/Protector.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestResult.h>
-#include <typeinfo>
 #include <stdexcept>
 
+#if CPPUNIT_USE_TYPEINFO_NAME
+#  include <typeinfo>
+#endif
 
 CPPUNIT_NS_BEGIN
 
