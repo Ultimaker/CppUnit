@@ -7,6 +7,7 @@
 #include <cppunit/TestResult.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <iostream>
+#include <stdexcept>
 
 
 namespace CppUnit {
@@ -86,7 +87,7 @@ TestRunner::runTestByName( std::string testName,
   {
     return runTest( m_suite->findTest( testName ), doPrintProgress );
   }
-  catch ( std::invalid_argument &)
+  catch ( std::invalid_argument & )
   {
     std::cout << "Test " << testName << " not found." << std::endl;
   }
