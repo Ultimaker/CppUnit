@@ -160,6 +160,6 @@ the correct library.
 3) Why does the test ExceptionTest.testAssignment failed in CppUnit test 
    suite ?
 
-   I've never been able to figure out why that test failed. It seems to
-specific to VC++ since it pass sucessfully with gcc. I you can figure that
-out, you're welcome!
+   I've never been able to figure out why that test fails.  It seems
+to be specific to VC++ since the test passes with gcc.  If you can figure
+out the failure, please let us know!

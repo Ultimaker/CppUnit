@@ -44,8 +44,12 @@
 	typedef std::ostringstream  OStringStream;
     }
 #else 
-#if CPPUNIT_HAVE_STRSTREAM
-#   include <strstream.h>
+#if CPPUNIT_HAVE_CLASS_STRSTREAM
+#   if CPPUNIT_HAVE_STRSTREAM
+#       include <strstream>
+#   else
+#       include <strstream.h>
+#   endif
     namespace CppUnit {
 	class OStringStream : public std::ostrstream 
 	{

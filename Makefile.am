@@ -37,10 +37,8 @@ release:
 	rm -rf .deps */.deps
 	$(MAKE) distcheck
 
-# The 'date -I' may be a GNUism (sorry!).  
-# It means output an ISO-8601 compliant date/time string.
 snapshot:
-	$(MAKE) dist distdir=$(PACKAGE)-`date -I`
+	$(MAKE) dist distdir=$(PACKAGE)-`date +%Y-%m-%d`
 
 rpm: dist
 	rpm -ta $(PACKAGE)-$(VERSION).tar.gz

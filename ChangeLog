@@ -1,3 +1,14 @@
+2001-09-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Makefile.am (snapshot): Replace "date -I" GNUism with portable
+	specification for ISO date format.
+
+	* include/cppunit/Portability.h: 
+	* config/ac_cxx_have_strstream.m4 (AC_CXX_HAVE_STRSTREAM): Extend
+	to check for and use <strstream> in preference to <strstream.h>.
+	Patrick Hartling reports the former is required for the SGI
+	MIPSpro 7.3.1.2 compiler.
+
 2001-09-19 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/cppunittest/makefile.am : added TestSetupTest.(cpp/h)
@@ -32,7 +43,6 @@
 	* include/cppunit/Portability.h: Qualify ostrstream with std.
 	Suggested by Patrick Hartling.
 
->>>>>>> 1.69
 2001-09-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/examples.dsw:
