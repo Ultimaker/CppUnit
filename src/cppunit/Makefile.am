@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.33 2002-06-13 15:31:01 blep Exp $
+# $Id: Makefile.am,v 1.34 2002-06-13 18:17:42 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -16,7 +16,6 @@ libcppunit_la_SOURCES = \
   DynamicLibraryManagerException.cpp \
   Exception.cpp \
   Message.cpp \
-  NotEqualException.cpp \
   RepeatedTest.cpp \
   PlugInManager.cpp \
   SourceLine.cpp \

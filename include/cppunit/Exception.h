@@ -18,24 +18,6 @@ namespace CppUnit {
 class CPPUNIT_API Exception : public std::exception
 {
 public:
-
-  class Type
-  {
-  public:
-    Type( std::string type ) : m_type ( type ) 
-    {
-    }
-
-    bool operator ==( const Type &other ) const
-    {
-	return m_type == other.m_type;
-    }
-
-  private:
-    const std::string m_type;
-  };
-
-
   /*! Constructs the exception with the specified message and source location.
    * \param message Message associated to the exception.
    * \param sourceLine Source location related to the exception.
@@ -85,12 +67,6 @@ public:
 
   /// Clones the exception.
   virtual Exception *clone() const;
-  
-  /// Tests if the exception is an instance of the specified type.
-  virtual bool isInstanceOf( const Type &type ) const;
-
-  /// Type of this exception.
-  static Type type();
 
 protected:
   // VC++ does not recognize call to parent class when prefixed

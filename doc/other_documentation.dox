@@ -103,20 +103,20 @@
  *   
  * See CppUnitTestPlugIn for further detail on how to do this.
  *
- * Creating you test plug-in with VC++:
- * - Creates a new "Win32 Dynamic Library" project, choose the empty template
+ * Creating your own test plug-in with VC++:
+ * - Create a new "Win32 Dynamic Library" project, choose the empty template
  * - For the Debug Configuration, add cppunitd_dll.lib to 
  *   'Project Settings/Link/Object/Libariries modules', and for the Release
  *   Configuration, add cppunit_dll.lib.
  * - For All Configuration, in 'C++/Preprocessor/Preprocessors definitions',
  *   add the symbol 'CPPUNIT_DLL' at the end of the line (it means that
  *   you are linking against cppunit dll).
- * - Creates a 'main' file that contains:
+ * - Create a 'main' file that contains:
 \verbatim
 #include <cppunit/plugin/TestPlugIn.h>
 
 CPPUNIT_PLUGIN_IMPLEMENT();\endverbatim
- * - Adds your tests
+ * - Add your tests
  * - You're done !
  *
  * See examples/simple/simple_plugin.dsp for an example.

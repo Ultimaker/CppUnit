@@ -1,3 +1,23 @@
+2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/NotEqualException.h:
+  * src/cppunit/NotEqualException.cpp: removed.
+
+  * include/cppunit/Exception.h:
+  * src/cppunit/Exception.cpp: removed 'type' related stuffs.
+
+  * include/cppunit/TextTestResult.h:
+  * src/cppunit/TextTestResult.cpp: delegate printing to TextOutputter.
+
+  * examples/simple/ExampleTestCase.h:
+  * examples/simple/ExampleTestCase.cpp: reindented.
+
+  * src/qttestrunner/build:
+  * src/qttestrunner/qttestrunner.pro:
+  * src/qttestrunner/TestBrowserDlgImpl.h:
+  * src/qttestrunner/TestRunnerModel.h: applied Thomas Neidhart's patch,
+    'Some minor fixes to compile QTTestrunner under Linux.'.
+
 2002-06-13 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Asserter.h:

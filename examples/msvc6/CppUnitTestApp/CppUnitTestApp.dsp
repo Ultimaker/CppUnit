@@ -267,15 +267,6 @@ SOURCE=..\..\cppunittest\MockTestListener.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\cppunittest\NotEqualExceptionTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\NotEqualExceptionTest.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\cppunittest\OrthodoxTest.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File

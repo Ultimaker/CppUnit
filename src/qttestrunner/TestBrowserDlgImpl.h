@@ -2,7 +2,7 @@
 #define TESTBROWSER_H
 
 #include <cppunit/Test.h>
-#include "TestBrowserDlg.h"
+#include "testbrowserdlg.h"
 
 class QListViewItem;
 

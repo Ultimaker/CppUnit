@@ -77,8 +77,7 @@ namespace Asserter
                            std::string message, 
                            const SourceLine &sourceLine = SourceLine() );
 
-
-  /*! Throws a NotEqualException with the specified message and location.
+  /*! Throws an Exception with the specified message and location.
    * \param expected Text describing the expected value.
    * \param actual Text describing the actual value.
    * \param additionalMessage Additional message. Usually used to report
@@ -88,9 +87,27 @@ namespace Asserter
   void CPPUNIT_API failNotEqual( std::string expected, 
                                  std::string actual, 
                                  const SourceLine &sourceLine,
-                                 const Message &additionalMessage );
+                                 const Message &additionalMessage,
+                                 std::string shortDescription = "equality assertion failed" );
 
-  /*! Throws a NotEqualException with the specified message and location.
+  /*! Throws an Exception with the specified message and location.
+   * \param shouldFail if \c true then the exception is thrown. Otherwise
+   *                   nothing happen.
+   * \param expected Text describing the expected value.
+   * \param actual Text describing the actual value.
+   * \param additionalMessage Additional message. Usually used to report
+   *                          where the "difference" is located.
+   * \param sourceLine Location of the assertion.
+   */
+  void CPPUNIT_API failNotEqualIf( bool shouldFail,
+                                   std::string expected, 
+                                   std::string actual, 
+                                   const SourceLine &sourceLine,
+                                   const Message &additionalMessage,
+                                   std::string shortDescription = "equality assertion failed" );
+
+  /*! Throws an Exception with the specified message and location.
+   * \deprecated Use failNotEqual( std::string, std::string, SourceLine, Message, std::string ) instead.
    * \param expected Text describing the expected value.
    * \param actual Text describing the actual value.
    * \param additionalMessage Additional message. Usually used to report
@@ -102,7 +119,8 @@ namespace Asserter
                                  const SourceLine &sourceLine = SourceLine(),
                                  std::string additionalMessage ="" );
 
-  /*! Throws a NotEqualException with the specified message and location.
+  /*! Throws an Exception with the specified message and location.
+   * \deprecated Use failNotEqualIf( bool, std::string, std::string, SourceLine, Message, std::string ) instead.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
    *                   nothing happen.
    * \param expected Text describing the expected value.

@@ -116,18 +116,4 @@ Exception::clone() const
 }
 
 
-bool 
-Exception::isInstanceOf( const Type &exceptionType ) const
-{
-  return exceptionType == type();
-}
-
-
-Exception::Type
-Exception::type()
-{
-  return Type( "CppUnit::Exception" );
-}
-
-
 }  // namespace CppUnit

@@ -5,7 +5,6 @@
 #endif
 
 #include <cppunit/TestAssert.h>
-#include <cppunit/NotEqualException.h>
 
 
 namespace CppUnit {

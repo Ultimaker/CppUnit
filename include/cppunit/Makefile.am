@@ -10,7 +10,6 @@ libcppunitinclude_HEADERS =  \
 	CompilerOutputter.h \
 	Exception.h \
 	Message.h \
-	NotEqualException.h \
 	Outputter.h \
 	Portability.h \
 	SourceLine.h \

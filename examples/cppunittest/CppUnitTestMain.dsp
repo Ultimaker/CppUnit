@@ -190,14 +190,6 @@ SOURCE=.\MessageTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\NotEqualExceptionTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\NotEqualExceptionTest.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\TestAssertTest.cpp
 # End Source File
 # Begin Source File

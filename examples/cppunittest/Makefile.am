@@ -24,8 +24,6 @@ cppunittestmain_SOURCES = \
 	MockTestCase.cpp \
 	MockTestListener.cpp \
 	MockTestListener.h \
-	NotEqualExceptionTest.cpp \
-	NotEqualExceptionTest.h \
 	OrthodoxTest.cpp \
 	OrthodoxTest.h \
 	OutputSuite.h \

@@ -12,7 +12,6 @@ class ExceptionTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testCopyConstructor );
   CPPUNIT_TEST( testAssignment );
   CPPUNIT_TEST( testClone );
-  CPPUNIT_TEST( testIsInstanceOf );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -27,7 +26,6 @@ public:
   void testCopyConstructor();
   void testAssignment();
   void testClone();
-  void testIsInstanceOf();
 
 private:
   ExceptionTest( const ExceptionTest &copy );

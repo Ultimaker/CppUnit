@@ -1,7 +1,6 @@
 #include "CoreSuite.h"
 #include "ExceptionTest.h"
 #include <cppunit/Exception.h>
-#include <cppunit/NotEqualException.h>
 #include <memory>
 
 
@@ -82,16 +81,6 @@ ExceptionTest::testClone()
   CppUnit::Exception e( CppUnit::Message("message"), sourceLine  );
   std::auto_ptr<CppUnit::Exception> other( e.clone() );
   checkIsSame( e, *other.get() );
-}
-
-
-void 
-ExceptionTest::testIsInstanceOf()
-{
-  CppUnit::SourceLine sourceLine( "fileName.cpp", 123 );
-  CppUnit::Exception e( CppUnit::Message("message"), sourceLine  );
-  CPPUNIT_ASSERT( e.isInstanceOf( CppUnit::Exception::type() ) );
-  CPPUNIT_ASSERT( !e.isInstanceOf( CppUnit::NotEqualException::type() ) );
 }
 
 

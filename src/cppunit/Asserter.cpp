@@ -1,6 +1,6 @@
 #include <cppunit/Asserter.h>
+#include <cppunit/Exception.h>
 #include <cppunit/Message.h>
-#include <cppunit/NotEqualException.h>
 
 
 namespace CppUnit
@@ -45,20 +45,34 @@ failIf( bool shouldFail,
   failIf( shouldFail, Message( "assertion failed", message ), sourceLine );
 }
 
-/* @@fixme Need to take NotEqualException down before including that change.
+
 void 
 failNotEqual( std::string expected, 
               std::string actual, 
               const SourceLine &sourceLine,
-              const Message &additionalMessage )
+              const Message &additionalMessage,
+              std::string shortDescription )
 {
-  Message message( "equality assertion failed",
+  Message message( shortDescription,
                    "Expected: " + expected,
                    "Actual  : " + actual );
   message.addDetail( additionalMessage );
   fail( message, sourceLine );
 }
-*/
+
+
+void 
+failNotEqualIf( bool shouldFail,
+                std::string expected, 
+                std::string actual, 
+                const SourceLine &sourceLine,
+                const Message &additionalMessage,
+                std::string shortDescription )
+{
+  if ( shouldFail )
+    failNotEqual( expected, actual, sourceLine, additionalMessage, shortDescription );
+}
+
 
 void 
 failNotEqual( std::string expected, 
@@ -66,10 +80,10 @@ failNotEqual( std::string expected,
               const SourceLine &sourceLine,
               std::string additionalMessage )
 {
-  throw NotEqualException( expected, 
-                           actual, 
-                           sourceLine, 
-                           additionalMessage );
+  Message message;
+  if ( !additionalMessage.empty() )
+    message.addDetail( additionalMessage );
+  failNotEqual( expected, actual, sourceLine, message );
 }
 
 

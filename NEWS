@@ -60,6 +60,8 @@
   - MfcUi plug-in runner (TesTPlugInRunner): better handling of history when
     loading and reloading a dll. 
 
+  - Qt Test Runner: minor bug fixes. Should compile on Unix.
+
 * Compatibility Break:
 
   - Exception constructor takes a Message instead of a string. Notes that the
@@ -82,6 +84,15 @@
     named and generate test case name. Remove template method 
     addTestCallerForException(). Use addTest() instead (see 
     CPPUNIT_TEST_EXCEPTION implementation).
+
+  - TextTestResult: most printing method were removed. This task is now delegated
+    to TextOuputter.
+
+* Deprecated:
+
+  - Asserter: all functions that use a string for the failure message. Construct
+    a Message instead (see Exception constructor compatiblity break and
+    Exception message feature).
 
 
 	New in CppUnit 1.9.6:

@@ -10,7 +10,7 @@
   - TextUi::TestRunner should use CppUnit::TestRunner as a base class
   - Modify MfcUi::TestRunner to expose TestResult (which allow specific TestListener
     for global initialization).
-  - Make Exception message more flexible: introduce a Message object which contains:
+  - [DONE]Make Exception message more flexible: introduce a Message object which contains:
     - a short description ('assertion failed', 'equality assertion failed'...)
     - detail strings: "Expected : 3", "Actual   : 5"...
     => this provide a structured way to specify failure details, and let the ouputter

@@ -1,8 +1,8 @@
-#include <cppunit/NotEqualException.h>
-#include <cppunit/TestFailure.h>
+#include <cppunit/Exception.h>
 #include <cppunit/SourceLine.h>
-#include <cppunit/TestResultCollector.h>
+#include <cppunit/TestFailure.h>
 #include <cppunit/TextOutputter.h>
+#include <cppunit/TestResultCollector.h>
 
 
 namespace CppUnit

@@ -21,7 +21,7 @@ class XmlUniformiserTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testSkipComment );
   CPPUNIT_TEST( testElementWithContent );
   CPPUNIT_TEST( testElementsHierarchyWithContents );
-  CPPUNIT_TEST( testAssertXmlEqualFail );
+  CPPUNIT_TEST_FAIL( testAssertXmlEqualFail );
   CPPUNIT_TEST( testAssertXmlEqualPass );
   CPPUNIT_TEST_SUITE_END();
 

@@ -1,4 +1,4 @@
-#include <cppunit/NotEqualException.h>
+#include <cppunit/Exception.h>
 #include <cppunit/SourceLine.h>
 #include <cppunit/TestFailure.h>
 #include <cppunit/TestResultCollector.h>

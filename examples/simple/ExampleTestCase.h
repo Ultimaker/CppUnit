@@ -20,22 +20,20 @@ class ExampleTestCase : public CppUnit::TestCase
   CPPUNIT_TEST( testDivideByZero );
   CPPUNIT_TEST( testEquals );
   CPPUNIT_TEST_SUITE_END();
-protected:
 
-	double			m_value1;
-	double			m_value2;
+protected:
+  double m_value1;
+  double m_value2;
 
 public:
-
-	void			setUp ();
+  void setUp();
 
 protected:
-	void			example ();
-	void			anotherExample ();
-	void			testAdd ();
-	void			testDivideByZero ();
-	void			testEquals ();
-
+  void example();
+  void anotherExample();
+  void testAdd();
+  void testDivideByZero();
+  void testEquals();
 };
 
 
