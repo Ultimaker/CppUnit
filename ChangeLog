@@ -1,13 +1,23 @@
 2003-03-15 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * src/msvc6/testrunner/DynamicWindow/cdxCDynamicWndEx.cpp:
+  * examples/msvc6/CppUnitTestApp/CppUnitTestApp.cpp:
+  * examples/msvc6/HostApp/HostApp.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerApp.cpp: fixed compatibility
+    issues with vc7 MFC.
+
   * include/cppunit/tools/Algorithm.h:
+  * examples/cppunittest/XmlOutputterTest.cpp:
+  * examples/cppunittest/XmlUniformiser.*:
   * src/cppunit/CompilerOutputter.cpp:
   * src/cppunit/ProtectorChain.cpp:
   * src/cppunit/StringTools.cpp:
   * src/cppunit/TestPath.cpp:
   * src/cppunit/TypeInfoHelper.cpp:
   * src/cppunit/XmlElement.cpp:
-  * src/cppunit/XmlOutputter.cpp: switched to using unsigned index in loop to
+  * src/cppunit/XmlOutputter.cpp: 
+  * src/DllPlugInTester/CommandLineParser.h:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp: switched to using unsigned index in loop to
     avoid signed/unsigned warning in vc7.
 
   * include/cppunit/extension/ExceptionTestCaseDecorator.h: removed dll export
