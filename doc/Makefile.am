@@ -2,16 +2,33 @@ htmldir = $(pkgdatadir)/html
 
 EXTRA_DIST = $(doxygen_input) $(static_pages)
 
+doxygen_input = other_documentation.dox header.html footer.html
+static_pages = cookbook.html
 
-doxygen_input = other_documentation.dox
-static_pages = cookbook.html header.html footer.html 
 
+# DOC is defined if installer requests doc generation.
+# For now, we only install HTML documentation.  We could install manpages
+# using the following
+#   man_MANS = man/man3/CppUnit.3
+#   man/man3/CppUnit.3: dox
+# and an extra copy or two in the install-data-hook.  
+# However, the manpages do not appear to be tremendously useful, so
+# let's not bother.
 
-# DOC is defined if installer requests doc generation
 if DOC
-man_MANS = man/man3/*.3 man/man3/extensions/*.3
-html_DATA = $(static_pages) html/*
+
+html_DATA = $(static_pages) html/index.html
+
+install-data-hook:
+	cp -dpR html/* $(DESTDIR)$(htmldir)
+
+# Automake's "distcheck" is sensitive to having files left over
+# after "make uninstall", so we have to clean up the install hook.
+uninstall-local:
+	rm -rf $(DESTDIR)$(htmldir)
+
 all-local: dox #pdf
+
 endif
 
 
@@ -23,9 +40,15 @@ $(man_extension_dir):
 
 
 dox: html/index.html
-html/* man/man3/*.3 man/man3/extensions/*.3: html/index.html
-html/index.html: Doxyfile other_documentation.dox $(man_extension_dir)
+
+html/index.html: Doxyfile $(doxygen_input) $(man_extension_dir)
 	@DOXYGEN@
+
+
+# Distribute the HTML documentation.
+doc-dist: dox
+	cp $(static_pages) html
+	tar -czf $(PACKAGE)-docs-$(VERSION).tar.gz -C html .
 
 pdf: @PACKAGE@.pdf
 @PACKAGE@.pdf:

@@ -1,3 +1,13 @@
+cppunit (1.6.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * New maintainer.
+  * Include updated config.guess and config.sub.  Closes: #104686.
+  * Do not supply shared library.
+  * Remove cppunit-config.1; upstream now installs manpage.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 29 Sep 2001 15:59:22 -0400
+
 cppunit (1.5.4-2) unstable; urgency=low
 
   * added autoconf to build-depends (thanks to Rick Younie
@@ -12,6 +22,4 @@ cppunit (1.5.4-1) unstable; urgency=low
 
  -- Christian Leutloff <leutloff@debian.org>  Mon, 23 Apr 2001 19:57:19 +0200
 
-Local variables:
-mode: debian-changelog
-End:
+

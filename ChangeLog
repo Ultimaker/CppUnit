@@ -1,3 +1,23 @@
+2001-09-30  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/config-mac.h: New.  Macintosh configuration,
+	courtesy of Duane Murphy.
+
+	* include/cppunit/Portability.h: Move <string> include inside
+	#if-block that needs it.
+
+	* doc/Makefile.am (doc-dist): Creates tar file of HTML doc files.
+	Remove all wildcarded filenames.  Do not bother with manpages.
+
+	* Makefile.am (EXTRA_DIST): Distribute INSTALL-unix and
+	cppunit-config.1.
+	(man_MANS): Install cppunit-config.1.
+	(doc-dist): Use "make doc-dist" in doc directory.
+
+	* cppunit-config.1: Document --prefix and --exec-prefix.
+
+	* cppunit-config.in (Usage): Remove "[LIBRARIES]" from help string.
+
 2001-09-29  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* configure.in: Set version to 1.6.1.

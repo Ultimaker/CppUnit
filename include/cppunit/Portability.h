@@ -42,8 +42,6 @@
 /* Define CPPUNIT_SSTREAM as a stream with a "std::string str()"
  * method.
  */
-#include <string>
-
 #if CPPUNIT_HAVE_SSTREAM
 #   include <sstream>
     namespace CppUnit {
@@ -51,11 +49,13 @@
     }
 #else 
 #if CPPUNIT_HAVE_CLASS_STRSTREAM
+#   include <string>
 #   if CPPUNIT_HAVE_STRSTREAM
 #       include <strstream>
 #   else
 #       include <strstream.h>
 #   endif
+
     namespace CppUnit {
 	class OStringStream : public std::ostrstream 
 	{

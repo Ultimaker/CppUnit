@@ -44,14 +44,19 @@ The library appears to function OK.  Please let us know if you find
 it otherwise.
 
 
-DEC alpha with cxx V6.1-029 and RougeWave STL
+DEC alpha with cxx V6.1-029 and RogueWave STL
 ---------------------------------------------
 
-A user reports that you may have to configure using
+A user reports that you have to issue the command
 
-	./configure DEC_CXX="-D__USE_STD_IOSTREAM -D__STD_MS"
+    export DEC_CXX="-D__USE_STD_IOSTREAM -D__STD_MS"
 
-[Is that really "RogueWave"?]
+in order to get ostream defined in namespace std.  Otherwise, the
+build reports the following error.
+
+    Cannot define CppUnit::OStringStream
+
+
 
 If the compiler complains about 'exception', it may help to
 re-run configure with

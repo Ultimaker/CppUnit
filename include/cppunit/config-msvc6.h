@@ -38,11 +38,6 @@
 #define CPPUNIT_PACKAGE  "cppunit" 
 #endif
 
-/* Version number of package */
-#ifndef CPPUNIT_VERSION 
-#define CPPUNIT_VERSION  "1.5.5" 
-#endif
-
 
 
 #if _MSC_VER > 1000     // VC++

@@ -4,9 +4,11 @@ ACLOCAL_AMFLAGS = -I config
 SUBDIRS = src include examples doc
 
 bin_SCRIPTS = cppunit-config
+man_MANS = cppunit-config.1
 
 
-EXTRA_DIST = BUGS INSTALL-WIN32.txt			\
+EXTRA_DIST = BUGS INSTALL-unix INSTALL-WIN32.txt	\
+	cppunit-config.1				\
 	cppunit.m4 cppunit.spec.in cppunit.spec	        \
 	config/ac_create_prefix_config_h.m4		\
 	config/ac_cxx_have_sstream.m4			\
@@ -50,9 +52,8 @@ debian:
 	chmod a+x debian/rules
 	dpkg-buildpackage -rfakeroot -sa -us -uc -tc 
 
-docs:
-	$(MAKE) -C doc
+doc-dist:
+	$(MAKE) -C doc doc-dist
+	mv -f doc/$(PACKAGE)-docs-$(VERSION).tar.gz .
 
-doc-dist: docs
-	tar -zcf $(PACKAGE)-docs-$(VERSION).tar.gz -C doc/html .
 

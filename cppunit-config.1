@@ -1,4 +1,4 @@
-.TH cppunit 1 "20 May 2000" Version 0.1.0
+.TH cppunit 1 "September 2001"
 .SH NAME
 cppunit-config - script to get information about the installed version of cppunit
 .SH SYNOPSIS
@@ -27,12 +27,18 @@ program.
 Print the compiler flags that are necessary to compile a \fIcppunit\fP
 program.
 .TP 8
+.B  \-\-prefix
+Print the prefix with which \fIcppunit\fP was compiled.
+.TP 8
 .B  \-\-prefix=PREFIX
 If specified, use PREFIX instead of the installation prefix that
 \fIcppunit\fP was built with when computing the output for the
 \-\-cflags and \-\-libs options. This option is also used for the exec
 prefix if \-\-exec\-prefix was not specified. This option must be
 specified before any \-\-libs or \-\-cflags options.
+.TP 8
+.B  \-\-exec\-prefix
+Print the exec\-prefix with which \fIcppunit\fP was compiled.
 .TP 8
 .B  \-\-exec\-prefix=PREFIX
 If specified, use PREFIX instead of the installation exec prefix that

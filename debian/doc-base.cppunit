@@ -5,7 +5,7 @@ Abstract: A short cookbook to help the user getting started with CppUnit.
 Section: devel
 
 Format: HTML
-Index: /usr/share/doc/cppunit/cookbook.html
-Files: /usr/share/doc/cppunit/cookbook.html
+Index: /usr/share/doc/cppunit/html/index.html
+Files: /usr/share/doc/cppunit/html/*.html
 
   

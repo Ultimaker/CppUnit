@@ -8,7 +8,7 @@ includedir=@includedir@
 usage()
 {
     cat <<EOF
-Usage: cppunit-config [OPTION]... [LIBRARY]...
+Usage: cppunit-config [OPTION] ...
 
 Generic options
   --version	output CppUnit version information.
