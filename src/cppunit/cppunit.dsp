@@ -519,6 +519,10 @@ SOURCE=..\..\include\cppunit\Makefile.am
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\plugin\Makefile.am
+# End Source File
+# Begin Source File
+
 SOURCE=.\Makefile.am
 # End Source File
 # End Target

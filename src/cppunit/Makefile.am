@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.28 2002-04-18 09:56:17 blep Exp $
+# $Id: Makefile.am,v 1.29 2002-04-18 09:58:57 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -10,6 +10,7 @@ lib_LTLIBRARIES = libcppunit.la
 libcppunit_la_SOURCES = \
   Asserter.cpp \
   BeOsDynamicLibraryManager.cpp \
+  BriefTestProgressListener.cpp \
   CompilerOutputter.cpp \
   DynamicLibraryManager.cpp \
   DynamicLibraryManagerException.cpp \
@@ -40,7 +41,6 @@ libcppunit_la_SOURCES = \
   TextTestRunner.cpp \
   TypeInfoHelper.cpp \
   UnixDynamicLibraryManager.cpp \
-  VerboseTestProgressListener.cpp \
   XmlOutputter.cpp \
   Win32DynamicLibraryManager.cpp
 

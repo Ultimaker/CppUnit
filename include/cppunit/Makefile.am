@@ -6,6 +6,7 @@ libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
 	config-auto.h \
 	Asserter.h \
+	BriefTestProgressListener.h \
 	CompilerOutputter.h \
 	Exception.h \
 	NotEqualException.h \
@@ -32,7 +33,6 @@ libcppunitinclude_HEADERS =  \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h \
-	VerboseTestProgressListener.h \
 	XmlOutputter.h
 
 dist-hook:
