@@ -4,7 +4,7 @@
 #include <cppunit/Portability.h>
 #include <string>
 
-/** Constructs a SourceLine object initialized with the location where the macro is expanded.
+/*! Constructs a SourceLine object initialized with the location where the macro is expanded.
  * Used to write your own assertion macros.
  * \see Asserter for example of usage.
  */
@@ -16,6 +16,11 @@ namespace CppUnit
 
 /*! \class SourceLine
  * \brief This class represents the location of a line of text in a specified file.
+ * Use the CPPUNIT_SOURCELINE macro to construct that object.
+ *
+ * Used to capture the failure location in assertion.
+ *
+ * \see Asserter.
  */
 class CPPUNIT_API SourceLine
 {

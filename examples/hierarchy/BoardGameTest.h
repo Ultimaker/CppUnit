@@ -1,56 +1,48 @@
 #ifndef __BOARDGAMETEST_H__
 #define __BOARDGAMETEST_H__
 
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/HelperMacros.h>
 
 template<typename GAMECLASS> 
-class BoardGameTest : public CppUnit::TestCase {
-  protected:
-    GAMECLASS	*m_game;
-    
-  public:
-    BoardGameTest (std::string name) : CppUnit::TestCase (name) 
-    {
-    }
+class BoardGameTest : public CppUnit::TestFixture 
+{
+  CPPUNIT_TEST_SUITE( BoardGameTest );
+  CPPUNIT_TEST( testReset );
+  CPPUNIT_TEST( testResetShouldFail );
+  CPPUNIT_TEST_SUITE_END();
+protected:
+  GAMECLASS	*m_game;
+  
+public:
+  BoardGameTest()
+  {
+  }
 
-    virtual void registerTests(CppUnit::TestSuite *suite) 
-    {
-      suite->addTest (new CppUnit::TestCaller<BoardGameTest<GAMECLASS> > ("testReset", 
-         &BoardGameTest<GAMECLASS>::testReset, *this)); 
-      suite->addTest (new CppUnit::TestCaller<BoardGameTest<GAMECLASS> > ("testReset", 
-         &BoardGameTest<GAMECLASS>::testResetShouldFail, *this)); 
-    }
+  int countTestCases () const
+  { 
+    return 1; 
+  }
+  
+  void setUp() 
+  { 
+    m_game = new GAMECLASS; 
+  }
+  
+  void tearDown()
+  { 
+    delete m_game; 
+  }
+  
+  void testReset() 
+  { 
+    CPPUNIT_ASSERT( m_game->reset() );
+  }
 
-    BoardGameTest()
-    {
-    }
-
-    int countTestCases () const
-    { return 1; }
-    
-    void setUp () 
-    { 
-      m_game = new GAMECLASS; 
-    }
-    
-    void tearDown ()
-    { 
-      delete m_game; 
-    }
-    
-    void testReset () 
-    { 
-      CPPUNIT_ASSERT( m_game->reset() );
-    }
-
-    void testResetShouldFail () 
-    { 
-      std::cout << "The following test fails, this is intended:" << std::endl;
-      CPPUNIT_ASSERT( !m_game->reset() );
-    }
-    
+  void testResetShouldFail() 
+  { 
+    std::cout << "The following test fails, this is intended:" << std::endl;
+    CPPUNIT_ASSERT( !m_game->reset() );
+  }
 };
 
 #endif

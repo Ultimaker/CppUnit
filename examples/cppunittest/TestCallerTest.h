@@ -8,7 +8,7 @@
 #include "MockTestListener.h"
 #include "TrackedTestCase.h"
 
-class TestCallerTest : public CppUnit::TestCase, 
+class TestCallerTest : public CppUnit::TestFixture, 
                               Tracker
 {
   CPPUNIT_TEST_SUITE( TestCallerTest );

@@ -5,7 +5,7 @@
 #include "MockTestListener.h"
 
 
-class OrthodoxTest : public CppUnit::TestCase
+class OrthodoxTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( OrthodoxTest );
   CPPUNIT_TEST( testValue );

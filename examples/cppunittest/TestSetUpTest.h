@@ -5,7 +5,7 @@
 #include <cppunit/extensions/TestSetUp.h>
 
 
-class TestSetUpTest : public CppUnit::TestCase
+class TestSetUpTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestSetUpTest );
   CPPUNIT_TEST( testRun );

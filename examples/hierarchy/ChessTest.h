@@ -4,28 +4,20 @@
 #include "BoardGameTest.h"
 
 template<typename GAMECLASS> 
-class ChessTest : public BoardGameTest<GAMECLASS> {
-  public:
-    ChessTest (std::string name) : BoardGameTest<GAMECLASS> (name) 
-    {
-    }
-    
-    void registerTests(CppUnit::TestSuite *suite) 
-    {
-      BoardGameTest<GAMECLASS>::registerTests(suite);
-      suite->addTest (
-        new CppUnit::TestCaller<ChessTest<GAMECLASS> > ("testNumberOfPieces", 
-          &ChessTest<GAMECLASS>::testNumberOfPieces, *this));
-    }
-
-    ChessTest() 
-    {
-    }
-    
-    void testNumberOfPieces () 
-    { 
-      CPPUNIT_ASSERT (m_game->getNumberOfPieces () == 32); 
-    }
+class ChessTest : public BoardGameTest<GAMECLASS> 
+{
+  CPPUNIT_TEST_SUB_SUITE( ChessTest, BoardGameTest<GAMECLASS> );
+  CPPUNIT_TEST( testNumberOfPieces );
+  CPPUNIT_TEST_SUITE_END();
+public:
+  ChessTest() 
+  {
+  }
+  
+  void testNumberOfPieces()
+  { 
+    CPPUNIT_ASSERT( m_game->getNumberOfPieces () == 32 );
+  }
 };
 
 

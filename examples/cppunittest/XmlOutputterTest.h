@@ -11,7 +11,7 @@
 /*! \class XmlOutputterTest
  * \brief Unit tests for XmlOutputter.
  */
-class XmlOutputterTest : public CppUnit::TestCase
+class XmlOutputterTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( XmlOutputterTest );
   CPPUNIT_TEST( testEmptyNodeToString );

@@ -24,12 +24,12 @@ class TestListener;
 
 /*! Manages TestListener.
  *
- * FIXME: NEED UPDATE (main responsibilty is to act as an event manager)
+ * A single instance of this class is used when running the test. It is usually
+ * created by the test runner (TextTestRunner).
  *
- * The test framework distinguishes between failures and errors.
- * A failure is anticipated and checked for with assertions. Errors are
- * unanticipated problems signified by exceptions that are not generated
- * by the framework.
+ * This class shouldn't have to be inherited from. Use a TestListener
+ * or one of its subclasses to be informed of the ongoing tests.
+ * Use a Outputter to receive a test summary once it has finished
  *
  * TestResult supplies a template method 'setSynchronizationObject()'
  * so that subclasses can provide mutual exclusion in the face of multiple
@@ -39,7 +39,7 @@ class TestListener;
  * and make sure that you create an instance of ExclusiveZone at the 
  * beginning of each method.
  *
- * \see Test, TestResultCollector
+ * \see Test, TestListener, TestResultCollector, Outputter.
  */
 class CPPUNIT_API TestResult : protected SynchronizedObject
 {

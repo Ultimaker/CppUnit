@@ -4,7 +4,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 
-class NotEqualExceptionTest : public CppUnit::TestCase
+class NotEqualExceptionTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( NotEqualExceptionTest );
   CPPUNIT_TEST( testConstructor );

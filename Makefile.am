@@ -8,11 +8,13 @@ man_MANS = cppunit-config.1
 
 
 EXTRA_DIST = BUGS INSTALL-unix INSTALL-WIN32.txt	\
-	cppunit-config.1				\
+	cppunit-config.1				                \
 	cppunit.m4 cppunit.spec.in cppunit.spec	        \
-	$(m4sources)					\
-	contrib/msvc/CppUnit.WWTpl 			\
-	contrib/msvc/readme.txt
+	$(m4sources)					                \
+	contrib/msvc/CppUnit.WWTpl 			            \
+	contrib/msvc/readme.txt                         \
+	contrib/msvc/AddingUnitTestMethod.dsm           \
+	src/CppUnitLibraries.dsw
 
 m4sources = \
 	config/ac_create_prefix_config_h.m4		\
@@ -32,6 +34,7 @@ DISTCLEANFILES = config/stamp-h1 so_locations
 
 dist-hook:
 	cp -dpR $(top_srcdir)/src/msvc6 $(distdir)/src
+	cp -dpR $(top_srcdir)/src/qttestrunner $(distdir)/src
 	cp -dpR $(top_srcdir)/include/msvc6 $(distdir)/include 
 	cp -dpR $(top_srcdir)/examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf

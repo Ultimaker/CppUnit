@@ -1,3 +1,62 @@
+2002-03-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* makefile.am: added src/CppUnitLibraries.dsw, new contribution, and
+	src/qttestrunner.
+
+	* TODO: updated (doc).
+
+	* contrib/msvc/AddingUnitTestMethod.dsm: added, submitted by 
+	bloodchen@hotmail.com.
+
+	* constrib/msvc/readme.txt: updated.
+	
+	* include/cppunit/TestAsserter.h:
+	* include/cppunit/SourceLine.h: updated doc.
+
+	* include/cppunit/TestCaller.h: reindented. updated doc.
+
+	* include/cppunit/extensions/HelperMacros.h: relaxed constraint on fixture.
+	Fixture base class may be TestFixture instead of TestCase.
+
+	* include/cppunit/TestCase.h: 
+	* src/cppunit/TestCase.h: TestCase inherits TestFixture for setUp() and
+	tearDown() definition. Moved documentation to TestFixture.
+
+	* include/cppunit/TestFixture.h: updated documentation.
+
+	* include/cppunit/TestRegistry.h:
+	* src/cppunit/TestRegistry.cpp: Removed. Replaced by TestFactoryRegistry.
+
+	* include/cppunit/TextTestRunner.h:
+	* src/cppunit/TextTestRunner.cpp: made printing progress using a 
+	TextTestProgressListener optional.
+
+	* examples\cppunittest\ExceptionTest.h:
+	* examples\cppunittest\HelperMacrosTest.h:
+	* examples\cppunittest\HelperMacrosTest.cpp:
+	* examples\cppunittest\NotEqualException.h:
+	* examples\cppunittest\OrthodoxTest.h:
+	* examples\cppunittest\RepeatedTest.h:
+	* examples\cppunittest\TestAssertTest.h:
+	* examples\cppunittest\TestCallerTest.h:
+	* examples\cppunittest\TestDecoratorTest.h:
+	* examples\cppunittest\TestFailureTest.h:
+	* examples\cppunittest\TestResultCollectorTest.h:
+	* examples\cppunittest\TestResultTest.h:
+	* examples\cppunittest\TestSetUpTest.h:
+	* examples\cppunittest\TestSuiteTest.h:
+	* examples\cppunittest\XmlOutputterTest.h:
+	* examples\cppunittest\XmlOutputterTest.cpp:
+	* examples\cppunittest\XmlUniformizerTest.h:
+	* examples\cppunittest\XmlUniformizerTest.cpp: changed base class for fixture
+	from TestCase to TestFixture.
+
+	* examples\hierarchy\BoardGameTest.h:
+	* examples\hierarchy\ChessTest.h:
+	* examples\hierarchy\main.cpp: updated to use HelperMacros for correct 
+	fixture instantiation (the ChessBoard::testReset test case was using 
+	BoardGame fixture instance instead of ChessBoard).
+
 2002-03-26 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* configure.in: bumped version to 1.7.9

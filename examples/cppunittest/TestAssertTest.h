@@ -4,7 +4,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 
-class TestAssertTest : public CppUnit::TestCase
+class TestAssertTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestAssertTest );
   CPPUNIT_TEST( testAssertTrue );

@@ -6,7 +6,7 @@
 #include "MockTestListener.h"
 
 
-class TestResultTest : public CppUnit::TestCase
+class TestResultTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestResultTest );
   CPPUNIT_TEST( testConstructor );

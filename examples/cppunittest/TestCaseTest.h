@@ -11,7 +11,7 @@
 #include "MockTestListener.h"
 
 
-class TestCaseTest : public CppUnit::TestCase
+class TestCaseTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestCaseTest );
   CPPUNIT_TEST( testSetUpFailure );

@@ -23,26 +23,26 @@ private:
 template<typename ExceptionType>
 struct ExpectedExceptionTraits
 {
-    static void expectedException()
-    {
+  static void expectedException()
+  {
 #if CPPUNIT_USE_TYPEINFO_NAME
-	std::string message( "Expected exception of type " );
-	message += TypeInfoHelper::getClassName( typeid( ExceptionType ) );
-	message += ", but got none";
+	  std::string message( "Expected exception of type " );
+	  message += TypeInfoHelper::getClassName( typeid( ExceptionType ) );
+	  message += ", but got none";
 #else
-	std::string message( "Expected exception but got none" );
+    std::string message( "Expected exception but got none" );
 #endif
-	throw Exception( message );
-    }
+	  throw Exception( message );
+  }
 };
 
 
 template<>
 struct ExpectedExceptionTraits<NoExceptionExpected>
 {
-    static void expectedException()
-    {
-    }
+  static void expectedException()
+  {
+  }
 };
 
 
@@ -53,33 +53,33 @@ struct ExpectedExceptionTraits<NoExceptionExpected>
 /*! \brief Generate a test case from a fixture method.
  *
  * A test caller provides access to a test case method 
- * on a test case class.  Test callers are useful when 
+ * on a test fixture class.  Test callers are useful when 
  * you want to run an individual test or add it to a 
  * suite.
  * Test Callers invoke only one Test (i.e. test method) on one 
- * Fixture of a TestCase.
+ * Fixture of a TestFixture.
  * 
  * Here is an example:
  * \code
- * class MathTest : public CppUnit::TestCase {
+ * class MathTest : public CppUnit::TestFixture {
  *         ...
  *     public:
- *         void         setUp ();
- *         void         tearDown ();
+ *         void         setUp();
+ *         void         tearDown();
  *
- *         void         testAdd ();
- *         void         testSubtract ();
+ *         void         testAdd();
+ *         void         testSubtract();
  * };
  *
- * CppUnit::Test *MathTest::suite () {
+ * CppUnit::Test *MathTest::suite() {
  *     CppUnit::TestSuite *suite = new CppUnit::TestSuite;
  *
- *     suite->addTest (new CppUnit::TestCaller<MathTest> ("testAdd", testAdd));
+ *     suite->addTest( new CppUnit::TestCaller<MathTest>( "testAdd", testAdd ) );
  *     return suite;
  * }
  * \endcode
  *
- * You can use a TestCaller to bind any test method on a TestCase
+ * You can use a TestCaller to bind any test method on a TestFixture
  * class, as long as it accepts void and returns void.
  * 
  * \see TestCase
@@ -89,100 +89,99 @@ template <typename Fixture,
 	  typename ExpectedException = NoExceptionExpected>
 class TestCaller : public TestCase
 { 
-    typedef void (Fixture::*TestMethod)();
+  typedef void (Fixture::*TestMethod)();
     
 public:
-    /**
-     * Constructor for TestCaller. This constructor builds a new Fixture
-     * instance owned by the TestCaller.
-     * \param name name of this TestCaller
-     * \param test the method this TestCaller calls in runTest()
-     **/
-    TestCaller (std::string name, TestMethod test) :
-	TestCase (name), 
-	m_ownFixture(true),
-	m_fixture (new Fixture ()),
-	m_test (test)
-    {}
+  /*!
+   * Constructor for TestCaller. This constructor builds a new Fixture
+   * instance owned by the TestCaller.
+   * \param name name of this TestCaller
+   * \param test the method this TestCaller calls in runTest()
+   */
+  TestCaller( std::string name, TestMethod test ) :
+	    TestCase( name ), 
+	    m_ownFixture( true ),
+	    m_fixture( new Fixture() ),
+	    m_test( test )
+  {
+  }
 
-    /**
-     * Constructor for TestCaller. 
-     * This constructor does not create a new Fixture instance but accepts
-     * an existing one as parameter. The TestCaller will not own the
-     * Fixture object.
-     * \param name name of this TestCaller
-     * \param test the method this TestCaller calls in runTest()
-     * \param fixture the Fixture to invoke the test method on.
-     **/
-    TestCaller(std::string name, TestMethod test, Fixture& fixture) :
-	TestCase (name), 
-	m_ownFixture(false),
-	m_fixture (&fixture),
-	m_test (test)
-    {}
+  /*!
+   * Constructor for TestCaller. 
+   * This constructor does not create a new Fixture instance but accepts
+   * an existing one as parameter. The TestCaller will not own the
+   * Fixture object.
+   * \param name name of this TestCaller
+   * \param test the method this TestCaller calls in runTest()
+   * \param fixture the Fixture to invoke the test method on.
+   */
+  TestCaller(std::string name, TestMethod test, Fixture& fixture) :
+	    TestCase( name ), 
+	    m_ownFixture( false ),
+	    m_fixture( &fixture ),
+	    m_test( test )
+  {
+  }
     
-    /**
-     * Constructor for TestCaller. 
-     * This constructor does not create a new Fixture instance but accepts
-     * an existing one as parameter. The TestCaller will own the
-     * Fixture object and delete it in its destructor.
-     * \param name name of this TestCaller
-     * \param test the method this TestCaller calls in runTest()
-     * \param fixture the Fixture to invoke the test method on.
-     **/
-    TestCaller(std::string name, TestMethod test, Fixture* fixture) :
-	TestCase (name), 
-	m_ownFixture(true),
-	m_fixture (fixture),
-	m_test (test)
-    {}
+  /*!
+   * Constructor for TestCaller. 
+   * This constructor does not create a new Fixture instance but accepts
+   * an existing one as parameter. The TestCaller will own the
+   * Fixture object and delete it in its destructor.
+   * \param name name of this TestCaller
+   * \param test the method this TestCaller calls in runTest()
+   * \param fixture the Fixture to invoke the test method on.
+   */
+  TestCaller(std::string name, TestMethod test, Fixture* fixture) :
+	    TestCase( name ), 
+	    m_ownFixture( true ),
+	    m_fixture( fixture ),
+	    m_test( test )
+  {
+  }
     
-    ~TestCaller() {
-	if (m_ownFixture) {
-	    if (m_fixture) {
-		delete m_fixture;
-		m_fixture = NULL;
-	    }
-	}
-    }
+  ~TestCaller() 
+  {
+    if (m_ownFixture)
+      delete m_fixture;
+  }
 
 protected:
-    void runTest () 
-    { 
-	try {
+  void runTest()
+  { 
+	  try {
 	    (m_fixture->*m_test)();
-	}
-	catch ( ExpectedException & ) {
+	  }
+	  catch ( ExpectedException & ) {
 	    return;
-	}
+	  }
 
-	ExpectedExceptionTraits<ExpectedException>::expectedException();
-    }  
+  	ExpectedExceptionTraits<ExpectedException>::expectedException();
+  }  
 
-    void setUp ()
-    { 
-	m_fixture->setUp (); 
-    }
+  void setUp()
+  { 
+  	m_fixture->setUp (); 
+  }
 
-    void tearDown ()
-    { 
-	m_fixture->tearDown (); 
-    }
+  void tearDown()
+  { 
+	  m_fixture->tearDown (); 
+  }
 
-    std::string toString () const
-    { 
-	return "TestCaller " + getName(); 
-    }
+  std::string toString() const
+  { 
+  	return "TestCaller " + getName(); 
+  }
 
 private: 
-    TestCaller (const TestCaller& other); 
-    TestCaller& operator= (const TestCaller& other); 
+  TestCaller( const TestCaller &other ); 
+  TestCaller &operator =( const TestCaller &other );
 
 private:
-    bool       m_ownFixture;
-    Fixture*   m_fixture;
-    TestMethod m_test;
-
+  bool m_ownFixture;
+  Fixture *m_fixture;
+  TestMethod m_test;
 };
 
 

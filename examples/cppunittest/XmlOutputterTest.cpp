@@ -10,8 +10,7 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlOutputterTest,
                                        CppUnitTest::outputSuiteName() );
 
 
-XmlOutputterTest::XmlOutputterTest() : 
-    CppUnit::TestCase()
+XmlOutputterTest::XmlOutputterTest()
 {
 }
 

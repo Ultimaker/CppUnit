@@ -13,38 +13,57 @@ class TextOutputter;
 class TestResult;
 class TestResultCollector;
 
-/**
+/*!
  * A text mode test runner.
  *
- * FIXME: need update
  * The test runner manage the life cycle of the added tests.
  *
  * The test runner can run only one of the added tests or all the tests. 
  *
- * TestRunner prints out a trace as the tests are executed followed by a
- * summary at the end.
+ * TextTestRunner prints out a trace as the tests are executed followed by a
+ * summary at the end. The trace and summary print are optional.
  *
  * Here is an example of use:
  *
  * \code
- * TextTestRunner runner;
+ * CppUnit::TextTestRunner runner;
  * runner.addTest( ExampleTestCase::suite() );
  * runner.run( "", true );    // Run all tests and wait
  * \endcode
+ *
+ * The trace is printed using a TextTestProgressListener. The summary is printed
+ * using a TextOutputter. 
+ *
+ * You can specify an alternate Outputter at construction
+ * or later with setOutputter(). 
+ *
+ * After construction, you can register additional TestListener to eventManager(),
+ * for a custom progress trace, for example.
+ *
+ * \code
+ * CppUnit::TextTestRunner runner;
+ * runner.addTest( ExampleTestCase::suite() );
+ * runner.setOutputter( CppUnit::CompilerOutputter::defaultOutputter( 
+ *                          &runner.result(),
+ *                          std::cerr ) );
+ * MyCustomProgressTestListener progress;
+ * runner.eventManager().addListener( &progress );
+ * runner.run( "", true );    // Run all tests and wait
+ * \endcode
+ *
+ * \see CompilerOutputter, XmlOutputter, TextOutputter.
  */
 class CPPUNIT_API TextTestRunner
 {
 public:
-  /*! Constructs a new text runner.
-   * \param outputter used to print text result. Owned by the runner.
-   */
   TextTestRunner( Outputter *outputter =NULL );
 
   virtual ~TextTestRunner();
 
   bool run( std::string testName ="",
             bool wait = false,
-            bool printResult = true );
+            bool printResult = true,
+            bool printProgress = true );
 
   void addTest( Test *test );
 
@@ -55,12 +74,14 @@ public:
   TestResult &eventManager() const;
 
 protected:
-  bool runTest( Test *test );
-  bool runTestByName( std::string testName );
-  void wait( bool doWait );
-  void printResult( bool doPrintResult );
+  virtual bool runTest( Test *test,
+                        bool printTextProgress );
+  virtual bool runTestByName( std::string testName,
+                              bool printProgress );
+  virtual void wait( bool doWait );
+  virtual void printResult( bool doPrintResult );
 
-  Test *findTestByName( std::string name ) const;
+  virtual Test *findTestByName( std::string name ) const;
 
   TestSuite *m_suite;
   TestResultCollector *m_result;

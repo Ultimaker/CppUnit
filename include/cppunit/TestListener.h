@@ -13,8 +13,16 @@ class TestFailure;
 
 /*! \brief Listener for test progress and result.
  *
- * TestListener is the interface implemented by classes which want to be notified
- * of the progress and result of a test run.
+ * Implementing the Observer pattern a TestListener may be registered
+ * to a TestResult to obtain information on the testing progress. Use
+ * specialized sub classes of TestListener for text output
+ * (TextTestProgressListener). Do not use the Listener for the test
+ * result output, use a subclass of Outputter instead.
+ *
+ * The test framework distinguishes between failures and errors.
+ * A failure is anticipated and checked for with assertions. Errors are
+ * unanticipated problems signified by exceptions that are not generated
+ * by the framework.
  *
  * \see TestResult
  */

@@ -8,8 +8,7 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlUniformiserTest,
                                        CppUnitTest::unitTestToolSuiteName() );
 
 
-XmlUniformiserTest::XmlUniformiserTest() : 
-    CppUnit::TestCase()
+XmlUniformiserTest::XmlUniformiserTest()
 {
 }
 

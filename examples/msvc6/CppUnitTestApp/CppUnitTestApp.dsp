@@ -87,269 +87,6 @@ LINK32=link.exe
 
 # Name "CppUnitTestApp - Win32 Release"
 # Name "CppUnitTestApp - Win32 Debug"
-# Begin Group "CppUnit Tests"
-
-# PROP Default_Filter ""
-# Begin Group "Core"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\cppunittest\CoreSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\ExceptionTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\ExceptionTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\NotEqualExceptionTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\NotEqualExceptionTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestAssertTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestAssertTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestCaseTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestCaseTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestFailureTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestFailureTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestResultTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestResultTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestSuiteTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestSuiteTest.h
-# End Source File
-# End Group
-# Begin Group "Helper"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\cppunittest\HelperMacrosTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\HelperMacrosTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\HelperSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestCallerTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestCallerTest.h
-# End Source File
-# End Group
-# Begin Group "Extension"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\cppunittest\ExtensionSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\OrthodoxTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\OrthodoxTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\RepeatedTestTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\RepeatedTestTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestDecoratorTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestDecoratorTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestSetUpTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestSetUpTest.h
-# End Source File
-# End Group
-# Begin Group "Mock"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\cppunittest\BaseTestCase.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\BaseTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\FailureException.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\MockTestCase.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\MockTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\MockTestListener.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\MockTestListener.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\SubclassedTestCase.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\SubclassedTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\SynchronizedTestResult.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TrackedTestCase.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TrackedTestCase.h
-# End Source File
-# End Group
-# Begin Group "UnitTestTool"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\cppunittest\UnitTestToolSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\XmlUniformiser.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\XmlUniformiser.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\XmlUniformiserTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\XmlUniformiserTest.h
-# End Source File
-# End Group
-# Begin Group "Output"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\cppunittest\OutputSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestResultCollectorTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestResultCollectorTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\XmlOutputterTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\XmlOutputterTest.h
-# End Source File
-# End Group
-# Begin Source File
-
-SOURCE=..\..\cppunittest\CppUnitTestSuite.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\CppUnitTestSuite.h
-# End Source File
-# End Group
 # Begin Group "GUI"
 
 # PROP Default_Filter ""
@@ -452,6 +189,241 @@ InputName=testrunnerd
 
 !ENDIF 
 
+# End Source File
+# End Group
+# Begin Group "Tests"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\cppunittest\BaseTestCase.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\BaseTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\CoreSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\CppUnitTestSuite.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\ExceptionTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\ExceptionTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\ExtensionSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\FailureException.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\HelperMacrosTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\HelperMacrosTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\HelperSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MockTestCase.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MockTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MockTestListener.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MockTestListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\NotEqualExceptionTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\NotEqualExceptionTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\OrthodoxTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\OrthodoxTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\RepeatedTestTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\RepeatedTestTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\SubclassedTestCase.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\SubclassedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\SynchronizedTestResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestAssertTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestAssertTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestCallerTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestCallerTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestCaseTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestCaseTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestDecoratorTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestDecoratorTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestFailureTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestFailureTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestResultCollectorTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestResultCollectorTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestResultTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestResultTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestSetUpTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestSetUpTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestSuiteTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestSuiteTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TrackedTestCase.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TrackedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\UnitTestToolSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlOutputterTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlOutputterTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiser.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiser.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiserTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiserTest.h
 # End Source File
 # End Group
 # Begin Source File

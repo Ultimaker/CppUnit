@@ -11,6 +11,18 @@
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <string>
 
+namespace CppUnit
+{
+  class TestFixture;
+
+  class TestFixtureFactory
+  {
+  public:
+    virtual CppUnit::TestFixture *makeFixture() =0;
+  };
+} // namespace CppUnit
+
+
 // The macro __CPPUNIT_SUITE_CTOR_ARGS expand to an expression used to construct
 // the TestSuiteBuilder with macro CPPUNIT_TEST_SUITE.
 //
@@ -19,9 +31,9 @@
 //
 // This macro is for cppunit internal and should not be use otherwise.
 #if CPPUNIT_USE_TYPEINFO_NAME
-#  define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType )
+#  define __CPPUNIT_SUITE_CTOR_ARGS( ATestFixtureType )
 #else
-#  define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType ) (std::string(#ATestCaseType))
+#  define __CPPUNIT_SUITE_CTOR_ARGS( ATestFixtureType ) (std::string(#ATestFixtureType))
 #endif
 
 
@@ -95,25 +107,26 @@
  * Use CPPUNIT_TEST_SUB_SUITE() instead, if you wish to include the
  * test suite of the parent class.
  *
- * \param ATestCaseType Type of the test case class.
- * \see CPPUNIT_TEST_SUB_SUITE, CPPUNIT_TEST, CPPUNIT_TEST_SUITE_END, CPPUNIT_TEST_SUITE_REGISTRATION.
+ * \param ATestFixtureType Type of the test case class.
+ * \see CPPUNIT_TEST_SUB_SUITE, CPPUNIT_TEST, CPPUNIT_TEST_SUITE_END, 
+ * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_EXCEPTION, CPPUNIT_TEST_FAIL.
  */
-#define CPPUNIT_TEST_SUITE( ATestCaseType )                               \
+#define CPPUNIT_TEST_SUITE( ATestFixtureType )                            \
   private:                                                                \
-    typedef ATestCaseType __ThisTestCaseType;                             \
-    class ThisTestCaseFactory : public CppUnit::TestFactory               \
+    typedef ATestFixtureType __ThisTestFixtureType;                       \
+    class ThisTestFixtureFactory : public CppUnit::TestFixtureFactory     \
     {                                                                     \
-      virtual CppUnit::Test *makeTest()                                   \
+      virtual CppUnit::TestFixture *makeFixture()                         \
       {                                                                   \
-        return new ATestCaseType();                                       \
+        return new ATestFixtureType();                                    \
       }                                                                   \
     };                                                                    \
   public:                                                                 \
     static void                                                           \
     registerTests( CppUnit::TestSuite *suite,                             \
-                   CppUnit::TestFactory *factory )                        \
+                   CppUnit::TestFixtureFactory *factory )                 \
     {                                                                     \
-      CppUnit::TestSuiteBuilder<__ThisTestCaseType> builder( suite );
+      CppUnit::TestSuiteBuilder<__ThisTestFixtureType> builder( suite );
 
 
 /** Begin test suite (includes parent suite)
@@ -141,14 +154,14 @@
  * };
  * \endcode
  *
- * \param ATestCaseType Type of the test case class.
+ * \param ATestFixtureType Type of the test case class.
  * \param ASuperClass   Type of the parent class.
  * \see CPPUNIT_TEST_SUITE.
  */
-#define CPPUNIT_TEST_SUB_SUITE( ATestCaseType, ASuperClass )  \
-  private:                                                    \
-    typedef ASuperClass __ThisSuperClassType;                 \
-    CPPUNIT_TEST_SUITE( ATestCaseType );                      \
+#define CPPUNIT_TEST_SUB_SUITE( ATestFixtureType, ASuperClass )  \
+  private:                                                       \
+    typedef ASuperClass __ThisSuperClassType;                    \
+    CPPUNIT_TEST_SUITE( ATestFixtureType );                      \
       __ThisSuperClassType::registerTests( suite, factory )
 
 
@@ -158,10 +171,10 @@
  *                   type: void testMethod();
  * \see  CPPUNIT_TEST_SUITE.
  */
-#define CPPUNIT_TEST( testMethod )                                      \
-      builder.addTestCaller( #testMethod,                               \
-                             &__ThisTestCaseType::testMethod ,          \
-                             (__ThisTestCaseType*)factory->makeTest() ) 
+#define CPPUNIT_TEST( testMethod )                                           \
+      builder.addTestCaller( #testMethod,                                    \
+                             &__ThisTestFixtureType::testMethod ,            \
+                             (__ThisTestFixtureType*)factory->makeFixture() ) 
 
 
 /*!  Add a test which fail if the specified exception is not caught.
@@ -187,10 +200,10 @@
  * \param ExceptionType Type of the exception that must be thrown by the test 
  *                      method.
  */
-#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )             \
-      builder.addTestCallerForException( #testMethod,                   \
-                             &__ThisTestCaseType::testMethod ,          \
-                             (__ThisTestCaseType*)factory->makeTest(),  \
+#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )                   \
+      builder.addTestCallerForException( #testMethod,                         \
+                             &__ThisTestFixtureType::testMethod ,             \
+                             (__ThisTestFixtureType*)factory->makeFixture(),  \
                              (ExceptionType *)NULL ); 
 
 /*! Add a test which is excepted to fail.
@@ -208,19 +221,19 @@
  * \see  CPPUNIT_TEST_SUITE.
  * \see  CPPUNIT_TEST_SUITE_REGISTRATION.
  */
-#define CPPUNIT_TEST_SUITE_END()                                        \
-      builder.takeSuite();                                              \
-    }                                                                   \
-    static CppUnit::TestSuite *suite()                                  \
-    {                                                                   \
-      CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
-          builder __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType );           \
-      ThisTestCaseFactory factory;                                      \
-      __ThisTestCaseType::registerTests( builder.suite(), &factory );   \
-      return builder.takeSuite();                                       \
-    }                                                                   \
-  private: /* dummy typedef so that the macro can still end with ';'*/  \
-    typedef ThisTestCaseFactory __ThisTestCaseFactory                   
+#define CPPUNIT_TEST_SUITE_END()                                          \
+      builder.takeSuite();                                                \
+    }                                                                     \
+    static CppUnit::TestSuite *suite()                                    \
+    {                                                                     \
+      CppUnit::TestSuiteBuilder<__ThisTestFixtureType>                    \
+          builder __CPPUNIT_SUITE_CTOR_ARGS( ATestFixtureType );          \
+      ThisTestFixtureFactory factory;                                     \
+      __ThisTestFixtureType::registerTests( builder.suite(), &factory );  \
+      return builder.takeSuite();                                         \
+    }                                                                     \
+  private: /* dummy typedef so that the macro can still end with ';'*/    \
+    typedef ThisTestFixtureFactory __ThisTestFixtureFactory                   
 
 #define __CPPUNIT_CONCATENATE_DIRECT( s1, s2 ) s1##s2
 #define __CPPUNIT_CONCATENATE( s1, s2 ) __CPPUNIT_CONCATENATE_DIRECT( s1, s2 )
@@ -238,14 +251,14 @@
  * of such factories.  The registry is available by calling
  * the static function CppUnit::TestFactoryRegistry::getRegistry().
  * 
- * \param ATestCaseType Type of the test case class.
+ * \param ATestFixtureType Type of the test case class.
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
  * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
  *       CppUnit::TestFactoryRegistry.
  */
-#define CPPUNIT_TEST_SUITE_REGISTRATION( ATestCaseType )      \
-  static CppUnit::AutoRegisterSuite< ATestCaseType >          \
+#define CPPUNIT_TEST_SUITE_REGISTRATION( ATestFixtureType )      \
+  static CppUnit::AutoRegisterSuite< ATestFixtureType >          \
              __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
@@ -256,7 +269,7 @@
  * suite of the specified name. The registry is available by calling
  * the static function CppUnit::TestFactoryRegistry::getRegistry().
  * 
- * \param ATestCaseType Type of the test case class.
+ * \param ATestFixtureType Type of the test case class.
  * \param suiteName Name of the global registry suite the test suite is 
  *                  registered into.
  * \warning This macro should be used only once per line of code (the line
@@ -264,8 +277,8 @@
  * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
  *       CppUnit::TestFactoryRegistry..
  */
-#define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestCaseType, suiteName ) \
-  static CppUnit::AutoRegisterSuite< ATestCaseType >                      \
+#define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestFixtureType, suiteName ) \
+  static CppUnit::AutoRegisterSuite< ATestFixtureType >                      \
              __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
 
 

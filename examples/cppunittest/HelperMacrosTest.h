@@ -5,7 +5,7 @@
 #include "MockTestListener.h"
 
 
-class HelperMacrosTest : public CppUnit::TestCase
+class HelperMacrosTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( HelperMacrosTest );
   CPPUNIT_TEST( testNoSubclassing );

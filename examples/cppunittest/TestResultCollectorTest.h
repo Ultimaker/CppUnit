@@ -6,7 +6,7 @@
 #include "SynchronizedTestResult.h"
 
 
-class TestResultCollectorTest : public CppUnit::TestCase,
+class TestResultCollectorTest : public CppUnit::TestFixture,
                        public SynchronizedTestResult::SynchronizationObjectListener
 {
   CPPUNIT_TEST_SUITE( TestResultCollectorTest );

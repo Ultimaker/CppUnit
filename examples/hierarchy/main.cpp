@@ -18,11 +18,8 @@ main(int argc, char** argv)
 {
   CppUnit::TestSuite suite;
 
-  BoardGameTest<BoardGame> bgt("BoardGameTest<BoardGame>");
-  ChessTest<Chess> ct("ChessTest<Chess>");
-  
-  bgt.registerTests(&suite);
-  ct.registerTests(&suite);
+  suite.addTest( BoardGameTest<BoardGame>::suite() );
+  suite.addTest( ChessTest<Chess>::suite() );
 
   CppUnit::TextTestResult res;
 

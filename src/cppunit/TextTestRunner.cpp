@@ -8,15 +8,8 @@
 
 namespace CppUnit {
 
-/** Constructs a test runner with the specified TestResult.
- *
- * A TextTestRunner owns a TextTestResult. It can be accessed 
- * anytime using result(). If you run the test more than once,
- * remember to call result()->reset() before each run.
- *
- * \param result TextTestResult used by the test runner. If none
- *               is specified then a default TextTestResult is
- *               instanciated.
+/*! Constructs a new text runner.
+ * \param outputter used to print text result. Owned by the runner.
  */
 TextTestRunner::TextTestRunner( Outputter *outputter ) 
     : m_outputter( outputter )
@@ -39,7 +32,7 @@ TextTestRunner::~TextTestRunner()
 }
 
 
-/** Adds the specified test.
+/*! Adds the specified test.
  *
  * \param test Test to add.
  */
@@ -51,7 +44,7 @@ TextTestRunner::addTest( Test *test )
 }
 
 
-/** Runs the named test case.
+/*! Runs the named test case.
  *
  * \param testName Name of the test case to run. If an empty is given, then
  *                 all added test are run. The name must be the name of
@@ -60,15 +53,18 @@ TextTestRunner::addTest( Test *test )
  *               before the run() method exit.
  * \param printResult if \c true (default) then the test result are printed
  *                    on the standard output.
+ * \param printProgress if \c true (default) then TextTestProgressListener is
+ *                      used to show the progress.
  * \return \c true is the test was successful, \c false if the test
  *         failed or was not found.
  */
 bool
 TextTestRunner::run( std::string testName,
                      bool doWait,
-                     bool doPrintResult )
+                     bool doPrintResult,
+                     bool printProgress )
 {
-  runTestByName( testName );
+  runTestByName( testName, printProgress );
   printResult( doPrintResult );
   wait( doWait );
   return m_result->wasSuccessful();
@@ -76,14 +72,15 @@ TextTestRunner::run( std::string testName,
 
 
 bool
-TextTestRunner::runTestByName( std::string testName )
+TextTestRunner::runTestByName( std::string testName,
+                               bool printProgress )
 {
   if ( testName.empty() )
-    return runTest( m_suite );
+    return runTest( m_suite, printProgress );
 
   Test *test = findTestByName( testName );
   if ( test != NULL )
-    return runTest( test );
+    return runTest( test, printProgress );
 
   std::cout << "Test " << testName << " not found." << std::endl;
   return false;
@@ -126,16 +123,22 @@ TextTestRunner::findTestByName( std::string name ) const
 
 
 bool
-TextTestRunner::runTest( Test *test )
+TextTestRunner::runTest( Test *test,
+                         bool printTextProgress )
 {
   TextTestProgressListener progress;
-  m_eventManager->addListener( &progress );
+  if ( printTextProgress )
+    m_eventManager->addListener( &progress );
   test->run( m_eventManager );
-  m_eventManager->removeListener( &progress );
+  if ( printTextProgress )
+    m_eventManager->removeListener( &progress );
   return m_result->wasSuccessful();
 }
 
 
+/*! Returns the result of the test run.
+ * Use this after calling run() to access the result of the test run.
+ */
 TestResultCollector &
 TextTestRunner::result() const
 {
@@ -143,6 +146,10 @@ TextTestRunner::result() const
 }
 
 
+/*! Returns the event manager.
+ * The instance of TestResult results returned is the one that is used to run the
+ * test. Use this to register additional TestListener before running the tests.
+ */
 TestResult &
 TextTestRunner::eventManager() const
 {
@@ -150,6 +157,12 @@ TextTestRunner::eventManager() const
 }
 
 
+/*! Specifies an alternate outputter.
+ *
+ * Notes that the outputter will be use after the test run only if \a printResult was
+ * \c true.
+ * \see CompilerOutputter, XmlOutputter, TextOutputter.
+ */
 void 
 TextTestRunner::setOutputter( Outputter *outputter )
 {

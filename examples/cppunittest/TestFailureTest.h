@@ -4,7 +4,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 
-class TestFailureTest : public CppUnit::TestCase
+class TestFailureTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestFailureTest );
   CPPUNIT_TEST( testConstructorAndGetters );

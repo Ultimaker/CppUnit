@@ -201,39 +201,10 @@ PostBuild_Cmds=$(TargetPath) -selftest
 # Name "CppUnitTestMain - Win32 Debug Crossplatform Setting"
 # Name "CppUnitTestMain - Win32 Release DLL"
 # Name "CppUnitTestMain - Win32 Debug DLL"
-# Begin Group "Suite"
+# Begin Group "Tests"
 
 # PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\CoreSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\CppUnitTestSuite.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\CppUnitTestSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\ExtensionSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\HelperSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\OutputSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\UnitTestToolSuite.h
-# End Source File
-# End Group
-# Begin Group "Tests"
+# Begin Group "Core"
 
 # PROP Default_Filter ""
 # Begin Source File
@@ -246,35 +217,11 @@ SOURCE=.\ExceptionTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\HelperMacrosTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\HelperMacrosTest.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\NotEqualExceptionTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\NotEqualExceptionTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\OrthodoxTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\OrthodoxTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\RepeatedTestTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\RepeatedTestTest.h
 # End Source File
 # Begin Source File
 
@@ -302,27 +249,11 @@ SOURCE=.\TestCaseTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestDecoratorTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestDecoratorTest.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\TestFailureTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\TestFailureTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestResultCollectorTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestResultCollectorTest.h
 # End Source File
 # Begin Source File
 
@@ -334,27 +265,23 @@ SOURCE=.\TestResultTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestSetupTest.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\TestSetupTest.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\TestSuiteTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\TestSuiteTest.h
 # End Source File
+# End Group
+# Begin Group "UnitTestTools"
+
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\XmlOutputterTest.cpp
+SOURCE=.\XmlUniformiser.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlOutputterTest.h
+SOURCE=.\XmlUniformiser.h
 # End Source File
 # Begin Source File
 
@@ -365,7 +292,76 @@ SOURCE=.\XmlUniformiserTest.cpp
 SOURCE=.\XmlUniformiserTest.h
 # End Source File
 # End Group
-# Begin Group "Support"
+# Begin Group "Helper"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\HelperMacrosTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperMacrosTest.h
+# End Source File
+# End Group
+# Begin Group "Extension"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\OrthodoxTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\OrthodoxTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\RepeatedTestTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\RepeatedTestTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestDecoratorTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestDecoratorTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSetUpTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSetUpTest.h
+# End Source File
+# End Group
+# Begin Group "Output"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TestResultCollectorTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestResultCollectorTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlOutputterTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlOutputterTest.h
+# End Source File
+# End Group
+# End Group
+# Begin Group "TestSupport"
 
 # PROP Default_Filter ""
 # Begin Source File
@@ -416,13 +412,37 @@ SOURCE=.\TrackedTestCase.cpp
 
 SOURCE=.\TrackedTestCase.h
 # End Source File
+# End Group
+# Begin Group "Suites"
+
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\XmlUniformiser.cpp
+SOURCE=.\CoreSuite.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlUniformiser.h
+SOURCE=.\CppUnitTestSuite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CppUnitTestSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ExtensionSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnitTestToolSuite.h
 # End Source File
 # End Group
 # Begin Source File
