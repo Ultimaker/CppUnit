@@ -29,6 +29,8 @@
 #define CPPUNIT_USE_TYPEINFO_NAME  CPPUNIT_HAVE_RTTI 
 #endif
 
+#define CPPUNIT_HAVE_SSTREAM 1
+
 /* Name of package */
 #ifndef CPPUNIT_PACKAGE 
 #define CPPUNIT_PACKAGE  "cppunit" 

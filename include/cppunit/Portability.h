@@ -32,6 +32,39 @@
 
 /* perform portability hacks */
 
+
+/* Define CPPUNIT_SSTREAM as a stream with a "std::string str()"
+ * method.
+ */
+#include <string>
+
+#if CPPUNIT_HAVE_SSTREAM
+#   include <sstream>
+    namespace CppUnit {
+	typedef std::ostringstream  OStringStream;
+    }
+#else 
+#if CPPUNIT_HAVE_STRSTREAM
+#   include <strstream.h>
+    namespace CppUnit {
+	class OStringStream : public std::ostrstream 
+	{
+	public:
+	    std::string str()
+	    {
+		(*this) << '\0';
+		std::string msg(ostrstream::str());
+		ostrstream::freeze(false);
+		return msg;
+	    }
+	};
+    }
+#else
+#   error Cannot define CppUnit::OStringStream.
+#endif
+#endif
+
+
 #if _MSC_VER > 1000     // VC++
 #pragma once
 #pragma warning( disable : 4786 )   // disable warning debug symbol > 255...

@@ -1,9 +1,8 @@
 #ifndef CPPUNIT_TESTASSERT_H
 #define CPPUNIT_TESTASSERT_H
 
-#include <cppunit/Portability.h>
 #include <string>
-#include <sstream>
+#include <cppunit/Portability.h>
 #include <cppunit/Exception.h>
 
 
@@ -19,7 +18,7 @@ namespace CppUnit {
 
       static std::string toString( const T& x )
       {
-          std::ostringstream ost;
+          OStringStream ost;
           ost << x;
           return ost.str();
       }

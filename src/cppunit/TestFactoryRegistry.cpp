@@ -1,6 +1,6 @@
-#include <cppunit/Portability.h>
-#include <sstream>
 #include <utility>
+
+#include <cppunit/Portability.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 
@@ -67,12 +67,12 @@ TestFactoryRegistry::registerFactory( const std::string &name,
 void 
 TestFactoryRegistry::registerFactory( TestFactory *factory )
 {
-  std::ostringstream stream;
   static int serialNumber = 1;
-  stream << "@Dummy@"  <<  serialNumber++;
-  std::string name( stream.str() );
 
-  registerFactory( name, factory );
+    OStringStream ost;
+    ost << "@Dummy@" << serialNumber++;
+
+    registerFactory( ost.str(), factory );
 }
 
 Test *
