@@ -1,3 +1,13 @@
+2001-07-05  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: Invoke AC_PROG_CC to workaround a automake
+	bug.  Move probes for CC/CXX ahead of the libtool macros.
+
+	* examples/hierarchy/Makefile.am: 
+	* examples/cppunittest/Makefile.am: 
+	* src/cppunit/Makefile.am (INCLUDES): Search
+	$(top_builddir)/include for <cppunit/config-auto.h>.
+
 2001-06-27 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp:
