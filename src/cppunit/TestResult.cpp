@@ -9,7 +9,6 @@ TestResult::TestResult( SynchronizationObject *syncObject ) :
     m_syncObject( syncObject == 0 ?  new SynchronizationObject() :
                                      syncObject  )
 { 
-  m_runTests = 0;
   m_testErrors = 0;
   m_stop = false; 
 }
@@ -58,7 +57,7 @@ TestResult::addFailure( TestFailure *failure )
 {
   m_failures.push_back( failure ); 
 
-  for ( std::vector<TestListener *>::iterator it = m_listeners.begin();
+  for ( TestListeners::iterator it = m_listeners.begin();
         it != m_listeners.end(); 
         ++it )
     (*it)->addFailure( failure );
@@ -70,9 +69,9 @@ void
 TestResult::startTest( Test *test )
 { 
   ExclusiveZone zone (m_syncObject); 
-  m_runTests++; 
+  m_tests.push_back( test );
 
-  for ( std::vector<TestListener *>::iterator it = m_listeners.begin();
+  for ( TestListeners::iterator it = m_listeners.begin();
         it != m_listeners.end(); 
         ++it )
     (*it)->startTest( test );
@@ -85,7 +84,7 @@ TestResult::endTest( Test *test )
 { 
   ExclusiveZone zone (m_syncObject); 
 
-  for ( std::vector<TestListener *>::iterator it = m_listeners.begin();
+  for ( TestListeners::iterator it = m_listeners.begin();
         it != m_listeners.end(); 
         ++it )
     (*it)->endTest( test );
@@ -97,7 +96,7 @@ int
 TestResult::runTests() const
 { 
   ExclusiveZone zone( m_syncObject ); 
-  return m_runTests; 
+  return m_tests.size(); 
 }
 
 
@@ -137,12 +136,20 @@ TestResult::wasSuccessful() const
 }
 
 
-/// Returns a vector of the failures.
-const std::vector<TestFailure *>& 
+/// Returns a the list failures (random access collection).
+const TestResult::TestFailures & 
 TestResult::failures() const
 { 
   ExclusiveZone zone( m_syncObject );
   return m_failures; 
+}
+
+
+const TestResult::Tests &
+TestResult::tests() const
+{
+  ExclusiveZone zone( m_syncObject );
+  return m_tests;
 }
 
 

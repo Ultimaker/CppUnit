@@ -12,6 +12,12 @@
 
 * Fail with arbitrary message: CPPUNIT_FAIL
 
+* XML Output
+
+  You can dump the TestResult as an XML document using XmlTestResultOutputter.
+  See examples/cppunittest/XmlTestResultOutputterTest.cpp for document
+  structure and usage.
+
 * Compatibility break:
   - TestListener::addError() was removed. addFailure() is used to report
 any kind of failure.

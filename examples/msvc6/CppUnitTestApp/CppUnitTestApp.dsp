@@ -118,6 +118,15 @@ SOURCE=..\..\cppunittest\ExceptionTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\cppunittest\NotEqualExceptionTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\NotEqualExceptionTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\cppunittest\TestAssertTest.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -296,6 +305,49 @@ SOURCE=..\..\cppunittest\TrackedTestCase.cpp
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TrackedTestCase.h
+# End Source File
+# End Group
+# Begin Group "UnitTestTool"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\cppunittest\UnitTestToolSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiser.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiser.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiserTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlUniformiserTest.h
+# End Source File
+# End Group
+# Begin Group "Output"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\cppunittest\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlTestResultOutputterTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlTestResultOutputterTest.h
 # End Source File
 # End Group
 # Begin Source File

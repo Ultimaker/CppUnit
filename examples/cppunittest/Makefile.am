@@ -27,6 +27,7 @@ cppunittestmain_SOURCES = \
 	NotEqualExceptionTest.h \
 	OrthodoxTest.cpp \
 	OrthodoxTest.h \
+	OutputSuite.h \
 	RepeatedTestTest.cpp \
 	RepeatedTestTest.h \
 	SubclassedTestCase.cpp \
@@ -51,7 +52,12 @@ cppunittestmain_SOURCES = \
 	TestSuiteTest.cpp \
 	TestSuiteTest.h \
 	TrackedTestCase.cpp \
-	TrackedTestCase.h
+	TrackedTestCase.h \
+	UnitTestToolSuite.h \
+	XmlTestResultOutputterTest.h \
+	XmlTestResultOutputterTest.cpp \
+	XmlUniformiser.h \
+	XmlUniformiser.cpp
 
 cppunittestmain_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 

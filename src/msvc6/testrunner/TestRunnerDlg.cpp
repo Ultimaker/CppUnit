@@ -206,36 +206,13 @@ void TestRunnerDlg::addListEntry (std::string type, CppUnit::TestResult *result,
     // Set the file name
     setter.addSubItem( e->fileName() );
 
-/*
-    sprintf (stage, "%s", type.c_str ());
-
-    lvi.mask        = LVIF_TEXT;
-    lvi.iItem       = currentEntry;
-    lvi.iSubItem    = 0;
-    lvi.pszText     = stage;
-    lvi.iImage      = 0;
-    lvi.stateMask   = 0;
-    lvi.state       = 0;
-
-    listCtrl->InsertItem (&lvi);
-
-    // Set class string
-    listCtrl->SetItemText (currentEntry, 1, test->getName ().c_str ());
-
-    // Set the asserted text
-    listCtrl->SetItemText(currentEntry, 2, e->what ());
-
-    // Set the line number
-    if (e->lineNumber () == CppUnit::Exception::UNKNOWNLINENUMBER)
-        sprintf (stage, "<unknown>");
-    else
-        sprintf (stage, "%ld", e->lineNumber ());
-
-    listCtrl->SetItemText(currentEntry, 3, stage);
-
-    // Set the file name
-    listCtrl->SetItemText(currentEntry, 4, e->fileName ().c_str ());
+/* In place of the missing detail fiedl...
+    std::string dump = "Test: " + test->getName() + "\n";
+    dump += e->what();
+    dump += "\n";
+    ::OutputDebugString( dump.c_str() );
 */
+
     listCtrl->RedrawItems (currentEntry, currentEntry);
     listCtrl->UpdateWindow ();
 

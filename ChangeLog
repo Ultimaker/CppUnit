@@ -1,5 +1,34 @@
 2001-10-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* NEWS : updated.
+
+	* include/cppunit/Exception.h : added include Portability.h.
+
+	* include/cppunit/TestResult.* : changed TestFailures to a deque.
+	added tests().
+
+	* examples/cppunittest/CppUnitTest.dsp : 
+	* examples/cppunittest/MakeFile.am : 
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp : Added 
+	XmlTestResultOutputterTest.*, XmlUniformiser.*, XmlUniformiserTest.*,
+	UnitTestToolSuite.h, OutputSuite.h.
+
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp : revised project
+	folders structure. Added missing NoteEqualExceptionTest.*.
+
+	* examples/cppunittest/CppUnitTestSuite.cpp : added 'Output' and
+	'UnitTestTool' suites.
+
+	* src/cppunit/cppunit.dsp: removed estring.h. Revised project folders
+	structure. Removed TestRegistry.*. Added TestSetUp.h, 
+	XmlTestResultOutputter.*. 
+
+	* src/cppunit/MakeFile.am: added XmlTestResultOutputter.*.
+
+	* src/testrunner/TestRunnerDlg.cpp: removed disabled code.
+
+2001-10-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* include/cppunit/TestFailure.cpp :
 	* include/cppunit/TestFailure.h : fixed some constness issues. Added
 	argument to indicate the type of failure to constructor. Added

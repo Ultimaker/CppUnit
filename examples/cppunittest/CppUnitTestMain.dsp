@@ -203,6 +203,10 @@ SOURCE=.\OrthodoxTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\OutputSuite.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\RepeatedTestTest.cpp
 # End Source File
 # Begin Source File
@@ -300,6 +304,34 @@ SOURCE=.\TrackedTestCase.cpp
 # Begin Source File
 
 SOURCE=.\TrackedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnitTestToolSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlTestResultOutputterTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlTestResultOutputterTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlUniformiser.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlUniformiser.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlUniformiserTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlUniformiserTest.h
 # End Source File
 # End Target
 # End Project

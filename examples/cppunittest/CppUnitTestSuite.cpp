@@ -3,6 +3,8 @@
 #include "CoreSuite.h"
 #include "HelperSuite.h"
 #include "ExtensionSuite.h"
+#include "OutputSuite.h"
+#include "UnitTestToolSuite.h"
 
 
 namespace CppUnitTest
@@ -17,9 +19,13 @@ suite()
   registry.registerFactory( 
       &CppUnit::TestFactoryRegistry::getRegistry( coreSuiteName() ) );
   registry.registerFactory( 
+      &CppUnit::TestFactoryRegistry::getRegistry( extensionSuiteName() ) );
+  registry.registerFactory( 
       &CppUnit::TestFactoryRegistry::getRegistry( helperSuiteName() ) );
   registry.registerFactory( 
-      &CppUnit::TestFactoryRegistry::getRegistry( extensionSuiteName() ) );
+      &CppUnit::TestFactoryRegistry::getRegistry( outputSuiteName() ) );
+  registry.registerFactory( 
+      &CppUnit::TestFactoryRegistry::getRegistry( unitTestToolSuiteName() ) );
 
   return registry.makeTest();
 }

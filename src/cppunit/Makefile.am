@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.10 2001-07-07 19:12:41 smr99 Exp $
+# $Id: Makefile.am,v 1.11 2001-10-05 08:06:28 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -20,7 +20,8 @@ libcppunit_la_SOURCES = \
   TextTestResult.cpp \
   TextTestRunner.cpp \
   TestFactoryRegistry.cpp \
-  TypeInfoHelper.cpp
+  TypeInfoHelper.cpp \
+  XmlTestResultOutputter.cpp
 
 libcppunit_la_LDFLAGS= \
  -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \

@@ -1,8 +1,8 @@
 #ifndef CPPUNIT_TESTRESULT_H
 #define CPPUNIT_TESTRESULT_H
 
-#include <vector>
 #include <cppunit/TestFailure.h>
+#include <deque>
 
 namespace CppUnit {
 
@@ -34,7 +34,8 @@ class TestListener;
 class TestResult
 {
   public:
-    typedef std::vector<TestFailure *> TestFailures;
+    typedef std::deque<TestFailure *> TestFailures;
+    typedef std::deque<Test *> Tests;
 
     class SynchronizationObject
     {
@@ -63,6 +64,7 @@ class TestResult
     virtual void stop();
 
     virtual const TestFailures& failures() const;
+    virtual const Tests &tests() const;
 
     virtual void addListener( TestListener *listener );
     virtual void removeListener( TestListener *listener );
@@ -89,9 +91,10 @@ class TestResult
     virtual void setSynchronizationObject( SynchronizationObject *syncObject );
     virtual void addFailure( TestFailure *failure );
 
+    Tests m_tests;
     TestFailures m_failures;
-    std::vector<TestListener *> m_listeners;
-    int m_runTests;
+    typedef std::deque<TestListener *> TestListeners;
+    TestListeners m_listeners;
     int m_testErrors;
     bool m_stop;
     SynchronizationObject *m_syncObject;

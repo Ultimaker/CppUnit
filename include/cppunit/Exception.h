@@ -1,6 +1,7 @@
 #ifndef CPPUNIT_EXCEPTION_H
 #define CPPUNIT_EXCEPTION_H
 
+#include <cppunit/Portability.h>
 #include <exception>
 #include <string>
 
