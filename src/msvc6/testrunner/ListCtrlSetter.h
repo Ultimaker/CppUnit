@@ -36,13 +36,13 @@ public:
   void insertLine( int nLineNo );
 
 
-  void addSubItem( const std::string &strText );
+  void addSubItem( const CString &strText );
 
-  void addSubItem( const std::string &strText, void *lParam );
+  void addSubItem( const CString &strText, void *lParam );
 
-  void addSubItem( int nImage, const std::string &strText );
+  void addSubItem( const CString &strText, int nImage );
 
-  void addSubItem( int nImage, const std::string &strText, void *lParam );
+  void addSubItem( const CString &strText, void *lParam, int nImage );
 
   /*! Gets the number of the line being modified.
    * \return Number of the line being modified.
@@ -64,7 +64,7 @@ private:
    * \param lParam Item data pointer.
    */
   void doAddSubItem( UINT nMask, 
-                     const std::string &strText, 
+                     CString strText, 
                      int nImage, 
                      void *lParam =NULL );
 

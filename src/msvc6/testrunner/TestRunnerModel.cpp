@@ -54,20 +54,20 @@ TestRunnerModel::loadSettings(Settings & s)
   CWinApp *app = AfxGetApp();
   ASSERT( app != NULL );
 
-  int autorun = app->GetProfileInt( "CppUnit", 
-                                    "AutorunAtStartup",
+  int autorun = app->GetProfileInt( _T("CppUnit"),
+                                    _T("AutorunAtStartup"),
                                     1 );
   s.autorunOnLaunch = (autorun == 1);
 
-  s.dlgBounds.left = app->GetProfileInt( "CppUnit", "Left", 0 );
-  s.dlgBounds.top = app->GetProfileInt( "CppUnit", "Top", 0 );
-  s.dlgBounds.right = app->GetProfileInt( "CppUnit", "Right", 0 );
-  s.dlgBounds.bottom= app->GetProfileInt( "CppUnit", "Bottom", 0 );  
+  s.dlgBounds.left = app->GetProfileInt( _T("CppUnit"), _T("Left"), 0 );
+  s.dlgBounds.top = app->GetProfileInt( _T("CppUnit"), _T("Top"), 0 );
+  s.dlgBounds.right = app->GetProfileInt( _T("CppUnit"), _T("Right"), 0 );
+  s.dlgBounds.bottom= app->GetProfileInt( _T("CppUnit"), _T("Bottom"), 0 );  
 
-  s.col_1 = app->GetProfileInt( "CppUnit", "Col_1", 40 );
-  s.col_2 = app->GetProfileInt( "CppUnit", "Col_2", 40 );
-  s.col_3 = app->GetProfileInt( "CppUnit", "Col_3", 40 );
-  s.col_4 = app->GetProfileInt( "CppUnit", "Col_4", 40 );
+  s.col_1 = app->GetProfileInt( _T("CppUnit"), _T("Col_1"), 40 );
+  s.col_2 = app->GetProfileInt( _T("CppUnit"), _T("Col_2"), 40 );
+  s.col_3 = app->GetProfileInt( _T("CppUnit"), _T("Col_3"), 40 );
+  s.col_4 = app->GetProfileInt( _T("CppUnit"), _T("Col_4"), 40 );
 
   loadHistory();
 }
@@ -80,8 +80,8 @@ TestRunnerModel::loadHistory()
   int idx = 1;
   do
   {
-    std::string testName = loadHistoryEntry( idx++ );
-    if ( testName.empty() )
+    CString testName = loadHistoryEntry( idx++ );
+    if ( testName.IsEmpty() )
       break;
 
     CppUnit::Test *test = findTestByName( testName );
@@ -92,15 +92,13 @@ TestRunnerModel::loadHistory()
 }
 
 
-std::string 
+CString
 TestRunnerModel::loadHistoryEntry( int idx )
 {
   CWinApp *app = AfxGetApp();
   ASSERT( app != NULL );
 
-  return std::string( 
-      app->GetProfileString( "CppUnit", 
-                             getHistoryEntryName( idx ).c_str() ) );
+  return app->GetProfileString( _T("CppUnit"), getHistoryEntryName( idx ) );
 }
 
 
@@ -111,17 +109,17 @@ TestRunnerModel::saveSettings( const Settings & s )
   ASSERT( app != NULL );
 
   int autorun = s.autorunOnLaunch ? 1 : 0;
-  app->WriteProfileInt( "CppUnit", "AutorunAtStartup", autorun );
+  app->WriteProfileInt( _T("CppUnit"), _T("AutorunAtStartup"), autorun );
 
-  app->WriteProfileInt( "CppUnit", "Left",	 s.dlgBounds.left );
-  app->WriteProfileInt( "CppUnit", "Top",	 s.dlgBounds.top );
-  app->WriteProfileInt( "CppUnit", "Right",  s.dlgBounds.right );
-  app->WriteProfileInt( "CppUnit", "Bottom", s.dlgBounds.bottom );
+  app->WriteProfileInt( _T("CppUnit"), _T("Left"),	 s.dlgBounds.left );
+  app->WriteProfileInt( _T("CppUnit"), _T("Top"),	 s.dlgBounds.top );
+  app->WriteProfileInt( _T("CppUnit"), _T("Right"),  s.dlgBounds.right );
+  app->WriteProfileInt( _T("CppUnit"), _T("Bottom"), s.dlgBounds.bottom );
 
-  app->WriteProfileInt( "CppUnit", "Col_1",	 s.col_1 );
-  app->WriteProfileInt( "CppUnit", "Col_2",	 s.col_2 );
-  app->WriteProfileInt( "CppUnit", "Col_3",	 s.col_3 );
-  app->WriteProfileInt( "CppUnit", "Col_4",	 s.col_4 );
+  app->WriteProfileInt( _T("CppUnit"), _T("Col_1"),	 s.col_1 );
+  app->WriteProfileInt( _T("CppUnit"), _T("Col_2"),	 s.col_2 );
+  app->WriteProfileInt( _T("CppUnit"), _T("Col_3"),	 s.col_3 );
+  app->WriteProfileInt( _T("CppUnit"), _T("Col_4"),	 s.col_4 );
 
   int idx = 1;
   for ( History::const_iterator it = m_history.begin(); 
@@ -129,30 +127,30 @@ TestRunnerModel::saveSettings( const Settings & s )
         ++it , ++idx )
   {
     CppUnit::Test *test = *it;
-    saveHistoryEntry( idx, test->getName() );
+    saveHistoryEntry( idx, test->getName().c_str() );
   }
 }
 
 
 void 
 TestRunnerModel::saveHistoryEntry( int idx, 
-                                   std::string testName )
+                                   CString testName )
 {
   CWinApp *app = AfxGetApp();
   ASSERT( app != NULL );
 
-  app->WriteProfileString( "CppUnit", 
-                           getHistoryEntryName( idx ).c_str(), 
-                           testName.c_str() );
+  app->WriteProfileString( _T("CppUnit"),
+                           getHistoryEntryName( idx ),
+                           testName );
 }
 
 
-std::string 
+CString
 TestRunnerModel::getHistoryEntryName( int idx ) const
 {
-  char entry[20];
-  ::sprintf( entry, "HistoryTest%d", idx );
-  return std::string( entry );
+  CString entry;
+  entry.Format( _T("HistoryTest%d"), idx );
+  return entry;
 }
 
 
@@ -171,17 +169,17 @@ TestRunnerModel::setRootTest( CppUnit::Test *test )
 
 
 CppUnit::Test * 
-TestRunnerModel::findTestByName( std::string name ) const
+TestRunnerModel::findTestByName( CString name ) const
 {
   return findTestByNameFor( name, m_rootTest );
 }
 
 
 CppUnit::Test * 
-TestRunnerModel::findTestByNameFor( const std::string &name, 
+TestRunnerModel::findTestByNameFor( const CString &name, 
                                     CppUnit::Test *test ) const
 {
-  if ( name == test->getName() )
+  if ( name == test->getName().c_str() )
     return test;
 
   CppUnit::TestSuite *suite = dynamic_cast<CppUnit::TestSuite *>(test);

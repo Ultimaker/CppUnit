@@ -205,10 +205,10 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
 
   ListCtrlSetter setter( *listCtrl );
   setter.insertLine( currentEntry );
-  setter.addSubItem( errorType, failure.isError() ? "Error" : "Failure" );
+  setter.addSubItem( failure.isError() ? _T("Error") : _T("Failure"), errorType );
 
   // Set test name
-  setter.addSubItem( errorType, failure.failedTestName() );
+  setter.addSubItem( failure.failedTestName().c_str(), errorType );
 
   // Set the asserted text
   setter.addSubItem( failure.thrownException()->what() );
@@ -216,15 +216,15 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
   // Set the line number
   if ( failure.sourceLine().isValid() )
   {
-    char tmp[64];
-    sprintf( tmp, "%ld", failure.sourceLine().lineNumber() );
-    setter.addSubItem( tmp );
+    CString lineNumber;
+    lineNumber.Format( _T("%ld"), failure.sourceLine().lineNumber() );
+    setter.addSubItem( lineNumber );
   }
   else
-    setter.addSubItem( "" );
+    setter.addSubItem( _T("") );
 
   // Set the file name
-  setter.addSubItem( failure.sourceLine().fileName() );
+  setter.addSubItem( failure.sourceLine().fileName().c_str() );
 
 /* In place of the missing detail field...
   std::string dump = "Test: " + test->getName() + "\n";
@@ -346,24 +346,25 @@ TestRunnerDlg::reset()
 void 
 TestRunnerDlg::updateCountsDisplay()
 {
-  CStatic *statTestsRun   = (CStatic *)GetDlgItem (IDC_STATIC_RUNS);
-  CStatic *statErrors     = (CStatic *)GetDlgItem (IDC_STATIC_ERRORS);
-  CStatic *statFailures   = (CStatic *)GetDlgItem (IDC_STATIC_FAILURES);
-  CEdit *editTime         = (CEdit *)GetDlgItem (IDC_EDIT_TIME);
+  CStatic *statTestsRun = (CStatic *)GetDlgItem( IDC_STATIC_RUNS );
+  CStatic *statErrors = (CStatic *)GetDlgItem( IDC_STATIC_ERRORS );
+  CStatic *statFailures = (CStatic *)GetDlgItem( IDC_STATIC_FAILURES );
+  CEdit *editTime = (CEdit *)GetDlgItem( IDC_EDIT_TIME );
 
   CString argumentString;
 
-  argumentString.Format ("%d", m_testsRun);
-  statTestsRun    ->SetWindowText (argumentString);
+  argumentString.Format( _T("%d"), m_testsRun );
+  statTestsRun->SetWindowText (argumentString);
 
-  argumentString.Format ("%d", m_errors);
-  statErrors      ->SetWindowText (argumentString);
+  argumentString.Format( _T("%d"), m_errors );
+  statErrors->SetWindowText( argumentString );
 
-  argumentString.Format ("%d", m_failures);
-  statFailures    ->SetWindowText (argumentString);
+  argumentString.Format( _T("%d"), m_failures );
+  statFailures->SetWindowText( argumentString );
 
-  argumentString.Format ("Execution time: %3.3lf seconds", (m_testEndTime - m_testStartTime) / 1000.0);
-  editTime        ->SetWindowText (argumentString);
+  argumentString.Format( _T("Execution time: %3.3lf seconds"), 
+                         (m_testEndTime - m_testStartTime) / 1000.0 );
+  editTime->SetWindowText( argumentString );
 }
 
 
@@ -421,7 +422,7 @@ TestRunnerDlg::updateHistoryCombo()
         ++it )
   {
     CppUnit::Test *test = *it;
-    getHistoryCombo()->AddString( test->getName().c_str() );
+    getHistoryCombo()->AddString( CString(test->getName().c_str()) );
   }
 
   if ( history.size() > 0 )

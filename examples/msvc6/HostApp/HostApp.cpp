@@ -7,6 +7,11 @@
 #include "MainFrm.h"
 #include "HostAppDoc.h"
 #include "HostAppView.h"
+
+// CppUnit: MFC TestRunner
+#include <msvc6/testrunner/TestRunner.h>
+// CppUnit: TestFactoryRegistry to retreive the top test suite that contains all registered tests.
+#include <cppunit/extensions/TestFactoryRegistry.h>
  
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -80,6 +85,9 @@ BOOL CHostAppApp::InitInstance()
         RUNTIME_CLASS(CHostAppView));
     AddDocTemplate(pDocTemplate);
 
+    RunUnitTests();
+
+/*
     // Parse command line for standard shell commands, DDE, file open
     CCommandLineInfo cmdInfo;
     ParseCommandLine(cmdInfo);
@@ -91,9 +99,21 @@ BOOL CHostAppApp::InitInstance()
     // The one and only window has been initialized, so show and update it.
     m_pMainWnd->ShowWindow(SW_SHOW);
     m_pMainWnd->UpdateWindow();
+*/
 
     return TRUE;
 }
+
+
+void 
+CHostAppApp::RunUnitTests()
+{
+  TestRunner  runner;
+  runner.addTest ( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+
+  runner.run ();    
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About

@@ -27,7 +27,7 @@ to write unit tests.
 * TestRunner (testrunner.dll) : a MFC extension DLL to run and browser unit 
 tests from a GUI.
 
-* DSPlugIn (lib/TestRunnerDSPlugInXX.dll) : a VC++ add-in used by 
+* DSPlugIn (lib/TestRunnerDSPlugIn.dll) : a VC++ add-in used by 
 testrunner.dll. If you double-click on a failure in the MFC TestRunner,
 a running instance of VC++ will open the file and highlight the line.
 
@@ -36,10 +36,11 @@ application to run test plug-in. A test plug-in is a DLL that publish a
 specified interface. This application is still incomplete (the auto-reload 
 feature is missing).
 
-All libraries are placed in the Lib/ directory.
+All libraries are placed in the lib/ directory.
 
 
 Examples:
+---------
 
 * CppUnitTestMain : the actual test suite use to test CppUnit. Use a 
 TextTestRunner, and post-build testing with CompilterOutputter. Configuration
@@ -53,7 +54,7 @@ want to use HelperMacros.h and the CPPUNIT_TEST_SUB_SUITE macro which does
 it in a 'cleaner' way. That sample has not been updated for a long time).
 
 * HostApp : a sample using the MFC TestRunner demonstrating different test
-failure.
+failure. Also demonstrates the MFC Unicode TestRunner.
 
 * TestPlugIn : a sample demonstrating how to write a TestPlugIn for the
 TestPlugInRunner (experimental).
@@ -66,6 +67,8 @@ CppUnit and TestRunner comes with 3 configurations.
 
 * Release (): Multihtreaded DLL, release mode
 * Debug (d): Debug Multithreaded DLL, debug mode
+* Unicode Release (u): Unicode Multihtreaded DLL, release mode
+* Unicode Debug (ud): Unicode Debug Multithreaded DLL, debug mode
 * Debug Crossplatform (cd): Debug Multithreaded DLL, suite name for
 test cases are not extracted from the class name using type_info.
 
@@ -114,6 +117,10 @@ testrunner.dll			: MFC TestRunner dynamic library (DLL) "Multithreaded DLL"
 testrunner.lib			: MFC TestRunner import library "Multithreaded DLL"
 testrunnerd.dll			: MFC TestRunner dynamic library (DLL) "Debug Multithreaded DLL"
 testrunnerd.lib			: MFC TestRunner import library "Debug Multithreaded DLL"
+testrunneru.dll			: MFC Unicode TestRunner dynamic library (DLL) "Multithreaded DLL"
+testrunneru.lib			: MFC Unicode TestRunner import library "Multithreaded DLL"
+testrunnerud.dll		: MFC Unicode TestRunner dynamic library (DLL) "Debug Multithreaded DLL"
+testrunnerud.lib		: MFC Unicode TestRunner import library "Debug Multithreaded DLL"
 TestRunnerDSPlugIn.dll	: The add-in you register in VC++.
 
 Notes that when you are using CppUnit DLL (cppunit*_dll.dll), you must link 

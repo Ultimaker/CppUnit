@@ -5,8 +5,6 @@
 #include "HostApp.h"
 
 #include "HostAppDoc.h"
-#include <msvc6/testrunner/TestRunner.h>
-#include <cppunit/extensions/TestFactoryRegistry.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,11 +40,6 @@ BOOL CHostAppDoc::OnNewDocument()
 {
     if (!CDocument::OnNewDocument())
         return FALSE;
-
-    TestRunner  runner;
-    runner.addTest ( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
-
-    runner.run ();    
 
     return TRUE;
 }

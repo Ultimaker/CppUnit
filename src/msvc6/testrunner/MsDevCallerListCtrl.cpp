@@ -67,7 +67,7 @@ void MsDevCallerListCtrl::OnDblclk(NMHDR* pNMHDR, LRESULT* pResult)
     lineNumber = GetItemText( hotItem, s_lineNumberSubItem);
     fileName = GetItemText( hotItem, s_fileNameSubItem);
     
-    pIDSPlugin->goToLineInSourceCode( CComBSTR( fileName), atoi( lineNumber));
+    pIDSPlugin->goToLineInSourceCode( CComBSTR( fileName), _ttoi( lineNumber));
 
   }
 

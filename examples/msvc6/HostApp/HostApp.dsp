@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=HostApp - Win32 Debug Crossplatform Setting
+CFG=HostApp - Win32 Debug Unicode
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,13 +13,15 @@ CFG=HostApp - Win32 Debug Crossplatform Setting
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "HostApp.mak" CFG="HostApp - Win32 Debug Crossplatform Setting"
+!MESSAGE NMAKE /f "HostApp.mak" CFG="HostApp - Win32 Debug Unicode"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
 !MESSAGE "HostApp - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "HostApp - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "HostApp - Win32 Debug Crossplatform Setting" (based on "Win32 (x86) Application")
+!MESSAGE "HostApp - Win32 Release Unicode" (based on "Win32 (x86) Application")
+!MESSAGE "HostApp - Win32 Debug Unicode" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -112,6 +114,62 @@ LINK32=link.exe
 # ADD LINK32 ..\..\..\lib\cppunitcd.lib ..\..\..\lib\testrunnercd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none /map /nodefaultlib
 
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Release Unicode"
+
+# PROP BASE Use_MFC 6
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "HostApp___Win32_Release_Unicode"
+# PROP BASE Intermediate_Dir "HostApp___Win32_Release_Unicode"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 6
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "ReleaseUnicode"
+# PROP Intermediate_Dir "ReleaseUnicode"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MD /W3 /GR /GX /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "WIN32" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "WIN32" /D "_UNICODE" /Yu"stdafx.h" /FD /c
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 ../../../Lib/cppunit.lib ../../../Lib/testrunner.lib /nologo /subsystem:windows /machine:I386
+# ADD LINK32 ../../../Lib/cppunit.lib ../../../Lib/testrunneru.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /machine:I386
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Unicode"
+
+# PROP BASE Use_MFC 6
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "HostApp___Win32_Debug_Unicode"
+# PROP BASE Intermediate_Dir "HostApp___Win32_Debug_Unicode"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 6
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "DebugUnicode"
+# PROP Intermediate_Dir "DebugUnicode"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "WIN32" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "WIN32" /D "_UNICODE" /Yu"stdafx.h" /FD /c
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 ..\..\..\lib\cppunitd.lib ..\..\..\lib\testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# SUBTRACT BASE LINK32 /pdb:none /map /nodefaultlib
+# ADD LINK32 ..\..\..\lib\cppunitd.lib ..\..\..\lib\testrunnerud.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# SUBTRACT LINK32 /pdb:none /map /nodefaultlib
+
 !ENDIF 
 
 # Begin Target
@@ -119,6 +177,8 @@ LINK32=link.exe
 # Name "HostApp - Win32 Release"
 # Name "HostApp - Win32 Debug"
 # Name "HostApp - Win32 Debug Crossplatform Setting"
+# Name "HostApp - Win32 Release Unicode"
+# Name "HostApp - Win32 Debug Unicode"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -232,6 +292,23 @@ InputName=testrunner
 
 # PROP Exclude_From_Build 1
 
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Release Unicode"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\ReleaseUnicode
+InputPath=..\..\..\lib\testrunner.dll
+InputName=testrunner
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Unicode"
+
+# PROP BASE Exclude_From_Build 1
+# PROP Exclude_From_Build 1
+
 !ENDIF 
 
 # End Source File
@@ -259,6 +336,16 @@ InputName=testrunnercd
 
 # End Custom Build
 
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Release Unicode"
+
+# PROP BASE Exclude_From_Build 1
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Unicode"
+
+# PROP BASE Exclude_From_Build 1
+# PROP Exclude_From_Build 1
+
 !ENDIF 
 
 # End Source File
@@ -285,6 +372,93 @@ InputName=testrunnerd
 !ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
 
 # PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Release Unicode"
+
+# PROP BASE Exclude_From_Build 1
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Unicode"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\DebugUnicode
+InputPath=..\..\..\lib\testrunnerd.dll
+InputName=testrunnerd
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunneru.dll
+
+!IF  "$(CFG)" == "HostApp - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Release Unicode"
+
+# Begin Custom Build - Updating DLL $(InputPath)
+IntDir=.\ReleaseUnicode
+InputPath=..\..\..\lib\testrunneru.dll
+InputName=testrunneru
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnerud.dll
+
+!IF  "$(CFG)" == "HostApp - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Unicode"
+
+# Begin Custom Build - Updating DLL $(InputPath)
+IntDir=.\DebugUnicode
+InputPath=..\..\..\lib\testrunnerud.dll
+InputName=testrunnerud
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
 
 !ENDIF 
 

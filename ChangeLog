@@ -1,3 +1,28 @@
+2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* INSTALL-WIN32.txt: updated for MFC Unicode TestRunner.
+
+	* src/msvc6/testrunner/TestRunner.dsp: added Unicode configurations.
+
+	* src/msvc6/testrunner/ListCtrlSetter.cpp:
+	* src/msvc6/testrunner/ListCtrlSetter.h: replaced usage of std::string by 
+	CString for easier ansi/unicode switch.
+
+	* src/msvc6/testrunner/MsDevCallerListCtrl.cpp:
+	* src/msvc6/testrunner/TestRunnerDlg.cpp:
+	* src/msvc6/testrunner/TestRunnerModel.cpp:
+	* src/msvc6/testrunner/TestRunnerModel.h:
+	* src/msvc6/testrunner/TreeHierarchyDlg.cpp: made changes to compile with 
+	either ANSI and UNICODE support.
+
+	* examples/msvc6/HostApp/HostApp.cpp:
+	* examples/msvc6/HostApp/HostApp.h:
+	* examples/msvc6/HostApp/HostAppDoc.cpp:
+	* examples/msvc6/HostApp/HostAppDoc.h: moved TestRunner execution to 
+	HostApp::RunUnitTests() and removed the MainFrame application window.
+
+	* examples/msvc6/HostApp/HostApp.dsp: added Unicode configurations.
+
 2002-03-24 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* INSTALL-WIN32.txt: added some info to build cppunit as a DLL.

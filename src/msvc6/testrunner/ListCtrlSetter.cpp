@@ -46,14 +46,14 @@ ListCtrlSetter::editLine( int nLineNo,
 
 
 void 
-ListCtrlSetter::addSubItem( const std::string &strText )
+ListCtrlSetter::addSubItem( const CString &strText )
 {
   doAddSubItem( LVIF_TEXT, strText, 0 );
 }
 
 
 void 
-ListCtrlSetter::addSubItem( const std::string &strText, 
+ListCtrlSetter::addSubItem( const CString &strText, 
                             void *lParam )
 {
   doAddSubItem( LVIF_TEXT | LVIF_PARAM, strText, 0, lParam );
@@ -61,17 +61,17 @@ ListCtrlSetter::addSubItem( const std::string &strText,
 
 
 void 
-ListCtrlSetter::addSubItem( int nImage, 
-                            const std::string &strText )
+ListCtrlSetter::addSubItem( const CString &strText,
+                            int nImage )
 {
   doAddSubItem( LVIF_TEXT | LVIF_IMAGE, strText, nImage );
 }
 
 
 void 
-ListCtrlSetter::addSubItem( int nImage, 
-                            const std::string &strText, 
-                            void *lParam )
+ListCtrlSetter::addSubItem( const CString &strText, 
+                            void *lParam,
+                            int nImage )
 {
   doAddSubItem( LVIF_TEXT | LVIF_IMAGE | LVIF_PARAM, strText, 0, lParam );
 }
@@ -79,14 +79,16 @@ ListCtrlSetter::addSubItem( int nImage,
 
 void 
 ListCtrlSetter::doAddSubItem( UINT nMask, 
-                              const std::string &strText, 
+                              CString strText, 
                               int nImage, 
                               void *lParam )
 {
+  int textLength = strText.GetLength();
+
   LVITEM item;
   item.mask = nMask;
-  item.pszText = (char *)strText.c_str();
-  item.cchTextMax = strText.length();
+  item.pszText = strText.GetBuffer( textLength );
+  item.cchTextMax = textLength;
   item.iImage = nImage;
   item.lParam = (LPARAM)lParam;
   item.iItem = m_nLineNo;
@@ -101,6 +103,8 @@ ListCtrlSetter::doAddSubItem( UINT nMask,
   {
     VERIFY( m_List.SetItem( &item ) );
   }
+
+  strText.ReleaseBuffer();
 }
 
 

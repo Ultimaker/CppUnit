@@ -79,7 +79,7 @@ TreeHierarchyDlg::addTest( CppUnit::Test *test,
                            HTREEITEM hParent )
 {
   int testType = isTestSuite( test ) ? imgSuite : imgUnitTest;
-  HTREEITEM hItem = m_treeTests.InsertItem( test->getName().c_str(),
+  HTREEITEM hItem = m_treeTests.InsertItem( CString(test->getName().c_str()),
                                             testType,
                                             testType,
                                             hParent );

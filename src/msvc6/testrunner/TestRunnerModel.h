@@ -49,15 +49,15 @@ public:
 
 protected:
   void loadHistory();
-  std::string loadHistoryEntry( int idx );
-  CppUnit::Test *findTestByName( std::string name ) const;
-  CppUnit::Test *findTestByNameFor( const std::string &name, 
+  CString loadHistoryEntry( int idx );
+  CppUnit::Test *findTestByName( CString name ) const;
+  CppUnit::Test *findTestByNameFor( const CString &name, 
                                     CppUnit::Test *test ) const;
 
   void saveHistoryEntry( int idx, 
-                         std::string testName );
+                         CString testName );
 
-  std::string getHistoryEntryName( int idx ) const;
+  CString getHistoryEntryName( int idx ) const;
 
 private:
   /// Prevents the use of the copy constructor.
