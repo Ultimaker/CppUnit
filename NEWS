@@ -12,26 +12,25 @@
 
 * Fail with arbitrary message: CPPUNIT_FAIL
 
-* NotEqualException / additional mesage ### to detail ###
+* NotEqualException constructor take an additional message (usually used to
+point out where the difference occured between the expected and actual value)
+that can be retreived with additionalMessage(). See Asserter documentation for
+an example of usage.
 
-* TextTestRunner / return ### to detail ###
+* TextTestRunner now return a boolean indicating is the run was sucessful. You
+can also specify a TextTestResult in the constructor and access the result
+with result().
 
 * Helpers to construct your own assertion
 
-### to detail ###
-  CPPUNIT_SOURCELINE()
-  Asserter
+  It is now very easy to create your own assertion macro with failure
+  location.
 
-  Example:
-void 
-checkXmlEqual( std::string expectedXml,
-               std::string actualXml,
-               CppUnit::SourceLine sourceLine );
+  CPPUNIT_SOURCELINE() macro have been added. It capture the failure location
+  is a SourceLine object.
 
-/// Asserts that two XML strings are equivalent.
-#define CPPUNITTEST_ASSERT_XML_EQUAL( expected, actual ) \
-    ::CppUnitTest::checkXmlEqual( expected, actual,      \
-				  CPPUNIT_SOURCELINE() )
+  Asserter namespace contains functions used to construct and throw exception
+  to report failure. See Asserter documentation for an example of usage.
 
 * XML Output
 
@@ -40,8 +39,15 @@ checkXmlEqual( std::string expectedXml,
   structure and usage.
 
 * Deprecated
-  You must define the symbol CPPUNIT_ENABLE_SOURCELINE_DEPRECATED to enable 
-  old Exception constructor, UNKNOWNFILENAME and UNKNOWNLINENUMBER.
+
+  - Methods having fileName, lineNumber as parameter. Usually replaced by
+  a similar method that take a SourceLine parameter. Exception and
+  TestAssert are impacted.
+  
+    You must define the symbol CPPUNIT_ENABLE_SOURCELINE_DEPRECATED to enable
+  old Exception constructor, UNKNOWNFILENAME and UNKNOWNLINENUMBER, as well
+  as function defined in the TestAssert namespace. The exception construction
+  and throwing as been moved to Asserter namespace.
 
 * Compatibility break:
   - TestListener::addError() was removed. addFailure() is used to report
@@ -50,6 +56,10 @@ any kind of failure.
   - TestResult::failures() now reports all kind of failures.
   - TestResult::failures() returns a const reference.
   - TestAssert  ### to detail ###
+
+* Bug fix:
+  - test ExceptionTest.testAssignment() don't fail anymore on VC++. See FAQ
+    for detail.
 
 
 	New in CppUnit 1.6.1

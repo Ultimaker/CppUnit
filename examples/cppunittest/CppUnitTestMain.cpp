@@ -8,8 +8,8 @@ main( int argc, char* argv[] )
   CppUnit::TextTestRunner runner;
   runner.addTest( CppUnitTest::suite() );
 
-  runner.run();
+  bool wasSucessful = runner.run();
 
-  return 0;
+  return wasSucessful ? 0 : 1;
 }
 

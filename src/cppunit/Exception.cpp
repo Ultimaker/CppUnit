@@ -61,7 +61,10 @@ Exception::~Exception () throw()
 Exception& 
 Exception::operator =( const Exception& other )
 { 
-  SuperClass::operator =(other);
+// Don't call superclass operator =(). VC++ STL implementation
+// has a bug. It calls the destructor and copy constructor of 
+// std::exception() which reset the virtual table to std::exception.
+//  SuperClass::operator =(other);
 
   if ( &other != this )
   {

@@ -25,6 +25,20 @@ TestResult::~TestResult()
 }
 
 
+/** Resets the result for a new run.
+ *
+ * Clear the previous run result.
+ */
+void 
+TestResult::reset()
+{
+  ExclusiveZone zone( m_syncObject ); 
+  m_testErrors = 0;
+  m_tests.clear();
+  m_failures.clear();
+}
+
+
 /** Adds an error to the list of errors. 
  *  The passed in exception
  *  caused the error

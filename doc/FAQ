@@ -1,4 +1,4 @@
-Frequently Asked Questions:
+Asked Questions:
 ---------------------------
 
 1) Questions relating to CppUnit
@@ -30,9 +30,13 @@ do so for all configurations.
    Check that Projects/Settings.../C++/Code Generation is indeed using
 the correct library.
 
-2.3) Why does the test ExceptionTest.testAssignment failed in CppUnit test 
-   suite?
+2.3) Why does the test ExceptionTest.testAssignment use to failed in CppUnit 
+     test suite?
 
-   I've never been able to figure out why that test fails.  It seems
-to be specific to VC++ since the test passes with gcc.  If you can figure
-out the failure, please let us know!
+   Thanks to Phil Taylor who gave me a partial answer, we have been able to
+   figure it out. VC++ STL implementation of std::exception::operator =()
+   call the destructor and copy constructor. This reset the virtual table
+   to std::exception virtual table. Therefore, all consecutive call to
+   the virtual method what() will call the std::exception::what() instead
+   of CppUnit::Exception::what().
+   

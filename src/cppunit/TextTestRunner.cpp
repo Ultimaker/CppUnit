@@ -6,14 +6,27 @@
 
 namespace CppUnit {
 
-TextTestRunner::TextTestRunner()
+/** Constructs a test runner with the specified TestResult.
+ *
+ * A TextTestRunner owns a TextTestResult. It can be accessed 
+ * anytime using result(). If you run the test more than once,
+ * remember to call result()->reset() before each run.
+ *
+ * \param result TextTestResult used by the test runner. If none
+ *               is specified then a default TextTestResult is
+ *               instanciated.
+ */
+TextTestRunner::TextTestRunner( TextTestResult *result ) :
+    m_result( result == 0 ? new TextTestResult() :
+                            result ),
+    m_suite( new TestSuite( "All Tests" ) )
 {
-  m_suite = new TestSuite( "All Tests" );
 }
 
 
 TextTestRunner::~TextTestRunner()
 {
+  delete m_result;
   delete m_suite;
 }
 
@@ -35,18 +48,22 @@ TextTestRunner::addTest( Test *test )
  * \param testName Name of the test case to run. If an empty is given, then
  *                 all added test are run. The name must be the name of
  *                 of an added test.
- * \param doWait if \c true then the user must press the RETURN key 
+ * \param wait if \c true then the user must press the RETURN key 
  *               before the run() method exit.
+ * \param printResult if \c true (default) then the test result are printed
+ *                    on the standard output.
  * \return \c true is the test was successful, \c false if the test
  *         failed or was not found.
  */
 bool
 TextTestRunner::run( std::string testName,
-                     bool doWait )
+                     bool doWait,
+                     bool doPrintResult )
 {
-  bool sucessful = runTestByName( testName );
+  runTestByName( testName );
+  printResult( doPrintResult );
   wait( doWait );
-  return sucessful;
+  return m_result->wasSuccessful();
 }
 
 
@@ -76,6 +93,14 @@ TextTestRunner::wait( bool doWait )
 }
 
 
+void 
+TextTestRunner::printResult( bool doPrintResult )
+{
+  if ( doPrintResult )
+    std::cout << *m_result << std::endl;
+}
+
+
 Test * 
 TextTestRunner::findTestByName( std::string name ) const
 {
@@ -94,10 +119,15 @@ TextTestRunner::findTestByName( std::string name ) const
 bool
 TextTestRunner::runTest( Test *test )
 {
-  TextTestResult result;
-  test->run( &result );
-  std::cout << result << std::endl;
-  return result.wasSuccessful();
+  test->run( m_result );
+  return m_result->wasSuccessful();
+}
+
+
+TextTestResult *
+TextTestRunner::result()
+{
+  return m_result;
 }
 
 

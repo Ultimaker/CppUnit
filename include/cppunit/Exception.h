@@ -46,7 +46,8 @@ public:
 
     Exception& operator= (const Exception& other);
 
-    const char *what() const throw ();
+//    const char *what() const throw ();
+    const char *what() const;
 
     SourceLine sourceLine() const;
 

@@ -1,3 +1,26 @@
+2001-10-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* examples/cppunittest/CppUnitTestMain.cpp : application returns
+	0 is test suite run sucessfuly, 1 otherwise.
+
+	* src/cppunit/Exception.cpp : bug fix, operator =() with VC++. 
+	Removed call to std::exception::operator =() which is bugged
+	on VC++.
+
+	* doc/FAQ : added a note explaining why the test 
+	ExceptionTest.testAssignment used to fail.
+
+	* NEWS : updated and detailed.
+
+	* include/cppunit/TestResult.h :
+	* src/cppunit/TestResult.cpp : added reset().
+
+	* include/cppunit/TextTestRunner.h :
+	* src/cppunit/TextTestRunner.cpp : Constructor take an optional
+	TextTestRestult. The TextTestResult remain alive as long as
+	the runner. Added result() to retreive the result. Printing the
+	result is now optinal (enabled by default).
+
 2001-10-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/Asserter.h :

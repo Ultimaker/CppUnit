@@ -50,6 +50,8 @@ class TestResult
     TestResult( SynchronizationObject *syncObject =0 );
     virtual ~TestResult();
 
+    virtual void reset();
+
     virtual void addError( Test *test, Exception *e );
     virtual void addFailure( Test *test, Exception *e );
     virtual void startTest( Test *test );
