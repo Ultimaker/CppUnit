@@ -1,3 +1,4 @@
 SUBDIRS = cppunit 
 
-DIST_SUBDIRS = msvc6
+# already handled by toplevel dist-hook.
+# DIST_SUBDIRS = msvc6

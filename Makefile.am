@@ -16,6 +16,8 @@ m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4
 
 dist-hook:
+	cp -dpR src/msvc6 $(distdir)/src
+	cp -dpR include/msvc6 $(distdir)/include 
 	cp -dpR examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf
 
