@@ -1,37 +1,47 @@
 #include "cppunit/Exception.h"
 
-const std::string 
-CppUnit::Exception::UNKNOWNFILENAME = 
-  "<unknown>";
-const int CppUnit::Exception::UNKNOWNLINENUMBER = -1;
+
+namespace CppUnit {
+
+
+const std::string Exception::UNKNOWNFILENAME = "<unknown>";
+
+const long Exception::UNKNOWNLINENUMBER = -1;
+
 
 /// Construct the exception
-CppUnit::Exception::Exception (const Exception& other)
-  : exception (other)
+Exception::Exception (const Exception& other) : exception (other)
 { 
   m_message       = other.m_message; 
   m_lineNumber    = other.m_lineNumber;
   m_fileName      = other.m_fileName;
 } 
 
-CppUnit::Exception::Exception (std::string message, long lineNumber, std::string fileName)
-  : m_message (message), m_lineNumber (lineNumber), m_fileName (fileName)
+
+Exception::Exception( std::string message, 
+                      long lineNumber, 
+                      std::string fileName ) : 
+    m_message( message ), 
+    m_lineNumber( lineNumber ), 
+    m_fileName( fileName )
 {
 }
 
 
 /// Destruct the exception
-CppUnit::Exception::~Exception ()
-{}
+Exception::~Exception ()
+{
+}
 
 
 /// Perform an assignment
-CppUnit::Exception& 
-CppUnit::Exception::operator= (const Exception& other)
+Exception& 
+Exception::operator=( const Exception& other )
 { 
   exception::operator= (other);
 
-  if (&other != this) {
+  if (&other != this) 
+  {
     m_message       = other.m_message; 
     m_lineNumber    = other.m_lineNumber;
     m_fileName      = other.m_fileName;
@@ -43,16 +53,47 @@ CppUnit::Exception::operator= (const Exception& other)
 
 /// Return descriptive message
 const char*
-CppUnit::Exception::what() const throw ()
-{ return m_message.c_str (); }
+Exception::what() const throw ()
+{ 
+  return m_message.c_str (); 
+}
+
 
 /// The line on which the error occurred
 long 
-CppUnit::Exception::lineNumber ()
-{ return m_lineNumber; }
+Exception::lineNumber()
+{ 
+  return m_lineNumber; 
+}
 
 
 /// The file in which the error occurred
 std::string 
-CppUnit::Exception::fileName ()
-{ return m_fileName; }
+Exception::fileName()
+{ 
+  return m_fileName; 
+}
+
+
+Exception *
+Exception::clone() const
+{
+  return new Exception( *this );
+}
+
+
+bool 
+Exception::isInstanceOf( const Type &exceptionType ) const
+{
+  return exceptionType == type();
+}
+
+
+Exception::Type
+Exception::type()
+{
+  return Type( "CppUnit::Exception" );
+}
+
+
+}  // namespace CppUnit

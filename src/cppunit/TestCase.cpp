@@ -19,30 +19,36 @@ void
 TestCase::run (TestResult *result)
 {
   result->startTest (this);
+
+  try
+  {
+    setUp ();
   
-  setUp ();
-  
-  try {
+    try {
+      runTest ();
+    }
+    catch (Exception& e) {
+      Exception *copy = e.clone();
+      result->addFailure (this, copy);
+    }
+    catch (std::exception& e) {
+      result->addError (this, new Exception (e.what ()));
+    }
+    catch (...) {
+      Exception *e = new Exception ("caught unknown exception");
+      result->addError (this, e);
+    }
 
-    runTest ();
-    
+    try {
+      tearDown ();
+    }
+    catch ( ... ) {
+      result->addError( this, new Exception( "tearDown() failed" ) );
+    }
   }
-  catch (Exception& e) {
-    Exception *copy = new Exception (e);
-    result->addFailure (this, copy);
-    
+  catch ( ... ) {
+    result->addError( this, new Exception( "setUp() failed" ) );
   }
-  catch (exception& e) {
-    result->addError (this, new Exception (e.what ()));
-    
-  }
-  catch (...) {
-    Exception *e = new Exception ("unknown exception");
-    result->addError (this, e);
-
-  }
-
-  tearDown ();
 
   result->endTest (this);
 

@@ -122,6 +122,10 @@ SOURCE=..\..\include\cppunit\extensions\Orthodox.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\RepeatedTest.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\extensions\RepeatedTest.h
 # End Source File
 # Begin Source File
@@ -139,10 +143,6 @@ SOURCE=.\TestFactoryRegistry.cpp
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\extensions\TestFactoryRegistry.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\extensions\TestSetup.h
 # End Source File
 # Begin Source File
 
@@ -183,7 +183,19 @@ SOURCE=..\..\include\cppunit\Exception.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\NotEqualException.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\NotEqualException.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\Test.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestAssert.cpp
 # End Source File
 # Begin Source File
 
