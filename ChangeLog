@@ -1,3 +1,7 @@
+2001-10-28  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* INSTALL-unix: Add note about cygwin.
+
 2001-10-24 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp:

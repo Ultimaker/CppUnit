@@ -7,7 +7,7 @@ CppUnit is the C++ port of the famous JUnit framework for unit
 testing.
 
 For MSWindows installation notes, see INSTALL-WIN32.txt.
-For all other systems, see INSTALL and INSTALL-unix.
+For other systems -- including cygwin -- see INSTALL and INSTALL-unix.
 
 
 Bug reports are welcome.  Please use the SourceForge bug tracking
