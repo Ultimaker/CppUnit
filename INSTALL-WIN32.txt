@@ -5,7 +5,8 @@ At the current time, the only supported WIN32 platform is
 Microsoft Visual C++. You must have VC++ 6.0 at least.
 
 Quick Steps to compile & run a sample using the GUI TestRunner:
-- Open examples/examples.dsw in VC++ (contains all the samples)
+- Open examples/examples.dsw in VC++ (contains all the samples).
+  VC7 will ask you if you want to convert, anwser 'yes to all'.
 - Make HostApp the Active project
 - Compile
 - in VC++, Tools/Customize.../Add-ins and macro files/Browse...
