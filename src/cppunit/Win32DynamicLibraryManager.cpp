@@ -9,6 +9,7 @@
 #define NOKERNEL
 #define NOSOUND
 #define NOMINMAX
+#define BLENDFUNCTION void    // for mingw & gcc  
 #include <windows.h>
 
 
