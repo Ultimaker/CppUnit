@@ -1,8 +1,13 @@
+* CppUnit:
+  - Unicode support
+  - NotEqualException for assertEquals
+  - STL orthodox template for container elements.
+
 * VC++ TestRunner:
   - Make it possible to specify the registry path where settings are stored.
     Current method use the path defined in the CWinApp. This does not work
-    for console application.
-  - Make the dialog resizable.
+    for console application
+  - Make the dialog resizable
   - Add "details" field to show detail of the selected failed test:
     - suite and test name,
     - failure message. If possible separate "was" and "expected" in the

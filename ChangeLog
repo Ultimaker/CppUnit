@@ -1,3 +1,67 @@
+2001-06-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/Exception.h: now inherit from std::exception instead 
+	of ::exception. Added clone(), type(), and isInstanceOf() 
+	methods for subclassing support. Changed UNKNOWNLINENUMBER type to long 
+	for consistence with lineNumber().
+
+	* include/cppunit/NotEqualException.h: addded, exception to be used 
+	with assertEquals().
+
+	* include/cppunit/TestAssert.h: changed TestAssert into a namespace 
+	instead of a class. This remove the need of template member methods 
+	and does not cause compiler internal error on VC++. 
+	Macro CPPUNIT_ASSERT_MESSAGE has been added to fail test with 
+	a specified message.
+
+	* include/cppunit/TestCaller.h: added "Expected exception" support.
+	Based on Tim Jansen patch (#403745), but use a traits instead of RTTI
+	to distingh between "No expected exception" and "Excepted exception".
+	Exception type name is reported using RTTI if CPPUNIT_USE_TYPEINFO is 
+	defined.
+
+	* include/cppunit/extensions/HelperMacros.h: static method suite() 
+	implemented by CPPUNIT_TEST_SUITE_END macro now returns a TestSuite 
+	instead of a Test.
+
+	* include/cppunit/extensions/RepeatedTest.h: corrected countTestCases,
+	operator = declaration.
+
+	* include/cppunit/extensions/TestDecorator.h: removed const from run() 
+	method. Did not match run() declaration of Test class.
+
+	* include/cppunit/extensions/TestFactory.h: fixed a comment.
+
+	* include/cppunit/extensions/TestSetup.h: corrected run() method 
+	declaration. Methods setUp() and tearDown() were not declared virtual.
+
+	* include/cppunit/extensions/TestSuiteBuilder.h: added a method 
+	addTestCaller() which take a pointer on a fixture.
+
+	* include/cppunit/NotEqualException.cpp: addded, exception to be used 
+	with assertEquals().
+
+	* src/cppunit/RepeatedTest.cpp: added to reduce header dependency 
+	(TestResult.h was missing).
+
+	* src/cppunit/TestAssert.cpp: added to put non template functions 
+	there.
+	
+	* src/cppunit/TestCase.cpp: added std:: prefix to 
+	catch (exception& e). Integrated a modified version of Tim Jansen 
+	patch (#403745) for TestCase to make the unit test (TestCaseTest) 
+	pass. If the setUp() fail then neither the runTest() nor 
+	the tearDown() method is called.
+
+	* examples/examples.dsw: added cppunittest projects to workspace.
+
+	* examples/cppunittest/TestResultTest.*: renamed TestListenerTest.*
+
+	* examples/cppunittest/*: added unit tests for: 
+	HelperMacros, TestAssert, TestCaller, TestCase, TestFailure, 
+	TestResult, TestSuite, TestDecoratorTest, TestSetUp, RepeatedTestTest, 
+	Orthodox, Exception.
+
 2001-06-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* src/cppunit/TypeInfoHelper.cpp: removed #include <config.h>, cppunit/config.h was already included.
