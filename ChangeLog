@@ -1,5 +1,7 @@
 2001-05-29  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* examples/hierarchy/main.cpp: Remove extraneous includes.
+
 	* src/cppunit/TextTestResult.cpp (addError, addFailure): Do not
 	emit a newline.
 

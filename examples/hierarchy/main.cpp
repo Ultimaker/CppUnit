@@ -1,7 +1,5 @@
-#include "cppunit/TestRegistry.h"
 #include "cppunit/TextTestResult.h"
 #include "cppunit/TestSuite.h"
-#include "cppunit/Test.h"
 
 #include "BoardGame.h"
 #include "Chess.h"
