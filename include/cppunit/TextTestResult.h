@@ -12,8 +12,9 @@ class Exception;
 class Test;
 
 /*! \brief Holds printable test result (DEPRECATED).
+ * \ingroup TrackingTestExecution
  * 
- * Use class TextTestProgressListener and TextOutputter instead.
+ * deprecated Use class TextTestProgressListener and TextOutputter instead.
  */
 class CPPUNIT_API TextTestResult : public TestResult,
                                    public TestResultCollector

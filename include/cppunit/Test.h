@@ -9,6 +9,7 @@ namespace CppUnit {
 class TestResult;
 
 /*! \brief Base class for all test objects.
+ * \ingroup BrowsingCollectedTestResult
  *
  * All test objects should be a subclass of Test.  Some test objects,
  * TestCase for example, represent one individual test.  Other test

@@ -21,50 +21,106 @@ class TestSuite;
 #endif
 
 
-/*! \brief Registry for test factory.
+/*! \brief Registry for TestFactory.
+ * \ingroup CreatingTestSuite
  *
  * Notes that the registry assumes lifetime control for any registered test.
+ *
+ * To register tests, use the macros:
+ * - CPPUNIT_TEST_SUITE_REGISTRATION(): to add tests in the unnamed registry.
+ * - CPPUNIT_TEST_SUITE_NAMED_REGISTRATION(): to add tests in a named registry.
+ *
+ * Example 1: retreiving a suite that contains all the test registered with
+ * CPPUNIT_TEST_SUITE_REGISTRATION().
+ * \code
+ * CppUnit::TestFactoryRegistry &registry = CppUnit::TestFactoryRegistry::getRegistry();
+ * CppUnit::TestSuite *suite = registry.makeTest();
+ * \endcode
+ *
+ * Example 2: retreiving a suite that contains all the test registered with
+ * \link CPPUNIT_TEST_SUITE_NAMED_REGISTRATION() CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ..., "Math" )\endlink.
+ * \code
+ * CppUnit::TestFactoryRegistry &mathRegistry = CppUnit::TestFactoryRegistry::getRegistry( "Math" );
+ * CppUnit::TestSuite *mathSuite = mathRegistry.makeTest();
+ * \endcode
+ *
+ * Example 3: creating a test suite hierarchy composed of unnamed registration and
+ * named registration:
+ * - All Tests
+ *   - tests registered with CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ..., "Graph" )
+ *   - tests registered with CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ..., "Math" )
+ *   - tests registered with CPPUNIT_TEST_SUITE_REGISTRATION
+ *
+ * \code
+ * CppUnit::TestSuite *rootSuite = new CppUnit::TestSuite( "All tests" );
+ * rootSuite->addTest( CppUnit::TestFactoryRegistry::getRegistry( "Graph" ).makeTest() );
+ * rootSuite->addTest( CppUnit::TestFactoryRegistry::getRegistry( "Math" ).makeTest() );
+ * CppUnit::TestFactoryRegistry::getRegistry().addTestToSuite( rootSuite );
+ * \endcode
+ *
+ * The same result can be obtained with:
+ * \code
+ * CppUnit::TestFactoryRegistry &registry = CppUnit::TestFactoryRegistry::getRegistry();
+ * registry.registerFactory( CppUnit::TestFactoryRegistry::getRegistry( "Graph" ) );
+ * registry.registerFactory( CppUnit::TestFactoryRegistry::getRegistry( "Math" ) );
+ * CppUnit::TestSuite *suite = registry.makeTest();
+ * \endcode
+ *
+ * Since a TestFactoryRegistry is a TestFactory, the named registries can be 
+ * registered in the unnamed registry, creating the hierarchy links.
+ *
+ * \see TestSuiteFactory, AutoRegisterSuite
+ * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_SUITE_NAMED_REGISTRATION
  */
 class CPPUNIT_API TestFactoryRegistry : public TestFactory
 {
 public:
   /** Constructs the registry with the specified name.
-   * \param name Name of the registry.
+   * \param name Name of the registry. It is the name of TestSuite returned by
+   *             makeTest().
    */
   TestFactoryRegistry( std::string name = "All Tests" );
 
   /// Destructor.
   virtual ~TestFactoryRegistry();
 
-  /** Makes a suite containing all the registered test.
-   * \return A new suite containing all the registered test.
+  /** Returns a new TestSuite that contains the registered test.
+   * \return A new TestSuite which contains all the test added using 
+   * registerFactory(TestFactory *).
    */
   virtual Test *makeTest();
 
-  /** Returns the registry.
-   * \return Registry.
+  /** Returns unnamed the registry.
+   * TestSuite registered using CPPUNIT_TEST_SUITE_REGISTRATION() are registered 
+   * in this registry.
+   * \return Registry which name is "All Tests".
    */
   static TestFactoryRegistry &getRegistry();
 
   /** Returns a named registry.
+   * TestSuite registered using CPPUNIT_TEST_SUITE_NAMED_REGISTRATION() are registered
+   * in the registry of the same name.
    * \param name Name of the registry to return.
-   * \return Registry. If the registry does not exist, it is created.
+   * \return Registry. If the registry does not exist, it is created with the
+   *         specified name.
    */
   static TestFactoryRegistry &getRegistry( const std::string &name );
 
-  /** Adds the registered test to the specified suite.
-   * \param suite Suite the test are added to.
+  /** Adds the registered tests to the specified suite.
+   * \param suite Suite the tests are added to.
    */
   void addTestToSuite( TestSuite *suite );
 
-  /** Registers a test factory with the specified name.
+  /** Adds the specified TestFactory with a specific name (DEPRECATED).
    * \param name Name associated to the factory.
    * \param factory Factory to register. 
+   * \deprecated Use registerFactory( TestFactory *) instead.
    */
   void registerFactory( const std::string &name,
                         TestFactory *factory );
 
-  /** Registers a test factory using its class name.
+  /** Adds the specified TestFactory to the registry.
+   *
    * \param factory Factory to register. 
    */
   void registerFactory( TestFactory *factory );

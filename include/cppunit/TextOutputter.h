@@ -15,6 +15,7 @@ class TestFailure;
 
 
 /*! \brief Prints a TestResultCollector to a text stream.
+ * \ingroup WritingTestResult
  */
 class CPPUNIT_API TextOutputter : public Outputter
 {

@@ -9,6 +9,7 @@ namespace CppUnit
 
 /*! 
  * \brief TestListener that show the status of each TestCase test result.
+ * \ingroup TrackingTestExecution
  */
 class CPPUNIT_API TextTestProgressListener : public TestListener
 {

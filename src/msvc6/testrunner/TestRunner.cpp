@@ -5,9 +5,18 @@
 // //////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include <msvc6/testrunner/TestRunner.h>
+#include <cppunitui/mfc/TestRunner.h>
+#include <cppunit/TestSuite.h>
 #include "TestRunnerModel.h"
 #include "TestRunnerDlg.h"
+
+
+
+namespace CppUnit
+{
+
+namespace MfcUi
+{
 
 
 TestRunner::TestRunner() :
@@ -70,3 +79,7 @@ TestRunner::getRootTest()
   }
   return m_tests[0];
 }
+
+} // namespace MfcUi
+
+} // namespace CppUnit

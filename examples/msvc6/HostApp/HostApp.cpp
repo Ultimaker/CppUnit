@@ -9,7 +9,7 @@
 #include "HostAppView.h"
 
 // CppUnit: MFC TestRunner
-#include <msvc6/testrunner/TestRunner.h>
+#include <cppunitui/mfc/TestRunner.h>
 // CppUnit: TestFactoryRegistry to retreive the top test suite that contains all registered tests.
 #include <cppunit/extensions/TestFactoryRegistry.h>
  
@@ -108,10 +108,10 @@ BOOL CHostAppApp::InitInstance()
 void 
 CHostAppApp::RunUnitTests()
 {
-  TestRunner  runner;
-  runner.addTest ( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+  CppUnit::MfcUi::TestRunner runner;
+  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
 
-  runner.run ();    
+  runner.run();    
 }
 
 

@@ -13,6 +13,7 @@
 	- Unicode support for MFC test runner.
 	- architecture clean-up: TestResultCollector extracted from TestResult.
 	- architecture clean-up: TestFixture extracted from TestCase.
+	- cookbook and documentation updated.
 
 * New assertion (TestAssert.h):
 
@@ -123,6 +124,9 @@ an example of usage.
   - Methods having fileName, lineNumber as parameter. Usually replaced by
   a similar method that take a SourceLine parameter. Exception and
   TestAssert are impacted.
+
+  - TestRegistryFactory::registerFactory( const std::string &name,
+                                          TestFactory *factory ).
   
     You must define the symbol CPPUNIT_ENABLE_SOURCELINE_DEPRECATED to enable
   old Exception constructor, UNKNOWNFILENAME and UNKNOWNLINENUMBER, as well

@@ -23,9 +23,10 @@ class TestListener;
 #endif
 
 /*! \brief Manages TestListener.
+ * \ingroup TrackingTestExecution
  *
  * A single instance of this class is used when running the test. It is usually
- * created by the test runner (TextTestRunner).
+ * created by the test runner (TestRunner).
  *
  * This class shouldn't have to be inherited from. Use a TestListener
  * or one of its subclasses to be informed of the ongoing tests.

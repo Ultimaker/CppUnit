@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "CppUnitTestApp.h"
 #include "CppUnitTestAppDlg.h"
-#include <msvc6/testrunner/TestRunner.h>
+#include <cppunitui/mfc/TestRunner.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunittest/CppUnitTestSuite.h>
 
@@ -70,7 +70,7 @@ CppUnitTestApp::InitInstance()
 void 
 CppUnitTestApp::RunTests()
 {
-  TestRunner runner;
+  CppUnit::MfcUi::TestRunner runner;
 
   runner.addTest( CppUnitTest::suite() );
 

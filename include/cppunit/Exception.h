@@ -9,6 +9,7 @@
 namespace CppUnit {
 
 /*! \brief Exceptions thrown by failed assertions.
+ * \ingroup BrowsingCollectedTestResult
  *
  * Exception is an exception that serves
  * descriptive strings through its what() method

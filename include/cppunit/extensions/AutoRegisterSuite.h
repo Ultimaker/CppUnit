@@ -9,13 +9,19 @@ namespace CppUnit {
 
   /** Automatically register the test suite of the specified type.
    *
+   * You should not use this class directly. Instead, use the following macros:
+   * - CPPUNIT_TEST_SUITE_REGISTRATION()
+   * - CPPUNIT_TEST_SUITE_NAMED_REGISTRATION()
+   *
    * This object will register the test returned by TestCaseType::suite()
    * when constructed to the test registry.
    *
    * This object is intented to be used as a static variable.
    *
+   *
    * \param TestCaseType Type of the test case which suite is registered.
-   * \see CPPUNIT_TEST_SUITE_REGISTRATION, CppUnit::TestFactoryRegistry.
+   * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_SUITE_NAMED_REGISTRATION
+   * \see CppUnit::TestFactoryRegistry.
    */
   template<typename TestCaseType>
   class AutoRegisterSuite

@@ -15,9 +15,12 @@ namespace CppUnit
 {
   class TestFixture;
 
+  /*! \brief Abstract TestFixture factory.
+   */
   class TestFixtureFactory
   {
   public:
+    //! Creates a new TestFixture instance.
     virtual CppUnit::TestFixture *makeFixture() =0;
   };
 } // namespace CppUnit
@@ -37,6 +40,12 @@ namespace CppUnit
 #endif
 
 
+/*! \addtogroup WritingTestFixture Writing test fixture
+ */
+/** @{
+ */
+
+
 /** \file
  * Macros intended to ease the definition of test suites.
  *
@@ -47,7 +56,7 @@ namespace CppUnit
  *
  * \code
  * #include <cppunit/extensions/HelperMacros.h>
- * class MyTest : public CppUnit::TestCase {
+ * class MyTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( MyTest );
  *   CPPUNIT_TEST( testEquality );
  *   CPPUNIT_TEST( testSetName );
@@ -83,7 +92,7 @@ namespace CppUnit
  *
  * \code
  * template<typename CharType>
- * class StringTest : public CppUnit::Testcase {
+ * class StringTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( StringTest );
  *   CPPUNIT_TEST( testAppend );
  *   CPPUNIT_TEST_SUITE_END();
@@ -101,13 +110,14 @@ namespace CppUnit
  */
 
 
-/** Begin test suite
+/*! \brief Begin test suite
  *
  * This macro starts the declaration of a new test suite.
  * Use CPPUNIT_TEST_SUB_SUITE() instead, if you wish to include the
  * test suite of the parent class.
  *
- * \param ATestFixtureType Type of the test case class.
+ * \param ATestFixtureType Type of the test case class. This type \b MUST
+ *                         be derived from TestFixture.
  * \see CPPUNIT_TEST_SUB_SUITE, CPPUNIT_TEST, CPPUNIT_TEST_SUITE_END, 
  * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_EXCEPTION, CPPUNIT_TEST_FAIL.
  */
@@ -129,7 +139,7 @@ namespace CppUnit
       CppUnit::TestSuiteBuilder<__ThisTestFixtureType> builder( suite );
 
 
-/** Begin test suite (includes parent suite)
+/*! \brief Begin test suite (includes parent suite)
  * 
  * This macro may only be used in a class whose parent class
  * defines a test suite using CPPUNIT_TEST_SUITE() or CPPUNIT_TEST_SUB_SUITE().
@@ -154,7 +164,8 @@ namespace CppUnit
  * };
  * \endcode
  *
- * \param ATestFixtureType Type of the test case class.
+ * \param ATestFixtureType Type of the test case class. This type \b MUST
+ *                         be derived from TestFixture.
  * \param ASuperClass   Type of the parent class.
  * \see CPPUNIT_TEST_SUITE.
  */
@@ -165,7 +176,7 @@ namespace CppUnit
       __ThisSuperClassType::registerTests( suite, factory )
 
 
-/** Add a method to the suite.
+/*! \brief Add a method to the suite.
  * \param testMethod Name of the method of the test case to add to the
  *                   suite. The signature of the method must be of
  *                   type: void testMethod();
@@ -177,13 +188,13 @@ namespace CppUnit
                              (__ThisTestFixtureType*)factory->makeFixture() ) 
 
 
-/*!  Add a test which fail if the specified exception is not caught.
+/*! \brief Add a test which fail if the specified exception is not caught.
  *
  * Example:
  * \code
  * #include <cppunit/extensions/HelperMacros.h>
  * #include <vector>
- * class MyTest : public CppUnit::TestCase {
+ * class MyTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( MyTest );
  *   CPPUNIT_TEST_EXCEPTION( testVectorAtThrow, std::invalid_argument );
  *   CPPUNIT_TEST_SUITE_END();
@@ -206,15 +217,25 @@ namespace CppUnit
                              (__ThisTestFixtureType*)factory->makeFixture(),  \
                              (ExceptionType *)NULL ); 
 
-/*! Add a test which is excepted to fail.
+/*! \brief Adds a test case which is excepted to fail.
  *
- * To use when writing test case for testing utility class.
+ * The added test case expect an assertion to fail. You usually used that type
+ * of test case when testing custom assertion macros.
  *
+ * \code
+ * CPPUNIT_TEST_FAIL( testAssertFalseFail );
+ * 
+ * void testAssertFalseFail()
+ * {
+ *   CPPUNIT_ASSERT( false );
+ * }
+ * \endcode
+ * \see CreatingNewAssertions.
  */
 #define CPPUNIT_TEST_FAIL( testMethod ) \
               CPPUNIT_TEST_EXCEPTION( testMethod, CppUnit::Exception )
 
-/** End declaration of the test suite.
+/*! \brief End declaration of the test suite.
  *
  * After this macro, member access is set to "private".
  *
@@ -235,6 +256,9 @@ namespace CppUnit
   private: /* dummy typedef so that the macro can still end with ';'*/    \
     typedef ThisTestFixtureFactory __ThisTestFixtureFactory                   
 
+/** @}
+ */
+
 #define __CPPUNIT_CONCATENATE_DIRECT( s1, s2 ) s1##s2
 #define __CPPUNIT_CONCATENATE( s1, s2 ) __CPPUNIT_CONCATENATE_DIRECT( s1, s2 )
 
@@ -244,7 +268,8 @@ namespace CppUnit
 #define __CPPUNIT_MAKE_UNIQUE_NAME( str ) __CPPUNIT_CONCATENATE( str, __LINE__ )
 
 
-/** Register test suite into global registry.
+/** Adds the specified fixture suite to the unnamed registry.
+ * \ingroup CreatingTestSuite
  *
  * This macro declares a static variable whose construction
  * causes a test suite factory to be inserted in a global registry
@@ -254,28 +279,49 @@ namespace CppUnit
  * \param ATestFixtureType Type of the test case class.
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
- * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
- *       CppUnit::TestFactoryRegistry.
+ * \see CPPUNIT_TEST_SUITE_NAMED_REGISTRATION
+ * \see CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
+ *      CppUnit::TestFactoryRegistry.
  */
 #define CPPUNIT_TEST_SUITE_REGISTRATION( ATestFixtureType )      \
   static CppUnit::AutoRegisterSuite< ATestFixtureType >          \
              __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
-/** Register test suite into the specified global registry suite.
+/** Adds the specified fixture suite to the specified registry suite.
+ * \ingroup CreatingTestSuite
  *
  * This macro declares a static variable whose construction
  * causes a test suite factory to be inserted in the global registry
  * suite of the specified name. The registry is available by calling
  * the static function CppUnit::TestFactoryRegistry::getRegistry().
  * 
+ * For the suite name, use a string returned by a static function rather
+ * than a hardcoded string. That way, you can know what are the name of
+ * named registry and you don't risk mistyping the registry name.
+ *
+ * \code
+ * // MySuites.h
+ * namespace MySuites {
+ *   std::string math() { 
+ *     return "Math";
+ *   }
+ * }
+ *
+ * // ComplexNumberTest.cpp
+ * #include "MySuites.h"
+ * 
+ * CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ComplexNumberTest, MySuites::math() );
+ * \endcode
+ *
  * \param ATestFixtureType Type of the test case class.
  * \param suiteName Name of the global registry suite the test suite is 
  *                  registered into.
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
- * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
- *       CppUnit::TestFactoryRegistry..
+ * \see CPPUNIT_TEST_SUITE_REGISTRATION
+ * \see CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
+ *      CppUnit::TestFactoryRegistry..
  */
 #define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestFixtureType, suiteName ) \
   static CppUnit::AutoRegisterSuite< ATestFixtureType >                      \

@@ -1,7 +1,6 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/CompilerOutputter.h>
-#include <cppunit/TestResultCollector.h>
-#include <cppunit/TextTestRunner.h>
+#include <cppunitui/text/TestRunner.h>
 #include "CppUnitTestSuite.h"
 
 
@@ -13,7 +12,7 @@ main( int argc, char* argv[] )
   bool selfTest = (argc > 1)  &&  
                   (std::string("-selftest") == argv[1]);
 
-  CppUnit::TextTestRunner runner;
+  CppUnit::TextUi::TestRunner runner;
   runner.addTest( CppUnitTest::suite() );   // Add the top suite to the test runner
 
   if ( selfTest )

@@ -9,31 +9,6 @@
 namespace CppUnit
 {
 
-/** Print TestResult in a compiler compatible format.
- *
- * Note: NEED UPDATE
- *
- * Heres is an example of usage:
- * \code
- * int main( int argc, char* argv[] ) {
- *   bool selfTest = (argc > 1)  &&  
- *                   (std::string("-selftest") == argv[1]);
- *
- *   CppUnit::TextTestRunner runner;
- *   runner.addTest( CppUnitTest::suite() );
- * 
- *   bool wasSucessful = runner.run( "", false, !selfTest );
- *   if ( selfTest )
- *   {  
- *     CppUnit::CompilerOutputter outputter( runner.result(),
- *                                                     std::cerr );
- *     outputter.write();
- *   }
- * 
- *   return wasSucessful ? 0 : 1;
- * }
- * \endcode
- */
 CompilerOutputter::CompilerOutputter( TestResultCollector *result,
                                       std::ostream &stream ) :
     m_result( result ),
@@ -152,7 +127,7 @@ CompilerOutputter::printNotEqualMessage( Exception *thrownException )
   m_stream  <<  std::endl;
   if ( !e->additionalMessage().empty() )
   {
-    m_stream  <<  wrap( "- " + e->additionalMessage() );
+    m_stream  <<  wrap( e->additionalMessage() );
     m_stream  <<  std::endl;
   }
 }

@@ -326,6 +326,10 @@ SOURCE=.\TestRunner.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\..\include\cppunitui\mfc\TestRunner.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\..\include\msvc6\testrunner\TestRunner.h
 # End Source File
 # Begin Source File

@@ -299,43 +299,11 @@ SOURCE=..\..\include\cppunit\TestResultCollector.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestSucessListener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TestSucessListener.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\TextOutputter.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\TextOutputter.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TextTestProgressListener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TextTestProgressListener.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TextTestResult.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TextTestResult.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TextTestRunner.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TextTestRunner.h
 # End Source File
 # Begin Source File
 
@@ -358,10 +326,74 @@ SOURCE="..\..\include\cppunit\config-msvc6.h"
 SOURCE=..\..\include\cppunit\Portability.h
 # End Source File
 # End Group
+# Begin Group "textui"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunitui\text\TestRunner.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestRunner.h
+# End Source File
+# End Group
+# Begin Group "listener"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TestSucessListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestSucessListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TextTestProgressListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestProgressListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TextTestResult.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestResult.h
+# End Source File
+# End Group
+# Begin Group "documentation"
+
+# PROP Default_Filter ""
 # Begin Source File
 
 SOURCE=..\..\ChangeLog
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\doc\cookbook.dox
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\doc\FAQ
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\NEWS
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\doc\other_documentation.dox
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE="..\..\INSTALL-WIN32.txt"
@@ -373,10 +405,6 @@ SOURCE=..\..\include\cppunit\Makefile.am
 # Begin Source File
 
 SOURCE=.\Makefile.am
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\NEWS
 # End Source File
 # End Target
 # End Project

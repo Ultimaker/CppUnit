@@ -7,6 +7,7 @@ namespace CppUnit {
 
 
 /*! \brief Wraps a test case with setUp and tearDown methods.
+ * \ingroup WritingTestFixture
  *
  * A TestFixture is used to provide a common environment for a set
  * of test cases.
@@ -25,7 +26,7 @@ namespace CppUnit {
  * \code
  * class MathTest : public CppUnit::TestFixture {
  * protected:
- *   int m_value1;
+ *   int m_value1, m_value2;
  *
  * public:
  *   MathTest() {}

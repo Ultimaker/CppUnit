@@ -12,10 +12,11 @@
  The %CppUnit project has combined and built on this work.
 
  \section _usage Usage
- Take a look into 
- the %CppUnit <a href="cookbook.html">cookbook</a>.
+ Take a look into the \ref cppunit_cookbook.
  It gives a quick start into using this 
- testing framework.
+ testing framework. <a href="modules.html">Modules</a> give
+ you a organized view of %CppUnit classes.
+
  For a discussion on %CppUnit, check 
  <a href="http://c2.com/cgi/wiki?CppUnit">
  the WikiWiki Pages on CppUnit</a>. There you can also
@@ -35,4 +36,30 @@
  \author Baptiste Lepilleur <gaiacrtn@free.fr>
  \author Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
  \author Steve Robbins <smr99@sourceforge.net>
+ */
+
+
+
+/*! \defgroup WritingTestFixture Writing test fixture
+ */
+
+/*! \defgroup Assertions Making assertions
+ */
+
+/*! \defgroup CreatingTestSuite Creating TestSuite
+ */
+
+/*! \defgroup ExecutingTest Executing test
+ */
+
+/*! \defgroup TrackingTestExecution Tracking test execution
+ */
+
+/*! \defgroup WritingTestResult Writing test result
+ */
+
+/*! \defgroup BrowsingCollectedTestResult Browsing collected test result
+ */
+
+/*! \defgroup CreatingNewAssertions Creating custom assertions
  */

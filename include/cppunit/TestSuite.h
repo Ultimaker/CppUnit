@@ -22,6 +22,7 @@ class TestResult;
 
 
 /*! \brief A Composite of Tests.
+ * \ingroup CreatingTestSuite
  *
  * It runs a collection of test cases. Here is an example.
  * \code

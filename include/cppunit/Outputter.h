@@ -8,6 +8,7 @@ namespace CppUnit
 {
 
 /*! \brief Abstract outputter to print test result summary.
+ * \ingroup WritingTestResult
  */
 class CPPUNIT_API Outputter
 {

@@ -9,6 +9,7 @@ namespace CppUnit
 {
 
 /*! \brief TestListener that checks if any test case failed.
+ * \ingroup TrackingTestExecution
  */
 class CPPUNIT_API TestSucessListener : public TestListener,
                                        public SynchronizedObject

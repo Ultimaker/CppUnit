@@ -18,7 +18,25 @@ namespace CppUnit
   {
 
 /*! 
- * \brief Qt Test Runner.
+ * \brief QT test runner.
+ * \ingroup ExecutingTest
+ *
+ * Here is an example of usage:
+ * \code
+ * #include <cppunit/extensions/TestFactoryRegistry.h>
+ * #include <cppunitui/qt/TestRunner.h>
+ *
+ * [...]
+ *
+ * void 
+ * QDepWindow::runTests()
+ * {
+ *   CppUnit::QtUi::TestRunner runner;
+ *   runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+ *   runner.run( true );
+ * }
+ * \endcode
+ *
  */
 class QTTESTRUNNER_API TestRunner
 {

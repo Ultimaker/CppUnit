@@ -12,16 +12,21 @@
 
 namespace CppUnit {
 
-//! \internal
+/*! \brief Marker class indicating that no exception is expected by TestCaller.
+ * This class is an implementation detail. You should never use this class directly.
+ */
 class CPPUNIT_API NoExceptionExpected
 {
 private:
-    // Nobody must be able to construct an exception of this type.
-    NoExceptionExpected();
+  //! Prevent class instantiation.
+  NoExceptionExpected();
 };
 
 
-//! \internal
+/*! \brief (Implementation) Traits used by TestCaller to expect an exception.
+ *
+ * This class is an implementation detail. You should never use this class directly.
+ */
 template<typename ExceptionType>
 struct ExpectedExceptionTraits
 {
@@ -39,6 +44,11 @@ struct ExpectedExceptionTraits
 };
 
 
+/*! \brief (Implementation) Traits specialization used by TestCaller to 
+ * expect no exception.
+ *
+ * This class is an implementation detail. You should never use this class directly.
+ */
 template<>
 struct ExpectedExceptionTraits<NoExceptionExpected>
 {
@@ -53,6 +63,7 @@ struct ExpectedExceptionTraits<NoExceptionExpected>
 
 
 /*! \brief Generate a test case from a fixture method.
+ * \ingroup WritingTestFixture
  *
  * A test caller provides access to a test case method 
  * on a test fixture class.  Test callers are useful when 

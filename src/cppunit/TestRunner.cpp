@@ -1,17 +1,19 @@
 #include <cppunit/TestSuite.h>
-#include <cppunit/TextTestRunner.h>
 #include <cppunit/TextTestResult.h>
 #include <cppunit/TextOutputter.h>
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/TestResult.h>
+#include <cppunitui/text/TestRunner.h>
 #include <iostream>
 
+
 namespace CppUnit {
+namespace TextUi {
 
 /*! Constructs a new text runner.
  * \param outputter used to print text result. Owned by the runner.
  */
-TextTestRunner::TextTestRunner( Outputter *outputter ) 
+TestRunner::TestRunner( Outputter *outputter ) 
     : m_outputter( outputter )
     , m_suite( new TestSuite( "All Tests" ) )
     , m_result( new TestResultCollector() )
@@ -23,7 +25,7 @@ TextTestRunner::TextTestRunner( Outputter *outputter )
 }
 
 
-TextTestRunner::~TextTestRunner()
+TestRunner::~TestRunner()
 {
   delete m_eventManager;
   delete m_outputter;
@@ -37,7 +39,7 @@ TextTestRunner::~TextTestRunner()
  * \param test Test to add.
  */
 void 
-TextTestRunner::addTest( Test *test )
+TestRunner::addTest( Test *test )
 {
   if ( test != NULL )
     m_suite->addTest( test );
@@ -49,22 +51,22 @@ TextTestRunner::addTest( Test *test )
  * \param testName Name of the test case to run. If an empty is given, then
  *                 all added test are run. The name must be the name of
  *                 of an added test.
- * \param wait if \c true then the user must press the RETURN key 
+ * \param doWait if \c true then the user must press the RETURN key 
  *               before the run() method exit.
- * \param printResult if \c true (default) then the test result are printed
- *                    on the standard output.
- * \param printProgress if \c true (default) then TextTestProgressListener is
- *                      used to show the progress.
+ * \param doPrintResult if \c true (default) then the test result are printed
+ *                      on the standard output.
+ * \param doPrintProgress if \c true (default) then TextTestProgressListener is
+ *                        used to show the progress.
  * \return \c true is the test was successful, \c false if the test
  *         failed or was not found.
  */
 bool
-TextTestRunner::run( std::string testName,
+TestRunner::run( std::string testName,
                      bool doWait,
                      bool doPrintResult,
-                     bool printProgress )
+                     bool doPrintProgress )
 {
-  runTestByName( testName, printProgress );
+  runTestByName( testName, doPrintProgress );
   printResult( doPrintResult );
   wait( doWait );
   return m_result->wasSuccessful();
@@ -72,15 +74,15 @@ TextTestRunner::run( std::string testName,
 
 
 bool
-TextTestRunner::runTestByName( std::string testName,
-                               bool printProgress )
+TestRunner::runTestByName( std::string testName,
+                               bool doPrintProgress )
 {
   if ( testName.empty() )
-    return runTest( m_suite, printProgress );
+    return runTest( m_suite, doPrintProgress );
 
   Test *test = findTestByName( testName );
   if ( test != NULL )
-    return runTest( test, printProgress );
+    return runTest( test, doPrintProgress );
 
   std::cout << "Test " << testName << " not found." << std::endl;
   return false;
@@ -88,7 +90,7 @@ TextTestRunner::runTestByName( std::string testName,
 
 
 void 
-TextTestRunner::wait( bool doWait )
+TestRunner::wait( bool doWait )
 {
   if ( doWait ) 
   {
@@ -99,7 +101,7 @@ TextTestRunner::wait( bool doWait )
 
 
 void 
-TextTestRunner::printResult( bool doPrintResult )
+TestRunner::printResult( bool doPrintResult )
 {
   std::cout << std::endl;
   if ( doPrintResult )
@@ -108,7 +110,7 @@ TextTestRunner::printResult( bool doPrintResult )
 
 
 Test * 
-TextTestRunner::findTestByName( std::string name ) const
+TestRunner::findTestByName( std::string name ) const
 {
   for ( std::vector<Test *>::const_iterator it = m_suite->getTests().begin(); 
         it != m_suite->getTests().end(); 
@@ -123,14 +125,16 @@ TextTestRunner::findTestByName( std::string name ) const
 
 
 bool
-TextTestRunner::runTest( Test *test,
-                         bool printTextProgress )
+TestRunner::runTest( Test *test,
+                         bool doPrintProgress )
 {
   TextTestProgressListener progress;
-  if ( printTextProgress )
+  if ( doPrintProgress )
     m_eventManager->addListener( &progress );
+
   test->run( m_eventManager );
-  if ( printTextProgress )
+
+  if ( doPrintProgress )
     m_eventManager->removeListener( &progress );
   return m_result->wasSuccessful();
 }
@@ -140,7 +144,7 @@ TextTestRunner::runTest( Test *test,
  * Use this after calling run() to access the result of the test run.
  */
 TestResultCollector &
-TextTestRunner::result() const
+TestRunner::result() const
 {
   return *m_result;
 }
@@ -151,7 +155,7 @@ TextTestRunner::result() const
  * test. Use this to register additional TestListener before running the tests.
  */
 TestResult &
-TextTestRunner::eventManager() const
+TestRunner::eventManager() const
 {
   return *m_eventManager;
 }
@@ -164,11 +168,12 @@ TextTestRunner::eventManager() const
  * \see CompilerOutputter, XmlOutputter, TextOutputter.
  */
 void 
-TextTestRunner::setOutputter( Outputter *outputter )
+TestRunner::setOutputter( Outputter *outputter )
 {
   delete m_outputter;
   m_outputter = outputter;
 }
 
 
+} // namespace TextUi
 }  //  namespace CppUnit

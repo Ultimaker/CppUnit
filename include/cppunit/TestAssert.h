@@ -8,6 +8,29 @@
 
 namespace CppUnit {
 
+  /*! \brief Traits used by CPPUNIT_ASSERT_EQUAL().
+   *
+   * Here is an example of specialization of that traits:
+   *
+   * \code
+   * template<>
+   * struct assertion_traits<std::string>   // specialization for the std::string type
+   * {
+   *   static bool equal( const std::string& x, const std::string& y )
+   *   {
+   *     return x == y;
+   *   }
+   * 
+   *   static std::string toString( const std::string& x )
+   *   {
+   *     std::string text = '"' + x + '"';    // adds quote around the string to see whitespace
+   *     OStringStream ost;
+   *     ost << text;
+   *     return ost.str();
+   *   }
+   * };
+   * \endcode
+   */
   template <class T>
   struct assertion_traits 
   {  
@@ -86,24 +109,28 @@ namespace CppUnit {
   }
 
 
-/** A set of macros which allow us to get the line number
+/* A set of macros which allow us to get the line number
  * and file name at the point of an error.
  * Just goes to show that preprocessors do have some
  * redeeming qualities.
  */
 #if CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION
-#  define CPPUNIT_ASSERT(condition)                        \
+/** Assertions that a condition is \c true.
+ * \ingroup Assertions
+ */
+#define CPPUNIT_ASSERT(condition)                          \
   ( ::CppUnit::Asserter::failIf( !(condition),             \
                                  (#condition),             \
                                  CPPUNIT_SOURCELINE() ) )
 #else
-#  define CPPUNIT_ASSERT(condition)                        \
+#define CPPUNIT_ASSERT(condition)                          \
   ( ::CppUnit::Asserter::failIf( !(condition),             \
                                  "",                       \
                                  CPPUNIT_SOURCELINE() ) )
 #endif
 
 /** Assertion with a user specified message.
+ * \ingroup Assertions
  * \param message Message reported in diagnostic if \a condition evaluates
  *                to \c false.
  * \param condition If this condition evaluates to \c false then the
@@ -114,7 +141,8 @@ namespace CppUnit {
                                  (message),                \
                                  CPPUNIT_SOURCELINE() ) )
 
-/** Failure with a user specified message.
+/** Fails with the specified message.
+ * \ingroup Assertions
  * \param message Message reported in diagnostic.
  */
 #define CPPUNIT_FAIL( message )                            \
@@ -123,19 +151,50 @@ namespace CppUnit {
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 /// Generalized macro for primitive value comparisons
-/** Equality and string representation can be defined with
- * an appropriate assertion_traits class.
- * A diagnostic is printed if actual and expected values disagree.
- */
 #define CPPUNIT_ASSERT_EQUAL(expected,actual)                    \
   ( ::CppUnit::TestAssert::assertEquals( (expected),             \
                                          (actual),               \
                                          __LINE__, __FILE__ ) )
 #else
+/** Asserts that two values are equals.
+ * \ingroup Assertions
+ *
+ * Equality and string representation can be defined with
+ * an appropriate CppUnit::assertion_traits class.
+ *
+ * A diagnostic is printed if actual and expected values disagree.
+ *
+ * Requirement for \a expected and \a actual parameters:
+ * - They are exactly of the same type
+ * - They are serializable into a std::strstream using operator <<.
+ * - They can be compared using operator ==. 
+ *
+ * The last two requirements (serialization and comparison) can be
+ * removed by specializing the CppUnit::assertion_traits.
+ */
 #define CPPUNIT_ASSERT_EQUAL(expected,actual)                     \
   ( ::CppUnit::TestAssert::assertEquals( (expected),              \
                                          (actual),                \
                                          CPPUNIT_SOURCELINE() ) )
+
+/** Asserts that two values are equals, provides additional messafe on failure.
+ * \ingroup Assertions
+ *
+ * Equality and string representation can be defined with
+ * an appropriate assertion_traits class.
+ *
+ * A diagnostic is printed if actual and expected values disagree.
+ * The message is printed in addition to the expected and actual value
+ * to provide additional information.
+ *
+ * Requirement for \a expected and \a actual parameters:
+ * - They are exactly of the same type
+ * - They are serializable into a std::strstream using operator <<.
+ * - They can be compared using operator ==. 
+ *
+ * The last two requirements (serialization and comparison) can be
+ * removed by specializing the CppUnit::assertion_traits.
+ */
 #define CPPUNIT_ASSERT_EQUAL_MESSAGE(expected,actual,message)     \
   ( ::CppUnit::TestAssert::assertEquals( (expected),              \
                                          (actual),                \
@@ -143,7 +202,9 @@ namespace CppUnit {
                                          (message) ) )
 #endif
 
-/// Macro for primitive value comparisons
+/*! \brief Macro for primitive value comparisons
+ * \ingroup Assertions
+ */
 #define CPPUNIT_ASSERT_DOUBLES_EQUAL(expected,actual,delta)       \
   ( ::CppUnit::TestAssert::assertDoubleEquals( (expected),        \
                                                (actual),          \

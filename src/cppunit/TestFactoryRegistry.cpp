@@ -10,7 +10,7 @@
 
 namespace CppUnit {
 
-/** This class manages all the TestFactoryRegistry.
+/** (Implementation) This class manages all the TestFactoryRegistry.
  *
  * Responsible for the life-cycle of the TestFactoryRegistry.
  * 

@@ -12,6 +12,7 @@ class TestFailure;
 
 
 /*! \brief Listener for test progress and result.
+ * \ingroup TrackingTestExecution
  *
  * Implementing the Observer pattern a TestListener may be registered
  * to a TestResult to obtain information on the testing progress. Use

@@ -11,7 +11,8 @@ class SourceLine;
 class Test;
 
 
-/*! \brief Record of a failed test execution.
+/*! \brief Record of a failed Test execution.
+ * \ingroup BrowsingCollectedTestResult
  *
  * A TestFailure collects a failed test together with
  * the caught exception.

@@ -12,10 +12,11 @@
 
 namespace CppUnit {
 
-  /*! \brief Helper to add test to a TestSuite.
+  /*! \brief Helper to add tests to a TestSuite.
+   * \ingroup WritingTestFixture
    *
-   * All test added to the TestSuite are prefixed by TestSuite name. The resulting
-   * Test name has the following pattern:
+   * All tests added to the TestSuite are prefixed by TestSuite name. The resulting
+   * TestCase name has the following pattern:
    *
    * MyTestSuiteName.myTestName
    */

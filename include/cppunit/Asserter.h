@@ -9,6 +9,7 @@ namespace CppUnit
 {
 
 /*! \brief A set of functions to help writing assertion macros.
+ * \ingroup CreatingNewAssertions
  *
  * Here is an example of assertion, a simplified version of the
  * actual assertion implemented in examples/cppunittest/XmlUniformiser.h:
@@ -49,6 +50,8 @@ namespace Asserter
   /*! Throws a Exception with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
    *                   nothing happen.
+   * \param message Message explaining the assertion failiure.
+   * \param sourceLine Location of the assertion.
    */
   void CPPUNIT_API failIf( bool shouldFail, 
                            std::string message, 
@@ -59,6 +62,7 @@ namespace Asserter
    * \param actual Text describing the actual value.
    * \param additionalMessage Additional message. Usually used to report
    *                          where the "difference" is located.
+   * \param sourceLine Location of the assertion.
    */
   void CPPUNIT_API failNotEqual( std::string expected, 
                                  std::string actual, 
@@ -68,6 +72,11 @@ namespace Asserter
   /*! Throws a NotEqualException with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
    *                   nothing happen.
+   * \param expected Text describing the expected value.
+   * \param actual Text describing the actual value.
+   * \param additionalMessage Additional message. Usually used to report
+   *                          where the "difference" is located.
+   * \param sourceLine Location of the assertion.
    */
   void CPPUNIT_API failNotEqualIf( bool shouldFail,
                                    std::string expected, 

@@ -7,6 +7,7 @@
 namespace CppUnit {
 
 /*! \brief Exception thrown by failed equality assertions.
+ * \ingroup BrowsingCollectedTestResult
  */
 class CPPUNIT_API NotEqualException : public Exception
 {

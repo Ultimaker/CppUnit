@@ -314,14 +314,6 @@ SOURCE=..\..\include\cppunit\TextTestResult.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TextTestRunner.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TextTestRunner.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\XmlOutputter.cpp
 # End Source File
 # Begin Source File
@@ -339,6 +331,22 @@ SOURCE="..\..\include\cppunit\config-msvc6.h"
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\Portability.h
+# End Source File
+# End Group
+# Begin Group "textui"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunitui\text\TestRunner.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestRunner.h
 # End Source File
 # End Group
 # Begin Source File

@@ -25,11 +25,15 @@ class TestResultCollector;
 
 
 /*! \brief Outputs a TestResultCollector in XML format.
+ * \ingroup WritingTestResult
  */
 class CPPUNIT_API XmlOutputter : public Outputter
 {
 public:
   /*! Constructs a XmlOutputter object.
+   * \param result Result of the test run.
+   * \param stream Stream used to output the XML output.
+   * \param encoding Encoding used in the XML file (default is Latin-1). 
    */
   XmlOutputter( TestResultCollector *result,
                 std::ostream &stream,
@@ -38,13 +42,10 @@ public:
   /// Destructor.
   virtual ~XmlOutputter();
 
-  /*! Writes the specified result as an XML document in the specified stream.
+  /*! Writes the specified result as an XML document to the stream.
    *
    * Refer to examples/cppunittest/XmlOutputterTest.cpp for example
    * of use and XML document structure.
-   *
-   * \param result TestResult to write.
-   * \param stream Output stream the result are wrote into.
    */
   virtual void write();
 

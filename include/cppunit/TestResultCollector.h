@@ -23,6 +23,9 @@ namespace CppUnit
 
 
 /*! \brief Collects test result.
+ * \ingroup WritingTestResult
+ * \ingroup BrowsingCollectedTestResult
+ * 
  * A TestResultCollector is a TestListener which collects the results of executing 
  * a test case. It is an instance of the Collecting Parameter pattern.
  *
