@@ -100,7 +100,7 @@ XmlOutputter::addFailedTests( FailedTests &failedTests,
   rootNode->addElement( testsNode );
 
   const TestResultCollector::Tests &tests = m_result->tests();
-  for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
+  for ( unsigned int testNumber = 0; testNumber < tests.size(); ++testNumber )
   {
     Test *test = tests[testNumber];
     if ( failedTests.find( test ) != failedTests.end() )
@@ -117,7 +117,7 @@ XmlOutputter::addSuccessfulTests( FailedTests &failedTests,
   rootNode->addElement( testsNode );
 
   const TestResultCollector::Tests &tests = m_result->tests();
-  for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
+  for ( unsigned int testNumber = 0; testNumber < tests.size(); ++testNumber )
   {
     Test *test = tests[testNumber];
     if ( failedTests.find( test ) == failedTests.end() )

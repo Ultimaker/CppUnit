@@ -41,7 +41,7 @@ CPPUNIT_NS_BEGIN
  *
  */ 
 template<class ExpectedException>
-class CPPUNIT_API ExceptionTestCaseDecorator : public TestCaseDecorator
+class ExceptionTestCaseDecorator : public TestCaseDecorator
 {
 public:
   typedef ExpectedException ExpectedExceptionType;

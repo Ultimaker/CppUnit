@@ -60,7 +60,7 @@ StringTools::wrap( const std::string &text,
       wrapped += lineBreak;
 
     const std::string &line = *it;
-    int index =0;
+    unsigned int index =0;
     while ( index < line.length() )
     {
       std::string lineSlice( line.substr( index, wrapColumn ) );

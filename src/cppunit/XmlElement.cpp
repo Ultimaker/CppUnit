@@ -193,7 +193,7 @@ std::string
 XmlElement::escape( std::string value ) const
 {
   std::string escaped;
-  for ( int index =0; index < value.length(); ++index )
+  for ( unsigned int index =0; index < value.length(); ++index )
   {
     char c = value[index ];
     switch ( c )    // escape all predefined XML entity (safe?)

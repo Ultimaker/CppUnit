@@ -48,7 +48,7 @@ TestPath::TestPath( Test *searchRoot,
   Test *parentTest = findActualRoot( searchRoot, pathAsString, testNames );
   add( parentTest );
 
-  for ( int index = 1; index < testNames.size(); ++index )
+  for ( unsigned int index = 1; index < testNames.size(); ++index )
   {
     bool childFound = false;
     for ( int childIndex =0; childIndex < parentTest->getChildTestCount(); ++childIndex )

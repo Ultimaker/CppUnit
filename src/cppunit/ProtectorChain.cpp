@@ -76,7 +76,7 @@ ProtectorChain::protect( const Functor &functor,
   const Functor &outermostFunctor = *functors.back();
   bool succeed = outermostFunctor();
 
-  for ( int deletingIndex = 0; deletingIndex < m_protectors.size(); ++deletingIndex )
+  for ( unsigned int deletingIndex = 0; deletingIndex < m_protectors.size(); ++deletingIndex )
     delete functors[deletingIndex];
 
   return succeed;

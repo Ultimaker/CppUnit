@@ -97,7 +97,7 @@ CompilerOutputter::printFailureLocation( SourceLine sourceLine )
   }
 
   std::string location;
-  for ( int index = 0; index < m_locationFormat.length(); ++index )
+  for ( unsigned int index = 0; index < m_locationFormat.length(); ++index )
   {
     char c = m_locationFormat[ index ];
     if ( c == '%'  &&  ( index+1 < m_locationFormat.length() ) )
