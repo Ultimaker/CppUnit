@@ -20,6 +20,7 @@ dist-hook:
 	cp -dpR include/msvc6 $(distdir)/include 
 	cp -dpR examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf
+	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'`
 
 .PHONY: release snapshot rpm docs doc-dist
 
