@@ -64,7 +64,7 @@ XmlOutputter::setRootNode()
   XmlElement *rootNode = new XmlElement( "TestRun" );
   m_xml->setRootElement( rootNode );
 
-  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+  for ( Hooks::iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
     (*it)->beginDocument( m_xml );
 
   FailedTests failedTests;
@@ -74,7 +74,7 @@ XmlOutputter::setRootNode()
   addSuccessfulTests( failedTests, rootNode );
   addStatistics( rootNode );
 
-  for ( Hooks::const_iterator itEnd = m_hooks.begin(); itEnd != m_hooks.end(); ++itEnd )
+  for ( Hooks::iterator itEnd = m_hooks.begin(); itEnd != m_hooks.end(); ++itEnd )
     (*itEnd)->endDocument( m_xml );
 }
 
@@ -87,7 +87,7 @@ XmlOutputter::fillFailedTestsMap( FailedTests &failedTests )
   while ( itFailure != failures.end() )
   {
     TestFailure *failure = *itFailure++;
-    failedTests.insert( std::make_pair(failure->failedTest(), failure ) );
+    failedTests.insert( std::pair<Test* const, TestFailure*>(failure->failedTest(), failure ) );
   }
 }
 
@@ -137,7 +137,7 @@ XmlOutputter::addStatistics( XmlElement *rootNode )
   statisticsElement->addElement( new XmlElement( "Errors", m_result->testErrors() ) );
   statisticsElement->addElement( new XmlElement( "Failures", m_result->testFailures() ) );
 
-  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+  for ( Hooks::iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
     (*it)->statisticsAdded( m_xml, statisticsElement );
 }
 
@@ -163,7 +163,7 @@ XmlOutputter::addFailedTest( Test *test,
 
   testElement->addElement( new XmlElement( "Message", thrownException->what() ) );
 
-  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+  for ( Hooks::iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
     (*it)->failTestAdded( m_xml, testElement, test, failure );
 }
 
@@ -190,7 +190,7 @@ XmlOutputter::addSuccessfulTest( Test *test,
   testElement->addAttribute( "id", testNumber );
   testElement->addElement( new XmlElement( "Name", test->getName() ) );
 
-  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+  for ( Hooks::iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
     (*it)->successfulTestAdded( m_xml, testElement, test );
 }
 
