@@ -1,5 +1,5 @@
-#include "TestSuite.h"
-#include "TestResult.h"
+#include "cppunit/TestSuite.h"
+#include "cppunit/TestResult.h"
 
 namespace CppUnit {
 

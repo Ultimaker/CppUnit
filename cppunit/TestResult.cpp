@@ -1,4 +1,4 @@
-#include "TestResult.h"
+#include "cppunit/TestResult.h"
 
 namespace CppUnit {
 

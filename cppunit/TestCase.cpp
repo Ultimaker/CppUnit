@@ -1,12 +1,12 @@
-#include "TestCase.h"
-#include "Exception.h"
-#include "TestResult.h"
-#include "estring.h"
-#include "TestRegistry.h"
-
 #include <typeinfo>
 #include <stdexcept>
 #include <cmath>
+
+#include "cppunit/TestCase.h"
+#include "cppunit/Exception.h"
+#include "cppunit/TestResult.h"
+#include "cppunit/TestRegistry.h"
+#include "estring.h"
 
 namespace CppUnit {
 

@@ -1,10 +1,10 @@
 if DOC
-SUBDIRS = cppunit examples doc
+SUBDIRS = cppunit include examples doc
 else
-SUBDIRS = cppunit examples 
+SUBDIRS = cppunit include examples 
 endif
 
-DIST_SUBDIRS = cppunit examples doc
+DIST_SUBDIRS = cppunit include examples doc
 
 bin_SCRIPTS = cppunit-config
 

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "TextTestResult.h"
-#include "Exception.h"
+#include "cppunit/TextTestResult.h"
+#include "cppunit/Exception.h"
+#include "cppunit/Test.h"
 #include "estring.h"
-#include "Test.h"
 
 namespace CppUnit {
 

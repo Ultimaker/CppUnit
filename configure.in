@@ -33,7 +33,7 @@ AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
 AC_SUBST(LT_AGE)
 
-AM_CONFIG_HEADER(config.h)
+AM_CONFIG_HEADER(include/config.h)
 AM_INIT_AUTOMAKE(cppunit, $CPPUNIT_VERSION)
 
 # General "with" options
@@ -100,6 +100,8 @@ AC_OUTPUT([
   cppunit.spec
   cppunit-config
   cppunit/Makefile
+  include/Makefile
+  include/cppunit/Makefile
   doc/Makefile
   doc/Doxyfile
   examples/Makefile

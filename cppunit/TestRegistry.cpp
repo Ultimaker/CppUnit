@@ -1,5 +1,5 @@
-#include "TestRegistry.h"
-#include "Test.h"
+#include "cppunit/TestRegistry.h"
+#include "cppunit/Test.h"
 
 //using namespace std;
 
