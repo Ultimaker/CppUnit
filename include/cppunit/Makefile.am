@@ -5,8 +5,6 @@ DISTCLEANFILES = config-auto.h
 libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
 	config-auto.h \
-	config-msvc6.h \
-	config-bcb5.h \
 	Asserter.h \
 	CompilerOutputter.h \
 	Exception.h \
