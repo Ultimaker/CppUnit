@@ -2,9 +2,12 @@ SUBDIRS = extensions
 
 libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
-	config.h \
+	config-auto.h \
+	config-msvc6.h \
+	config-bcb5.h \
 	Exception.h \
 	NotEqualException.h \
+	Portability.h \
 	Test.h \
 	TestAssert.h \
 	TestCaller.h \
@@ -16,4 +19,7 @@ libcppunitinclude_HEADERS =  \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h
+
+dist-hook:
+	rm -f $(distdir)/config-auto.h
 
