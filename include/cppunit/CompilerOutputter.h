@@ -15,8 +15,8 @@ class Test;
 class TestFailure;
 class TestResultCollector;
 
-/*! \class CompilerOutputter
- * \brief This class implements output test result in a compiler compatible format.
+/*! 
+ * \brief Outputs test results in a compiler compatible format.
  */
 class CPPUNIT_API CompilerOutputter : public Outputter
 {

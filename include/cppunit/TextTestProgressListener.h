@@ -7,8 +7,8 @@
 namespace CppUnit
 {
 
-/*! \class TextTestProgressListener
- * \brief This class represents
+/*! 
+ * \brief TestListener that show the status of each TestCase test result.
  */
 class CPPUNIT_API TextTestProgressListener : public TestListener
 {

@@ -1,6 +1,40 @@
 2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-    * configure.in: bumped version to 1.7.7
+	* include/cppunit/makefile.am: removed TestRegistry.h
+	
+	* include/cppunit/TestRegistry.h: removed. Obsolete, replaced by 
+	TestFactoryRegistry.
+
+	* src/cppunit/makefile.am: removed TestRegistry.cpp. Added cppunit_dll.dsp.
+
+	* include/cppunit/CompilerOutputter.h:
+	* include/cppunit/NotEqualException.h:
+	* include/cppunit/SynchronizedObject.h:
+	* include/cppunit/TestFixture.h:
+	* include/cppunit/TestListener.h:
+	* include/cppunit/TestResult.h:
+	* include/cppunit/TestSucessListener.h:
+	* include/cppunit/TextOutputter.h:
+	* include/cppunit/TextTestProgressListener.h:
+	* include/cppunit/TextTestResult.h:
+	* include/cppunit/XmlOutputter.h:
+	* include/cppunit/extensions/TestFactory.h:
+	* include/cppunit/extensions/TestFactoryRegistry.h:
+	* include/cppunit/extensions/TestSuiteBuilder.h:
+	* include/cppunit/extensions/TestSuiteFactory.h: minor doc update.
+
+	* include/cppunit/TestFixture.h: added DLL export.
+
+	* include/cppunit/msvc6/TestPlugInInterface.h: updated doc. Added automatic
+	exportation of TestPlugIn publishing function.
+
+	* src/cppunit/TestCase.cpp:
+	* include/cppunit/TestCase.h: inherits setUp() and tearDown() from 
+	class TestFixture.
+
+2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* configure.in: bumped version to 1.7.7
 
 2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
@@ -11,7 +45,8 @@
 	* include/cppunit/TestResultCollector.h
 	* include/cppunit/TestSuite.h
 	* include/cppunit/TextTestRunner.h
-	* include/cppunit/XmlOutputter.h: removed warning when compiling CppUnit as DLL.
+	* include/cppunit/XmlOutputter.h: removed warning when compiling CppUnit 
+	as DLL.
 
 	* src/cppunit/DllMain.cpp: added some defines to speed up compilation a bit.
 
@@ -44,13 +79,13 @@
 
 	* INSTALL-WIN32.txt: added some info to build cppunit as a DLL.
 
-	* include/cppunit/config-msvc6.h: added definition of macro CPPUNIT_API when
-	building or linking DLL. Defined CPPUNIT_BUILD_DLL when building, and
+	* include/cppunit/config-msvc6.h: added definition of macro CPPUNIT_API 
+	when building or linking DLL. Defined CPPUNIT_BUILD_DLL when building, and
 	CPPUNIT_DLL when linking.
 
-	* include/cppunit/Portability.h: added empty definition of macro CPPUNIT_API
-	when not building or using CppUnit as a DLL. When any of those symbol is defined,
-	the symbol CPPUNIT_NEED_DLL_DECL is set to 1.
+	* include/cppunit/Portability.h: added empty definition of macro 
+	CPPUNIT_API when not building or using CppUnit as a DLL. When any of 
+	those symbol is defined, the symbol CPPUNIT_NEED_DLL_DECL is set to 1.
 
 	* include/cppunit/extensions/RepeatedTest.h:
 	* include/cppunit/extensions/TestDecorator.h:
@@ -85,15 +120,15 @@
 	* src/cppunit/TestSuite.cpp: reindented
 
 	* include/cppunit/extensions/TestSetUp.h:
-	* src/cppunit/TestSetUp.cpp: added .cpp. extracted inline method and moved them
-	to cpp file.
+	* src/cppunit/TestSetUp.cpp: added .cpp. extracted inline method and moved
+	them to cpp file.
 
 	* src/cppunit/DllMain.cpp: added, contains Dll entry point.
 
 2002-03-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* src/cppunit/TextTestProgressListener.cpp: flush the stream after each progess 
-	step.
+	* src/cppunit/TextTestProgressListener.cpp: flush the stream after each
+	progess step.
 
 2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
@@ -102,7 +137,8 @@
 2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/makefile.am:
-	* src/cppunit/makefile.am: added missing SynchronizedObject and TextOutputter.h.
+	* src/cppunit/makefile.am: added missing SynchronizedObject and 
+	TextOutputter.h.
 
 	* generated 1.7.3 tar ball.
 
@@ -132,18 +168,20 @@
 	* include/cppunit/TestAssert.h: added macro CPPUNIT_ASSERT_EQUAL_MESSAGE.
 
 	* src/cppunit/TestFailure.cpp:
-	* include/cppunit/TestFailure.h: added method clone() to duplicate a failure. Made
-	all method virtual.
+	* include/cppunit/TestFailure.h: added method clone() to duplicate a 
+	failure. Made all method virtual.
 
 	* include/cppunit/TestListener.h: changed signature of addFailure() to
-	addFailure( const TestFailure &failure ). Failure is now only a temporary object.
+	addFailure( const TestFailure &failure ). Failure is now only a temporary
+	object.
 
-	* include/cppunit/Outputter.h: added. Abstract base class for all outputter. Used
-	by TextTestRunner.
+	* include/cppunit/Outputter.h: added. Abstract base class for all 
+	outputter. Used by TextTestRunner.
 
 	* include/cppunit/SynchronizedObject.h:
-	* src/cppunit/SynchronizedObject.cpp: added. Class extracted from TestResult.
-	Base class for objects that can be accessed from different threads.
+	* src/cppunit/SynchronizedObject.cpp: added. Class extracted from 
+	TestResult. Base class for objects that can be accessed from different
+	threads.
 
 	* include/cppunit/TestResult.h: TestFailure.h is no longer included.
 
@@ -185,11 +223,12 @@
 	Changed TestResult to TestResultCollector.
 
 	* src/msvc6/TestRunnerDlg.h:
-	* src/msvc6/TestRunnerDlg.cpp: fixed the 'fullrowselect' feature of the list view.
-	The dialog is a TestListener itself, it no longer use the GUITestResult class.
+	* src/msvc6/TestRunnerDlg.cpp: fixed the 'fullrowselect' feature of the 
+	list view. The dialog is a TestListener itself, it no longer use the 
+	GUITestResult class.
 
-	* src/msvc6/TestRunner.rc: moved the "autorun test button" in such a way that it
-	did not overlap the progress bar anymore.
+	* src/msvc6/TestRunner.rc: moved the "autorun test button" in such a way that
+	it did not overlap the progress bar anymore.
 
 	* src/msvc6/MfcSynchronizationObject.h: added. Generic SynchronizedObject
 	lock for MFC.
@@ -198,8 +237,8 @@
 	* src/msvc6/GUITestResult.cpp : removed.
 
 	* src/qttestrunner/TestRunnerModel.h:
-	* src/qttestrunner/TestRunnerModel.cpp: changed addFailure() signature to reflect
-	change on TestListener.
+	* src/qttestrunner/TestRunnerModel.cpp: changed addFailure() signature to
+	reflect change on TestListener.
 
 	* examples/cppunittest/CppUnitTestMain.cpp: updated to use the new Outputter 
 	abstraction and TextTestRunner facilities.

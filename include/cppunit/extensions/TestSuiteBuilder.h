@@ -12,6 +12,13 @@
 
 namespace CppUnit {
 
+  /*! \brief Helper to add test to a TestSuite.
+   *
+   * All test added to the TestSuite are prefixed by TestSuite name. The resulting
+   * Test name has the following pattern:
+   *
+   * MyTestSuiteName.myTestName
+   */
   template<typename Fixture>
   class TestSuiteBuilder
   {

@@ -7,14 +7,14 @@ namespace CppUnit {
 
 class Test;
 
-/** This class represents an abstract Test factory.
+/*! \brief Abstract Test factory.
  */
 class CPPUNIT_API TestFactory 
 {
 public:
   virtual ~TestFactory() {}
 
-  /** Makes a new test.
+  /*! Makes a new test.
    * \return A new Test.
    */
   virtual Test* makeTest() = 0;

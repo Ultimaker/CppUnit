@@ -7,6 +7,9 @@ namespace CppUnit {
 
   class Test;
 
+  /*! \brief TestFactory for TestFixture that implements a static suite() method.
+   * \see AutoRegisterSuite.
+   */
   template<typename TestCaseType>
   class TestSuiteFactory : public TestFactory
   {

@@ -21,9 +21,9 @@ class TestSuite;
 #endif
 
 
-/** This class implements a registry for test factory.
+/*! \brief Registry for test factory.
  *
- * Note that the registry assume lifetime control for any registered test.
+ * Notes that the registry assumes lifetime control for any registered test.
  */
 class CPPUNIT_API TestFactoryRegistry : public TestFactory
 {

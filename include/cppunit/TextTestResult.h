@@ -11,7 +11,7 @@ class SourceLine;
 class Exception;
 class Test;
 
-/*! Holds printable test result (DEPRECATED).
+/*! \brief Holds printable test result (DEPRECATED).
  * 
  * Use class TextTestProgressListener and TextOutputter instead.
  */

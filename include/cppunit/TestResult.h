@@ -22,9 +22,7 @@ class TestListener;
   template class CPPUNIT_API std::deque<TestListener *>;
 #endif
 
-/**
- * A TestResult collects the results of executing a test case. It is an 
- * instance of the Collecting Parameter pattern.
+/*! Manages TestListener.
  *
  * FIXME: NEED UPDATE (main responsibilty is to act as an event manager)
  *
@@ -33,11 +31,11 @@ class TestListener;
  * unanticipated problems signified by exceptions that are not generated
  * by the framework.
  *
- * TestResult supplies a template method 'setSynchronizationObject ()'
+ * TestResult supplies a template method 'setSynchronizationObject()'
  * so that subclasses can provide mutual exclusion in the face of multiple
  * threads.  This can be useful when tests execute in one thread and
  * they fill a subclass of TestResult which effects change in another 
- * thread.  To have mutual exclusion, override setSynchronizationObject ()
+ * thread.  To have mutual exclusion, override setSynchronizationObject()
  * and make sure that you create an instance of ExclusiveZone at the 
  * beginning of each method.
  *

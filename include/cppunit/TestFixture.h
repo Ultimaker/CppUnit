@@ -1,26 +1,27 @@
 #ifndef CPPUNIT_TESTFIXTURE_H    // -*- C++ -*-
 #define CPPUNIT_TESTFIXTURE_H
 
+#include <cppunit/Portability.h>
 
 namespace CppUnit {
 
 
-/*! Wrap a test case with setUp and tearDown methods.
+/*! \brief Wraps a test case with setUp and tearDown methods.
  *
  * A TestFixture is used to provide a common environment for a set
  * of test cases.
  *
  */
-class TestFixture
+class CPPUNIT_API TestFixture
 {
 public:
-    virtual ~TestFixture() {};
+  virtual ~TestFixture() {};
 
-    //! \brief Set up context before running a test.
-    virtual void setUp() {};
+  //! \brief Set up context before running a test.
+  virtual void setUp() {};
 
-    //! Clean up after the test run.
-    virtual void tearDown() {};
+  //! Clean up after the test run.
+  virtual void tearDown() {};
 };
 
 

@@ -63,6 +63,30 @@ Package=<4>
 
 ###############################################################################
 
+Project: "TestPlugIn"=.\msvc6\TestPlugIn\TestPlugIn.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TestPlugInRunner"=..\src\msvc6\testpluginrunner\TestPlugInRunner.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "TestRunner"=..\src\msvc6\testrunner\TestRunner.dsp - Package Owner=<4>
 
 Package=<5>

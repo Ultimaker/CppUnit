@@ -250,6 +250,10 @@ SOURCE=..\..\include\cppunit\TestFailure.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\TestFixture.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\TestListener.h
 # End Source File
 # Begin Source File

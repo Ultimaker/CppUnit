@@ -4,6 +4,7 @@
 #include <cppunit/Portability.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestAssert.h>
+#include <cppunit/TestFixture.h>
 #include <string>
 
 
@@ -88,8 +89,8 @@ class TestResult;
  * \see TestCaller
  *
  */
-
-class CPPUNIT_API TestCase : public Test
+class CPPUNIT_API TestCase : public Test,
+                             public TestFixture
 {
 public:
 
@@ -105,11 +106,6 @@ public:
 
     //! FIXME: what is this for?
     virtual TestResult *run();
-
-    // FIXME: move back to class TestFixture, in future.
-    virtual void setUp();
-    virtual void tearDown();
- 
     
 protected:
     //! FIXME: this should probably be pure virtual.

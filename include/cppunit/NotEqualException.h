@@ -6,10 +6,18 @@
 
 namespace CppUnit {
 
-
+/*! \brief Exception thrown by failed equality assertions.
+ */
 class CPPUNIT_API NotEqualException : public Exception
 {
 public:
+  /*! Constructs the exception.
+   * \param expected Text that represents the expected value.
+   * \param actual Text that represents the actual value.
+   * \param sourceLine Location of the assertion.
+   * \param additionalMessage Additionnal information provided to further qualify
+   *                          the inequality.
+   */
   NotEqualException( std::string expected,
                      std::string actual, 
                      SourceLine sourceLine = SourceLine(),

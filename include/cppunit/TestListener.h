@@ -11,7 +11,9 @@ class Test;
 class TestFailure;
 
 
-/*! TestListener is the interface implemented by classes which want to be notified
+/*! \brief Listener for test progress and result.
+ *
+ * TestListener is the interface implemented by classes which want to be notified
  * of the progress and result of a test run.
  *
  * \see TestResult

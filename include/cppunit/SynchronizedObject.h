@@ -7,7 +7,7 @@
 namespace CppUnit
 {
 
-/*! Base class for synchronized object.
+/*! \brief Base class for synchronized object.
  *
  * Synchronized object are object which members are used concurrently by mutiple
  * threads.*

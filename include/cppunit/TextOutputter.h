@@ -14,7 +14,7 @@ class TestResultCollector;
 class TestFailure;
 
 
-/*! Print a TestResultCollector in text format.
+/*! \brief Prints a TestResultCollector to a text stream.
  */
 class CPPUNIT_API TextOutputter : public Outputter
 {

@@ -8,7 +8,7 @@
 namespace CppUnit
 {
 
-/*! A TestSucessListener is a TestListener which check if any test case failed.
+/*! \brief TestListener that checks if any test case failed.
  */
 class CPPUNIT_API TestSucessListener : public TestListener,
                                        public SynchronizedObject

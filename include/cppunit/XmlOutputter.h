@@ -24,7 +24,7 @@ class TestFailure;
 class TestResultCollector;
 
 
-/*! Outputs a TestResultCollector in XML format.
+/*! \brief Outputs a TestResultCollector in XML format.
  */
 class CPPUNIT_API XmlOutputter : public Outputter
 {
@@ -38,7 +38,7 @@ public:
   /// Destructor.
   virtual ~XmlOutputter();
 
-  /*! Write the specified result as an XML document in the specified stream.
+  /*! Writes the specified result as an XML document in the specified stream.
    *
    * Refer to examples/cppunittest/XmlOutputterTest.cpp for example
    * of use and XML document structure.
@@ -48,7 +48,7 @@ public:
    */
   virtual void write();
 
-  /*! This class represents an XML Element.
+  /*! \brief An XML Element.
    * \warning This class will probably be replaced with an abstract
    * builder in future version.
    */
