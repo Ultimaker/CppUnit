@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "ActiveTest.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
 
 
 // Construct the active test
@@ -18,13 +24,6 @@ ActiveTest::~ActiveTest()
 { 
   CSingleLock( &m_runCompleted, TRUE );
   m_test = NULL;
-
-   CSingleLock (&m_runCompleted, TRUE); 
-   if ( m_threadHandle != INVALID_HANDLE_VALUE ) 
-   {
-     CloseHandle( m_threadHandle );
-     m_threadHandle = INVALID_HANDLE_VALUE;
-   }
 }
 
 

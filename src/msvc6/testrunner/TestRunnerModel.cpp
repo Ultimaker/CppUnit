@@ -11,6 +11,13 @@
 #include <stdexcept>
 #include <cppunit/testsuite.h>
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+
 
 const CString TestRunnerModel::settingKey( _T("CppUnit") );
 const CString TestRunnerModel::settingMainDialogKey( _T( "MainDialog" ) );
