@@ -19,6 +19,11 @@
     macros CPPUNIT_NS_BEGIN and CPPUNIT_NS_END. Also, changed reference
     to CppUnit namespace (essentially in macros) using CPPUNIT_NS macro.
 
+  * doc/doxyfile.in:
+  * doc/CppUnit-Win.dox: updated doxygen configuration files so that
+    CPPUNIT_NS_BEGIN and CPPUNIT_NS_END macros are expanded. This help
+    generates the documentation using the CppUnit namespace.
+
 2002-07-11 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Portability.h: added macro CPPUNIT_CONST_CAST.
