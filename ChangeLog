@@ -1,3 +1,7 @@
+2001-06-17  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: Require autoconf 2.50 or better.
+
 2001-06-17 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 
 	* configure.in: moved config.h from include/ to config/
