@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.7 2001-06-11 21:21:47 smr99 Exp $
+# $Id: Makefile.am,v 1.8 2001-06-11 21:53:54 smr99 Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -9,6 +9,7 @@ lib_LTLIBRARIES = libcppunit.la
 
 libcppunit_la_SOURCES = \
   NotEqualException.cpp \
+  RepeatedTest.cpp \
   TestAssert.cpp \
   TestCase.cpp \
   TestSuite.cpp \

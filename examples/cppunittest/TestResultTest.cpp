@@ -68,10 +68,10 @@ TestResultTest::testAddTwoErrors()
   std::string errorMessage2( "Second Error" );
   m_result->addError( m_test2, new CppUnit::Exception( errorMessage2 ) );
   checkResult( 0, 2, 0 );
-  checkFailure( m_result->errors().at(0),
+  checkFailure( m_result->errors()[0],
                 errorMessage1,
                 m_test );
-  checkFailure( m_result->errors().at(1),
+  checkFailure( m_result->errors()[1],
                 errorMessage2,
                 m_test2 );
 }
@@ -86,10 +86,10 @@ TestResultTest::testAddTwoFailures()
   std::string errorMessage2( "Second Failure" );
   m_result->addFailure( m_test2, new CppUnit::Exception( errorMessage2 ) );
   checkResult( 2, 0, 0 );
-  checkFailure( m_result->failures().at(0),
+  checkFailure( m_result->failures()[0],
                 errorMessage1,
                 m_test );
-  checkFailure( m_result->failures().at(1),
+  checkFailure( m_result->failures()[1],
                 errorMessage2,
                 m_test2 );
 }

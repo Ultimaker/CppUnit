@@ -42,7 +42,7 @@ inline TestDecorator::~TestDecorator ()
 {}
 
 
-inline TestDecorator::countTestCases () const
+inline int TestDecorator::countTestCases () const
 { return m_test->countTestCases (); }
 
 
