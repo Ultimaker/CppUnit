@@ -1,3 +1,8 @@
+2001-06-11  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/TestCaller.h (NoExceptionExpected): Fix
+	constructor name.
+
 2001-06-11 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/Exception.h: now inherit from std::exception instead 

@@ -14,7 +14,7 @@ namespace CppUnit {
   {
   private:
     // Nobody must be able to construct an exception of this type.
-    NoExpectedException();
+    NoExceptionExpected();
   };
 
 
