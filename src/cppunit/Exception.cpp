@@ -78,7 +78,7 @@ Exception::operator =( const Exception& other )
 
 /// Return descriptive message
 const char*
-Exception::what() const throw ()
+Exception::what() const
 { 
   return m_message.c_str (); 
 }

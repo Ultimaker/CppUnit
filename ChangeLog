@@ -1,3 +1,8 @@
+2001-10-08  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* src/cppunit/Exception.cpp (what): Remove "throw()" qualifier, to
+	match earlier change to header.
+
 2001-10-07 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/CompilerTestResultOutputter.h :
