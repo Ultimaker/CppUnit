@@ -2,6 +2,12 @@
 #define CPPUNIT_TESTSUITE_H
 
 #include <cppunit/Portability.h>
+
+#if CPPUNIT_NEED_DLL_DECL
+#pragma warning( push )
+#pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
+#endif
+
 #include <cppunit/Test.h>
 #include <vector>
 #include <string>
@@ -61,5 +67,10 @@ private:
 
 
 } // namespace CppUnit
+
+
+#if CPPUNIT_NEED_DLL_DECL
+#pragma warning( pop )
+#endif
 
 #endif // CPPUNIT_TESTSUITE_H

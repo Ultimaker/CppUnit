@@ -82,5 +82,4 @@
 #endif
 #endif
 
-
 #endif // CPPUNIT_PORTABILITY_H

@@ -1,5 +1,18 @@
 2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* include/cppunit/config-msvc6.h:
+	* include/cppunit/Portability.h
+	* include/cppunit/extensions/TestFactoryRegistry.h
+	* include/cppunit/TestResult.h
+	* include/cppunit/TestResultCollector.h
+	* include/cppunit/TestSuite.h
+	* include/cppunit/TextTestRunner.h
+	* include/cppunit/XmlOutputter.h: removed warning when compiling CppUnit as DLL.
+
+	* src/cppunit/DllMain.cpp: added some defines to speed up compilation a bit.
+
+2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* INSTALL-WIN32.txt: updated for MFC Unicode TestRunner.
 
 	* src/msvc6/testrunner/TestRunner.dsp: added Unicode configurations.
@@ -70,6 +83,8 @@
 	* include/cppunit/extensions/TestSetUp.h:
 	* src/cppunit/TestSetUp.cpp: added .cpp. extracted inline method and moved them
 	to cpp file.
+
+	* src/cppunit/DllMain.cpp: added, contains Dll entry point.
 
 2002-03-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 

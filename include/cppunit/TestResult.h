@@ -1,6 +1,13 @@
 #ifndef CPPUNIT_TESTRESULT_H
 #define CPPUNIT_TESTRESULT_H
 
+#include <cppunit/Portability.h>
+
+#if CPPUNIT_NEED_DLL_DECL
+#pragma warning( push )
+#pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
+#endif
+
 #include <cppunit/SynchronizedObject.h>
 #include <deque>
 
@@ -68,7 +75,13 @@ private:
   TestResult &operator =( const TestResult &other );
 };
 
+
 } // namespace CppUnit
+
+
+#if CPPUNIT_NEED_DLL_DECL
+#pragma warning( pop )
+#endif
 
 #endif // CPPUNIT_TESTRESULT_H
 

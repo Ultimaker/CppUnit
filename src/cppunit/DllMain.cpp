@@ -1,4 +1,9 @@
-#define VC_EXTRALEAN
+#define WIN32_LEAN_AND_MEAN 
+#define NOGDI
+#define NOUSER
+#define NOKERNEL
+#define NOSOUND
+
 #include <windows.h>
 
 BOOL APIENTRY 

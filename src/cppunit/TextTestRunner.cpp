@@ -1,10 +1,10 @@
-#include <iostream>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TextTestRunner.h>
 #include <cppunit/TextTestResult.h>
 #include <cppunit/TextOutputter.h>
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/TestResult.h>
+#include <iostream>
 
 namespace CppUnit {
 
