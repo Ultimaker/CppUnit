@@ -134,6 +134,7 @@ AC_OUTPUT([
   examples/cppunittest/Makefile
   examples/ClockerPlugIn/Makefile
   examples/DumperPlugIn/Makefile
+  examples/Money/Makefile
 ],[chmod a+x cppunit-config])
 
 AC_CREATE_PREFIX_CONFIG_H([include/cppunit/config-auto.h], 

@@ -3,6 +3,103 @@
 
 This release makes testable components a reality with more versatile, easier to make test plug-ins, and a new crossplatform test plug-in runner. Many little things to make life easier: a brief test progress listener, easier test hierarchy creation, tracking of test runs, and an improved documentation. It also features new contributions: a XML style sheet and Borland 5.5 makefiles. Help needed on the Unix side with configure and automake.
 
+	- DllPlugInTester can be parametrized from command line
+	- Two test listener plug-in examples
+	- An 'hello world' example & getting started document : Money
+	- Bug fixes
+
+* DllPlugInTester:
+
+	- Advanced command line to support miscellaneous listener outputer.
+	  Parameters can now be passed to test plug-in:
+
+		-c --compiler
+			Use CompilerOutputter
+		-x --xml [filename]
+			Use XmlOutputter (if filename is omitted, then output to cout or
+			cerr.
+		-s --xsl stylesheet
+			XML style sheet for XML Outputter
+		-e --encoding encoding
+			XML file encoding (UTF8, shift_jis, ISO-8859-1...)
+		-b --brief-progress
+			Use BriefTestProgressListener (default is TextTestProgressListener)
+		-n --no-progress
+			Show no test progress (disable default TextTestProgressListener)
+		-t --text
+			Use TextOutputter
+		-o --cout
+			Ouputters output to cout instead of the default cerr.
+		filename[="options"]
+			Many filenames can be specified. They are the name of the 
+			test plug-ins to load. Optional plug-ins parameters can be 
+			specified after the filename by adding '='.
+		[:testpath]
+			Optional. Only one test path can be specified. It must 
+			be prefixed with ':'. See TestPath constructor for syntax.
+
+		'parameters' (test plug-in or XML filename, test path...) may contains 
+		spaces if double quoted. Quote may be escaped with \".
+
+		Some examples of command lines:
+DllPlugInTesterd_dll.exe -b -x tests.xml -c simple_plugind.dll CppUnitTestPlugInd.dll
+		Will load 2 tests plug-ins (available in lib/), use the brief test
+		progress, output the result in XML in file tests.xml and also
+		output the result using the compiler outputter.
+
+DllPlugInTesterd_dll.exe ClockerPlugInd.dll="flat" -n CppUnitTestPlugInd.dll
+		Will load the 2 test plug-ins, and pass the parameter string "flat"
+		to the Clocker plug-in, disable test progress. Clocker being a test
+		listener plug-ins (it doesn't implements any tests, it just register
+		a TestListener), this is equivalent to say 'run all the test
+		of CppUnitTestPlugIn and use ClockerPlugIn as a TestLisener'.
+
+DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
+		Will run the test named "Core" (a suite in the present case ) of the 
+		test plug-in.
+
+* Documentation
+
+	- New getting started documentation. Not completed yet, but probably
+	  a good complement to the current cookbook. Explore the creation
+	  of the Money example.
+
+* Examples
+
+	- Money (examples/Money): the 'hello world' example. Unit tests for 
+	  a simple Money class.
+
+	- DllPlugInTesterTest (src/DllPlugInTester/DllPlugInTester.dsp):
+	  unit tests for CommandLineParser. Not really an example, but only
+	  slightly more complex than Money.
+
+	- ClockerPlugIn (examples/ClockerPlugIn): a test listener plug-in 
+	  that track tests and test suites running time. Parameter: "flat" 
+	  for a reporting with a flattened tree.
+
+	- DumperPlugIn (examples/DumperPlugIn): a test listener plug-in that 
+	  dump the test tree as it run. Paramater: "flat" for a reporting 
+	  with a flattened tree.
+
+	- CppUnitTestPlugIn (examples/cppunitest/CppUnitTestPlugIn.dsp):
+	  CppUnit's test suite as a test plug-in.
+
+* Compatiblity breaks
+
+	- DllPlugInTester: (1.9.4 only), should add -c to DllPlugInTester 
+	  command line.
+
+* Bug Fix:
+
+	- DynamicLibaryManager did not report the library name when loading a
+	  a library.
+
+	- BeosDynamicLibraryManager: fixed thanks to Shibu Yoshiki 
+	  ('cuppa' project team).
+
+	- Broken build on Unix should be fixed for most (thanks to 
+	  Jeffrey Morgan).
+
 
 	New in CppUnit 1.9.4:
 	----------------------

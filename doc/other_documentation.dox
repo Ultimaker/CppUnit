@@ -17,6 +17,9 @@
  testing framework. <a href="modules.html">Modules</a> give
  you a organized view of %CppUnit classes.
 
+ (Notes to newbies, you may want to check out \ref money_example,
+ a work in progress, but the project is provided with %CppUnit).
+
  For a discussion on %CppUnit, check 
  <a href="http://c2.com/cgi/wiki?CppUnit">
  the WikiWiki Pages on CppUnit</a>. There you can also

@@ -1,4 +1,4 @@
-SUBDIRS = hierarchy cppunittest simple ClockerPlugIn DumperPlugIn
+SUBDIRS = hierarchy cppunittest simple ClockerPlugIn DumperPlugIn Money
 
 # No dist subdir for msvc6: is handled by toplevel dist-hook
 # DIST_SUBDIRS = msvc6

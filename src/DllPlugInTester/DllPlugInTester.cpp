@@ -99,6 +99,66 @@ runTests( const CommandLineParser &parser )
 }
 
 
+void
+printShortUsage( const std::string &applicationName )
+{
+  std::cout  << "Usage:"  <<  std::endl
+             << applicationName  <<  " [-c -b -n -t -o] [-x xml-filename]"
+             "[-s stylesheet] [-e encoding] plug-in[=parameters] [plug-in...] [:testPath]"
+             << std::endl  <<  std::endl;
+}
+
+
+void
+printUsage( const std::string &applicationName )
+{
+  printShortUsage( applicationName );
+  std::cout  <<
+"-c --compiler\n"
+"	Use CompilerOutputter\n"
+"-x --xml [filename]\n"
+"	Use XmlOutputter (if filename is omitted, then output to cout or\n"
+"	cerr.\n"
+"-s --xsl stylesheet\n"
+"	XML style sheet for XML Outputter\n"
+"-e --encoding encoding\n"
+"	XML file encoding (UTF8, shift_jis, ISO-8859-1...)\n"
+"-b --brief-progress\n"
+"	Use BriefTestProgressListener (default is TextTestProgressListener)\n"
+"-n --no-progress\n"
+"	Show no test progress (disable default TextTestProgressListener)\n"
+"-t --text\n"
+"	Use TextOutputter\n"
+"-o --cout\n"
+"	Ouputters output to cout instead of the default cerr.\n"
+"filename[=\"options\"]\n"
+"	Many filenames can be specified. They are the name of the \n"
+"	test plug-ins to load. Optional plug-ins parameters can be \n"
+"	specified after the filename by adding '='.\n"
+"[:testpath]\n"
+"	Optional. Only one test path can be specified. It must \n"
+"	be prefixed with ':'. See TestPath constructor for syntax.\n"
+"\n"
+"'parameters' (test plug-in or XML filename, test path...) may contains \n"
+"spaces if double quoted. Quote may be escaped with \".\n"
+"\n"
+"Some examples of command lines:\n"
+"\n"
+"DllPlugInTesterd_dll.exe -b -x tests.xml -c simple_plugind.dll CppUnitTestPlugInd.dll\n"
+"\n"
+" Will load 2 tests plug-ins (available in lib/), use the brief test\n"
+"progress, output the result in XML in file tests.xml and also\n"
+"output the result using the compiler outputter.\n"
+"\n"
+"DllPlugInTesterd_dll.exe ClockerPlugInd.dll=\"flat\" -n CppUnitTestPlugInd.dll\n"
+"\n"
+" Will load the 2 test plug-ins, and pass the parameter string \"flat\"\n"
+"to the Clocker plug-in, disable test progress.\n"
+  << std::endl;
+
+}
+
+
 /*! Main
  * 
  * Usage: 
@@ -139,10 +199,7 @@ main( int argc,
   std::string applicationName( argv[0] );
   if ( argc < 2 )
   {
-    std::cerr  <<  "Usage: "  <<  std::endl
-           <<  applicationName 
-           <<  " dll-filename1 [dll-filename2 ...] [:test-path]..."
-           <<  std::endl;
+    printUsage( applicationName );
     return badCommadLineReturnCode;
   }
 
@@ -154,7 +211,8 @@ main( int argc,
   catch ( CommandLineParserException &e )
   {
     std::cerr  <<  "Error while parsing command line: "  <<  e.what()  
-               << std::endl;
+               << std::endl << std::endl;
+    printShortUsage( applicationName );
     return badCommadLineReturnCode;
   }
 

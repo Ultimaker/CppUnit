@@ -77,31 +77,28 @@ protected:
   /// Prevents the use of the copy operator.
   void operator =( const CommandLineParser &copy );
 
+  void readNonOptionCommands();
+
+  bool hasNextArgument() const;
+
+  std::string getNextArgument();
+
+  std::string getCurrentArgument() const;
+
+  bool argumentStartsWith( const std::string &expected ) const;
+
+  void getNextOption();
+
   bool isOption( const std::string &shortName,
                  const std::string &longName );
 
-  bool hasNext() const;
-  bool startsWith( const std::string &expected ) const;
-  char next();
-  void skipNext( int count =1 );
-  bool isSpace() const;
+  std::string getNextParameter();
 
-  std::string getParameter();
-  std::string getQuotedParameter();
-  std::string getUnquotedParameter();
-  std::string getOptionalParameter();
+  std::string getNextOptionalParameter();
+
   void fail( std::string message );
-  void getNextOption();
-  void skipSpaces();
-  static bool isSpace( unsigned char c );
-
-  void readNonOptionCommands();
 
 protected:
-  std::string m_line;
-  int m_currentIndex;
-  std::string m_option;
-
   bool m_useCompiler;
   bool m_useXml;
   std::string m_xmlFileName;
@@ -115,6 +112,12 @@ protected:
 
   typedef std::deque<CommandLinePlugInInfo> PlugIns;
   PlugIns m_plugIns;
+
+  typedef std::deque<std::string> Arguments;
+  Arguments m_arguments;
+  int m_currentArgument;
+
+  std::string m_option;
 };
 
 

@@ -101,7 +101,7 @@ SOURCE=.\DumperPlugIn.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ClockerPlugIn\Makefile.am
+SOURCE=.\Makefile.am
 # End Source File
 # End Target
 # End Project

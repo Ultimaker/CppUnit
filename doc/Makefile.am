@@ -1,6 +1,6 @@
 EXTRA_DIST = $(doxygen_input) $(static_pages)
 
-doxygen_input = cookbook.dox other_documentation.dox header.html footer.html
+doxygen_input = cookbook.dox other_documentation.dox header.html footer.html Money.dox
 static_pages = FAQ
 
 

@@ -1,5 +1,20 @@
 2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* src/DllPlugInTester/makefile.am: removed ld.so from LDADD flags.
+
+	* src/DllPlugInTester/CommandLineParser.h:
+	* src/DllPlugInTester/CommandLineParser.cpp: rewrote, fixed problem
+	  with double quotes in command line...
+
+	* src/DllPlugInTester/CommandLineParserTest.h:
+	* src/DllPlugInTester/CommandLineParserTest.cpp:
+	* src/DllPlugInTester/DllPlugInTesterTest.cpp: added, unit tests for
+	  CommandLineParser.
+
+	* src/msvc6/TestPlugIn/*: removed.
+
+2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* THANKS: updated
 
 	* src/cppunit/DynamicLibraryManager.cpp: bugfix: did not pass

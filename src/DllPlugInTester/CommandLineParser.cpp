@@ -3,7 +3,7 @@
 
 CommandLineParser::CommandLineParser( int argc, 
                                       char *argv[] )
-    : m_currentIndex( 0 )
+    : m_currentArgument( 0 )
     , m_useCompiler( false )
     , m_useXml( false )
     , m_briefProgress( false )
@@ -13,9 +13,8 @@ CommandLineParser::CommandLineParser( int argc,
 {
   for ( int index =1; index < argc; ++index )
   {
-    if ( index > 1 )
-      m_line += " ";
-    m_line += argv[index];
+    std::string argument( argv[index ] );
+    m_arguments.push_back( argument );
   }
 }
 
@@ -28,7 +27,7 @@ CommandLineParser::~CommandLineParser()
 void 
 CommandLineParser::parse()
 {
-  while ( hasNext() )
+  while ( hasNextArgument() )
   {
     getNextOption();
     if ( isOption( "c", "compiler" ) )
@@ -36,12 +35,12 @@ CommandLineParser::parse()
     else if ( isOption( "x", "xml" ) )
     {
       m_useXml = true;
-      m_xmlFileName = getOptionalParameter();
+      m_xmlFileName = getNextOptionalParameter();
     }
     else if ( isOption( "s", "xsl" ) )
-      m_xsl = getParameter();
+      m_xsl = getNextParameter();
     else if ( isOption( "e", "encoding" ) )
-      m_encoding = getParameter();
+      m_encoding = getNextParameter();
     else if ( isOption( "b", "brief-progress" ) )
       m_briefProgress = true;
     else if ( isOption( "n", "no-progress" ) )
@@ -52,9 +51,76 @@ CommandLineParser::parse()
       m_useCout = true;
     else if ( !m_option.empty() )
       fail( "Unknown option" );
-    else if ( hasNext() )
+    else if ( hasNextArgument() )
       readNonOptionCommands();
   }
+}
+
+
+void 
+CommandLineParser::readNonOptionCommands()
+{
+  if ( argumentStartsWith( ":" ) )
+    m_testPath = getNextArgument().substr( 1 );
+  else
+  {
+    CommandLinePlugInInfo plugIn;
+    int indexParameter = getCurrentArgument().find( '=' );
+    if ( indexParameter < 0 )
+      plugIn.m_fileName = getCurrentArgument();
+    else
+    {
+      plugIn.m_fileName = getCurrentArgument().substr( 0, indexParameter );
+      std::string parameters = getCurrentArgument().substr( indexParameter +1 );
+      plugIn.m_parameters.push_back( parameters );
+    }
+    
+    m_plugIns.push_back( plugIn );
+
+    getNextArgument();
+  }
+}
+
+
+bool 
+CommandLineParser::hasNextArgument() const
+{
+  return m_currentArgument < m_arguments.size();
+}
+
+
+std::string 
+CommandLineParser::getNextArgument()
+{
+  if ( hasNextArgument() )
+    return m_arguments[ m_currentArgument++ ];
+  return "";
+}
+
+
+std::string 
+CommandLineParser::getCurrentArgument() const
+{
+  if ( m_currentArgument < m_arguments.size() )
+    return m_arguments[ m_currentArgument ];
+  return "";
+}
+
+
+bool 
+CommandLineParser::argumentStartsWith( const std::string &expected ) const
+{
+  return getCurrentArgument().substr( 0, expected.length() ) == expected;
+}
+
+
+void 
+CommandLineParser::getNextOption()
+{
+  if ( argumentStartsWith( "-" )  ||  argumentStartsWith( "--" ) )
+    m_option = getNextArgument();
+  else
+    m_option = "";
 }
 
 
@@ -67,169 +133,30 @@ CommandLineParser::isOption( const std::string &shortName,
 }
 
 
-bool 
-CommandLineParser::hasNext() const
+std::string 
+CommandLineParser::getNextParameter()
 {
-  return m_currentIndex < m_line.length();
+  if ( !hasNextArgument() )
+    fail( "missing parameter" );
+  return getNextArgument();
 }
 
 
 std::string
-CommandLineParser::getParameter()
+CommandLineParser::getNextOptionalParameter()
 {
-  if ( startsWith( "\"" ) )
-    return getQuotedParameter();
-  else
-    return getUnquotedParameter();
-}
-
-
-std::string
-CommandLineParser::getUnquotedParameter()
-{
-  std::string parameter;
-
-  if ( !hasNext() )
-    fail( "missing option parameter" );
-
-  while ( hasNext()  &&  !isSpace() )
-    parameter += next();
-  return parameter;
-}
-
-
-std::string
-CommandLineParser::getQuotedParameter()
-{
-  std::string parameter;
-  while ( !startsWith( "\"" ) )
-  {
-    if ( !hasNext() )
-      fail( "Unmatched \" in option parameter" );
-
-    if ( startsWith( "\\" ) )
-    {
-      skipNext();
-      if ( !hasNext() )
-        fail( "Missing escaped character in option parameter" );
-    }
-
-    parameter += next();
-  }
-  return parameter;
-}
-
-
-std::string
-CommandLineParser::getOptionalParameter()
-{
-  if ( !hasNext()  ||  startsWith( "-" )  ||  startsWith( ":" ) )
+  if ( argumentStartsWith( "-" )  ||  argumentStartsWith( ":" ) )
     return "";
-  return getParameter();
-}
-
-
-void 
-CommandLineParser::getNextOption()
-{
-  skipSpaces();
-  m_option = "";
-  if ( startsWith( "-" )  ||  startsWith( "--" ) )
-  {
-    while ( hasNext()  &&  !isSpace() )
-      m_option += next();
-
-    skipSpaces();
-  }
-}
-
-
-void 
-CommandLineParser::readNonOptionCommands()
-{
-  if ( startsWith( ":" ) )
-  {
-    skipNext();
-    m_testPath = getParameter();
-  }
-  else
-  {
-    CommandLinePlugInInfo plugIn;
-    while ( hasNext()  &&  !isSpace()  &&  !startsWith( "=" ) )
-      plugIn.m_fileName += next();
-
-    std::string parameters;
-    if ( startsWith( "=" ) )
-    {
-      m_option = plugIn.m_fileName;
-      skipNext();
-      parameters = getParameter();
-    }
-    
-    plugIn.m_parameters.push_back( parameters );
-    m_plugIns.push_back( plugIn );
-  }
-}
-
-
-bool 
-CommandLineParser::startsWith( const std::string &expected ) const
-{
-  return m_line.substr( m_currentIndex, expected.length() ) == expected;
-}
-
-
-void 
-CommandLineParser::skipSpaces()
-{
-  while ( hasNext()  &&  isSpace() )
-    skipNext();
-}
-
-
-bool 
-CommandLineParser::isSpace() const
-{
-  if ( !hasNext() )
-    return true;
-
-  return isSpace( m_line[m_currentIndex] );
-}
-
-
-bool 
-CommandLineParser::isSpace( unsigned char c )
-{
-  return c <= 32;
-}
-
-
-char 
-CommandLineParser::next()
-{
-  if ( !hasNext() )
-    fail( "unexpected error while parsing option" );
-
-  return m_line[ m_currentIndex++ ];
-}
-
-
-void 
-CommandLineParser::skipNext( int count )
-{
-  m_currentIndex += count;
-  if ( m_currentIndex > m_line.length() )
-    m_currentIndex = m_line.length();
+  return getNextArgument();
 }
 
 
 void 
 CommandLineParser::fail( std::string message )
 {
-  throw CommandLineParserException( "Error while parsing option: " + m_option+
-            "\n" + message );
+  throw CommandLineParserException( "while parsing option " + m_option+
+            ",\n" + message );
 }
-
 
 
 bool 
