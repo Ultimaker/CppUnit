@@ -20,6 +20,7 @@ libcppunitinclude_HEADERS =  \
 	TestCase.h \
 	TestCaller.h \
 	TestFailure.h \
+	TestFixture.h \
 	TestResult.h \
 	TestResultCollector.h \
 	TestSucessListener.h \
