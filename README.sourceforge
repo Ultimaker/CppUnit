@@ -1,0 +1,34 @@
+		Making a SourceForge Release
+		----------------------------
+
+* create files to distribute and copy them to sourceforge
+
+	make distcheck
+	make doc
+	scp cppunit*tar.gz <account>@cppunit.sourceforge.net:
+
+
+* ftp the files to sourceforge; did this from the sourceforge
+  shell account because my home machine is masqueraded (a.k.a. NATed)
+
+	ftp uploads
+	cd incoming
+	mput cppunit*tar.gz 
+
+
+* go through the file release process
+  - name of release is version number
+
+
+* update web pages; this is done on cppunit.sourceforge.net
+
+	cd /home/groups/c/cp/cppunit
+	mv htdocs htdocs-$(oldversion)
+	mkdir htdocs
+	cd htdocs
+	tar xzf ~/cppunit-docs-$(newversion).tar.gz
+
+
+*** for the 1.6.0 release, the file cookbook was not in the docs
+    tarball.  This needs to be corrected.
+

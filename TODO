@@ -1,3 +1,9 @@
+** for 1.6.1
+
+ - make sure cookbook.html is in "docs" tarball
+ - get FAQ linked from main page
+
+
 * CppUnit:
   - Unicode support
   - STL orthodox template for container elements.

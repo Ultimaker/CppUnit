@@ -1,3 +1,7 @@
+2001-09-29  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: Set version to 1.6.1.
+
 2001-09-29 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* example/cppunittest/TestCaller.*: remove some memory leaks.
