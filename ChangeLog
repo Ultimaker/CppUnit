@@ -1,3 +1,11 @@
+2001-04-15 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Moved public headers from cppunit into new subdir include/cppunit.
+	  This should make more clear which headers are used internally only
+	  (like estring.h).
+	
+	* Moved autoconf auxiliary stuff into new subdir config, to make the
+	  top dir less crowded.
+	
 2001-04-14 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Release as 1.5.4
 	
