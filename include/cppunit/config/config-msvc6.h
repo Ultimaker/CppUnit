@@ -51,7 +51,11 @@
 // Compiler error location format for CompilerOutputter
 // See class CompilerOutputter for format.
 #undef CPPUNIT_COMPILER_LOCATION_FORMAT
-#define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
+#if _MSC_VER >= 1300    // VS 7.0
+# define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l) : error : "
+#else
+# define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
+#endif
 
 // Uncomment to turn on STL wrapping => use this to test compilation. 
 // This will make CppUnit subclass std::vector & co to provide default
