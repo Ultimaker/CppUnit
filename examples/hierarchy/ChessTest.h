@@ -3,7 +3,7 @@
 
 #include "BoardGameTest.h"
 
-template<class GAMECLASS> 
+template<typename GAMECLASS> 
 class ChessTest : public BoardGameTest<GAMECLASS> {
   public:
     ChessTest (std::string name) : BoardGameTest<GAMECLASS> (name) 
@@ -14,7 +14,7 @@ class ChessTest : public BoardGameTest<GAMECLASS> {
     {
       BoardGameTest<GAMECLASS>::registerTests(suite);
       suite->addTest (
-        new CppUnit::TestCaller<ChessTest> ("testNumberOfPieces", 
+        new CppUnit::TestCaller<ChessTest<GAMECLASS> > ("testNumberOfPieces", 
           &ChessTest<GAMECLASS>::testNumberOfPieces));
     }
 

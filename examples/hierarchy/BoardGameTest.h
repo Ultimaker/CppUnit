@@ -11,7 +11,7 @@
 #include "cppunit/TestSuite.h"
 #endif
 
-template<class GAMECLASS> 
+template<typename GAMECLASS> 
 class BoardGameTest : public CppUnit::TestCase {
   protected:
     GAMECLASS	*m_game;
@@ -23,9 +23,9 @@ class BoardGameTest : public CppUnit::TestCase {
 
     virtual void registerTests(CppUnit::TestSuite *suite) 
     {
-      suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", 
+      suite->addTest (new CppUnit::TestCaller<BoardGameTest<GAMECLASS> > ("testReset", 
          &BoardGameTest<GAMECLASS>::testReset)); 
-      suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", 
+      suite->addTest (new CppUnit::TestCaller<BoardGameTest<GAMECLASS> > ("testReset", 
          &BoardGameTest<GAMECLASS>::testResetShouldFail)); 
     }
 
