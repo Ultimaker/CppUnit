@@ -101,6 +101,13 @@
 #define CPPUNIT_TEST_SUITE( ATestCaseType )                               \
   private:                                                                \
     typedef ATestCaseType __ThisTestCaseType;                             \
+    class ThisTestCaseFactory : public CppUnit::TestFactory               \
+    {                                                                     \
+      virtual CppUnit::Test *makeTest()                                   \
+      {                                                                   \
+        return new ATestCaseType();                                       \
+      }                                                                   \
+    };                                                                    \
   public:                                                                 \
     static void                                                           \
     registerTests( CppUnit::TestSuite *suite,                             \
@@ -175,14 +182,8 @@
       __ThisTestCaseType::registerTests( builder.suite(), &factory );   \
       return builder.takeSuite();                                       \
     }                                                                   \
-  private:                                                              \
-    class ThisTestCaseFactory : public CppUnit::TestFactory             \
-    {                                                                   \
-      virtual CppUnit::Test *makeTest()                                 \
-      {                                                                 \
-        return new __ThisTestCaseType();                                \
-      }                                                                 \
-    }
+  private: /* dummy typedef so that the macro can still end with ';'*/  \
+    typedef ThisTestCaseFactory __ThisTestCaseFactory                   
 
 #define __CPPUNIT_CONCATENATE_DIRECT( s1, s2 ) s1##s2
 #define __CPPUNIT_CONCATENATE( s1, s2 ) __CPPUNIT_CONCATENATE_DIRECT( s1, s2 )

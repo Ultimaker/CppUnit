@@ -1,3 +1,17 @@
+2001-09-30 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* contrib/msvc/CppUnit.WWTpl: added, template for WorkSpace Whiz! to 
+	create new classes and unit tests.
+
+	* doc/FAQ:
+	* INSTALL-WIN32.txt: moved FAQ from install-WIN32 to that file. Added
+	a generic question to hint at the helper macros.
+
+	* include/cppunit/extensions/HelperMacros.h: bug #464844, moved 
+	declaration of ThisTestCaseFactory from CPPUNIT_TEST_SUITE_END to 
+	CPPUNIT_TEST_SUITE where the Fixture class name is available from
+	the macro parameter.
+
 2001-09-30  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* include/cppunit/config-mac.h: New.  Macintosh configuration,

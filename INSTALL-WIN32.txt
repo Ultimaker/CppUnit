@@ -1,3 +1,6 @@
+Frequently Asked Questions: See doc/FAQ
+
+
 At the current time, the only supported WIN32 platform is 
 Microsoft Visual C++. You must have VC++ 6.0 at least.
 
@@ -144,29 +147,3 @@ defined in include/msvc6/testrunner/TestPlugInInterface.h.
 See examples/msvc6/TestPlugIn/TestPlugInInterfaceImpl.* for an example.
 Be warned, that runner is still experimental and have not been tested
 much.
-
-
-Frequently Asked Questions:
----------------------------
-
-1) Why does my application crash when I use CppUnit ?
-   
-   You probably forgot to enable RTTI in your project/configuration.
-RTTI are disabled by default. 
-   Enable RTTI in Projects/Settings.../C++/C++ Langage. Make sure to
-do so for all configurations.
-
-2) Why does the compiler report an error when linking with CppUnit library ?
-
-   You most likely are not using the same C-RunTime library as CppUnit.
-   In Release configuration, CppUnit use "Mulithreaded DLL".
-   In Debug configurations, CppUnit use "Debug Multihreaded DLL".
-   Check that Projects/Settings.../C++/Code Generation is indeed using
-the correct library.
-
-3) Why does the test ExceptionTest.testAssignment failed in CppUnit test 
-   suite ?
-
-   I've never been able to figure out why that test fails.  It seems
-to be specific to VC++ since the test passes with gcc.  If you can figure
-out the failure, please let us know!
