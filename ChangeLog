@@ -1,5 +1,8 @@
 2001-07-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* examples/cppunittest/OrthodoxTest.h: Add const qualifier
+	to operator== methods.
+
 	* include/cppunit/config-bcb5.h:
 	* include/cppunit/config-msvc6.h: Define CPPUNIT_HAVE_SSTREAM to 1.
 

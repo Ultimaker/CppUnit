@@ -37,7 +37,7 @@ private:
   public:
     Value( int value =0 ) : m_value( value ) {}
 
-    bool operator ==( const Value &other )
+    bool operator ==( const Value &other ) const
     {
       return m_value == other.m_value;
     }
@@ -97,7 +97,7 @@ private:
       return ValueBadEqual( -1 - m_value );
     }
 
-    bool operator ==( const ValueBadEqual &other )
+    bool operator ==( const ValueBadEqual &other ) const
     {
       return m_value != other.m_value;
     }
