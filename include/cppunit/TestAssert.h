@@ -183,6 +183,94 @@ void CPPUNIT_API assertDoubleEquals( double expected,
                                     (delta),           \
                                     CPPUNIT_SOURCELINE() ) )
 
+
+/** Asserts that the given expression throws an exception of the specified type.
+ * \ingroup Assertions
+ * Example of usage:
+ * \code
+ *   std::vector<int> v;
+ *  CPPUNIT_ASSERT_THROW( v.at( 50 ), std::out_of_range );
+ * \endcode
+ */
+# define CPPUNIT_ASSERT_THROW( expression, ExceptionType )          \
+   do {                                                             \
+      bool cpputExceptionThrown_ = false;                           \
+      try {                                                         \
+         expression;                                                \
+      } catch ( const ExceptionType & ) {                           \
+         cpputExceptionThrown_ = true;                              \
+      }                                                             \
+                                                                    \
+      if ( cpputExceptionThrown_ )                                  \
+         break;                                                     \
+                                                                    \
+      CPPUNIT_NS::Asserter::fail(                                   \
+                     "Expected exception: " #ExceptionType          \
+                     " not thrown.",                                \
+                     CPPUNIT_SOURCELINE() );                        \
+   } while ( false )
+
+
+// implementation detail
+#if CPPUNIT_USE_TYPEINFO_NAME
+#define CPPUNIT_EXTRACT_EXCEPTION_TYPE_( exception, no_rtti_message ) \
+   CPPUNIT_NS::TypeInfoHelper::getClassName( typeid(exception) )
+#else
+#define CPPUNIT_EXTRACT_EXCEPTION_TYPE_( exception, no_rtti_message ) \
+   std::string( no_rtti_message )
+#endif // CPPUNIT_USE_TYPEINFO_NAME
+
+/** Asserts that the given expression does not throw any exceptions.
+ * \ingroup Assertions
+ * Example of usage:
+ * \code
+ *   std::vector<int> v;
+ *   v.push_back( 10 );
+ *  CPPUNIT_ASSERT_NO_THROW( v.at( 0 ) );
+ * \endcode
+ */
+# define CPPUNIT_ASSERT_NO_THROW( expression )                             \
+   try {                                                                   \
+      expression;                                                          \
+   } catch ( const std::exception &e ) {                                   \
+      CPPUNIT_NS::Message message( "Unexpected exception caught" );        \
+      message.addDetail( "Type: " +                                        \
+                   CPPUNIT_EXTRACT_EXCEPTION_TYPE_( e,                     \
+                                       "std::exception or derived" ) );    \
+      message.addDetail( std::string("What: ") + e.what() );               \
+      CPPUNIT_NS::Asserter::fail( message,                                 \
+                                  CPPUNIT_SOURCELINE() );                  \
+   } catch ( ... ) {                                                       \
+      CPPUNIT_NS::Asserter::fail( "Unexpected exception caught",           \
+                                  CPPUNIT_SOURCELINE() );                  \
+   }
+
+/** Asserts that an assertion fail.
+ * \ingroup Assertions
+ * Use to test assertions.
+ * Example of usage:
+ * \code
+ *   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT( 1 == 2 ) );
+ * \endcode
+ */
+# define CPPUNIT_ASSERT_ASSERTION_FAIL( assertion )                 \
+   CPPUNIT_ASSERT_THROW( assertion, CPPUNIT_NS::Exception )
+
+
+/** Asserts that an assertion pass.
+ * \ingroup Assertions
+ * Use to test assertions.
+ * Example of usage:
+ * \code
+ *   CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT( 1 == 1 ) );
+ * \endcode
+ */
+# define CPPUNIT_ASSERT_ASSERTION_PASS( assertion )                 \
+   CPPUNIT_ASSERT_NO_THROW( assertion )
+
+
+
+
 // Backwards compatibility
 
 #if CPPUNIT_ENABLE_NAKED_ASSERT

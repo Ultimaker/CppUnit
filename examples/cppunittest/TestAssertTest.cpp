@@ -39,16 +39,82 @@ TestAssertTest::tearDown()
 
 
 void 
-TestAssertTest::testAssertTrue()
+TestAssertTest::testAssertThrow()
 {
-  CPPUNIT_ASSERT( true );
+   CPPUNIT_ASSERT_THROW( throw std::exception( "dummy" ), std::exception );
+
+   try
+   {
+      CPPUNIT_ASSERT_THROW( 1234, std::exception );
+   }
+   catch ( CPPUNIT_NS::Exception & )
+   {
+      return;
+   }
+
+   throw std::exception( "CPPUT_ASSERT_THROW( 1234, std::exception ) did not fail." );
 }
 
 
 void 
-TestAssertTest::testAssertFalse()
+TestAssertTest::testAssertNoThrow()
 {
-  CPPUNIT_ASSERT( false );
+   CPPUNIT_ASSERT_NO_THROW( 1234 );
+
+   try
+   {
+      CPPUNIT_ASSERT_NO_THROW( throw std::exception( "dummy" ) );
+   }
+   catch ( CPPUNIT_NS::Exception & )
+   {
+      return;
+   }
+   throw std::exception( "CPPUT_ASSERT_NO_THROW( throw std::exception( \"dummy\" ) ) did not fail." );
+}
+
+
+void 
+TestAssertTest::testAssertAssertionFail()
+{
+   CPPUNIT_ASSERT_ASSERTION_FAIL( throw CPPUNIT_NS::Exception() );
+
+   try
+   {
+      CPPUNIT_ASSERT_ASSERTION_FAIL( 1234 );
+   }
+   catch ( CPPUNIT_NS::Exception & )
+   {
+      return;
+   }
+
+   throw std::exception( "CPPUNIT_ASSERT_ASSERTION_FAIL( 1234 ) did not fail." );
+}
+
+
+void 
+TestAssertTest::testAssertAssertionPass()
+{
+   CPPUNIT_ASSERT_ASSERTION_PASS( 1234 );
+
+   try
+   {
+      CPPUNIT_ASSERT_ASSERTION_PASS( throw CPPUNIT_NS::Exception() );
+   }
+   catch ( CPPUNIT_NS::Exception & )
+   {
+      return;
+   }
+
+   throw std::exception( "CPPUNIT_ASSERT_ASSERTION_PASS did not fail." );
+}
+
+
+void 
+TestAssertTest::testAssert()
+{
+  CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT( true ) );
+  
+  CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT( false ) );
 }
 
 
@@ -58,15 +124,19 @@ static int foo() { return 1; }
 void 
 TestAssertTest::testAssertEqual()
 {
-  CPPUNIT_ASSERT_EQUAL( 1, 1 );
-  CPPUNIT_ASSERT_EQUAL( 1, foo() );
+  CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT_EQUAL( 1, 1 ) );
+  CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT_EQUAL( 1, foo() ) );
+  CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT_EQUAL( 12345678, 12345678 ) );
+
+  CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_EQUAL( 1, 2 ) );
 }
 
 
 void 
 TestAssertTest::testAssertMessageTrue()
 {
-  CPPUNIT_ASSERT_MESSAGE( "This test should not failed", true );
+  CPPUNIT_ASSERT_ASSERTION_PASS( 
+     CPPUNIT_ASSERT_MESSAGE( "This test should not failed", true ) );
 }
 
 
@@ -92,36 +162,11 @@ TestAssertTest::testAssertMessageFalse()
 void 
 TestAssertTest::testAssertDoubleEquals()
 {
-  CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.1, 1.2, 0.101 );
-  CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.2, 1.1, 0.101 );
-}
+  CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.1, 1.2, 0.101 ) );
+  CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.2, 1.1, 0.101 ) );
 
-
-void 
-TestAssertTest::testAssertDoubleNotEquals1()
-{
-  CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.1, 1.2, 0.09 );
-}
-
-
-void 
-TestAssertTest::testAssertDoubleNotEquals2()
-{
-  CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.2, 1.1, 0.09 );
-}
-
-
-void 
-TestAssertTest::testAssertLongEquals()
-{
-  CPPUNIT_ASSERT_EQUAL( 12345678, 12345678 );
-}
-
-
-void 
-TestAssertTest::testAssertLongNotEquals()
-{
-  CPPUNIT_ASSERT_EQUAL( 1, 2 );
+  CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.1, 1.2, 0.09 ) );
+  CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.2, 1.1, 0.09 ) );
 }
 
 

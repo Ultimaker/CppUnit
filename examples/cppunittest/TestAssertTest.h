@@ -7,16 +7,15 @@
 class TestAssertTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestAssertTest );
-  CPPUNIT_TEST( testAssertTrue );
-  CPPUNIT_TEST_FAIL( testAssertFalse );
+  CPPUNIT_TEST( testAssertThrow );
+  CPPUNIT_TEST( testAssertNoThrow );
+  CPPUNIT_TEST( testAssertAssertionFail );
+  CPPUNIT_TEST( testAssertAssertionPass );
+  CPPUNIT_TEST( testAssert );
   CPPUNIT_TEST( testAssertEqual );
   CPPUNIT_TEST( testAssertMessageTrue );
   CPPUNIT_TEST( testAssertMessageFalse );
   CPPUNIT_TEST( testAssertDoubleEquals );
-  CPPUNIT_TEST_FAIL( testAssertDoubleNotEquals1 );
-  CPPUNIT_TEST_FAIL( testAssertDoubleNotEquals2 );
-  CPPUNIT_TEST( testAssertLongEquals );
-  CPPUNIT_TEST_FAIL( testAssertLongNotEquals );
   CPPUNIT_TEST( testFail );
   CPPUNIT_TEST_SUITE_END();
 
@@ -28,8 +27,14 @@ public:
   virtual void setUp();
   virtual void tearDown();
 
-  void testAssertTrue();
-  void testAssertFalse();
+  void testAssertThrow();
+  void testAssertNoThrow();
+  void testAssertAssertionFail();
+  void testAssertAssertionPass();
+
+  void testBasicAssertions();
+
+  void testAssert();
   
   void testAssertEqual();
 

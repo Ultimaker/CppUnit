@@ -126,15 +126,12 @@ XmlUniformiserTest::testSkipComment()
 
 
 void 
-XmlUniformiserTest::testAssertXmlEqualFail()
+XmlUniformiserTest::testAssertXmlEqual()
 {
-  CPPUNITTEST_ASSERT_XML_EQUAL( "<Test>", "<Tes>" );
-}
-
-void 
-XmlUniformiserTest::testAssertXmlEqualPass()
-{
-  CPPUNITTEST_ASSERT_XML_EQUAL( "<Test>", "<Test>" );
+  CPPUNIT_ASSERT_ASSERTION_FAIL( 
+     CPPUNITTEST_ASSERT_XML_EQUAL( "<Test>", "<Tes>" ) );
+  CPPUNIT_ASSERT_ASSERTION_PASS( 
+     CPPUNITTEST_ASSERT_XML_EQUAL( "<Test>", "<Test>" ) );
 }
 
 

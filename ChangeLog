@@ -11,6 +11,20 @@
     from Gareth Sylvester. Adding RTLD_GLOBAL allows test plug-ins 
     to provide symbols to shared objects they load themselves.
 
+  * examples/cppunittest/TestAssertTest.h:
+  * examples/cppunittest/TestAssertTest.cpp:
+  * examples/cppunittest/XmlUniformiserTest.h:
+  * examples/cppunittest/XmlUniformiserTest.cpp:
+  * include/cppunit/TestAssert.h: add the exception assertion macros
+    from cppunit 2: CPPUNIT_ASSERT_THROW, CPPUNIT_ASSERT_NO_THROW,
+    CPPUNIT_ASSERT_ASSERTION_FAIL, CPPUNIT_ASSERT_ASSERTION_PASS.
+    Updated unit test to use and test the new macros.
+
+  * include/cppunit/extensions/HelperMacros.h: deprecated the
+    test case factory that check for exception (CPPUNIT_TEST_FAIL &
+    CPPUNIT_TEST_EXCEPTION).
+    
+
 2004-02-20 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * release 1.9.12

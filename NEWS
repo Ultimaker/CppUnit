@@ -1,6 +1,17 @@
   New in CppUnit 1.9.14:
   ---------------------
 
+* Assertions
+
+  - Ported exception assertion macros from cppunit 2 to the 1.9.x series:
+    CPPUNIT_ASSERT_THROW, CPPUNIT_ASSERT_NO_THROW, 
+    CPPUNIT_ASSERT_ASSERTION_FAIL, CPPUNIT_ASSERT_ASSERTION_PASS.
+
+* Deprecated:
+
+  - The helper macros: CPPUNIT_TEST_FAIL & CPPUNIT_TEST_EXCEPTION have
+    been deprecated. Use the new exception assertion macros instead.
+
 * Bug Fix:
 
   - cppunit-config: bug #903363, missing -ldl from the output of

@@ -322,6 +322,7 @@
  * \param testMethod Name of the method of the test case to add to the suite.
  * \param ExceptionType Type of the exception that must be thrown by the test 
  *                      method.
+ * \deprecated Use the assertion macro CPPUNIT_ASSERT_THROW instead.
  */
 #define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )          \
   CPPUNIT_TEST_SUITE_ADD_TEST(                                        \
@@ -345,6 +346,7 @@
  * }
  * \endcode
  * \see CreatingNewAssertions.
+ * \deprecated Use the assertion macro CPPUNIT_ASSERT_ASSERTION_FAIL instead.
  */
 #define CPPUNIT_TEST_FAIL( testMethod ) \
               CPPUNIT_TEST_EXCEPTION( testMethod, CPPUNIT_NS::Exception )
