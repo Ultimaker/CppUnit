@@ -1,16 +1,17 @@
 2003-03-15 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* src/cppunit/CompilerOutputter.cpp:
-	* src/cppunit/ProtectorChain.cpp:
-	* src/cppunit/StringTools.cpp:
-	* src/cppunit/TestPath.cpp:
-	* src/cppunit/TypeInfoHelper.cpp:
-	* src/cppunit/XmlElement.cpp:
-	* src/cppunit/XmlOutputter.cpp: switched to using unsigned index in loop to
-	  avoid signed/unsigned warning in vc7.
+  * include/cppunit/tools/Algorithm.h:
+  * src/cppunit/CompilerOutputter.cpp:
+  * src/cppunit/ProtectorChain.cpp:
+  * src/cppunit/StringTools.cpp:
+  * src/cppunit/TestPath.cpp:
+  * src/cppunit/TypeInfoHelper.cpp:
+  * src/cppunit/XmlElement.cpp:
+  * src/cppunit/XmlOutputter.cpp: switched to using unsigned index in loop to
+    avoid signed/unsigned warning in vc7.
 
-	* include/cppunit/extension/ExceptionTestCaseDecorator.h: removed dll export
-	  on template (caused link error on vc7).
+  * include/cppunit/extension/ExceptionTestCaseDecorator.h: removed dll export
+    on template (caused link error on vc7).
 
 2003-03-11 Baptiste Lepilleur <gaiacrtn@free.fr>
   * config/bb_enable_doxygen.m4:

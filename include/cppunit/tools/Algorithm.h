@@ -10,7 +10,7 @@ void
 removeFromSequence( SequenceType &sequence, 
                     const ValueType &valueToRemove )
 {
-   for ( int index =0; index < sequence.size(); ++index )
+   for ( unsigned int index =0; index < sequence.size(); ++index )
    {
       if ( sequence[ index ] == valueToRemove )
          sequence.erase( sequence.begin() + index );
