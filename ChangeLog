@@ -1,5 +1,9 @@
 2002-03-26 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* configure.in: bumped version to 1.7.9
+
+2002-03-26 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* src/msvc6/testpluginrunner/TestPlugInRunner.dsp: fixed release configuration.
 
 2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
