@@ -1,4 +1,28 @@
-2001-01-31  Tim Jansen  <timj@systembureau.com>
+2001-04-14 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Release as 1.5.4
+	
+	* Added support for RPM generation.
+	
+	* Added autoconf support for Doxygen document generation: 
+	  Doxygen and GraphViz dot are automatically detected and LaTeX and
+	  HTML can be switch on or off.
+	
+	* cppunit/TextTestResult.cpp: changed cout to stream. 
+	  Fixes bug #232636
+
+	* cppunit/TextTestReulst.cpp: add '#include <iostream>'.
+	  Fixes bug #223290
+	
+	* cppunit/*.cpp: removed bogus 'inline' specifiers.
+	  Fixes bug #224542 and #223291.
+
+	* doc/header.html: corrected link to CppUnit project page
+	  Fixes bug #414073
+
+	* cppunit/*.cpp, examples/hierarchy/main.cpp: removed all 
+	  'using namespace ...' occurences. 
+	
+2001-01-31 Tim Jansen <timj@systembureau.com>
 
 	* cppunit/TestCase.cpp, cppunit/TestCase.h, cppunit/TestSuite.h, 
 	  cppunit/TestSuite.cpp: applied patch #402271 by bwithrow. 
