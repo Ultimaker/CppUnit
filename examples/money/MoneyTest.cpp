@@ -1,6 +1,6 @@
 // MoneyTest.cpp
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Money.h"
 #include "MoneyTest.h"
 
