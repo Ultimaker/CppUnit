@@ -76,7 +76,7 @@ public:
   virtual void setStyleSheet( const std::string &styleSheet );
 
 
-  typedef CppUnitMap<Test *,TestFailure*> FailedTests;
+  typedef CppUnitMap<Test *,TestFailure*, std::less<Test*> > FailedTests;
 
   /*! \brief Sets the root element and adds its children.
    *
