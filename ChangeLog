@@ -1,3 +1,11 @@
+2001-09-18  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/TextTestResult.h: Change include from <iosfwd>
+	to <iostream>.  Sugggested by Peer Sommerlund.
+
+	* include/cppunit/Portability.h: Qualify ostrstream with std.
+	Suggested by Patrick Hartling.
+
 2001-09-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/examples.dsw:

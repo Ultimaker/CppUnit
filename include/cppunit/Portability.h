@@ -53,8 +53,8 @@
 	    std::string str()
 	    {
 		(*this) << '\0';
-		std::string msg(ostrstream::str());
-		ostrstream::freeze(false);
+		std::string msg(std::ostrstream::str());
+		std::ostrstream::freeze(false);
 		return msg;
 	    }
 	};

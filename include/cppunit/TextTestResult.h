@@ -1,7 +1,7 @@
 #ifndef CPPUNIT_TEXTTESTRESULT_H
 #define CPPUNIT_TEXTTESTRESULT_H
 
-#include <iosfwd>
+#include <iostream>
 #include <cppunit/TestResult.h>
 
 namespace CppUnit {

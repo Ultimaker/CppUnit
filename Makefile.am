@@ -18,8 +18,9 @@ EXTRA_DIST = cppunit.m4 cppunit.spec.in cppunit.spec	\
 m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4
 
-# Not sure what is creating this timestamp file.
-DISTCLEANFILES = config/stamp-h1
+# Not sure what is creating the timestamp file.
+# The so_locations file only happens on IRIX.
+DISTCLEANFILES = config/stamp-h1 so_locations
 
 dist-hook:
 	cp -dpR $(top_srcdir)/src/msvc6 $(distdir)/src
