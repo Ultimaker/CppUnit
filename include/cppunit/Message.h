@@ -117,18 +117,18 @@ public:
   void addDetail( const Message &message );
 
   /*! \brief Sets the short description.
-   * \param shortDecription New short description.
+   * \param shortDescription New short description.
    */
   void setShortDescription( const std::string &shortDescription );
 
-  /*! Tests if a message is identical to another one.
+  /*! \brief Tests if a message is identical to another one.
    * \param other Message this message is compared to.
    * \return \c true if the two message are identical, \c false otherwise.
    */
   bool operator ==( const Message &other ) const;
 
 
-  /*! Tests if a message is different from another one.
+  /*! \brief Tests if a message is different from another one.
    * \param other Message this message is compared to.
    * \return \c true if the two message are not identical, \c false otherwise.
    */

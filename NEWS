@@ -1,21 +1,12 @@
 	New in CppUnit 1.9.10:
 	---------------------
 
-  - AdditionalMessage
-  - MFC TestRunner bug fixes
   - Major portability improvement
   - Protector
-  - Failure diagnostic
   - HelperMacros
-
-* Asserter:
-  
-  - A new AdditionalMessage class has been introduced. It is used for
-    assertion that takes an additional 'message' argument. Since this
-    macro has an implicit constructor that take a string, which creates
-    a Message with the specified string as detail. That way, additional
-    message can be a single string or a complex Message object. See
-    documentation for example of use.
+  - MFC TestRunner bug fixes
+  - Failure diagnostic
+  - Asserter
 
 * Major portability improvement:
 
@@ -33,14 +24,6 @@
     such as CException or RWXMsg for example. Protector can also be
     used to implements the 'expected exception' assertion. Refer to
     module/Catching custom exception and Protector class documentation.
-
-* Failure diagnostic
-
-  - setUp() and tearDown() now provides a detailed diagnostic of the
-    failure (assertion, exception...)
-
-  - If RTTI is allowed to extract type info, CppUnit will report the
-    actual exception type in the diagnostic.
 
 * Helper macros
 
@@ -60,6 +43,24 @@
   - added support for abstract test fixture with
     CPPUNIT_TEST_SUITE_END_ABSTRACT(). See documentation for further
     detail.
+
+* Failure diagnostic
+
+  - setUp() and tearDown() now provides a detailed diagnostic of the
+    failure (assertion, exception...)
+
+  - If RTTI is allowed to extract type info, CppUnit will report the
+    actual exception type in the diagnostic.
+
+* Asserter:
+  
+  - A new AdditionalMessage class has been introduced. It is used for
+    assertion that takes an additional 'message' argument 
+    (CPPUNIT_ASSERT_MESSAGE...). Since this macro has an implicit 
+    constructor that take a string, which creates a Message with the 
+    specified string as detail. That way, additional message can be a 
+    single string or a complex Message object. See documentation for 
+    example of use.
 
 * Bug Fix:
 

@@ -44,18 +44,18 @@ class Message;
  */
 struct Asserter
 {
-  /*! Throws a Exception with the specified message and location.
+  /*! \brief Throws a Exception with the specified message and location.
    */
   static void CPPUNIT_API fail( const Message &message, 
                                 const SourceLine &sourceLine = SourceLine() );
 
-  /*! Throws a Exception with the specified message and location.
+  /*! \brief Throws a Exception with the specified message and location.
    * \deprecated Use fail( Message, SourceLine ) instead.
    */
   static void CPPUNIT_API fail( std::string message, 
                                 const SourceLine &sourceLine = SourceLine() );
 
-  /*! Throws a Exception with the specified message and location.
+  /*! \brief Throws a Exception with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
    *                   nothing happen.
    * \param message Message explaining the assertion failiure.
@@ -65,7 +65,7 @@ struct Asserter
                                   const Message &message, 
                                   const SourceLine &sourceLine = SourceLine() );
 
-  /*! Throws a Exception with the specified message and location.
+  /*! \brief Throws a Exception with the specified message and location.
    * \deprecated Use failIf( bool, Message, SourceLine ) instead.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
    *                   nothing happen.
@@ -103,12 +103,13 @@ struct Asserter
                                                   const AdditionalMessage &additionalMessage = AdditionalMessage(),
                                                   const std::string &shortDescription = "equality assertion failed");
 
-  /*! Throws an Exception with the specified message and location.
+  /*! \brief Throws an Exception with the specified message and location.
    * \param expected Text describing the expected value.
    * \param actual Text describing the actual value.
+   * \param sourceLine Location of the assertion.
    * \param additionalMessage Additional message. Usually used to report
    *                          what are the differences between the expected and actual value.
-   * \param sourceLine Location of the assertion.
+   * \param shortDescription Short description for the failure message.
    */
   static void CPPUNIT_API failNotEqual( std::string expected, 
                                         std::string actual, 
@@ -116,14 +117,15 @@ struct Asserter
                                         const AdditionalMessage &additionalMessage = AdditionalMessage(),
                                         std::string shortDescription = "equality assertion failed" );
 
-  /*! Throws an Exception with the specified message and location.
+  /*! \brief Throws an Exception with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
    *                   nothing happen.
    * \param expected Text describing the expected value.
    * \param actual Text describing the actual value.
+   * \param sourceLine Location of the assertion.
    * \param additionalMessage Additional message. Usually used to report
    *                          where the "difference" is located.
-   * \param sourceLine Location of the assertion.
+   * \param shortDescription Short description for the failure message.
    */
   static void CPPUNIT_API failNotEqualIf( bool shouldFail,
                                           std::string expected, 

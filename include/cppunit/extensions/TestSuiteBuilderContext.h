@@ -22,7 +22,7 @@ class TestNamer;
 class CPPUNIT_API TestSuiteBuilderContextBase
 {
 public:
-  /*! Constructs a new context.
+  /*! \brief Constructs a new context.
    *
    * You should not use this. The context is created in 
    * CPPUNIT_TEST_SUITE().
@@ -31,19 +31,19 @@ public:
                                const TestNamer &namer,
                                TestFixtureFactory &factory );
 
-  /*! Adds a test to the fixture suite.
+  /*! \brief Adds a test to the fixture suite.
    *
    * \param test Test to add to the fixture suite. Must not be \c NULL.
    */
   void addTest( Test *test );
 
-  /*! Returns the fixture name.
+  /*! \brief Returns the fixture name.
    * \return Fixture name. It is the name used to name the fixture
    *         suite.
    */
   std::string getFixtureName() const;
 
-  /*! Returns the name of the test for the specified method.
+  /*! \brief Returns the name of the test for the specified method.
    *
    * \param testMethodName Name of the method that implements a test.
    * \return A string that is the concatenation of the test fixture name 

@@ -25,8 +25,10 @@ class XmlElement;
 class CPPUNIT_API XmlDocument
 {
 public:
-  /*! Constructs a XmlDocument object.
+  /*! \brief Constructs a XmlDocument object.
    * \param encoding Encoding used in the XML file (default is Latin-1, ISO-8859-1 ). 
+   * \param styleSheet Name of the XSL style sheet file used. If empty then no
+   *                   style sheet will be specified in the output.
    */
   XmlDocument( const std::string &encoding = "",
                const std::string &styleSheet = "" );

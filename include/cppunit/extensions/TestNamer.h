@@ -48,23 +48,23 @@ class CPPUNIT_API TestNamer
 {
 public:
 #if CPPUNIT_HAVE_RTTI
-  /*! Constructs a namer using the fixture's type-info.
+  /*! \brief Constructs a namer using the fixture's type-info.
    * \param typeInfo Type-info of the fixture type. Use to name the fixture suite.
    */
   TestNamer( const std::type_info &typeInfo );
 #endif
 
-  /*! Constructs a namer using the specified fixture name.
+  /*! \brief Constructs a namer using the specified fixture name.
    * \param fixtureName Name of the fixture suite. Usually extracted using a macro.
    */
   TestNamer( const std::string &fixtureName );
 
-  /*! Returns the name of the fixture.
+  /*! \brief Returns the name of the fixture.
    * \return Name of the fixture.
    */
   virtual std::string getFixtureName() const;
 
-  /*! \Returns the name of the test for the specified method.
+  /*! \brief Returns the name of the test for the specified method.
    * \param testMethodName Name of the method that implements a test.
    * \return A string that is the concatenation of the test fixture name 
    *         (returned by getFixtureName()) and\a testMethodName, 

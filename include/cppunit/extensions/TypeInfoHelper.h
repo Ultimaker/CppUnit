@@ -11,12 +11,12 @@
 CPPUNIT_NS_BEGIN
 
 
-  /** Helper to use type_info.
+  /**! \brief Helper to use type_info.
    */
   class CPPUNIT_API TypeInfoHelper
   {
   public:
-    /** Get the class name of the specified type_info.
+    /*! \brief Get the class name of the specified type_info.
      * \param info Info which the class name is extracted from.
      * \return The string returned by type_info::name() without
      *         the "class" prefix. If the name is not prefixed

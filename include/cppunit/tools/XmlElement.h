@@ -71,7 +71,7 @@ public:
    */
   void setContent( const std::string &content );
 
-  /*! \overload.
+  /*! \overload void setContent( const std::string &content )
    */
   void setContent( int numericContent );
 
@@ -84,7 +84,7 @@ public:
 
   /*! \brief Adds an attribute with the specified numeric value.
    * \param attributeName Name of the attribute. Must not be empty.
-   * \param value Numeric value of the attribute.
+   * \param numericValue Numeric value of the attribute.
    */
   void addAttribute( std::string attributeName,
                      int numericValue );
