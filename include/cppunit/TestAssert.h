@@ -195,7 +195,7 @@ namespace CppUnit {
  * The last two requirements (serialization and comparison) can be
  * removed by specializing the CppUnit::assertion_traits.
  */
-#define CPPUNIT_ASSERT_EQUAL_MESSAGE(expected,actual,message)     \
+#define CPPUNIT_ASSERT_EQUAL_MESSAGE(message,expected,actual)     \
   ( ::CppUnit::TestAssert::assertEquals( (expected),              \
                                          (actual),                \
                                          CPPUNIT_SOURCELINE(),    \

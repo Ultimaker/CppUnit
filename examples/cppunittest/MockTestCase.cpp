@@ -142,32 +142,32 @@ MockTestCase::verify()
 {
   if ( m_hasSetUpExpectation )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedSetUpCall,
-                                  m_actualSetUpCall,
-                                  getName() + ": bad MockTestCase::setUp() "
-                                  "call count" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( getName() + ": bad MockTestCase::setUp() "
+                                  "call count",
+                                  m_expectedSetUpCall,
+                                  m_actualSetUpCall );
   }
 
   if ( m_hasTearDownExpectation )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedTearDownCall,
-                                  m_actualTearDownCall,
-                                  getName() + ": bad MockTestCase::setUp() "
-                                  "call count" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( getName() + ": bad MockTestCase::tearDown() "
+                                  "call count",
+                                  m_expectedTearDownCall,
+                                  m_actualTearDownCall );
   }
 
   if ( m_expectCountTestCasesCall )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedCountTestCasesCallCount,
-                                  m_actualCountTestCasesCallCount,
-                                  getName() + ": bad MockTestCase::countTestCases() "
-                                  "call count" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( getName() + ": bad MockTestCase::countTestCases() "
+                                  "call count",
+                                  m_expectedCountTestCasesCallCount,
+                                  m_actualCountTestCasesCallCount );
   }
   if ( m_expectRunTestCall )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedRunTestCallCount,
-                                  m_actualRunTestCallCount,
-                                  getName() + ": bad MockTestCase::runTest() "
-                                  "call count" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( getName() + ": bad MockTestCase::runTest() "
+                                  "call count",
+                                  m_expectedRunTestCallCount,
+                                  m_actualRunTestCallCount );
   }
 }

@@ -1,4 +1,4 @@
-	New in CppUnit 1.7.10:
+	New in CppUnit 1.7.11:
 	----------------------
 
 	In short:
@@ -145,6 +145,10 @@ any kind of failure.
   - TestResultCollector::failures() returns a const reference.
   - void TestListener::addFailure( TestFailure *failure ) was removed.
   - void TestListener::addError( TestFailure *failure ) signature changed.
+
+  - CPPUNIT_ASSERT_EQUAL_MESSAGE: changed arguments order. 'message' is now 
+    the first argument instead of the last (like CPPUNIT_ASSERT_MESSAGE).
+	Notes that CPPUNIT_ASSERT_EQUAL was introduced in release 1.7.3.
 
 * Bug fix:
   - test ExceptionTest.testAssignment() don't fail anymore on VC++. See FAQ

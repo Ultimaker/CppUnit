@@ -1,3 +1,15 @@
+2002-04-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* NEW: added CPPUNIT_ASSERT_EQUAL_MESSAGE compatiblity break.
+
+	* include/cppunit/TestAssert.h: changed arguments order for 
+	CPPUNIT_ASSERT_EQUAL_MESSAGE. 'message' is now the first argument instead
+	of the last (like CPPUNIT_ASSERT_MESSAGE).
+
+	* examples/cppunittest/MockTestCase.cpp:
+	* examples/cppunittest/MockTestListener.cpp: updated to reflect change on
+	CPPUNIT_ASSERT_EQUAL_MESSAGE.
+
 2002-03-28 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* configure.in: bumped version to 1.7.11

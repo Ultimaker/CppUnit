@@ -164,23 +164,23 @@ MockTestListener::verify()
 {
   if ( m_hasExpectationForStartTest )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedStartTestCallCount, 
-                                  m_startTestCall,
-                                  m_name + ": missing startTest calls" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing startTest calls",
+                                  m_expectedStartTestCallCount, 
+                                  m_startTestCall );
   }
 
   if ( m_hasExpectationForEndTest )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedEndTestCallCount, 
-                                  m_endTestCall,
-                                  m_name + ": missing endTest calls" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing endTest calls",
+                                  m_expectedEndTestCallCount, 
+                                  m_endTestCall );
   }
 
   if ( m_hasExpectationForAddFailure )
   {
-    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_expectedAddFailureCallCount, 
-                                  m_addFailureCall,
-                                  m_name + ": missing addFailure calls" );
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing addFailure calls",
+                                  m_expectedAddFailureCallCount, 
+                                  m_addFailureCall );
   }
 
   if ( m_hasExpectationForSomeFailure )
