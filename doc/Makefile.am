@@ -3,7 +3,7 @@ htmldir = $(pkgdatadir)/html
 EXTRA_DIST = $(doxygen_input) $(static_pages)
 
 doxygen_input = other_documentation.dox header.html footer.html
-static_pages = cookbook.html
+static_pages = cookbook.html FAQ
 
 
 # DOC is defined if installer requests doc generation.

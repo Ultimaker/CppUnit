@@ -1,5 +1,15 @@
 2001-09-30  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* doc/footer.html: Do not meddle with font size.
+
+	* doc/header.html: Add link to FAQ.  Do not meddle with font size.
+
+	* doc/Doxyfile.in (PROJECT_NAME): Set to "CppUnit", to be
+	consistent on capitalization.
+	(PROJECT_NUMBER): Include "Version" in the string.
+
+	* doc/Makefile.am (EXTRA_DIST): Distribute FAQ.
+
 	* Makefile.am (EXTRA_DIST): Distribute contrib/msvc/CppUnit.WWTpl
 	and contrib/msvc/readme.txt.
 	(dist-hook): Change line endings of these files.
