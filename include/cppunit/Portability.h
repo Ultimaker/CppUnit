@@ -1,7 +1,7 @@
 #ifndef CPPUNIT_PORTABILITY_H
 #define CPPUNIT_PORTABILITY_H
 
-#if defined(_WIN32) and !defined(WIN32)
+#if defined(_WIN32) && !defined(WIN32)
 # define WIN32 1
 #endif
 
