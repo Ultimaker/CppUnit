@@ -47,7 +47,7 @@ all-local: dox
 
 
 html/index.html: Doxyfile $(doxygen_input)
-	@DOXYGEN@
+	"@DOXYGEN@"
 
 
 # Make tarfile to distribute the HTML documentation.

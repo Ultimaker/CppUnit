@@ -1,14 +1,13 @@
 2003-03-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * config/bb_enable_doxygen.m4:
+  * doc/Makefile.am: applied Luke Dunstan's fix for bug #700730 (spaces not
+    allowed in doxygen path)
 
   * include/cppunit/tools/Algorithm.h:
   * src/cppunit/TestResult.cpp:
   * src/msvc6/testrunner/TestRunnerModel.cpp: added removeFromSequence 
     algorithm in Algorithm.h to fix STLPort compatibility issue 
 	(std::remove use the one of cstdio instead of algorithm). Bug #694971.
-
-  * src/cppunit/TestResult.cpp: added intermediate temporary in call
-    to addFailure() as a work-around for a compilation issue on AIX.
-
 
 2003-01-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
