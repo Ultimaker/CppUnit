@@ -1,4 +1,5 @@
 #include <cppunit/Message.h>
+#include <stdexcept>
 
 
 namespace CppUnit
