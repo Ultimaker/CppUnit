@@ -1,3 +1,9 @@
+2003-03-20 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/TestNamer.h:
+  * src/cppunit/TestNamer.cpp: Fixed bug #704684, TestNamer has non-virtual
+    destructor.
+
 2003-03-15 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * src/msvc6/testrunner/DynamicWindow/cdxCDynamicWndEx.cpp:

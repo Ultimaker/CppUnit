@@ -20,6 +20,11 @@ TestNamer::TestNamer( const std::string &fixtureName )
 }
 
 
+TestNamer::~TestNamer()
+{
+}
+
+
 std::string 
 TestNamer::getFixtureName() const
 {

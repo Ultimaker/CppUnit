@@ -62,6 +62,8 @@ public:
    */
   TestNamer( const std::string &fixtureName );
 
+  virtual ~TestNamer();
+
   /*! \brief Returns the name of the fixture.
    * \return Name of the fixture.
    */
