@@ -115,7 +115,43 @@ LINK32=link.exe
 # Name "CppUnitTestMain - Win32 Debug Crossplatform Setting"
 # Begin Source File
 
+SOURCE=.\BaseTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\BaseTestCase.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CppUnitTestMain.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ExceptionTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ExceptionTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FailingTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\FailingTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FailureException.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperMacrosTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperMacrosTest.h
 # End Source File
 # Begin Source File
 
@@ -127,6 +163,42 @@ SOURCE=.\MockTestListener.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\OrthodoxTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\OrthodoxTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\RepeatedTestTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\RepeatedTestTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SubclassedTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\SubclassedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SynchronizedTestResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestAssertTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestAssertTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestCallerTest.cpp
 # End Source File
 # Begin Source File
@@ -135,11 +207,59 @@ SOURCE=.\TestCallerTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestCaseTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestCaseTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestDecoratorTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestDecoratorTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestFailureTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestFailureTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestListenerTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestListenerTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestResultTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\TestResultTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSetupTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSetupTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSuiteTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSuiteTest.h
 # End Source File
 # Begin Source File
 

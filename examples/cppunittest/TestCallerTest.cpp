@@ -1,8 +1,24 @@
 #include "TestCallerTest.h"
+#include "FailureException.h"
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
 
 CPPUNIT_TEST_SUITE_REGISTRATION( TestCallerTest );
+
+
+void 
+TestCallerTest::ExceptionThrower::testThrowFailureException()
+{
+  throw FailureException();
+}
+
+
+void 
+TestCallerTest::ExceptionThrower::testThrowException()
+{
+  throw CppUnit::Exception( "expected Exception" );
+}
+
 
 
 TestCallerTest::TestCallerTest() : 
@@ -24,6 +40,8 @@ TestCallerTest::suite()
   suite.addTestCaller( "testBasicConstructor", &TestCallerTest::testBasicConstructor );
   suite.addTestCaller( "testReferenceConstructor", &TestCallerTest::testReferenceConstructor );
   suite.addTestCaller( "testPointerConstructor", &TestCallerTest::testPointerConstructor );
+  suite.addTestCaller( "testExpectFailureException", &TestCallerTest::testExpectFailureException );
+  suite.addTestCaller( "testExpectException", &TestCallerTest::testExpectException );
 
   return suite.takeSuite();
 }
@@ -135,6 +153,26 @@ TestCallerTest::testPointerConstructor()
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
   CPPUNIT_ASSERT_EQUAL( 1, m_destructorCount );
+}
+
+
+void 
+TestCallerTest::testExpectFailureException()
+{
+  CppUnit::TestCaller<ExceptionThrower,FailureException> caller( 
+      m_testName,
+      &ExceptionThrower::testThrowFailureException );
+  caller.run();
+}
+
+
+void 
+TestCallerTest::testExpectException()
+{
+  CppUnit::TestCaller<ExceptionThrower,CppUnit::Exception> caller( 
+      m_testName,
+      &ExceptionThrower::testThrowException );
+  caller.run();
 }
 
 

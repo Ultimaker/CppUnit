@@ -42,10 +42,4 @@ private:
 };
 
 
-
-// Inlines methods for TrackedTestCase:
-// ------------------------------------
-
-
-
 #endif  // TRACKEDTESTCASE_H

@@ -1,48 +1,48 @@
-#include "TestResultTest.h"
+#include "TestListenerTest.h"
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestResult.h>
 #include "MockTestListener.h"
 
-CPPUNIT_TEST_SUITE_REGISTRATION( TestResultTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( TestListenerTest );
 
 
-TestResultTest::TestResultTest() : 
+TestListenerTest::TestListenerTest() : 
     CppUnit::TestCase()
 {
 }
 
 
-TestResultTest::~TestResultTest()
+TestListenerTest::~TestListenerTest()
 {
 }
 
 
 CppUnit::TestSuite *
-TestResultTest::suite()
+TestListenerTest::suite()
 {
-  CppUnit::TestSuiteBuilder<TestResultTest> suite("TestResultTest");
+  CppUnit::TestSuiteBuilder<TestListenerTest> suite("TestListenerTest");
 
-  suite.addTestCaller( "testNoListener", &TestResultTest::testNoListener );
+  suite.addTestCaller( "testNoListener", &TestListenerTest::testNoListener );
   suite.addTestCaller( "testAddErrorListener", 
-                       &TestResultTest::testAddErrorListener );
+                       &TestListenerTest::testAddErrorListener );
   suite.addTestCaller( "testAddFailureListener", 
-                       &TestResultTest::testAddFailureListener );
+                       &TestListenerTest::testAddFailureListener );
   suite.addTestCaller( "testStartTestListener", 
-                       &TestResultTest::testStartTestListener );
+                       &TestListenerTest::testStartTestListener );
   suite.addTestCaller( "testEndTestListener", 
-                       &TestResultTest::testEndTestListener );
+                       &TestListenerTest::testEndTestListener );
   suite.addTestCaller( "testRemoveFrontListener", 
-                       &TestResultTest::testRemoveFrontListener );
+                       &TestListenerTest::testRemoveFrontListener );
   suite.addTestCaller( "testRemoveLastListener", 
-                       &TestResultTest::testRemoveLastListener );
+                       &TestListenerTest::testRemoveLastListener );
 
   return suite.takeSuite();
 }
 
 
 void 
-TestResultTest::setUp()
+TestListenerTest::setUp()
 {
   m_listenerTest = NULL;
   m_listenerError = NULL;
@@ -55,7 +55,7 @@ TestResultTest::setUp()
 
 
 void 
-TestResultTest::tearDown()
+TestListenerTest::tearDown()
 {
   m_result->removeListener( this );
   delete m_result;
@@ -64,7 +64,7 @@ TestResultTest::tearDown()
 
 
 void 
-TestResultTest::addError( CppUnit::Test *test, CppUnit::Exception *e )
+TestListenerTest::addError( CppUnit::Test *test, CppUnit::Exception *e )
 {
   m_listenerTest = test;
   m_listenerError = e;
@@ -73,7 +73,7 @@ TestResultTest::addError( CppUnit::Test *test, CppUnit::Exception *e )
 
 
 void 
-TestResultTest::addFailure( CppUnit::Test *test, CppUnit::Exception *e )
+TestListenerTest::addFailure( CppUnit::Test *test, CppUnit::Exception *e )
 {
   m_listenerTest = test;
   m_listenerError = e;
@@ -81,7 +81,7 @@ TestResultTest::addFailure( CppUnit::Test *test, CppUnit::Exception *e )
 }
 
 void 
-TestResultTest::startTest( CppUnit::Test *test )
+TestListenerTest::startTest( CppUnit::Test *test )
 {
   m_listenerTest = test;
   m_listenerCallbackType = onStartTest;
@@ -89,7 +89,7 @@ TestResultTest::startTest( CppUnit::Test *test )
 
 
 void 
-TestResultTest::endTest( CppUnit::Test *test )
+TestListenerTest::endTest( CppUnit::Test *test )
 {
   m_listenerTest = test;
   m_listenerCallbackType = onEndTest;
@@ -97,7 +97,7 @@ TestResultTest::endTest( CppUnit::Test *test )
 
 
 void 
-TestResultTest::testAddErrorListener()
+TestListenerTest::testAddErrorListener()
 {
   m_result->addError( m_dummyTest, makeDummyError() );
   CPPUNIT_ASSERT( m_listenerCallbackType == onAddError );
@@ -107,7 +107,7 @@ TestResultTest::testAddErrorListener()
 
 
 void 
-TestResultTest::testAddFailureListener()
+TestListenerTest::testAddFailureListener()
 {
   m_result->addFailure( m_dummyTest, makeDummyError() );
   CPPUNIT_ASSERT( m_listenerCallbackType == onAddFailure );
@@ -117,7 +117,7 @@ TestResultTest::testAddFailureListener()
 
 
 void 
-TestResultTest::testStartTestListener()
+TestListenerTest::testStartTestListener()
 {
   m_result->startTest( m_dummyTest );
   CPPUNIT_ASSERT( m_listenerCallbackType == onStartTest );
@@ -126,7 +126,7 @@ TestResultTest::testStartTestListener()
 
 
 void 
-TestResultTest::testEndTestListener()
+TestListenerTest::testEndTestListener()
 {
   m_result->endTest( m_dummyTest );
   CPPUNIT_ASSERT( m_listenerCallbackType == onEndTest );
@@ -135,7 +135,7 @@ TestResultTest::testEndTestListener()
 
 
 CppUnit::Exception *
-TestResultTest::makeDummyError()
+TestListenerTest::makeDummyError()
 {
   m_dummyError = new CppUnit::Exception( "dummy exception" );
   return m_dummyError;
@@ -143,7 +143,7 @@ TestResultTest::makeDummyError()
 
 
 void 
-TestResultTest::testNoListener()
+TestListenerTest::testNoListener()
 {
   CppUnit::TestResult result;
   result.addError( m_dummyTest, makeDummyError() );
@@ -154,7 +154,7 @@ TestResultTest::testNoListener()
 
 
 void 
-TestResultTest::testTwoListener()
+TestListenerTest::testTwoListener()
 {
   MockTestListener listener;
   m_result->addListener( &listener );
@@ -165,7 +165,7 @@ TestResultTest::testTwoListener()
 
 
 void 
-TestResultTest::testRemoveFrontListener()
+TestListenerTest::testRemoveFrontListener()
 {
   MockTestListener listener;
   m_result->addListener( &listener );
@@ -177,7 +177,7 @@ TestResultTest::testRemoveFrontListener()
 
 
 void 
-TestResultTest::testRemoveLastListener()
+TestListenerTest::testRemoveLastListener()
 {
   MockTestListener listener;
   m_result->addListener( &listener );

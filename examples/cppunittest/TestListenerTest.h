@@ -1,22 +1,18 @@
-#ifndef TESTRESULTTEST_H
-#define TESTRESULTTEST_H
+#ifndef TESTLISTENERTEST_H
+#define TESTLISTENERTEST_H
 
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestListener.h>
 
 
-class TestResultTest : public CppUnit::TestCase,
-                       public CppUnit::TestListener
+class TestListenerTest : public CppUnit::TestCase,
+                         public CppUnit::TestListener
 {
 public:
-  /*! Constructs a TestResultTest object.
-   */
-  TestResultTest();
+  TestListenerTest();
 
-  /*! Destructor.
-   */
-  virtual ~TestResultTest();
+  virtual ~TestListenerTest();
 
   static CppUnit::TestSuite *suite();
 
@@ -50,8 +46,8 @@ private:
 
   CppUnit::Exception *makeDummyError();
 
-  TestResultTest( const TestResultTest &copy );
-  void operator =( const TestResultTest &copy );
+  TestListenerTest( const TestListenerTest &copy );
+  void operator =( const TestListenerTest &copy );
 
 private:
   CppUnit::Test *m_listenerTest;
@@ -63,10 +59,4 @@ private:
 };
 
 
-
-// Inlines methods for TestResultTest:
-// -----------------------------------
-
-
-
-#endif  // TESTRESULTTEST_H
+#endif  // TESTLISTENERTEST_H

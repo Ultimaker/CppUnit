@@ -10,12 +10,7 @@ class TestCallerTest : public CppUnit::TestCase,
                               Tracker
 {
 public:
-  /*! Constructs a TestCallerTest object.
-   */
   TestCallerTest();
-
-  /*! Destructor.
-   */
   virtual ~TestCallerTest();
 
   static CppUnit::TestSuite *suite();
@@ -27,7 +22,17 @@ public:
   void testReferenceConstructor();
   void testPointerConstructor();
 
+  void testExpectFailureException();
+  void testExpectException();
+
 private:
+  class ExceptionThrower : public CppUnit::TestCase
+  {
+  public:
+    void testThrowFailureException();
+    void testThrowException();
+  };
+
   virtual void onConstructor();
   virtual void onDestructor();
   virtual void onSetUp();
@@ -38,10 +43,7 @@ private:
   void checkRunningSequenceCalled();
   void checkTestName( std::string testName );
 
-  /// Prevents the use of the copy constructor.
   TestCallerTest( const TestCallerTest &copy );
-
-  /// Prevents the use of the copy operator.
   void operator =( const TestCallerTest &copy );
 
 private:
