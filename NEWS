@@ -1,15 +1,11 @@
-	New in CppUnit 1.9.11:
+	New in CppUnit 1.9.12:
 	---------------------
-
-* XML Input
-
-  - In the process of adding XML Input for parametrized test.
 
 * Test Plug-in
 
   - added support contributed support for UNIX systems that
-    have libdld and not libdl (e.g. hp-ux). Thanks to
-    Abdessattar Sassi for this.
+    have libdld and not libdl (e.g. hp-ux). Contributed by
+    Abdessattar Sassi.
 
 * RTTI
 
