@@ -1,3 +1,10 @@
+2004-11-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/TestAssert.h:
+  * src/cppunit/TestAssert.cpp: integrated Neil Ferguson patch for missing
+    _MESSAGE assertion variants. Also enhanced the failure message of a 
+    few assertions.
+
 2004-09-10 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * src/msvc6/DSPlugIn/StdAfx.h: add #error to prevent compilation on VC 7.

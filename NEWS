@@ -10,6 +10,23 @@
     no stream support. Just make sure that CPPUNIT_NO_STREAM is defined
     to 1 in your config header.
 
+* Assertion:
+
+  - Added missing _MESSAGE variants for the following assertions:
+  
+    CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE
+    CPPUNIT_ASSERT_THROW_MESSAGE
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE
+    CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE
+    CPPUNIT_ASSERT_ASSERTION_PASS_MESSAGE
+
+    Some assertions failure message are now more detailed (exception, expression).
+    Thanks to Neil Ferguson who contributed this patch.
+
+    Notes: change made to CPPUNIT_ASSERT_THROW may cause compilation error 
+    if you're expecting std::exception as it would be caught twice. Contact us
+    if it is an issue (we don't see much use for such a test).
+
 * Outputter:
 
   - XML Ouputter: patch #997006 contributed by Akos Maroy makes the

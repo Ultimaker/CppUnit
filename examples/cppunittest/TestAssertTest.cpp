@@ -41,11 +41,11 @@ TestAssertTest::tearDown()
 void 
 TestAssertTest::testAssertThrow()
 {
-   CPPUNIT_ASSERT_THROW( throw std::exception(), std::exception );
+   CPPUNIT_ASSERT_THROW( throw std::string(), std::string );
 
    try
    {
-      CPPUNIT_ASSERT_THROW( 1234, std::exception );
+      CPPUNIT_ASSERT_THROW( 1234, std::string );
    }
    catch ( CPPUNIT_NS::Exception & )
    {
