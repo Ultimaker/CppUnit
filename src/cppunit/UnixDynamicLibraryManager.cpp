@@ -14,7 +14,7 @@ namespace CppUnit
 DynamicLibraryManager::LibraryHandle 
 DynamicLibraryManager::doLoadLibrary( const std::string &libraryName )
 {
-  return ::dlopen( libraryFileName.c_str(), DLOPEN_MODE );
+  return ::dlopen( libraryName.c_str(), DLOPEN_MODE );
 }
 
 
