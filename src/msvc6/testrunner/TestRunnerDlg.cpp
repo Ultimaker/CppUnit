@@ -11,7 +11,8 @@
 #include "ProgressBar.h"
 #include "TreeHierarchyDlg.h"
 #include "TestRunnerModel.h"
-
+#include "ListCtrlFormatter.h"
+#include "ListCtrlSetter.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,9 +33,12 @@ const CString TestRunnerDlg::ms_cppunitKey( "CppUnit" );
 
 
 TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
-                              CWnd* pParent )
-    : CDialog(IDD_DIALOG_TESTRUNNER, pParent),
-      m_model( model )
+                              int nDialogResourceId,
+                              CWnd* pParent ) :
+    CDialog( nDialogResourceId == -1 ? IDD_DIALOG_TESTRUNNER :
+                                       nDialogResourceId, 
+             pParent),
+    m_model( model )
 {
     //{{AFX_DATA_INIT(TestRunnerDlg)
 	m_bAutorunAtStartup = FALSE;
@@ -60,11 +64,11 @@ void TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(TestRunnerDlg, CDialog)
-    //{{AFX_MSG_MAP(TestRunnerDlg)
-    ON_BN_CLICKED(ID_RUN, OnRun)
-    ON_BN_CLICKED(ID_STOP, OnStop)
-    ON_CBN_SELCHANGE(IDC_COMBO_TEST, OnSelchangeComboTest)
-    ON_WM_PAINT()
+  //{{AFX_MSG_MAP(TestRunnerDlg)
+  ON_BN_CLICKED(ID_RUN, OnRun)
+  ON_BN_CLICKED(ID_STOP, OnStop)
+  ON_CBN_SELCHANGE(IDC_COMBO_TEST, OnSelchangeComboTest)
+  ON_WM_PAINT()
 	ON_BN_CLICKED(IDC_BROWSE_TEST, OnBrowseTest)
 	ON_COMMAND(ID_QUIT_APPLICATION, OnQuitApplication)
 	//}}AFX_MSG_MAP
@@ -88,12 +92,20 @@ BOOL TestRunnerDlg::OnInitDialog()
 
     ASSERT (listCtrl);
     ASSERT (comboBox);
+    ListCtrlFormatter formatter( *listCtrl );
 
-    listCtrl->InsertColumn (0,"Type", LVCFMT_LEFT, 2 * listCtrl->GetStringWidth ("Type"), 1);
-    listCtrl->InsertColumn (1,"Name", LVCFMT_LEFT, 20 * listCtrl->GetStringWidth ("#"), 2);
-    listCtrl->InsertColumn (2,"Failed Condition", LVCFMT_LEFT, 1.75 * listCtrl->GetStringWidth ("Failed Condition"), 3);
-    listCtrl->InsertColumn (3,"Line Number", LVCFMT_LEFT, 1.5 * listCtrl->GetStringWidth ("Line Number"), 4);
-    listCtrl->InsertColumn (4,"File Name", LVCFMT_LEFT, 4.0 * listCtrl->GetStringWidth ("File Name"), 5);
+    VERIFY( m_errorListBitmap.Create( IDB_ERROR_TYPE, 16, 1, 
+                                      RGB( 255,0,255 ) ) );
+
+    listCtrl->SetImageList( &m_errorListBitmap, LVSIL_SMALL );
+
+    int averageCharWidth = listCtrl->GetStringWidth("#");
+    formatter.AddColumn( IDS_ERRORLIST_TYPE, 4*averageCharWidth, LVCFMT_LEFT, 0 );
+    formatter.AddColumn( IDS_ERRORLIST_NAME, 32*averageCharWidth, LVCFMT_LEFT, 1 );
+    formatter.AddColumn( IDS_ERRORLIST_FAILED_CONDITION, 20*averageCharWidth, LVCFMT_LEFT, 2 );
+    formatter.AddColumn( IDS_ERRORLIST_LINE_NUMBER, 5*averageCharWidth, LVCFMT_LEFT, 3 );
+    formatter.AddColumn( IDS_ERRORLIST_FILE_NAME, 10*averageCharWidth, LVCFMT_LEFT, 4 );
+
 
     m_testsProgress = new ProgressBar (this, CRect (50, 85, 50 + 425, 85 + 25));
 
@@ -152,11 +164,41 @@ void TestRunnerDlg::OnRun()
 
 void TestRunnerDlg::addListEntry (std::string type, CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e)
 {
-    char        stage [80];
-    LV_ITEM     lvi;
+//    char        stage [80];
+//    LV_ITEM     lvi;
     CListCtrl   *listCtrl       = (CListCtrl *)GetDlgItem (IDC_LIST);
-    int         currentEntry    = result->testErrors () + result->testFailures () -1;
+    int         currentEntry    = result->testErrors () + result->testFailures ()-1;
 
+    ErrorTypeBitmaps errorType;
+    if ( type == "Failure" )
+      errorType = errorTypeFailure;
+    else
+      errorType = errorTypeError;
+
+    ListCtrlSetter setter( *listCtrl );
+    setter.insertLine( currentEntry );
+    setter.addSubItem( errorType, type );
+
+    // Set test name
+    setter.addSubItem( errorType, test->getName() );
+
+    // Set the asserted text
+    setter.addSubItem( e->what() );
+
+    // Set the line number
+    if (e->lineNumber () == CppUnit::Exception::UNKNOWNLINENUMBER)
+      setter.addSubItem( "?" );
+    else
+    {
+      char tmp[64];
+      sprintf( tmp, "%ld", e->lineNumber() );
+      setter.addSubItem( tmp );
+    }
+
+    // Set the file name
+    setter.addSubItem( e->fileName() );
+
+/*
     sprintf (stage, "%s", type.c_str ());
 
     lvi.mask        = LVIF_TEXT;
@@ -185,7 +227,7 @@ void TestRunnerDlg::addListEntry (std::string type, CppUnit::TestResult *result,
 
     // Set the file name
     listCtrl->SetItemText(currentEntry, 4, e->fileName ().c_str ());
-
+*/
     listCtrl->RedrawItems (currentEntry, currentEntry);
     listCtrl->UpdateWindow ();
 

@@ -41,9 +41,10 @@ RSC=rc.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "WIN32" /D "CPPUNIT_USE_TYPEINFO" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "WIN32" /D "CPPUNIT_USE_TYPEINFO" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -54,6 +55,10 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 /nologo /subsystem:windows /machine:I386
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PreLink_Cmds=copy ..\..\..\lib\testrunner.dll Debug
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
 
@@ -132,20 +137,7 @@ PreLink_Cmds=copy ..\..\..\lib\testrunnercd.dll DebugCrossplatform
 # Begin Source File
 
 SOURCE=.\ExampleTestCase.cpp
-
-!IF  "$(CFG)" == "HostApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 

@@ -3,10 +3,16 @@
 // Used by TestRunner.rc
 //
 #define IDS_ERROR_SELECT_TEST           1
+#define IDS_ERRORLIST_TYPE              2
+#define IDS_ERRORLIST_NAME              3
+#define IDS_ERRORLIST_FAILED_CONDITION  4
+#define IDS_ERRORLIST_LINE_NUMBER       5
+#define IDS_ERRORLIST_FILE_NAME         6
 #define IDD_DIALOG_TESTRUNNER           129
 #define IDD_DIALOG_TEST_HIERARCHY       130
 #define IDB_TEST_TYPE                   131
 #define IDR_ACCELERATOR_TEST_RUNNER     131
+#define IDB_ERROR_TYPE                  134
 #define IDC_LIST                        1000
 #define ID_RUN                          1001
 #define ID_STOP                         1002
@@ -27,9 +33,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        132
+#define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32772
-#define _APS_NEXT_CONTROL_VALUE         1014
+#define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

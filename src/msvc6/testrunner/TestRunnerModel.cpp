@@ -76,6 +76,13 @@ TestRunnerModel::loadSettings()
   m_autorunOnLaunch = (autorun == 1);
 
 
+  loadHistory();
+}
+
+
+void 
+TestRunnerModel::loadHistory()
+{
   m_history.clear();
   int idx = 1;
   do

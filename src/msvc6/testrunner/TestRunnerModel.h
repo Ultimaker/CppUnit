@@ -13,7 +13,7 @@
 /*! \class TestRunnerModel
  * \brief This class represents a model for the test runner.
  */
-class TestRunnerModel
+class AFX_CLASS_EXPORT TestRunnerModel
 {
 public:
   typedef std::deque<CppUnit::Test *> History;
@@ -26,6 +26,8 @@ public:
    */
   virtual ~TestRunnerModel();
 
+  virtual void setRootTest( CppUnit::Test *rootTest );
+
   void loadSettings();
   void saveSettings();
 
@@ -37,17 +39,9 @@ public:
   CppUnit::Test *selectedTest() const;
 
   CppUnit::Test *rootTest();
-  void setRootTest( CppUnit::Test *test );
 
-private:
-  /*! Prevents the use of the copy constructor.
-   */
-  TestRunnerModel( const TestRunnerModel &copy );
-
-  /*! Prevents the use of the copy operator.
-   */
-  TestRunnerModel &operator =( const TestRunnerModel &copy );
-
+protected:
+  void loadHistory();
   std::string loadHistoryEntry( int idx );
   CppUnit::Test *findTestByName( std::string name ) const;
   CppUnit::Test *findTestByNameFor( const std::string &name, 
@@ -57,6 +51,13 @@ private:
                          std::string testName );
 
   std::string getHistoryEntryName( int idx ) const;
+
+private:
+  /// Prevents the use of the copy constructor.
+  TestRunnerModel( const TestRunnerModel &copy );
+
+  /// Prevents the use of the copy operator.
+  TestRunnerModel &operator =( const TestRunnerModel &copy );
 
 private:
   bool m_autorunOnLaunch;

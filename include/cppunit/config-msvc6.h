@@ -5,8 +5,8 @@
    include/cppunit/config-auto.h */
 
 /* define if library uses std::string::compare(string,pos,n) */
-#ifndef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST 
-#define CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST  1 
+#ifdef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST 
+#undef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST
 #endif
 
 /* Define if you have the <dlfcn.h> header file. */

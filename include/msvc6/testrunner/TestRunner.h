@@ -14,9 +14,25 @@
 #include <vector>
 #include <cppunit/TestSuite.h>
 
+/* Refer to MSDN documentation to know how to write and use MFC extension DLL:
+   mk:@MSITStore:h:\DevStudio\MSDN\98VSa\1036\vcmfc.chm::/html/_mfcnotes_tn033.htm#_mfcnotes_how_to_write_an_mfc_extension_dll
+   
+   This can be found in the index with "mfc extension"
+   The basic:
+   Using:
+   - your application must use MFC DLL
+   - memory allocation is done using the same heap
+   - you must define the symbol _AFX_DLL
+
+   Building:
+   - you must define the symbol _AFX_DLL and _AFX_EXT
+   - export class using AFX_EXT_CLASS
+ */
+
+
 
 // A Wrapper
-class AFX_CLASS_EXPORT TestRunner 
+class AFX_EXT_CLASS TestRunner 
 {
 public:
          TestRunner ();

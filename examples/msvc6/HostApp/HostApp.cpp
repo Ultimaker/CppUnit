@@ -7,7 +7,7 @@
 #include "MainFrm.h"
 #include "HostAppDoc.h"
 #include "HostAppView.h"
-
+ 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE

@@ -42,7 +42,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "..\..\include" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "WIN32" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\..\include" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "WIN32" /YX /FD /c
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
@@ -167,7 +167,7 @@ SOURCE=..\..\ChangeLog
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\config.h
+SOURCE="..\..\include\cppunit\config-msvc6.h"
 # End Source File
 # Begin Source File
 
@@ -188,6 +188,10 @@ SOURCE=.\NotEqualException.cpp
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\NotEqualException.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Portability.h
 # End Source File
 # Begin Source File
 

@@ -1,3 +1,40 @@
+2001-06-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp:
+	moved dll copy from post-build to custom build setting, so that the 
+	dll is copied even if the CppUnitTestApp was not modified.
+
+	* examples/msvc6/TestPlugIn/: a new example of test plug in.
+
+	* src/msvc6/TestRunner/ListCtrlFormatter.*
+	* src/msvc6/TestRunner/ListCtrlSetter.*:
+	added, helper to manipulate list control.
+
+	* src/msvc6/TestRunner/TestRunnerDlg.*: change to make the error list 
+	more compact. text moved to string resources. icons added for typ
+	test tfailure type.
+
+	* src/msvc6/TestRunner/MostRecentTests.*: added, classes that will
+	replace the current implementation of MRU test which make it hard
+	to subclass the dialog.
+
+	* src/msvc6/TestRunner/res/errortype.bmp: added, bitmap with error
+	types (failure and error).
+
+	* src/msvc6/TestPlugInRunner/: A test runner to run test plug in.
+	Test plug in are DLL that publish a specified plug in interface.
+	Those DLL are loaded and reloaded by the TestPlugInRunner to run
+	tests. This remove the need to wrap DLL with a executable to test
+	them.
+
+	* src/cppunit/cppunit.dsp: 
+	removed config.h from project
+	added Portability.h and config-msvc6.h
+
+	* include/cppunit/config-msvc6.h:
+	undef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST
+
+
 2001-06-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* autogen.sh: Stop when tool fails.  Try /usr/local/share/aclocal
@@ -51,6 +88,7 @@
 	* src/cppunit/TypeInfoHelper.cpp: use new macro name 
 	CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST
 	
+
 2001-06-12 Baptiste Lepilleur <gaiacrtn@free.fr>
 	
 	* include/cppunit/NotEqualException.h
@@ -502,4 +540,3 @@
 	changed documentation; made hopefully clearer which constructor
 	registers the instance in the TestRegistry; corrected syntax in
 	code example Patch #403542.
-
