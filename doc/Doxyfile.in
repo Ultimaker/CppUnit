@@ -14,13 +14,13 @@
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded 
 # by quotes) that should identify the project. 
 
-PROJECT_NAME          = "CppUnit"
+PROJECT_NAME          = @PACKAGE@
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. 
 # This could be handy for archiving the generated documentation or 
 # if some version control system is used.
 
-PROJECT_NUMBER        = 1.5.2
+PROJECT_NUMBER        = @VERSION@
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 
@@ -303,7 +303,7 @@ IGNORE_PREFIX         =
 # If the GENERATE_HTML tag is set to YES (the default) Doxygen will 
 # generate HTML output. 
 
-GENERATE_HTML         = YES
+GENERATE_HTML         = @enable_html_docs@
 
 # The HTML_OUTPUT tag is used to specify where the HTML docs will be put. 
 # If a relative path is entered the value of OUTPUT_DIRECTORY will be 
@@ -350,7 +350,7 @@ GENERATE_HTMLHELP     = NO
 # If the GENERATE_LATEX tag is set to YES (the default) Doxygen will 
 # generate Latex output. 
 
-GENERATE_LATEX        = NO
+GENERATE_LATEX        = @enable_latex_docs@
 
 # The LATEX_OUTPUT tag is used to specify where the LaTeX docs will be put. 
 # If a relative path is entered the value of OUTPUT_DIRECTORY will be 
@@ -522,7 +522,7 @@ PERL_PATH             = /usr/bin/perl
 # toolkit from AT&T and Lucent Bell Labs. The other options in this section 
 # have no effect if this option is set to NO (the default) 
 
-HAVE_DOT              = NO
+HAVE_DOT              = @enable_dot@
 
 # If the CLASS_GRAPH and HAVE_DOT tags are set to YES then doxygen 
 # will generate a graph for each documented class showing the direct and 
