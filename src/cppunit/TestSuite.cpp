@@ -1,5 +1,8 @@
 #include "cppunit/TestSuite.h"
 #include "cppunit/TestResult.h"
+#ifdef USE_TYPEINFO
+#include "TypeInfoHelper.h"
+#endif // USE_TYPEINFO
 
 namespace CppUnit {
 
@@ -52,6 +55,17 @@ TestSuite::TestSuite (std::string name)
 {
 }
 
+#ifdef USE_TYPEINFO
+/** Constructs a test suite named after the specified type_info.
+ * \param info type_info used to name the suite. The 'class' prefix
+ *             is stripped from the name.
+ */
+TestSuite::TestSuite(const std::type_info &info ) :
+  m_name( TypeInfoHelper::getClassName( info ) )
+{
+}
+#endif // USE_TYPEINFO
+
 
 /// Destructor
 TestSuite::~TestSuite ()
@@ -80,6 +94,12 @@ std::string
   TestSuite::getName () const
 { 
   return m_name; 
+}
+
+const std::vector<Test *>& 
+  TestSuite::getTests () const
+{
+  return m_tests;
 }
 
 } // namespace CppUnit

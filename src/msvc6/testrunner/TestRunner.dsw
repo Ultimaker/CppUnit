@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "TestRunner"=".\TestRunner.dsp" - Package Owner=<4>
+Project: "TestRunner"=.\TestRunner.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -18,7 +18,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "cppunit"="..\..\cppunit\cppunit.dsp" - Package Owner=<4>
+Project: "cppunit"=..\..\cppunit\cppunit.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

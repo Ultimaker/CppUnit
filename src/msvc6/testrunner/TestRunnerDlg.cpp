@@ -3,11 +3,14 @@
 
 #include "stdafx.h"
 #include "mmsystem.h"
-#include <testrunner/TestRunnerDlg.h>
+#include "TestRunnerApp.h"
+#include "TestRunnerDlg.h"
+#include "Resource.h"
 #include "ActiveTest.h"
 #include "GUITestResult.h"
 #include "ProgressBar.h"
-#include "resource.h"
+#include "TreeHierarchyDlg.h"
+#include "TestRunnerModel.h"
 
 
 #ifdef _DEBUG
@@ -16,21 +19,31 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/* TODO:
+ - rewrite history management. It's quite messy.
+   => don't store test as data, use a vector a most recently used test instead.
+ */
+
 
 /////////////////////////////////////////////////////////////////////////////
 // TestRunnerDlg dialog
 
+const CString TestRunnerDlg::ms_cppunitKey( "CppUnit" );
 
-TestRunnerDlg::TestRunnerDlg(CWnd* pParent /*=NULL*/)
-    : CDialog(IDD_DIALOG_TESTRUNNER, pParent)
+
+TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
+                              CWnd* pParent )
+    : CDialog(IDD_DIALOG_TESTRUNNER, pParent),
+      m_model( model )
 {
     //{{AFX_DATA_INIT(TestRunnerDlg)
-        // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
+	m_bAutorunAtStartup = FALSE;
+	//}}AFX_DATA_INIT
 
     m_testsProgress     = 0;
-    m_tests             = 0;
     m_selectedTest      = 0;
+    m_bAutorunAtStartup = true;
+    m_bIsRunning = false;
 }
 
 
@@ -38,8 +51,11 @@ void TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(TestRunnerDlg)
-        // NOTE: the ClassWizard will add DDX and DDV calls here
-    //}}AFX_DATA_MAP
+	DDX_Control(pDX, IDOK, m_buttonClose);
+	DDX_Control(pDX, ID_STOP, m_buttonStop);
+	DDX_Control(pDX, ID_RUN, m_buttonRun);
+	DDX_Check(pDX, IDC_CHECK_AUTORUN, m_bAutorunAtStartup);
+	//}}AFX_DATA_MAP
 }
 
 
@@ -49,7 +65,9 @@ BEGIN_MESSAGE_MAP(TestRunnerDlg, CDialog)
     ON_BN_CLICKED(ID_STOP, OnStop)
     ON_CBN_SELCHANGE(IDC_COMBO_TEST, OnSelchangeComboTest)
     ON_WM_PAINT()
-    //}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_BROWSE_TEST, OnBrowseTest)
+	ON_COMMAND(ID_QUIT_APPLICATION, OnQuitApplication)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,6 +76,12 @@ END_MESSAGE_MAP()
 BOOL TestRunnerDlg::OnInitDialog() 
 {
     CDialog::OnInitDialog();
+
+//    m_hAccelerator = ::LoadAccelerators( AfxGetResourceHandle(),
+    m_hAccelerator = ::LoadAccelerators( g_testRunnerResource,
+                                         MAKEINTRESOURCE( IDR_ACCELERATOR_TEST_RUNNER ) );
+// It always fails!!! I don't understand why. Complain about not finding the resource name!
+    ASSERT( m_hAccelerator !=NULL );
     
     CListCtrl   *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
     CComboBox   *comboBox = (CComboBox *)GetDlgItem (IDC_COMBO_TEST);
@@ -71,57 +95,58 @@ BOOL TestRunnerDlg::OnInitDialog()
     listCtrl->InsertColumn (3,"Line Number", LVCFMT_LEFT, 1.5 * listCtrl->GetStringWidth ("Line Number"), 4);
     listCtrl->InsertColumn (4,"File Name", LVCFMT_LEFT, 4.0 * listCtrl->GetStringWidth ("File Name"), 5);
 
-    int numberOfCases = 0;
-
-    for (std::vector<CppUnit::Test *>::iterator it = m_tests->begin (); it != m_tests->end (); ++it)
-    {
-        comboBox->AddString ((*it)->toString ().c_str ());
-        m_selectedTest = *it;
-        numberOfCases++;
-    }
-
-    if (numberOfCases > 0)
-        comboBox->SetCurSel (numberOfCases -1);
-    else
-        beRunDisabled ();
-
     m_testsProgress = new ProgressBar (this, CRect (50, 85, 50 + 425, 85 + 25));
 
     reset ();
+
+    loadSettings();
+    updateHistoryCombo();
+
+    UpdateData( FALSE );
+
+    m_buttonRun.SetFocus();
+
+    if ( m_bAutorunAtStartup )
+      OnRun();
     
-    return TRUE;  // return TRUE unless you set the focus to a control
-                  // EXCEPTION: OCX Property Pages should return FALSE
+    return FALSE;  // return TRUE unless you set the focus to a control
+                   // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 TestRunnerDlg::~TestRunnerDlg ()
 { 
-    freeState ();
-    delete m_testsProgress;
+  saveSettings();
+  freeState ();
+  delete m_testsProgress;
 }
 
 void TestRunnerDlg::OnRun() 
 {
-	if (m_selectedTest == 0)
-		return;
+  if ( m_bIsRunning )
+    return;
 
-    freeState       (); 
-    reset           ();
+  m_selectedTest = m_model->selectedTest();
 
-    beRunning       ();
+  if (m_selectedTest == 0)
+	  return;
 
-    int numberOfTests = m_selectedTest->countTestCases ();
+  freeState       (); 
+  reset           ();
 
-    m_testsProgress->start (numberOfTests);
+  beRunning       ();
 
-    m_result            = new GUITestResult ((TestRunnerDlg *)this);
-    m_activeTest        = new ActiveTest (m_selectedTest);
+  int numberOfTests = m_selectedTest->countTestCases ();
 
-    m_testStartTime     = timeGetTime ();
+  m_testsProgress->start (numberOfTests);
 
-    m_activeTest->run (m_result);
+  m_result            = new GUITestResult ((TestRunnerDlg *)this);
+  m_activeTest        = new ActiveTest (m_selectedTest);
 
-    m_testEndTime       = timeGetTime ();
+  m_testStartTime     = timeGetTime ();
 
+  m_activeTest->run (m_result);
+
+  m_testEndTime       = timeGetTime ();
 }
 
 
@@ -145,7 +170,7 @@ void TestRunnerDlg::addListEntry (std::string type, CppUnit::TestResult *result,
     listCtrl->InsertItem (&lvi);
 
     // Set class string
-    listCtrl->SetItemText (currentEntry, 1, test->toString ().c_str ());
+    listCtrl->SetItemText (currentEntry, 1, test->getName ().c_str ());
 
     // Set the asserted text
     listCtrl->SetItemText(currentEntry, 2, e->what ());
@@ -207,38 +232,35 @@ void TestRunnerDlg::endTest (CppUnit::TestResult *result, CppUnit::Test *test)
 
 void TestRunnerDlg::beRunning ()
 {
-    CButton *runButton = (CButton *)GetDlgItem (ID_RUN);
-    CButton *closeButton = (CButton *)GetDlgItem (IDOK);
+    m_bIsRunning = true;
+    m_buttonRun.EnableWindow( FALSE );
+    m_buttonClose.EnableWindow( FALSE );
 
-    runButton->EnableWindow (FALSE);
-    closeButton->EnableWindow (FALSE);
-
+//    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
+//    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() | BS_DEFPUSHBUTTON );
 }
 
 
 void TestRunnerDlg::beIdle ()
 {
-    CButton *runButton = (CButton *)GetDlgItem (ID_RUN);
-    CButton *closeButton = (CButton *)GetDlgItem (IDOK);
+    m_bIsRunning = false;
+    m_buttonRun.EnableWindow( TRUE );
+    m_buttonClose.EnableWindow( TRUE );
 
-    runButton->EnableWindow (TRUE);
-    closeButton->EnableWindow (TRUE);
-
+    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() | BS_DEFPUSHBUTTON );
+//    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
 }
 
 void TestRunnerDlg::beRunDisabled ()
 {
-    CButton *runButton = (CButton *)GetDlgItem (ID_RUN);
-    CButton *closeButton = (CButton *)GetDlgItem (IDOK);
-    CButton *stopButton = (CButton *)GetDlgItem (ID_STOP);
+    m_bIsRunning = false;
+    m_buttonRun.EnableWindow( FALSE );
+    m_buttonStop.EnableWindow( FALSE );
+    m_buttonClose.EnableWindow( TRUE );
 
-    runButton->EnableWindow (FALSE);
-    stopButton->EnableWindow (FALSE);
-    closeButton->EnableWindow (TRUE);
-
+//    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() | BS_DEFPUSHBUTTON );
+//    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
 }
-
-
 
 
 void TestRunnerDlg::freeState ()
@@ -298,7 +320,6 @@ void TestRunnerDlg::OnStop()
         m_result->stop ();
 
     beIdle ();
-    
 }
 
 void TestRunnerDlg::OnOK() 
@@ -309,33 +330,127 @@ void TestRunnerDlg::OnOK()
     CDialog::OnOK ();
 }
 
-void TestRunnerDlg::OnSelchangeComboTest() 
+
+void 
+TestRunnerDlg::OnSelchangeComboTest() 
 {
-    CComboBox   *testsSelection = (CComboBox *)GetDlgItem (IDC_COMBO_TEST);
+  int currentSelection = getHistoryCombo()->GetCurSel ();
 
-    int currentSelection = testsSelection->GetCurSel ();
-
-    if (currentSelection >= 0 && currentSelection < m_tests->size ())
-    {
-        m_selectedTest = *(m_tests->begin () + currentSelection);
-        beIdle ();
-
-    }
-    else
-    {
-        m_selectedTest = 0;
-        beRunDisabled ();
-
-    }
-
-    freeState ();
-    reset ();
-
+  if ( currentSelection >= 0  &&
+       currentSelection < m_model->history().size() )
+  {
+    CppUnit::Test *selectedTest = m_model->history()[currentSelection];
+    m_model->selectHistoryTest( selectedTest );
+    updateHistoryCombo();
+    beIdle();
+  }
+  else
+    beRunDisabled();
 }
 
-void TestRunnerDlg::OnPaint() 
+
+void
+TestRunnerDlg::updateHistoryCombo()
 {
-    CPaintDC dc (this); 
-    
-    m_testsProgress->paint (dc);    
+  getHistoryCombo()->LockWindowUpdate();
+
+  getHistoryCombo()->ResetContent();
+
+  const TestRunnerModel::History &history = m_model->history();
+  for ( TestRunnerModel::History::const_iterator it = history.begin(); 
+        it != history.end(); 
+        ++it )
+  {
+    CppUnit::Test *test = *it;
+    getHistoryCombo()->AddString( test->getName().c_str() );
+  }
+
+  if ( history.size() > 0 )
+  {
+    getHistoryCombo()->SetCurSel( 0 );
+    beIdle();
+  }
+  else
+    beRunDisabled();
+
+  getHistoryCombo()->UnlockWindowUpdate();
+}
+
+
+void 
+TestRunnerDlg::OnPaint() 
+{
+  CPaintDC dc (this); 
+  
+  m_testsProgress->paint(dc);
+}
+
+
+void 
+TestRunnerDlg::OnBrowseTest() 
+{
+  TreeHierarchyDlg dlg;
+  dlg.setRootTest( m_model->rootTest() );
+  if ( dlg.DoModal() == IDOK )
+  {
+    m_model->selectHistoryTest( dlg.getSelectedTest() );
+    updateHistoryCombo();
+  }
+}
+
+
+BOOL 
+TestRunnerDlg::PreTranslateMessage(MSG* pMsg) 
+{
+  if ( ::TranslateAccelerator( m_hWnd,
+                               m_hAccelerator,
+                               pMsg ) )
+  {
+    return TRUE;
+  }
+  return CDialog::PreTranslateMessage(pMsg);
+}
+
+
+CComboBox *
+TestRunnerDlg::getHistoryCombo()
+{
+  CComboBox   *comboBox = (CComboBox *)GetDlgItem (IDC_COMBO_TEST);
+  ASSERT (comboBox);
+  return comboBox;
+}
+
+
+void
+TestRunnerDlg::loadSettings()
+{
+  m_model->loadSettings();
+
+  m_bAutorunAtStartup = m_model->autorunOnLaunch();
+}
+
+
+void
+TestRunnerDlg::saveSettings()
+{
+  m_model->setAutorunOnLaunch( m_bAutorunAtStartup != 0 );
+  
+  m_model->saveSettings();
+}
+
+
+void 
+TestRunnerDlg::OnQuitApplication() 
+{
+  CWinApp *app = AfxGetApp();
+  ASSERT( app != NULL );
+  app->PostThreadMessage( WM_QUIT, 0, 0 );
+}
+
+
+TestRunnerModel &
+TestRunnerDlg::model()
+{
+  ASSERT( m_model != NULL );
+  return *m_model;
 }

@@ -13,42 +13,6 @@ namespace CppUnit {
 CppUnit::TestResult* TestCase::defaultResult ()
 { return new TestResult; } 
 
-
-/// Check for a failed general assertion 
-void TestCase::assertImplementation (bool          condition,
-  std::string   conditionExpression,
-  long          lineNumber,
-  std::string   fileName)
-{ 
-  if (!condition) 
-    throw Exception (conditionExpression, lineNumber, fileName); 
-}
-
-
-/// Check for a failed equality assertion 
-void TestCase::assertEquals (long        expected, 
-  long        actual,
-  long        lineNumber,
-  std::string fileName)
-{ 
-  if (expected != actual) 
-    assertImplementation (false, notEqualsMessage(expected, actual), lineNumber, fileName); 
-}
-
-
-/// Check for a failed equality assertion
-void TestCase::assertEquals (double        expected, 
-  double        actual, 
-  double        delta,
-  long          lineNumber,
-  std::string   fileName)
-{ 
-  if (fabs (expected - actual) > delta) 
-    assertImplementation (false, notEqualsMessage(expected, actual), lineNumber, fileName); 
-
-}
-
-
 /// Run the test and catch any exceptions that are triggered by it 
 void 
 TestCase::run (TestResult *result)
@@ -94,31 +58,14 @@ TestResult *TestCase::run ()
 
 }
 
-
 /// All the work for runTest is deferred to subclasses 
 void TestCase::runTest ()
 {
 }
 
-
-/// Build a message about a failed equality check 
-std::string TestCase::notEqualsMessage (long expected, long actual)
-{ 
-  return "expected: " + estring (expected) + " but was: " + estring (actual); 
-}
-
-
-/// Build a message about a failed equality check 
-std::string TestCase::notEqualsMessage (double expected, double actual)
-{ 
-  return "expected: " + estring (expected) + " but was: " + estring (actual); 
-}
-
-
-
 /** Constructs a test case.
  *  \param name the name of the TestCase.
- */
+ **/
 TestCase::TestCase (std::string name) 
   : m_name (name) 
 {

@@ -1,6 +1,6 @@
 
 #include "stdafx.h"
-#include <testrunner/TestRunnerDlg.h>
+#include "TestRunnerDlg.h"
 #include "GUITestResult.h"
 
 

@@ -1,51 +1,67 @@
-// TestRunner.cpp : Defines the initialization routines for the DLL.
-//
+// //////////////////////////////////////////////////////////////////////////
+// Implementation file TestRunner.cpp for class TestRunner
+// (c)Copyright 2000, Baptiste Lepilleur.
+// Created: 2001/04/26
+// //////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include <afxdllx.h>
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+#include "StdAfx.h"
+#include <msvc6/testrunner/TestRunner.h>
+#include "TestRunnerModel.h"
+#include "TestRunnerDlg.h"
 
 
-static AFX_EXTENSION_MODULE TestRunnerDLL = { NULL, NULL };
-
-extern "C" int APIENTRY
-DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+TestRunner::TestRunner() :
+    m_suite( new CppUnit::TestSuite() )
 {
-    // Remove this if you use lpReserved
-    UNREFERENCED_PARAMETER(lpReserved);
+}
 
-    if (dwReason == DLL_PROCESS_ATTACH)
-    {
-        TRACE0("TESTRUNNER.DLL Initializing!\n");
-        
-        // Extension DLL one-time initialization
-        if (!AfxInitExtensionModule(TestRunnerDLL, hInstance))
-            return 0;
 
-        // Insert this DLL into the resource chain
-        // NOTE: If this Extension DLL is being implicitly linked to by
-        //  an MFC Regular DLL (such as an ActiveX Control)
-        //  instead of an MFC application, then you will want to
-        //  remove this line from DllMain and put it in a separate
-        //  function exported from this Extension DLL.  The Regular DLL
-        //  that uses this Extension DLL should then explicitly call that
-        //  function to initialize this Extension DLL.  Otherwise,
-        //  the CDynLinkLibrary object will not be attached to the
-        //  Regular DLL's resource chain, and serious problems will
-        //  result.
+TestRunner::~TestRunner() 
+{
+  delete m_suite;
 
-        new CDynLinkLibrary(TestRunnerDLL);
-    }
-    else if (dwReason == DLL_PROCESS_DETACH)
-    {
-        TRACE0("TESTRUNNER.DLL Terminating!\n");
-        // Terminate the library before destructors are called
-        AfxTermExtensionModule(TestRunnerDLL);
-    }
-    return 1;   // ok
+  for ( Tests::iterator it = m_tests.begin(); it != m_tests.end(); ++it )
+    delete *it;
+}
+
+
+void 
+TestRunner::run() 
+{ 
+  TestRunnerModel model( getRootTest() );
+  TestRunnerDlg dlg( &model ); 
+  dlg.DoModal (); 
+}
+
+
+void            
+TestRunner::addTest(CppUnit::Test *test) 
+{ 
+  m_tests.push_back( test );
+}
+
+
+void            
+TestRunner::addTests ( const std::vector<CppUnit::Test *> &tests ) 
+{ 
+  for ( std::vector<CppUnit::Test *>::const_iterator it=tests.begin();
+        it != tests.end();
+        ++it )
+  {
+    addTest( *it );
+  }
+}
+
+
+CppUnit::Test *   
+TestRunner::getRootTest()
+{
+  if ( m_tests.size() != 1 )
+  {
+    for ( Tests::iterator it = m_tests.begin(); it != m_tests.end(); ++it )
+      m_suite->addTest( *it );
+    m_tests.clear();
+    return m_suite;
+  }
+  return m_tests[0];
 }

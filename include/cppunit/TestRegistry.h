@@ -30,8 +30,6 @@ namespace CppUnit {
       void addTest(std::string name, Test* test);
       
     private:
-      static TestRegistry* s_registry;
-
       TestRegistry();
       std::vector<std::string> m_registry_names;
       std::vector<Test*> m_registry_tests;

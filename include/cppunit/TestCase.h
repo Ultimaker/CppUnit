@@ -7,8 +7,8 @@
 #include "Test.h"
 #endif
 
-#ifndef CPPUNIT_EXCEPTION_H
-#include "Exception.h"
+#ifndef CPPUNIT_TESTASSERT_H
+#include "TestAssert.h"
 #endif
 
 namespace CppUnit {
@@ -85,7 +85,8 @@ namespace CppUnit {
    *
    */
 
-  class TestCase : public Test 
+  class TestCase : public Test,
+                   public TestAssert
   {
     public:
       TestCase         ();
@@ -105,28 +106,6 @@ namespace CppUnit {
       virtual void        runTest          ();
     
       TestResult          *defaultResult   ();
-      void                assertImplementation(
-        bool         condition, 
-        std::string  conditionExpression = "",
-        long         lineNumber = Exception::UNKNOWNLINENUMBER,
-        std::string  fileName = Exception::UNKNOWNFILENAME);
-
-      void                assertEquals     (long         expected, 
-        long         actual,
-        long         lineNumber = Exception::UNKNOWNLINENUMBER,
-        std::string  fileName = Exception::UNKNOWNFILENAME);
-
-      void                assertEquals     (double       expected, 
-        double       actual, 
-        double       delta, 
-        long         lineNumber = Exception::UNKNOWNLINENUMBER,
-        std::string  fileName = Exception::UNKNOWNFILENAME);
-
-      std::string         notEqualsMessage (long         expected, 
-        long         actual);
-
-      std::string         notEqualsMessage (double       expected, 
-        double       actual);
     
     private:
       TestCase (const TestCase& other); 
@@ -136,40 +115,6 @@ namespace CppUnit {
       const std::string   m_name;
   };
 
-
-/** A set of macros which allow us to get the line number
- * and file name at the point of an error.
- * Just goes to show that preprocessors do have some
- * redeeming qualities.
- */
-#define CPPUNIT_SOURCEANNOTATION
-  
-#ifdef CPPUNIT_SOURCEANNOTATION
-
-    #undef assert
-    #define assert(condition)\
-    (this->assertImplementation ((condition),(#condition),\
-        __LINE__, __FILE__))
-
-#else
-
-    #undef assert
-    #define assert(condition)\
-    (this->assertImplementation ((condition),"",\
-        __LINE__, __FILE__))
-
-#endif
-
-
-/// Macro for primitive value comparisons
-#define assertDoublesEqual(expected,actual,delta)\
-(this->assertEquals ((expected),\
-        (actual),(delta),__LINE__,__FILE__))
-
-/// Macro for primitive value comparisons
-#define assertLongsEqual(expected,actual)\
-(this->assertEquals ((expected),\
-        (actual),__LINE__,__FILE__))
 } // namespace CppUnit
 
 #endif // CPPUNIT_TESTCASE_H 

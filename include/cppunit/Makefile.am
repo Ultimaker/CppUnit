@@ -4,6 +4,7 @@ libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
 	Exception.h \
 	Test.h \
+	TestAssert.h \
 	TestCaller.h \
 	TestCase.h \
 	TestFailure.h \

@@ -87,6 +87,17 @@ namespace CppUnit {
 
     };
 
+  /** Returns a TestCaller for the specified method.
+   * \param name Name for the TestCaller.
+   * \param testMethod Method called by the TestCaller.
+   * \return TestCaller for the specified method.      
+   */
+  template<class Fixture>
+    Test *makeTestCaller( std::string name, void (Fixture::*testMethod)() )
+    {
+      return new TestCaller<Fixture>( name, testMethod );
+    }
+
 } // namespace CppUnit
 
 #endif // CPPUNIT_TESTCALLER_H

@@ -41,7 +41,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "..\include" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "..\..\include" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
@@ -49,7 +49,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"..\lib\cppunit.lib"
+# ADD LIB32 /nologo /out:"..\..\lib\cppunit.lib"
 
 !ELSEIF  "$(CFG)" == "cppunit - Win32 Debug"
 
@@ -64,7 +64,7 @@ LIB32=link.exe -lib
 # PROP Intermediate_Dir "Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x40c /d "_DEBUG"
 # ADD RSC /l 0x40c /d "_DEBUG"
 BSC32=bscmake.exe
@@ -72,7 +72,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"..\lib\cppunitd.lib"
+# ADD LIB32 /nologo /out:"..\..\lib\cppunitd.lib"
 
 !ENDIF 
 
@@ -80,21 +80,81 @@ LIB32=link.exe -lib
 
 # Name "cppunit - Win32 Release"
 # Name "cppunit - Win32 Debug"
+# Begin Group "extensions"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\AbstractTestFactory.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\AutoRegisterSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\HelperMacros.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\Orthodox.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\RepeatedTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestDecorator.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\extensions\TestFactoryRegistry.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestFactoryRegistry.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestSetup.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestSuiteBuilder.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestSuiteFactory.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\estring.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\Exception.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\Exception.h
+SOURCE=..\..\include\cppunit\Exception.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\Test.h
+SOURCE=..\..\include\cppunit\Test.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TestCaller.h
+SOURCE=.\TestAssert.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestAssert.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestCaller.h
 # End Source File
 # Begin Source File
 
@@ -102,7 +162,7 @@ SOURCE=.\TestCase.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TestCase.h
+SOURCE=..\..\include\cppunit\TestCase.h
 # End Source File
 # Begin Source File
 
@@ -110,7 +170,7 @@ SOURCE=.\TestFailure.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TestFailure.h
+SOURCE=..\..\include\cppunit\TestFailure.h
 # End Source File
 # Begin Source File
 
@@ -118,7 +178,7 @@ SOURCE=.\TestRegistry.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TestRegistry.h
+SOURCE=..\..\include\cppunit\TestRegistry.h
 # End Source File
 # Begin Source File
 
@@ -126,7 +186,7 @@ SOURCE=.\TestResult.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TestResult.h
+SOURCE=..\..\include\cppunit\TestResult.h
 # End Source File
 # Begin Source File
 
@@ -134,7 +194,7 @@ SOURCE=.\TestSuite.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TestSuite.h
+SOURCE=..\..\include\cppunit\TestSuite.h
 # End Source File
 # Begin Source File
 
@@ -142,7 +202,6 @@ SOURCE=.\TextTestResult.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\cppunit\TextTestResult.h
+SOURCE=..\..\include\cppunit\TextTestResult.h
 # End Source File
-# End Target
-# End Project
+# Begin Source File

@@ -3,8 +3,7 @@
 #define CPP_UNIT_EXAMPLETESTCASE_H
 
 #include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
-#include <cppunit/TestCaller.h>
+#include <cppunit/extensions/HelperMacros.h>
 
 /* 
  * A test case that is designed to produce
@@ -14,6 +13,13 @@
 
 class ExampleTestCase : public CppUnit::TestCase
 {
+  CU_TEST_SUITE( ExampleTestCase );
+  CU_TEST( example );
+  CU_TEST( anotherExample );
+  CU_TEST( testAdd );
+  CU_TEST( testDivideByZero );
+  CU_TEST( testEquals );
+  CU_TEST_SUITE_END();
 protected:
 
 	double			m_value1;
@@ -22,7 +28,6 @@ protected:
 public:
 
 	void			setUp ();
-	static CppUnit::Test		*suite ();
 
 protected:
 	void			example ();

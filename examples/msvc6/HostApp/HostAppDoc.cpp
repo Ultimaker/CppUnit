@@ -5,8 +5,8 @@
 #include "HostApp.h"
 
 #include "HostAppDoc.h"
-#include <testrunner/TestRunnerDlg.h>
-#include "ExampleTestCase.h"
+#include <msvc6/testrunner/TestRunner.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,7 +30,6 @@ END_MESSAGE_MAP()
 CHostAppDoc::CHostAppDoc()
 {
     // TODO: add one-time construction code here
-
 }
 
 CHostAppDoc::~CHostAppDoc()
@@ -45,7 +44,7 @@ BOOL CHostAppDoc::OnNewDocument()
         return FALSE;
 
     TestRunner  runner;
-    runner.addTest (ExampleTestCase::suite ());
+    runner.addTest ( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
 
     runner.run ();    
 

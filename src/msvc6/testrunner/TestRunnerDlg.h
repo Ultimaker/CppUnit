@@ -8,31 +8,25 @@
 //
 
 #include <vector>
-
-#ifndef CPPUNIT_TEST_H
-#include <cppunit/Test.h>
-#endif
-
-#ifndef CPPUNIT_EXCEPTION_H
+#include <cppunit/TestSuite.h>
 #include <cppunit/Exception.h>
-#endif
 
+#include "ActiveTest.h"
 
 class ProgressBar;
-class ActiveTest;
+class TestRunnerModel;
 
 
 /////////////////////////////////////////////////////////////////////////////
 // TestRunnerDlg dialog
 
-class AFX_CLASS_EXPORT TestRunnerDlg : public CDialog
+class TestRunnerDlg : public CDialog
 {
 // Construction
 public:
-                    TestRunnerDlg       (CWnd* pParent = NULL);
+                    TestRunnerDlg       ( TestRunnerModel *model,
+                                          CWnd* pParent = NULL);
                     ~TestRunnerDlg      ();
-
-    void            setTests            (std::vector<CppUnit::Test *> *test);
 
     void            addError            (CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e);
     void            addFailure          (CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e);
@@ -40,16 +34,21 @@ public:
 
 // Dialog Data
     //{{AFX_DATA(TestRunnerDlg)
-        // NOTE: the ClassWizard will add data members here
-    //}}AFX_DATA
+	CButton	m_buttonClose;
+	CButton	m_buttonStop;
+	CButton	m_buttonRun;
+	BOOL	m_bAutorunAtStartup;
+	//}}AFX_DATA
 
 
 // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(TestRunnerDlg)
-    protected:
+	public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
+	//}}AFX_VIRTUAL
 
 // Implementation
 protected:
@@ -62,19 +61,25 @@ protected:
     virtual void OnOK();
     afx_msg void OnSelchangeComboTest();
     afx_msg void OnPaint();
-    //}}AFX_MSG
+	afx_msg void OnBrowseTest();
+	afx_msg void OnQuitApplication();
+	//}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
-    ProgressBar                   *m_testsProgress;
-    std::vector<CppUnit::Test *>  *m_tests;
-    CppUnit::Test                 *m_selectedTest;
-    ActiveTest                    *m_activeTest;
-    CppUnit::TestResult           *m_result;
-    int                           m_testsRun;
-    int                           m_errors;
-    int                           m_failures;
-    DWORD                         m_testStartTime;
-    DWORD                         m_testEndTime;
+    typedef std::vector<CppUnit::Test *> Tests;
+    ProgressBar     *m_testsProgress;
+    CppUnit::Test            *m_selectedTest;
+    ActiveTest      *m_activeTest;
+    CppUnit::TestResult      *m_result;
+    int             m_testsRun;
+    int             m_errors;
+    int             m_failures;
+    DWORD           m_testStartTime;
+    DWORD           m_testEndTime;
+    static const CString ms_cppunitKey;
+    HACCEL          m_hAccelerator;
+    bool            m_bIsRunning;
+    TestRunnerModel *m_model;
 
     void            addListEntry        (std::string type, CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e);
     void            beIdle              ();
@@ -83,45 +88,23 @@ protected:
     void            reset               ();
     void            freeState           ();
     void            updateCountsDisplay ();
-
+    void            setupHistoryCombo   ();
+    CppUnit::Test * findTestByName( std::string name ) const;
+    CppUnit::Test * findTestByNameFor( const std::string &name, CppUnit::Test *test ) const;
+    void            addNewTestToHistory( CppUnit::Test *test );
+    void            addTestToHistoryCombo( CppUnit::Test *test, int idx =-1 );
+    void            removeTestFromHistory( CppUnit::Test *test );
+    CComboBox *     getHistoryCombo();
+    void            updateSelectedItem();
+    void            saveHistory();
+    void            loadSettings();
+    void            saveSettings();
+    TestRunnerModel &model();
+    void updateHistoryCombo();
 };
 
 
-inline void TestRunnerDlg::setTests (std::vector<CppUnit::Test *> *tests)
-{ m_tests = tests; }
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// A Wrapper
-
-
-class AFX_CLASS_EXPORT TestRunner 
-{
-    std::vector<CppUnit::Test *>  m_tests;
-
-public:
-                    TestRunner () {}
-                    ~TestRunner () 
-                    {
-                        for (std::vector<CppUnit::Test *>::iterator it = m_tests.begin (); it != m_tests.end (); ++it)
-                            delete *it;
-                    }
-
-    void            run () 
-                    { 
-                        TestRunnerDlg dlg; 
-
-                        dlg.setTests (&m_tests);
-                        dlg.DoModal (); 
-                    }
-
-    void            addTest (CppUnit::Test *test) 
-                    { m_tests.push_back (test); }
-
-
-};
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

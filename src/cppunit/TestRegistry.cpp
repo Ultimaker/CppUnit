@@ -1,18 +1,18 @@
+#if _MSC_VER > 1000     // VC++
+#pragma once
+#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
+#endif // _MSC_VER > 1000
+
 #include "cppunit/TestRegistry.h"
 #include "cppunit/Test.h"
 
 namespace CppUnit {
 
-TestRegistry* 
-TestRegistry::s_registry = NULL;
-
 TestRegistry&
 TestRegistry::getRegistry ()
 {
-  if (NULL == s_registry) {
-    s_registry = new TestRegistry();
-  }
-  return *s_registry;
+  static TestRegistry registry; // instantiated on first call of getRegistry().
+  return registry;              
 }
 
 void 

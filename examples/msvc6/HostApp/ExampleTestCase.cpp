@@ -1,6 +1,9 @@
-
+#include <cppunit/extensions/TestSuiteBuilder.h>
 
 #include "ExampleTestCase.h"
+
+
+CU_TEST_SUITE_REGISTRATION( ExampleTestCase );
 
 
 
@@ -52,18 +55,4 @@ void ExampleTestCase::testEquals ()
 
 
 
-}
-
-
-
-CppUnit::Test *ExampleTestCase::suite ()
-{
-	CppUnit::TestSuite *testSuite = new CppUnit::TestSuite ("ExampleTestCase");
-
-	testSuite->addTest (new CppUnit::TestCaller <ExampleTestCase> ("anotherExample", anotherExample));
-    testSuite->addTest (new CppUnit::TestCaller <ExampleTestCase> ("testAdd", testAdd));
-    testSuite->addTest (new CppUnit::TestCaller <ExampleTestCase> ("testDivideByZero", testDivideByZero));
-    testSuite->addTest (new CppUnit::TestCaller <ExampleTestCase> ("testEquals", testEquals));
-
-	return testSuite;
 }

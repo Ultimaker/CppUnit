@@ -121,7 +121,19 @@ SOURCE=.\TestRunner.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestRunnerApp.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestRunnerDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestRunnerModel.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TreeHierarchyDlg.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -149,12 +161,32 @@ SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\msvc6\testrunner\TestRunnerDlg.h
+SOURCE=..\..\..\include\msvc6\testrunner\TestRunner.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestRunnerApp.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestRunnerDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestRunnerModel.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TreeHierarchyDlg.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
 
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe"
+# Begin Source File
+
+SOURCE=.\res\test_type.bmp
+# End Source File
 # Begin Source File
 
 SOURCE=.\res\TestRunner.rc2

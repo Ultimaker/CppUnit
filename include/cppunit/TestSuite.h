@@ -4,6 +4,10 @@
 #include <vector>
 #include <string>
 
+#ifdef USE_TYPEINFO
+#include <typeinfo>
+#endif // USE_TYPEINFO
+
 #ifndef CPPUNIT_TEST_H
 #include "Test.h"
 #endif
@@ -35,6 +39,9 @@ namespace CppUnit {
   {
     public:
                         TestSuite       (std::string name = "");
+#ifdef USE_TYPEINFO
+                        TestSuite       (const std::type_info &info );
+#endif // USE_TYPEINFO
                         ~TestSuite      ();
 
     void                run             (TestResult *result);
@@ -42,6 +49,8 @@ namespace CppUnit {
     void                addTest         (Test *test);
     std::string         getName         () const;
     std::string         toString        () const;
+
+    const std::vector<Test *> & getTests() const;
 
     virtual void        deleteContents  ();
 
