@@ -106,7 +106,7 @@ END
 // Dialog
 //
 
-IDD_DIALOG_TEST_HIERARCHY DIALOG DISCARDABLE  0, 0, 259, 250
+CPP_UNIT_TEST_RUNNER_IDD_DIALOG_TEST_HIERARCHY DIALOG DISCARDABLE  0, 0, 259, 250
 STYLE DS_MODALFRAME | WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
 CAPTION "Test hierarchy"
 FONT 8, "MS Sans Serif"
@@ -118,7 +118,7 @@ BEGIN
     PUSHBUTTON      "&Close",IDCANCEL,202,34,50,14
 END
 
-IDD_DIALOG_TESTRUNNER DIALOG DISCARDABLE  0, 0, 330, 226
+CPP_UNIT_TEST_RUNNER_IDD_DIALOG_TESTRUNNER DIALOG DISCARDABLE  0, 0, 330, 226
 STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CLIPCHILDREN | 
     WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "TestRunner"
@@ -156,38 +156,11 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
-BEGIN
-    IDD_DIALOG_TEST_HIERARCHY, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 243
-    END
-
-    IDD_DIALOG_TESTRUNNER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 323
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 219
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Bitmap
 //
 
-IDB_TEST_TYPE           BITMAP  DISCARDABLE     "res\\test_type.bmp"
-IDB_ERROR_TYPE          BITMAP  DISCARDABLE     "res\\errortype.bmp"
+CPP_UNIT_TEST_RUNNER_IDB_TEST_TYPE BITMAP  DISCARDABLE     "res\\test_type.bmp"
+CPP_UNIT_TEST_RUNNER_IDB_ERROR_TYPE BITMAP  DISCARDABLE     "res\\errortype.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

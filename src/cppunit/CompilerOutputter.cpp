@@ -16,7 +16,7 @@ CompilerOutputter::CompilerOutputter( TestResultCollector *result,
     : m_result( result )
     , m_stream( stream )
     , m_locationFormat( locationFormat )
-    , m_wrapColumn( 79 )
+    , m_wrapColumn( CPPUNIT_WRAP_COLUMN )
 {
 }
 

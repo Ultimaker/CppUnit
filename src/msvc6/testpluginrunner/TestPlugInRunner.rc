@@ -26,7 +26,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_TEST_PLUG_IN_RUNNER DIALOG DISCARDABLE  0, 0, 330, 226
+CPP_UNIT_TEST_RUNNER_PLUG_IN_IDD_TEST_PLUG_IN_RUNNER DIALOG DISCARDABLE  0, 0, 330, 226
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Test plug-in runner"
 FONT 8, "MS Sans Serif"
@@ -62,7 +62,7 @@ BEGIN
     EDITTEXT        IDC_EDIT_TIME,7,206,316,13,ES_AUTOHSCROLL | ES_READONLY
 END
 
-IDD_DIALOG_TEST_HIERARCHY DIALOG DISCARDABLE  0, 0, 259, 250
+CPP_UNIT_TEST_RUNNER_IDD_DIALOG_TEST_HIERARCHY DIALOG DISCARDABLE  0, 0, 259, 250
 STYLE DS_MODALFRAME | WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
 CAPTION "Test hierarchy"
 FONT 8, "MS Sans Serif"
@@ -126,7 +126,7 @@ END
 #ifdef APSTUDIO_INVOKED
 GUIDELINES DESIGNINFO DISCARDABLE 
 BEGIN
-    IDD_TEST_PLUG_IN_RUNNER, DIALOG
+    "CPP_UNIT_TEST_RUNNER_PLUG_IN_IDD_TEST_PLUG_IN_RUNNER", DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 323
@@ -134,7 +134,7 @@ BEGIN
         BOTTOMMARGIN, 219
     END
 
-    IDD_DIALOG_TEST_HIERARCHY, DIALOG
+    "CPP_UNIT_TEST_RUNNER_IDD_DIALOG_TEST_HIERARCHY", DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 252
@@ -162,8 +162,8 @@ END
 // Bitmap
 //
 
-IDB_ERROR_TYPE          BITMAP  DISCARDABLE     "res\\errortype.bmp"
-IDB_TEST_TYPE           BITMAP  DISCARDABLE     "res\\test_type.bmp"
+CPP_UNIT_TEST_RUNNER_IDB_ERROR_TYPE          BITMAP  DISCARDABLE     "res\\errortype.bmp"
+CPP_UNIT_TEST_RUNNER_IDB_TEST_TYPE           BITMAP  DISCARDABLE     "res\\test_type.bmp"
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -222,7 +222,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_TEST_PLUGIN_RUNNER  ICON    DISCARDABLE     "res\\TestPlugInRunner.ico"
+CPP_UNIT_TEST_RUNNER_PLUG_IN_IDR_TEST_PLUGIN_RUNNER ICON    DISCARDABLE     "res\\TestPlugInRunner.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

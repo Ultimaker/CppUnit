@@ -57,7 +57,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit.lib /nologo /subsystem:console /machine:I386 /libpath:"../../../lib"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit.lib /nologo /subsystem:console /machine:I386 /out:"..\..\lib\DllPlugInTesteru.exe" /libpath:"../../lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit.lib /nologo /subsystem:console /machine:I386 /out:"ReleaseUnicode\DllPlugInTesteru.exe" /libpath:"../../lib"
+# Begin Special Build Tool
+TargetPath=.\ReleaseUnicode\DllPlugInTesteru.exe
+TargetName=DllPlugInTesteru
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Debug Unicode"
 
@@ -84,7 +91,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd.lib /nologo /subsystem:console /debug /machine:I386 /out:"Debug/DllPlugInTesterd.exe" /pdbtype:sept /libpath:"../../../lib"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"..\..\lib\DllPlugInTesterud.exe" /pdbtype:sept /libpath:"../../lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"DebugUnicode\DllPlugInTesterud.exe" /pdbtype:sept /libpath:"../../lib"
+# Begin Special Build Tool
+TargetPath=.\DebugUnicode\DllPlugInTesterud.exe
+TargetName=DllPlugInTesterud
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Release Static"
 
@@ -111,7 +125,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit.lib /nologo /subsystem:console /machine:I386 /out:"..\..\lib\DllPlugInTester.exe" /libpath:"../../lib"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit.lib /nologo /subsystem:console /machine:I386 /out:"..\..\lib\DllPlugInTester.exe" /libpath:"../../lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit.lib /nologo /subsystem:console /machine:I386 /libpath:"../../lib"
+# Begin Special Build Tool
+TargetPath=.\Release\DllPlugInTester.exe
+TargetName=DllPlugInTester
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Debug Static"
 
@@ -138,7 +159,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"..\..\lib\DllPlugInTesterd.exe" /pdbtype:sept /libpath:"../../lib"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"..\..\lib\DllPlugInTesterd.exe" /pdbtype:sept /libpath:"../../lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"Debug\DllPlugInTesterd.exe" /pdbtype:sept /libpath:"../../lib"
+# Begin Special Build Tool
+TargetPath=.\Debug\DllPlugInTesterd.exe
+TargetName=DllPlugInTesterd
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Release"
 
@@ -165,7 +193,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit_dll.lib /nologo /subsystem:console /machine:I386 /out:"..\..\lib\DllPlugInTester_dll.exe" /libpath:"../../lib"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit_dll.lib /nologo /subsystem:console /machine:I386 /out:"..\..\lib\DllPlugInTester_dll.exe" /libpath:"../../lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunit_dll.lib /nologo /subsystem:console /machine:I386 /out:"ReleaseDll\DllPlugInTester_dll.exe" /libpath:"../../lib"
+# Begin Special Build Tool
+TargetPath=.\ReleaseDll\DllPlugInTester_dll.exe
+TargetName=DllPlugInTester_dll
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Debug"
 
@@ -192,7 +227,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd_dll.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"..\..\lib\DllPlugInTesterd_dll.exe" /pdbtype:sept /libpath:"../../lib"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd_dll.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"..\..\lib\DllPlugInTesterd_dll.exe" /pdbtype:sept /libpath:"../../lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib cppunitd_dll.lib /nologo /subsystem:console /incremental:no /debug /machine:I386 /out:"DebugDll\DllPlugInTesterd_dll.exe" /pdbtype:sept /libpath:"../../lib"
+# Begin Special Build Tool
+TargetPath=.\DebugDll\DllPlugInTesterd_dll.exe
+TargetName=DllPlugInTesterd_dll
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ENDIF 
 

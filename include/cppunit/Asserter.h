@@ -1,7 +1,7 @@
 #ifndef CPPUNIT_ASSERTER_H
 #define CPPUNIT_ASSERTER_H
 
-#include <cppunit/Portability.h>
+#include <cppunit/AdditionalMessage.h>
 #include <cppunit/SourceLine.h>
 #include <string>
 
@@ -44,7 +44,6 @@ class Message;
  */
 namespace Asserter
 {
-
   /*! Throws a Exception with the specified message and location.
    */
   void CPPUNIT_API fail( const Message &message, 
@@ -77,6 +76,33 @@ namespace Asserter
                            std::string message, 
                            const SourceLine &sourceLine = SourceLine() );
 
+  /*! \brief Returns a expected value string for a message.
+   * Typically used to create 'not equal' message, or to check that a message
+   * contains the expected content when writing unit tests for your custom 
+   * assertions.
+   *
+   * \param expectedValue String that represents the expected value.
+   * \return \a expectedValue prefixed with "Expected: ".
+   * \see makeActual().
+   */
+  std::string CPPUNIT_API makeExpected( const std::string &expectedValue );
+
+  /*! \brief Returns an actual value string for a message.
+   * Typically used to create 'not equal' message, or to check that a message
+   * contains the expected content when writing unit tests for your custom 
+   * assertions.
+   *
+   * \param actualValue String that represents the actual value.
+   * \return \a actualValue prefixed with "Actual  : ".
+   * \see makeExpected().
+   */
+  std::string CPPUNIT_API makeActual( const std::string &actualValue );
+
+  Message CPPUNIT_API makeNotEqualMessage( const std::string &expectedValue,
+                                           const std::string &actualValue,
+                                           const AdditionalMessage &additionalMessage = AdditionalMessage(),
+                                           const std::string &shortDescription = "equality assertion failed");
+
   /*! Throws an Exception with the specified message and location.
    * \param expected Text describing the expected value.
    * \param actual Text describing the actual value.
@@ -87,7 +113,7 @@ namespace Asserter
   void CPPUNIT_API failNotEqual( std::string expected, 
                                  std::string actual, 
                                  const SourceLine &sourceLine,
-                                 const Message &additionalMessage,
+                                 const AdditionalMessage &additionalMessage = AdditionalMessage(),
                                  std::string shortDescription = "equality assertion failed" );
 
   /*! Throws an Exception with the specified message and location.
@@ -103,37 +129,8 @@ namespace Asserter
                                    std::string expected, 
                                    std::string actual, 
                                    const SourceLine &sourceLine,
-                                   const Message &additionalMessage,
+                                   const AdditionalMessage &additionalMessage = AdditionalMessage(),
                                    std::string shortDescription = "equality assertion failed" );
-
-  /*! Throws an Exception with the specified message and location.
-   * \deprecated Use failNotEqual( std::string, std::string, SourceLine, Message, std::string ) instead.
-   * \param expected Text describing the expected value.
-   * \param actual Text describing the actual value.
-   * \param additionalMessage Additional message. Usually used to report
-   *                          where the "difference" is located.
-   * \param sourceLine Location of the assertion.
-   */
-  void CPPUNIT_API failNotEqual( std::string expected, 
-                                 std::string actual, 
-                                 const SourceLine &sourceLine = SourceLine(),
-                                 std::string additionalMessage ="" );
-
-  /*! Throws an Exception with the specified message and location.
-   * \deprecated Use failNotEqualIf( bool, std::string, std::string, SourceLine, Message, std::string ) instead.
-   * \param shouldFail if \c true then the exception is thrown. Otherwise
-   *                   nothing happen.
-   * \param expected Text describing the expected value.
-   * \param actual Text describing the actual value.
-   * \param additionalMessage Additional message. Usually used to report
-   *                          where the "difference" is located.
-   * \param sourceLine Location of the assertion.
-   */
-  void CPPUNIT_API failNotEqualIf( bool shouldFail,
-                                   std::string expected, 
-                                   std::string actual, 
-                                   const SourceLine &sourceLine = SourceLine(),
-                                   std::string additionalMessage ="" );
 
 } // namespace Asserter
 } // namespace CppUnit

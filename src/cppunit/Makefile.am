@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.35 2002-06-14 20:21:00 blep Exp $
+# $Id: Makefile.am,v 1.36 2002-07-03 07:02:49 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -8,6 +8,7 @@ INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 lib_LTLIBRARIES = libcppunit.la
 
 libcppunit_la_SOURCES = \
+  AdditionalMessage.cpp \
   Asserter.cpp \
   BeOsDynamicLibraryManager.cpp \
   BriefTestProgressListener.cpp \

@@ -8,11 +8,8 @@
 #define IDS_ERRORLIST_FAILED_CONDITION  4
 #define IDS_ERRORLIST_LINE_NUMBER       5
 #define IDS_ERRORLIST_FILE_NAME         6
-#define IDD_DIALOG_TESTRUNNER           129
-#define IDD_DIALOG_TEST_HIERARCHY       130
-#define IDB_TEST_TYPE                   131
+#define IDS_STRING7                     100
 #define IDR_ACCELERATOR_TEST_RUNNER     131
-#define IDB_ERROR_TYPE                  134
 #define IDC_LIST                        1000
 #define ID_RUN                          1001
 #define ID_STOP                         1002

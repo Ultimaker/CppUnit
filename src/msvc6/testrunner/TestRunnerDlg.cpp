@@ -12,6 +12,7 @@
 #include "ListCtrlFormatter.h"
 #include "ListCtrlSetter.h"
 #include "MfcSynchronizationObject.h"
+#include "ResourceLoaders.h"
 #include <cppunit/TestFailure.h>
 
 #ifdef _DEBUG
@@ -37,11 +38,29 @@ const CString TestRunnerDlg::ms_cppunitKey( "CppUnit" );
 TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
                               int nDialogResourceId,
                               CWnd* pParent )
-    : cdxCDynamicDialog( nDialogResourceId == -1 ? IDD_DIALOG_TESTRUNNER :
-                                                   nDialogResourceId, 
-                         pParent)
-    , m_model( model )
+    : cdxCDynamicDialog( nDialogResourceId, pParent )
 {
+  ASSERT(0); // this constructor should not be used because of possible resource problems
+             // => use the constructor with the string parameter
+  init(model);
+}
+
+TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
+                              const TCHAR* szDialogResourceId,
+                              CWnd* pParent )
+    : cdxCDynamicDialog( szDialogResourceId == NULL ? 
+                                _T("CPP_UNIT_TEST_RUNNER_IDD_DIALOG_TESTRUNNER")
+                              : szDialogResourceId, 
+                         pParent)
+{
+  init(model);
+}
+
+void
+TestRunnerDlg::init(TestRunnerModel *model)
+{
+  m_model = model;
+
   //{{AFX_DATA_INIT(TestRunnerDlg)
     m_bAutorunAtStartup = FALSE;
   //}}AFX_DATA_INIT
@@ -53,7 +72,6 @@ TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
 
   ModifyFlags( flSWPCopyBits, 0 );      // anti-flickering option for resizing
 }
-
 
 void 
 TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
@@ -104,7 +122,8 @@ TestRunnerDlg::OnInitDialog()
 
   ASSERT (comboBox);
 
-  VERIFY( m_errorListBitmap.Create( IDB_ERROR_TYPE, 16, 1, 
+  VERIFY( m_errorListBitmap.Create( _T("CPP_UNIT_TEST_RUNNER_IDB_ERROR_TYPE"), 
+                                    16, 1, 
                                     RGB( 255,0,255 ) ) );
 
   m_testsProgress = new ProgressBar();
@@ -127,13 +146,13 @@ TestRunnerDlg::OnInitDialog()
   m_listCtrl.GetClientRect(&listBounds);
   int col_5_width = listBounds.Width() - total_col_1_4; // 5th column = rest of listview space
   ListCtrlFormatter formatter( m_listCtrl );
-  formatter.AddColumn( IDS_ERRORLIST_TYPE, m_settings.col_1, LVCFMT_LEFT, 0 );
-  formatter.AddColumn( IDS_ERRORLIST_NAME, m_settings.col_2, LVCFMT_LEFT, 1 );
-  formatter.AddColumn( IDS_ERRORLIST_FAILED_CONDITION, m_settings.col_3, LVCFMT_LEFT, 2 );
+  formatter.AddColumn( loadCString(IDS_ERRORLIST_TYPE), m_settings.col_1, LVCFMT_LEFT, 0 );
+  formatter.AddColumn( loadCString(IDS_ERRORLIST_NAME), m_settings.col_2, LVCFMT_LEFT, 1 );
+  formatter.AddColumn( loadCString(IDS_ERRORLIST_FAILED_CONDITION), m_settings.col_3, LVCFMT_LEFT, 2 );
   m_listCtrl.setLineNumberSubItem( formatter.GetNextColumnIndex() );
-  formatter.AddColumn( IDS_ERRORLIST_LINE_NUMBER, m_settings.col_4, LVCFMT_LEFT, 3 );
+  formatter.AddColumn( loadCString(IDS_ERRORLIST_LINE_NUMBER), m_settings.col_4, LVCFMT_LEFT, 3 );
   m_listCtrl.setFileNameSubItem( formatter.GetNextColumnIndex() );
-  formatter.AddColumn( IDS_ERRORLIST_FILE_NAME, col_5_width, LVCFMT_LEFT, 4 );
+  formatter.AddColumn( loadCString(IDS_ERRORLIST_FILE_NAME), col_5_width, LVCFMT_LEFT, 4 );
 
   reset ();
   updateHistoryCombo();

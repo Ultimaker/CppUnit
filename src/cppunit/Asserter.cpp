@@ -10,7 +10,6 @@ namespace CppUnit
 namespace Asserter
 {
 
-
 void 
 fail( std::string message, 
       const SourceLine &sourceLine )
@@ -46,18 +45,47 @@ failIf( bool shouldFail,
 }
 
 
+std::string 
+makeExpected( const std::string &expectedValue )
+{
+  return "Expected: " + expectedValue;
+}
+
+
+std::string 
+makeActual( const std::string &actualValue )
+{
+  return "Actual  : " + actualValue;
+}
+
+
+Message 
+makeNotEqualMessage( const std::string &expectedValue,
+                     const std::string &actualValue,
+                     const AdditionalMessage &additionalMessage,
+                     const std::string &shortDescription )
+{
+  Message message( shortDescription,
+                   makeExpected( expectedValue ),
+                   makeActual( actualValue ) );
+  message.addDetail( additionalMessage );
+
+  return message;
+}
+
+
 void 
 failNotEqual( std::string expected, 
               std::string actual, 
               const SourceLine &sourceLine,
-              const Message &additionalMessage,
+              const AdditionalMessage &additionalMessage,
               std::string shortDescription )
 {
-  Message message( shortDescription,
-                   "Expected: " + expected,
-                   "Actual  : " + actual );
-  message.addDetail( additionalMessage );
-  fail( message, sourceLine );
+  fail( makeNotEqualMessage( expected,
+                             actual,
+                             additionalMessage,
+                             shortDescription ), 
+        sourceLine );
 }
 
 
@@ -66,36 +94,11 @@ failNotEqualIf( bool shouldFail,
                 std::string expected, 
                 std::string actual, 
                 const SourceLine &sourceLine,
-                const Message &additionalMessage,
+                const AdditionalMessage &additionalMessage,
                 std::string shortDescription )
 {
   if ( shouldFail )
     failNotEqual( expected, actual, sourceLine, additionalMessage, shortDescription );
-}
-
-
-void 
-failNotEqual( std::string expected, 
-              std::string actual, 
-              const SourceLine &sourceLine,
-              std::string additionalMessage )
-{
-  Message message;
-  if ( !additionalMessage.empty() )
-    message.addDetail( additionalMessage );
-  failNotEqual( expected, actual, sourceLine, message );
-}
-
-
-void 
-failNotEqualIf( bool shouldFail,
-                std::string expected, 
-                std::string actual, 
-                const SourceLine &sourceLine,
-                std::string additionalMessage )
-{
-  if ( shouldFail )
-    failNotEqual( expected, actual, sourceLine, additionalMessage );
 }
 
 

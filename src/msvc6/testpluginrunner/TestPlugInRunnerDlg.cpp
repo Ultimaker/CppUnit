@@ -18,13 +18,13 @@ static char THIS_FILE[] = __FILE__;
 
 TestPlugInRunnerDlg::TestPlugInRunnerDlg( TestPlugInRunnerModel *model,
                                           CWnd* pParent ) 
-    : TestRunnerDlg( model, IDD_TEST_PLUG_IN_RUNNER, pParent )
+    : TestRunnerDlg( model, "CPP_UNIT_TEST_RUNNER_PLUG_IN_IDD_TEST_PLUG_IN_RUNNER", pParent )
 {
   //{{AFX_DATA_INIT(TestPlugInRunnerDlg)
 	  // NOTE: the ClassWizard will add member initialization here
   //}}AFX_DATA_INIT
   // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
-  m_hIcon = AfxGetApp()->LoadIcon(IDR_TEST_PLUGIN_RUNNER);
+  m_hIcon = AfxGetApp()->LoadIcon("CPP_UNIT_TEST_RUNNER_PLUG_IN_IDR_TEST_PLUGIN_RUNNER");
 }
 
 

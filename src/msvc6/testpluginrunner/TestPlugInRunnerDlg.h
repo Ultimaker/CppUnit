@@ -27,7 +27,6 @@ public:
 
 // Dialog Data
   //{{AFX_DATA(TestPlugInRunnerDlg)
-  enum { IDD = IDD_TEST_PLUG_IN_RUNNER };
   //}}AFX_DATA
 
   // ClassWizard generated virtual function overrides

@@ -12,6 +12,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+HINSTANCE g_testRunnerResource;
+
 /////////////////////////////////////////////////////////////////////////////
 // TestPlugInRunnerApp
 
@@ -54,6 +56,8 @@ BOOL TestPlugInRunnerApp::InitInstance()
 #else
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
+
+  g_testRunnerResource = AfxGetResourceHandle();
 
   SetRegistryKey(_T("CppUnit Test Plug-In Runner"));
 

@@ -51,7 +51,10 @@ class TestRunnerDlg : public cdxCDynamicDialog,
 {
 public:
   TestRunnerDlg( TestRunnerModel *model,
-                int nDialogResourceId = -1,
+                int nDialogResourceId,
+                CWnd* pParent = NULL);
+  TestRunnerDlg( TestRunnerModel *model,
+                const TCHAR* szDialogResourceId = NULL,
                 CWnd* pParent = NULL);
   ~TestRunnerDlg();
 
@@ -62,7 +65,6 @@ public:
 
   // IDD is not use, it is just there for the wizard.
   //{{AFX_DATA(TestRunnerDlg)
-	enum { IDD = IDD_DIALOG_TESTRUNNER };
 	CEdit	m_details;
   MsDevCallerListCtrl m_listCtrl;
   CButton m_buttonClose;
@@ -154,6 +156,10 @@ protected:
 
 private:
   TestRunnerModel::Settings m_settings;
+
+  /// do all initialization, that is usually done in the constructor, so that the
+  /// code is not duplicated in the two constructors
+  void TestRunnerDlg::init(TestRunnerModel *model);
 };
 
 

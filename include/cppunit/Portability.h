@@ -92,6 +92,12 @@
  */
 #define CPPUNIT_MAKE_UNIQUE_NAME( prefix ) CPPUNIT_JOIN( prefix, __LINE__ )
 
+/*! Defines wrap colunm for %CppUnit. Used by CompilerOuputter.
+ */
+#ifndef CPPUNIT_WRAP_COLUMN
+#define CPPUNIT_WRAP_COLUMN 79
+#endif
+
 
 /* perform portability hacks */
 

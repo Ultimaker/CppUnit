@@ -54,6 +54,13 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 cppunit_dll.lib winmm.lib /nologo /subsystem:windows /machine:I386 /libpath:"../../../lib/"
+# Begin Special Build Tool
+TargetPath=.\Release\TestPlugInRunner.exe
+TargetName=TestPlugInRunner
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
 
@@ -79,7 +86,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 cppunitd_dll.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"../../../lib/"
+# ADD LINK32 cppunitd_dll.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/TestPlugInRunnerd.exe" /pdbtype:sept /libpath:"../../../lib/"
+# Begin Special Build Tool
+TargetPath=.\Debug\TestPlugInRunnerd.exe
+TargetName=TestPlugInRunnerd
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).exe
+# End Special Build Tool
 
 !ENDIF 
 
@@ -382,6 +396,14 @@ SOURCE=..\testrunner\ProgressBar.cpp
 # Begin Source File
 
 SOURCE=..\testrunner\ProgressBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ResourceLoaders.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ResourceLoaders.h
 # End Source File
 # Begin Source File
 

@@ -186,6 +186,7 @@ MessageTest::testConstructorDetail3()
 void 
 MessageTest::testDetailsNone()
 {
+  CPPUNIT_ASSERT_MESSAGE("012345678901234",true);
   std::string empty;
   CPPUNIT_ASSERT_EQUAL( empty, m_message->details() );
 }

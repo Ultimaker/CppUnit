@@ -7,20 +7,18 @@ namespace CppUnit
 
 
 DynamicLibraryManagerException::DynamicLibraryManagerException( 
-                                         const std::string &libraryName )
-    : m_cause( loadingFailed )
-    , std::runtime_error( "Failed to load dynamic library: " + libraryName )
+                                         const std::string &libraryName,
+                                         const std::string &errorDetail,
+                                         Cause cause )
+    : m_cause( cause )
+    , std::runtime_error( "" )
 {
-}
-
-
-DynamicLibraryManagerException::DynamicLibraryManagerException( 
-                                const std::string &libraryName,
-                                const std::string &symbol )
-    : m_cause( symbolNotFound )
-    , std::runtime_error( "Symbol [" + symbol + "] not found in dynamic libary:" +
-                          libraryName )
-{
+  if ( cause == loadingFailed )
+    m_message = "Failed to load dynamic library: " + libraryName + "\n" + 
+                errorDetail;
+  else
+    m_message = "Symbol [" + errorDetail + "] not found in dynamic libary:" + 
+                libraryName;
 }
 
 
@@ -28,6 +26,13 @@ DynamicLibraryManagerException::Cause
 DynamicLibraryManagerException::getCause() const
 {
   return m_cause;
+}
+
+
+const char *
+DynamicLibraryManagerException::what() const throw()
+{
+  return m_message.c_str();
 }
 
 

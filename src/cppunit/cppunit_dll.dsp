@@ -38,8 +38,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "ReleaseDLL"
-# PROP Intermediate_Dir "ReleaseDLL"
+# PROP Output_Dir "ReleaseDll"
+# PROP Intermediate_Dir "ReleaseDll"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_DLL_EXPORTS" /YX /FD /c
@@ -53,8 +53,16 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:"..\..\lib\cppunit_dll.pdb" /machine:I386 /out:"..\..\lib\cppunit_dll.dll" /implib:"..\..\lib\cppunit_dll.lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:"..\..\lib\cppunit_dll.pdb" /machine:I386
 # SUBTRACT LINK32 /pdb:none
+# Begin Special Build Tool
+TargetDir=.\ReleaseDll
+TargetPath=.\ReleaseDll\cppunit_dll.dll
+TargetName=cppunit_dll
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\lib\$(TargetName).lib
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "cppunit_dll - Win32 Debug"
 
@@ -65,8 +73,8 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "DebugDLL"
-# PROP Intermediate_Dir "DebugDLL"
+# PROP Output_Dir "DebugDll"
+# PROP Intermediate_Dir "DebugDll"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_DLL_EXPORTS" /YX /FD /GZ /c
@@ -81,8 +89,16 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:"..\..\lib\cppunitd_dll.pdb" /debug /machine:I386 /out:"..\..\lib\cppunitd_dll.dll" /implib:"..\..\lib\cppunitd_dll.lib" /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:"..\..\lib\cppunitd_dll.pdb" /debug /machine:I386 /out:"DebugDll\cppunitd_dll.dll" /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none
+# Begin Special Build Tool
+TargetDir=.\DebugDll
+TargetPath=.\DebugDll\cppunitd_dll.dll
+TargetName=cppunitd_dll
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\lib\$(TargetName).lib
+# End Special Build Tool
 
 !ENDIF 
 
@@ -181,6 +197,14 @@ SOURCE=..\..\include\cppunit\extensions\TypeInfoHelper.h
 # Begin Group "core"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\AdditionalMessage.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\AdditionalMessage.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\Asserter.cpp

@@ -92,6 +92,16 @@ private:
    */
   Symbol doFindSymbol( const std::string &symbol );
 
+  /*! Returns detailed information about doLoadLibrary() failure.
+   *
+   * Called just after a failed call to doLoadLibrary() to get extra
+   * error information.
+   *
+   * \return Detailed information about the failure of the call to
+   *         doLoadLibrary() that just failed.
+   */
+  std::string getLastErrorDetail() const;
+
   /// Prevents the use of the copy constructor.
   DynamicLibraryManager( const DynamicLibraryManager &copy );
 

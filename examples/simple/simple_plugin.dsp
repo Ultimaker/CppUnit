@@ -40,7 +40,7 @@ RSC=rc.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "ReleasePlugIn"
 # PROP Intermediate_Dir "ReleasePlugIn"
-# PROP Ignore_Export_Lib 0
+# PROP Ignore_Export_Lib 1
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /YX /FD /c
 # ADD CPP /nologo /MD /W3 /GX /O2 /I "../../include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /D "CPPUNIT_DLL" /FD /c
@@ -73,10 +73,10 @@ PostBuild_Cmds=..\..\lib\DllPlugInTester_dll.exe $(TargetPath)
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "DebugPlugIn"
 # PROP Intermediate_Dir "DebugPlugIn"
-# PROP Ignore_Export_Lib 0
+# PROP Ignore_Export_Lib 1
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "../../include" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /D "CPPUNIT_DLL" /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "../../include" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /D "CPPUNIT_DLL" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32

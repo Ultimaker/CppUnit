@@ -27,16 +27,17 @@ public:
     symbolNotFound
   };
 
-  /// Failed to load the dynamic library
-  DynamicLibraryManagerException( const std::string &libraryName );
-
-  /// Symbol not found in the dynamic library
+  /// Failed to load the dynamic library or Symbol not found in the dynamic library.
   DynamicLibraryManagerException( const std::string &libraryName,
-                                  const std::string &symbol );
+                                  const std::string &errorDetail,
+                                  Cause cause );
 
   Cause getCause() const;
 
+  const char *what() const throw();
+
 private:
+  std::string m_message;
   Cause m_cause;
 };
 

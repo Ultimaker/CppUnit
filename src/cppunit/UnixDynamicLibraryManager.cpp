@@ -32,6 +32,13 @@ DynamicLibraryManager::doFindSymbol( const std::string &symbol )
 }
 
 
+std::string 
+DynamicLibraryManager::getLastErrorDetail() const
+{
+  return "";
+}
+
+
 } //  namespace CppUnit
 
 

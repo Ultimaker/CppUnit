@@ -1,6 +1,8 @@
 #include <cppunit/XmlOutputterHook.h>
-#include <cppunit/plugin/PlugInManager.h>
+
+#if !defined(CPPUNIT_NO_TESTPLUGIN)
 #include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/plugin/PlugInManager.h>
 #include <cppunit/plugin/TestPlugIn.h>
 #include <cppunit/plugin/DynamicLibraryManager.h>
 
@@ -106,3 +108,4 @@ PlugInManager::removeXmlOutputterHooks()
 
 } //  namespace CppUnit
 
+#endif // !defined(CPPUNIT_NO_TESTPLUGIN)

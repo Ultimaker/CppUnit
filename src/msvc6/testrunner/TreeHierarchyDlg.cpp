@@ -5,6 +5,7 @@
 #include "resource.h"
 #include "TreeHierarchyDlg.h"
 #include "TestRunnerModel.h"
+#include "ResourceLoaders.h"
 #include <algorithm>
 
 
@@ -19,7 +20,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 TreeHierarchyDlg::TreeHierarchyDlg(CWnd* pParent )
-	: cdxCDynamicDialog(TreeHierarchyDlg::IDD, pParent)
+	: cdxCDynamicDialog(_T("CPP_UNIT_TEST_RUNNER_IDD_DIALOG_TEST_HIERARCHY"), pParent)
   , m_selectedTest( NULL )
 {
   ModifyFlags( flSWPCopyBits, 0 );      // anti-flickering option for resizing
@@ -81,7 +82,8 @@ TreeHierarchyDlg::initializeLayout()
 void 
 TreeHierarchyDlg::fillTree()
 {
-  VERIFY( m_imageList.Create( IDB_TEST_TYPE, 16, 1, RGB( 255,0,255 ) ) );
+  VERIFY( m_imageList.Create( _T("CPP_UNIT_TEST_RUNNER_IDB_TEST_TYPE"), 
+                              16, 1, RGB( 255,0,255 ) ) );
 
   m_treeTests.SetImageList( &m_imageList, TVSIL_NORMAL );
 
@@ -159,7 +161,7 @@ TreeHierarchyDlg::OnOK()
   CppUnit::Test *test = findSelectedTest();
   if ( test == NULL )
   {
-    AfxMessageBox( IDS_ERROR_SELECT_TEST, MB_OK );
+    AfxMessageBox( loadCString(IDS_ERROR_SELECT_TEST), MB_OK );
     return;
   }
 

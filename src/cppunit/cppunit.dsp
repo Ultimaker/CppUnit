@@ -49,7 +49,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"..\..\lib\cppunit.lib"
+# ADD LIB32 /nologo
+# Begin Special Build Tool
+TargetPath=.\Release\cppunit.lib
+TargetName=cppunit
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).lib
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "cppunit - Win32 Debug"
 
@@ -72,7 +79,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"..\..\lib\cppunitd.lib"
+# ADD LIB32 /nologo /out:"Debug\cppunitd.lib"
+# Begin Special Build Tool
+TargetPath=.\Debug\cppunitd.lib
+TargetName=cppunitd
+SOURCE="$(InputPath)"
+PostBuild_Desc=Copying target to lib/
+PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).lib
+# End Special Build Tool
 
 !ENDIF 
 
@@ -243,6 +257,14 @@ SOURCE=..\..\include\cppunit\XmlOutputterHook.h
 # Begin Group "core"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\AdditionalMessage.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\AdditionalMessage.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\Asserter.cpp

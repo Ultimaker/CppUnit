@@ -1,4 +1,56 @@
+2002-07-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/XmlOutputter.h: fixed XmlOutputter constructed default
+    value initializatino which caused compilation error with BC5.
+
+  * src/cppunit/PlugInManager.cpp: added missing CPPUNIT_NO_TESTPLUGIN guard.
+
+  * src/msvc6/testrunner/TestRunner.dsp:
+  * src/msvc6/testrunner/TestRunner.rc:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp:
+  * src/msvc6/testrunner/TestRunnerDlg.h:
+  * src/msvc6/testrunner/TreeHierarchyDlg.cpp:
+  * src/msvc6/testrunner/TreeHierarchyDlg.h:
+  * src/msvc6/testpluginrunner/TestPlugInRunner.dsp:
+  * src/msvc6/testpluginrunner/TestPlugInRunner.rc:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerApp.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.h: applied Steven Mitter
+    patch to fix bug #530426 (conflict between TestRunner and host application
+    resources). Adapted patch to compile work with Unicode.
+
+  * src/msvc6/testrunner/ResourceLoaders.h:
+  * src/msvc6/testrunner/ResourceLoaders.cpp:
+  * src/msvc6/testrunner/Change-Diary-ResourceBugFix.txt: added, from
+    Steven Mitter's patch. Simplified loadCString() to compile with Unicode.
+
+  * src/cppunit/cppunit.dsp:
+  * src/cppunit/cppunit_dll.dsp:
+  * src/DllPlugInTester/DllPlugInTester.dsp:
+  * src/msvc6/testrunner/TestRunner.dsp:
+  * src/msvc6/testpluginrunner/TestPlugInRunner.dsp: all lib, dll and exe are
+    now created in the intermediate directory. A post-build rule is used to
+    copy them to the lib/ directory.
+
+2002-06-17 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/AdditionalMessage.h:
+  * src/cppunit/AdditionalMessage.cpp: added. Class to help passing 
+    additional message parameter.
+
+  * include/cppunit/Asserter.h: added makeExpected(), makeActual() and
+    makeNotEqualMessage(). Removed methods made unnecessary by the
+    use of AdditionalMessage.
+
+  * include/cppunit/Portability.h: added CPPUNIT_WRAP_COLUMN to define
+    CppUnit default wrap column.
+
+  * src/cppunit/CompilerOutputter.cpp: use CPPUNIT_WRAP_COLUMN instead
+    of hard-coded value.
+
 2002-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+  
+  * bumped version to 1.9.9
 
   * release 1.9.8
 

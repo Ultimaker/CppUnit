@@ -28,7 +28,6 @@ public:
 
   // Dialog Data
 	//{{AFX_DATA(TreeHierarchyDlg)
-	enum { IDD = IDD_DIALOG_TEST_HIERARCHY };
 	CTreeCtrl	m_treeTests;
 	//}}AFX_DATA
 

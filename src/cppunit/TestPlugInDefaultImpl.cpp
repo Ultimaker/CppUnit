@@ -2,8 +2,8 @@
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
-#include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/TestSuite.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/plugin/TestPlugInDefaultImpl.h>
 
 

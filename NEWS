@@ -1,7 +1,9 @@
 	New in CppUnit 1.9.8:
 	---------------------
 
-  - New custom test macros
+This release features custom macros for fixture suite, XmlOutputter customization, possibility for test plug-in to customize XML output, the introduction of a new XmlDocument class to help creating XML output of specific format, enhancement of ClockerPlugIn to output test timing as XML, increased usability of the MFC TestRunner with the addition of a detail field, as well as many bug fixes.
+
+  - New custom test macros for fixture suite
   - Exception message are now structured
   - Added detail field to MFC TestRunner
   - New XmlDocument class to easily create new XML output format

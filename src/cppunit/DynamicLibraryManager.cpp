@@ -34,7 +34,9 @@ DynamicLibraryManager::findSymbol( const std::string &symbol )
   {
   }
 
-  throw DynamicLibraryManagerException( m_libraryName, symbol );
+  throw DynamicLibraryManagerException( m_libraryName, 
+                                        symbol,
+                                        DynamicLibraryManagerException::symbolNotFound );
   return NULL;    // keep compiler happy
 }
 
@@ -45,7 +47,7 @@ DynamicLibraryManager::loadLibrary( const std::string &libraryName )
   try
   {
     releaseLibrary();
-     m_libraryHandle = doLoadLibrary( libraryName );
+    m_libraryHandle = doLoadLibrary( libraryName );
     if ( m_libraryHandle != NULL )
       return;
   }
@@ -53,7 +55,9 @@ DynamicLibraryManager::loadLibrary( const std::string &libraryName )
   {
   }
 
-  throw DynamicLibraryManagerException( m_libraryName );
+  throw DynamicLibraryManagerException( m_libraryName,
+                                        getLastErrorDetail(),
+                                        DynamicLibraryManagerException::loadingFailed );
 }
 
 
