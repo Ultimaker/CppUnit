@@ -163,6 +163,14 @@ SOURCE=.\MockTestListener.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\NotEqualExceptionTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\NotEqualExceptionTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\OrthodoxTest.cpp
 # End Source File
 # Begin Source File

@@ -9,25 +9,23 @@
 
 namespace CppUnit {
 
-    template <class T>
-    struct assertion_traits 
-    {  
-	static bool equal( const T& x, const T& y )
-	{
-	    return x == y;
-	}
+  template <class T>
+  struct assertion_traits 
+  {  
+      static bool equal( const T& x, const T& y )
+      {
+          return x == y;
+      }
 
-	static std::string toString( const T& x )
-	{
-	    std::ostringstream ost;
-	    ost << x;
-	    return ost.str();
-	}
-    };
+      static std::string toString( const T& x )
+      {
+          std::ostringstream ost;
+          ost << x;
+          return ost.str();
+      }
+  };
 
 
-  /*! \brief This class represents
-   */
   namespace TestAssert
   {
     void assertImplementation( bool         condition, 
@@ -35,27 +33,26 @@ namespace CppUnit {
                                long lineNumber = Exception::UNKNOWNLINENUMBER,
                                std::string  fileName = Exception::UNKNOWNFILENAME );
 
+    void assertNotEqualImplementation( std::string expected,
+                                       std::string actual,
+                                       long lineNumber = Exception::UNKNOWNLINENUMBER,
+                                       std::string fileName = Exception::UNKNOWNFILENAME );
+      
+
     template <class T>
-    std::string         notEqualsMessage (const T& expected, 
-						 const T& actual)
+    void assertEquals( const T& expected,
+                       const T& actual,
+                       long lineNumber = Exception::UNKNOWNLINENUMBER,
+                       std::string fileName = Exception::UNKNOWNFILENAME )
     {
-	return "expected: " + assertion_traits<T>::toString(expected)
-	     + " but was: " + assertion_traits<T>::toString(actual);
+      if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
+      {
+        assertNotEqualImplementation( assertion_traits<T>::toString(expected),
+                                      assertion_traits<T>::toString(actual),
+                                      lineNumber, 
+                                      fileName );
+      }
     }
-
-
-    template <class T>
-    void    assertEquals     (
-      const T&     expected,
-      const T&     actual,
-      long         lineNumber = Exception::UNKNOWNLINENUMBER,
-      std::string  fileName = Exception::UNKNOWNFILENAME)
-	{
-	    assertImplementation( assertion_traits<T>::equal(expected,actual),
-				  notEqualsMessage(expected, actual), 
-				  lineNumber, 
-				  fileName); 
-	}
 
     void assertEquals( double expected, 
                        double actual, 

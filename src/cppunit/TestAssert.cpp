@@ -2,6 +2,7 @@
 
 #include "cppunit/TestAssert.h"
 #include "estring.h"
+#include <cppunit/NotEqualException.h>
 
 namespace CppUnit {
 
@@ -18,6 +19,16 @@ void TestAssert::assertImplementation (bool          condition,
 }
 
 
+/// Reports failed equality
+void TestAssert::assertNotEqualImplementation( std::string expected,
+     std::string actual,
+     long lineNumber,
+     std::string fileName )
+{
+  throw NotEqualException( expected, actual, lineNumber, fileName );
+}
+
+
 /// Check for a failed equality assertion
 void TestAssert::assertEquals (double        expected, 
   double        actual, 
@@ -26,10 +37,10 @@ void TestAssert::assertEquals (double        expected,
   std::string   fileName)
 { 
   if (fabs (expected - actual) > delta) 
-    assertImplementation (false, 
-                          notEqualsMessage(expected, actual), 
-                          lineNumber, 
-                          fileName); 
+    assertNotEqualImplementation( assertion_traits<double>::toString(expected),
+                                  assertion_traits<double>::toString(actual),
+                                  lineNumber, 
+                                  fileName ); 
 }
 
 

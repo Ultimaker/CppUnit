@@ -7,9 +7,11 @@ NotEqualException::NotEqualException( std::string expected,
                                       std::string actual,
                                       long lineNumber, 
                                       std::string fileName ) : 
-    Exception( "Expected: " + expected + ", but was:" + actual,
+    Exception( "Expected: " + expected + ", but was: " + actual,
                lineNumber,
-               fileName )
+               fileName ),
+    m_expected( expected ),
+    m_actual( actual )
 {
 }
 
@@ -30,6 +32,8 @@ NotEqualException::~NotEqualException()
 NotEqualException &
 NotEqualException::operator =( const NotEqualException &other )
 {
+  Exception::operator =( other );
+
   if ( &other != this )
   {
     m_expected = other.m_expected;
@@ -58,6 +62,20 @@ Exception::Type
 NotEqualException::type()
 {
   return Type( "CppUnit::NotEqualException" );
+}
+
+
+std::string 
+NotEqualException::expectedValue() const
+{
+  return m_expected;
+}
+
+
+std::string 
+NotEqualException::actualValue() const
+{
+  return m_actual;
 }
 
 

@@ -1,3 +1,20 @@
+2001-06-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+	
+	* include/cppunit/NotEqualException.h
+	* src/cppunit/NotEqualException.h:
+	Fixed constructor and operator = (aren't unit test nice?). Added 
+	methods expectedValue() and actualValue().
+
+	* include/cppunit/TestAssert.h:
+	* src/cppunit/TestAssert.cpp:
+	Use NotEqualException to report equality failure.
+
+	* src/cppunit/TestResult.cpp:
+	Report expect/was on different line for assertEquals failure.
+
+	* examples/cppunittest/NotEqualExceptionTest.*: added unit tests for
+	NotEqualException. 
+
 2001-06-11  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* examples/cppunittest/TestResultTest.cpp (testAddTwoErrors,

@@ -1,6 +1,5 @@
 * CppUnit:
   - Unicode support
-  - NotEqualException for assertEquals
   - STL orthodox template for container elements.
 
 * VC++ TestRunner:

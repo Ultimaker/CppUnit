@@ -1,6 +1,7 @@
 #include <iostream>
 #include "cppunit/TextTestResult.h"
 #include "cppunit/Exception.h"
+#include "cppunit/NotEqualException.h"
 #include "cppunit/Test.h"
 #include "estring.h"
 
@@ -82,9 +83,21 @@ TextTestResult::printFailures (std::ostream& stream)
                    << ") "
                    << "test: " << failure->failedTest()->getName()  << " "
                    << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
-                   << (e ? e->fileName () : "") << " "
-                   << "\"" << failure->thrownException ()->what () << "\""
-                   << std::endl;
+                   << (e ? e->fileName () : "") << " ";
+
+            if ( failure->thrownException()->isInstanceOf( NotEqualException::type() ) )
+            {
+              NotEqualException *e = (NotEqualException*)failure->thrownException();
+              stream << std::endl 
+                     << "expected: " << e->expectedValue() << std::endl
+                     << "but was:  " << e->actualValue();
+            }
+            else
+            {
+              stream << "\"" << failure->thrownException ()->what () << "\"";
+            }
+
+            stream << std::endl;
             i++;
         }
     }

@@ -18,6 +18,8 @@ cppunittestmain_SOURCES = \
 	HelperMacrosTest.h \
 	MockTestListener.cpp \
 	MockTestListener.h \
+	NotEqualExceptionTest.cpp \
+	NotEqualExceptionTest.h \
 	OrthodoxTest.cpp \
 	OrthodoxTest.h \
 	RepeatedTestTest.cpp \

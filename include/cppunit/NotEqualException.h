@@ -19,6 +19,10 @@ namespace CppUnit {
 
     virtual ~NotEqualException();
 
+    std::string expectedValue() const;
+
+    std::string actualValue() const;
+
     /*! Copy operator.
      * @param other Object to copy.
      * @return Reference on this object.
