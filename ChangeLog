@@ -1,5 +1,9 @@
 2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* configure.in: updated version number to 1.7.4
+
+2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* include/cppunit/makefile.am:
 	* src/cppunit/makefile.am: added missing SynchronizedObject and TextOutputter.h.
 
