@@ -69,7 +69,7 @@ public:
    * \return \c true if a test with the specified name is found, \c false otherwise.
    */
   virtual bool findTestPath( const std::string &testName,
-                             TestPath &testPath );
+                             TestPath &testPath ) const;
 
   /*! \brief Finds the specified test and its parents test.
    * \param test Test to find.
@@ -78,7 +78,7 @@ public:
    * \return \c true if the specified test is found, \c false otherwise.
    */
   virtual bool findTestPath( const Test *test,
-                             TestPath &testPath );
+                             TestPath &testPath ) const;
 
   /*! \brief Finds the test with the specified name in the hierarchy.
    * \param testName Name of the test to find.
@@ -93,7 +93,7 @@ public:
    * \exception std::invalid_argument if \a testPath could not be resolved.
    * \see TestPath.
    */
-  virtual TestPath resolveTestPath( const std::string &testPath );
+  virtual TestPath resolveTestPath( const std::string &testPath ) const;
 
 protected:
   /*! Throws an exception if the specified index is invalid.

@@ -33,7 +33,7 @@ MockTestCase::~MockTestCase()
 int 
 MockTestCase::countTestCases() const
 {
-  MockTestCase *mutableThis = const_cast<MockTestCase *>( this );
+  MockTestCase *mutableThis = CPPUNIT_CONST_CAST(MockTestCase *, this );
   ++mutableThis->m_actualCountTestCasesCallCount;
   if ( m_expectCountTestCasesCall )
   {

@@ -1,3 +1,16 @@
+2002-07-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/Portability.h: added macro CPPUNIT_CONST_CAST.
+
+  * src/cppunit/Exception.cpp:
+  * src/cppunit/Test.cpp:
+  * examples/cppunittest/MockTestCase.cpp: replaced usage of const_cast with
+    CPPUNIT_CONST_CAST.
+
+  * include/cppunit/Test.h:
+  * src/cppunit/Test.cpp: made findTestPath(), findTest() and resolvePath()
+    const methods.
+
 2002-07-10 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/AutoRegisterSuite.h:

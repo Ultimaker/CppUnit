@@ -70,7 +70,7 @@ Exception::operator =( const Exception& other )
 const char*
 Exception::what() const throw()
 {
-  Exception *mutableThis = const_cast<Exception *>( this );
+  Exception *mutableThis = CPPUNIT_CONST_CAST( Exception *, this );
   mutableThis->m_whatMessage = m_message.shortDescription() + "\n" + 
                                m_message.details();
   return m_whatMessage.c_str();

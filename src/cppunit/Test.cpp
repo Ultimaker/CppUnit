@@ -18,8 +18,8 @@ Test *
 Test::findTest( const std::string &testName ) const
 {
   TestPath path;
-  // since path is discarded, it is really a const method.
-  const_cast<Test *>(this)->findTestPath( testName, path );
+  Test *mutableThis = CPPUNIT_CONST_CAST( Test *, this );
+  mutableThis->findTestPath( testName, path );
   if ( !path.isValid() )
     throw std::invalid_argument( "No test named <" + testName + "> found in test <"
                                  + getName() + ">." );
@@ -29,11 +29,12 @@ Test::findTest( const std::string &testName ) const
 
 bool 
 Test::findTestPath( const std::string &testName,
-                    TestPath &testPath )
+                    TestPath &testPath ) const
 {
+  Test *mutableThis = CPPUNIT_CONST_CAST( Test *, this );
   if ( getName() == testName )
   {
-    testPath.add( this );
+    testPath.add( mutableThis );
     return true;
   }
 
@@ -42,7 +43,7 @@ Test::findTestPath( const std::string &testName,
   {
     if ( getChildTestAt( childIndex )->findTestPath( testName, testPath ) )
     {
-      testPath.insert( this, 0 );
+      testPath.insert( mutableThis, 0 );
       return true;
     }
   }
@@ -53,11 +54,12 @@ Test::findTestPath( const std::string &testName,
 
 bool 
 Test::findTestPath( const Test *test,
-                    TestPath &testPath )
+                    TestPath &testPath ) const
 {
+  Test *mutableThis = CPPUNIT_CONST_CAST( Test *, this );
   if ( this == test )
   {
-    testPath.add( this );
+    testPath.add( mutableThis );
     return true;
   }
 
@@ -66,7 +68,7 @@ Test::findTestPath( const Test *test,
   {
     if ( getChildTestAt( childIndex )->findTestPath( test, testPath ) )
     {
-      testPath.insert( this, 0 );
+      testPath.insert( mutableThis, 0 );
       return true;
     }
   }
@@ -76,9 +78,10 @@ Test::findTestPath( const Test *test,
 
 
 TestPath 
-Test::resolveTestPath( const std::string &testPath )
+Test::resolveTestPath( const std::string &testPath ) const
 {
-  return TestPath( this, testPath );
+  Test *mutableThis = CPPUNIT_CONST_CAST( Test *, this );
+  return TestPath( mutableThis, testPath );
 }
 
 
