@@ -104,6 +104,7 @@ AC_OUTPUT([
   cppunit/Makefile
   include/Makefile
   include/cppunit/Makefile
+  include/cppunit/extensions/Makefile
   doc/Makefile
   doc/Doxyfile
   examples/Makefile

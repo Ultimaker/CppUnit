@@ -1,3 +1,5 @@
+SUBDIRS = extensions
+
 libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
 	Exception.h \
