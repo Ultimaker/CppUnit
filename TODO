@@ -1,1 +1,12 @@
-
+* VC++ TestRunner:
+  - Make it possible to specify the registry path where settings are stored.
+    Current method use the path defined in the CWinApp. This does not work
+    for console application.
+  - Make the dialog resizable.
+  - Add "details" field to show detail of the failed test:
+    - suite and test name,
+    - failure message. If possible separate "was" and "expected" in the
+      forthcoming assertEquals() to make comparison easier,
+    - source file location. 
+    
+    
