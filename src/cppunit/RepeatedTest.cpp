@@ -7,7 +7,7 @@ namespace CppUnit {
 
 // Counts the number of test cases that will be run by this test.
 int
-RepeatedTest::countTestCases()
+RepeatedTest::countTestCases() const
 { 
   return TestDecorator::countTestCases () * m_timesRepeat; 
 }
@@ -15,7 +15,7 @@ RepeatedTest::countTestCases()
 
 // Returns the name of the test instance. 
 std::string 
-RepeatedTest::toString()
+RepeatedTest::toString() const
 { 
   return TestDecorator::toString () + " (repeated)"; 
 }

@@ -22,8 +22,8 @@ public:
         m_timesRepeat(timesRepeat) {}
 
     void run( TestResult *result );
-    int countTestCases();
-    std::string toString();
+    int countTestCases() const;
+    std::string toString() const;
 
 private:
     RepeatedTest( const RepeatedTest & );

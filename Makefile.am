@@ -10,6 +10,11 @@ man_MANS = cppunit-config.1
 EXTRA_DIST = BUGS INSTALL-unix INSTALL-WIN32.txt	\
 	cppunit-config.1				\
 	cppunit.m4 cppunit.spec.in cppunit.spec	        \
+	$(m4sources)					\
+	contrib/msvc/CppUnit.WWTpl 			\
+	contrib/msvc/readme.txt
+
+m4sources = \
 	config/ac_create_prefix_config_h.m4		\
 	config/ac_cxx_have_sstream.m4			\
 	config/ac_cxx_have_strstream.m4			\
@@ -31,6 +36,7 @@ dist-hook:
 	cp -dpR $(top_srcdir)/examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf
 	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'` \
+		$(distdir)/contrib/msvc/*			  \
 		$(distdir)/INSTALL-WIN32.txt
 
 .PHONY: release snapshot rpm docs doc-dist
