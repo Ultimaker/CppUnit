@@ -1,4 +1,3 @@
-
 #ifndef CPP_UNIT_EXAMPLETESTCASE_H
 #define CPP_UNIT_EXAMPLETESTCASE_H
 
@@ -11,7 +10,7 @@
  *
  */
 
-class ExampleTestCase : public CppUnit::TestFixture
+class ExampleTestCase : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( ExampleTestCase );
   CPPUNIT_TEST( example );

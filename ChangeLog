@@ -3,6 +3,10 @@
   * cppunit-config.in: bug #903363, missing -ldl from the output of
     cppunit-config --libs. Fixed thanks Eric Blossom patch.
 
+  * examples/qt/Main.cpp:
+  * examples/qt/ExampleTestCase.h: fixed bug #789672: QT example should 
+    use CPPUNIT_NS macro.
+
 2004-02-20 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * release 1.9.12
