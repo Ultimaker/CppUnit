@@ -2,7 +2,7 @@
 #define CPPUNIT_HELPER_TESTSUITEBUILDERCONTEXT_H
 
 #include <cppunit/Portability.h>
-#include <cppunit/Portability/CppUnitMap.h>
+#include <cppunit/portability/CppUnitMap.h>
 #include <string>
 
 #if CPPUNIT_NEED_DLL_DECL
