@@ -94,7 +94,7 @@ XmlOutputter::fillFailedTestsMap( FailedTests &failedTests )
 
 void
 XmlOutputter::addFailedTests( FailedTests &failedTests,
-                                        XmlElement *rootNode )
+                              XmlElement *rootNode )
 {
   XmlElement *testsNode = new XmlElement( "FailedTests" );
   rootNode->addElement( testsNode );
