@@ -57,7 +57,7 @@ SPAN.critical		{ color:#880000; font-weight:bold; }
   <TD valign='top'><xsl:apply-templates select="FailureType"/></TD>
   <TD valign='top'><xsl:apply-templates select="Location"/></TD>
   <TD valign='top'><pre><xsl:apply-templates select="Message"/></pre></TD>
-<--
+<!--
 		<TD align="right"><xsl:value-of select="@id"/></TD>
 		<TD><xsl:apply-templates select="Name"/></TD>
 		<TD><xsl:apply-templates select="FailureType"/></TD>
