@@ -27,7 +27,7 @@ libcppunitinclude_HEADERS =  \
 	TestResult.h \
 	TestResultCollector.h \
 	TestRunner.h \
-	TestSucessListener.h \
+	TestSuccessListener.h \
 	TestSuite.h \
 	TextOutputter.h \
 	TextTestProgressListener.h \
