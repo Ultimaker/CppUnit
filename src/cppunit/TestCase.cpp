@@ -7,7 +7,7 @@
 #include <cppunit/TestResult.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 /** Constructs a test case.
@@ -93,4 +93,4 @@ TestCase::getName() const
 }
   
 
-} // namespace CppUnit
+CPPUNIT_NS_END

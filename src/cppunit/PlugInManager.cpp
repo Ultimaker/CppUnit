@@ -7,9 +7,7 @@
 #include <cppunit/plugin/DynamicLibraryManager.h>
 
 
-namespace CppUnit
-{
-
+CPPUNIT_NS_BEGIN
 
 
 PlugInManager::PlugInManager()
@@ -106,6 +104,6 @@ PlugInManager::removeXmlOutputterHooks()
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)

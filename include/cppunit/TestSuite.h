@@ -11,7 +11,8 @@
 #include <cppunit/TestComposite.h>
 #include <vector>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 #if CPPUNIT_NEED_DLL_DECL
 //  template class CPPUNIT_API std::vector<Test *>;
@@ -70,8 +71,7 @@ private:
 };
 
 
-} // namespace CppUnit
-
+CPPUNIT_NS_END
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( pop )

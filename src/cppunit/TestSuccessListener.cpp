@@ -1,9 +1,7 @@
 #include <cppunit/TestSuccessListener.h>
 
 
-
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 TestSuccessListener::TestSuccessListener( SynchronizationObject *syncObject )
@@ -42,5 +40,5 @@ TestSuccessListener::wasSuccessful() const
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

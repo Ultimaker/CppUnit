@@ -8,13 +8,13 @@
 #include <deque>
 #include <string>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 typedef std::deque<std::string> Parameters;
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)
 

@@ -5,8 +5,8 @@
 #include <cppunit/TestListener.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief TestListener that checks if any test case failed.
  * \ingroup TrackingTestExecution
@@ -34,7 +34,6 @@ private:
 };
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TESTSUCCESSLISTENER_H

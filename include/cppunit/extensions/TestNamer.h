@@ -28,16 +28,16 @@
  */
 #if CPPUNIT_USE_TYPEINFO_NAME
 #  define CPPUNIT_TESTNAMER_DECL( variableName, FixtureType )       \
-              CppUnit::TestNamer variableName( typeid(FixtureType) )
+              CPPUNIT_NS(TestNamer) variableName( typeid(FixtureType) )
 #else
 #  define CPPUNIT_TESTNAMER_DECL( variableName, FixtureType )       \
-              CppUnit::TestNamer variableName( std::string(#FixtureType) )
+              CPPUNIT_NS(TestNamer) variableName( std::string(#FixtureType) )
 #endif
 
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Names a test or a fixture suite.
  *
@@ -78,9 +78,6 @@ protected:
 };
 
 
-
-} // namespace CppUnit
-
-
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_EXTENSIONS_TESTNAMER_H

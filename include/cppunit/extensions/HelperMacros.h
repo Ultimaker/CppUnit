@@ -11,8 +11,9 @@
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <string>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
+
   class TestFixture;
 
   /*! \brief Abstract TestFixture factory.
@@ -21,9 +22,10 @@ namespace CppUnit
   {
   public:
     //! Creates a new TestFixture instance.
-    virtual CppUnit::TestFixture *makeFixture() =0;
+    virtual CPPUNIT_NS(TestFixture) *makeFixture() =0;
   };
-} // namespace CppUnit
+
+CPPUNIT_NS_END
 
 
 
@@ -109,44 +111,44 @@ namespace CppUnit
  * \see CPPUNIT_TEST_SUB_SUITE, CPPUNIT_TEST, CPPUNIT_TEST_SUITE_END, 
  * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_EXCEPTION, CPPUNIT_TEST_FAIL.
  */
-#define CPPUNIT_TEST_SUITE( ATestFixtureType )                            \
-  private:                                                                \
-    typedef ATestFixtureType ThisTestFixtureType;                       \
-    class __ThisTestFixtureFactory : public CppUnit::TestFixtureFactory   \
-    {                                                                     \
-      virtual CppUnit::TestFixture *makeFixture()                         \
-      {                                                                   \
-        return new ATestFixtureType();                                    \
-      }                                                                   \
-    };                                                                    \
-    static const CppUnit::TestNamer &__getTestNamer()                     \
-    {                                                                     \
-      static CPPUNIT_TESTNAMER_DECL( testNamer, ATestFixtureType );       \
-      return testNamer;                                                   \
-    }                                                                     \
-  public:                                                                 \
-    class ThisTestFixtureFactory                                          \
-    {                                                                     \
-    public:                                                               \
-      ThisTestFixtureFactory( CppUnit::TestFixtureFactory *factory )      \
-        : m_factory( factory )                                            \
-      {                                                                   \
-      }                                                                   \
-      ThisTestFixtureType *makeFixture() const                          \
-      {                                                                   \
-        return (ThisTestFixtureType *)m_factory->makeFixture();         \
-      }                                                                   \
-    private:                                                              \
-      CppUnit::TestFixtureFactory *m_factory;                             \
-    };                                                                    \
-                                                                          \
-    static void                                                           \
-    __registerTests( CppUnit::TestSuite *suite,                           \
-                     CppUnit::TestFixtureFactory *fixtureFactory,         \
-                     const CppUnit::TestNamer &namer )                    \
-    {                                                                     \
-      const ThisTestFixtureFactory factory( fixtureFactory );             \
-      CppUnit::TestSuiteBuilder<ThisTestFixtureType> builder( suite, namer )
+#define CPPUNIT_TEST_SUITE( ATestFixtureType )                             \
+  private:                                                                 \
+    typedef ATestFixtureType ThisTestFixtureType;                          \
+    class __ThisTestFixtureFactory : public CPPUNIT_NS(TestFixtureFactory) \
+    {                                                                      \
+      virtual CPPUNIT_NS(TestFixture) *makeFixture()                       \
+      {                                                                    \
+        return new ATestFixtureType();                                     \
+      }                                                                    \
+    };                                                                     \
+    static const CPPUNIT_NS(TestNamer) &__getTestNamer()                   \
+    {                                                                      \
+      static CPPUNIT_TESTNAMER_DECL( testNamer, ATestFixtureType );        \
+      return testNamer;                                                    \
+    }                                                                      \
+  public:                                                                  \
+    class ThisTestFixtureFactory                                           \
+    {                                                                      \
+    public:                                                                \
+      ThisTestFixtureFactory( CPPUNIT_NS(TestFixtureFactory) *factory )    \
+        : m_factory( factory )                                             \
+      {                                                                    \
+      }                                                                    \
+      ThisTestFixtureType *makeFixture() const                             \
+      {                                                                    \
+        return (ThisTestFixtureType *)m_factory->makeFixture();            \
+      }                                                                    \
+    private:                                                               \
+      CPPUNIT_NS(TestFixtureFactory) *m_factory;                           \
+    };                                                                     \
+                                                                           \
+    static void                                                            \
+    __registerTests( CPPUNIT_NS(TestSuite) *suite,                         \
+                     CPPUNIT_NS(TestFixtureFactory) *fixtureFactory,       \
+                     const CPPUNIT_NS(TestNamer) &namer )                  \
+    {                                                                      \
+      const ThisTestFixtureFactory factory( fixtureFactory );              \
+      CPPUNIT_NS(TestSuiteBuilder)<ThisTestFixtureType> builder( suite, namer )
 
 
 /*! \brief Begin test suite (includes parent suite)
@@ -270,7 +272,7 @@ namespace CppUnit
  *                      method.
  */
 #define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )              \
-    CPPUNIT_TEST_ADD( (new CppUnit::TestCaller<ThisTestFixtureType,      \
+    CPPUNIT_TEST_ADD( (new CPPUNIT_NS(TestCaller)<ThisTestFixtureType,   \
                                                 ExceptionType>(          \
                                namer.getTestNameFor( #testMethod ),      \
                                &ThisTestFixtureType::testMethod,         \
@@ -292,7 +294,7 @@ namespace CppUnit
  * \see CreatingNewAssertions.
  */
 #define CPPUNIT_TEST_FAIL( testMethod ) \
-              CPPUNIT_TEST_EXCEPTION( testMethod, CppUnit::Exception )
+              CPPUNIT_TEST_EXCEPTION( testMethod, CPPUNIT_NS(Exception) )
 
 /*! \brief Adds a custom test case.
  *
@@ -396,10 +398,10 @@ namespace CppUnit
 #define CPPUNIT_TEST_SUITE_END()                                                    \
       builder.takeSuite();                                                          \
     }                                                                               \
-    static CppUnit::TestSuite *suite()                                              \
+    static CPPUNIT_NS(TestSuite) *suite()                                              \
     {                                                                               \
-      const CppUnit::TestNamer &namer = __getTestNamer();                           \
-      CppUnit::TestSuiteBuilder<ThisTestFixtureType> builder( namer );            \
+      const CPPUNIT_NS(TestNamer) &namer = __getTestNamer();                           \
+      CPPUNIT_NS(TestSuiteBuilder)<ThisTestFixtureType> builder( namer );            \
       __ThisTestFixtureFactory factory;                                             \
       ThisTestFixtureType::__registerTests( builder.suite(), &factory, namer );   \
       return builder.takeSuite();                                                   \
@@ -429,7 +431,7 @@ namespace CppUnit
  *      CppUnit::TestFactoryRegistry.
  */
 #define CPPUNIT_TEST_SUITE_REGISTRATION( ATestFixtureType )      \
-  static CppUnit::AutoRegisterSuite< ATestFixtureType >          \
+  static CPPUNIT_NS(AutoRegisterSuite)< ATestFixtureType >       \
              CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
@@ -471,7 +473,7 @@ namespace CppUnit
  *      CppUnit::TestFactoryRegistry..
  */
 #define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestFixtureType, suiteName ) \
-  static CppUnit::AutoRegisterSuite< ATestFixtureType >                      \
+  static CPPUNIT_NS(AutoRegisterSuite)< ATestFixtureType >                   \
              CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
 
 /*! Adds that the specified registry suite to another registry suite.
@@ -502,7 +504,7 @@ namespace CppUnit
  * \see CPPUNIT_REGISTRY_ADD_TO_DEFAULT, CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
  */
 #define CPPUNIT_REGISTRY_ADD( which, to )                                     \
-  static CppUnit::AutoRegisterRegistry                                        \
+  static CPPUNIT_NS(AutoRegisterRegistry)                                     \
              CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which, to )
 
 /*! Adds that the specified registry suite to the default registry suite.
@@ -515,7 +517,7 @@ namespace CppUnit
  * \see CPPUNIT_REGISTRY_ADD.
  */
 #define CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which )                         \
-  static CppUnit::AutoRegisterRegistry                                   \
+  static CPPUNIT_NS(AutoRegisterRegistry)                                \
              CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which )
 
 // Backwards compatibility

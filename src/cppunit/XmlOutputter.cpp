@@ -10,19 +10,8 @@
 #include <algorithm>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
-// XmlElement
-// //////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-// XmlOutputter
-// //////////////////////////////////////////////////////////////////
 
 XmlOutputter::XmlOutputter( TestResultCollector *result,
                             std::ostream &stream,
@@ -206,4 +195,4 @@ XmlOutputter::addSuccessfulTest( Test *test,
 }
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END

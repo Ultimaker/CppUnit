@@ -2,7 +2,8 @@
 #include <cppunit/TestResult.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 TestComposite::TestComposite( const std::string &name )
     : m_name( name )
@@ -72,5 +73,5 @@ TestComposite::doEndSuite( TestResult *controller )
 }
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 

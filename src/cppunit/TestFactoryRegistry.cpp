@@ -4,7 +4,7 @@
 #include <assert.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 class TestFactoryRegistryList
@@ -156,4 +156,4 @@ TestFactoryRegistry::isValid()
 }
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END

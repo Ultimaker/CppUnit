@@ -1,8 +1,7 @@
 #include <cppunit/extensions/RepeatedTest.h>
 #include <cppunit/TestResult.h>
 
-namespace CppUnit {
-
+CPPUNIT_NS_BEGIN
 
 
 // Counts the number of test cases that will be run by this test.
@@ -27,4 +26,4 @@ RepeatedTest::run( TestResult *result )
 }
 
 
-} // namespace TestAssert
+CPPUNIT_NS_END

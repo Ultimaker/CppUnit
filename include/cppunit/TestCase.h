@@ -8,7 +8,8 @@
 #include <string>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class TestResult;
 
@@ -50,6 +51,6 @@ private:
     const std::string m_name;
 };
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTCASE_H 

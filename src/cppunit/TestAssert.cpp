@@ -7,7 +7,7 @@
 #include <cppunit/TestAssert.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
@@ -70,4 +70,4 @@ TestAssert::assertDoubleEquals( double expected,
 #endif
 
 
-}
+CPPUNIT_NS_END

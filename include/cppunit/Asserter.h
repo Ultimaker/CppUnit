@@ -5,8 +5,8 @@
 #include <cppunit/SourceLine.h>
 #include <string>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class Message;
 
@@ -133,7 +133,9 @@ namespace Asserter
                                    std::string shortDescription = "equality assertion failed" );
 
 } // namespace Asserter
-} // namespace CppUnit
+
+
+CPPUNIT_NS_END
 
 
 #endif  // CPPUNIT_ASSERTER_H

@@ -8,7 +8,6 @@
    know a suitable preprocessor symbol that will distinguish MacOS X
    from other MacOS versions.  Email us if you know the answer.
 */
-
  
 /* define if library uses std::string::compare(string,pos,n) */
 #ifdef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST 

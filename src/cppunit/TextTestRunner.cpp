@@ -10,7 +10,8 @@
 #include <stdexcept>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 namespace TextUi {
 
 /*! Constructs a new text runner.
@@ -128,4 +129,4 @@ TestRunner::setOutputter( Outputter *outputter )
 
 
 } // namespace TextUi
-}  //  namespace CppUnit
+CPPUNIT_NS_END

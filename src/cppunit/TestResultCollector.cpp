@@ -2,8 +2,7 @@
 #include <cppunit/TestResultCollector.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 TestResultCollector::TestResultCollector( SynchronizationObject *syncObject )
@@ -106,5 +105,5 @@ TestResultCollector::tests() const
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

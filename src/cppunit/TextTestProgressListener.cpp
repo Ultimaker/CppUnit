@@ -3,8 +3,7 @@
 #include <iostream>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 TextTestProgressListener::TextTestProgressListener()
@@ -40,5 +39,5 @@ TextTestProgressListener::endTestRun( Test *test,
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

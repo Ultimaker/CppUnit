@@ -13,8 +13,8 @@
 #include <cppunit/plugin/Parameters.h>
 struct CppUnitTestPlugIn;
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class DynamicLibraryManager;
 class TestResult;
@@ -99,8 +99,7 @@ private:
 };
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( pop )

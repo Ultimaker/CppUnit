@@ -10,6 +10,11 @@
 #    include <cppunit/config-auto.h>
 #endif
 
+// Version number of package
+#ifndef CPPUNIT_VERSION 
+#define CPPUNIT_VERSION  "1.9.9" 
+#endif
+ 
 #include <cppunit/config/CppUnitApi.h>    // define CPPUNIT_API & CPPUNIT_NEED_DLL_DECL
 #include <cppunit/config/SelectDllLoader.h>
 
@@ -37,6 +42,17 @@
 #define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
 #endif
 
+/* Assumes that STL and CppUnit are in global space if the compiler does not
+   support namespace. */
+#if !defined(CPPUNIT_HAVE_NAMESPACES)
+#ifndef CPPUNIT_NO_NAMESPACE
+#define CPPUNIT_NO_NAMESPACE 1
+#endif // CPPUNIT_NO_NAMESPACE
+#ifndef CPPUNIT_NO_STD_NAMESPACE
+#define CPPUNIT_NO_STD_NAMESPACE 1
+#endif // CPPUNIT_NO_STD_NAMESPACE
+#endif // !defined(CPPUNIT_HAVE_NAMESPACES)
+
 // Compiler error location format for CompilerOutputter
 // If not define, assumes that it's gcc
 // See class CompilerOutputter for format.
@@ -54,6 +70,24 @@
     ((TargetType)( pointer ))
 #endif
 
+// If CPPUNIT_NO_STD_NAMESPACE is defined then STL are in the global space.
+// => Define macro 'std' to nothing
+#if defined(CPPUNIT_NO_STD_NAMESPACE)
+#undef std
+#define std
+#endif  // defined(CPPUNIT_NO_STD_NAMESPACE)
+
+// If CPPUNIT_NO_NAMESPACE is defined, then put CppUnit classes in the
+// global namespace: the compiler does not support namespace.
+#if defined(CPPUNIT_NO_NAMESPACE)
+#define CPPUNIT_NS_BEGIN
+#define CPPUNIT_NS_END
+#define CPPUNIT_NS(symbol) symbol
+#else   // defined(CPPUNIT_NO_NAMESPACE)
+#define CPPUNIT_NS_BEGIN namespace CppUnit {
+#define CPPUNIT_NS_END }
+#define CPPUNIT_NS(symbol) ::CppUnit::symbol
+#endif  // defined(CPPUNIT_NO_NAMESPACE)
 
 /*! Stringize a symbol.
  * 

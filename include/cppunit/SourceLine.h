@@ -10,11 +10,11 @@
  * Used to write your own assertion macros.
  * \see Asserter for example of usage.
  */
-#define CPPUNIT_SOURCELINE() ::CppUnit::SourceLine( __FILE__, __LINE__ )
+#define CPPUNIT_SOURCELINE() CPPUNIT_NS(SourceLine)( __FILE__, __LINE__ )
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Represents a source line location.
  * \ingroup CreatingNewAssertions
@@ -53,8 +53,6 @@ private:
 };
 
 
-} // namespace CppUnit
-
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_SOURCELINE_H

@@ -12,9 +12,7 @@
 #include <deque>
 
 
-namespace CppUnit
-{
-
+CPPUNIT_NS_BEGIN
 
 #if CPPUNIT_NEED_DLL_DECL
 //  template class CPPUNIT_API std::deque<TestFailure *>;
@@ -77,8 +75,7 @@ private:
 
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( pop )

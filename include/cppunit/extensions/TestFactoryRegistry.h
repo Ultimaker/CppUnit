@@ -12,7 +12,8 @@
 #include <set>
 #include <string>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class TestSuite;
 
@@ -171,8 +172,7 @@ private:
 };
 
 
-}  // namespace CppUnit
-
+CPPUNIT_NS_END
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( pop )

@@ -4,8 +4,7 @@
 #include <cppunit/Message.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 /*! \brief An additional Message for assertions.
@@ -58,19 +57,19 @@ public:
   /*! \brief Constructs a copy of the specified message.
    * \param other Message to copy.
    */
-  AdditionalMessage( const CppUnit::Message &other );
+  AdditionalMessage( const Message &other );
 
   /*! \brief Assignment operator.
    * \param other Message to copy.
    * \return Reference on this object.
    */
-  AdditionalMessage &operator =( const CppUnit::Message &other );
+  AdditionalMessage &operator =( const Message &other );
 
 private:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 
 

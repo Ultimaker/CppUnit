@@ -4,7 +4,8 @@
 #include <cppunit/Portability.h>
 #include <string>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class TestResult;
 class TestPath;
@@ -110,7 +111,7 @@ protected:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TEST_H
 

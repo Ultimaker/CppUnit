@@ -3,15 +3,16 @@
 
 #include <cppunit/ui/text/TestRunner.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /*!
  * \brief A text mode test runner.
  * \ingroup ExecutingTest
  * \deprecated Use CppUnit::TextUi::TestRunner instead.
  */
-typedef CppUnit::TextUi::TestRunner TextTestRunner;
+typedef CPPUNIT_NS(TextUi::TestRunner) TextTestRunner;
 
-}  // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TEXTTESTRUNNER_H

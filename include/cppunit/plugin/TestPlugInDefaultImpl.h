@@ -7,8 +7,8 @@
 
 #include <cppunit/plugin/TestPlugIn.h>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class TestSuite;
 
@@ -45,7 +45,7 @@ public:
 };
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)
 

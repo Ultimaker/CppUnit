@@ -4,7 +4,8 @@
 #include <cppunit/Portability.h>
 #include <string>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Exception;
 class SourceLine;
@@ -52,6 +53,6 @@ private:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTFAILURE_H

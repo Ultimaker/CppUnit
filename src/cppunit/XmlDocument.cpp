@@ -2,10 +2,7 @@
 #include <cppunit/tools/XmlElement.h>
 
 
-namespace CppUnit
-{
-
-
+CPPUNIT_NS_BEGIN
 
 
 XmlDocument::XmlDocument( const std::string &encoding,
@@ -85,5 +82,5 @@ XmlDocument::toString() const
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

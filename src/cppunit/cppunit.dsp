@@ -215,6 +215,10 @@ SOURCE=..\..\include\cppunit\Portability.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\config\PortabilityEpilog.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\config\SelectDllLoader.h
 # End Source File
 # End Group

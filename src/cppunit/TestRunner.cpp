@@ -3,8 +3,8 @@
 #include <cppunit/TestResult.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 TestRunner::WrappingSuite::WrappingSuite( const std::string &name ) 
     : TestSuite( name )
@@ -96,5 +96,5 @@ TestRunner::run( TestResult &controller,
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

@@ -4,8 +4,8 @@
 #include <cppunit/TestListener.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! 
  * \brief TestListener that show the status of each TestCase test result.
@@ -39,7 +39,6 @@ private:
 };
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TEXTTESTPROGRESSLISTENER_H

@@ -24,8 +24,8 @@
    - export class using AFX_EXT_CLASS
  */
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
   class Test;
   class TestSuite;
 
@@ -61,23 +61,24 @@ public:
 
   void run();
 
-  void addTest( CppUnit::Test *test );
+  void addTest( Test *test );
 
-  void addTests( const std::vector<CppUnit::Test *> &tests );
+  void addTests( const std::vector<Test *> &tests );
 
 protected:
-  CppUnit::Test *getRootTest();
+  Test *getRootTest();
 
-  CppUnit::TestSuite *m_suite;
+  TestSuite *m_suite;
 
-  typedef std::vector<CppUnit::Test *> Tests;
+  typedef std::vector<Test *> Tests;
   Tests m_tests;
 };
 
 
 } // namespace MfcUi
 
-} // namespace CppUnit
+
+CPPUNIT_NS_END
 
 
 #endif  // CPPUNITUI_MFC_TESTRUNNER_H

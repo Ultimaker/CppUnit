@@ -3,8 +3,7 @@
 #include <string>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 #if CPPUNIT_HAVE_RTTI
@@ -37,4 +36,4 @@ TestNamer::getTestNameFor( const std::string &testMethodName ) const
 
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END

@@ -4,8 +4,7 @@
 #include <iostream>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 BriefTestProgressListener::BriefTestProgressListener()
@@ -46,5 +45,5 @@ BriefTestProgressListener::endTest( Test *test )
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

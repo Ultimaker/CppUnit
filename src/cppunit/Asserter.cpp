@@ -3,8 +3,7 @@
 #include <cppunit/Message.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 namespace Asserter
@@ -103,4 +102,4 @@ failNotEqualIf( bool shouldFail,
 
 
 } // namespace Asserter
-} // namespace CppUnit
+CPPUNIT_NS_END

@@ -8,7 +8,8 @@
 #include <memory>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Helper to add tests to a TestSuite.
  * \ingroup WritingTestFixture
@@ -85,6 +86,6 @@ private:
 };
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H

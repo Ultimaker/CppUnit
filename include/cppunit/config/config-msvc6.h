@@ -10,6 +10,11 @@
 /* include/cppunit/config-msvc6.h. Manually adapted from 
    include/cppunit/config-auto.h */
 
+/* define to 1 if the compiler implements namespaces */
+#ifndef CPPUNIT_HAVE_NAMESPACES 
+#define CPPUNIT_HAVE_NAMESPACES  1 
+#endif
+
 /* define if library uses std::string::compare(string,pos,n) */
 #ifdef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST 
 #undef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST

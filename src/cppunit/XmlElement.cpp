@@ -3,8 +3,7 @@
 #include <stdexcept>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
   
 XmlElement::XmlElement( std::string elementName,
@@ -220,5 +219,5 @@ XmlElement::escape( std::string value ) const
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

@@ -4,7 +4,8 @@
 #include <stdexcept>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 Test *
 Test::getChildTestAt( int index ) const
@@ -93,4 +94,4 @@ Test::checkIsValidIndex( int index ) const
 }
   
 
-} // namespace CppUnit
+CPPUNIT_NS_END

@@ -12,8 +12,8 @@
 #include <string>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 #if CPPUNIT_NEED_DLL_DECL
 //  template class CPPUNIT_API std::deque<std::string>;
@@ -142,8 +142,7 @@ private:
 };
 
 
-
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( pop )

@@ -1,8 +1,8 @@
 #include <cppunit/SourceLine.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 SourceLine::SourceLine() :
     m_lineNumber( -1 )
@@ -59,4 +59,4 @@ SourceLine::operator !=( const SourceLine &other ) const
 }
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END

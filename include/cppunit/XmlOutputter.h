@@ -14,8 +14,8 @@
 #include <map>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class Test;
 class TestFailure;
@@ -148,12 +148,11 @@ private:
 };
 
 
-
-}  // namespace CppUnit
-
+CPPUNIT_NS_END
 
 #if CPPUNIT_NEED_DLL_DECL
 #pragma warning( pop )
 #endif
+
 
 #endif  // CPPUNIT_XMLTESTRESULTOUTPUTTER_H

@@ -4,7 +4,7 @@
 #include <cppunit/Test.h>
 #include <string>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 /*! \brief A Composite of Tests.
@@ -40,6 +40,6 @@ private:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTCOMPSITE_H

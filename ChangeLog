@@ -1,3 +1,24 @@
+2002-07-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/config/Portability.h: If the compiler does not support
+    namespace (CPPUNIT_HAVE_NAMESPACES=0), define CPPUNIT_NO_STD_NAMESPACE
+    and CPPUNIT_NO_NAMESPACE. If CPPUNIT_NO_STD_NAMESPACE is defined, then
+    CppUnit assumes that STL are in the global namespace. If 
+    CPPUNIT_NO_NAMESPACE is defined, then CppUnit classes are placed in the
+    global namespace instead of the CppUnit namespace.
+
+  * include/cppunit/config/config-bcb5.h:
+  * include/cppunit/config/config-msvc6.h: added definition of macro
+    CPPUNIT_HAVE_NAMESPACES.
+
+  * include/cppunit/tools/StringTools.h: use CPPUNIT_WRAP_COLUMN as default
+    parameter value for wrap().
+
+  * include/cppunit/*/*.h:
+  * src/cppunit/*.cpp: changed all CppUnit namespace declaration to use
+    macros CPPUNIT_NS_BEGIN and CPPUNIT_NS_END. Also, changed reference
+    to CppUnit namespace (essentially in macros) using CPPUNIT_NS macro.
+
 2002-07-11 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Portability.h: added macro CPPUNIT_CONST_CAST.

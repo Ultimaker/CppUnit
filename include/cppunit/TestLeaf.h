@@ -4,7 +4,8 @@
 #include <cppunit/Test.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief A single test object.
  *
@@ -38,6 +39,6 @@ public:
   Test *doGetChildTestAt( int index ) const;
 };
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTLEAF_H

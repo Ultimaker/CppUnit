@@ -3,7 +3,8 @@
 
 #include <cppunit/extensions/TestDecorator.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Test;
 class TestResult;
@@ -26,7 +27,7 @@ private:
 };
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_EXTENSIONS_TESTSETUP_H
 

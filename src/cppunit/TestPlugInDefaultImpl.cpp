@@ -7,8 +7,8 @@
 #include <cppunit/plugin/TestPlugInDefaultImpl.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 TestPlugInDefaultImpl::TestPlugInDefaultImpl() 
 {
@@ -57,7 +57,7 @@ TestPlugInDefaultImpl::uninitialize( TestFactoryRegistry *registry )
 }
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END
 
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)

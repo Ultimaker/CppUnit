@@ -6,30 +6,29 @@
 #include <vector>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Tool functions to manipulate string.
  */
-namespace StringTools
+struct StringTools
 {
 
   typedef std::vector<std::string> Strings;
 
-  std::string CPPUNIT_API toString( int value );
+  static std::string CPPUNIT_API toString( int value );
 
-  std::string CPPUNIT_API toString( double value );
+  static std::string CPPUNIT_API toString( double value );
 
-  Strings CPPUNIT_API split( const std::string &text, 
-                             char separator );
+  static Strings CPPUNIT_API split( const std::string &text, 
+                                    char separator );
 
-  std::string CPPUNIT_API wrap( const std::string &text,
-                                int wrapColumn = 79 );
+  static std::string CPPUNIT_API wrap( const std::string &text,
+                                       int wrapColumn = CPPUNIT_WRAP_COLUMN );
 
-} // namespace StringTools
+};
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TOOLS_STRINGTOOLS_H

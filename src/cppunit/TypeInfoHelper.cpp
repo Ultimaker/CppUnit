@@ -6,7 +6,8 @@
 #include <string>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 std::string 
 TypeInfoHelper::getClassName( const std::type_info &info )
@@ -28,6 +29,6 @@ TypeInfoHelper::getClassName( const std::type_info &info )
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_HAVE_RTTI

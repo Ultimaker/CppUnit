@@ -8,8 +8,8 @@
 #include <string>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Exception thrown by DynamicLibraryManager when a failure occurs.
  *
@@ -42,8 +42,7 @@ private:
 };
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)
 

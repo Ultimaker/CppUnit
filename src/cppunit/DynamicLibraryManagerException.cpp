@@ -2,8 +2,7 @@
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 DynamicLibraryManagerException::DynamicLibraryManagerException( 
@@ -36,7 +35,7 @@ DynamicLibraryManagerException::what() const throw()
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)

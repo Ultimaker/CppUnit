@@ -7,8 +7,7 @@
 #include <unistd.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 DynamicLibraryManager::LibraryHandle 
@@ -39,7 +38,7 @@ DynamicLibraryManager::getLastErrorDetail() const
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 
 #endif // defined(CPPUNIT_HAVE_UNIX_DLL_LOADER)

@@ -1,8 +1,7 @@
 #include <cppunit/AdditionalMessage.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 AdditionalMessage::AdditionalMessage()
@@ -24,14 +23,14 @@ AdditionalMessage::AdditionalMessage( const char *detail1 )
 }
 
 
-AdditionalMessage::AdditionalMessage( const CppUnit::Message &other )
+AdditionalMessage::AdditionalMessage( const Message &other )
     : SuperClass( other )
 {
 }
 
 
 AdditionalMessage &
-AdditionalMessage::operator =( const CppUnit::Message &other )
+AdditionalMessage::operator =( const Message &other )
 {
   SuperClass::operator =( other );
 
@@ -39,4 +38,4 @@ AdditionalMessage::operator =( const CppUnit::Message &other )
 }
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END

@@ -10,7 +10,8 @@
 
 #include <deque>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Test;
 
@@ -203,7 +204,7 @@ protected:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTPATH_H
 

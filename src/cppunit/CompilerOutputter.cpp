@@ -7,8 +7,8 @@
 #include <cppunit/tools/StringTools.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 CompilerOutputter::CompilerOutputter( TestResultCollector *result,
                                       std::ostream &stream,
@@ -214,4 +214,4 @@ CompilerOutputter::wrapColumn() const
 }
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END

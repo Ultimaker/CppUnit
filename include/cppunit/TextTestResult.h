@@ -5,7 +5,8 @@
 #include <cppunit/TestResultCollector.h>
 #include <iostream>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class SourceLine;
 class Exception;
@@ -31,7 +32,7 @@ public:
 std::ostream &operator <<( std::ostream &stream, 
                            TextTestResult &result );
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TEXTTESTRESULT_H
 

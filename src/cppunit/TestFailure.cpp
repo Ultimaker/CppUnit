@@ -2,7 +2,8 @@
 #include <cppunit/Test.h>
 #include <cppunit/TestFailure.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /// Constructs a TestFailure with the given test and exception.
 TestFailure::TestFailure( Test *failedTest, 
@@ -66,4 +67,5 @@ TestFailure::clone() const
   return new TestFailure( m_failedTest, m_thrownException->clone(), m_isError );
 }
 
-} // namespace CppUnit
+
+CPPUNIT_NS_END

@@ -4,7 +4,8 @@
 #include <cppunit/Portability.h>
 #include <cppunit/Test.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class TestResult;
 
@@ -89,7 +90,8 @@ TestDecorator::doGetChildTestAt( int index ) const
   return m_test->getChildTestAt( index );
 }
 
-} // namespace CppUnit
+
+CPPUNIT_NS_END
 
 #endif
 

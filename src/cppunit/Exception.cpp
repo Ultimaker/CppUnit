@@ -1,7 +1,7 @@
 #include <cppunit/Exception.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
@@ -116,4 +116,4 @@ Exception::clone() const
 }
 
 
-}  // namespace CppUnit
+CPPUNIT_NS_END

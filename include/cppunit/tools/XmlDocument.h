@@ -11,8 +11,8 @@
 #include <string>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class XmlElement;
 
@@ -64,7 +64,6 @@ protected:
 #endif
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TOOLS_XMLDOCUMENT_H

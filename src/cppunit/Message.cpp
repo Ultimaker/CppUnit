@@ -2,8 +2,7 @@
 #include <stdexcept>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 Message::Message()
@@ -146,6 +145,5 @@ Message::operator !=( const Message &other ) const
 }
 
 
-
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

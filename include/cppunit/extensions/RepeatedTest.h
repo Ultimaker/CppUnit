@@ -4,7 +4,8 @@
 #include <cppunit/Portability.h>
 #include <cppunit/extensions/TestDecorator.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Test;
 class TestResult;
@@ -36,7 +37,7 @@ private:
 };
 
 
+CPPUNIT_NS_END
 
-} // namespace CppUnit
 
 #endif // CPPUNIT_EXTENSIONS_REPEATEDTEST_H

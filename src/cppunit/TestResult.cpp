@@ -4,7 +4,8 @@
 #include <cppunit/TestResult.h>
 #include <algorithm>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /// Construct a TestResult
 TestResult::TestResult( SynchronizationObject *syncObject )
@@ -183,4 +184,4 @@ TestResult::endTestRun( Test *test )
 }
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END

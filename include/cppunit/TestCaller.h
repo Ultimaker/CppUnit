@@ -10,7 +10,8 @@
 #endif
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Marker class indicating that no exception is expected by TestCaller.
  * This class is an implementation detail. You should never use this class directly.
@@ -199,6 +200,6 @@ private:
 
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTCALLER_H

@@ -3,7 +3,8 @@
 
 #include <cppunit/extensions/TestFactory.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
   class Test;
 
@@ -20,6 +21,7 @@ namespace CppUnit {
     }
   };
 
-}  // namespace CppUnit
+
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_EXTENSIONS_TESTSUITEFACTORY_H

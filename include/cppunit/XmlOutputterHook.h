@@ -4,8 +4,8 @@
 #include <cppunit/Portability.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class Test;
 class TestFailure;
@@ -72,8 +72,6 @@ public:
 };
 
 
-
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_XMLOUTPUTTERHOOK_H

@@ -11,7 +11,8 @@
 #include <cppunit/SynchronizedObject.h>
 #include <deque>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Exception;
 class Test;
@@ -83,7 +84,7 @@ private:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 
 #if CPPUNIT_NEED_DLL_DECL

@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 TestPath::TestPath()
@@ -248,4 +248,4 @@ TestPath::splitPathString( const std::string &pathAsString,
 }
   
 
-} // namespace CppUnit
+CPPUNIT_NS_END

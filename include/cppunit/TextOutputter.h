@@ -5,8 +5,8 @@
 #include <cppunit/Outputter.h>
 #include <iostream>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class Exception;
 class SourceLine;
@@ -54,7 +54,6 @@ private:
 
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TEXTOUTPUTTER_H

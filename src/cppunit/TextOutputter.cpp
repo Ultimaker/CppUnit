@@ -5,8 +5,7 @@
 #include <cppunit/TestResultCollector.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 TextOutputter::TextOutputter( TestResultCollector *result,
@@ -138,5 +137,5 @@ TextOutputter::printStatistics()
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

@@ -4,8 +4,8 @@
 #include <cppunit/TestSuite.h>
 #include <string>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 class Test;
 class TestResult;
@@ -128,7 +128,6 @@ private:
 };
 
 
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_TESTRUNNER_H

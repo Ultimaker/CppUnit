@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 TextTestResult::TextTestResult()
@@ -47,4 +47,4 @@ operator <<( std::ostream &stream,
 }
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END

@@ -8,7 +8,8 @@
 #include <vector>
 #include <cppunit/TestRunner.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Outputter;
 class Test;
@@ -62,11 +63,11 @@ namespace TextUi
  *
  * \see CompilerOutputter, XmlOutputter, TextOutputter.
  */
-class CPPUNIT_API TestRunner : public CppUnit::TestRunner
+class CPPUNIT_API TestRunner : public CPPUNIT_NS(TestRunner)
 {
 public:
   // Work around VC++ bug (class has same name as parent)
-  typedef CppUnit::TestRunner SuperClass;
+  typedef CPPUNIT_NS(TestRunner) SuperClass;
 
   TestRunner( Outputter *outputter =NULL );
 
@@ -95,6 +96,6 @@ protected:
 
 } // namespace TextUi
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_UI_TEXT_TESTRUNNER_H

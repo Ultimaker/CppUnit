@@ -1,7 +1,7 @@
 #include <cppunit/TestLeaf.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
 
 
 int 
@@ -25,4 +25,4 @@ TestLeaf::doGetChildTestAt( int index ) const
   return NULL;    // never called, checkIsValidIndex() always throw.
 }
 
-} // namespace CppUnit
+CPPUNIT_NS_END

@@ -3,8 +3,7 @@
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 #include <cppunit/plugin/DynamicLibraryManagerException.h>
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 DynamicLibraryManager::DynamicLibraryManager( const std::string &libraryFileName )
@@ -72,7 +71,7 @@ DynamicLibraryManager::releaseLibrary()
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 
 
 #endif // !defined(CPPUNIT_NO_TESTPLUGIN)

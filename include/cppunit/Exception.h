@@ -7,7 +7,8 @@
 #include <exception>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief Exceptions thrown by failed assertions.
  * \ingroup BrowsingCollectedTestResult
@@ -79,7 +80,8 @@ protected:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
+
 
 #endif // CPPUNIT_EXCEPTION_H
 

@@ -1,8 +1,7 @@
 #include <cppunit/XmlOutputterHook.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
 
 
 void 
@@ -41,5 +40,5 @@ XmlOutputterHook::statisticsAdded( XmlDocument *document,
 }
 
 
-} //  namespace CppUnit
+CPPUNIT_NS_END
 

@@ -4,8 +4,8 @@
 #include <cppunit/TestListener.h>
 
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
 
 /*! \brief TestListener that prints the name of each test before running it.
  * \ingroup TrackingTestExecution
@@ -38,8 +38,6 @@ private:
 };
 
 
-
-} //  namespace CppUnit
-
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_BRIEFTESTPROGRESSLISTENER_H

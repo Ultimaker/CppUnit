@@ -3,7 +3,8 @@
 
 #include <cppunit/TestCase.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /*
  * Orthodox performs a simple set of tests on an arbitary
@@ -88,6 +89,7 @@ ClassUnderTest Orthodox<ClassUnderTest>::call (ClassUnderTest object)
     return object;
 }
 
-} // namespace CppUnit
+
+CPPUNIT_NS_END
 
 #endif

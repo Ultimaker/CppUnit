@@ -4,7 +4,8 @@
 #include <cppunit/Portability.h>
 
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 class Exception;
 class Test;
@@ -140,7 +141,7 @@ public:
 };
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif // CPPUNIT_TESTLISTENER_H
 

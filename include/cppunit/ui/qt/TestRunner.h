@@ -9,8 +9,9 @@
 #include <vector>
 #include "Config.h"
 
-namespace CppUnit
-{
+CPPUNIT_NS_BEGIN
+
+
   class Test;
   class TestSuite;
 
@@ -51,7 +52,7 @@ public:
 
   void run( bool autoRun =false );
 
-  void addTest( CppUnit::Test *test );
+  void addTest( Test *test );
 
 private:
   /// Prevents the use of the copy constructor.
@@ -70,12 +71,6 @@ private:
 };
 
 
-
-// Inlines methods for TestRunner:
-// -------------------------------
-
-
-  }  // namespace QtUi
-}  // namespace CppUnit
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_QTUI_TESTRUNNER_H

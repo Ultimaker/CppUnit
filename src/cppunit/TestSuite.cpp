@@ -1,7 +1,8 @@
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestResult.h>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /// Default constructor
 TestSuite::TestSuite( std::string name )
@@ -58,5 +59,5 @@ TestSuite::doGetChildTestAt( int index ) const
 }
 
 
-} // namespace CppUnit
+CPPUNIT_NS_END
 

@@ -5,7 +5,8 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <string>
 
-namespace CppUnit {
+CPPUNIT_NS_BEGIN
+
 
 /** Automatically register the test suite of the specified type. (Implementation)
  *
@@ -76,7 +77,7 @@ public:
   }
 };
 
-} // namespace CppUnit
 
+CPPUNIT_NS_END
 
 #endif  // CPPUNIT_EXTENSIONS_AUTOREGISTERSUITE_H
