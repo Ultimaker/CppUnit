@@ -1,6 +1,6 @@
-#if !defined(CPPUNIT_NO_TESTPLUGIN)
-
 #include <cppunit/plugin/PlugInParameters.h>
+
+#if !defined(CPPUNIT_NO_TESTPLUGIN)
 
 CPPUNIT_NS_BEGIN
 
