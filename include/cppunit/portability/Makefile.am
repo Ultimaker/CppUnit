@@ -5,4 +5,5 @@ libcppunitinclude_HEADERS = \
 	CppUnitMap.h \
 	CppUnitSet.h \
 	CppUnitStack.h \
-	CppUnitVector.h
+	CppUnitVector.h \
+  Stream.h
