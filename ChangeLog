@@ -1,5 +1,9 @@
 2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+    * configure.in: bumped version to 1.7.7
+
+2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* include/cppunit/config-msvc6.h:
 	* include/cppunit/Portability.h
 	* include/cppunit/extensions/TestFactoryRegistry.h
