@@ -92,7 +92,8 @@ ClockerListener::exitTest( CppUnit::Test *test,
                            bool isSuite )
 {
   m_tests[ m_testIndexes.top() ].m_timer.finish();
-  m_totalTestCaseTime += m_tests.back().m_timer.elapsedTime();
+  if ( !isSuite )
+    m_totalTestCaseTime += m_tests.back().m_timer.elapsedTime();
 
   m_currentPath.up();
   m_testIndexes.pop();

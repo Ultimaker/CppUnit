@@ -1,8 +1,16 @@
 	New in CppUnit 1.9.8:
 	---------------------
 
+* DllPlugInTester:
 
+  - added option -w / --wait to wait for the user to press a key before exiting.
 
+* Bug Fix:
+
+  - DllPlugInTester: use ISO-LATIN1 encoding if none is given.
+
+  - XmlOutputter: use the default encoding if an empty string is given as
+    encoding
 
 	New in CppUnit 1.9.6:
 	---------------------

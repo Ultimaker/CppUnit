@@ -1,7 +1,21 @@
+2002-04-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* src/cppunit/XmlOutputter.cpp: bugfix, use ISO-8859-1 encoding if an
+	  empty string is given.
+
+	* src/DllPlugInTester/CommandLineParser.h:
+	* src/DllPlugInTester/CommandLineParser.cpp:
+	* src/DllPlugInTester/DllPlugInTester.cpp: added option -w to wait for
+	  the user to press a key before exiting (Philippe Lavoie patch, 
+	  with change).
+
 2002-04-22 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/plugin/DynamicLibraryManagerException.h: removed
 	  trailing ',' in enum.
+
+	* examples/ClockerPlugIn/ClockerListener.cpp: bugfix, average test
+	  case time computation.
 
 2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 

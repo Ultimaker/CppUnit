@@ -103,7 +103,7 @@ void
 printShortUsage( const std::string &applicationName )
 {
   std::cout  << "Usage:"  <<  std::endl
-             << applicationName  <<  " [-c -b -n -t -o] [-x xml-filename]"
+             << applicationName  <<  " [-c -b -n -t -o -w] [-x xml-filename]"
              "[-s stylesheet] [-e encoding] plug-in[=parameters] [plug-in...] [:testPath]"
              << std::endl  <<  std::endl;
 }
@@ -131,6 +131,8 @@ printUsage( const std::string &applicationName )
 "	Use TextOutputter\n"
 "-o --cout\n"
 "	Ouputters output to cout instead of the default cerr.\n"
+"-w --wait\n"
+"	Wait for the user to press a return before exit.\n"
 "filename[=\"options\"]\n"
 "	Many filenames can be specified. They are the name of the \n"
 "	test plug-ins to load. Optional plug-ins parameters can be \n"
@@ -225,6 +227,12 @@ main( int argc,
   {
     std::cerr  << "Failed to load test plug-in:"  <<  std::endl
                << e.what() << std::endl;
+  }
+
+  if ( parser.askBeforeExit() )
+  {
+    std::cout << "Please press <RETURN> to exit" << std::endl;
+    std::cin.get();
   }
 
   return wasSuccessful ? successReturnCode : failureReturnCode;

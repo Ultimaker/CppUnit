@@ -176,7 +176,7 @@ XmlOutputter::XmlOutputter( TestResultCollector *result,
                             std::string encoding ) :
     m_result( result ),
     m_stream( stream ),
-    m_encoding( encoding )
+    m_encoding( encoding == "" ? "ISO-8859-1" : encoding )
 {
 }
 

@@ -37,6 +37,7 @@ struct CommandLinePlugInInfo
 -n --no-progress
 -t --text
 -o --cout
+-w --wait
 filename[="options"]
 :testpath
 
@@ -66,6 +67,7 @@ public:
   bool noTestProgress() const;
   bool useTextOutputter() const;
   bool useCoutStream() const;
+  bool waitBeforeExit() const;
   std::string getTestPath() const;
   int getPlugInCount() const;
   CommandLinePlugInInfo getPlugInAt( int index ) const;
@@ -108,6 +110,7 @@ protected:
   bool m_noProgress;
   bool m_useText;
   bool m_useCout;
+  bool m_waitBeforeExit;
   std::string m_testPath;
 
   typedef std::deque<CommandLinePlugInInfo> PlugIns;

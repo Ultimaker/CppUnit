@@ -10,6 +10,7 @@ CommandLineParser::CommandLineParser( int argc,
     , m_noProgress( false )
     , m_useText( false )
     , m_useCout( false )
+    , m_waitBeforeExit( false )
 {
   for ( int index =1; index < argc; ++index )
   {
@@ -49,6 +50,8 @@ CommandLineParser::parse()
       m_useText = true;
     else if ( isOption( "o", "cout" ) )
       m_useCout = true;
+    else if ( isOption( "w", "wait" ) )
+      m_waitBeforeExit = true;
     else if ( !m_option.empty() )
       fail( "Unknown option" );
     else if ( hasNextArgument() )
@@ -219,6 +222,13 @@ bool
 CommandLineParser::useCoutStream() const
 {
   return m_useCout;
+}
+
+
+bool 
+CommandLineParser::waitBeforeExit() const
+{
+  return m_waitBeforeExit;
 }
 
 
