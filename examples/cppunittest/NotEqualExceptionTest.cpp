@@ -46,9 +46,12 @@ NotEqualExceptionTest::testConstructor()
   CPPUNIT_ASSERT_EQUAL( message, e.additionalMessage() );
   CPPUNIT_ASSERT( CppUnit::SourceLine( "f.cpp", 123) == e.sourceLine() );
 
-  std::string expectedMessage( "Expected: expectedValue, but was: actualValue.message" );
-  std::string actualMessage( e.what() );
-  CPPUNIT_ASSERT_EQUAL( expectedMessage, actualMessage );
+  CppUnit::Message expectedMessage( "equality assertion failed",
+                                    "Expected: " + expectedValue,
+                                    "Actual  : " + actualValue,
+                                    message );
+  CppUnit::Message actualMessage( e.message() );
+  CPPUNIT_ASSERT( expectedMessage == actualMessage );
 }
 
 

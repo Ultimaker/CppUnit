@@ -19,7 +19,7 @@ TestCallerTest::ExceptionThrower::testThrowFailureException()
 void 
 TestCallerTest::ExceptionThrower::testThrowException()
 {
-  throw CppUnit::Exception( "expected Exception" );
+  throw CppUnit::Exception( CppUnit::Message( "expected Exception" ) );
 }
 
 

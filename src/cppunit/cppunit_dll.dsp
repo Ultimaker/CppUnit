@@ -199,6 +199,14 @@ SOURCE=..\..\include\cppunit\Exception.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Message.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Message.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\NotEqualException.cpp
 # End Source File
 # Begin Source File

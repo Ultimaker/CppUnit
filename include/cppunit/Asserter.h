@@ -8,6 +8,9 @@
 namespace CppUnit
 {
 
+class Message;
+
+
 /*! \brief A set of functions to help writing assertion macros.
  * \ingroup CreatingNewAssertions
  *
@@ -44,8 +47,14 @@ namespace Asserter
 
   /*! Throws a Exception with the specified message and location.
    */
+  void CPPUNIT_API fail( const Message &message, 
+                         const SourceLine &sourceLine = SourceLine() );
+
+  /*! Throws a Exception with the specified message and location.
+   * \deprecated Use fail( Message, SourceLine ) instead.
+   */
   void CPPUNIT_API fail( std::string message, 
-                         SourceLine sourceLine = SourceLine() );
+                         const SourceLine &sourceLine = SourceLine() );
 
   /*! Throws a Exception with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
@@ -54,8 +63,32 @@ namespace Asserter
    * \param sourceLine Location of the assertion.
    */
   void CPPUNIT_API failIf( bool shouldFail, 
+                           const Message &message, 
+                           const SourceLine &sourceLine = SourceLine() );
+
+  /*! Throws a Exception with the specified message and location.
+   * \deprecated Use failIf( bool, Message, SourceLine ) instead.
+   * \param shouldFail if \c true then the exception is thrown. Otherwise
+   *                   nothing happen.
+   * \param message Message explaining the assertion failiure.
+   * \param sourceLine Location of the assertion.
+   */
+  void CPPUNIT_API failIf( bool shouldFail, 
                            std::string message, 
-                           SourceLine sourceLine = SourceLine() );
+                           const SourceLine &sourceLine = SourceLine() );
+
+
+  /*! Throws a NotEqualException with the specified message and location.
+   * \param expected Text describing the expected value.
+   * \param actual Text describing the actual value.
+   * \param additionalMessage Additional message. Usually used to report
+   *                          what are the differences between the expected and actual value.
+   * \param sourceLine Location of the assertion.
+   */
+  void CPPUNIT_API failNotEqual( std::string expected, 
+                                 std::string actual, 
+                                 const SourceLine &sourceLine,
+                                 const Message &additionalMessage );
 
   /*! Throws a NotEqualException with the specified message and location.
    * \param expected Text describing the expected value.
@@ -66,7 +99,7 @@ namespace Asserter
    */
   void CPPUNIT_API failNotEqual( std::string expected, 
                                  std::string actual, 
-                                 SourceLine sourceLine = SourceLine(),
+                                 const SourceLine &sourceLine = SourceLine(),
                                  std::string additionalMessage ="" );
 
   /*! Throws a NotEqualException with the specified message and location.
@@ -81,7 +114,7 @@ namespace Asserter
   void CPPUNIT_API failNotEqualIf( bool shouldFail,
                                    std::string expected, 
                                    std::string actual, 
-                                   SourceLine sourceLine = SourceLine(),
+                                   const SourceLine &sourceLine = SourceLine(),
                                    std::string additionalMessage ="" );
 
 } // namespace Asserter

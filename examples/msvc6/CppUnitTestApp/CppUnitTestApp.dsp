@@ -241,6 +241,14 @@ SOURCE=..\..\cppunittest\HelperSuite.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\cppunittest\MessageTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MessageTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\cppunittest\MockTestCase.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File

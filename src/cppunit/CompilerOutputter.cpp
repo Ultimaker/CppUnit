@@ -169,35 +169,8 @@ CompilerOutputter::printFailureMessage( TestFailure *failure )
 {
   m_stream  <<  std::endl;
   Exception *thrownException = failure->thrownException();
-  if ( thrownException->isInstanceOf( NotEqualException::type() ) )
-    printNotEqualMessage( thrownException );
-  else
-    printDefaultMessage( thrownException );
-  m_stream  <<  std::endl;
-}
-
-
-void 
-CompilerOutputter::printNotEqualMessage( Exception *thrownException )
-{
-  NotEqualException *e = (NotEqualException *)thrownException;
-  m_stream  <<  wrap( "- Expected : " + e->expectedValue() );
-  m_stream  <<  std::endl;
-  m_stream  <<  wrap( "- Actual   : " + e->actualValue() );
-  m_stream  <<  std::endl;
-  if ( !e->additionalMessage().empty() )
-  {
-    m_stream  <<  wrap( e->additionalMessage() );
-    m_stream  <<  std::endl;
-  }
-}
-
-
-void 
-CompilerOutputter::printDefaultMessage( Exception *thrownException )
-{
-  std::string wrappedMessage = wrap( thrownException->what() );
-  m_stream  <<  wrappedMessage  << std::endl;
+  m_stream  << thrownException->message().shortDescription()  <<  std::endl;
+  m_stream  <<  wrap( thrownException->message().details() )  <<  std::endl;
 }
 
 

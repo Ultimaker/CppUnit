@@ -114,7 +114,7 @@ Parent class name: <input type=text id=parentclassname size=40><br>
 !!// Set class filename (relative to dsp)
 !!Set headerfn ../../include/cppunit/@@classname@@.h
 !!Set implfn @@classname@@.cpp
-!!Set headerdefine @@(String @@(Call -MakeHeaderDefined fn @@headerfn@@)@@:U)@@
+!!Set headerdefine @@(String @@(Call -MakeHeaderDefined fn @@classname@@.h)@@:U)@@
 !!//
 !!// hasparentclass indicates if a parent class has been defined.
 !!Set hasparentclass 0

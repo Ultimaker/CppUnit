@@ -211,7 +211,9 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
   setter.addSubItem( failure.failedTestName().c_str(), errorType );
 
   // Set the asserted text
-  setter.addSubItem( failure.thrownException()->what() );
+  CString message( failure.thrownException()->what() );
+  message.Replace( '\n', ' ' );   // should only print the short description there,
+  setter.addSubItem( message );   // and dump the detail on an edit control when clicked.
 
   // Set the line number
   if ( failure.sourceLine().isValid() )

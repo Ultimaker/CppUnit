@@ -36,10 +36,11 @@ TestCase::run( TestResult *result )
       result->addFailure( this, copy );
     }
     catch ( std::exception &e ) {
-      result->addError( this, new Exception( e.what() ) );
+      result->addError( this, new Exception( Message( "uncaught std::exception", 
+                                                      e.what() ) ) );
     }
     catch (...) {
-      Exception *e = new Exception( "caught unknown exception" );
+      Exception *e = new Exception( Message( "uncaught unknown exception" ) );
       result->addError( this, e );
     }
 
@@ -47,11 +48,11 @@ TestCase::run( TestResult *result )
       tearDown();
     }
     catch (...) {
-      result->addError( this, new Exception( "tearDown() failed" ) );
+      result->addError( this, new Exception( Message( "tearDown() failed" ) ) );
     }
   }
   catch (...) {
-          result->addError( this, new Exception( "setUp() failed" ) );
+    result->addError( this, new Exception( Message( "setUp() failed" ) ) );
   }
   
   result->endTest( this );

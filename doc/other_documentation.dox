@@ -71,7 +71,7 @@
  *
  * Creating a test plug-in is really simple:
  * - make your project a dynamic library (with VC++, choose Win32 Dynamic Library in
- *   the project wizard), and link against the dynamic library version of CppUnit
+ *   the project wizard), and link against the dynamic library version of %CppUnit
  *   (cppunit*_dll.lib for VC++).
  * - in a cpp file, include TestPlugIn.h, and use the macro CPPUNIT_PLUGIN_IMPLEMENT()
  *   to declare the test plug-in.
@@ -133,8 +133,8 @@ CPPUNIT_PLUGIN_IMPLEMENT();\endverbatim
  *
  * How does it works ?
  *
- * When CppUnit is linked as a DLL, the singleton used for the TestFactoryRegistry
- * is the same for the plug-in runner (also linked against CppUnit DLL). This means
+ * When %CppUnit is linked as a DLL, the singleton used for the TestFactoryRegistry
+ * is the same for the plug-in runner (also linked against %CppUnit DLL). This means
  * that the tests registered with the macros (at static initialization) are 
  * registered in the same registry. As soon as a DLL is loaded by the PlugInManager,
  * the DLL static variable are constructed and the test registered to the 

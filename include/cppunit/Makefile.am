@@ -9,6 +9,7 @@ libcppunitinclude_HEADERS =  \
 	BriefTestProgressListener.h \
 	CompilerOutputter.h \
 	Exception.h \
+	Message.h \
 	NotEqualException.h \
 	Outputter.h \
 	Portability.h \

@@ -57,7 +57,7 @@ private:
                      std::string message,
                      CppUnit::SourceLine sourceLine = CppUnit::SourceLine() );
   void addGenericTestFailure( std::string testName,
-                              std::string message,
+                              CppUnit::Message message,
                               CppUnit::SourceLine sourceLine,
                               bool isError );
 

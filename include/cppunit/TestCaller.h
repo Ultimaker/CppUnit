@@ -33,13 +33,13 @@ struct ExpectedExceptionTraits
   static void expectedException()
   {
 #if CPPUNIT_USE_TYPEINFO_NAME
-	  std::string message( "Expected exception of type " );
-	  message += TypeInfoHelper::getClassName( typeid( ExceptionType ) );
-	  message += ", but got none";
+    throw Exception( Message(
+                         "expected exception not thrown",
+                         "Expected exception type: " + 
+                           TypeInfoHelper::getClassName( typeid( ExceptionType ) ) ) );
 #else
-    std::string message( "Expected exception but got none" );
+    throw Exception( "expected exception not thrown" );
 #endif
-	  throw Exception( message );
   }
 };
 

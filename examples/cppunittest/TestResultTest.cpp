@@ -54,7 +54,8 @@ TestResultTest::testStop()
 void 
 TestResultTest::testAddError()
 {
-  CppUnit::Exception *dummyException = new CppUnit::Exception( "some_error" );
+  CppUnit::Exception *dummyException = new CppUnit::Exception( 
+                                           CppUnit::Message( "some_error" ) );
   m_listener1->setExpectFailure( m_dummyTest, dummyException, true );
   m_result->addListener( m_listener1 );
 
@@ -67,7 +68,8 @@ TestResultTest::testAddError()
 void 
 TestResultTest::testAddFailure()
 {
-  CppUnit::Exception *dummyException = new CppUnit::Exception( "some_error" );
+  CppUnit::Exception *dummyException = new CppUnit::Exception( 
+                                            CppUnit::Message("some_error" ) );
   m_listener1->setExpectFailure( m_dummyTest, dummyException, false );
   m_result->addListener( m_listener1 );
 
@@ -143,7 +145,8 @@ TestResultTest::testTwoListener()
 {
   m_listener1->setExpectStartTest( m_dummyTest );
   m_listener2->setExpectStartTest( m_dummyTest );
-  CppUnit::Exception *dummyException1 = new CppUnit::Exception( "some_error" );
+  CppUnit::Exception *dummyException1 = new CppUnit::Exception( 
+                                             CppUnit::Message( "some_error" ) );
   m_listener1->setExpectFailure( m_dummyTest, dummyException1, true );
   m_listener2->setExpectFailure( m_dummyTest, dummyException1, true );
   m_listener1->setExpectEndTest( m_dummyTest );

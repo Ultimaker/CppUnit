@@ -114,8 +114,6 @@ public:
   virtual void printFailureType( TestFailure *failure );
   virtual void printFailedTestName( TestFailure *failure );
   virtual void printFailureMessage( TestFailure *failure );
-  virtual void printNotEqualMessage( Exception *thrownException );
-  virtual void printDefaultMessage( Exception *thrownException );
   virtual std::string wrap( std::string message );
 
 private:

@@ -2,9 +2,10 @@
 #define CPPUNIT_EXCEPTION_H
 
 #include <cppunit/Portability.h>
+#include <cppunit/Message.h>
 #include <cppunit/SourceLine.h>
 #include <exception>
-#include <string>
+
 
 namespace CppUnit {
 
@@ -18,60 +19,87 @@ class CPPUNIT_API Exception : public std::exception
 {
 public:
 
-    class Type
+  class Type
+  {
+  public:
+    Type( std::string type ) : m_type ( type ) 
     {
-    public:
-        Type( std::string type ) : m_type ( type ) {}
+    }
 
-        bool operator ==( const Type &other ) const
-        {
-	    return m_type == other.m_type;
-        }
-    private:
-        const std::string m_type;
-    };
+    bool operator ==( const Type &other ) const
+    {
+	return m_type == other.m_type;
+    }
+
+  private:
+    const std::string m_type;
+  };
 
 
-    Exception( std::string  message = "", 
-	       SourceLine sourceLine = SourceLine() );
-
-#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
-    Exception( std::string  message, 
-	       long lineNumber, 
-	       std::string fileName );
-#endif
-
-    Exception (const Exception& other);
-
-    virtual ~Exception () throw();
-
-    Exception& operator= (const Exception& other);
-
-    const char *what() const throw ();
-
-    SourceLine sourceLine() const;
+  /*! Constructs the exception with the specified message and source location.
+   * \param message Message associated to the exception.
+   * \param sourceLine Source location related to the exception.
+   */
+  Exception( const Message &message = Message(), 
+	     const SourceLine &sourceLine = SourceLine() );
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
-    long lineNumber() const;
-    std::string fileName() const;
-
-    static const std::string UNKNOWNFILENAME;
-    static const long UNKNOWNLINENUMBER;
+  /*!
+   * \deprecated Use other constructor instead.
+   */
+  Exception( std::string  message, 
+	     long lineNumber, 
+	     std::string fileName );
 #endif
 
-    virtual Exception *clone() const;
-    
-    virtual bool isInstanceOf( const Type &type ) const;
+  /*! Constructs a copy of an exception.
+   * \param other Exception to copy.
+   */
+  Exception( const Exception &other );
 
-    static Type type();
+  /// Destructs the exception
+  virtual ~Exception() throw();
 
-private:
-    // VC++ does not recognize call to parent class when prefixed
-    // with a namespace. This is a workaround.
-    typedef std::exception SuperClass;
+  /// Performs an assignment
+  Exception &operator =( const Exception &other );
 
-    std::string m_message;
-    SourceLine m_sourceLine;
+  /// Returns descriptive message
+  const char *what() const throw();
+
+  /// Location where the error occured
+  SourceLine sourceLine() const;
+
+  /// Message related to the exception.
+  Message message() const;
+
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
+  /// The line on which the error occurred
+  long lineNumber() const;
+
+  /// The file in which the error occurred
+  std::string fileName() const;
+
+  static const std::string UNKNOWNFILENAME;
+  static const long UNKNOWNLINENUMBER;
+#endif
+
+  /// Clones the exception.
+  virtual Exception *clone() const;
+  
+  /// Tests if the exception is an instance of the specified type.
+  virtual bool isInstanceOf( const Type &type ) const;
+
+  /// Type of this exception.
+  static Type type();
+
+protected:
+  // VC++ does not recognize call to parent class when prefixed
+  // with a namespace. This is a workaround.
+  typedef std::exception SuperClass;
+
+  Message m_message;
+  SourceLine m_sourceLine;
+  std::string m_whatMessage;
 };
 
 

@@ -234,7 +234,7 @@ XmlOutputterTest::addTestFailure( std::string testName,
                                   std::string message,
                                   CppUnit::SourceLine sourceLine )
 {
-  addGenericTestFailure( testName, message, sourceLine, false );
+  addGenericTestFailure( testName, CppUnit::Message(message), sourceLine, false );
 }
 
 
@@ -243,13 +243,13 @@ XmlOutputterTest::addTestError( std::string testName,
                                 std::string message,
                                 CppUnit::SourceLine sourceLine )
 {
-  addGenericTestFailure( testName, message, sourceLine, true );
+  addGenericTestFailure( testName, CppUnit::Message(message), sourceLine, true );
 }
 
 
 void 
 XmlOutputterTest::addGenericTestFailure(  std::string testName,
-                                          std::string message,
+                                          CppUnit::Message message,
                                           CppUnit::SourceLine sourceLine,
                                           bool isError )
 {

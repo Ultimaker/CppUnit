@@ -67,7 +67,7 @@ private:
                     int testsRun );
 
   void checkFailure( CppUnit::TestFailure *failure,
-                     std::string expectedMessage,
+                     CppUnit::Message expectedMessage,
                      CppUnit::Test *expectedTest,
                      bool expectedIsError );
 

@@ -1,3 +1,52 @@
+2002-06-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/Asserter.h:
+  * src/cppunit/Asserter.cpp: added functions that take a Message as a 
+    parameter. Existing function have a short description indicating
+    an assertion failure.
+
+  * include/cppunit/CompilerOuputter.h:
+  * src/cppunit/CompilerOuputter.cpp: removed printNotEqualMessage() and
+    printDefaultMessage(). Updated to use Message.
+
+  * include/cppunit/Message.h:
+  * src/cppunit/Message.cpp: added. Represents a message associated to an 
+    Exception.
+
+  * include/cppunit/Exception.h:
+  * src/cppunit/Exception.cpp: the message associated to the exception is now
+    stored as a Message instead of a string.
+
+  * include/cppunit/NotEqualException.cpp: constructs a Message instead of a
+    string.
+
+  * include/cppunit/TestAssert.h:
+  * src/cppunit/TestAssert.cpp: updated to use Asserter functions that
+    take a message when pertinent (CPPUNIT_FAIL...).
+
+  * include/cppunit/TestCaller.h:
+  * src/cppunit/TestCaller.cpp: exception not caught failure has a better
+    short description.
+
+  * src/cppunit/TestCase.cpp: better short description when setUp() or
+    tearDown() fail.
+
+  * src/msvc6/testrunner/TestRunnerDlg.cpp: replace '\n' in failure message
+    with space.
+
+  * examples/cppunittest/ExceptionTest.cpp:
+  * examples/cppunittest/NotEqualExceptionTest.cpp:
+  * examples/cppunittest/TestCallerTest.cpp:
+  * examples/cppunittest/TestFailureTest.cpp:
+  * examples/cppunittest/TestResultCollectorTest.h:
+  * examples/cppunittest/TestResultCollectorTest.cpp:
+  * examples/cppunittest/TestResultTest.cpp:
+  * examples/cppunittest/XmlOutputterTest.h:
+  * examples/cppunittest/XmlOutputterTest.cpp: updated to use Exception/Message.
+
+  * examples/cppunittest/MessageTest.h:
+  * examples/cppunittest/MessageTest.cpp: added. Unit test for Message.
+
 2002-06-11 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * install-unix: added some hints extracted from bug #544684 on how to compile

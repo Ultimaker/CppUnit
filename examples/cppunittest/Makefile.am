@@ -18,6 +18,8 @@ cppunittestmain_SOURCES = \
 	HelperMacrosTest.cpp \
 	HelperMacrosTest.h \
 	HelperSuite.h \
+	MessageTest.h \
+	MessageTest.cpp \
 	MockTestCase.h \
 	MockTestCase.cpp \
 	MockTestListener.cpp \

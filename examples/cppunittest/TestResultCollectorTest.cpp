@@ -49,8 +49,8 @@ TestResultCollectorTest::testConstructor()
 void 
 TestResultCollectorTest::testAddTwoErrors()
 {
-  std::string errorMessage1( "First Error" );
-  std::string errorMessage2( "Second Error" );
+  CppUnit::Message errorMessage1( "First Error" );
+  CppUnit::Message errorMessage2( "Second Error" );
   {
     CppUnit::TestFailure failure1( m_test, 
                                    new CppUnit::Exception( errorMessage1 ),
@@ -78,8 +78,8 @@ TestResultCollectorTest::testAddTwoErrors()
 void 
 TestResultCollectorTest::testAddTwoFailures()
 {
-  std::string errorMessage1( "First Failure" );
-  std::string errorMessage2( "Second Failure" );
+  CppUnit::Message errorMessage1( "First Failure" );
+  CppUnit::Message errorMessage2( "Second Failure" );
   {
     CppUnit::TestFailure failure1( m_test, 
                                    new CppUnit::Exception( errorMessage1 ),
@@ -228,12 +228,12 @@ TestResultCollectorTest::checkResult( int failures,
 
 void
 TestResultCollectorTest::checkFailure( CppUnit::TestFailure *failure,
-                                       std::string expectedMessage,
+                                       CppUnit::Message expectedMessage,
                                        CppUnit::Test *expectedTest,
                                        bool expectedIsError )
 {
-  std::string actualMessage( failure->thrownException()->what() );
-  CPPUNIT_ASSERT_EQUAL( expectedMessage, actualMessage );
+  CppUnit::Message actualMessage( failure->thrownException()->message() );
+  CPPUNIT_ASSERT( expectedMessage == actualMessage );
   CPPUNIT_ASSERT_EQUAL( expectedTest, failure->failedTest() );
   CPPUNIT_ASSERT_EQUAL( expectedIsError, failure->isError() );
 }
@@ -291,7 +291,7 @@ TestResultCollectorTest::addFailure( std::string message,
                                      CppUnit::TestResultCollector *result )
 {
   CppUnit::TestFailure failure( failedTest, 
-                                new CppUnit::Exception( message ), 
+                                new CppUnit::Exception( CppUnit::Message( message ) ), 
                                 isError );
   result->addFailure( failure );
 }

@@ -118,14 +118,15 @@ namespace CppUnit {
 /** Assertions that a condition is \c true.
  * \ingroup Assertions
  */
-#define CPPUNIT_ASSERT(condition)                          \
-  ( ::CppUnit::Asserter::failIf( !(condition),             \
-                                 (#condition),             \
+#define CPPUNIT_ASSERT(condition)                                                \
+  ( ::CppUnit::Asserter::failIf( !(condition),                                   \
+                                 ::CppUnit::Message( "assertion failed",         \
+                                                     "Expression: " #condition), \
                                  CPPUNIT_SOURCELINE() ) )
 #else
-#define CPPUNIT_ASSERT(condition)                          \
-  ( ::CppUnit::Asserter::failIf( !(condition),             \
-                                 "",                       \
+#define CPPUNIT_ASSERT(condition)                                           \
+  ( ::CppUnit::Asserter::failIf( !(condition),                              \
+                                 ::CppUnit::Message( "assertion failed" ),  \
                                  CPPUNIT_SOURCELINE() ) )
 #endif
 
@@ -145,8 +146,9 @@ namespace CppUnit {
  * \ingroup Assertions
  * \param message Message reported in diagnostic.
  */
-#define CPPUNIT_FAIL( message )                            \
-  ( ::CppUnit::Asserter::fail( message,                    \
+#define CPPUNIT_FAIL( message )                                       \
+  ( ::CppUnit::Asserter::fail( ::CppUnit::Message( "forced failure",  \
+                                                   message ),         \
                                CPPUNIT_SOURCELINE() ) )
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED

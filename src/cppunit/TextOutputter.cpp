@@ -99,22 +99,8 @@ TextOutputter::printFailureLocation( SourceLine sourceLine )
 void 
 TextOutputter::printFailureDetail( Exception *thrownException )
 {
-  if ( thrownException->isInstanceOf( NotEqualException::type() ) )
-  {
-    NotEqualException *e = (NotEqualException*)thrownException;
-    m_stream << "expected: " << e->expectedValue() << std::endl
-             << "but was:  " << e->actualValue();
-    if ( !e->additionalMessage().empty() )
-    {
-      m_stream  << std::endl;
-      m_stream  <<  "additional message:"  <<  std::endl
-                <<  e->additionalMessage();
-    }
-  }
-  else
-  {
-    m_stream << " \"" << thrownException->what() << "\"";
-  }
+  m_stream  <<  thrownException->message().shortDescription()  <<  std::endl;
+  m_stream  <<  thrownException->message().details();
 }
 
 

@@ -191,6 +191,14 @@ SOURCE=.\ExceptionTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MessageTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MessageTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\NotEqualExceptionTest.cpp
 # End Source File
 # Begin Source File

@@ -28,7 +28,7 @@ private:
   {
   public:
     ObservedException( TestFailureTest *listener ) : 
-        CppUnit::Exception( "ObservedException" ),
+        CppUnit::Exception( CppUnit::Message("ObservedException" ) ),
         m_listener( listener )
     {
     }

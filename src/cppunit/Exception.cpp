@@ -17,48 +17,39 @@ const long Exception::UNKNOWNLINENUMBER = -1;
 #endif
 
 
-/// Construct the exception
-Exception::Exception( const Exception &other ) : 
-    std::exception( other )
+Exception::Exception( const Exception &other )
+   : std::exception( other )
 { 
   m_message = other.m_message; 
   m_sourceLine = other.m_sourceLine;
 } 
 
 
-/*!
- * \deprecated Use other constructor instead.
- */
-Exception::Exception( std::string message, 
-                      SourceLine sourceLine ) : 
-    m_message( message ), 
-    m_sourceLine( sourceLine )
+Exception::Exception( const Message &message, 
+                      const SourceLine &sourceLine )
+    : m_message( message )
+    , m_sourceLine( sourceLine )
 {
 }
 
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
-/*!
- * \deprecated Use other constructor instead.
- */
 Exception::Exception( std::string message, 
                       long lineNumber, 
-                      std::string fileName ) : 
-    m_message( message ), 
-    m_sourceLine( fileName, lineNumber )
+                      std::string fileName )
+    : m_message( message )
+    , m_sourceLine( fileName, lineNumber )
 {
 }
 #endif
 
 
-/// Destruct the exception
-Exception::~Exception () throw()
+Exception::~Exception() throw()
 {
 }
 
 
-/// Perform an assignment
-Exception& 
+Exception & 
 Exception::operator =( const Exception& other )
 { 
 // Don't call superclass operator =(). VC++ STL implementation
@@ -76,14 +67,16 @@ Exception::operator =( const Exception& other )
 }
 
 
-/// Return descriptive message
 const char*
 Exception::what() const throw()
-{ 
-  return m_message.c_str (); 
+{
+  Exception *mutableThis = const_cast<Exception *>( this );
+  mutableThis->m_whatMessage = m_message.shortDescription() + "\n" + 
+                               m_message.details();
+  return m_whatMessage.c_str();
 }
 
-/// Location where the error occured
+
 SourceLine 
 Exception::sourceLine() const
 {
@@ -91,8 +84,14 @@ Exception::sourceLine() const
 }
 
 
+Message 
+Exception::message() const
+{
+  return m_message;
+}
+
+
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
-/// The line on which the error occurred
 long 
 Exception::lineNumber() const
 { 
@@ -101,7 +100,6 @@ Exception::lineNumber() const
 }
 
 
-/// The file in which the error occurred
 std::string 
 Exception::fileName() const
 { 

@@ -7,14 +7,16 @@ NotEqualException::NotEqualException( std::string expected,
                                       std::string actual, 
                                       SourceLine sourceLine ,
                                       std::string additionalMessage ) :
-    Exception( "Expected: " + expected + 
-                   ", but was: " + actual + 
-                   "." + additionalMessage ,
+    Exception( Message( "equality assertion failed",
+                        "Expected: " + expected,
+                        "Actual  : " + actual ),
                sourceLine),
     m_expected( expected ),
     m_actual( actual ),
     m_additionalMessage( additionalMessage )
 {
+  if ( !m_additionalMessage.empty() )
+    m_message.addDetail( m_additionalMessage );
 }
 
 
@@ -26,7 +28,9 @@ NotEqualException::NotEqualException( std::string expected,
                                       std::string actual,
                                       long lineNumber, 
                                       std::string fileName ) : 
-    Exception( "Expected: " + expected + ", but was: " + actual,
+    Exception( Message( "equality assertion failed",
+                        "Expected: " + expected,
+                        "Actual  : " + actual ),
                lineNumber,
                fileName ),
     m_expected( expected ),
