@@ -122,7 +122,7 @@ std::string TestCase::notEqualsMessage (double expected, double actual)
  *
  *  \param name the name of the TestCase.
  */
-inline TestCase::TestCase (std::string name) 
+TestCase::TestCase (std::string name) 
   : m_name (name) 
 {
   TestRegistry::getRegistry().addTest(m_name, this);
@@ -133,24 +133,24 @@ inline TestCase::TestCase (std::string name)
  *  it is supposed that it will be added to a suite.
  *
  */
-inline TestCase::TestCase () 
+TestCase::TestCase () 
   : m_name ("In a suite.") 
 {
 }
 
 
 /// Destructs a test case
-inline TestCase::~TestCase ()
+TestCase::~TestCase ()
 {}
 
 
 /// Returns a count of all the tests executed
-inline int TestCase::countTestCases () const
+int TestCase::countTestCases () const
 { return 1; }
 
 
 /// Returns the name of the test case
-inline std::string 
+std::string 
   TestCase::getName () const
 { 
   return m_name; 
@@ -158,17 +158,17 @@ inline std::string
 
 
 /// A hook for fixture set up
-inline void TestCase::setUp ()
+void TestCase::setUp ()
 {}
   
 
 /// A hook for fixture tear down
-inline void TestCase::tearDown ()
+void TestCase::tearDown ()
 {}
 
 
 /// Returns the name of the test case instance
-inline std::string 
+std::string 
   TestCase::toString () const
 { 
   const type_info& thisClass = typeid (*this); 
