@@ -64,12 +64,12 @@
  * \encode
  * 
  * The great thing about that is that you can even used it on template test case.
- * You only need to specify the full qualified name of the class. For example:
+ * You don't even need to specify the template parameters! For example:
  *
  * \code
  * template<typename CharType>
  * class StringTest : public CppUnit::Testcase {
- *   CU_TEST_SUITE( StringTest<CharType> );
+ *   CU_TEST_SUITE( StringTest );
  *   CU_TEST( testAppend );
  *   CU_TEST_SUITE_END();
  * public:  
