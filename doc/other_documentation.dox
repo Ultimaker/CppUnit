@@ -16,7 +16,7 @@
 
  \section _usage Usage
  Take a look into 
- <a href="../cookbook.html">the unix cookbook</a>.
+ <a href="../cookbook.html">the CppUnit cookbook</a>.
  It gives a quick start into using this 
  testing framework.
  For a discussion on CppUnit, check 
