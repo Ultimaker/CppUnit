@@ -1,3 +1,28 @@
+2001-09-23  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* doc/footer.html: Put devel list in mailto tag.
+
+	* doc/Makefile.am (man_MANS): Restore ability to install manpages.
+	(htmldir): HTML pages installed under $(pkgdatadir).
+
+	* doc/other_documentation.dox: Reference cookbook.html
+	in same directory.  Remove obsolete text.
+
+	* configure.in: Do not set CFLAGS; remove --enable-debug-mode.
+
+	* include/cppunit/Portability.h: 
+	* include/cppunit/extensions/HelperMacros.h: Allow user
+	to request the old-style CU_TEST family of macros.
+
+	* doc/Doxyfile.in (EXCLUDE_PATTERNS): Remove estring.h.
+
+	* README: Add contact and bug-reporting info.
+
+	* INSTALL-unix: New.  Move the unix install notes here
+	from README.
+
+	* AUTHORS: Put myself on the list.
+
 2001-09-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 	
 	* include/cppunit/TestFailure.h : made destructor virtual.

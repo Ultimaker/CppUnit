@@ -1,0 +1,30 @@
+	New in CppUnit 1.6.0
+	--------------------
+
+* All CppUnit macros now begin with "CPPUNIT_".  
+
+  Macros CU_TEST_SUITE, CU_TEST, CU_TEST_SUITE_END, CU_TEST_SUB_SUITE,
+  and CU_TEST_SUITE_REGISTRATION are renamed but are otherwise unchanged;
+  they take the same arguments, and have the same effect.  The old-style
+  macros can be used if your sources #define CPPUNIT_ENABLE_CU_TEST_MACROS
+  to 1 before including any CppUnit headers.
+
+  Macros assert, assertEqual, and assertDoublesEqual, have been replaced
+  by CPPUNIT_ASSERT, CPPUNIT_ASSERT_EQUAL, and CPPUNIT_ASSERT_DOUBLES_EQUAL,
+  respectively.  Macro assertLongsEqual is replaced by CPPUNIT_ASSERT_EQUAL.
+  The old assert macros can be used if your sources #define
+  CPPUNIT_ENABLE_NAKED_ASSERT before including any CppUnit headers.
+
+
+* Equality assertion CPPUNIT_ASSERT_EQUAL(expected,actual) can test
+  any type of expression.  The types of "expected" and "actual" must
+  be the same; use a cast if necessary.
+
+
+* Equality tested using CPPUNIT_ASSERT_EQUAL may be re-defined using
+  a traits class.  Ditto for the string representation used in the
+  diagnostic messages.
+
+
+* CppUnit has a unit test for itself!
+

@@ -59,16 +59,6 @@ AC_LANG(C++)
 
 AC_PROG_LIBTOOL
 
-AC_ARG_ENABLE(debug-mode,   
-[  --enable-debug-mode     enable debugging mode],
-  [
-    CFLAGS="-D_DEBUG -g3 -Wall"
-    CXXFLAGS="-D_DEBUG -g3 -Wall"
-  ],[
-    CFLAGS="-O2 "
-    CXXFLAGS="-O2"
-  ]) 
-
 # check for doxygen
 BB_ENABLE_DOXYGEN
 

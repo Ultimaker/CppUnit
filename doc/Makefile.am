@@ -1,27 +1,31 @@
-man3dir = $(mandir)/man3
-# FIXME: should be in ${datadir} (i.e. ${prefix}/share) ?
-docdir  = $(prefix)/doc/@PACKAGE@-@VERSION@
-htmldir = $(docdir)/html
+htmldir = $(pkgdatadir)/html
 
-EXTRA_DIST = cookbook.html header.html footer.html other_documentation.dox
+EXTRA_DIST = $(doxygen_input) $(static_pages)
 
 
+doxygen_input = other_documentation.dox
+static_pages = cookbook.html header.html footer.html 
+
+
+# DOC is defined if installer requests doc generation
 if DOC
-html_DATA = html/*
-
+man_MANS = man/man3/*.3 man/man3/extensions/*.3
+html_DATA = $(static_pages) html/*
 all-local: dox #pdf
 endif
 
-man_extension_dir = man/man3/extensions
-
-dox: html/index.html
-html/* html/index.html: Doxyfile other_documentation.dox $(man_extension_dir)
-	@DOXYGEN@
 
 # Workaround for broken Doxygen.  Version 1.2.9.1 doesn't create
 # this directory, though it does create man/man3.
+man_extension_dir = man/man3/extensions
 $(man_extension_dir):
 	mkdir -p $@
+
+
+dox: html/index.html
+html/* man/man3/*.3 man/man3/extensions/*.3: html/index.html
+html/index.html: Doxyfile other_documentation.dox $(man_extension_dir)
+	@DOXYGEN@
 
 pdf: @PACKAGE@.pdf
 @PACKAGE@.pdf:
@@ -29,28 +33,6 @@ pdf: @PACKAGE@.pdf
 	ln -s ./latex/refman.ps	 @PACKAGE@.ps
 	ln -s ./latex/refman.pdf @PACKAGE@.pdf
 
-
-#install-data-local:
-
-# This is failing because doxygen generates manpage filenames with
-# spaces in them.  Removed until fixed -smr.
-# 
-#	$(mkinstalldirs) $(DESTDIR)$(man3dir)
-#	@for i in ./man/man3/*.3; do \
-#		inst=`basename $$i | sed 's/_/:/g'`; \
-#		echo "$(INSTALL_DATA) $$i $(DESTDIR)$(man3dir)/$$inst"; \
-#		$(INSTALL_DATA) $$i $(DESTDIR)$(man3dir)/$$inst; \
-#	done
-
-# This is replaced by html_DATA.
-#	$(mkinstalldirs) $(DESTDIR)$(docdir)
-#	cp -r html $(DESTDIR)$(docdir)
-
-# This was commented out long ago.
-#	@for i in ../README ../ChangeLog @PACKAGE@.ps @PACKAGE@.pdf; do \
-#		echo "$(INSTALL_DATA) $$i $(DESTDIR)$(docdir)"; \
-#		$(INSTALL_DATA) $$i $(DESTDIR)$(docdir); \
-#	done
 
 clean-local:
 	$(RM) -r latex

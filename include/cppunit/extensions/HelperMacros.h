@@ -210,4 +210,18 @@
              __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
+// Backwards compatibility
+// (Not tested!)
+
+#if CPPUNIT_ENABLE_CU_TEST_MACROS
+
+#define CU_TEST_SUITE(tc) CPPUNIT_TEST_SUITE(tc)
+#define CU_TEST_SUB_SUITE(tc,sc) CPPUNIT_TEST_SUB_SUITE(tc,sc)
+#define CU_TEST(tm) CPPUNIT_TEST(tm)
+#define CU_TEST_SUITE_END() CPPUNIT_TEST_SUITE_END()
+#define CU_TEST_SUITE_REGISTRATION(tc) CPPUNIT_TEST_SUITE_REGISTRATION(tc)
+
+#endif
+
+
 #endif  // CPPUNIT_EXTENSIONS_HELPERMACROS_H

@@ -19,11 +19,17 @@
 /* Define to 1 if you wish to have the old-style macros
    assert(), assertEqual(), assertDoublesEqual(), and assertLongsEqual() */
 #ifndef CPPUNIT_ENABLE_NAKED_ASSERT
-#define CPPUNIT_ENABLE_NAKED_ASSERT         0
+#define CPPUNIT_ENABLE_NAKED_ASSERT          0
 #endif
 
+/* Define to 1 if you wish to have the old-style CU_TEST family
+   of macros. */
+#ifndef CPPUNIT_ENABLE_CU_TEST_MACROS
+#define CPPUNIT_ENABLE_CU_TEST_MACROS        0
+#endif
 
-/* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) */
+/* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) 
+   I don't think there is any C preprocess that does NOT support this! */
 #ifndef CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION
 #define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
 #endif
