@@ -165,7 +165,7 @@ private:
   void operator =( const TestFactoryRegistry &copy );
 
 private:
-  typedef CppUnitSet<TestFactory *> Factories;
+  typedef CppUnitSet<TestFactory *, std::less<TestFactory*> > Factories;
   Factories m_factories;
 
   std::string m_name;
