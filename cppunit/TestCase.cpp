@@ -51,22 +51,24 @@ void TestCase::assertEquals (double        expected,
 
 
 /// Run the test and catch any exceptions that are triggered by it 
-void TestCase::run (TestResult *result)
+void 
+TestCase::run (TestResult *result)
 {
   result->startTest (this);
   
   setUp ();
   
   try {
+
     runTest ();
     
   }
-  catch (Exception e) {
+  catch (Exception& e) {
     Exception *copy = new Exception (e);
     result->addFailure (this, copy);
     
   }
-  catch (exception e) {
+  catch (exception& e) {
     result->addError (this, new Exception (e.what ()));
     
   }
@@ -115,15 +117,25 @@ std::string TestCase::notEqualsMessage (double expected, double actual)
 
 
 
-/// Constructs a test case
+/** Constructs a test case.
+ *  This TestCase is added to the global registry.
+ *
+ *  \param name the name of the TestCase.
+ */
 inline TestCase::TestCase (std::string name) 
   : m_name (name) 
 {
-  if(m_name=="") 
-    return;
-
   TestRegistry::getRegistry().addTest(m_name, this);
-  
+}
+
+/** Constructs a test case.
+ *  This TestCase is \b not added to the global registry,
+ *  it is supposed that it will be added to a suite.
+ *
+ */
+inline TestCase::TestCase () 
+  : m_name ("In a suite.") 
+{
 }
 
 

@@ -16,11 +16,13 @@ namespace CppUnit {
   class TestResult;
 
   /**
-   * A test case defines the fixture to run multiple tests. To define a test case
+   * A test case defines the fixture to run multiple tests. 
+   * To define a test case
    * do the following:
    * - implement a subclass of TestCase 
-   * - define instance variables that store the state of the fixture
+   * - the fixture is defined by instance variables 
    * - initialize the fixture state by overriding setUp
+   *   (i.e. construct the instance variables of the fixture)
    * - clean-up after a test by overriding tearDown.
    *
    * Each test runs in its own fixture so there
@@ -91,6 +93,7 @@ namespace CppUnit {
   class TestCase : public Test 
   {
     public:
+      TestCase         ();
       TestCase         (std::string Name);
       ~TestCase        ();
 
