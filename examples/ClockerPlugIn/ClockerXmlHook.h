@@ -23,20 +23,19 @@ public:
   /// Destructor.
   virtual ~ClockerXmlHook();
 
-  void endDocument( CppUnit::XmlDocument *document,
-                    CppUnit::XmlElement *rootNode );
+  void endDocument( CppUnit::XmlDocument *document );
 
   void failTestAdded( CppUnit::XmlDocument *document,
-                      CppUnit::XmlElement *testNode,
+                      CppUnit::XmlElement *testElement,
                       CppUnit::Test *test,
                       CppUnit::TestFailure *failure );
 
   void successfulTestAdded( CppUnit::XmlDocument *document,
-                            CppUnit::XmlElement *testNode,
+                            CppUnit::XmlElement *testElement,
                             CppUnit::Test *test );
 
   void statisticsAdded( CppUnit::XmlDocument *document,
-                        CppUnit::XmlElement *statisticsNode );
+                        CppUnit::XmlElement *statisticsElement );
 
 private:
   /// Prevents the use of the copy constructor.

@@ -29,6 +29,8 @@ cppunittestmain_SOURCES = \
 	OutputSuite.h \
 	RepeatedTestTest.cpp \
 	RepeatedTestTest.h \
+  StringToolsTest.h \
+  StringToolsTest.cpp \
 	SubclassedTestCase.cpp \
 	SubclassedTestCase.h \
 	SynchronizedTestResult.h \

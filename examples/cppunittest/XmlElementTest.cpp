@@ -76,7 +76,7 @@ XmlElementTest::testSetNumericContent()
 
 
 void 
-XmlElementTest::testNodeCount()
+XmlElementTest::testElementCount()
 {
   CppUnit::XmlElement node( "element", "content" );
   CPPUNIT_ASSERT_EQUAL( 0, node.elementCount() );
@@ -150,7 +150,7 @@ XmlElementTest::testEmptyNodeToString()
 
 
 void 
-XmlElementTest::testNodeWithAttributesToString()
+XmlElementTest::testElementWithAttributesToString()
 {
   CppUnit::XmlElement node( "element" );
   node.addAttribute( "id", 17 );
@@ -175,7 +175,7 @@ XmlElementTest::testEscapedAttributeValueToString()
 
 
 void 
-XmlElementTest::testNodeToStringEscapeContent()
+XmlElementTest::testElementToStringEscapeContent()
 {
   CppUnit::XmlElement node( "element", "ChessTest<class Chess>" );
   std::string expectedXml = "<element>"
@@ -186,7 +186,7 @@ XmlElementTest::testNodeToStringEscapeContent()
 
 
 void 
-XmlElementTest::testNodeWithChildrenToString()
+XmlElementTest::testElementWithChildrenToString()
 {
   CppUnit::XmlElement node( "element" );
   node.addElement( new CppUnit::XmlElement( "child1" ) );
@@ -198,7 +198,7 @@ XmlElementTest::testNodeWithChildrenToString()
 
 
 void 
-XmlElementTest::testNodeWithContentToString()
+XmlElementTest::testElementWithContentToString()
 {
   CppUnit::XmlElement node( "element", "content\nline2" );
   std::string expectedXml = "<element>content\nline2</element>";
@@ -207,7 +207,7 @@ XmlElementTest::testNodeWithContentToString()
 
 
 void 
-XmlElementTest::testNodeWithNumericContentToString()
+XmlElementTest::testElementWithNumericContentToString()
 {
   CppUnit::XmlElement node( "element", 123456789 );
   std::string expectedXml = "<element>123456789</element>";
@@ -216,7 +216,7 @@ XmlElementTest::testNodeWithNumericContentToString()
 
 
 void 
-XmlElementTest::testNodeWithContentAndChildToString()
+XmlElementTest::testElementWithContentAndChildToString()
 {
   CppUnit::XmlElement node( "element", "content" );
   node.addElement( new CppUnit::XmlElement( "child1" ) );

@@ -1,21 +1,23 @@
 	New in CppUnit 1.9.8:
 	---------------------
 
-  - Custom test macros.
+  - New custom test macros
   - Exception message are now structured
-  - MFC TestRunner, detail field added.
-  - XmlDocument extracted from XmlOutputter to create different XML output
-  - Xml output customization.
-  - Test plug-in XML output Hook
-  - ClockerPlugIn example includes test time in XML output.
-  - DllPlugInTester allows test plug-in to hook the XML output.
+  - Added detail field to MFC TestRunner
+  - New XmlDocument class to easily create new XML output format
+  - XmlOutputter customization
+  - Test plug-in XMLOutputter hook
+  - ClockerPlugIn example includes test time in XML output
+  - DllPlugInTester allows test plug-in to hook the XmlOutputter
+  - Configurable CompilerOutputter wrapping
 
-* Custom test macros
+* New custom test macros
 
   - 3 new macros have been added for use when declaring test fixture suite:
-    - CPPUNIT_TEST_CUSTOM : to specify a method that returns an instance of Test
-      to add to the suite
-    - CPPUNIT_TEST_CUSTOM : to specify a method that add some tests to the suite
+    - CPPUNIT_TEST_CUSTOM : to specify a method that returns an instance of 
+      Test to add to the suite
+    - CPPUNIT_TEST_CUSTOM : to specify a method that add some tests to the 
+      suite
     - CPPUNIT_TEST_ADD : to add a test to the suite. Used this to create custom 
       CPPUNIT_TEST_xxx macros.
 
@@ -31,45 +33,50 @@
     The short description is used to indicate how the detail strings should be
     interpreted. It usually indicates the failure types, such as
     "assertion failed", "forced failure", "unexpected exception caught",
-    "equality assertion failed"... It should not contains new line character (\n).
+    "equality assertion failed"... It should not contains new line characters 
+    (\n).
 
     Detail strings are used to provide more information about the failure. It
     can contains the asserted expression, the expected and actual values in an
     equality assertion, some addional messages... Detail strings can contains
     new line characters (\n).
 
-    This change allow ouputters to deal with all failure the same way (there is no
-    special case for the equality assertion any more).
+    This change allow ouputters to deal with all failure the same way (there is
+    no special case for the equality assertion any more).
 
-* XmlDocument extracted from XmlOutputter to create different XML output
+* New XmlDocument class to easily create new XML output format
 
   - Classes XmlDocument and XmlElement where extracted from XmlOutputter. This
     help writing outputters that use a completly different XML format.
 
-* Xml output customization.
+  - XmlDocument represents a XML file, and XmlElement represents a XML element.
+
+* XmlOutputter customization
 
   - Xml output can be customized using XmlOutputterHook. To do so, subclass
     XmlOutputterHook and register it to the XmlOutputter with addHook() before
     call XmlOutputter::write().
 
     Hook can be used to add some datas to the XmlDocument or the XmlElement of
-    a specific hook. Methods have been added to XmlElement to help walking and
-    modifying the XmlDocument.
+    a specific hook. Methods have been added to XmlElement to help navigating
+    and modifying the XmlDocument.
 
     See ClockerPlugIn example.
 
 * MFC TestRunner
 
   - The name of the test is displayed just before being run.
-  - Browse dialog is resizable
+  - Browse Test Hierarchy dialog is resizable.
   - Better (and cleaner) handling of windows resizing
-  - Failure list on show the short description of the failure.
-  - Edit field added to display the details of the failure.
+  - Failure list now only show the short description of the failure.
+  - Edit field added to display the details of the selected failure.
 
 * MFC test plug-in runner (TestPlugInRunner):
   
   - command line: a dll name can be specified on the command after -testsuite:
     example: TestPlugInRunnerd.exe -testsuite Simpled.dll
+
+  - Layout configuration is stored/restored.
 
 * Test plug-in XML output Hook
 
@@ -85,6 +92,12 @@
   - plug-in can now provides XmlOutputterHook to add specific datas to the 
     XML ouput. See ClockerPlugIn example.
 
+* CompilerOutputter wrapping is parametrized
+
+  - Wrap column can be set with setWrapColumn(). Default is now 79 instead of 80.
+
+  - Wrapping can be disabled with setNoWrap().
+
 * Examples:
 
   - ClockerPlugIn: the example now use the new XmlOutputterHook. Test time are
@@ -93,21 +106,24 @@
 
 * Bug Fix:
 
+  - CompilerOutputter: fixed wrapping issues (UT magic!)
+
   - DllPlugInTester: use ISO-LATIN1 encoding if none is given. Flag --xsl was
     ignored.
-
-  - XmlOutputter: use the default encoding if an empty string is given as
-    encoding
 
   - MfcUi plug-in runner (TesTPlugInRunner): better handling of history when
     loading and reloading a dll. 
 
   - Qt Test Runner: minor bug fixes. Should compile on Unix.
 
+  - XmlOutputter: use the default encoding if an empty string is given as
+    encoding
+
 * Compatibility Break:
 
   - CompilerOutputter: removed printNotEqualMessage() and printDefaultMessage().
     No longer needed since Exception message are processed in a generic way.
+    Removed wrap(). Extracted to StringTools.
 
   - Exception constructor takes a Message instead of a string. Notes that the
     first argument in Message constructor is a short description, not the message.
@@ -130,7 +146,8 @@
   - XmlElement: renamed addNode() to addElement().
 
   - XmlOutputter: removed methods writeProlog() and writeTestResult() which
-    are replaced by XmlDocument.
+    are replaced by XmlDocument. Renamed makeRootNode() to setRootNode(). It
+    no longer returns the root node, but set the root node of the XML document.
 
   - XmlOuputter::Node: class has been extracted and renamed XmlElement.
 

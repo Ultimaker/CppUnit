@@ -32,8 +32,11 @@ class XmlOutputter;
  * addListener() and removeListener() are called respectively before and after
  * the test run.
  *
+ * addXmlOutputterHooks() and removeXmlOutputterHooks() are called respectively
+ * before and after writing the XML output using a XmlOutputter.
+ *
  * \see CPPUNIT_PLUGIN_IMPLEMENT, CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL
- * \see TestPlugInDefaultImpl.
+ * \see CppUnit::TestPlugInDefaultImpl, CppUnit::XmlOutputter.
  */
 struct CppUnitTestPlugIn
 {

@@ -6,22 +6,20 @@ namespace CppUnit
 
 
 void 
-XmlOutputterHook::beginDocument( XmlDocument *document,
-                                 XmlElement *rootNode )
+XmlOutputterHook::beginDocument( XmlDocument *document )
 {
 }
 
 
 void 
-XmlOutputterHook::endDocument( XmlDocument *document,
-                               XmlElement *rootNode )
+XmlOutputterHook::endDocument( XmlDocument *document )
 {
 }
 
 
 void 
 XmlOutputterHook::failTestAdded( XmlDocument *document,
-                                 XmlElement *testNode,
+                                 XmlElement *testElement,
                                  Test *test,
                                  TestFailure *failure )
 {
@@ -30,7 +28,7 @@ XmlOutputterHook::failTestAdded( XmlDocument *document,
 
 void 
 XmlOutputterHook::successfulTestAdded( XmlDocument *document,
-                                       XmlElement *testNode,
+                                       XmlElement *testElement,
                                        Test *test )
 {
 }
@@ -38,7 +36,7 @@ XmlOutputterHook::successfulTestAdded( XmlDocument *document,
 
 void 
 XmlOutputterHook::statisticsAdded( XmlDocument *document,
-                                   XmlElement *statisticsNode )
+                                   XmlElement *statisticsElement )
 {
 }
 

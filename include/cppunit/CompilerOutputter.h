@@ -105,6 +105,12 @@ public:
 
   void write();
 
+  void setNoWrap();
+
+  void setWrapColumn( int wrapColumn );
+
+  int wrapColumn() const;
+
   virtual void printSuccess();
   virtual void printFailureReport();
   virtual void printFailuresList();
@@ -114,7 +120,6 @@ public:
   virtual void printFailureType( TestFailure *failure );
   virtual void printFailedTestName( TestFailure *failure );
   virtual void printFailureMessage( TestFailure *failure );
-  virtual std::string wrap( std::string message );
 
 private:
   /// Prevents the use of the copy constructor.
@@ -128,13 +133,11 @@ private:
 
   virtual std::string extractBaseName( const std::string &fileName ) const;
 
-  typedef std::vector<std::string> Lines;
-  static Lines splitMessageIntoLines( std::string message );
-
 private:
   TestResultCollector *m_result;
   std::ostream &m_stream;
   std::string m_locationFormat;
+  int m_wrapColumn;
 };
 
 

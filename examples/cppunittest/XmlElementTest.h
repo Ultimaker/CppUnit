@@ -14,7 +14,7 @@ class XmlElementTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testSetName );
   CPPUNIT_TEST( testSetStringContent );
   CPPUNIT_TEST( testSetNumericContent );
-  CPPUNIT_TEST( testNodeCount );
+  CPPUNIT_TEST( testElementCount );
   CPPUNIT_TEST_EXCEPTION( testElementAtNegativeIndexThrow, std::invalid_argument );
   CPPUNIT_TEST_EXCEPTION( testElementAtTooLargeIndexThrow, std::invalid_argument );
   CPPUNIT_TEST( testElementAt );
@@ -22,13 +22,13 @@ class XmlElementTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testElementFor );
 
   CPPUNIT_TEST( testEmptyNodeToString );
-  CPPUNIT_TEST( testNodeWithAttributesToString );
+  CPPUNIT_TEST( testElementWithAttributesToString );
   CPPUNIT_TEST( testEscapedAttributeValueToString );
-  CPPUNIT_TEST( testNodeToStringEscapeContent );
-  CPPUNIT_TEST( testNodeWithChildrenToString );
-  CPPUNIT_TEST( testNodeWithContentToString );
-  CPPUNIT_TEST( testNodeWithNumericContentToString );
-  CPPUNIT_TEST( testNodeWithContentAndChildToString );
+  CPPUNIT_TEST( testElementToStringEscapeContent );
+  CPPUNIT_TEST( testElementWithChildrenToString );
+  CPPUNIT_TEST( testElementWithContentToString );
+  CPPUNIT_TEST( testElementWithNumericContentToString );
+  CPPUNIT_TEST( testElementWithContentAndChildToString );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -47,7 +47,7 @@ public:
   void testSetName();
   void testSetStringContent();
   void testSetNumericContent();
-  void testNodeCount();
+  void testElementCount();
   void testElementAtNegativeIndexThrow();
   void testElementAtTooLargeIndexThrow();
   void testElementAt();
@@ -55,13 +55,13 @@ public:
   void testElementFor();
 
   void testEmptyNodeToString();
-  void testNodeWithAttributesToString();
+  void testElementWithAttributesToString();
   void testEscapedAttributeValueToString();
-  void testNodeToStringEscapeContent();
-  void testNodeWithChildrenToString();
-  void testNodeWithContentToString();
-  void testNodeWithNumericContentToString();
-  void testNodeWithContentAndChildToString();
+  void testElementToStringEscapeContent();
+  void testElementWithChildrenToString();
+  void testElementWithContentToString();
+  void testElementWithNumericContentToString();
+  void testElementWithContentAndChildToString();
 
 private:
   /// Prevents the use of the copy constructor.

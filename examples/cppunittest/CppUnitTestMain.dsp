@@ -346,6 +346,14 @@ SOURCE=.\XmlOutputterTest.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\StringToolsTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\StringToolsTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\XmlElementTest.cpp
 # End Source File
 # Begin Source File

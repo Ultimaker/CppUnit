@@ -1,4 +1,5 @@
 #include <cppunit/tools/StringTools.h>
+#include <algorithm>
 
 
 namespace CppUnit
@@ -19,6 +20,56 @@ namespace StringTools
     OStringStream stream;
     stream << value;
     return stream.str();
+  }
+
+
+  Strings split( const std::string &text, 
+                 char separator )
+  {
+    Strings splittedText;
+
+    std::string::const_iterator itStart = text.begin();
+    while ( !text.empty() )
+    {
+      std::string::const_iterator itSeparator = std::find( itStart, 
+                                                           text.end(), 
+                                                           separator );
+      splittedText.push_back( text.substr( itStart - text.begin(),
+                                           itSeparator - itStart ) );
+      if ( itSeparator == text.end() )
+        break;
+      itStart = itSeparator +1;
+    }
+
+    return splittedText;
+  }
+
+
+  std::string wrap( const std::string &text,
+                    int wrapColumn )
+  {
+    const char lineBreak = '\n';
+    Strings lines = split( text, lineBreak );
+
+    std::string wrapped;
+    for ( Strings::const_iterator it = lines.begin(); it != lines.end(); ++it )
+    {
+      if ( it != lines.begin() )
+        wrapped += lineBreak;
+
+      const std::string &line = *it;
+      int index =0;
+      while ( index < line.length() )
+      {
+        std::string lineSlice( line.substr( index, wrapColumn ) );
+        wrapped += lineSlice;
+        index += wrapColumn;
+        if ( index < line.length() )
+          wrapped += lineBreak;
+      }
+    }
+
+    return wrapped;
   }
 
 

@@ -3,6 +3,7 @@
 
 #include <cppunit/Portability.h>
 #include <string>
+#include <vector>
 
 
 namespace CppUnit
@@ -13,10 +14,17 @@ namespace CppUnit
 namespace StringTools
 {
 
+  typedef std::vector<std::string> Strings;
+
   std::string CPPUNIT_API toString( int value );
 
   std::string CPPUNIT_API toString( double value );
 
+  Strings CPPUNIT_API split( const std::string &text, 
+                             char separator );
+
+  std::string CPPUNIT_API wrap( const std::string &text,
+                                int wrapColumn = 79 );
 
 } // namespace StringTools
 

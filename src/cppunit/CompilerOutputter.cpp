@@ -4,6 +4,7 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
 #include <algorithm>
+#include <cppunit/tools/StringTools.h>
 
 
 namespace CppUnit
@@ -15,6 +16,7 @@ CompilerOutputter::CompilerOutputter( TestResultCollector *result,
     : m_result( result )
     , m_stream( stream )
     , m_locationFormat( locationFormat )
+    , m_wrapColumn( 79 )
 {
 }
 
@@ -170,7 +172,12 @@ CompilerOutputter::printFailureMessage( TestFailure *failure )
   m_stream  <<  std::endl;
   Exception *thrownException = failure->thrownException();
   m_stream  << thrownException->message().shortDescription()  <<  std::endl;
-  m_stream  <<  wrap( thrownException->message().details() )  <<  std::endl;
+
+  std::string message = thrownException->message().details();
+  if ( m_wrapColumn > 0 )
+    message = StringTools::wrap( message, m_wrapColumn );
+
+  m_stream  <<  message  <<  std::endl;
 }
 
 
@@ -186,50 +193,25 @@ CompilerOutputter::printStatistics()
 }
 
 
-std::string
-CompilerOutputter::wrap( std::string message )
+void 
+CompilerOutputter::setWrapColumn( int wrapColumn )
 {
-  Lines lines = splitMessageIntoLines( message );
-  std::string wrapped;
-  for ( Lines::iterator it = lines.begin(); it != lines.end(); ++it )
-  {
-    std::string line( *it );
-    const int maxLineLength = 79;
-    int index =0;
-    while ( index < line.length() )
-    {
-      std::string lineSlice( line.substr( index, maxLineLength ) );
-      wrapped += lineSlice;
-      index += maxLineLength;
-      if ( index < line.length() )
-        wrapped += "\n";
-    }
-    wrapped += '\n';
-  }
-  return wrapped;
+  m_wrapColumn = wrapColumn;
 }
 
 
-CompilerOutputter::Lines 
-CompilerOutputter::splitMessageIntoLines( std::string message )
+void 
+CompilerOutputter::setNoWrap()
 {
-  Lines lines;
-
-  std::string::iterator itStart = message.begin();
-  while ( true )
-  {
-    std::string::iterator itEol = std::find( itStart, 
-                                             message.end(), 
-                                             '\n' );
-    lines.push_back( message.substr( itStart - message.begin(),
-                                     itEol - itStart ) );
-    if ( itEol == message.end() )
-      break;
-    itStart = itEol +1;
-  }
-  return lines;
+  m_wrapColumn = 0;
 }
 
+
+int 
+CompilerOutputter::wrapColumn() const
+{
+  return m_wrapColumn;
+}
 
 
 }  // namespace CppUnit

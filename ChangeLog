@@ -1,3 +1,44 @@
+2002-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * release 1.9.8
+
+  * include/cppunit/plugin/TestPlugIn.h: updated documentation.
+
+  * include/cppunit/tools/XmlDocument.h: updated documentation.
+
+  * include/cppunit/tools/StringTools.h:
+  * src/cppunit/StringTools.cpp: added split() and wrap() functions.
+
+  * include/cppunit/CompilerOutputter.h:
+  * src/cppunit/CompilerOutputter.cpp: extracted wrap() and 
+    splitMessageIntoLines() to StringTools.
+
+  * include/cppunit/XmlOutputterHook.h:
+  * src/cppunit/XmlOutputterHook.cpp: removed rooNode parameter from
+    beginDocument() and endDocument(). It can be retreive from document.
+    Renamed 'node' occurences to 'element'.
+
+  * include/cppunit/XmlOutputter.h:
+  * src/cppunit/XmlOutputter.cpp: updated against 
+    XmlOutputterHook changes. Renamed 'node' occurences to 'element'.
+
+  * examples/ClockerPlugIn/ClockerXmlHook.h:
+  * examples/ClockerPlugIn/ClockerXmlHook.cpp: updated against 
+    XmlOutputterHook changes.
+
+  * examples/cppunittest/XmlElementTest.h:
+  * examples/cppunittest/XmlElementTest.cpp: Renamed 'node' occurences 
+    to 'element'.
+
+  * examples/cppunittest/XmlOutputterTest.cpp: updated against 
+    XmlOutputterHook changes.
+
+  * examples/cppunittest/StringToolsTest.h:
+  * examples/cppunittest/StringToolsTest.cpp: added. Unit tests for 
+    StringTools. Turn out that VC++ dismiss empty lines in tools output, 
+    which is the reason why empty lines where not printed in 
+    CompilerOutputter.
+
 2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/plugin/PlugInManager.h:

@@ -18,6 +18,9 @@ class XmlElement;
 
 
 /*! A XML Document.
+ *
+ * A XmlDocument represents a XML file. It holds a pointer on the root XmlElement
+ * of the document. It also holds the encoding and style sheet used.
  */
 class CPPUNIT_API XmlDocument
 {

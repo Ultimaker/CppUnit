@@ -78,17 +78,19 @@ public:
 
   typedef std::map<Test *,TestFailure*> FailedTests;
 
-  /*! Returns the root element with its children.
+  /*! Sets the root element and adds its children.
+   *
+   * Set the root element of the XML Document and add its child elements.
    *
    * For all hooks, call beginDocument() just after creating the root element (it
    * is empty at this time), and endDocument() once all the datas have been added
    * to the root element.
-   *
-   * \return Root element.
    */
-  virtual XmlElement *makeRootNode();
+  virtual void setRootNode();
+
   virtual void addFailedTests( FailedTests &failedTests,
                                XmlElement *rootNode );
+
   virtual void addSuccessfulTests( FailedTests &failedTests,
                                    XmlElement *rootNode );
 
@@ -111,7 +113,7 @@ public:
                               XmlElement *testsNode );
 
   virtual void addFailureLocation( TestFailure *failure,
-                                   XmlElement *testNode );
+                                   XmlElement *testElement );
 
 
   /*! Adds a successful test to the successful tests node.

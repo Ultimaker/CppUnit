@@ -237,20 +237,18 @@ public:
   {
   }
 
-  void beginDocument( CppUnit::XmlDocument *document,
-                      CppUnit::XmlElement *rootNode )
+  void beginDocument( CppUnit::XmlDocument *document )
   {
     ++m_beginCalls;
   }
 
-  void endDocument( CppUnit::XmlDocument *document,
-                    CppUnit::XmlElement *rootNode )
+  void endDocument( CppUnit::XmlDocument *document )
   {
     ++m_endCalls;
   }
 
   void failTestAdded( CppUnit::XmlDocument *document,
-                      CppUnit::XmlElement *testNode,
+                      CppUnit::XmlElement *testElement,
                       CppUnit::Test *test,
                       CppUnit::TestFailure *failure )
   {
@@ -258,14 +256,14 @@ public:
   }
 
   void successfulTestAdded( CppUnit::XmlDocument *document,
-                            CppUnit::XmlElement *testNode,
+                            CppUnit::XmlElement *testElement,
                             CppUnit::Test *test )
   {
     ++m_successfulTestCalls;
   }
 
   void statisticsAdded( CppUnit::XmlDocument *document,
-                        CppUnit::XmlElement *statisticsNode )
+                        CppUnit::XmlElement *statisticsElement )
   {
     ++m_statisticsCalls;
   }

@@ -3,9 +3,9 @@
     (exception that do not subclass std::exception, such as MFC CException, or
     RogueWave RWXMsg).
   - [DONE] Custom Test macro helper
-  - Hook for XmlOutputter, to allow user to add extra information to the XmlDocument
+  - [DONE] Hook for XmlOutputter, to allow user to add extra information to the XmlDocument
     (test & doc level).
-  - Allow test plug-in to 'hook' the XmlOutputter when used.
+  - [DONE] Allow test plug-in to 'hook' the XmlOutputter when used.
   - TextUi::TestRunner should use CppUnit::TestRunner as a base class
   - [DONE] Make Exception message more flexible: introduce a Message object which contains:
     - a short description ('assertion failed', 'equality assertion failed'...)
@@ -14,7 +14,7 @@
     (or ui) format them for display.
   - Extends CompilerOutputter to a generic text outputter that can use a format string
     to display both the location of the failure and the message.
-  - STL orthodox template for container elements.
+  - STL concept checker.
   - Memory leak tracking: setUp/tearDown should be leak safe if no failure occured.
 
 * UnitTest
@@ -33,9 +33,6 @@
       forthcoming assertEquals() to make comparison easier,
     - source file location. 
     
-* BugFix: CompilerOutputter::wrap(), bug when wrapping empty line in the middle 
-of a text (they disappear).    
-
 * Documentation:
 	CookBook:
 	- how to create simple test cases (with CppUnit namespace)
