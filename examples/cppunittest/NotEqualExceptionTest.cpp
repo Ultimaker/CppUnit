@@ -1,6 +1,7 @@
 #include "NotEqualExceptionTest.h"
 #include <cppunit/NotEqualException.h>
 
+
 CPPUNIT_TEST_SUITE_REGISTRATION( NotEqualExceptionTest );
 
 

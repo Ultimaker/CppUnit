@@ -49,7 +49,7 @@ private:
 
     Value operator !()
     {
-      return -1 - m_value;
+      return Value( -1 - m_value );
     }
 
   protected:
@@ -70,7 +70,7 @@ private:
 
     ValueBadConstructor operator !()
     {
-      return -1 - m_value;
+      return ValueBadConstructor( -1 - m_value );
     }
   };
 
@@ -82,7 +82,7 @@ private:
 
     ValueBadInvert operator !()
     {
-      return 1;
+      return ValueBadInvert( 1 );
     }
   };
 
@@ -94,7 +94,7 @@ private:
 
     ValueBadEqual operator !()
     {
-      return -1 - m_value;
+      return ValueBadEqual( -1 - m_value );
     }
 
     bool operator ==( const ValueBadEqual &other )
@@ -111,7 +111,7 @@ private:
 
     ValueBadNotEqual operator !()
     {
-      return -1 - m_value;
+      return ValueBadNotEqual( -1 - m_value );
     }
 
     bool operator !=( const ValueBadNotEqual &other )
@@ -134,7 +134,7 @@ private:
 
     ValueBadCall operator !()
     {
-      return -1 - m_value;
+      return ValueBadCall( -1 - m_value );
     }
   };
 
@@ -146,7 +146,7 @@ private:
 
     ValueBadAssignment operator !()
     {
-      return -1 - m_value;
+      return ValueBadAssignment( -1 - m_value );
     }
 
     ValueBadAssignment &operator =( const ValueBadAssignment &other )
