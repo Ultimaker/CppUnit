@@ -9,6 +9,7 @@
 	- Improved documentation.
 	- Tracking of test run start/end.
 	- Added simple example
+	- Contribution: XML style sheet & borland 5.5 makefile.
 
 * TestPlugIn:
 
@@ -80,6 +81,13 @@
 
   - More details about the test plug-in, how to use it, how does it works...
     See module/Writing Test Plug-in.
+
+* Contribution
+
+  - Contributed by project cuppa team (http://sourceforge.jp/projects/cuppa/):
+
+	- XML style sheet: transform CppUnit XML output into HTML.
+	- Makefile for CppUnit with Borland C++ 5.5 free compiler.
 
 * Behavior changes:
 

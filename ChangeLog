@@ -1,4 +1,14 @@
-2002-04-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* configure.in: added some makefile.am
+
+	* contrib/readme.txt: updated.
+
+	* contrib/bc5/bc5-makefile.zip: added borland 5.5 makefile. Contributed by
+	  project cuppa.
+
+
+2002-04-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* bumped version to 1.9.3
 

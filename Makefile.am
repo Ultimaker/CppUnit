@@ -14,6 +14,9 @@ EXTRA_DIST = BUGS INSTALL-unix INSTALL-WIN32.txt	\
 	contrib/msvc/CppUnit.WWTpl 			            \
 	contrib/msvc/readme.txt                         \
 	contrib/msvc/AddingUnitTestMethod.dsm           \
+	contrib/bc5/bcc-makefile.zip \
+	contrib/xml-xsl/tests.xml \
+	contrib/xml-xsl/report.xsl \
 	src/CppUnitLibraries.dsw
 
 m4sources = \
