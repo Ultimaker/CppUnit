@@ -103,11 +103,30 @@
  *   
  * See CppUnitTestPlugIn for further detail on how to do this.
  *
+ * Creating you test plug-in with VC++:
+ * - Creates a new "Win32 Dynamic Library" project, choose the empty template
+ * - For the Debug Configuration, add cppunitd_dll.lib to 
+ *   'Project Settings/Link/Object/Libariries modules', and for the Release
+ *   Configuration, add cppunit_dll.lib.
+ * - For All Configuration, in 'C++/Preprocessor/Preprocessors definitions',
+ *   add the symbol 'CPPUNIT_DLL' at the end of the line (it means that
+ *   you are linking against cppunit dll).
+ * - Creates a 'main' file that contains:
+\verbatim
+#include <cppunit/plugin/TestPlugIn.h>
+
+CPPUNIT_PLUGIN_IMPLEMENT();\endverbatim
+ * - Adds your tests
+ * - You're done !
+ *
+ * See examples/simple/simple_plugin.dsp for an example.
+ *
  * Notes to VC++ users: 
  * - you can run a post-build check on the plug-in. Add the following line to your
- *   post-build tab: "..\..\..\lib\DllPlugInTesterd_dll.exe $(TargetPath)". Of course,
- *   you need to update the path to the plug-in runner. $(TargetPath) is the filename
- *   of your plug-in.
+ *   post-build tab: "DllPlugInTesterd_dll.exe $(TargetPath)". DllPlugInTesterd_dll.exe
+ *   need to be some place were it can be found (path, ...), or you need to
+ *   indicate the correct path. 
+ *   $(TargetPath) is the filename of your plug-in.
  * - you can debug your DLL, set the executable for debug session to the plug-in 
  *   runner, and the name of the DLL in the program arguments ($(xxx) won't work
  *   this time).

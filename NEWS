@@ -6,6 +6,7 @@ This release makes testable components a reality with more versatile, easier to 
 	- DllPlugInTester can be parametrized from command line
 	- Two test listener plug-in examples
 	- An 'hello world' example & getting started document : Money
+	- Contribution: generic makefile for Borland 5.5 free compiler.
 	- Bug fixes
 
 * DllPlugInTester:
@@ -83,6 +84,13 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
 	- CppUnitTestPlugIn (examples/cppunitest/CppUnitTestPlugIn.dsp):
 	  CppUnit's test suite as a test plug-in.
+
+* Contribution
+
+  - Contributed by project cuppa team (http://sourceforge.jp/projects/cuppa/):
+
+	- Makefile for CppUnit with Borland C++ 5.5 free compiler: does not
+	  depend on a specific CppUnit version.
 
 * Compatiblity breaks
 

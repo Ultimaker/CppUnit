@@ -3,8 +3,7 @@ What's in those files:
 bc5/:
 	* bc5-makefile.zip: makefile for CppUnit with Borland C++ 5.5 free compiler.
 	  contributed by 'cuppa' project team (http://sourceforge.jp/projects/cuppa/).
-	  Tt produce cppunit release/debug lib & dll. See instruction 
-	  'readme_en.txt' in the zip.
+	  See instruction  'readme_en.txt' in the zip.
 
 msvc/:
 

@@ -11,7 +11,6 @@ cppunittestmain_SOURCES = \
 	CoreSuite.h \
 	CppUnitTestMain.cpp \
 	CppUnitTestSuite.cpp \
-	CppUnitTestSuite.h \
 	ExceptionTest.cpp \
 	ExceptionTest.h \
 	ExtensionSuite.h \

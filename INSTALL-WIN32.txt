@@ -59,8 +59,8 @@ it in a 'cleaner' way. That sample has not been updated for a long time).
 * HostApp : a sample using the MFC TestRunner demonstrating different test
 failure. Also demonstrates the MFC Unicode TestRunner.
 
-* TestPlugIn : a sample demonstrating how to write a TestPlugIn for the
-TestPlugInRunner.
+* Money : an example that come along with the Money article of the 
+documentation. Probably what you want to look at if you are a newbie.
 
 
 Configuration:
@@ -126,6 +126,23 @@ TestRunnerDSPlugIn.dll	: The add-in you register in VC++.
 Notes that when you are using CppUnit DLL (cppunit*_dll.dll), you must link 
 against the associated import library and define the pre-processor symbol 
 CPPUNIT_DLL in your project.
+
+
+Tools:
+------
+
+CppUnit provides a generic test runner for test plug-in: DllPlugInTester.
+It can be found in the lib/ directory. It requires cppunit*_dll.dll
+
+lib/:
+DllPlugInTester_dll.exe  : test plug-in runner, "Multithreaded DLL", cppunit_dll.dll
+DllPlugInTesterd_dll.exe : test plug-in runner, "Debug Multithreaded DLL", cppunitd_dll.dll
+DllPlugInTester.exe  : test plug-in runner, "Multithreaded DLL", static link cppunit.lib
+DllPlugInTesterd.exe : test plug-in runner, "Debug Multithreaded DLL", static link cppunitd.lib
+
+Notes that the DllPlugInTester(d).exe version of this tools does not allow
+to use the automatic test registration that comes along with test plug-in.
+You probably don't want to use them unless you really now what you are doing.
 
 
 Using CppUnit:
