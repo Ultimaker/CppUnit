@@ -1,9 +1,13 @@
 2001-05-19 Baptiste Lepilleur <gaiacrtn@free.fr>
   * Added some items to the TODO list for VC++ TestRunner.
   * "Debug" configuration is now the default configuration in VC++ project.
-  * Modified sort order in the test browser of VC++ TestRunner so that test are in the same order as in the suite. Suite
-    are still sorted.
-
+  * Modified sort order in the test browser of VC++ TestRunner so that tests are in the same order as in the suite. Suites
+    are still sorted alphabetically.
+  * Merged Steve M. Robbins patch to replace assertImplementation with assert in hierarchy example.
+  * Added a TextTestRunner to runner tests. It is based on Michael Feather's version, but have been rewriten.
+  * Removed traces that printed the test name in TextTestResult while running.
+  * Added the test name to error and failure report in TextTestResult.
+  * Updated hierarchy example to use TextTestRunner.
 
 2001-05-18 Baptiste Lepilleur <gaiacrtn@free.fr>
   * Symbol CU_USE_TYPEINFO must be defined instead of USE_TYPEINFO to

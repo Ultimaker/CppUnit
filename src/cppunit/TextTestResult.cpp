@@ -31,10 +31,8 @@ TextTestResult::addFailure (Test *test, Exception *e)
 void 
 TextTestResult::startTest (Test *test)
 {
-
-  std::cerr << "Running " << test->getName() << " ";
   TestResult::startTest (test);
-  std::cerr << "." << std::endl;
+  std::cerr << ".";
 
 }
 
@@ -57,6 +55,7 @@ TextTestResult::printErrors (std::ostream& stream)
 
             stream << i 
                    << ") "
+                   << "test: " << failure->failedTest()->getName()  << " "
                    << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
                    << (e ? e->fileName () : "") << " "
                    << "\"" << failure->thrownException ()->what () << "\""
@@ -84,6 +83,7 @@ TextTestResult::printFailures (std::ostream& stream)
 
             stream << i 
                    << ") "
+                   << "test: " << failure->failedTest()->getName()  << " "
                    << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
                    << (e ? e->fileName () : "") << " "
                    << "\"" << failure->thrownException ()->what () << "\""
