@@ -2,6 +2,7 @@
 #define TESTCALLERTEST_H
 
 #include <cppunit/TestCase.h>
+#include <cppunit/TestResult.h>
 #include <cppunit/TestSuite.h>
 #include "TrackedTestCase.h"
 
@@ -24,6 +25,7 @@ public:
 
   void testExpectFailureException();
   void testExpectException();
+  void testExpectedExceptionNotCaught();
 
 private:
   class ExceptionThrower : public CppUnit::TestCase
@@ -31,6 +33,7 @@ private:
   public:
     void testThrowFailureException();
     void testThrowException();
+    void testThrowNothing();
   };
 
   virtual void onConstructor();
@@ -53,6 +56,7 @@ private:
   int m_tearDownCount;
   int m_testCount;
   const std::string m_testName;
+  CppUnit::TestResult *m_result;
 };
 
 

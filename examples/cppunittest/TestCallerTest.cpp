@@ -2,7 +2,6 @@
 #include "FailureException.h"
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include <cppunit/TestResult.h>
 
 
 CPPUNIT_TEST_SUITE_REGISTRATION( TestCallerTest );
@@ -19,6 +18,12 @@ void
 TestCallerTest::ExceptionThrower::testThrowException()
 {
   throw CppUnit::Exception( "expected Exception" );
+}
+
+
+void 
+TestCallerTest::ExceptionThrower::testThrowNothing()
+{
 }
 
 
@@ -44,6 +49,7 @@ TestCallerTest::suite()
   suite.addTestCaller( "testPointerConstructor", &TestCallerTest::testPointerConstructor );
   suite.addTestCaller( "testExpectFailureException", &TestCallerTest::testExpectFailureException );
   suite.addTestCaller( "testExpectException", &TestCallerTest::testExpectException );
+  suite.addTestCaller( "testExpectedExceptionNotCaught", &TestCallerTest::testExpectedExceptionNotCaught );
 
   return suite.takeSuite();
 }
@@ -58,6 +64,7 @@ TestCallerTest::setUp()
   m_tearDownCount = 0;
   m_testCount = 0;
   TrackedTestCase::setTracker( this );
+  m_result = new CppUnit::TestResult();
 }
 
 
@@ -65,6 +72,7 @@ void
 TestCallerTest::tearDown()
 {
   TrackedTestCase::removeTracker();
+  delete m_result;
 }
 
 
@@ -112,7 +120,7 @@ TestCallerTest::testBasicConstructor()
     checkTestName( caller.getName() );
     checkNothingButConstructorCalled();
 
-    delete caller.run();
+    caller.run( m_result );
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
@@ -131,7 +139,7 @@ TestCallerTest::testReferenceConstructor()
     checkTestName( caller.getName() );
     checkNothingButConstructorCalled();
 
-    delete caller.run();
+    caller.run( m_result );
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
@@ -150,7 +158,7 @@ TestCallerTest::testPointerConstructor()
     checkTestName( caller.getName() );
     checkNothingButConstructorCalled();
 
-    delete caller.run();
+    caller.run( m_result );
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
@@ -164,7 +172,8 @@ TestCallerTest::testExpectFailureException()
   CppUnit::TestCaller<ExceptionThrower,FailureException> caller( 
       m_testName,
       &ExceptionThrower::testThrowFailureException );
-  caller.run();
+  caller.run( m_result );
+  CPPUNIT_ASSERT( m_result->wasSuccessful() );
 }
 
 
@@ -174,7 +183,25 @@ TestCallerTest::testExpectException()
   CppUnit::TestCaller<ExceptionThrower,CppUnit::Exception> caller( 
       m_testName,
       &ExceptionThrower::testThrowException );
-  caller.run();
+  caller.run( m_result );
+  CPPUNIT_ASSERT( m_result->wasSuccessful() );
+}
+
+
+void 
+TestCallerTest::testExpectedExceptionNotCaught()
+{
+  CppUnit::TestCaller<ExceptionThrower,FailureException> caller( 
+      m_testName,
+      &ExceptionThrower::testThrowNothing );
+  caller.run( m_result );
+  CPPUNIT_ASSERT( !m_result->wasSuccessful() );
+  CPPUNIT_ASSERT_EQUAL( 1, int(m_result->failures().size()) );
+// Can differentiate throw 'new Exception' from throw 'Exception'
+// only by text message which is unsafe.
+// Possible solution: subclass Exception:
+//  CppUnit::Exception *e = m_result->failues()[0]->thrownException();
+//  CPPUNIT_ASSERT( e->isInstanceOf( FailureException::type() ) );
 }
 
 
