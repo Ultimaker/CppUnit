@@ -27,7 +27,8 @@ dist-hook:
 	cp -dpR $(top_srcdir)/include/msvc6 $(distdir)/include 
 	cp -dpR $(top_srcdir)/examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf
-	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'`
+	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'` \
+		INSTALL-WIN32.txt
 
 .PHONY: release snapshot rpm docs doc-dist
 
@@ -35,8 +36,10 @@ release:
 	rm -rf .deps */.deps
 	$(MAKE) distcheck
 
+# The 'date -I' may be a GNUism (sorry!).  
+# It means output an ISO-8601 compliant date/time string.
 snapshot:
-	$(MAKE) dist distdir=$(PACKAGE)`date +"%y%m%d"`
+	$(MAKE) dist distdir=$(PACKAGE)-`date -I`
 
 rpm: dist
 	rpm -ta $(PACKAGE)-$(VERSION).tar.gz
