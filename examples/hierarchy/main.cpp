@@ -18,27 +18,17 @@
 int 
 main(int argc, char** argv)
 {
-  CppUnit::TextTestResult res;
   CppUnit::TestSuite suite;
 
-  BoardGameTest<BoardGame>* bgt = new BoardGameTest<BoardGame>("BoardGameTest<BoardGame>");
-  ChessTest<Chess>* ct = new ChessTest<Chess>("ChessTest<Chess>");
+  BoardGameTest<BoardGame> bgt("BoardGameTest<BoardGame>");
+  ChessTest<Chess> ct("ChessTest<Chess>");
   
-  bgt->registerTests(&suite);
-  ct->registerTests(&suite);
+  bgt.registerTests(&suite);
+  ct.registerTests(&suite);
 
-  std::vector<CppUnit::Test*> tests = 
-      CppUnit::TestRegistry::getRegistry().getAllTests();
+  CppUnit::TextTestResult res;
 
-  for(std::vector<CppUnit::Test*>::iterator it=tests.begin();
-      it!=tests.end(); ++it) {
-    
-    (*it)->run(&res);
-
-  }
+  suite.run( &res );
   std::cout << res << std::endl;
-
-  delete ct;
-  delete bgt;
   return 0;
 }

@@ -5,7 +5,6 @@
 #include "cppunit/TestCase.h"
 #include "cppunit/Exception.h"
 #include "cppunit/TestResult.h"
-#include "cppunit/TestRegistry.h"
 #include "estring.h"
 
 namespace CppUnit {
@@ -118,23 +117,19 @@ std::string TestCase::notEqualsMessage (double expected, double actual)
 
 
 /** Constructs a test case.
- *  This TestCase is added to the global registry.
- *
  *  \param name the name of the TestCase.
  */
 TestCase::TestCase (std::string name) 
   : m_name (name) 
 {
-  TestRegistry::getRegistry().addTest(m_name, this);
 }
 
 /** Constructs a test case for a suite.
- *  This TestCase is \b not added to the global registry,
- *  it is supposed that it will be added to a suite.
- *
- */
+ *  This TestCase is intended for use by the TestCaller and should not
+ *  be used by a test case for which run() is called.
+ **/
 TestCase::TestCase () 
-  : m_name ("In a suite.") 
+  : m_name ("") 
 {
 }
 
