@@ -85,7 +85,7 @@ TargetPath=.\Debug\cppunitd.lib
 TargetName=cppunitd
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ENDIF 

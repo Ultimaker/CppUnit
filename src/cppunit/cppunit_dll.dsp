@@ -97,7 +97,7 @@ TargetPath=.\DebugDll\cppunitd_dll.dll
 TargetName=cppunitd_dll
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).dll	copy "$(TargetDir)\$(TargetName).lib" ..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ENDIF 

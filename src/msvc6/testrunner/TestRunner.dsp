@@ -135,7 +135,7 @@ TargetPath=.\ReleaseUnicode\testrunneru.dll
 TargetName=testrunneru
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(TargetDir)\$(TargetName).lib" ..\..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "TestRunner - Win32 Debug Unicode"
