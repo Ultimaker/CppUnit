@@ -1,5 +1,25 @@
 2001-07-05  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* include/cppunit/Portability.h: Remove definition of
+	CPPUNIT_USE_TYPEINFO.
+
+	* configure.in: Define USE_TYPEINFO_NAME in config.h.
+
+	* include/cppunit/config-msvc6.h (CPPUNIT_USE_TYPEINFO_NAME): 
+	* include/cppunit/config-bcb5.h (CPPUNIT_USE_TYPEINFO_NAME): Add
+	definition.
+
+	* include/cppunit/TestCaller.h: 
+	* include/cppunit/extensions/TypeInfoHelper.h: 
+	* include/cppunit/extensions/TestSuiteBuilder.h: 
+	* include/cppunit/extensions/HelperMacros.h: 
+	* src/cppunit/TypeInfoHelper.cpp: 
+	* src/cppunit/TestFactoryRegistry.cpp: 
+	* src/cppunit/TestCase.cpp (toString): 
+	Switch from CPPUNIT_USE_TYPEINFO to CPPUNIT_USE_TYPEINFO_NAME.
+
+	* src/cppunit/TestAssert.cpp: Remove include of estring.h.
+
 	* configure.in: Invoke AC_PROG_CC to workaround a automake
 	bug.  Move probes for CC/CXX ahead of the libtool macros.
 

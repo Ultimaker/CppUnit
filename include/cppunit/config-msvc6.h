@@ -24,6 +24,11 @@
 #define CPPUNIT_HAVE_RTTI  1 
 #endif
 
+/* Define to 1 to use type_info::name() for class names */
+#ifndef CPPUNIT_USE_TYPEINFO_NAME 
+#define CPPUNIT_USE_TYPEINFO_NAME  CPPUNIT_HAVE_RTTI 
+#endif
+
 /* Name of package */
 #ifndef CPPUNIT_PACKAGE 
 #define CPPUNIT_PACKAGE  "cppunit" 

@@ -122,12 +122,12 @@ std::string
 { 
   std::string className;
 
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
   const std::type_info& thisClass = typeid (*this);
   className = thisClass.name();
 #else
   className = "TestCase";
-#endif // CPPUNIT_USE_TYPEINFO
+#endif
 
   return className + "." + getName (); 
 }

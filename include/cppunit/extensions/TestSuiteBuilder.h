@@ -6,7 +6,7 @@
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCaller.h>
 
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
 #  include <cppunit/extensions/TypeInfoHelper.h>
 #endif
 
@@ -18,13 +18,13 @@ namespace CppUnit {
     public:
       typedef void (Fixture::*TestMethod)();
 
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
       TestSuiteBuilder() : 
           m_suite( new TestSuite( 
               TypeInfoHelper::getClassName( typeid(Fixture) )  ) )
       {
       }
-#endif  // CPPUNIT_USE_TYPEINFO
+#endif
 
       TestSuiteBuilder( TestSuite *suite ) : m_suite( suite ) 
       {

@@ -1,6 +1,6 @@
 #include <cppunit/Portability.h>
 
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
 
 #include <string>
 #include <cppunit/extensions/TypeInfoHelper.h>
@@ -27,4 +27,4 @@ TypeInfoHelper::getClassName( const std::type_info &info )
 
 } //  namespace CppUnit
 
-#endif // CPPUNIT_USE_TYPEINFO
+#endif 

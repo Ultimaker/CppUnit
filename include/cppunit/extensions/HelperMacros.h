@@ -14,11 +14,11 @@
 // The macro __CPPUNIT_SUITE_CTOR_ARGS expand to an expression used to construct
 // the TestSuiteBuilder with macro CPPUNIT_TEST_SUITE.
 //
-// The name of the suite is obtained using RTTI if CPPUNIT_USE_TYPEINFO is
-// defined, otherwise it is extracted from the macro parameter
+// The name of the suite is obtained using RTTI if CPPUNIT_USE_TYPEINFO_NAME 
+// is defined, otherwise it is extracted from the macro parameter
 //
 // This macro is for cppunit internal and should not be use otherwise.
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
 #  define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType )
 #else
 #  define __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType ) (std::string(#ATestCaseType))

@@ -1,10 +1,11 @@
 #include <cmath>
 
-#include "cppunit/TestAssert.h"
-#include "estring.h"
+#include <cppunit/TestAssert.h>
 #include <cppunit/NotEqualException.h>
 
+
 namespace CppUnit {
+
 
 /// Check for a failed general assertion 
 void TestAssert::assertImplementation (bool          condition,
@@ -44,4 +45,4 @@ void TestAssert::assertEquals (double        expected,
 }
 
 
-} // namespace TestAssert
+}

@@ -4,9 +4,9 @@
 #include <cppunit/TestCase.h>
 #include <cppunit/Exception.h>
 
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
 #  include <cppunit/extensions/TypeInfoHelper.h>
-#endif  // CPPUNIT_USE_TYPEINFO
+#endif
 
 namespace CppUnit {
 
@@ -23,13 +23,13 @@ namespace CppUnit {
   {
     static void expectedException()
     {
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
       std::string message( "Expected exception of type " );
       message += TypeInfoHelper::getClassName( typeid( ExceptionType ) );
       message += ", but got none";
 #else
       std::string message( "Expected exception but got none" );
-#endif  // CPPUNIT_USE_TYPEINFO
+#endif
       throw new Exception( message );
     }
   };

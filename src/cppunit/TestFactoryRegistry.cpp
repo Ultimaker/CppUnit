@@ -1,10 +1,10 @@
 #include <cppunit/Portability.h>
 #include <sstream>
 #include <utility>
-#include "cppunit/TestSuite.h"
-#include "cppunit/extensions/TestFactoryRegistry.h"
+#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
 
-#if CPPUNIT_USE_TYPEINFO
+#if CPPUNIT_USE_TYPEINFO_NAME
 #  include "cppunit/extensions/TypeInfoHelper.h"
 #endif
 

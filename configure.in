@@ -79,12 +79,10 @@ BB_ENABLE_DOXYGEN
 AC_CXX_RTTI
 AC_CXX_STRING_COMPARE_STRING_FIRST
 
-if test "$ac_cv_cxx_rtti" = yes; then
-    CPPUNIT_USE_TYPEINFO=1
-else
-    CPPUNIT_USE_TYPEINFO=0
-fi
-AC_SUBST(CPPUNIT_USE_TYPEINFO)
+# TODO: add --disable-typeinfo-name to turn this off at
+# configure time
+AC_DEFINE(USE_TYPEINFO_NAME,[CPPUNIT_HAVE_RTTI],
+[Define to 1 to use type_info::name() for class names])
 
 
 AC_OUTPUT([
