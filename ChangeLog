@@ -1,151 +1,199 @@
+2001-05-28  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* ChangeLog: Reformat all entries to start with <TAB>.  See
+	<http://www.red-bean.com/cvs2cl/changelogs.html> for change log
+	format.
+
+	* doc/cookbook.html: Update all code examples, except for TestRunner
+	section.
+
 2001-05-23 Baptiste Lepilleur <gaiacrtn@free.fr>
-  * Updated CU_TEST_SUITE macro documentation. It is now stated explicitly 
-    that you do not need to specify template parameter as macro argument. 
-    The documentation example has been updated to reflect that.
+
+	* Updated CU_TEST_SUITE macro documentation. It is now stated
+	explicitly that you do not need to specify template parameter as
+	macro argument.  The documentation example has been updated to
+	reflect that.
 
 2001-05-23 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* autogen.sh: added '--add-missing' option to automake.
 	* autogen.sh: added '--force' option to libtoolize and removed 
 	  '--copy'.
 	* config: removed generated files from CVS.
 
 2001-05-20 Baptiste Lepilleur <gaiacrtn@free.fr>
-  * Fixed bug #424320 (VC++ TestRunner): access violation caused by NULL pointer in history list. NULL pointer are not added to the history anymore.
+
+	* Fixed bug #424320 (VC++ TestRunner): access violation caused by
+	NULL pointer in history list. NULL pointer are not added to the
+	history anymore.
 
 2001-05-19 Baptiste Lepilleur <gaiacrtn@free.fr>
-  * Added some items to the TODO list for VC++ TestRunner.
-  * "Debug" configuration is now the default configuration in VC++ project.
-  * Modified sort order in the test browser of VC++ TestRunner so that tests are in the same order as in the suite. Suites
-    are still sorted alphabetically.
-  * Merged Steve M. Robbins patch to replace assertImplementation with assert in hierarchy example.
-  * Added a TextTestRunner to runner tests. It is based on Michael Feather's version, but have been rewriten.
-  * Removed traces that printed the test name in TextTestResult while running.
-  * Added the test name to error and failure report in TextTestResult.
-  * Updated hierarchy example to use TextTestRunner.
+
+	* Added some items to the TODO list for VC++ TestRunner.
+  
+	* "Debug" configuration is now the default configuration in VC++
+	project.
+  
+	* Modified sort order in the test browser of VC++ TestRunner so
+	that tests are in the same order as in the suite. Suites are still
+	sorted alphabetically.
+  
+	* Merged Steve M. Robbins patch to replace assertImplementation
+	with assert in hierarchy example.
+  
+	* Added a TextTestRunner to runner tests. It is based on Michael
+	Feather's version, but have been rewriten.
+  
+	* Removed traces that printed the test name in TextTestResult
+	while running.
+  
+	* Added the test name to error and failure report in
+	TextTestResult.
+  
+	* Updated hierarchy example to use TextTestRunner.
 
 2001-05-18 Baptiste Lepilleur <gaiacrtn@free.fr>
-  * Symbol CU_USE_TYPEINFO must be defined instead of USE_TYPEINFO to
-    compile RTTI.
-  * Added back default constructor to TestSuiteBuilder which use RTTI.
-    It is available only if CU_USE_TYPEINFO is defined.
-  * Moved TypeInfoHelper.h from src/cppunit to include/cppunit/extensions.
-  * Macro CU_TEST_SUITE in HelperMacros.h now use TestSuiteBuilder default
-    constructor if CU_USE_TYPEINFO is defined, otherwise it use the
-    type name given to the CU_TEST_SUITE macro.
-  * TestFactoryRegistry::registerFactory(factory) now generate a dummy
-    name based on a serial number instead of using RTTI. The macro
-    CU_TEST_SUITE_REGISTRATION and class AutoRegisterSuite can now
-    when CU_USE_TYPEINFO is not defined.
-  * Added a new Configuration named "Debug Without CU_USE_TYPEINFO" to 
-    msvc6 projects. The flag CU_USE_TYPEINFO is not defined in that 
-    configuration.
+
+	* Symbol CU_USE_TYPEINFO must be defined instead of USE_TYPEINFO
+	to compile RTTI.
+  
+	* Added back default constructor to TestSuiteBuilder which use
+	RTTI.  It is available only if CU_USE_TYPEINFO is defined.
+  
+	* Moved TypeInfoHelper.h from src/cppunit to
+	include/cppunit/extensions.
+  
+	* Macro CU_TEST_SUITE in HelperMacros.h now use TestSuiteBuilder
+	default constructor if CU_USE_TYPEINFO is defined, otherwise it
+	use the type name given to the CU_TEST_SUITE macro.
+  
+	* TestFactoryRegistry::registerFactory(factory) now generate a
+	dummy name based on a serial number instead of using RTTI. The
+	macro CU_TEST_SUITE_REGISTRATION and class AutoRegisterSuite can
+	now when CU_USE_TYPEINFO is not defined.
+  
+	* Added a new Configuration named "Debug Without CU_USE_TYPEINFO"
+	to msvc6 projects. The flag CU_USE_TYPEINFO is not defined in that
+	configuration.
 
 2001-05-17  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
 	* Makefile.am (dist-hook): Copy files relative to $(top_srcdir).
+
 	* doc/Makefile.am: Generated doc files depend on Doxyfile.
+
 	* doc/Doxyfile.in: Use autoconf substitutions in file names.
+
 	* examples/hierarchy/Makefile.am (check_PROGRAMS): Build hierarchy
           with "make check", not "make all".
+
 	* examples/hierarchy/Makefile.am (INCLUDES): 
+
 	* src/cppunit/Makefile.am (INCLUDES): Search in 
 	  $(top_srcdir)/include.
+
 	* Added .cvsignore files.
 
 2001-05-16 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
-	* Merged Debian packaging support files by Christian Leutloff 
-	  from debian package version 1.5.4-2.
-	  Added make target 'debian' for debian package creation.
+
+	* Merged Debian packaging support files by Christian Leutloff from
+	debian package version 1.5.4-2.  Added make target 'debian' for
+	debian package creation.
 	
 2001-05-09 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* Release as 1.5.5.
-	* Finished CppUnitW 1.2 merge. 
-	  Removed RTTI depency from TestSuite.
-	  Added TestCaller constructor for calling methods in existing
-	  TestCases.
+
+	* Finished CppUnitW 1.2 merge.  Removed RTTI depency from
+	TestSuite.  Added TestCaller constructor for calling methods in
+	existing TestCases.
 	
 2001-04-29 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* Merged Baptiste Lepilleurs CppUnitW 1.2. Some differences:
-	  TypeInfo stuff (in TestSuite) compiled in only if USE_TYPEINFO 
-	  is set. 
-	  TestSuite.getTests now returns a const ref instead of taking a 
-	  ref as parameter.
-	  Removed auto_ptr stuff from TestFactoryRegistry: 
-	  auto_ptr cannot be used in containers.
+	TypeInfo stuff (in TestSuite) compiled in only if USE_TYPEINFO is
+	set.  TestSuite.getTests now returns a const ref instead of taking
+	a ref as parameter.  Removed auto_ptr stuff from
+	TestFactoryRegistry: auto_ptr cannot be used in containers.
 	
 2001-04-28 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* Merged MSVC++ specific TestRunner and example adapted from
-	  Micheal Feathers version by Baptiste Lepilleur.
+	Micheal Feathers version by Baptiste Lepilleur.
+
 	* Moved cppunit subdir into src.
 	
 2001-04-24 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
-	* Merged Baptiste Lepilleurs patch for TestRegistry: 
-	  now TestCases do not automatically register with the Registry 
-	  anymore.
 
-	* Added extension headers from Micheal Feathers port to 
-	  include/cppunit/extensions.
+	* Merged Baptiste Lepilleurs patch for TestRegistry: now TestCases
+	do not automatically register with the Registry anymore.
+
+	* Added extension headers from Micheal Feathers port to
+	include/cppunit/extensions.
 	
 2001-04-19 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
-	* Added MSVC++ workspace and project files, submitted by 
-	  Baptiste Lepilleur.
+
+	* Added MSVC++ workspace and project files, submitted by Baptiste
+	Lepilleur.
 	
 2001-04-15 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
-	* Moved public headers from cppunit into new subdir include/cppunit.
-	  This should make more clear which headers are used internally only
-	  (like estring.h).
+
+	* Moved public headers from cppunit into new subdir
+	include/cppunit.  This should make more clear which headers are
+	used internally only (like estring.h).
 	
-	* Moved autoconf auxiliary stuff into new subdir config, to make the
-	  top dir less crowded.
+	* Moved autoconf auxiliary stuff into new subdir config, to make
+	the top dir less crowded.
 
 	* Prefixed std:: to cerr, cout and endl.
 	
 2001-04-14 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
 	* Release as 1.5.4
 	
 	* Added support for RPM generation.
 	
-	* Added autoconf support for Doxygen document generation: 
-	  Doxygen and GraphViz dot are automatically detected and LaTeX and
-	  HTML can be switch on or off.
+	* Added autoconf support for Doxygen document generation: Doxygen
+	and GraphViz dot are automatically detected and LaTeX and HTML can
+	be switch on or off.
 	
-	* cppunit/TextTestResult.cpp: changed cout to stream. 
-	  Fixes bug #232636
+	* cppunit/TextTestResult.cpp: changed cout to stream.  Fixes bug
+	#232636
 
-	* cppunit/TextTestReulst.cpp: add '#include <iostream>'.
-	  Fixes bug #223290
+	* cppunit/TextTestReulst.cpp: add '#include <iostream>'.  Fixes
+	bug #223290
 	
-	* cppunit/*.cpp: removed bogus 'inline' specifiers.
-	  Fixes bug #224542 and #223291.
+	* cppunit/*.cpp: removed bogus 'inline' specifiers.  Fixes bug
+	#224542 and #223291.
 
-	* doc/header.html: corrected link to CppUnit project page
-	  Fixes bug #414073
+	* doc/header.html: corrected link to CppUnit project page Fixes
+	bug #414073
 
-	* cppunit/*.cpp, examples/hierarchy/main.cpp: removed all 
-	  'using namespace ...' occurences. 
+	* cppunit/*.cpp, examples/hierarchy/main.cpp: removed all 'using
+	namespace ...' occurences.
 	
 2001-01-31 Tim Jansen <timj@systembureau.com>
 
-	* cppunit/TestCase.cpp, cppunit/TestCase.h, cppunit/TestSuite.h, 
-	  cppunit/TestSuite.cpp: applied patch #402271 by bwithrow. 
-	  Fixes bug #220207
+	* cppunit/TestCase.cpp, cppunit/TestCase.h, cppunit/TestSuite.h,
+	cppunit/TestSuite.cpp: applied patch #402271 by bwithrow.  Fixes
+	bug #220207
 
-	* cppunit/TestSuite.cpp (deleteContents): clear vector after contents 
-	  have been deleted (so there are no invalid pointers in the vector)
-	  Patch #403540 / #403542
+	* cppunit/TestSuite.cpp (deleteContents): clear vector after
+	contents have been deleted (so there are no invalid pointers in
+	the vector) Patch #403540 / #403542
 	
-	* cppunit/TestCaller.h: create Fixture with empty constructor so that 
-	  only the TestCaller but not the Fixture instance is registered in
-	  the TestRegistry
-	  Patch #403541 / #403542
+	* cppunit/TestCaller.h: create Fixture with empty constructor so
+	that only the TestCaller but not the Fixture instance is
+	registered in the TestRegistry Patch #403541 / #403542
 
-	* examples/hierarchy/BoardGameTest.h, examples/hierarchy/ChessTest.h,
- 	  examples/hierarchy/main.cpp: initialize example TestCases with 
-          TestSuite so that the TestCallers are registered in the TestRegistry
-	  Patch #403542. Fixes bug #415249
+	* examples/hierarchy/BoardGameTest.h,
+	examples/hierarchy/ChessTest.h, examples/hierarchy/main.cpp:
+	initialize example TestCases with TestSuite so that the
+	TestCallers are registered in the TestRegistry Patch
+	#403542. Fixes bug #415249
  
-	* cppunit/TestCaller.h, cppunit/TestCase.cpp, cppunit/TestCase.h: 
- 	  changed documentation; made hopefully clearer which constructor 
- 	  registers the instance in the TestRegistry; corrected syntax in code
- 	  example
-	  Patch #403542.
+	* cppunit/TestCaller.h, cppunit/TestCase.cpp, cppunit/TestCase.h:
+	changed documentation; made hopefully clearer which constructor
+	registers the instance in the TestRegistry; corrected syntax in
+	code example Patch #403542.
 

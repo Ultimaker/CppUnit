@@ -8,7 +8,12 @@
     <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
   </P>
   <H1>CppUnit Cookbook</H1>
-  <P>Here is a short cookbook to help you get started. </P>
+  <P>
+    Here is a short cookbook to help you get started.
+    Note that all CppUnit types are defined in the CppUnit
+    namespace.  For brevity, the prefix <b>CppUnit::</b>
+    is omitted in the following examples.
+  </P>
   <H2>Simple Test Case</H2>
   <P>
     You want to know whether your code is working. 
@@ -90,9 +95,7 @@
         friend bool operator== (const Complex&amp; a, const Complex&amp; b);
         double      real, imaginary;
         public:
-                    Complex ()  {
-                    real = imaginary = 0.0;
-                    }
+                    Complex ( double r, double i = 0 ) : real(r),imaginary(i) {}
         };
 
         bool operator== (const Complex&amp; a, const Complex&amp; b)
@@ -153,7 +156,7 @@
 <TT><PRE>&#9;class ComplexNumberTest : public TestCase  {
 &#9;private:
         Complex &#9;*m_10_1, *m_1_1; *m_11_2;
-&#9;protected:
+&#9;public:
 &#9;void&#9;&#9;setUp ()  {
 &#9;&#9;&#9;    m_10_1 = new Complex (10, 1);
 &#9;&#9;&#9;    m_1_1  = new Complex (1, 1);
@@ -170,35 +173,38 @@
 &#9;&#9;&#9;    assert (*m_10_1 + *m_1_1 == *m_11_2);
                  &#9;}
 &#9;};</PRE>
-</TT><P>Create and run instances for each test case like this:</P>
-<TT><PRE>&#9;test = new TestCaller&lt;ComplexNumberTest&gt;("testEquality", ComplexNumberTest::testEquality);
-        test->run (); </PRE>
-</TT><P>The second argument to the test caller constructor is the address of a method on ComplexNumberTest. When the test caller is run, that specific method will be run.</P>
-<P>Once you have several tests, organize them into a suite.</P>
+</TT><P>One may create and run instances for each test case like this:</P>
+<TT><PRE>&#9;TestCaller&lt;ComplexNumberTest&gt; test("testEquality", &amp;ComplexNumberTest::testEquality);
+        test.run (); </PRE>
+</TT><P>The second argument to the test caller constructor is the address of a method on ComplexNumberTest. When the test caller is run, that specific method will be run.  This is not a useful thing to do, however, as no diagnostics will be
+    displayed.  One will normally use a TestRunner (see below) to display
+    the results.
+    </P>
+
+    <P>Once you have several tests, organize them into a suite.</P>
 <P>&nbsp;</P>
 <H2>Suite</H2>
 <P>How do you set up your tests so that you can run them all at once?<BR>
 <BR>
-CppUnit provides a TestSuite class that runs any number of TestCases together. For example, to run a single test case, you execute:</P>
-<TT><PRE>&#9;TestResult result;
-&#9;TestCaller&lt;ComplexNumberTest&gt; test ("testAddition", ComplexNumberTest::testAddition);
-&#9;Test.run (&amp;result);</PRE>
-</TT><P>&nbsp;</P>
-<P>To create a suite of two or more tests, you do the following:</P>
+CppUnit provides a TestSuite class that runs any number of TestCases together.
+    We saw, above, how to run a single test case.
+To create a suite of two or more tests, you do the following:</P>
 <TT><PRE>&#9;TestSuite suite;
 &#9;TestResult result;
-&#9;suite.addTest (new TestCaller&lt;ComplexNumberTest&gt;("testEquality", ComplexNumberTest::testEquality));
-&#9;suite.addTest (new TestCaller&lt;ComplexNumberTest&gt;("testAddition", ComplexNumberTest::testAddition));
+&#9;suite.addTest (new TestCaller&lt;ComplexNumberTest&gt;("testEquality", &amp;ComplexNumberTest::testEquality));
+&#9;suite.addTest (new TestCaller&lt;ComplexNumberTest&gt;("testAddition", &amp;ComplexNumberTest::testAddition));
 &#9;suite.run (&amp;result);
            </PRE>
 </TT><P>TestSuites don't only have to contain callers for TestCases. They can contain any object that implements the Test interface. For example, you can create a TestSuite in your code and I can create one in mine, and we can run them together by creating a TestSuite that contains both: </P>
 <TT><PRE>&#9;TestSuite suite;
-&#9;suite.addTest (ComplexNumberTest.suite ());
-&#9;suite.addTest (SurrealNumberTest.suite ());
+&#9;TestResult result;
+&#9;suite.addTest (ComplexNumberTest::suite ());
+&#9;suite.addTest (SurrealNumberTest::suite ());
 &#9;suite.run (&amp;result);</PRE>
 </TT><P>&nbsp;</P>
 <H2>TestRunner</H2>
-<P>How do you run your tests and collect their results? </P>
+<P><b>FIXME:</b> check over; MSVC6 only.
+How do you run your tests and collect their results? </P>
 <P>Once you have a test suite, you'll want to run it. CppUnit provides tools to define the suite to be run and to display its results. You make your suite accessible to a TestRunner program with a static method <I>suite</I> that returns a test suite. <BR>
 For example, to make a ComplexNumberTest suite available to a TestRunner, add the following code to ComplexNumberTest: </P>
 <TT><PRE>&#9;public: static Test *suite ()  {
