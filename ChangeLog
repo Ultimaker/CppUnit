@@ -1,3 +1,7 @@
+2002-03-26 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* src/msvc6/testpluginrunner/TestPlugInRunner.dsp: fixed release configuration.
+
 2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/makefile.am: removed TestRegistry.h
