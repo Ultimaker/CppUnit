@@ -1,13 +1,36 @@
 #include <cppunit/Portability.h>
+#include <cppunit/Exception.h>
+#include <cppunit/Protector.h>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestResult.h>
 #include <typeinfo>
 #include <stdexcept>
 
-#include <cppunit/TestCase.h>
-#include <cppunit/Exception.h>
-#include <cppunit/TestResult.h>
-
 
 CPPUNIT_NS_BEGIN
+
+class TestCaseMethodFunctor : public Functor
+{
+public:
+  typedef void (TestCase::*Method)();
+
+  TestCaseMethodFunctor( TestCase *target,
+                         Method method )
+     : m_target( target )
+     , m_method( method )
+  {
+  }
+
+  bool operator()() const
+  {
+    (m_target->*m_method)();
+    return true;
+  }
+
+private:
+  TestCase *m_target;
+  Method m_method;
+};
 
 
 /** Constructs a test case.
@@ -24,7 +47,7 @@ void
 TestCase::run( TestResult *result )
 {
   result->startTest(this);
-
+/*
   try {
     setUp();
 
@@ -54,7 +77,19 @@ TestCase::run( TestResult *result )
   catch (...) {
     result->addError( this, new Exception( Message( "setUp() failed" ) ) );
   }
-  
+*/
+  if ( result->protect( TestCaseMethodFunctor( this, &TestCase::setUp ),
+                        this,
+                       "setUp() failed" ) )
+  {
+    result->protect( TestCaseMethodFunctor( this, &TestCase::runTest ),
+                     this );
+  }
+
+  result->protect( TestCaseMethodFunctor( this, &TestCase::tearDown ),
+                   this,
+                   "tearDown() failed" );
+
   result->endTest( this );
 }
 

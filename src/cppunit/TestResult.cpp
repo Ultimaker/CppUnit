@@ -3,6 +3,9 @@
 #include <cppunit/TestListener.h>
 #include <cppunit/TestResult.h>
 #include <algorithm>
+#include "DefaultProtector.h"
+#include "ProtectorChain.h"
+#include "ProtectorContext.h"
 
 CPPUNIT_NS_BEGIN
 
@@ -10,7 +13,9 @@ CPPUNIT_NS_BEGIN
 /// Construct a TestResult
 TestResult::TestResult( SynchronizationObject *syncObject )
     : SynchronizedObject( syncObject )
+    , m_protectorChain( new ProtectorChain() )
 { 
+  m_protectorChain->push( new DefaultProtector() );
   reset();
 }
 
@@ -18,6 +23,7 @@ TestResult::TestResult( SynchronizationObject *syncObject )
 /// Destroys a test result
 TestResult::~TestResult()
 {
+  delete m_protectorChain;
 }
 
 
@@ -181,6 +187,16 @@ TestResult::endTestRun( Test *test )
         it != m_listeners.end(); 
         ++it )
     (*it)->endTestRun( test, this );
+}
+
+
+bool 
+TestResult::protect( const Functor &functor,
+                     Test *test,
+                     const std::string &shortDescription )
+{
+  ProtectorContext context( test, this, shortDescription );
+  return m_protectorChain->protect( functor, context );
 }
 
 

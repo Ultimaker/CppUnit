@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.36 2002-07-03 07:02:49 blep Exp $
+# $Id: Makefile.am,v 1.37 2002-07-16 22:59:22 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -13,12 +13,17 @@ libcppunit_la_SOURCES = \
   BeOsDynamicLibraryManager.cpp \
   BriefTestProgressListener.cpp \
   CompilerOutputter.cpp \
+  DefaultProtector.h \
+  DefaultProtector.cpp \
   DynamicLibraryManager.cpp \
   DynamicLibraryManagerException.cpp \
   Exception.cpp \
   Message.cpp \
   RepeatedTest.cpp \
   PlugInManager.cpp \
+  ProtectorChain.h \
+  ProtectorContext.h \
+  ProtectorChain.cpp \
   SourceLine.cpp \
   StringTools.cpp \
   SynchronizedObject.cpp \

@@ -13,6 +13,7 @@ libcppunitinclude_HEADERS =  \
 	Message.h \
 	Outputter.h \
 	Portability.h \
+	Protector.h \
 	SourceLine.h \
 	SynchronizedObject.h \
 	Test.h \

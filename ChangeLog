@@ -1,3 +1,20 @@
+2002-07-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/Protector.h:
+  * src/cppunit/Protector.cpp: added. Base class for protectors.
+
+  * src/cppunit/DefaultProtector.h:
+  * src/cppunit/DefaultProtector.cpp: added. Implementation of the default
+    protector used to catch std::exception and any other exception.
+
+  * src/cppunit/ProtectorChain.h:
+  * src/cppunit/ProtectorChain.cpp: added. Implementation of a chain of
+    protector, allowing catching custom exception and implementation of
+    expected exception.
+
+  * src/cppunit/TestCase.cpp:
+  * src/cppunit/TestResult.cpp: updated to use protector.
+
 2002-07-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * CodingGuideLines.txt: added. CppUnit's coding guidelines for portability.

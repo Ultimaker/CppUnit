@@ -15,9 +15,12 @@ CPPUNIT_NS_BEGIN
 
 
 class Exception;
+class Functor;
+class ProtectorChain;
 class Test;
 class TestFailure;
 class TestListener;
+
 
 #if CPPUNIT_NEED_DLL_DECL
 //  template class CPPUNIT_API std::deque<TestListener *>;
@@ -67,6 +70,10 @@ public:
 
   virtual void runTest( Test *test );
 
+  virtual bool protect( const Functor &functor,
+                        Test *test,
+                        const std::string &shortDescription = std::string("") );
+
 protected:
   void addFailure( const TestFailure &failure );
 
@@ -76,6 +83,7 @@ protected:
 protected:
   typedef CppUnitDeque<TestListener *> TestListeners;
   TestListeners m_listeners;
+  ProtectorChain *m_protectorChain;
   bool m_stop;
 
 private: 
