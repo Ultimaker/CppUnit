@@ -8,10 +8,10 @@ CPPUNIT_NS_BEGIN
 template<class SequenceType, class ValueType>
 void
 removeFromSequence( SequenceType &sequence, 
-                    const ItemType &valueToRemove )
+                    const ValueType &valueToRemove )
 {
-   Sequence::iterator it = sequence.begin();
-   Sequence::iterator itEnd = sequence.end();
+   SequenceType::iterator it = sequence.begin();
+   SequenceType::iterator itEnd = sequence.end();
    while ( it != itEnd )
    {
       if ( *it == valueToRemove )
