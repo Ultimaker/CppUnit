@@ -7,5 +7,5 @@ bin_PROGRAMS=DllPlugInTester
 DllPlugInTester_SOURCES= DllPlugInTester.cpp
 
 DllPlugInTester_LDADD= \
-  $(top_builddir)/src/cppunit/libcppunit.la ld.so
+  $(top_builddir)/src/cppunit/libcppunit.la ld
 
