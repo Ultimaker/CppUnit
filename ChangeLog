@@ -1,3 +1,7 @@
+2002-09-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/ui/text/TextTestRunner.h: fixed header guards.
+
 2002-08-29 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/TestResult.h:
