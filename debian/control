@@ -7,7 +7,6 @@ Standards-Version: 3.5.2
 
 Package: cppunit
 Architecture: any
-Depends: ${shlibs:Depends}
 Description: The Unit Testing Library for C++
  CppUnit is a simple Testing Framework for C++ similar to xUnit or
  JUnit. You can get the information about Testing Framework on the

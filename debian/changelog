@@ -6,7 +6,7 @@ cppunit (1.6.1-1) unstable; urgency=low
   * Do not supply shared library.
   * Remove cppunit-config.1; upstream now installs manpage.
 
- -- Steve M. Robbins <smr@debian.org>  Sat, 29 Sep 2001 15:59:22 -0400
+ -- Steve M. Robbins <smr@debian.org>  Sun, 30 Sep 2001 23:52:05 -0400
 
 cppunit (1.5.4-2) unstable; urgency=low
 
