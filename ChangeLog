@@ -1,3 +1,10 @@
+2001-06-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* autogen.sh: Stop when tool fails.  Try /usr/local/share/aclocal
+	only if aclocal fails without it.
+
+	* README.CVS: New.
+
 2001-06-18  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* include/cppunit/Portability.h (CPPUNIT_USE_TYPEINFO):
