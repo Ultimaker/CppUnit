@@ -654,7 +654,7 @@ void
 TestRunnerDlg::displayFailureDetailsFor( unsigned int failureIndex )
 {
   CString details;
-  if ( failureIndex < m_result->failures().size() )
+  if ( m_result  &&  failureIndex < m_result->failures().size() )
     details = m_result->failures()[ failureIndex ]->thrownException()->what();
 
   details.Replace( _T("\n"), _T("\r\n") );
