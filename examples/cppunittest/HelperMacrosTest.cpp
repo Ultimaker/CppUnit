@@ -78,7 +78,9 @@ HelperMacrosTest::~HelperMacrosTest()
 void 
 HelperMacrosTest::setUp()
 {
+  m_testListener = new MockTestListener( "mock-testlistener" );
   m_result = new CppUnit::TestResult();
+  m_result->addListener( m_testListener );
 }
 
 
@@ -86,6 +88,7 @@ void
 HelperMacrosTest::tearDown()
 {
   delete m_result;
+  delete m_testListener;
 }
 
 
@@ -94,9 +97,11 @@ HelperMacrosTest::testNoSubclassing()
 {
   std::auto_ptr<CppUnit::TestSuite> suite( BaseTestCase::suite() );
   CPPUNIT_ASSERT_EQUAL( 1, suite->countTestCases() );
+  m_testListener->setExpectedStartTestCall( 1 );
+  m_testListener->setExpectNoFailure();
 
   suite->run( m_result );
-  checkTestResult( 0,0,1 );
+  m_testListener->verify();
 }
 
 
@@ -105,9 +110,11 @@ HelperMacrosTest::testSubclassing()
 {
   std::auto_ptr<CppUnit::TestSuite> suite( SubclassedTestCase::suite() );
   CPPUNIT_ASSERT_EQUAL( 2, suite->countTestCases() );
+  m_testListener->setExpectedStartTestCall( 2 );
+  m_testListener->setExpectedAddFailureCall( 1 );
 
   suite->run( m_result );
-  checkTestResult( 1,0,2 );
+  m_testListener->verify();
 }
 
 
@@ -115,8 +122,11 @@ void
 HelperMacrosTest::testFail()
 {
   std::auto_ptr<CppUnit::TestSuite> suite( FailTestCase::suite() );
+  m_testListener->setExpectedStartTestCall( 1 );
+  m_testListener->setExpectNoFailure();
+
   suite->run( m_result );
-  checkTestResult( 0,0,1 );
+  m_testListener->verify();
 }
 
 
@@ -124,8 +134,11 @@ void
 HelperMacrosTest::testFailToFail()
 {
   std::auto_ptr<CppUnit::TestSuite> suite( FailToFailTestCase::suite() );
+  m_testListener->setExpectedStartTestCall( 1 );
+  m_testListener->setExpectedAddFailureCall( 1 );
+
   suite->run( m_result );
-  checkTestResult( 1,0,1 );
+  m_testListener->verify();
 }
 
 
@@ -133,8 +146,11 @@ void
 HelperMacrosTest::testException()
 {
   std::auto_ptr<CppUnit::TestSuite> suite( ExceptionTestCase::suite() );
+  m_testListener->setExpectedStartTestCall( 1 );
+  m_testListener->setExpectNoFailure();
+  
   suite->run( m_result );
-  checkTestResult( 0,0,1 );
+  m_testListener->verify();
 }
 
 
@@ -142,17 +158,9 @@ void
 HelperMacrosTest::testExceptionNotCaught()
 {
   std::auto_ptr<CppUnit::TestSuite> suite( ExceptionNotCaughtTestCase::suite() );
+  m_testListener->setExpectedStartTestCall( 1 );
+  m_testListener->setExpectedAddFailureCall( 1 );
+
   suite->run( m_result );
-  checkTestResult( 1,0,1 );
-}
-
-
-void 
-HelperMacrosTest::checkTestResult( int expectedFailures, 
-                                   int expectedErrors, 
-                                   int expectedTestsRun )
-{
-  CPPUNIT_ASSERT_EQUAL( expectedFailures, m_result->testFailures() );
-  CPPUNIT_ASSERT_EQUAL( expectedErrors, m_result->testErrors() );
-  CPPUNIT_ASSERT_EQUAL( expectedTestsRun, m_result->runTests() );
+  m_testListener->verify();
 }

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.14 2001-10-07 19:36:47 blep Exp $
+# $Id: Makefile.am,v 1.15 2002-02-28 10:57:20 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -10,19 +10,23 @@ lib_LTLIBRARIES = libcppunit.la
 libcppunit_la_SOURCES = \
   Asserter.cpp \
   CompilerOutputter.cpp \
+  Exception.cpp \
   NotEqualException.cpp \
   RepeatedTest.cpp \
   SourceLine.cpp \
   TestAssert.cpp \
   TestCase.cpp \
-  TestSuite.cpp \
-  TestResult.cpp \
+  TestFactoryRegistry.cpp \
   TestFailure.cpp \
+  TestResult.cpp \
   TestRegistry.cpp \
-  Exception.cpp \
+  TestResultCollector.cpp \
+  TestSucessListener.cpp \
+  TestSuite.cpp \
+  TextOutputter.cpp \
+  TextTestProgressListener.cpp \
   TextTestResult.cpp \
   TextTestRunner.cpp \
-  TestFactoryRegistry.cpp \
   TypeInfoHelper.cpp \
   XmlOutputter.cpp
 

@@ -1,6 +1,7 @@
 #include "CoreSuite.h"
+#include "FailureException.h"
+#include "MockTestCase.h"
 #include "TestCaseTest.h"
-#include "FailingTestCase.h"
 #include <cppunit/TestResult.h>
 
 /*
@@ -25,7 +26,9 @@ TestCaseTest::~TestCaseTest()
 void 
 TestCaseTest::setUp()
 {
+  m_testListener = new MockTestListener( "mock-testlistener" );
   m_result = new CppUnit::TestResult();
+  m_result->addListener( m_testListener );
 }
 
 
@@ -33,6 +36,7 @@ void
 TestCaseTest::tearDown()
 {
   delete m_result;
+  delete m_testListener;
 }
 
 
@@ -78,13 +82,24 @@ TestCaseTest::checkFailure( bool failSetUp,
 {
   try
   {
-    FailingTestCase test( failSetUp, failRunTest, failTearDown );
-    test.run( m_result );
-    test.verify( !failSetUp, !failSetUp );
+    MockTestCase testCase( "mock-test" );
+    if ( failSetUp )
+      testCase.makeSetUpThrow();
+    if ( failRunTest )
+      testCase.makeRunTestThrow();
+    if ( failTearDown )
+      testCase.makeTearDownThrow();
+    testCase.setExpectedSetUpCall( 1 );
+    testCase.setExpectedRunTestCall( failSetUp ? 0 : 1 );
+    testCase.setExpectedTearDownCall( failSetUp ? 0 : 1 );
+    
+    testCase.run( m_result );
+
+    testCase.verify();
   }
   catch ( FailureException & )
   {
-    CPPUNIT_ASSERT_MESSAGE( "exception should have been catched", false );
+    CPPUNIT_ASSERT_MESSAGE( "exception should have been caught", false );
   }
 }
 
@@ -117,34 +132,27 @@ TestCaseTest::testConstructorWithName()
 void 
 TestCaseTest::testDefaultRun()
 {
-  CppUnit::TestCase test;
-  std::auto_ptr<CppUnit::TestResult> result( test.run() );
+  MockTestCase test( "mocktest" );
+  test.setExpectedSetUpCall();
+  test.setExpectedRunTestCall();
+  test.setExpectedTearDownCall();
 
-  checkResult( 0, 0, 1, result.get() );
+  std::auto_ptr<CppUnit::TestResult> result( test.run() );
+  test.verify();
 }
 
 
 void 
 TestCaseTest::testTwoRun()
 {
-  FailingTestCase test1( false, true, false );
+  MockTestCase test1( "mocktest1" );
+  test1.makeRunTestThrow();
+  m_testListener->setExpectedStartTestCall( 2 );
+  m_testListener->setExpectedAddFailureCall( 2 );
+  m_testListener->setExpectedEndTestCall( 2 );
+
   test1.run( m_result );
   test1.run( m_result );
-  
-  FailingTestCase test2( false, false, false );
-  test2.run( m_result );
 
-  checkResult( 2, 0, 1, m_result );
-}
-
-
-void 
-TestCaseTest::checkResult( int failures,
-                           int errors,
-                           int testsRun,
-                           CppUnit::TestResult *result )
-{
-  CPPUNIT_ASSERT_EQUAL( testsRun, result->runTests() );
-  CPPUNIT_ASSERT_EQUAL( errors, result->testErrors() );
-  CPPUNIT_ASSERT_EQUAL( failures, result->testFailures() );
+  m_testListener->verify();
 }

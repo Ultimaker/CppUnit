@@ -1,8 +1,10 @@
-
 #include <iostream>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TextTestRunner.h>
 #include <cppunit/TextTestResult.h>
+#include <cppunit/TextOutputter.h>
+#include <cppunit/TextTestProgressListener.h>
+#include <cppunit/TestResult.h>
 
 namespace CppUnit {
 
@@ -16,16 +18,22 @@ namespace CppUnit {
  *               is specified then a default TextTestResult is
  *               instanciated.
  */
-TextTestRunner::TextTestRunner( TextTestResult *result ) :
-    m_result( result == 0 ? new TextTestResult() :
-                            result ),
-    m_suite( new TestSuite( "All Tests" ) )
+TextTestRunner::TextTestRunner( Outputter *outputter ) 
+    : m_outputter( outputter )
+    , m_suite( new TestSuite( "All Tests" ) )
+    , m_result( new TestResultCollector() )
+    , m_eventManager( new TestResult() )
 {
+  if ( !m_outputter )
+    m_outputter = new TextOutputter( m_result, std::cout );
+  m_eventManager->addListener( m_result );
 }
 
 
 TextTestRunner::~TextTestRunner()
 {
+  delete m_eventManager;
+  delete m_outputter;
   delete m_result;
   delete m_suite;
 }
@@ -98,7 +106,7 @@ TextTestRunner::printResult( bool doPrintResult )
 {
   std::cout << std::endl;
   if ( doPrintResult )
-    std::cout << *m_result << std::endl;
+    m_outputter->write();
 }
 
 
@@ -120,15 +128,33 @@ TextTestRunner::findTestByName( std::string name ) const
 bool
 TextTestRunner::runTest( Test *test )
 {
-  test->run( m_result );
+  TextTestProgressListener progress;
+  m_eventManager->addListener( &progress );
+  test->run( m_eventManager );
+  m_eventManager->removeListener( &progress );
   return m_result->wasSuccessful();
 }
 
 
-TextTestResult *
-TextTestRunner::result()
+TestResultCollector &
+TextTestRunner::result() const
 {
-  return m_result;
+  return *m_result;
+}
+
+
+TestResult &
+TextTestRunner::eventManager() const
+{
+  return *m_eventManager;
+}
+
+
+void 
+TextTestRunner::setOutputter( Outputter *outputter )
+{
+  delete m_outputter;
+  m_outputter = outputter;
 }
 
 

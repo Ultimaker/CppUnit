@@ -30,6 +30,9 @@
 #include <vector>
 #include <cppunit/TestSuite.h>
 #include <cppunit/Exception.h>
+#include <cppunit/TestResult.h>
+#include <cppunit/TestListener.h>
+#include <cppunit/TestResultCollector.h>
 
 #include "ActiveTest.h"
 #include "MsDevCallerListCtrl.h"
@@ -42,7 +45,8 @@ class TestRunnerModel;
 /////////////////////////////////////////////////////////////////////////////
 // TestRunnerDlg dialog
 
-class AFX_EXT_CLASS TestRunnerDlg : public CDialog
+class AFX_EXT_CLASS TestRunnerDlg : public CDialog,
+                                    public CppUnit::TestListener
 {
 public:
   TestRunnerDlg( TestRunnerModel *model,
@@ -50,14 +54,10 @@ public:
                 CWnd* pParent = NULL);
   ~TestRunnerDlg();
 
-  void addError( CppUnit::TestResult *result, 
-                 CppUnit::Test *test, 
-                 CppUnit::Exception *e );
-  void addFailure( CppUnit::TestResult *result, 
-                   CppUnit::Test *test, 
-                   CppUnit::Exception *e );
-  void endTest( CppUnit::TestResult *result, 
-                CppUnit::Test *test );
+  // overrided from TestListener;
+  void startTest( CppUnit::Test *test );
+  void addFailure( const CppUnit::TestFailure &failure );
+  void endTest( CppUnit::Test *test );
 
   // IDD is not use, it is just there for the wizard.
   //{{AFX_DATA(TestRunnerDlg)
@@ -96,7 +96,8 @@ protected:
   ProgressBar *m_testsProgress;
   CppUnit::Test *m_selectedTest;
   ActiveTest *m_activeTest;
-  CppUnit::TestResult *m_result;
+  CppUnit::TestResult *m_testObserver;
+  CppUnit::TestResultCollector *m_result;
   int m_testsRun;
   int m_errors;
   int m_failures;
@@ -114,10 +115,7 @@ protected:
     errorTypeError
   };
 
-  void addListEntry( std::string type, 
-                     CppUnit::TestResult *result, 
-                     CppUnit::Test *test, 
-                     CppUnit::Exception *e );
+  void addListEntry( const CppUnit::TestFailure &failure );
   void beIdle();
   void beRunning();
   void beRunDisabled();
@@ -140,9 +138,22 @@ protected:
   TestRunnerModel &model();
   void updateHistoryCombo();
 
-private:
+  void updateTopButtonPosition( unsigned int buttonId,
+                                int xButtonLeft,
+                                int xButtonRight );
+  void updateBottomButtonPosition( unsigned int buttonId,
+                                   int xButtonLeft,
+                                   int xButtonRight,
+                                   int yButtonBottom );
+
   // layout management
   void updateLayoutInfo();
+
+  CRect getItemWindowRect( unsigned int itemId );
+  CRect getDialogBounds();
+  void updateListPosition( int xButtonLeft );
+
+private:
 
   int m_margin;
 

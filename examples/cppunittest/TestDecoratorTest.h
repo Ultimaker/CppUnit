@@ -3,7 +3,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/extensions/TestDecorator.h>
-class FailingTestCase;
+#include "MockTestCase.h"
 
 
 class TestDecoratorTest : public CppUnit::TestCase
@@ -30,8 +30,8 @@ private:
   void operator =( const TestDecoratorTest &copy );
 
 private:
-  CppUnit::Test *m_decorator;
-  FailingTestCase *m_test;
+  MockTestCase *m_test;
+  CppUnit::TestDecorator *m_decorator;
 };
 
 

@@ -11,6 +11,7 @@ libcppunitinclude_HEADERS =  \
 	CompilerOutputter.h \
 	Exception.h \
 	NotEqualException.h \
+	Outputter.h \
 	Portability.h \
 	SourceLine.h \
 	Test.h \
@@ -20,7 +21,10 @@ libcppunitinclude_HEADERS =  \
 	TestFailure.h \
 	TestResult.h \
 	TestRegistry.h \
+	TestResultCollector.h \
+	TestSucessListener.h \
 	TestSuite.h \
+	TextTestProgressListener.h \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h \

@@ -2,6 +2,7 @@
 #define CPPUNIT_XMLTESTRESULTOUTPUTTER_H
 
 #include <cppunit/Portability.h>
+#include <cppunit/Outputter.h>
 #include <deque>
 #include <iostream>
 #include <map>
@@ -13,18 +14,18 @@ namespace CppUnit
 
 class Test;
 class TestFailure;
-class TestResult;
+class TestResultCollector;
 
 
-/*! This class ouputs a TestResult in XML format.
+/*! Outputs a TestResultCollector in XML format.
  */
-class XmlOutputter
+class XmlOutputter : public Outputter
 {
 public:
   /*! Constructs a XmlOutputter object.
    */
-  XmlOutputter( TestResult *result,
-                          std::ostream &stream );
+  XmlOutputter( TestResultCollector *result,
+                std::ostream &stream );
 
   /// Destructor.
   virtual ~XmlOutputter();
@@ -100,7 +101,7 @@ protected:
   virtual void fillFailedTestsMap( FailedTests &failedTests );
 
 protected:
-  TestResult *m_result;
+  TestResultCollector *m_result;
   std::ostream &m_stream;
 
 private:

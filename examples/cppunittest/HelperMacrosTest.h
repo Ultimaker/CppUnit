@@ -2,6 +2,7 @@
 #define HELPERMACROSTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
+#include "MockTestListener.h"
 
 
 class HelperMacrosTest : public CppUnit::TestCase
@@ -36,12 +37,9 @@ private:
   HelperMacrosTest( const HelperMacrosTest &copy );
   void operator =( const HelperMacrosTest &copy );
 
-  void checkTestResult( int expectedFailures, 
-                        int expectedErrors, 
-                        int expectedTestsRun );
-
 private:
   CppUnit::TestResult *m_result;
+  MockTestListener *m_testListener;
 };
 
 

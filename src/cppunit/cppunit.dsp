@@ -210,6 +210,14 @@ SOURCE=..\..\include\cppunit\SourceLine.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\SynchronizedObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\SynchronizedObject.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\Test.h
 # End Source File
 # Begin Source File
@@ -268,6 +276,42 @@ SOURCE=.\CompilerOutputter.cpp
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\CompilerOutputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Outputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestResultCollector.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestResultCollector.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestSucessListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestSucessListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TextOutputter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextOutputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TextTestProgressListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestProgressListener.h
 # End Source File
 # Begin Source File
 

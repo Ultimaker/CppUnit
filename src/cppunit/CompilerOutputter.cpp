@@ -1,7 +1,8 @@
 #include <algorithm>
 #include <cppunit/NotEqualException.h>
 #include <cppunit/SourceLine.h>
-#include <cppunit/TestResult.h>
+#include <cppunit/TestFailure.h>
+#include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
 
 
@@ -9,6 +10,8 @@ namespace CppUnit
 {
 
 /** Print TestResult in a compiler compatible format.
+ *
+ * Note: NEED UPDATE
  *
  * Heres is an example of usage:
  * \code
@@ -31,9 +34,8 @@ namespace CppUnit
  * }
  * \endcode
  */
-CompilerOutputter::CompilerOutputter( 
-                               TestResult *result,
-                               std::ostream &stream ) :
+CompilerOutputter::CompilerOutputter( TestResultCollector *result,
+                                      std::ostream &stream ) :
     m_result( result ),
     m_stream( stream )
 {
@@ -46,8 +48,8 @@ CompilerOutputter::~CompilerOutputter()
 
 
 CompilerOutputter *
-CompilerOutputter::defaultOutputter( TestResult *result,
-                                               std::ostream &stream )
+CompilerOutputter::defaultOutputter( TestResultCollector *result,
+                                     std::ostream &stream )
 {
   return new CompilerOutputter( result, stream );
 // For automatic adpatation...

@@ -1,4 +1,5 @@
-#include <cppunit/TestResult.h>
+#include <cppunit/XmlOutputter.h>
+#include <cppunit/TestFailure.h>
 #include <cppunit/XmlOutputter.h>
 #include "OutputSuite.h"
 #include "XmlOutputterTest.h"
@@ -23,12 +24,18 @@ XmlOutputterTest::~XmlOutputterTest()
 void 
 XmlOutputterTest::setUp()
 {
+  m_dummyTests.clear();
+  m_result = new CppUnit::TestResultCollector();
 }
 
 
 void 
 XmlOutputterTest::tearDown()
 {
+  delete m_result;
+  for ( int index =0; index < m_dummyTests.size(); ++index )
+    delete m_dummyTests[index];
+  m_dummyTests.clear();
 }
 
 
@@ -109,10 +116,8 @@ XmlOutputterTest::testNodeWithContentAndChildToString()
 void 
 XmlOutputterTest::testWriteXmlResultWithNoTest()
 {
-  CppUnit::TestResult result;
-
   CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( &result, stream );
+  CppUnit::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -134,16 +139,10 @@ XmlOutputterTest::testWriteXmlResultWithNoTest()
 void 
 XmlOutputterTest::testWriteXmlResultWithOneFailure()
 {
-  CppUnit::TestResult result;
-  CppUnit::TestCase test1( "test1" );
-  result.startTest( &test1 );
-  CppUnit::SourceLine sourceLine( "test.cpp", 3 );
-  result.addFailure( &test1, new CppUnit::Exception( "message failure1", 
-                                                     sourceLine ) );
-  result.endTest( &test1 );
+  addTestFailure( "test1", "message failure1", CppUnit::SourceLine( "test.cpp", 3 ) );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( &result, stream );
+  CppUnit::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -175,14 +174,10 @@ XmlOutputterTest::testWriteXmlResultWithOneFailure()
 void 
 XmlOutputterTest::testWriteXmlResultWithOneError()
 {
-  CppUnit::TestResult result;
-  CppUnit::TestCase test1( "test1" );
-  result.startTest( &test1 );
-  result.addError( &test1, new CppUnit::Exception( "message error1" ) );
-  result.endTest( &test1 );
+  addTestError( "test1", "message error1" );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( &result, stream );
+  CppUnit::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -210,13 +205,10 @@ XmlOutputterTest::testWriteXmlResultWithOneError()
 void 
 XmlOutputterTest::testWriteXmlResultWithOneSucess()
 {
-  CppUnit::TestResult result;
-  CppUnit::TestCase test1( "test1" );
-  result.startTest( &test1 );
-  result.endTest( &test1 );
+  addTest( "test1" );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( &result, stream );
+  CppUnit::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -242,36 +234,16 @@ XmlOutputterTest::testWriteXmlResultWithOneSucess()
 void 
 XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
 {
-  CppUnit::TestCase test1( "test1" );
-  CppUnit::TestCase test2( "test2" );
-  CppUnit::TestCase test3( "test3" );
-  CppUnit::TestCase test4( "test4" );
-  CppUnit::TestCase test5( "test5" );
-  CppUnit::TestCase test6( "test6" );
-  CppUnit::TestCase test7( "test7" );
-  CppUnit::TestResult result;
-  result.startTest( &test1 );
-  result.addFailure( &test1, new CppUnit::Exception( "failure1" ) );
-  result.endTest( &test1 );
-  result.startTest( &test2 );
-  result.addError( &test2, new CppUnit::Exception( "error1" ) );
-  result.endTest( &test2 );
-  result.startTest( &test3 );
-  result.addFailure( &test3, new CppUnit::Exception( "failure2" ) );
-  result.endTest( &test3 );
-  result.startTest( &test4 );
-  result.addFailure( &test4, new CppUnit::Exception( "failure3" ) );
-  result.endTest( &test4 );
-  result.startTest( &test5 );
-  result.endTest( &test5 );
-  result.startTest( &test6 );
-  result.addError( &test6, new CppUnit::Exception( "error2" ) );
-  result.endTest( &test6 );
-  result.startTest( &test7 );
-  result.endTest( &test7 );
+  addTestFailure( "test1", "failure1" );
+  addTestError( "test2", "error1" );
+  addTestFailure( "test3", "failure2" );
+  addTestFailure( "test4", "failure3" );
+  addTest( "test5" );
+  addTestError( "test6", "error2" );
+  addTest( "test7" );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( &result, stream );
+  CppUnit::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -320,4 +292,56 @@ XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
       "</Statistics>"
     "</TestRun>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, actualXml );
+}
+
+
+void 
+XmlOutputterTest::addTest( std::string testName )
+{
+  CppUnit::Test *test = makeDummyTest( testName );
+  m_result->startTest( test );
+  m_result->endTest( test );
+}
+
+
+void 
+XmlOutputterTest::addTestFailure( std::string testName,
+                                  std::string message,
+                                  CppUnit::SourceLine sourceLine )
+{
+  addGenericTestFailure( testName, message, sourceLine, false );
+}
+
+
+void 
+XmlOutputterTest::addTestError( std::string testName,
+                                std::string message,
+                                CppUnit::SourceLine sourceLine )
+{
+  addGenericTestFailure( testName, message, sourceLine, true );
+}
+
+
+void 
+XmlOutputterTest::addGenericTestFailure(  std::string testName,
+                                          std::string message,
+                                          CppUnit::SourceLine sourceLine,
+                                          bool isError )
+{
+  CppUnit::Test *test = makeDummyTest( testName );
+  m_result->startTest( test );
+  CppUnit::TestFailure failure( test, 
+                                new CppUnit::Exception( message, sourceLine ),
+                                isError );
+  m_result->addFailure( failure );
+  m_result->endTest( test );
+}
+
+
+CppUnit::Test *
+XmlOutputterTest::makeDummyTest( std::string testName )
+{
+  CppUnit::Test *test = new CppUnit::TestCase( testName );
+  m_dummyTests.push_back( test );
+  return test;
 }

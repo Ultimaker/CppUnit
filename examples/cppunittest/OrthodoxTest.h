@@ -2,6 +2,7 @@
 #define ORTHODOXTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
+#include "MockTestListener.h"
 
 
 class OrthodoxTest : public CppUnit::TestCase
@@ -167,11 +168,9 @@ private:
   OrthodoxTest( const OrthodoxTest &copy );
   void operator =( const OrthodoxTest &copy );
 
-  void checkSuccess();
-  void checkFailure();
-
 private:
   CppUnit::TestResult *m_result;
+  MockTestListener *m_testListener;
 };
 
 

@@ -13,4 +13,5 @@
       forthcoming assertEquals() to make comparison easier,
     - source file location. 
     
-    
+* BugFix: CompilerOutputter::wrap(), bug when wrapping empty line in the middle 
+of a text (they disappear).    

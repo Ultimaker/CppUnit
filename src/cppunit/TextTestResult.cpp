@@ -1,6 +1,7 @@
 #include <cppunit/Exception.h>
 #include <cppunit/NotEqualException.h>
 #include <cppunit/Test.h>
+#include <cppunit/TestFailure.h>
 #include <cppunit/TextTestResult.h>
 #include <iostream>
 
@@ -8,28 +9,24 @@
 namespace CppUnit {
 
 
-void 
-TextTestResult::addError( Test *test, 
-                          Exception *e )
+TextTestResult::TextTestResult()
 {
-  TestResult::addError( test, e );
-  std::cerr << "E";
+  addListener( this );
 }
 
 
 void 
-TextTestResult::addFailure( Test *test, 
-                            Exception *e )
+TextTestResult::addFailure( const TestFailure &failure )
 {
-  TestResult::addFailure (test, e);
-  std::cerr << "F";
+  TestResultCollector::addFailure( failure );
+  std::cerr << ( failure.isError() ? "E" : "F" );
 }
 
 
 void 
 TextTestResult::startTest( Test *test )
 {
-  TestResult::startTest (test);
+  TestResultCollector::startTest (test);
   std::cerr << ".";
 }
 

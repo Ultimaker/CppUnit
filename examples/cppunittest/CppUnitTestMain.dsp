@@ -131,21 +131,12 @@ PostBuild_Cmds=$(TargetPath) -selftest
 # Name "CppUnitTestMain - Win32 Release"
 # Name "CppUnitTestMain - Win32 Debug"
 # Name "CppUnitTestMain - Win32 Debug Crossplatform Setting"
-# Begin Source File
+# Begin Group "Suite"
 
-SOURCE=.\BaseTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\BaseTestCase.h
-# End Source File
+# PROP Default_Filter ""
 # Begin Source File
 
 SOURCE=.\CoreSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\CppUnitTestMain.cpp
 # End Source File
 # Begin Source File
 
@@ -157,6 +148,26 @@ SOURCE=.\CppUnitTestSuite.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\ExtensionSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnitTestToolSuite.h
+# End Source File
+# End Group
+# Begin Group "Tests"
+
+# PROP Default_Filter ""
+# Begin Source File
+
 SOURCE=.\ExceptionTest.cpp
 # End Source File
 # Begin Source File
@@ -165,43 +176,11 @@ SOURCE=.\ExceptionTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ExtensionSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\FailingTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\FailingTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\FailureException.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\HelperMacrosTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\HelperMacrosTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\HelperSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Makefile.am
-# End Source File
-# Begin Source File
-
-SOURCE=.\MockTestListener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\MockTestListener.h
 # End Source File
 # Begin Source File
 
@@ -221,27 +200,11 @@ SOURCE=.\OrthodoxTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\OutputSuite.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\RepeatedTestTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\RepeatedTestTest.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\SubclassedTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\SubclassedTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\SynchronizedTestResult.h
 # End Source File
 # Begin Source File
 
@@ -285,11 +248,11 @@ SOURCE=.\TestFailureTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestListenerTest.cpp
+SOURCE=.\TestResultCollectorTest.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestListenerTest.h
+SOURCE=.\TestResultCollectorTest.h
 # End Source File
 # Begin Source File
 
@@ -317,23 +280,71 @@ SOURCE=.\TestSuiteTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TrackedTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\TrackedTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\UnitTestToolSuite.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\XmlOutputterTest.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\XmlOutputterTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlUniformiserTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlUniformiserTest.h
+# End Source File
+# End Group
+# Begin Group "Support"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\BaseTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\BaseTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FailureException.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SubclassedTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\SubclassedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SynchronizedTestResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TrackedTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TrackedTestCase.h
 # End Source File
 # Begin Source File
 
@@ -343,13 +354,14 @@ SOURCE=.\XmlUniformiser.cpp
 
 SOURCE=.\XmlUniformiser.h
 # End Source File
+# End Group
 # Begin Source File
 
-SOURCE=.\XmlUniformiserTest.cpp
+SOURCE=.\CppUnitTestMain.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlUniformiserTest.h
+SOURCE=.\Makefile.am
 # End Source File
 # End Target
 # End Project

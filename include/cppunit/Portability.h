@@ -45,7 +45,9 @@
 #if CPPUNIT_HAVE_SSTREAM
 #   include <sstream>
     namespace CppUnit {
-	typedef std::ostringstream  OStringStream;
+      class OStringStream : public std::ostringstream 
+      {
+      };
     }
 #else 
 #if CPPUNIT_HAVE_CLASS_STRSTREAM
@@ -57,17 +59,17 @@
 #   endif
 
     namespace CppUnit {
-	class OStringStream : public std::ostrstream 
-	{
-	public:
-	    std::string str()
-	    {
-		(*this) << '\0';
-		std::string msg(std::ostrstream::str());
-		std::ostrstream::freeze(false);
-		return msg;
-	    }
-	};
+      class OStringStream : public std::ostrstream 
+      {
+      public:
+          std::string str()
+          {
+            (*this) << '\0';
+            std::string msg(std::ostrstream::str());
+            std::ostrstream::freeze(false);
+            return msg;
+          }
+      };
     }
 #else
 #   error Cannot define CppUnit::OStringStream.

@@ -93,37 +93,37 @@ class TestCase : public Test
 {
 public:
 
-    TestCase         (std::string Name);
+    TestCase( std::string Name );
     //! \internal
-    TestCase         ();
-    ~TestCase        ();
+    TestCase();
+    ~TestCase();
     
-    virtual void        run              (TestResult *result);
-    virtual int         countTestCases   () const;
-    std::string         getName          () const;
-    std::string         toString         () const;
+    virtual void run(TestResult *result);
+    virtual int countTestCases() const;
+    std::string getName() const;
+    std::string toString() const;
 
     //! FIXME: what is this for?
-    virtual TestResult  *run             ();
+    virtual TestResult *run();
 
     // FIXME: move back to class TestFixture, in future.
-    virtual void        setUp            ();
-    virtual void        tearDown         ();
+    virtual void setUp();
+    virtual void tearDown();
  
     
 protected:
     //! FIXME: this should probably be pure virtual.
-    virtual void        runTest          ();
+    virtual void runTest();
 
     //! Create TestResult for the run(void) method.
-    TestResult          *defaultResult   ();
+    TestResult *defaultResult();
     
 private:
-    TestCase (const TestCase& other); 
-    TestCase& operator= (const TestCase& other); 
+    TestCase( const TestCase &other ); 
+    TestCase &operator=( const TestCase &other ); 
     
 private:
-    const std::string   m_name;
+    const std::string m_name;
 };
 
 } // namespace CppUnit

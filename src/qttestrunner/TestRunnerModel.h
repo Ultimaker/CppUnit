@@ -87,7 +87,7 @@ private:
   void startTest( CppUnit::Test *test );
 
   /// Called from the TestRunnerThread.
-  void addFailure( CppUnit::TestFailure *failure );
+  void addFailure( const CppUnit::TestFailure &failure );
   
   /// Called from the TestRunnerThread.
   void endTest( CppUnit::Test *test );

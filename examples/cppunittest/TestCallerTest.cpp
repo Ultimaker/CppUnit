@@ -41,22 +41,6 @@ TestCallerTest::~TestCallerTest()
 }
 
 
-CppUnit::TestSuite *
-TestCallerTest::suite()
-{
-  CppUnit::TestSuiteBuilder<TestCallerTest> suite("TestCallerTest");
-
-  suite.addTestCaller( "testBasicConstructor", &TestCallerTest::testBasicConstructor );
-  suite.addTestCaller( "testReferenceConstructor", &TestCallerTest::testReferenceConstructor );
-  suite.addTestCaller( "testPointerConstructor", &TestCallerTest::testPointerConstructor );
-  suite.addTestCaller( "testExpectFailureException", &TestCallerTest::testExpectFailureException );
-  suite.addTestCaller( "testExpectException", &TestCallerTest::testExpectException );
-  suite.addTestCaller( "testExpectedExceptionNotCaught", &TestCallerTest::testExpectedExceptionNotCaught );
-
-  return suite.takeSuite();
-}
-
-
 void 
 TestCallerTest::setUp()
 {
@@ -66,7 +50,9 @@ TestCallerTest::setUp()
   m_tearDownCount = 0;
   m_testCount = 0;
   TrackedTestCase::setTracker( this );
+  m_testListener = new MockTestListener( "listener1" );
   m_result = new CppUnit::TestResult();
+  m_result->addListener( m_testListener );
 }
 
 
@@ -75,6 +61,7 @@ TestCallerTest::tearDown()
 {
   TrackedTestCase::removeTracker();
   delete m_result;
+  delete m_testListener;
 }
 
 
@@ -174,8 +161,9 @@ TestCallerTest::testExpectFailureException()
   CppUnit::TestCaller<ExceptionThrower,FailureException> caller( 
       m_testName,
       &ExceptionThrower::testThrowFailureException );
+  m_testListener->setExpectNoFailure();
   caller.run( m_result );
-  CPPUNIT_ASSERT( m_result->wasSuccessful() );
+  m_testListener->verify();
 }
 
 
@@ -185,8 +173,9 @@ TestCallerTest::testExpectException()
   CppUnit::TestCaller<ExceptionThrower,CppUnit::Exception> caller( 
       m_testName,
       &ExceptionThrower::testThrowException );
+  m_testListener->setExpectNoFailure();
   caller.run( m_result );
-  CPPUNIT_ASSERT( m_result->wasSuccessful() );
+  m_testListener->verify();
 }
 
 
@@ -196,14 +185,9 @@ TestCallerTest::testExpectedExceptionNotCaught()
   CppUnit::TestCaller<ExceptionThrower,FailureException> caller( 
       m_testName,
       &ExceptionThrower::testThrowNothing );
+  m_testListener->setExpectedAddFailureCall( 1 );
   caller.run( m_result );
-  CPPUNIT_ASSERT( !m_result->wasSuccessful() );
-  CPPUNIT_ASSERT_EQUAL( 1, int(m_result->failures().size()) );
-// Can differentiate throw 'new Exception' from throw 'Exception'
-// only by text message which is unsafe.
-// Possible solution: subclass Exception:
-//  CppUnit::Exception *e = m_result->failues()[0]->thrownException();
-//  CPPUNIT_ASSERT( e->isInstanceOf( FailureException::type() ) );
+  m_testListener->verify();
 }
 
 

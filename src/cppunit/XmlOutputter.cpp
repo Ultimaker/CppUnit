@@ -1,6 +1,7 @@
 #include <cppunit/Exception.h>
 #include <cppunit/Test.h>
-#include <cppunit/TestResult.h>
+#include <cppunit/TestFailure.h>
+#include <cppunit/TestResultCollector.h>
 #include <cppunit/XmlOutputter.h>
 #include <map>
 #include <stdlib.h>
@@ -150,8 +151,8 @@ XmlOutputter::Node::asString( int value )
 // XmlOutputter
 // //////////////////////////////////////////////////////////////////
 
-XmlOutputter::XmlOutputter( TestResult *result,
-                                                std::ostream &stream ) :
+XmlOutputter::XmlOutputter( TestResultCollector *result,
+                            std::ostream &stream ) :
     m_result( result ),
     m_stream( stream )
 {
@@ -208,8 +209,8 @@ XmlOutputter::makeRootNode()
 void 
 XmlOutputter::fillFailedTestsMap( FailedTests &failedTests )
 {
-  const TestResult::TestFailures &failures = m_result->failures();
-  TestResult::TestFailures::const_iterator itFailure = failures.begin();
+  const TestResultCollector::TestFailures &failures = m_result->failures();
+  TestResultCollector::TestFailures::const_iterator itFailure = failures.begin();
   while ( itFailure != failures.end() )
   {
     TestFailure *failure = *itFailure++;
@@ -225,7 +226,7 @@ XmlOutputter::addFailedTests( FailedTests &failedTests,
   Node *testsNode = new Node( "FailedTests" );
   rootNode->addNode( testsNode );
 
-  const TestResult::Tests &tests = m_result->tests();
+  const TestResultCollector::Tests &tests = m_result->tests();
   for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
   {
     Test *test = tests[testNumber];
@@ -242,7 +243,7 @@ XmlOutputter::addSucessfulTests( FailedTests &failedTests,
   Node *testsNode = new Node( "SucessfulTests" );
   rootNode->addNode( testsNode );
 
-  const TestResult::Tests &tests = m_result->tests();
+  const TestResultCollector::Tests &tests = m_result->tests();
   for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
   {
     Test *test = tests[testNumber];

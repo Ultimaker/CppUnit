@@ -144,11 +144,11 @@ TestRunnerModel::startTest( CppUnit::Test *test )
 
 // Called from the TestRunnerThread.
 void 
-TestRunnerModel::addFailure( CppUnit::TestFailure *failure )
+TestRunnerModel::addFailure( const CppUnit::TestFailure &failure )
 {
-  addFailureInfo( new TestFailureInfo( failure->failedTest(), 
-                                       failure->thrownException(),
-                                       failure->isError() ) );
+  addFailureInfo( new TestFailureInfo( failure.failedTest(), 
+                                       failure.thrownException(),
+                                       failure.isError() ) );
 }
 
 

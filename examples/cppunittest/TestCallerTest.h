@@ -1,23 +1,30 @@
 #ifndef TESTCALLERTEST_H
 #define TESTCALLERTEST_H
 
+#include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestResult.h>
 #include <cppunit/TestSuite.h>
+#include "MockTestListener.h"
 #include "TrackedTestCase.h"
-
 
 class TestCallerTest : public CppUnit::TestCase, 
                               Tracker
 {
+  CPPUNIT_TEST_SUITE( TestCallerTest );
+  CPPUNIT_TEST( testBasicConstructor );
+  CPPUNIT_TEST( testReferenceConstructor );
+  CPPUNIT_TEST( testPointerConstructor );
+  CPPUNIT_TEST( testExpectFailureException );
+  CPPUNIT_TEST( testExpectException );
+  CPPUNIT_TEST( testExpectedExceptionNotCaught );
+  CPPUNIT_TEST_SUITE_END();
 public:
   TestCallerTest();
   virtual ~TestCallerTest();
 
-  static CppUnit::TestSuite *suite();
-
-  virtual void setUp();
-  virtual void tearDown();
+  void setUp();
+  void tearDown();
 
   void testBasicConstructor();
   void testReferenceConstructor();
@@ -56,6 +63,7 @@ private:
   int m_tearDownCount;
   int m_testCount;
   const std::string m_testName;
+  MockTestListener *m_testListener;
   CppUnit::TestResult *m_result;
 };
 

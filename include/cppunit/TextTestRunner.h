@@ -6,13 +6,17 @@
 
 namespace CppUnit {
 
+class Outputter;
 class Test;
 class TestSuite;
-class TextTestResult;
+class TextOutputter;
+class TestResult;
+class TestResultCollector;
 
 /**
  * A text mode test runner.
  *
+ * FIXME: need update
  * The test runner manage the life cycle of the added tests.
  *
  * The test runner can run only one of the added tests or all the tests. 
@@ -31,7 +35,11 @@ class TextTestResult;
 class TextTestRunner
 {
 public:
-  TextTestRunner( TextTestResult *result =0 );
+  /*! Constructs a new text runner.
+   * \param outputter used to print text result. Owned by the runner.
+   */
+  TextTestRunner( Outputter *outputter =NULL );
+
   virtual ~TextTestRunner();
 
   bool run( std::string testName ="",
@@ -40,7 +48,11 @@ public:
 
   void addTest( Test *test );
 
-  TextTestResult *result();
+  void setOutputter( Outputter *outputter );
+
+  TestResultCollector &result() const;
+
+  TestResult &eventManager() const;
 
 protected:
   bool runTest( Test *test );
@@ -49,8 +61,11 @@ protected:
   void printResult( bool doPrintResult );
 
   Test *findTestByName( std::string name ) const;
+
   TestSuite *m_suite;
-  TextTestResult *m_result;
+  TestResultCollector *m_result;
+  TestResult *m_eventManager;
+  Outputter *m_outputter;
 };
 
 }  // namespace CppUnit

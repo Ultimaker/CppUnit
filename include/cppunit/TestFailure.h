@@ -28,17 +28,19 @@ public:
 
   virtual ~TestFailure ();
 
-  Test *failedTest() const;
+  virtual Test *failedTest() const;
 
-  Exception *thrownException() const;
+  virtual Exception *thrownException() const;
 
-  SourceLine sourceLine() const;
+  virtual SourceLine sourceLine() const;
 
-  bool isError() const;
+  virtual bool isError() const;
 
-  std::string failedTestName() const;
+  virtual std::string failedTestName() const;
   
-  std::string toString() const;
+  virtual std::string toString() const;
+
+  virtual TestFailure *clone() const;
 
 protected:
   Test *m_failedTest;

@@ -1,10 +1,10 @@
 #ifndef SYNCHRONIZEDTESTRESULT_H
 #define SYNCHRONIZEDTESTRESULT_H
 
-#include <cppunit/TestResult.h>
+#include <cppunit/TestResultCollector.h>
 
 
-class SynchronizedTestResult : public CppUnit::TestResult
+class SynchronizedTestResult : public CppUnit::TestResultCollector
 {
 public:
 
@@ -16,7 +16,7 @@ public:
     virtual void unlocked() {}
   };
 
-  class ObservedSynchronizationObject : public CppUnit::TestResult::SynchronizationObject
+  class ObservedSynchronizationObject : public CppUnit::SynchronizedObject::SynchronizationObject
   {
   public:
     ObservedSynchronizationObject( SynchronizationObjectListener *listener ) :

@@ -19,7 +19,9 @@ OrthodoxTest::~OrthodoxTest()
 void 
 OrthodoxTest::setUp()
 {
+  m_testListener = new MockTestListener( "mock-listener" );
   m_result = new CppUnit::TestResult();
+  m_result->addListener( m_testListener );
 }
 
 
@@ -27,6 +29,7 @@ void
 OrthodoxTest::tearDown()
 {
   delete m_result;
+  delete m_testListener;
 }
 
 
@@ -34,8 +37,9 @@ void
 OrthodoxTest::testValue()
 {
   CppUnit::Orthodox<Value> test;
+  m_testListener->setExpectNoFailure();
   test.run( m_result );
-  checkSuccess();
+  m_testListener->verify();
 }
 
 
@@ -43,8 +47,9 @@ void
 OrthodoxTest::testValueBadConstructor()
 {
   CppUnit::Orthodox<ValueBadConstructor> test;
+  m_testListener->setExpectFailure();
   test.run( m_result );
-  checkFailure();
+  m_testListener->verify();
 }
 
 
@@ -52,8 +57,9 @@ void
 OrthodoxTest::testValueBadInvert()
 {
   CppUnit::Orthodox<ValueBadInvert> test;
+  m_testListener->setExpectFailure();
   test.run( m_result );
-  checkFailure();
+  m_testListener->verify();
 }
 
 
@@ -61,8 +67,9 @@ void
 OrthodoxTest::testValueBadEqual()
 {
   CppUnit::Orthodox<ValueBadEqual> test;
+  m_testListener->setExpectFailure();
   test.run( m_result );
-  checkFailure();
+  m_testListener->verify();
 }
 
 
@@ -70,8 +77,9 @@ void
 OrthodoxTest::testValueBadNotEqual()
 {
   CppUnit::Orthodox<ValueBadNotEqual> test;
+  m_testListener->setExpectFailure();
   test.run( m_result );
-  checkFailure();
+  m_testListener->verify();
 }
 
 
@@ -79,8 +87,9 @@ void
 OrthodoxTest::testValueBadCall()
 {
   CppUnit::Orthodox<ValueBadCall> test;
+  m_testListener->setExpectFailure();
   test.run( m_result );
-  checkFailure();
+  m_testListener->verify();
 }
 
 
@@ -88,24 +97,7 @@ void
 OrthodoxTest::testValueBadAssignment()
 {
   CppUnit::Orthodox<ValueBadAssignment> test;
+  m_testListener->setExpectFailure();
   test.run( m_result );
-  checkFailure();
+  m_testListener->verify();
 }
-
-
-void 
-OrthodoxTest::checkSuccess()
-{
-  CPPUNIT_ASSERT_EQUAL( 0, m_result->testErrors() );
-  CPPUNIT_ASSERT_EQUAL( 0, m_result->testFailures() );
-  CPPUNIT_ASSERT( m_result->runTests() > 0 );
-}
-
-
-void 
-OrthodoxTest::checkFailure()
-{
-  CPPUNIT_ASSERT( m_result->testErrors() > 0  ||  
-                  m_result->testFailures() > 0 );
-}
-

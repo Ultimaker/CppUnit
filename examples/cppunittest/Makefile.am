@@ -15,12 +15,12 @@ cppunittestmain_SOURCES = \
 	ExceptionTest.cpp \
 	ExceptionTest.h \
 	ExtensionSuite.h \
-	FailingTestCase.cpp \
-	FailingTestCase.h \
 	FailureException.h \
 	HelperMacrosTest.cpp \
 	HelperMacrosTest.h \
 	HelperSuite.h \
+	MockTestCase.h \
+	MockTestCase.cpp \
 	MockTestListener.cpp \
 	MockTestListener.h \
 	NotEqualExceptionTest.cpp \
@@ -41,10 +41,10 @@ cppunittestmain_SOURCES = \
 	TestCaseTest.h \
 	TestDecoratorTest.cpp \
 	TestDecoratorTest.h \
-	TestListenerTest.cpp \
-	TestListenerTest.h \
 	TestFailureTest.cpp \
 	TestFailureTest.h \
+	TestResultCollectorTest.cpp \
+	TestResultCollectorTest.h \
 	TestResultTest.cpp \
 	TestResultTest.h \
 	TestSetUpTest.cpp \

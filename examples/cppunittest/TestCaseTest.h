@@ -8,6 +8,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestResult.h>
+#include "MockTestListener.h"
 
 
 class TestCaseTest : public CppUnit::TestCase
@@ -19,6 +20,7 @@ class TestCaseTest : public CppUnit::TestCase
   CPPUNIT_TEST( testFailAll );
   CPPUNIT_TEST( testNoFailure );
   CPPUNIT_TEST( testDefaultRun );
+  CPPUNIT_TEST( testTwoRun );
   CPPUNIT_TEST( testCountTestCases );
   CPPUNIT_TEST( testDefaultConstructor );
   CPPUNIT_TEST( testConstructorWithName );
@@ -53,13 +55,15 @@ private:
   void checkFailure( bool failSetUp, 
                      bool failRunTest,
                      bool failTearDown );
-
+/*
   void checkResult( int failures,
                     int errors,
                     int testsRun,
                     CppUnit::TestResult *result );
+*/
 private:
   CppUnit::TestResult *m_result;
+  MockTestListener *m_testListener;
 };
 
 

@@ -41,13 +41,8 @@ private:
   TestSuiteTest( const TestSuiteTest &copy );
   void operator =( const TestSuiteTest &copy );
 
-  void checkResult( int failures,
-                    int errors,
-                    int testsRun );
-
 private:
   CppUnit::TestSuite *m_suite;
-  CppUnit::TestResult *m_result;
 };
 
 

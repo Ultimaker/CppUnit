@@ -2,6 +2,7 @@
 #define CPPUNIT_TEXTTESTRESULT_H
 
 #include <cppunit/TestResult.h>
+#include <cppunit/TestResultCollector.h>
 #include <iostream>
 
 namespace CppUnit {
@@ -10,31 +11,37 @@ class SourceLine;
 class Exception;
 class Test;
 
-class TextTestResult : public TestResult 
+/*! Holds printable test result (DEPRECATED).
+ * 
+ * Use class TextTestProgressListener and TextOutputter instead.
+ */
+class TextTestResult : public TestResult,
+                       public TestResultCollector
 {
-  public:
-    virtual void addError( Test *test, Exception *e );
-    virtual void addFailure( Test *test, Exception *e );
-    virtual void startTest( Test *test );
-    virtual void print( std::ostream &stream );
-    virtual void printFailures( std::ostream &stream );
-    virtual void printHeader( std::ostream &stream );
+public:
+  TextTestResult();
 
-    virtual void printFailure( TestFailure *failure,
-                               int failureNumber,
-                               std::ostream &stream );
-    virtual void printFailureListMark( int failureNumber,
-                                        std::ostream &stream );
-    virtual void printFailureTestName( TestFailure *failure,
-                                       std::ostream &stream );
-    virtual void printFailureType( TestFailure *failure,
-                                   std::ostream &stream );
-    virtual void printFailureLocation( SourceLine sourceLine,
-                                       std::ostream &stream );
-    virtual void printFailureDetail( Exception *thrownException,
+  virtual void addFailure( const TestFailure &failure );
+  virtual void startTest( Test *test );
+  virtual void print( std::ostream &stream );
+  virtual void printFailures( std::ostream &stream );
+  virtual void printHeader( std::ostream &stream );
+
+  virtual void printFailure( TestFailure *failure,
+                             int failureNumber,
+                             std::ostream &stream );
+  virtual void printFailureListMark( int failureNumber,
                                      std::ostream &stream );
-    virtual void printFailureWarning( std::ostream &stream );
-    virtual void printStatistics( std::ostream &stream );
+  virtual void printFailureTestName( TestFailure *failure,
+                                     std::ostream &stream );
+  virtual void printFailureType( TestFailure *failure,
+                                 std::ostream &stream );
+  virtual void printFailureLocation( SourceLine sourceLine,
+                                     std::ostream &stream );
+  virtual void printFailureDetail( Exception *thrownException,
+                                   std::ostream &stream );
+  virtual void printFailureWarning( std::ostream &stream );
+  virtual void printStatistics( std::ostream &stream );
 };
 
 /** insertion operator for easy output */

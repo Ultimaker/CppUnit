@@ -67,4 +67,11 @@ TestFailure::toString() const
   return m_failedTest->toString() + ": " + m_thrownException->what();
 }
 
+
+TestFailure *
+TestFailure::clone() const
+{
+  return new TestFailure( m_failedTest, m_thrownException->clone(), m_isError );
+}
+
 } // namespace CppUnit

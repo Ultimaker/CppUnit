@@ -247,11 +247,7 @@ SOURCE=.\ActiveTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\GUITestResult.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\GUITestResult.h
+SOURCE=.\MfcSynchronizationObject.h
 # End Source File
 # Begin Source File
 

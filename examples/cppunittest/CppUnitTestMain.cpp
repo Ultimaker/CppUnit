@@ -1,6 +1,6 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/CompilerOutputter.h>
-#include <cppunit/TextTestResult.h>
+#include <cppunit/TestResultCollector.h>
 #include <cppunit/TextTestRunner.h>
 #include "CppUnitTestSuite.h"
 
@@ -8,22 +8,26 @@
 int 
 main( int argc, char* argv[] )
 {
+  // if command line contains "-selftest" then this is the post build check
+  // => the output must be in the compiler error format.
   bool selfTest = (argc > 1)  &&  
                   (std::string("-selftest") == argv[1]);
 
   CppUnit::TextTestRunner runner;
-  runner.addTest( CppUnitTest::suite() );
+  runner.addTest( CppUnitTest::suite() );   // Add the top suite to the test runner
 
-  bool wasSucessful = runner.run( "", false, !selfTest );
   if ( selfTest )
-  {  
-    CppUnit::CompilerOutputter *outputter = 
-        CppUnit::CompilerOutputter::defaultOutputter( runner.result(),
-                                                      std::cerr );
-    outputter->write();
-    delete outputter;
+  { // Change the default outputter to a compiler error format outputter
+    // The test runner owns the new outputter.
+    runner.setOutputter( CppUnit::CompilerOutputter::defaultOutputter( 
+                                                        &runner.result(),
+                                                        std::cerr ) );
   }
 
+  // Run the test and don't wait a key if post build check.
+  bool wasSucessful = runner.run( "", !selfTest );
+
+  // Return error code 1 if the one of test failed.
   return wasSucessful ? 0 : 1;
 }
 

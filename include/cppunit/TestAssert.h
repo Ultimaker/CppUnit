@@ -65,13 +65,15 @@ namespace CppUnit {
     template <class T>
     void assertEquals( const T& expected,
                        const T& actual,
-                       SourceLine sourceLine )
+                       SourceLine sourceLine,
+                       const std::string &message ="" )
     {
       if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
       {
         Asserter::failNotEqual( assertion_traits<T>::toString(expected),
                                 assertion_traits<T>::toString(actual),
-                                sourceLine );
+                                sourceLine,
+                                message );
       }
     }
 
@@ -109,7 +111,7 @@ namespace CppUnit {
  */
 #define CPPUNIT_ASSERT_MESSAGE(message,condition)          \
   ( ::CppUnit::Asserter::failIf( !(condition),             \
-                                 message,                  \
+                                 (message),                \
                                  CPPUNIT_SOURCELINE() ) )
 
 /** Failure with a user specified message.
@@ -134,6 +136,11 @@ namespace CppUnit {
   ( ::CppUnit::TestAssert::assertEquals( (expected),              \
                                          (actual),                \
                                          CPPUNIT_SOURCELINE() ) )
+#define CPPUNIT_ASSERT_EQUAL_MESSAGE(expected,actual,message)     \
+  ( ::CppUnit::TestAssert::assertEquals( (expected),              \
+                                         (actual),                \
+                                         CPPUNIT_SOURCELINE(),    \
+                                         (message) ) )
 #endif
 
 /// Macro for primitive value comparisons

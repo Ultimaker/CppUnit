@@ -2,7 +2,10 @@
 #define CPPUNITEST_XMLTESTRESULTOUTPUTTERTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
+#include <cppunit/Test.h>
 #include <cppunit/TestFailure.h>
+#include <cppunit/TestResultCollector.h>
+#include <deque>
 
 
 /*! \class XmlOutputterTest
@@ -62,7 +65,23 @@ private:
                           int error, 
                           int failure );
 
+  void addTest( std::string testName );
+  void addTestFailure( std::string testName,
+                       std::string message,
+                       CppUnit::SourceLine sourceLine = CppUnit::SourceLine() );
+  void addTestError( std::string testName,
+                     std::string message,
+                     CppUnit::SourceLine sourceLine = CppUnit::SourceLine() );
+  void addGenericTestFailure( std::string testName,
+                              std::string message,
+                              CppUnit::SourceLine sourceLine,
+                              bool isError );
+
+  CppUnit::Test *makeDummyTest( std::string testName );
+
 private:
+  CppUnit::TestResultCollector *m_result;
+  std::deque<CppUnit::Test *> m_dummyTests;
 };
 
 

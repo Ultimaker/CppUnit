@@ -1,7 +1,7 @@
 #include "CoreSuite.h"
-#include "FailingTestCase.h"
 #include "TestSuiteTest.h"
 #include <cppunit/TestResult.h>
+#include "MockTestCase.h"
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestSuiteTest,
@@ -22,14 +22,12 @@ void
 TestSuiteTest::setUp()
 {
   m_suite = new CppUnit::TestSuite();
-  m_result = new CppUnit::TestResult();
 }
 
 
 void 
 TestSuiteTest::tearDown()
 {
-  delete m_result;
   delete m_suite;
 }
 
@@ -53,59 +51,76 @@ TestSuiteTest::testCountTestCasesWithNoTest()
 void 
 TestSuiteTest::testCountTestCasesWithTwoTests()
 {
-  m_suite->addTest( new CppUnit::TestCase( "test1" ) );
-  m_suite->addTest( new CppUnit::TestCase( "test2" ) );
+  MockTestCase *case1 = new MockTestCase( "test1" );
+  case1->setExpectedCountTestCasesCall();
+  MockTestCase *case2 = new MockTestCase( "test2" );
+  case2->setExpectedCountTestCasesCall();
+  m_suite->addTest( case1 );
+  m_suite->addTest( case2 );
 
   CPPUNIT_ASSERT_EQUAL( 2, m_suite->countTestCases() );
+  case1->verify();
+  case2->verify();
 }
 
 
 void 
 TestSuiteTest::testCountTestCasesWithSubSuite()
 {
+  MockTestCase *case1 = new MockTestCase( "test1" );
+  case1->setExpectedCountTestCasesCall();
+  MockTestCase *case2 = new MockTestCase( "test2" );
+  case2->setExpectedCountTestCasesCall();
+  MockTestCase *case3 = new MockTestCase( "test3" );
+  case3->setExpectedCountTestCasesCall();
   CppUnit::TestSuite *subSuite = new CppUnit::TestSuite( "SubSuite");
-  subSuite->addTest( new CppUnit::TestCase( "test1" ) );
-  subSuite->addTest( new CppUnit::TestCase( "test2" ) );
-
-  m_suite->addTest( new CppUnit::TestCase( "test3" ) );
+  subSuite->addTest( case1 );
+  subSuite->addTest( case2 );
+  m_suite->addTest( case3 );
   m_suite->addTest( subSuite );
 
   CPPUNIT_ASSERT_EQUAL( 3, m_suite->countTestCases() );
+  case1->verify();
+  case2->verify();
+  case3->verify();
 }
 
 
 void 
 TestSuiteTest::testRunWithOneTest()
 {
-  FailingTestCase *test = new FailingTestCase();
-  m_suite->addTest( test );
+  MockTestCase *case1 = new MockTestCase( "test1" );
+  case1->setExpectedRunTestCall();
+  m_suite->addTest( case1 );
 
-  m_suite->run( m_result );
-  test->verify();
-  checkResult( 0, 0, 1 );
+  CppUnit::TestResult result;
+  m_suite->run( &result );
+
+  case1->verify();
 }
 
 
 void 
 TestSuiteTest::testRunWithOneTestAndSubSuite()
 {
+  MockTestCase *case1 = new MockTestCase( "test1" );
+  case1->setExpectedRunTestCall();
+  MockTestCase *case2 = new MockTestCase( "test2" );
+  case2->setExpectedRunTestCall();
+  MockTestCase *case3 = new MockTestCase( "test3" );
+  case3->setExpectedRunTestCall();
   CppUnit::TestSuite *subSuite = new CppUnit::TestSuite( "SubSuite");
-  
-  FailingTestCase *test2 = new FailingTestCase();
-  subSuite->addTest( test2 );
+  subSuite->addTest( case1 );
+  subSuite->addTest( case2 );
+  m_suite->addTest( case3 );
+  m_suite->addTest( subSuite);
 
-  FailingTestCase *test3 = new FailingTestCase();
-  subSuite->addTest( test3 );
+  CppUnit::TestResult result;
+  m_suite->run( &result );
 
-  FailingTestCase *test = new FailingTestCase();
-  m_suite->addTest( test );
-  m_suite->addTest( subSuite );
-
-  m_suite->run( m_result );
-  checkResult( 0, 0, 3 );
-  test->verify();
-  test2->verify();
-  test3->verify();
+  case1->verify();
+  case2->verify();
+  case3->verify();
 }
 
 
@@ -124,15 +139,4 @@ TestSuiteTest::testDeleteContents()
   m_suite->addTest( new CppUnit::TestCase( "test2" ) );
   m_suite->deleteContents();
   CPPUNIT_ASSERT_EQUAL( 0, int(m_suite->getTests().size()) );
-}
-
-
-void 
-TestSuiteTest::checkResult( int failures,
-                            int errors,
-                            int testsRun )
-{
-  CPPUNIT_ASSERT_EQUAL( testsRun, m_result->runTests() );
-  CPPUNIT_ASSERT_EQUAL( errors, m_result->testErrors() );
-  CPPUNIT_ASSERT_EQUAL( failures, m_result->testFailures() );
 }

@@ -2,35 +2,20 @@
 #define TESTRESULTTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
-#include <cppunit/TestFailure.h>
-#include "SynchronizedTestResult.h"
+#include <cppunit/TestResult.h>
+#include "MockTestListener.h"
 
 
-class TestResultTest : public CppUnit::TestCase,
-                       public SynchronizedTestResult::SynchronizationObjectListener
+class TestResultTest : public CppUnit::TestCase
 {
   CPPUNIT_TEST_SUITE( TestResultTest );
   CPPUNIT_TEST( testConstructor );
   CPPUNIT_TEST( testStop );
-  CPPUNIT_TEST( testAddTwoErrors );
-  CPPUNIT_TEST( testAddTwoFailures );
+  CPPUNIT_TEST( testAddError );
+  CPPUNIT_TEST( testAddFailure );
   CPPUNIT_TEST( testStartTest );
   CPPUNIT_TEST( testEndTest );
-  CPPUNIT_TEST( testWasSuccessfulWithErrors );
-  CPPUNIT_TEST( testWasSuccessfulWithFailures );
-  CPPUNIT_TEST( testWasSuccessfulWithErrorsAndFailures );
-  CPPUNIT_TEST( testWasSuccessfulWithSucessfulTest );
-  CPPUNIT_TEST( testSynchronizationAddError );
-  CPPUNIT_TEST( testSynchronizationAddFailure );
-  CPPUNIT_TEST( testSynchronizationStartTest );
-  CPPUNIT_TEST( testSynchronizationEndTest );
-  CPPUNIT_TEST( testSynchronizationRunTests );
-  CPPUNIT_TEST( testSynchronizationTestErrors );
-  CPPUNIT_TEST( testSynchronizationTestFailures );
-  CPPUNIT_TEST( testSynchronizationFailures );
-  CPPUNIT_TEST( testSynchronizationWasSuccessful );
-  CPPUNIT_TEST( testSynchronizationShouldStop );
-  CPPUNIT_TEST( testSynchronizationStop );
+  CPPUNIT_TEST( testTwoListener );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -41,60 +26,28 @@ public:
   virtual void tearDown();
 
   void testConstructor();
-
   void testStop();
 
-  void testAddTwoErrors();
-  void testAddTwoFailures();
+  void testAddError();
+  void testAddFailure();
   void testStartTest();
   void testEndTest();
 
-  void testWasSuccessfulWithNoTest();
-  void testWasSuccessfulWithErrors();
-  void testWasSuccessfulWithFailures();
-  void testWasSuccessfulWithErrorsAndFailures();
-  void testWasSuccessfulWithSucessfulTest();
+  void testNoListener();
+  void testTwoListener();
 
-  void testSynchronizationAddError();
-  void testSynchronizationAddFailure();
-  void testSynchronizationStartTest();
-  void testSynchronizationEndTest();
-  void testSynchronizationRunTests();
-  void testSynchronizationTestErrors();
-  void testSynchronizationTestFailures();
-  void testSynchronizationErrors();
-  void testSynchronizationFailures();
-  void testSynchronizationWasSuccessful();
-  void testSynchronizationShouldStop();
-  void testSynchronizationStop();
-
-  virtual void locked();
-  virtual void unlocked();
+  void testRemoveLastListener();
+  void testRemoveFrontListener();
 
 private:
   TestResultTest( const TestResultTest &copy );
   void operator =( const TestResultTest &copy );
 
-  void checkResult( int failures,
-                    int errors,
-                    int testsRun );
-
-  void checkFailure( CppUnit::TestFailure *failure,
-                     std::string expectedMessage,
-                     CppUnit::Test *expectedTest,
-                     bool expectedIsError );
-
-  void checkWasSuccessful( bool shouldBeSuccessful );
-
-  void checkSynchronization();
-
 private:
   CppUnit::TestResult *m_result;
-  SynchronizedTestResult *m_synchronizedResult;  
-  CppUnit::Test *m_test;
-  CppUnit::Test *m_test2;
-  int m_lockCount;
-  int m_unlockCount;
+  MockTestListener *m_listener1;
+  MockTestListener *m_listener2;
+  CppUnit::Test *m_dummyTest;
 };
 
 

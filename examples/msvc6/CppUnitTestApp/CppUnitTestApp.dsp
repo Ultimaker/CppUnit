@@ -144,15 +144,6 @@ SOURCE=..\..\cppunittest\TestFailureTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\cppunittest\TestListenerTest.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\TestListenerTest.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\cppunittest\TestResultTest.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -254,16 +245,16 @@ SOURCE=..\..\cppunittest\BaseTestCase.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\cppunittest\FailingTestCase.cpp
+SOURCE=..\..\cppunittest\FailureException.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MockTestCase.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\cppunittest\FailingTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\cppunittest\FailureException.h
+SOURCE=..\..\cppunittest\MockTestCase.h
 # End Source File
 # Begin Source File
 
@@ -329,6 +320,15 @@ SOURCE=..\..\cppunittest\XmlUniformiserTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestResultCollectorTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestResultCollectorTest.h
 # End Source File
 # Begin Source File
 
@@ -428,17 +428,7 @@ InputName=testrunner
 # Begin Source File
 
 SOURCE=..\..\..\lib\testrunnercd.dll
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 

@@ -3,7 +3,6 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/extensions/TestSetUp.h>
-#include "FailingTestCase.h"
 
 
 class TestSetUpTest : public CppUnit::TestCase
@@ -16,19 +15,19 @@ public:
   TestSetUpTest();
   virtual ~TestSetUpTest();
 
-  virtual void setUp();
-  virtual void tearDown();
+  void setUp();
+  void tearDown();
 
   void testRun();
 
 private:
-  class SetUp : public CppUnit::TestSetUp
+  class MockSetUp : public CppUnit::TestSetUp
   {
   public:
-    SetUp( CppUnit::Test *test ) : 
-        CppUnit::TestSetUp( test ),
-        m_setUpCalled( false ),
-        m_tearDownCalled( false )
+    MockSetUp( CppUnit::Test *test )
+        : CppUnit::TestSetUp( test )
+        , m_setUpCalled( false )
+        , m_tearDownCalled( false )
     {
     }
 
@@ -42,6 +41,13 @@ private:
       m_tearDownCalled = true;
     }
 
+    void verify()
+    {
+      CPPUNIT_ASSERT( m_setUpCalled );
+      CPPUNIT_ASSERT( m_tearDownCalled );
+    }
+
+  private:
     bool m_setUpCalled;
     bool m_tearDownCalled;
   };
@@ -50,8 +56,6 @@ private:
   void operator =( const TestSetUpTest &copy );
 
 private:
-  SetUp *m_setUp;
-  FailingTestCase *m_test;
 };
 
 

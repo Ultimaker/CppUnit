@@ -83,8 +83,8 @@
  * You need to add in an implementation file:
  *
  * \code
- * CPPUNIT_TEST_SUITE_REGISTRATION( String<char> );
- * CPPUNIT_TEST_SUITE_REGISTRATION( String<wchar_t> );
+ * CPPUNIT_TEST_SUITE_REGISTRATION( StringTest<char> );
+ * CPPUNIT_TEST_SUITE_REGISTRATION( StringTest<wchar_t> );
  * \endcode
  */
 

@@ -2,6 +2,7 @@
 #define CPPUNIT_COMPILERTESTRESULTOUTPUTTER_H
 
 #include <cppunit/Portability.h>
+#include <cppunit/Outputter.h>
 #include <vector>
 #include <iostream>
 
@@ -12,26 +13,26 @@ class Exception;
 class SourceLine;
 class Test;
 class TestFailure;
-class TestResult;
+class TestResultCollector;
 
 /*! \class CompilerOutputter
  * \brief This class implements output test result in a compiler compatible format.
  */
-class CompilerOutputter
+class CompilerOutputter : public Outputter
 {
 public:
   /*! Constructs a CompilerOutputter object.
    */
-  CompilerOutputter( TestResult *result,
-                               std::ostream &stream );
+  CompilerOutputter( TestResultCollector *result,
+                     std::ostream &stream );
 
   /// Destructor.
   virtual ~CompilerOutputter();
 
-  static CompilerOutputter *defaultOutputter( TestResult *result,
-                                                        std::ostream &stream );
+  static CompilerOutputter *defaultOutputter( TestResultCollector *result,
+                                              std::ostream &stream );
 
-  virtual void write( );
+  void write();
 
   virtual void printSucess();
   virtual void printFailureReport();
@@ -57,7 +58,7 @@ private:
   static Lines splitMessageIntoLines( std::string message );
 
 private:
-  TestResult *m_result;
+  TestResultCollector *m_result;
   std::ostream &m_stream;
 };
 

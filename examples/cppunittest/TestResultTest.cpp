@@ -1,12 +1,5 @@
 #include "CoreSuite.h"
 #include "TestResultTest.h"
-#include <cppunit/TestResult.h>
-
-/* Note:
- - the TestListener part of TestResult is tested in TestListenerTest.
- - bug identified: errors() and failures() are synchronized but returns
-   reference! No unit test for that one (need multihread...).
- */
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestResultTest,
@@ -26,21 +19,19 @@ TestResultTest::~TestResultTest()
 void 
 TestResultTest::setUp()
 {
-  m_lockCount = 0;
-  m_unlockCount = 0;
   m_result = new CppUnit::TestResult();
-  m_synchronizedResult = new SynchronizedTestResult( this );  
-  m_test = new CppUnit::TestCase();
-  m_test2 = new CppUnit::TestCase();
+  m_listener1 = new MockTestListener( "listener1" );
+  m_listener2 = new MockTestListener( "listener2" );
+  m_dummyTest = new CppUnit::TestCase();
 }
 
 
 void 
 TestResultTest::tearDown()
 {
-  delete m_test2;
-  delete m_test;
-  delete m_synchronizedResult;
+  delete m_dummyTest;
+  delete m_listener1;
+  delete m_listener2;
   delete m_result;
 }
 
@@ -48,7 +39,6 @@ TestResultTest::tearDown()
 void 
 TestResultTest::testConstructor()
 {
-  checkResult( 0, 0, 0 );
   CPPUNIT_ASSERT( !m_result->shouldStop() );
 }
 
@@ -62,246 +52,72 @@ TestResultTest::testStop()
 
 
 void 
-TestResultTest::testAddTwoErrors()
+TestResultTest::testAddError()
 {
-  std::string errorMessage1( "First Error" );
-  m_result->addError( m_test, new CppUnit::Exception( errorMessage1 ) );
+  CppUnit::Exception *dummyException = new CppUnit::Exception( "some_error" );
+  m_listener1->setExpectFailure( m_dummyTest, dummyException, true );
+  m_result->addListener( m_listener1 );
 
-  std::string errorMessage2( "Second Error" );
-  m_result->addError( m_test2, new CppUnit::Exception( errorMessage2 ) );
-  checkResult( 0, 2, 0 );
-  checkFailure( m_result->failures()[0],
-                errorMessage1,
-                m_test,
-                true );
-  checkFailure( m_result->failures()[1],
-                errorMessage2,
-                m_test2,
-                true );
+  m_result->addError( m_dummyTest, dummyException );
+
+  m_listener1->verify();
 }
 
 
 void 
-TestResultTest::testAddTwoFailures()
+TestResultTest::testAddFailure()
 {
-  std::string errorMessage1( "First Failure" );
-  m_result->addFailure( m_test, new CppUnit::Exception( errorMessage1 ) );
+  CppUnit::Exception *dummyException = new CppUnit::Exception( "some_error" );
+  m_listener1->setExpectFailure( m_dummyTest, dummyException, false );
+  m_result->addListener( m_listener1 );
 
-  std::string errorMessage2( "Second Failure" );
-  m_result->addFailure( m_test2, new CppUnit::Exception( errorMessage2 ) );
-  checkResult( 2, 0, 0 );
-  checkFailure( m_result->failures()[0],
-                errorMessage1,
-                m_test,
-                false );
-  checkFailure( m_result->failures()[1],
-                errorMessage2,
-                m_test2,
-                false );
+  m_result->addFailure( m_dummyTest, dummyException );
+
+  m_listener1->verify();
 }
 
 
 void 
 TestResultTest::testStartTest()
 {
-  m_result->startTest( m_test );
-  m_result->startTest( m_test );
-  checkResult( 0, 0, 2 );
+  m_listener1->setExpectStartTest( m_dummyTest );
+  m_result->addListener( m_listener1 );
+  
+  m_result->startTest( m_dummyTest );
+
+  m_listener1->verify();
 }
 
 
 void 
 TestResultTest::testEndTest()
 {
-  // It doesn't actually do anything beyond TestListener stuffs...
+  m_listener1->setExpectEndTest( m_dummyTest );
+  m_result->addListener( m_listener1 );
+  
+  m_result->endTest( m_dummyTest );
+
+  m_listener1->verify();
 }
 
 
 void 
-TestResultTest::testWasSuccessfulWithNoTest()
+TestResultTest::testTwoListener()
 {
-  checkWasSuccessful( true );
-}
+  m_listener1->setExpectStartTest( m_dummyTest );
+  m_listener2->setExpectStartTest( m_dummyTest );
+  CppUnit::Exception *dummyException1 = new CppUnit::Exception( "some_error" );
+  m_listener1->setExpectFailure( m_dummyTest, dummyException1, true );
+  m_listener2->setExpectFailure( m_dummyTest, dummyException1, true );
+  m_listener1->setExpectEndTest( m_dummyTest );
+  m_listener2->setExpectEndTest( m_dummyTest );
+  m_result->addListener( m_listener1 );
+  m_result->addListener( m_listener2 );
 
+  m_result->startTest( m_dummyTest );
+  m_result->addError( m_dummyTest, dummyException1 );
+  m_result->endTest( m_dummyTest );
 
-void 
-TestResultTest::testWasSuccessfulWithErrors()
-{
-  m_result->addError( m_test, new CppUnit::Exception( "Error1" ) );
-  m_result->addError( m_test, new CppUnit::Exception( "Error2" ) );
-  checkWasSuccessful( false );
-}
-
-
-void 
-TestResultTest::testWasSuccessfulWithFailures()
-{
-  m_result->addFailure( m_test, new CppUnit::Exception( "Failure1" ) );
-  m_result->addFailure( m_test, new CppUnit::Exception( "Failure2" ) );
-  checkWasSuccessful( false );
-}
-
-
-void 
-TestResultTest::testWasSuccessfulWithErrorsAndFailures()
-{
-  m_result->addError( m_test, new CppUnit::Exception( "Error1" ) );
-  m_result->addFailure( m_test, new CppUnit::Exception( "Failure2" ) );
-  checkWasSuccessful( false );
-}
-
-
-void 
-TestResultTest::testWasSuccessfulWithSucessfulTest()
-{
-  m_result->startTest( m_test );
-  m_result->endTest( m_test );
-  m_result->startTest( m_test2 );
-  m_result->endTest( m_test2 );
-  checkWasSuccessful( true );
-}
-
-
-void 
-TestResultTest::testSynchronizationAddError()
-{
-  m_synchronizedResult->addError( m_test, new CppUnit::Exception( "Error1" ) );
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationAddFailure()
-{
-  m_synchronizedResult->addFailure( m_test, new CppUnit::Exception( "Failure1" ) );
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationStartTest()
-{
-  m_synchronizedResult->startTest( m_test );
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationEndTest()
-{
-  m_synchronizedResult->endTest( m_test );
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationRunTests()
-{
-  m_synchronizedResult->runTests();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationTestErrors()
-{
-  m_synchronizedResult->testErrors();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationTestFailures()
-{
-  m_synchronizedResult->testFailures();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationFailures()
-{
-  m_synchronizedResult->failures();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationWasSuccessful()
-{
-  m_synchronizedResult->wasSuccessful();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationShouldStop()
-{
-  m_synchronizedResult->shouldStop();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::testSynchronizationStop()
-{
-  m_synchronizedResult->stop();
-  checkSynchronization();
-}
-
-
-void 
-TestResultTest::checkResult( int failures,
-                             int errors,
-                             int testsRun )
-{
-  CPPUNIT_ASSERT_EQUAL( testsRun, m_result->runTests() );
-  CPPUNIT_ASSERT_EQUAL( errors, m_result->testErrors() );
-  CPPUNIT_ASSERT_EQUAL( failures, m_result->testFailures() );
-  CPPUNIT_ASSERT_EQUAL( errors + failures, 
-                        m_result->testFailuresTotal() );
-}
-
-
-void
-TestResultTest::checkFailure( CppUnit::TestFailure *failure,
-                              std::string expectedMessage,
-                              CppUnit::Test *expectedTest,
-                              bool expectedIsError )
-{
-  std::string actualMessage( failure->thrownException()->what() );
-  CPPUNIT_ASSERT_EQUAL( expectedMessage, actualMessage );
-  CPPUNIT_ASSERT_EQUAL( expectedTest, failure->failedTest() );
-  CPPUNIT_ASSERT_EQUAL( expectedIsError, failure->isError() );
-}
-
-
-void 
-TestResultTest::checkWasSuccessful( bool shouldBeSuccessful )
-{
-  CPPUNIT_ASSERT_EQUAL( shouldBeSuccessful, m_result->wasSuccessful() );
-}
-
-
-void 
-TestResultTest::locked()
-{
-  CPPUNIT_ASSERT_EQUAL( m_lockCount, m_unlockCount );
-  ++m_lockCount;
-}
-
-
-void 
-TestResultTest::unlocked()
-{
-  ++m_unlockCount;
-  CPPUNIT_ASSERT_EQUAL( m_lockCount, m_unlockCount );
-}
-
-
-void 
-TestResultTest::checkSynchronization()
-{
-  CPPUNIT_ASSERT_EQUAL( m_lockCount, m_unlockCount );
-  CPPUNIT_ASSERT( m_lockCount > 0 );
+  m_listener1->verify();
+  m_listener2->verify();
 }
