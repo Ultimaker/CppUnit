@@ -37,13 +37,16 @@ void ExampleTestCase::testDivideByZero()
 
 void ExampleTestCase::testEquals()
 {
-  std::auto_ptr<long> l1( new long (12) );
-  std::auto_ptr<long> l2( new long (12) );
+  long* l1 = new long(12);
+  long* l2 = new long(12);
 
   CPPUNIT_ASSERT_EQUAL( 12, 12 );
   CPPUNIT_ASSERT_EQUAL( 12L, 12L );
   CPPUNIT_ASSERT_EQUAL( *l1, *l2 );
-  
+
+  delete l1;
+  delete l2;
+
   CPPUNIT_ASSERT( 12L == 12L );
   CPPUNIT_ASSERT_EQUAL( 12, 13 );
   CPPUNIT_ASSERT_DOUBLES_EQUAL( 12.0, 11.99, 0.5 );
