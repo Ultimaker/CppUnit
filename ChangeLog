@@ -1,4 +1,4 @@
-2001-06-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-06-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* src/cppunit/TypeInfoHelper.cpp: removed #include <config.h>, cppunit/config.h was already included.
 
