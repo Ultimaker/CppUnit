@@ -2,7 +2,7 @@
 
 
 CommandLineParser::CommandLineParser( int argc, 
-                                      char *argv[] )
+                                      const char *argv[] )
     : m_currentArgument( 0 )
     , m_useCompiler( false )
     , m_useXml( false )

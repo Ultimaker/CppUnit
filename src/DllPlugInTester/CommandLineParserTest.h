@@ -45,7 +45,7 @@ private:
   CommandLineParserTest( const CommandLineParserTest &other );
   void operator =( const CommandLineParserTest &other );
 
-  void parse( char **lines );
+  void parse( const char **lines );
 
 private:
   CommandLineParser *_parser;

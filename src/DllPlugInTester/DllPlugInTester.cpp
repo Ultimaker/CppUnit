@@ -208,7 +208,7 @@ printUsage( const std::string &applicationName )
  */
 int 
 main( int argc, 
-      char *argv[] )
+      const char *argv[] )
 {
   const int successReturnCode = 0;
   const int failureReturnCode = 1;

@@ -14,12 +14,15 @@
 
 * Compilation:
 
-  - Compilation: mingw & cigwin, bug #930338 & #945737 fixed.
+  - mingw & cigwin, bug #930338 & #945737 fixed.
 
-  - Compilation: make install does not work on SunOS. Bug #940650 fixed.
+  - make install does not work on SunOS. Bug #940650 fixed.
 
-  - Compilation: bug #933154, post-build step fails in directory with spaces
+  - bug #933154, post-build step fails in directory with spaces
     with Visual C++.
+
+  - DllPlugInTester, bug #941625 (char * string literal). Applied patch
+    contribued by Curt Arnold.
 
 
   New in CppUnit 1.10.0 (same as 1.9.14):

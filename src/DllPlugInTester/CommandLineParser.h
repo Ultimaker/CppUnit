@@ -48,7 +48,7 @@ public:
   /*! Constructs a CommandLineParser object.
    */
   CommandLineParser( int argc, 
-                     char *argv[] );
+                     const char *argv[] );
 
   /// Destructor.
   virtual ~CommandLineParser();
