@@ -10,6 +10,12 @@
     no stream support. Just make sure that CPPUNIT_NO_STREAM is defined
     to 1 in your config header.
 
+* Outputter:
+
+  - XML Ouputter: patch #997006 contributed by Akos Maroy makes the
+    'stand-alone' attribute of the XML header optional. 
+    See XmlOutputter::setStandalone() & XmlDocument::setStandalone().
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 

@@ -59,6 +59,13 @@ XmlOutputter::setStyleSheet( const std::string &styleSheet )
 
 
 void
+XmlOutputter::setStandalone( bool standalone )
+{
+  m_xml->setStandalone( standalone );
+}
+ 
+
+void
 XmlOutputter::setRootNode()
 {
   XmlElement *rootNode = new XmlElement( "TestRun" );

@@ -9,6 +9,7 @@ XmlDocument::XmlDocument( const std::string &encoding,
                           const std::string &styleSheet )
   : m_rootElement( new XmlElement( "DummyRoot" ) )
   , m_styleSheet( styleSheet )
+  , m_standalone( true )
 {
   setEncoding( encoding );
 }
@@ -49,6 +50,20 @@ XmlDocument::setStyleSheet( const std::string &styleSheet )
 }
 
 
+bool
+XmlDocument::standalone() const
+{
+  return m_standalone;
+}
+
+
+void
+XmlDocument::setStandalone( bool standalone )
+{
+  m_standalone = standalone;
+}
+
+
 void 
 XmlDocument::setRootElement( XmlElement *rootElement )
 {
@@ -71,7 +86,11 @@ std::string
 XmlDocument::toString() const
 {
   std::string asString = "<?xml version=\"1.0\" "
-                         "encoding='" + m_encoding + "' standalone='yes' ?>\n";
+                         "encoding='" + m_encoding + "'";
+  if ( m_standalone )
+      asString += " standalone='yes'";
+
+  asString += " ?>\n"; 
 
   if ( !m_styleSheet.empty() )
     asString += "<?xml-stylesheet type=\"text/xsl\" href=\"" + m_styleSheet + "\"?>\n";

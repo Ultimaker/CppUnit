@@ -75,6 +75,15 @@ public:
    */
   virtual void setStyleSheet( const std::string &styleSheet );
 
+  /*! \brief set the output document as standalone or not.
+   *
+   *  For the output document, specify wether it's a standalone XML
+   *  document, or not.
+   *
+   *  \param standalone if true, the output will be specified as standalone.
+   *         if false, it will be not.
+   */
+  virtual void setStandalone( bool standalone );
 
   typedef CppUnitMap<Test *,TestFailure*, std::less<Test*> > FailedTests;
 
