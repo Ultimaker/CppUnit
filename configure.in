@@ -132,6 +132,8 @@ AC_OUTPUT([
   examples/simple/Makefile
   examples/hierarchy/Makefile
   examples/cppunittest/Makefile
+  examples/ClockerPlugIn/Makefile
+  examples/DumperPlugIn/Makefile
 ],[chmod a+x cppunit-config])
 
 AC_CREATE_PREFIX_CONFIG_H([include/cppunit/config-auto.h], 
