@@ -1,8 +1,21 @@
+2001-09-23  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: Set version to 1.6.0.
+
+	* Makefile.am (EXTRA_DIST): Add BUGS.
+
+	* NEWS: Incorporate Baptiste's notes.
+
+	* BUGS: New file for list of known bugs.
+
+	* README: Note about file BUGS.
+
 2001-09-24 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* include/cppunit/TestAssert.h : changed header order to remove warning on VC++
+	* include/cppunit/TestAssert.h : changed header order to remove
+	warning on VC++
 
-	* include/cppunit/TestCaller.h : bugfix: threw 'new Exception' 
+	* include/cppunit/TestCaller.h : bugfix: threw 'new Exception'
 	instead of 'Exception'.
 
 2001-09-23  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>

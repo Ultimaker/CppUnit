@@ -46,9 +46,12 @@ struct ExpectedExceptionTraits<NoExceptionExpected>
 };
 
 
+
+//*** FIXME: rework this when class Fixture is implemented. ***//
+
+
 /*! \brief Generate a test case from a fixture method.
  *
- * \b FIXME: rework this when class Fixture is implemented.
  * A test caller provides access to a test case method 
  * on a test case class.  Test callers are useful when 
  * you want to run an individual test or add it to a 

@@ -13,7 +13,10 @@
   by CPPUNIT_ASSERT, CPPUNIT_ASSERT_EQUAL, and CPPUNIT_ASSERT_DOUBLES_EQUAL,
   respectively.  Macro assertLongsEqual is replaced by CPPUNIT_ASSERT_EQUAL.
   The old assert macros can be used if your sources #define
-  CPPUNIT_ENABLE_NAKED_ASSERT before including any CppUnit headers.
+  CPPUNIT_ENABLE_NAKED_ASSERT to 1 before including any CppUnit headers.
+
+  The old macro names are deprecated and will vanish in a future version
+  of CppUnit.
 
 
 * Equality assertion CPPUNIT_ASSERT_EQUAL(expected,actual) can test
@@ -26,5 +29,15 @@
   diagnostic messages.
 
 
-* CppUnit has a unit test for itself!
+* New assertion with arbitrary message: CPPUNIT_ASSERT_MESSAGE.
+
+
+* A test case obtained using class TestCaller may check that
+  a particular exception is thrown.
+
+
+* CppUnit has a test suite for itself!
+
+
+* VC++ integration for MFC TestRunner.
 

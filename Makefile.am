@@ -6,15 +6,15 @@ SUBDIRS = src include examples doc
 bin_SCRIPTS = cppunit-config
 
 
-EXTRA_DIST = cppunit.m4 cppunit.spec.in cppunit.spec	\
+EXTRA_DIST = BUGS INSTALL-WIN32.txt			\
+	cppunit.m4 cppunit.spec.in cppunit.spec	        \
 	config/ac_create_prefix_config_h.m4		\
 	config/ac_cxx_have_sstream.m4			\
 	config/ac_cxx_have_strstream.m4			\
 	config/ac_cxx_namespaces.m4			\
 	config/ac_cxx_rtti.m4				\
 	config/ac_cxx_string_compare_string_first.m4	\
-	config/bb_enable_doxygen.m4			\
-	INSTALL-WIN32.txt
+	config/bb_enable_doxygen.m4
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4

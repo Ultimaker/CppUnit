@@ -11,7 +11,8 @@ For all other systems, see INSTALL and INSTALL-unix.
 
 
 Bug reports are welcome.  Please use the SourceForge bug tracking
-system at http://sourceforge.net/projects/cppunit/.
+system at http://sourceforge.net/projects/cppunit/.  Bugs that already
+appear in the file BUGS do not need to be reported.
 
 Email to the current maintainers may be sent to
 <cppunit-devel@lists.sourceforge.net>.
