@@ -1,6 +1,7 @@
 2004-02-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * configure.in:
+  * makefile.am:
   * config/ax_cxx_gcc_abi_demangle.m4:
   * src/cppunit/TypeInfoHelper.cpp: added patch from 
     Neil Ferguson <nferguso@eso.org> to use gcc c++ abi to demangle typeinfo
