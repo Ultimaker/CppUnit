@@ -10,5 +10,5 @@ TESTS = MoneyApp
 check_PROGRAMS = $(TESTS)
 MoneyApp_SOURCES = Money.h MoneyTest.h MoneyTest.cpp MoneyApp.cpp StdAfx.h
 MoneyApp_CXXFLAGS = $(CPPUNIT_CFLAGS)
-MoneyApp_LDFLAGS = $(CPPUNIT_LIBS)
-MoneyApp_LDFLAGS = -ldl
+MoneyApp_LDFLAGS = $(CPPUNIT_LIBS) -ldl
+
