@@ -25,6 +25,7 @@ namespace CppUnit {
    * Note that TestSuites assume lifetime
    * control for any tests added to them.
    *
+   * TestSuites do not register themselves in the TestRegistry.
    * \see Test 
    * \see TestCaller
    */
@@ -37,7 +38,7 @@ namespace CppUnit {
                         ~TestSuite      ();
 
     void                run             (TestResult *result);
-    int                 countTestCases  ();
+    int                 countTestCases  () const;
     void                addTest         (Test *test);
     std::string         getName         () const;
     std::string         toString        () const;

@@ -128,7 +128,7 @@ inline TestCase::TestCase (std::string name)
   TestRegistry::getRegistry().addTest(m_name, this);
 }
 
-/** Constructs a test case.
+/** Constructs a test case for a suite.
  *  This TestCase is \b not added to the global registry,
  *  it is supposed that it will be added to a suite.
  *
@@ -145,7 +145,7 @@ inline TestCase::~TestCase ()
 
 
 /// Returns a count of all the tests executed
-inline int TestCase::countTestCases ()
+inline int TestCase::countTestCases () const
 { return 1; }
 
 

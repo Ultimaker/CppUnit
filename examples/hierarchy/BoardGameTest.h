@@ -20,12 +20,19 @@ class BoardGameTest : public CppUnit::TestCase {
     BoardGameTest (string name) : CppUnit::TestCase (name) 
     {
     }
-    
-    BoardGameTest (CppUnit::TestSuite *suite) 
-    { 
-      suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", testReset)); 
+
+    virtual void registerTests(CppUnit::TestSuite *suite) 
+    {
+      suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", 
+         &BoardGameTest<GAMECLASS>::testReset)); 
+      suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", 
+         &BoardGameTest<GAMECLASS>::testResetShouldFail)); 
     }
-    
+
+    BoardGameTest()
+    {
+    }
+
     int countTestCases () const
     { return 1; }
     
@@ -46,6 +53,7 @@ class BoardGameTest : public CppUnit::TestCase {
 
     void testResetShouldFail () 
     { 
+      cout << "The following test fails, this is intended:" << endl;
       assertImplementation (!m_game->reset (),"!m_game->reset ()",__LINE__,__FILE__); 
     }
     

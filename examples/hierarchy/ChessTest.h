@@ -10,15 +10,21 @@ class ChessTest : public BoardGameTest<GAMECLASS> {
     {
     }
     
-    ChessTest (CppUnit::TestSuite *suite) : BoardGameTest<GAMECLASS> (suite) 
-    { 
+    void registerTests(CppUnit::TestSuite *suite) 
+    {
+      BoardGameTest<GAMECLASS>::registerTests(suite);
       suite->addTest (
-        new CppUnit::TestCaller<ChessTest> ("testNumberOfPieces", testNumberOfPieces));
+        new CppUnit::TestCaller<ChessTest> ("testNumberOfPieces", 
+          &ChessTest<GAMECLASS>::testNumberOfPieces));
+    }
+
+    ChessTest() 
+    {
     }
     
     void testNumberOfPieces () 
     { 
-      assert (m_game->numberOfPieces () == 32); 
+      assert (m_game->getNumberOfPieces () == 32); 
     }
 };
 

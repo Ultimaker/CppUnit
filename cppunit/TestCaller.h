@@ -39,6 +39,7 @@ namespace CppUnit {
    *
    * You can use a TestCaller to bind any test method on a TestCase
    * class, as long as it accepts void and returns void.
+   * TestCallers are automatically registered in the TestRegistry.
    * 
    * \see TestCase
    */
@@ -51,7 +52,7 @@ namespace CppUnit {
       public:
         TestCaller (std::string name, TestMethod test) :
           TestCase (name), 
-          m_fixture (new Fixture (name)), 
+          m_fixture (new Fixture ()), 
           m_test (test)
         {}
 

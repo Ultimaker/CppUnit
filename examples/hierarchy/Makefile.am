@@ -1,3 +1,5 @@
+TESTS = hierarchy
+
 noinst_PROGRAMS = hierarchy
 
 INCLUDES= -I$(top_srcdir) 

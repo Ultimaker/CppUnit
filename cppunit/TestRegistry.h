@@ -13,7 +13,9 @@ namespace CppUnit {
   /** This class is used to register tests and testcases.
    *
    *  It implements a registry to place the test cases into.
-   *  The test cases can then register themselves.
+   *  The test cases can then register themselves. 
+   *  All TestCallers and those TestCases that are constructed
+   *  register themselve automatically.
    *  
    */
   class TestRegistry {

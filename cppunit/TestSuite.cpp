@@ -10,7 +10,7 @@ void TestSuite::deleteContents ()
        it != m_tests.end ();
        ++it)
     delete *it;
-
+  m_tests.clear();
 }
 
 
@@ -31,11 +31,11 @@ void TestSuite::run (TestResult *result)
 
 
 /// Counts the number of test cases that will be run by this test.
-int TestSuite::countTestCases ()
+int TestSuite::countTestCases () const
 {
     int count = 0;
 
-    for (std::vector<Test *>::iterator it = m_tests.begin ();
+    for (std::vector<Test * const>::iterator it = m_tests.begin ();
             it != m_tests.end ();
             ++it)
         count += (*it)->countTestCases ();

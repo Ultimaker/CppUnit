@@ -65,13 +65,10 @@ namespace CppUnit {
    * \endcode
    *
    *
-   * The tests to be run can be collected into a TestSuite. CppUnit provides
-   * different test runners which can run a test suite and collect the results.
-   * The test runners expect a static method suite as the entry
-   * point to get a test to run.
+   * The tests to be run can be collected into a TestSuite. 
    * 
    * \code
-   * public: static MathTest::suite () {
+   * public: static TestSuite *MathTest::suite () {
    *      TestSuite *suiteOfTests = new TestSuite;
    *      suiteOfTests->addTest(new TestCaller<MathTest>(
    *                              "testAdd", testAdd));
@@ -81,8 +78,6 @@ namespace CppUnit {
    *  }
    * \endcode
    * 
-   * Note that the caller of suite assumes lifetime control
-   * for the returned suite.
    *
    * \see TestResult
    * \see TestSuite 
@@ -99,7 +94,7 @@ namespace CppUnit {
 
       virtual void        run              (TestResult *result);
       virtual TestResult  *run             ();
-      virtual int         countTestCases   ();
+      virtual int         countTestCases   () const;
       std::string         getName          () const;
       std::string         toString         () const;
 

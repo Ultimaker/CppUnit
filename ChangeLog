@@ -1,1 +1,26 @@
+2001-01-31  Tim Jansen  <timj@systembureau.com>
+
+	* cppunit/TestCase.cpp, cppunit/TestCase.h, cppunit/TestSuite.h, 
+	  cppunit/TestSuite.cpp: applied patch #402271 by bwithrow. 
+	  Fixes bug #220207
+
+	* cppunit/TestSuite.cpp (deleteContents): clear vector after contents 
+	  have been deleted (so there are no invalid pointers in the vector)
+	  Patch #403540 / #403542
+	
+	* cppunit/TestCaller.h: create Fixture with empty constructor so that 
+	  only the TestCaller but not the Fixture instance is registered in
+	  the TestRegistry
+	  Patch #403541 / #403542
  
+ 	* examples/hierarchy/BoardGameTest.h, examples/hierarchy/ChessTest.h,
+ 	  examples/hierarchy/main.cpp: initialize example TestCases with 
+          TestSuite so that the TestCallers are registered in the TestRegistry
+	  Patch #403542. Fixes bug #415249
+ 
+ 	* cppunit/TestCaller.h, cppunit/TestCase.cpp, cppunit/TestCase.h: 
+ 	  changed documentation; made hopefully clearer which constructor 
+ 	  registers the instance in the TestRegistry; corrected syntax in code
+ 	  example
+	  Patch #403542.
+
