@@ -9,7 +9,7 @@
 #include "cppunit/extensions/TestSuiteBuilder.h"
 
 #ifdef USE_TYPEINFO
-#include "../TypeInfoHelper.h"
+#include "TypeInfoHelper.h"
 #endif // USE_TYPEINFO
 
 namespace CppUnit {
@@ -22,6 +22,11 @@ TestFactoryRegistry::TestFactoryRegistry( std::string name ) :
 
 TestFactoryRegistry::~TestFactoryRegistry()
 {
+  for ( Factories::iterator it = m_factories.begin(); it != m_factories.end(); ++it )
+  {
+    AbstractTestFactory *factory = it->second;
+    delete factory;
+  }
 }
 
 
@@ -36,14 +41,22 @@ TestFactoryRegistry::getRegistry()
 TestFactoryRegistry &
 TestFactoryRegistry::getRegistry( const std::string &name )
 {
+// No clean-up at the current time => memory leaks.
+// Need to find a way to solve the folowing issue:
+// getRegistry().registryFactory( "Functionnal", 
+//                                getRegistry( "Functionnal" ) );
+// => the test factory registry "Functionnal" would be
+// destroyed twice: once by the map below, once by the getRegistry() factory.
   static NamedRegistries registries;
 
-  TestFactoryRegistry*& registryPointer = registries[ name ];
-  if (NULL == registryPointer) {
-    registryPointer = new TestFactoryRegistry( name );
+  NamedRegistries::const_iterator foundIt = registries.find( name );
+  if ( foundIt == registries.end() )
+  {
+    TestFactoryRegistry *factory = new TestFactoryRegistry( name );
+    registries.insert( std::make_pair( name, factory ) );
+    return *factory;
   }
-  
-  return *registryPointer;
+  return *foundIt->second;
 }
 
 

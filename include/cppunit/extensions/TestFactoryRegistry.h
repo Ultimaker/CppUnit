@@ -1,6 +1,10 @@
 #ifndef CPPUNIT_TESTFACTORYREGISTRY_H
 #define CPPUNIT_TESTFACTORYREGISTRY_H
 
+#if _MSC_VER > 1000     // VC++
+#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
+#endif // _MSC_VER > 1000
+
 #include <map>
 #include <string>
 #include "cppunit/extensions/AbstractTestFactory.h"
@@ -64,10 +68,10 @@ namespace CppUnit {
     void operator =( const TestFactoryRegistry &copy );
 
   private:
-    typedef std::map<std::string, AbstractTestFactory*> Factories;
+    typedef std::map<std::string, AbstractTestFactory *> Factories;
     Factories m_factories;
 
-    typedef std::map<std::string, TestFactoryRegistry*> NamedRegistries;
+    typedef std::map<std::string, TestFactoryRegistry *> NamedRegistries;
 
     std::string m_name;
   };

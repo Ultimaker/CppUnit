@@ -175,7 +175,7 @@ TestRunnerModel::findTestByNameFor( const std::string &name,
   if ( suite == NULL )
     return NULL;
 
-  std::vector<CppUnit::Test *> tests& = suite->getTests();
+  const std::vector<CppUnit::Test *> &tests = suite->getTests();
   for ( std::vector<CppUnit::Test *>::const_iterator it = tests.begin(); 
         it != tests.end(); 
         ++it )

@@ -74,7 +74,6 @@
   private:                                                              \
     typedef ATestCaseType __ThisTestCaseType;                           \
   public:                                                               \
-    typedef CppUnit::AutoRegisterSuite<__ThisTestCaseType> AutoRegisterSuite; \
     static CppUnit::Test *suite()                                       \
     {                                                                   \
       __ThisTestCaseType *test =NULL;                                   \
@@ -157,7 +156,7 @@
  * \see  CU_TEST_SUITE, CppUnit::AutoRegisterSuite.
  */
 #define CU_TEST_SUITE_REGISTRATION( ATestCaseType )                     \
-  static ATestCaseType::AutoRegisterSuite                               \
+  static CppUnit::AutoRegisterSuite< ATestCaseType >                    \
              CU_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
