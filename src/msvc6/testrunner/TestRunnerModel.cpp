@@ -11,7 +11,6 @@
 
 
 TestRunnerModel::TestRunnerModel( CppUnit::Test *rootTest ) :
-    m_autorunOnLaunch( true ),
     m_rootTest( rootTest )
 {
 }
@@ -20,21 +19,6 @@ TestRunnerModel::TestRunnerModel( CppUnit::Test *rootTest ) :
 TestRunnerModel::~TestRunnerModel()
 {
 }
-
-
-bool 
-TestRunnerModel::autorunOnLaunch() const
-{
-  return m_autorunOnLaunch;
-}
-
-
-void 
-TestRunnerModel::setAutorunOnLaunch( bool autorunOnLaunch )
-{
-  m_autorunOnLaunch = autorunOnLaunch;
-}
-
 
 const TestRunnerModel::History &
 TestRunnerModel::history() const
@@ -65,7 +49,7 @@ TestRunnerModel::selectedTest() const
 
 
 void 
-TestRunnerModel::loadSettings()
+TestRunnerModel::loadSettings(Settings & s)
 {
   CWinApp *app = AfxGetApp();
   ASSERT( app != NULL );
@@ -73,8 +57,17 @@ TestRunnerModel::loadSettings()
   int autorun = app->GetProfileInt( "CppUnit", 
                                     "AutorunAtStartup",
                                     1 );
-  m_autorunOnLaunch = (autorun == 1);
+  s.autorunOnLaunch = (autorun == 1);
 
+  s.dlgBounds.left = app->GetProfileInt( "CppUnit", "Left", 0 );
+  s.dlgBounds.top = app->GetProfileInt( "CppUnit", "Top", 0 );
+  s.dlgBounds.right = app->GetProfileInt( "CppUnit", "Right", 0 );
+  s.dlgBounds.bottom= app->GetProfileInt( "CppUnit", "Bottom", 0 );  
+
+  s.col_1 = app->GetProfileInt( "CppUnit", "Col_1", 40 );
+  s.col_2 = app->GetProfileInt( "CppUnit", "Col_2", 40 );
+  s.col_3 = app->GetProfileInt( "CppUnit", "Col_3", 40 );
+  s.col_4 = app->GetProfileInt( "CppUnit", "Col_4", 40 );
 
   loadHistory();
 }
@@ -112,13 +105,23 @@ TestRunnerModel::loadHistoryEntry( int idx )
 
 
 void 
-TestRunnerModel::saveSettings()
+TestRunnerModel::saveSettings( const Settings & s )
 {
   CWinApp *app = AfxGetApp();
   ASSERT( app != NULL );
 
-  int autorun = m_autorunOnLaunch ? 1 : 0;
+  int autorun = s.autorunOnLaunch ? 1 : 0;
   app->WriteProfileInt( "CppUnit", "AutorunAtStartup", autorun );
+
+  app->WriteProfileInt( "CppUnit", "Left",	 s.dlgBounds.left );
+  app->WriteProfileInt( "CppUnit", "Top",	 s.dlgBounds.top );
+  app->WriteProfileInt( "CppUnit", "Right",  s.dlgBounds.right );
+  app->WriteProfileInt( "CppUnit", "Bottom", s.dlgBounds.bottom );
+
+  app->WriteProfileInt( "CppUnit", "Col_1",	 s.col_1 );
+  app->WriteProfileInt( "CppUnit", "Col_2",	 s.col_2 );
+  app->WriteProfileInt( "CppUnit", "Col_3",	 s.col_3 );
+  app->WriteProfileInt( "CppUnit", "Col_4",	 s.col_4 );
 
   int idx = 1;
   for ( History::const_iterator it = m_history.begin(); 

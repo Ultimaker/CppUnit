@@ -54,11 +54,6 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 ../../../Lib/cppunit.lib ../../../Lib/testrunner.lib /nologo /subsystem:windows /machine:I386
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PostBuild_Desc=copy testrunner dll to Release
-PostBuild_Cmds=copy ..\..\..\Lib\testrunner.dll Release
-# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
 
@@ -85,11 +80,6 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 ../../../Lib/cppunitd.lib ../../../Lib/testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PostBuild_Desc=copy testrunner dll to debug
-PostBuild_Cmds=copy ..\..\..\Lib\testrunnerd.dll Debug
-# End Special Build Tool
 
 !ENDIF 
 
@@ -407,6 +397,71 @@ SOURCE=.\res\CppUnitTestApp.ico
 # Begin Source File
 
 SOURCE=.\res\CppUnitTestApp.rc2
+# End Source File
+# End Group
+# Begin Group "DLL Dependencies"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunner.dll
+
+!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\Release
+InputPath=..\..\..\lib\testrunner.dll
+InputName=testrunner
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnercd.dll
+
+!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnerd.dll
+
+!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\Debug
+InputPath=..\..\..\lib\testrunnerd.dll
+InputName=testrunnerd
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Source File

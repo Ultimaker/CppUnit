@@ -125,6 +125,10 @@ LINK32=link.exe
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe"
 # Begin Source File
 
+SOURCE=.\res\errortype.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\test_type.bmp
 # End Source File
 # Begin Source File

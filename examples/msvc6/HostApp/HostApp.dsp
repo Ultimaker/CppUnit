@@ -55,10 +55,6 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 ../../../Lib/cppunit.lib ../../../Lib/testrunner.lib /nologo /subsystem:windows /machine:I386
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PreLink_Cmds=copy ..\..\..\lib\testrunner.dll Release
-# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
 
@@ -86,10 +82,6 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 ..\..\..\lib\cppunitd.lib ..\..\..\lib\testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none /map /nodefaultlib
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PreLink_Cmds=copy ..\..\..\lib\testrunnerd.dll Debug
-# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
 
@@ -119,10 +111,6 @@ LINK32=link.exe
 # SUBTRACT BASE LINK32 /pdb:none /map /nodefaultlib
 # ADD LINK32 ..\..\..\lib\cppunitcd.lib ..\..\..\lib\testrunnercd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none /map /nodefaultlib
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PreLink_Cmds=copy ..\..\..\lib\testrunnercd.dll DebugCrossplatform
-# End Special Build Tool
 
 !ENDIF 
 
@@ -215,6 +203,91 @@ SOURCE=.\res\HostAppDoc.ico
 # Begin Source File
 
 SOURCE=.\res\Toolbar.bmp
+# End Source File
+# End Group
+# Begin Group "DLL Dependencies"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunner.dll
+
+!IF  "$(CFG)" == "HostApp - Win32 Release"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\Release
+InputPath=..\..\..\lib\testrunner.dll
+InputName=testrunner
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnercd.dll
+
+!IF  "$(CFG)" == "HostApp - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\DebugCrossplatform
+InputPath=..\..\..\lib\testrunnercd.dll
+InputName=testrunnercd
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnerd.dll
+
+!IF  "$(CFG)" == "HostApp - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug"
+
+# Begin Custom Build - $(IntDir)\$(InputName).dll
+IntDir=.\Debug
+InputPath=..\..\..\lib\testrunnerd.dll
+InputName=testrunnerd
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "HostApp - Win32 Debug Crossplatform Setting"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Source File

@@ -33,6 +33,7 @@
 
 #include "ActiveTest.h"
 #include "MsDevCallerListCtrl.h"
+#include "TestRunnerModel.h"
 
 class ProgressBar;
 class TestRunnerModel;
@@ -84,9 +85,11 @@ protected:
   virtual void OnOK();
   afx_msg void OnSelchangeComboTest();
   afx_msg void OnPaint();
-	afx_msg void OnBrowseTest();
-	afx_msg void OnQuitApplication();
-	//}}AFX_MSG
+  afx_msg void OnBrowseTest();
+  afx_msg void OnQuitApplication();
+  afx_msg void OnClose();
+  afx_msg void OnSize(UINT nType, int cx, int cy);
+  //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 
   typedef std::vector<CppUnit::Test *> Tests;
@@ -136,6 +139,20 @@ protected:
   void saveSettings();
   TestRunnerModel &model();
   void updateHistoryCombo();
+
+private:
+  // layout management
+  void updateLayoutInfo();
+
+  int m_margin;
+
+  /// distance from bottom of ListView
+  int m_listViewDelta;
+
+  /// distance from timing edit box
+  int m_editDelta;
+
+  TestRunnerModel::Settings m_settings;
 };
 
 

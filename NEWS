@@ -37,6 +37,9 @@ with result().
   - Qt TestRunner : a test runner for the Qt library (http://www.trolltech.com).
     See examples/qt for an example of use.
 
+  - MFC TestRunner : the dialog can now be resized. List view column sizes, 
+  as well as the dialog size, are saved.
+
 * Output
 
   - XML output : You can dump the TestResult as an XML document using 

@@ -10,7 +10,6 @@
 #include "GUITestResult.h"
 #include "ProgressBar.h"
 #include "TreeHierarchyDlg.h"
-#include "TestRunnerModel.h"
 #include "ListCtrlFormatter.h"
 #include "ListCtrlSetter.h"
 
@@ -20,9 +19,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/* TODO:
- - rewrite history management. It's quite messy.
-   => don't store test as data, use a vector a most recently used test instead.
+/* Notes:
+ - code duplication between OnOK() and OnQuitApplication()
  */
 
 
@@ -38,29 +36,33 @@ TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
     CDialog( nDialogResourceId == -1 ? IDD_DIALOG_TESTRUNNER :
                                        nDialogResourceId, 
              pParent),
-    m_model( model )
+    m_model( model ),
+    m_margin( 0 ),
+    m_listViewDelta( 0 ),
+    m_editDelta( 0 )
 {
-    //{{AFX_DATA_INIT(TestRunnerDlg)
-	m_bAutorunAtStartup = FALSE;
-	//}}AFX_DATA_INIT
+  //{{AFX_DATA_INIT(TestRunnerDlg)
+    m_bAutorunAtStartup = FALSE;
+  //}}AFX_DATA_INIT
 
-    m_testsProgress     = 0;
-    m_selectedTest      = 0;
-    m_bAutorunAtStartup = true;
-    m_bIsRunning = false;
+  m_testsProgress     = 0;
+  m_selectedTest      = 0;
+  m_bAutorunAtStartup = true;
+  m_bIsRunning = false;
 }
 
 
-void TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
+void 
+TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(TestRunnerDlg)
-	DDX_Control(pDX, IDC_LIST, m_listCtrl);
-	DDX_Control(pDX, IDOK, m_buttonClose);
-	DDX_Control(pDX, ID_STOP, m_buttonStop);
-	DDX_Control(pDX, ID_RUN, m_buttonRun);
-	DDX_Check(pDX, IDC_CHECK_AUTORUN, m_bAutorunAtStartup);
-	//}}AFX_DATA_MAP
+  CDialog::DoDataExchange(pDX);
+  //{{AFX_DATA_MAP(TestRunnerDlg)
+    DDX_Control(pDX, IDC_LIST, m_listCtrl);
+    DDX_Control(pDX, IDOK, m_buttonClose);
+    DDX_Control(pDX, ID_STOP, m_buttonStop);
+    DDX_Control(pDX, ID_RUN, m_buttonRun);
+    DDX_Check(pDX, IDC_CHECK_AUTORUN, m_bAutorunAtStartup);
+  //}}AFX_DATA_MAP
 }
 
 
@@ -70,103 +72,119 @@ BEGIN_MESSAGE_MAP(TestRunnerDlg, CDialog)
   ON_BN_CLICKED(ID_STOP, OnStop)
   ON_CBN_SELCHANGE(IDC_COMBO_TEST, OnSelchangeComboTest)
   ON_WM_PAINT()
-	ON_BN_CLICKED(IDC_BROWSE_TEST, OnBrowseTest)
-	ON_COMMAND(ID_QUIT_APPLICATION, OnQuitApplication)
-	//}}AFX_MSG_MAP
+  ON_BN_CLICKED(IDC_BROWSE_TEST, OnBrowseTest)
+  ON_COMMAND(ID_QUIT_APPLICATION, OnQuitApplication)
+  ON_WM_CLOSE()
+  ON_WM_SIZE()
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // TestRunnerDlg message handlers
 
-BOOL TestRunnerDlg::OnInitDialog() 
+BOOL 
+TestRunnerDlg::OnInitDialog() 
 {
-    CDialog::OnInitDialog();
+  CDialog::OnInitDialog();
 
 //    m_hAccelerator = ::LoadAccelerators( AfxGetResourceHandle(),
-    m_hAccelerator = ::LoadAccelerators( g_testRunnerResource,
-                                         MAKEINTRESOURCE( IDR_ACCELERATOR_TEST_RUNNER ) );
+  m_hAccelerator = ::LoadAccelerators( g_testRunnerResource,
+                                       MAKEINTRESOURCE( IDR_ACCELERATOR_TEST_RUNNER ) );
 // It always fails!!! I don't understand why. Complain about not finding the resource name!
-    ASSERT( m_hAccelerator !=NULL );
-    
-    CListCtrl   *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
-    CComboBox   *comboBox = (CComboBox *)GetDlgItem (IDC_COMBO_TEST);
+  ASSERT( m_hAccelerator !=NULL );
+  
+  CListCtrl   *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
+  CComboBox   *comboBox = (CComboBox *)GetDlgItem (IDC_COMBO_TEST);
 
-    ASSERT (listCtrl);
-    ASSERT (comboBox);
-    ListCtrlFormatter formatter( *listCtrl );
+  ASSERT (listCtrl);
+  ASSERT (comboBox);
+  ListCtrlFormatter formatter( *listCtrl );
 
-    VERIFY( m_errorListBitmap.Create( IDB_ERROR_TYPE, 16, 1, 
-                                      RGB( 255,0,255 ) ) );
+  VERIFY( m_errorListBitmap.Create( IDB_ERROR_TYPE, 16, 1, 
+                                    RGB( 255,0,255 ) ) );
 
-    listCtrl->SetImageList( &m_errorListBitmap, LVSIL_SMALL );
+  loadSettings();
+      
+  listCtrl->SetImageList( &m_errorListBitmap, LVSIL_SMALL );
 
-    int averageCharWidth = listCtrl->GetStringWidth("#");
-    formatter.AddColumn( IDS_ERRORLIST_TYPE, 4*averageCharWidth, LVCFMT_LEFT, 0 );
-    formatter.AddColumn( IDS_ERRORLIST_NAME, 32*averageCharWidth, LVCFMT_LEFT, 1 );
-    formatter.AddColumn( IDS_ERRORLIST_FAILED_CONDITION, 20*averageCharWidth, LVCFMT_LEFT, 2 );
-    formatter.AddColumn( IDS_ERRORLIST_LINE_NUMBER, 5*averageCharWidth, LVCFMT_LEFT, 3 );
-    formatter.AddColumn( IDS_ERRORLIST_FILE_NAME, 10*averageCharWidth, LVCFMT_LEFT, 4 );
+  int total_col_1_4 = m_settings.col_1 + m_settings.col_2 + 
+		      m_settings.col_3 + m_settings.col_4;
 
+  CRect listBounds;
+  listCtrl->GetClientRect(&listBounds);
+  int col_5_width = listBounds.Width() - total_col_1_4; // 5th column = rest of listview space
+  formatter.AddColumn( IDS_ERRORLIST_TYPE, m_settings.col_1, LVCFMT_LEFT, 0 );
+  formatter.AddColumn( IDS_ERRORLIST_NAME, m_settings.col_2, LVCFMT_LEFT, 1 );
+  formatter.AddColumn( IDS_ERRORLIST_FAILED_CONDITION, m_settings.col_3, LVCFMT_LEFT, 2 );
+  formatter.AddColumn( IDS_ERRORLIST_LINE_NUMBER, m_settings.col_4, LVCFMT_LEFT, 3 );
+  formatter.AddColumn( IDS_ERRORLIST_FILE_NAME, col_5_width, LVCFMT_LEFT, 4 );
 
-    m_testsProgress = new ProgressBar (this, CRect (50, 85, 50 + 425, 85 + 25));
+  m_testsProgress = new ProgressBar (this, CRect (50, 85, 50 + 425, 85 + 25));
 
-    reset ();
+  reset ();
 
-    loadSettings();
-    updateHistoryCombo();
+  updateLayoutInfo();
+      
+  updateHistoryCombo();
 
-    UpdateData( FALSE );
+  UpdateData( FALSE );
 
-    // somehow doesn't have the desired effect?
-    LONG extendedStyle = GetWindowLong( m_listCtrl.GetSafeHwnd(), 
-                                        GWL_EXSTYLE);;
-    SetWindowLong( m_listCtrl.GetSafeHwnd(), 
-                   GWL_EXSTYLE, 
-                   extendedStyle | LVS_EX_FULLROWSELECT);
+  RECT & r = m_settings.dlgBounds;
+  if ( r.right-r.left > 0  &&  r.bottom-r.top > 0 )
+      MoveWindow( &r );
 
-    m_buttonRun.SetFocus();
+  // somehow doesn't have the desired effect?
+  LONG extendedStyle = GetWindowLong( m_listCtrl.GetSafeHwnd(), 
+                                      GWL_EXSTYLE);;
+  SetWindowLong( m_listCtrl.GetSafeHwnd(), 
+                 GWL_EXSTYLE, 
+                 extendedStyle | LVS_EX_FULLROWSELECT);
 
-    if ( m_bAutorunAtStartup )
-      OnRun();
-    
-    return FALSE;  // return TRUE unless you set the focus to a control
-                   // EXCEPTION: OCX Property Pages should return FALSE
+  m_buttonRun.SetFocus();
+
+  if ( m_bAutorunAtStartup )
+    OnRun();
+  
+  return FALSE;  // return TRUE unless you set the focus to a control
+                 // EXCEPTION: OCX Property Pages should return FALSE
 }
+
 
 TestRunnerDlg::~TestRunnerDlg ()
 { 
-  saveSettings();
   freeState ();
   delete m_testsProgress;
 }
 
-void TestRunnerDlg::OnRun() 
+
+void 
+TestRunnerDlg::OnRun() 
 {
   if ( m_bIsRunning )
     return;
 
   m_selectedTest = m_model->selectedTest();
 
-  if (m_selectedTest == 0)
-	  return;
+  if ( m_selectedTest == 0 )
+    return;
 
-  freeState       (); 
-  reset           ();
+  freeState(); 
+  reset();
 
-  beRunning       ();
+  beRunning();
 
-  int numberOfTests = m_selectedTest->countTestCases ();
+  int numberOfTests = m_selectedTest->countTestCases();
 
-  m_testsProgress->start (numberOfTests);
+  m_testsProgress->start( numberOfTests );
 
-  m_result            = new GUITestResult ((TestRunnerDlg *)this);
-  m_activeTest        = new ActiveTest (m_selectedTest);
+  m_result = new GUITestResult( (TestRunnerDlg *)this );
+  m_activeTest = new ActiveTest( m_selectedTest );
 
-  m_testStartTime     = timeGetTime ();
+  m_testStartTime = timeGetTime();
 
-  m_activeTest->run (m_result);
+  m_activeTest->run( m_result );
 
-  m_testEndTime       = timeGetTime ();
+  m_testEndTime = timeGetTime();
 }
 
 
@@ -176,188 +194,199 @@ TestRunnerDlg::addListEntry( std::string type,
                              CppUnit::Test *test, 
                              CppUnit::Exception *e )
 {
-    CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
-    int currentEntry = result->testErrors() + 
-                       result->testFailures() -1;
+  CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
+  int currentEntry = result->testErrors() + 
+                     result->testFailures() -1;
 
-    ErrorTypeBitmaps errorType;
-    if ( type == "Failure" )
-      errorType = errorTypeFailure;
-    else
-      errorType = errorTypeError;
+  ErrorTypeBitmaps errorType;
+  if ( type == "Failure" )
+    errorType = errorTypeFailure;
+  else
+    errorType = errorTypeError;
 
-    ListCtrlSetter setter( *listCtrl );
-    setter.insertLine( currentEntry );
-    setter.addSubItem( errorType, type );
+  ListCtrlSetter setter( *listCtrl );
+  setter.insertLine( currentEntry );
+  setter.addSubItem( errorType, type );
 
-    // Set test name
-    setter.addSubItem( errorType, test->getName() );
+  // Set test name
+  setter.addSubItem( errorType, test->getName() );
 
-    // Set the asserted text
-    setter.addSubItem( e->what() );
+  // Set the asserted text
+  setter.addSubItem( e->what() );
 
-    // Set the line number
-    if (e->sourceLine().isValid() )
-    {
-      char tmp[64];
-      sprintf( tmp, "%ld", e->sourceLine().lineNumber() );
-      setter.addSubItem( tmp );
-    }
-    else
-      setter.addSubItem( "" );
+  // Set the line number
+  if (e->sourceLine().isValid() )
+  {
+    char tmp[64];
+    sprintf( tmp, "%ld", e->sourceLine().lineNumber() );
+    setter.addSubItem( tmp );
+  }
+  else
+    setter.addSubItem( "" );
 
-    // Set the file name
-    setter.addSubItem( e->sourceLine().fileName() );
+  // Set the file name
+  setter.addSubItem( e->sourceLine().fileName() );
 
 /* In place of the missing detail fiedl...
-    std::string dump = "Test: " + test->getName() + "\n";
-    dump += e->what();
-    dump += "\n";
-    ::OutputDebugString( dump.c_str() );
+  std::string dump = "Test: " + test->getName() + "\n";
+  dump += e->what();
+  dump += "\n";
+  ::OutputDebugString( dump.c_str() );
 */
 
-    listCtrl->RedrawItems (currentEntry, currentEntry);
-    listCtrl->UpdateWindow ();
-
+  listCtrl->RedrawItems (currentEntry, currentEntry);
+  listCtrl->UpdateWindow ();
 }
 
 
-
-void TestRunnerDlg::addError (CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e)
+void 
+TestRunnerDlg::addError (CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e)
 {
-    addListEntry ("Error", result, test, e);
-    m_errors++;
+  addListEntry ("Error", result, test, e);
+  m_errors++;
 
-    updateCountsDisplay ();
-
-}
-
-void TestRunnerDlg::addFailure (CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e)
-{
-    addListEntry ("Failure", result, test, e);
-    m_failures++;
-
-    updateCountsDisplay ();
-
+  updateCountsDisplay ();
 }
 
 
-void TestRunnerDlg::endTest (CppUnit::TestResult *result, CppUnit::Test *test)
+void 
+TestRunnerDlg::addFailure (CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e)
 {
-	if (m_selectedTest == 0)
-		return;
+  addListEntry ("Failure", result, test, e);
+  m_failures++;
 
-    m_testsRun++;
-    updateCountsDisplay ();
-    m_testsProgress->step (m_failures == 0 && m_errors == 0);
-
-    m_testEndTime   = timeGetTime ();
-
-    updateCountsDisplay ();
-
-    if (m_testsRun >= m_selectedTest->countTestCases ())
-        beIdle ();
+  updateCountsDisplay ();
 }
 
 
-void TestRunnerDlg::beRunning ()
+void 
+TestRunnerDlg::endTest( CppUnit::TestResult *result, 
+                        CppUnit::Test *test )
 {
-    m_bIsRunning = true;
-    m_buttonRun.EnableWindow( FALSE );
-    m_buttonClose.EnableWindow( FALSE );
+  if ( m_selectedTest == 0 )
+    return;
+
+  m_testsRun++;
+  updateCountsDisplay();
+  m_testsProgress->step( m_failures == 0  &&  m_errors == 0 );
+
+  m_testEndTime = timeGetTime();
+
+  updateCountsDisplay();
+
+  if ( m_testsRun >= m_selectedTest->countTestCases() )
+    beIdle ();
+}
+
+
+void 
+TestRunnerDlg::beRunning()
+{
+  m_bIsRunning = true;
+  m_buttonRun.EnableWindow( FALSE );
+  m_buttonClose.EnableWindow( FALSE );
 
 //    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
 //    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() | BS_DEFPUSHBUTTON );
 }
 
 
-void TestRunnerDlg::beIdle ()
+void 
+TestRunnerDlg::beIdle()
 {
-    m_bIsRunning = false;
-    m_buttonRun.EnableWindow( TRUE );
-    m_buttonClose.EnableWindow( TRUE );
+  m_bIsRunning = false;
+  m_buttonRun.EnableWindow( TRUE );
+  m_buttonClose.EnableWindow( TRUE );
 
-    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() | BS_DEFPUSHBUTTON );
+  m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() | BS_DEFPUSHBUTTON );
 //    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
 }
 
-void TestRunnerDlg::beRunDisabled ()
+
+void 
+TestRunnerDlg::beRunDisabled()
 {
-    m_bIsRunning = false;
-    m_buttonRun.EnableWindow( FALSE );
-    m_buttonStop.EnableWindow( FALSE );
-    m_buttonClose.EnableWindow( TRUE );
+  m_bIsRunning = false;
+  m_buttonRun.EnableWindow( FALSE );
+  m_buttonStop.EnableWindow( FALSE );
+  m_buttonClose.EnableWindow( TRUE );
 
 //    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() | BS_DEFPUSHBUTTON );
 //    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
 }
 
 
-void TestRunnerDlg::freeState ()
+void 
+TestRunnerDlg::freeState()
 {
-    delete m_activeTest;
-    delete m_result;
-
+  delete m_activeTest;
+  delete m_result;
 }
 
-void TestRunnerDlg::reset ()
+
+void 
+TestRunnerDlg::reset()
 {
-    m_testsRun      = 0;
-    m_errors        = 0;
-    m_failures      = 0;
-    m_testEndTime   = m_testStartTime;
+  m_testsRun      = 0;
+  m_errors        = 0;
+  m_failures      = 0;
+  m_testEndTime   = m_testStartTime;
 
-    updateCountsDisplay ();
+  updateCountsDisplay ();
 
-    m_activeTest    = 0;
-    m_result        = 0;
+  m_activeTest    = 0;
+  m_result        = 0;
 
-    CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
+  CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
 
-    listCtrl->DeleteAllItems ();
-    m_testsProgress->reset ();
-
+  listCtrl->DeleteAllItems ();
+  m_testsProgress->reset ();
 }
 
 
 void TestRunnerDlg::updateCountsDisplay ()
 {
-    CStatic *statTestsRun   = (CStatic *)GetDlgItem (IDC_STATIC_RUNS);
-    CStatic *statErrors     = (CStatic *)GetDlgItem (IDC_STATIC_ERRORS);
-    CStatic *statFailures   = (CStatic *)GetDlgItem (IDC_STATIC_FAILURES);
-    CEdit *editTime         = (CEdit *)GetDlgItem (IDC_EDIT_TIME);
+  CStatic *statTestsRun   = (CStatic *)GetDlgItem (IDC_STATIC_RUNS);
+  CStatic *statErrors     = (CStatic *)GetDlgItem (IDC_STATIC_ERRORS);
+  CStatic *statFailures   = (CStatic *)GetDlgItem (IDC_STATIC_FAILURES);
+  CEdit *editTime         = (CEdit *)GetDlgItem (IDC_EDIT_TIME);
 
-    CString argumentString;
+  CString argumentString;
 
-    argumentString.Format ("%d", m_testsRun);
-    statTestsRun    ->SetWindowText (argumentString);
+  argumentString.Format ("%d", m_testsRun);
+  statTestsRun    ->SetWindowText (argumentString);
 
-    argumentString.Format ("%d", m_errors);
-    statErrors      ->SetWindowText (argumentString);
+  argumentString.Format ("%d", m_errors);
+  statErrors      ->SetWindowText (argumentString);
 
-    argumentString.Format ("%d", m_failures);
-    statFailures    ->SetWindowText (argumentString);
+  argumentString.Format ("%d", m_failures);
+  statFailures    ->SetWindowText (argumentString);
 
-    argumentString.Format ("Execution time: %3.3lf seconds", (m_testEndTime - m_testStartTime) / 1000.0);
-    editTime        ->SetWindowText (argumentString);
-
-
+  argumentString.Format ("Execution time: %3.3lf seconds", (m_testEndTime - m_testStartTime) / 1000.0);
+  editTime        ->SetWindowText (argumentString);
 }
 
-void TestRunnerDlg::OnStop() 
-{
-    if (m_result)
-        m_result->stop ();
 
-    beIdle ();
+void 
+TestRunnerDlg::OnStop() 
+{
+  if (m_result)
+      m_result->stop ();
+
+  beIdle ();
 }
 
-void TestRunnerDlg::OnOK() 
-{
-    if (m_result)
-        m_result->stop ();
 
-    CDialog::OnOK ();
+void 
+TestRunnerDlg::OnOK() 
+{
+  if (m_result)
+    m_result->stop ();
+
+  UpdateData();
+  saveSettings();
+
+  CDialog::OnOK ();
 }
 
 
@@ -454,24 +483,36 @@ TestRunnerDlg::getHistoryCombo()
 void
 TestRunnerDlg::loadSettings()
 {
-  m_model->loadSettings();
+  m_model->loadSettings(m_settings);
 
-  m_bAutorunAtStartup = m_model->autorunOnLaunch();
+  m_bAutorunAtStartup = m_settings.autorunOnLaunch;
 }
 
 
 void
 TestRunnerDlg::saveSettings()
 {
-  m_model->setAutorunOnLaunch( m_bAutorunAtStartup != 0 );
+  m_settings.autorunOnLaunch = ( m_bAutorunAtStartup != 0 );
+  GetWindowRect(&m_settings.dlgBounds);
   
-  m_model->saveSettings();
+  m_settings.col_1 = m_listCtrl.GetColumnWidth(0);
+  m_settings.col_2 = m_listCtrl.GetColumnWidth(1);
+  m_settings.col_3 = m_listCtrl.GetColumnWidth(2);
+  m_settings.col_4 = m_listCtrl.GetColumnWidth(3);
+
+  m_model->saveSettings(m_settings);
 }
 
 
 void 
 TestRunnerDlg::OnQuitApplication() 
 {
+  if (m_result)
+    m_result->stop ();
+
+  UpdateData();
+  saveSettings();
+  
   CWinApp *app = AfxGetApp();
   ASSERT( app != NULL );
   app->PostThreadMessage( WM_QUIT, 0, 0 );
@@ -484,3 +525,210 @@ TestRunnerDlg::model()
   ASSERT( m_model != NULL );
   return *m_model;
 }
+
+
+void 
+TestRunnerDlg::OnClose() 
+{
+	OnOK();
+}
+
+
+void 
+TestRunnerDlg::updateLayoutInfo()
+{
+  RECT r;
+  RECT dlgBounds;
+
+  // get dialog in screen co-ordinates
+  GetWindowRect( &dlgBounds );
+
+  // Set general margin according to distance of browse button from the right
+  CWnd * pItem = GetDlgItem(IDC_BROWSE_TEST);
+  pItem->GetWindowRect( &r );
+
+  m_margin = dlgBounds.right - r.right;
+
+  pItem = GetDlgItem(IDC_LIST);
+  pItem->GetWindowRect( &r );
+
+  m_listViewDelta = dlgBounds.bottom - r.bottom;
+
+  pItem = GetDlgItem(IDC_EDIT_TIME);
+  pItem->GetWindowRect( &r );
+
+  m_editDelta = dlgBounds.bottom - r.bottom;
+}
+
+
+void 
+TestRunnerDlg::OnSize(UINT nType, int cx, int cy) 
+{
+  CDialog::OnSize(nType, cx, cy);
+  
+  // Layout controls according to new size	
+  CRect r;
+  CRect dlgBounds;
+  GetClientRect(&dlgBounds);
+  ClientToScreen(&dlgBounds);
+  
+  int buttonLeft  = 0;
+  int buttonRight = 0;
+  
+  CWnd * pItem = GetDlgItem(IDC_BROWSE_TEST);
+  if (pItem)
+  {
+    pItem->GetWindowRect( &r );
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    
+    int buttonWidth = r.Width();
+    buttonLeft  = cx - buttonWidth - m_margin; 
+    buttonRight = buttonLeft + buttonWidth;
+    r.left =  buttonLeft;
+    r.right = buttonRight;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  pItem = GetDlgItem(ID_RUN);
+  if (pItem)
+  {
+    pItem->GetClientRect( &r );
+    pItem->ClientToScreen( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    r.left =  buttonLeft;
+    r.right = buttonRight;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  pItem = GetDlgItem(IDC_CHECK_AUTORUN);
+  if (pItem)
+  {
+    pItem->GetClientRect( &r );
+    pItem->ClientToScreen( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    r.left =  buttonLeft;
+    r.right = buttonRight;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  pItem = GetDlgItem(IDOK); // Close button
+  if (pItem)
+  {
+    pItem->GetClientRect( &r );
+    pItem->ClientToScreen( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    r.left =  buttonLeft;
+    r.right = buttonRight;
+    
+    int height = r.Height();
+    // order matters here ( r.top uses new r.bottom )
+    r.bottom = cy - m_editDelta;
+    r.top = r.bottom - height;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  pItem = GetDlgItem(ID_STOP);
+  if (pItem)
+  {
+    pItem->GetClientRect( &r );
+    pItem->ClientToScreen( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    r.left =  buttonLeft;
+    r.right = buttonRight;
+    
+    int height = r.Height();
+    // order matters here ( r.top uses new r.bottom )
+    r.bottom = cy - m_listViewDelta;
+    r.top = r.bottom - height;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  pItem = GetDlgItem(IDC_COMBO_TEST);
+  if (pItem)
+  {
+    pItem->GetClientRect( &r );
+    pItem->ClientToScreen( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    r.right = buttonLeft - m_margin;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  pItem = GetDlgItem(IDC_LIST);
+  if (pItem)
+  {
+    pItem->GetWindowRect( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    
+    r.right =  buttonLeft - m_margin;
+    
+    // resize to fit last column
+    
+    LVCOLUMN lv;
+    lv.mask = LVCF_WIDTH;
+    int width_1_4 = 0;
+    for (int i = 0; i < 4; ++i)
+    {
+      m_listCtrl.GetColumn(i, &lv);
+      width_1_4 += lv.cx;
+    }
+    
+    // the 4 offset is so no horiz scroll bar will appear
+    m_listCtrl.SetColumnWidth(4, r.Width() - width_1_4 - 4); 
+    
+    // order matters here ( r.top uses new r.bottom )
+    r.bottom = cy - m_listViewDelta;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+  
+  if (m_testsProgress)
+  {
+    m_testsProgress->setWidth(r.right - r.left);
+  }
+  
+  pItem = GetDlgItem(IDC_EDIT_TIME);
+  if (pItem)
+  {
+    pItem->GetWindowRect( &r );
+    
+    // adjust to dialog units
+    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
+    
+    r.right =  buttonLeft - m_margin;
+    
+    int height = r.Height();
+    // order matters here ( r.top uses new r.bottom )
+    r.bottom = cy - m_editDelta;
+    r.top = r.bottom - height;
+    
+    pItem->MoveWindow( &r );
+    pItem->Invalidate();
+  }
+}
+

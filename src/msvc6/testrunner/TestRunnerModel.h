@@ -16,6 +16,16 @@
 class AFX_CLASS_EXPORT TestRunnerModel
 {
 public:
+  struct Settings
+  {
+    bool autorunOnLaunch;
+    RECT dlgBounds;	
+    int  col_1; // 1st column width in list view
+    int  col_2; // 2nd column width in list view
+    int  col_3; // 3rd column width in list view
+    int  col_4; // 4th column width in list view  
+  };
+
   typedef std::deque<CppUnit::Test *> History;
 
   /*! Constructs a TestRunnerModel object.
@@ -28,11 +38,8 @@ public:
 
   virtual void setRootTest( CppUnit::Test *rootTest );
 
-  void loadSettings();
-  void saveSettings();
-
-  bool autorunOnLaunch() const;
-  void setAutorunOnLaunch( bool autorunOnLaunch );
+  void loadSettings(Settings & s);
+  void saveSettings(const Settings & s);
 
   const History &history() const;
   void selectHistoryTest( CppUnit::Test *test );
@@ -60,8 +67,6 @@ private:
   TestRunnerModel &operator =( const TestRunnerModel &copy );
 
 private:
-  bool m_autorunOnLaunch;
-  
   History m_history;
 
   CppUnit::Test *m_rootTest;

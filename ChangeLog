@@ -1,3 +1,26 @@
+2001-10-24 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp:
+	* examples/msvc6/HostApp/HostApp.dsp: use custom file build instead
+	of post-build/pre-link step to copy the TestRunner DLL to the 
+	Release/Debug directory.
+
+	* src/msvc6/ProgressBar.cpp:
+	* src/msvc6/ProgressBar.h:
+	* src/msvc6/TestRunner.rc:
+	* src/msvc6/TestRunnerDlg.cpp:
+	* src/msvc6/TestRunnerDlg.h:
+	* src/msvc6/testRunner.dsp:
+	* src/msvc6/TestRunnerModel.cpp:
+	* src/msvc6/TestRunnerModel.h: included Gigi Sayfan (gigi@morphink.com)
+	patch. The dialog can now be resized, and list view columns and dialog
+	sizes are saved.
+
+	* src/msvc6/ProgressBar.cpp:
+	* src/msvc6/ProgressBar.h: Minor refactoring.
+
+	* THANKS: added Gigi Sayfan to the list.
+
 2001-10-21  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* configure.in: Bump version to 1.7.2.
