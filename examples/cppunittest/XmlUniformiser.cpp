@@ -161,10 +161,13 @@ XmlUniformiser::copyElementAttributes()
 {
   do
   {
+    bool hadSpace = isSpace();
     skipSpaces();
     if ( startsWith( ">" ) )
       break;
-    m_stripped += ' ';
+
+    if ( hadSpace )
+      m_stripped += ' ';
 
     copyAttributeName();
     skipSpaces();

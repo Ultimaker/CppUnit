@@ -176,6 +176,9 @@ XmlElement::attributesAsString() const
   Attributes::const_iterator itAttribute = m_attributes.begin();
   while ( itAttribute != m_attributes.end() )
   {
+    if ( !attributes.empty() )
+       attributes += " ";
+
     const Attribute &attribute = *itAttribute++;
     attributes += attribute.first;
     attributes += "=\"";

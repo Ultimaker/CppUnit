@@ -3,6 +3,10 @@
   * doc/Makefile.am: applied Luke Dunstan's fix for bug #700730 (spaces not
     allowed in doxygen path)
 
+  * src/cppunit/XmlElement.cpp:
+  * src/examples/CppUnitTest/XmlUniformser.cpp: fixed bug #676505 (no space
+    between attributes of XmlElement).
+
   * include/cppunit/tools/Algorithm.h:
   * src/cppunit/TestResult.cpp:
   * src/msvc6/testrunner/TestRunnerModel.cpp: added removeFromSequence 
