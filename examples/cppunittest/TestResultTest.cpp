@@ -21,15 +21,21 @@ TestResultTest::~TestResultTest()
 CppUnit::TestSuite *
 TestResultTest::suite()
 {
-  CppUnit::TestSuiteBuilder<TestResultTest> suite;
+  CppUnit::TestSuiteBuilder<TestResultTest> suite("TestResultTest");
 
-  suite.addTestCaller( "testNoListener", &testNoListener );
-  suite.addTestCaller( "testAddErrorListener", &testAddErrorListener );
-  suite.addTestCaller( "testAddFailureListener", &testAddFailureListener );
-  suite.addTestCaller( "testStartTestListener", &testStartTestListener );
-  suite.addTestCaller( "testEndTestListener", &testEndTestListener );
-  suite.addTestCaller( "testRemoveFrontListener", &testRemoveFrontListener );
-  suite.addTestCaller( "testRemoveLastListener", &testRemoveLastListener );
+  suite.addTestCaller( "testNoListener", &TestResultTest::testNoListener );
+  suite.addTestCaller( "testAddErrorListener", 
+                       &TestResultTest::testAddErrorListener );
+  suite.addTestCaller( "testAddFailureListener", 
+                       &TestResultTest::testAddFailureListener );
+  suite.addTestCaller( "testStartTestListener", 
+                       &TestResultTest::testStartTestListener );
+  suite.addTestCaller( "testEndTestListener", 
+                       &TestResultTest::testEndTestListener );
+  suite.addTestCaller( "testRemoveFrontListener", 
+                       &TestResultTest::testRemoveFrontListener );
+  suite.addTestCaller( "testRemoveLastListener", 
+                       &TestResultTest::testRemoveLastListener );
 
   return suite.takeSuite();
 }

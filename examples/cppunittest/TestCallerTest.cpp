@@ -19,11 +19,11 @@ TestCallerTest::~TestCallerTest()
 CppUnit::TestSuite *
 TestCallerTest::suite()
 {
-  CppUnit::TestSuiteBuilder<TestCallerTest> suite;
+  CppUnit::TestSuiteBuilder<TestCallerTest> suite("TestCallerTest");
 
-  suite.addTestCaller( "testBasicConstructor", &testBasicConstructor );
-  suite.addTestCaller( "testReferenceConstructor", &testReferenceConstructor );
-  suite.addTestCaller( "testPointerConstructor", &testPointerConstructor );
+  suite.addTestCaller( "testBasicConstructor", &TestCallerTest::testBasicConstructor );
+  suite.addTestCaller( "testReferenceConstructor", &TestCallerTest::testReferenceConstructor );
+  suite.addTestCaller( "testPointerConstructor", &TestCallerTest::testPointerConstructor );
 
   return suite.takeSuite();
 }
