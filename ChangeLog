@@ -17,6 +17,9 @@
 
 	* examples/cppunittest/OrthodoxTest.*: operator ! use explicit construction.
 
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.cpp: modified so that the dialog
+	is not displayed after the tests are run.
+
 2001-06-11  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* examples/cppunittest/TestResultTest.cpp (testAddTwoErrors,
