@@ -32,7 +32,7 @@ if [ -d /usr/local/share/aclocal ]; then
   ACLOCAL_FLAGS="-I /usr/local/share/aclocal $ACLOCAL_FLAGS"
 fi
 aclocal $ACLOCAL_FLAGS 
-libtoolize --force --copy
+libtoolize --force 
 autoheader
-automake
+automake --add-missing
 autoconf

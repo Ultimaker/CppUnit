@@ -1,3 +1,9 @@
+2001-05-23 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* autogen.sh: added '--add-missing' option to automake.
+	* autogen.sh: added '--force' option to libtoolize and removed 
+	  '--copy'.
+	* config: removed generated files from CVS.
+
 2001-05-20 Baptiste Lepilleur <gaiacrtn@free.fr>
   * Fixed bug #424320 (VC++ TestRunner): access violation caused by NULL pointer in history list. NULL pointer are not added to the history anymore.
 
