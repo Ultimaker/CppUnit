@@ -82,4 +82,10 @@ to known bugs in the compiler (7.30 is not the latest version).
 The library appears to function OK.  Please let us know if you find
 it otherwise.
 
+Solaris/Sun 6.0 compiler
+------------------------
+
+Sun 6.0 compiler requires the "-pta -instances=static" options.
+
+'make check' has been reported to fail to build, but 'make install' works.
 

@@ -441,7 +441,7 @@ To register the ComplexNumber suite, in the .cpp file, you add:
 \code
 #include <cppunit/extensions/HelperMacros.h>
 
-CPPUNIT_TEST_SUITE_REGISTRATION( ComplexNumber );
+CPPUNIT_TEST_SUITE_REGISTRATION( ComplexNumberTest );
 \endcode
 
 Behind the scene, a static variable type of 

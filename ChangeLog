@@ -1,3 +1,9 @@
+2002-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * doc/cookbook.dox: fixed bug.
+
+  * install-unix: added compilation instruction for Solaris/Sun 6.0
+
 2002-05-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/TestSuiteBuilder.h: updated to use TestNamer. Removed
