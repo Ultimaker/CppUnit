@@ -56,12 +56,10 @@ namespace CppUnit {
     void registerFactory( const std::string &name,
                           TestFactory *factory );
 
-#ifdef USE_TYPEINFO
     /** Registers a test factory using its class name.
      * \param factory Factory to register. 
      */
     void registerFactory( TestFactory *factory );
-#endif // USE_TYPEINFO
 
   private:
     TestFactoryRegistry( const TestFactoryRegistry &copy );

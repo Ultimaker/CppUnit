@@ -1,5 +1,5 @@
 // //////////////////////////////////////////////////////////////////////////
-// Header file AutoRegisterTests.h for class AutoRegisterTests
+// Header file HelperMacros.h
 // (c)Copyright 2000, Baptiste Lepilleur.
 // Created: 2001/04/15
 // //////////////////////////////////////////////////////////////////////////
@@ -9,6 +9,23 @@
 #include <string>
 #include <cppunit/extensions/AutoRegisterSuite.h>
 #include <cppunit/extensions/TestSuiteBuilder.h>
+
+// The macro __CU_SUITE_CTOR_ARGS expand to an expression used to construct
+// the TestSuiteBuilder with macro CU_TEST_SUITE.
+//
+// The name of the suite is extracted from the macro parameter
+// if CU_USE_TYPEINFO is not defined, otherwise it is extracted using
+// RTTI.
+//
+// This macro is for cppunit internal and should not be use otherwise.
+#ifdef CU_USE_TYPEINFO
+#define __CU_SUITE_CTOR_ARGS( ATestCaseType )
+
+#else  // CU_USE_TYPEINFO
+#define __CU_SUITE_CTOR_ARGS( ATestCaseType ) (std::string(#ATestCaseType))
+
+#endif // CU_USE_TYPEINFO
+
 
 /** Begins the declaration of the test suite
  *
@@ -78,7 +95,7 @@
     {                                                                   \
       __ThisTestCaseType *test =NULL;                                   \
       CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
-        suite(std::string(#ATestCaseType));                             \
+          suite __CU_SUITE_CTOR_ARGS( ATestCaseType );                  \
       __ThisTestCaseType::registerTests( suite, test );                 \
       return suite.takeSuite();                                         \
     }                                                                   \
@@ -141,13 +158,13 @@
 }                                                                       \
   private:
 
-#define CU_CONCATENATE_DIRECT( s1, s2 ) s1##s2
-#define CU_CONCATENATE( s1, s2 ) CU_CONCATENATE_DIRECT( s1, s2 )
+#define __CU_CONCATENATE_DIRECT( s1, s2 ) s1##s2
+#define __CU_CONCATENATE( s1, s2 ) __CU_CONCATENATE_DIRECT( s1, s2 )
 
 /** Decorates the specified string with the line number to obtain a unique name;
  * @param str String to decorate.
  */
-#define CU_MAKE_UNIQUE_NAME( str ) CU_CONCATENATE( str, __LINE__ )
+#define __CU_MAKE_UNIQUE_NAME( str ) __CU_CONCATENATE( str, __LINE__ )
 
 /** Implementation of the auto-registration of test into the TestRegistry.
  * Should be placed in the cpp file.
@@ -158,7 +175,7 @@
  */
 #define CU_TEST_SUITE_REGISTRATION( ATestCaseType )                     \
   static CppUnit::AutoRegisterSuite< ATestCaseType >                    \
-             CU_MAKE_UNIQUE_NAME(__autoRegisterSuite )
+             __CU_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
 #endif  // CPPUNIT_EXTENSIONS_HELPERMACROS_H

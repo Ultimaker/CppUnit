@@ -1,7 +1,7 @@
 #ifndef CPPUNIT_TYPEINFOHELPER_H
 #define CPPUNIT_TYPEINFOHELPER_H
 
-#ifdef USE_TYPEINFO
+#ifdef CU_USE_TYPEINFO
 
 #include <typeinfo>
 
@@ -24,6 +24,6 @@ namespace CppUnit {
 
 }  // namespace CppUnit
 
-#endif // USE_TYPEINFO
+#endif // CU_USE_TYPEINFO
 
 #endif  // CPPUNIT_TYPEINFOHELPER_H

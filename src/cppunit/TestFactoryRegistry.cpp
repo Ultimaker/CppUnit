@@ -3,13 +3,14 @@
 #pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
 #endif // _MSC_VER > 1000
 
+#include <sstream>
 #include <utility>
 #include "cppunit/TestSuite.h"
 #include "cppunit/extensions/TestFactoryRegistry.h"
 
-#ifdef USE_TYPEINFO
-#include "TypeInfoHelper.h"
-#endif // USE_TYPEINFO
+#ifdef CU_USE_TYPEINFO
+#include "cppunit/extensions/TypeInfoHelper.h"
+#endif // CU_USE_TYPEINFO
 
 namespace CppUnit {
 
@@ -66,14 +67,16 @@ TestFactoryRegistry::registerFactory( const std::string &name,
 }
 
 
-#ifdef USE_TYPEINFO
 void 
 TestFactoryRegistry::registerFactory( TestFactory *factory )
 {
-  std::string name = TypeInfoHelper::getClassName( typeid( *factory ) );
+  std::ostringstream stream;
+  static int serialNumber = 1;
+  stream << "@Dummy@"  <<  serialNumber++;
+  std::string name( stream.str() );
+
   registerFactory( name, factory );
 }
-#endif // USE_TYPEINFO
 
 Test *
 TestFactoryRegistry::makeTest()

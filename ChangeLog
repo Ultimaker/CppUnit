@@ -1,3 +1,20 @@
+2001-05-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * Symbol CU_USE_TYPEINFO must be defined instead of USE_TYPEINFO to
+    compile RTTI.
+  * Added back default constructor to TestSuiteBuilder which use RTTI.
+    It is available only if CU_USE_TYPEINFO is defined.
+  * Moved TypeInfoHelper.h from src/cppunit to include/cppunit/extensions.
+  * Macro CU_TEST_SUITE in HelperMacros.h now use TestSuiteBuilder default
+    constructor if CU_USE_TYPEINFO is defined, otherwise it use the
+    type name given to the CU_TEST_SUITE macro.
+  * TestFactoryRegistry::registerFactory(factory) now generate a dummy
+    name based on a serial number instead of using RTTI. The macro
+    CU_TEST_SUITE_REGISTRATION and class AutoRegisterSuite can now
+    when CU_USE_TYPEINFO is not defined.
+  * Added a new Configuration named "Debug Without CU_USE_TYPEINFO" to 
+    msvc6 projects. The flag CU_USE_TYPEINFO is not defined in that 
+    configuration.
+
 2001-05-17  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 	* Makefile.am (dist-hook): Copy files relative to $(top_srcdir).
 	* doc/Makefile.am: Generated doc files depend on Doxyfile.
