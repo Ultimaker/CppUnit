@@ -1,12 +1,23 @@
+2002-04-11  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/ui/mfc/Makefile.am:
+	* include/cppunit/ui/qt/Makefile.am:
+	* include/cppunit/ui/text/Makefile.am: Set the libcppunitincludedir
+	variable.  Correct case of header file ui/qt/Config.h.
+
+	* configure.in: Output the new include/*/Makefiles.
+
 2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* Makefile.am: removed directory cppunitui from copy when making the dist.
+	* Makefile.am: removed directory cppunitui from copy when making
+	the dist.
 
 	* include/cppunit/ui: added Makefile.am for dist and install.
 
 2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* include/cppunitui/: moved to include/cppunit/ui (fix unix install problem).
+	* include/cppunitui/: moved to include/cppunit/ui (fix unix
+	install problem).
 
 	* doc/cookbook.dox:
 	* examples/cppunittest/CppUnitTestMain.cpp:
@@ -15,11 +26,11 @@
 	* examples/qt/Main.Cpp:
 	* examples/src/cppunit/TestRunner.cpp:
 	* examples/src/msvc6/TestRunner/TestRunner.cpp:
-	* examples/src/qttestrunner/TestRunner.cpp: updated to use <cppunit/ui/...> 
-	instead of <cppunitui/...> in include directives.
+	* examples/src/qttestrunner/TestRunner.cpp: updated to use
+	<cppunit/ui/...> instead of <cppunitui/...> in include directives.
 
-	* doc/CppUnit-win.dox: generated documentation give the include path at the
-	bottom of the page for each class.
+	* doc/CppUnit-win.dox: generated documentation give the include
+	path at the bottom of the page for each class.
 
 	* NEWS: added compatibility break for 1.7.10 users.
 
@@ -31,13 +42,13 @@
 
 	* NEW: added CPPUNIT_ASSERT_EQUAL_MESSAGE compatiblity break.
 
-	* include/cppunit/TestAssert.h: changed arguments order for 
-	CPPUNIT_ASSERT_EQUAL_MESSAGE. 'message' is now the first argument instead
-	of the last (like CPPUNIT_ASSERT_MESSAGE).
+	* include/cppunit/TestAssert.h: changed arguments order for
+	CPPUNIT_ASSERT_EQUAL_MESSAGE. 'message' is now the first argument
+	instead of the last (like CPPUNIT_ASSERT_MESSAGE).
 
 	* examples/cppunittest/MockTestCase.cpp:
-	* examples/cppunittest/MockTestListener.cpp: updated to reflect change on
-	CPPUNIT_ASSERT_EQUAL_MESSAGE.
+	* examples/cppunittest/MockTestListener.cpp: updated to reflect
+	change on CPPUNIT_ASSERT_EQUAL_MESSAGE.
 
 2002-03-28 Baptiste Lepilleur <gaiacrtn@free.fr>
 
@@ -47,7 +58,8 @@
 
 	* doc/cookbook.html: removed. Replaced by cookbook.doc.
 
-	* doc/cookbook.dox: added, conversion of cookbook.html to Doxygen format.
+	* doc/cookbook.dox: added, conversion of cookbook.html to Doxygen
+	format.
 
 	* doc/other_documentation.dox: added groups definition.
 
@@ -56,24 +68,25 @@
 	* doc/Doxyfile.in: added predefined CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION.
 	Replaced cookbook.html by cookbook.dox.
 
-	* include/cppunitui/mfc/TestRunner.h: added, extracted from 
-	include/msvc6/testrunner/TestRunner.h. Moved class TestRunner to namespace
-	CppUnit::MfcUi.
+	* include/cppunitui/mfc/TestRunner.h: added, extracted from
+	include/msvc6/testrunner/TestRunner.h. Moved class TestRunner to
+	namespace CppUnit::MfcUi.
 
-	* include/msvc6/testrunner/TestRunner.h: deprecated. A simple typedef to
-	CppUnit::MfcUi::TestRunner.
+	* include/msvc6/testrunner/TestRunner.h: deprecated. A simple
+	typedef to CppUnit::MfcUi::TestRunner.
 
-	* include/textui/TestRuner.h: added, extracted from 
+	* include/textui/TestRuner.h: added, extracted from
 	include/cppunit/TextTestRunner.h.
 
-	* src/cppunit/TextTestRunner.cpp: renamed TestRunner.cpp. Moved into 
-	namespace CppUnit::TextUi.
+	* src/cppunit/TextTestRunner.cpp: renamed TestRunner.cpp. Moved
+	into namespace CppUnit::TextUi.
 
-	* src/msvc6/testruner/TestRunner.cpp: moved into namespace CppUnit::MfcUi.
+	* src/msvc6/testruner/TestRunner.cpp: moved into namespace
+	CppUnit::MfcUi.
 
-	* src/cppunit/CompilerOutputter.cpp: removed printing "- " before 
-	NotEqualException addional message, for consistency between different
-	TestRunner (Mfc,Text...)
+	* src/cppunit/CompilerOutputter.cpp: removed printing "- " before
+	NotEqualException addional message, for consistency between
+	different TestRunner (Mfc,Text...)
 
 	* include/cppunit/Asserter.h:
 	* include/cppunit/CompilerOutputter.h:
@@ -97,8 +110,8 @@
 	* include/cppunit/extensions/HelperMacros.h:
 	* include/cppunit/extensions/TestFactoryRegistry.h:
 	* include/cppunit/extensions/TestSuiteBuilder.h:
-	* include/cppunit/extensions/TestSuiteFactory.h: doc update. organization
-	in groups.
+	* include/cppunit/extensions/TestSuiteFactory.h: doc
+	update. organization in groups.
 
 	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.cpp:
 	* examples/msvc6/HostApp/HostApp.cpp: updated to use 
