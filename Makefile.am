@@ -1,19 +1,24 @@
-if DOC
-SUBDIRS = config src include examples doc
-else
-SUBDIRS = config src include examples 
-endif
+AUTOMAKE_OPTIONS = 1.4
 
-DIST_SUBDIRS = config src include examples doc
+SUBDIRS = src include examples doc
 
 bin_SCRIPTS = cppunit-config
 
-AUTOMAKE_OPTIONS = 1.4
 
-EXTRA_DIST = cppunit.m4 cppunit.spec.in cppunit.spec
+EXTRA_DIST = cppunit.m4 cppunit.spec.in cppunit.spec	\
+	config/ac_create_prefix_config_h.m4		\
+	config/ac_cxx_have_sstream.m4			\
+	config/ac_cxx_have_strstream.m4			\
+	config/ac_cxx_namespaces.m4			\
+	config/ac_cxx_rtti.m4				\
+	config/ac_cxx_string_compare_string_first.m4	\
+	config/bb_enable_doxygen.m4
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4
+
+# Not sure what is creating this timestamp file.
+DISTCLEANFILES = config/stamp-h1
 
 dist-hook:
 	cp -dpR $(top_srcdir)/src/msvc6 $(distdir)/src

@@ -1,14 +1,17 @@
 man3dir = $(mandir)/man3
-
 # FIXME: should be in ${datadir} (i.e. ${prefix}/share) ?
 docdir  = $(prefix)/doc/@PACKAGE@-@VERSION@
-
 htmldir = $(docdir)/html
-html_DATA = html/*
 
 EXTRA_DIST = cookbook.html header.html footer.html other_documentation.dox
 
+
+if DOC
+html_DATA = html/*
+
 all-local: dox #pdf
+endif
+
 
 dox: html/index.html
 html/* html/index.html: Doxyfile other_documentation.dox

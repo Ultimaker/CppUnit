@@ -95,7 +95,6 @@ AC_OUTPUT([
   Makefile 
   cppunit.spec
   cppunit-config
-  config/Makefile
   src/Makefile
   src/cppunit/Makefile
   include/Makefile

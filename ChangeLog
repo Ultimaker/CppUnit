@@ -1,3 +1,14 @@
+2001-08-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Makefile.am: Removed automake conditional "DOC".
+	* doc/Makefile.am: Placed "DOC" conditional around
+	rules that invoke Doxygen.
+
+	* config/Makefile.am: Removed.
+	* configure.in: Do not create config/Makefile.
+	* Makefile.am (EXTRA_DIST): Distribute config/*.m4.
+	(SUBDIRS): Do not descend into config.
+
 2001-07-15  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* include/cppunit/TestFixture.h: New.  Declare class TextFixture.
