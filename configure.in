@@ -88,8 +88,9 @@ AC_ARG_ENABLE(typeinfo-name,
 AC_DEFINE_UNQUOTED(USE_TYPEINFO_NAME,$cppunit_val,
 [Define to 1 to use type_info::name() for class names])
 
-
-AC_DEFINE(NO_TESTPLUGIN,1)
+testplugin_val=1
+AC_DEFINE_UNQUOTED(NO_TESTPLUGIN,$testplugin_val,
+[defined to disable TestPlugIn])
 
 
 AC_OUTPUT([
