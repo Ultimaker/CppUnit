@@ -19,7 +19,7 @@ CPPUNIT_NS_BEGIN
 class CPPUNIT_API Exception : public std::exception
 {
 public:
-  /*! Constructs the exception with the specified message and source location.
+  /*! \brief Constructs the exception with the specified message and source location.
    * \param message Message associated to the exception.
    * \param sourceLine Source location related to the exception.
    */
@@ -35,7 +35,7 @@ public:
 	     std::string fileName );
 #endif
 
-  /*! Constructs a copy of an exception.
+  /*! \brief Constructs a copy of an exception.
    * \param other Exception to copy.
    */
   Exception( const Exception &other );

@@ -10,39 +10,20 @@
 CPPUNIT_NS_BEGIN
 
 
-/// Construct a TestResult
 TestResult::TestResult( SynchronizationObject *syncObject )
     : SynchronizedObject( syncObject )
     , m_protectorChain( new ProtectorChain() )
 { 
   m_protectorChain->push( new DefaultProtector() );
-  reset();
 }
 
 
-/// Destroys a test result
 TestResult::~TestResult()
 {
   delete m_protectorChain;
 }
 
 
-/** Resets the result for a new run.
- *
- * Clear the previous run result.
- */
-void 
-TestResult::reset()
-{
-  ExclusiveZone zone( m_syncObject ); 
-  m_stop = false;
-}
-
-
-/** Adds an error to the list of errors. 
- *  The passed in exception
- *  caused the error
- */
 void 
 TestResult::addError( Test *test, 
                       Exception *e )
@@ -51,9 +32,6 @@ TestResult::addError( Test *test,
 }
 
 
-/** Adds a failure to the list of failures. The passed in exception
- * caused the failure.
- */
 void 
 TestResult::addFailure( Test *test, Exception *e )
 { 
@@ -61,8 +39,6 @@ TestResult::addFailure( Test *test, Exception *e )
 }
 
 
-/** Called to add a failure to the list of failures.
- */
 void 
 TestResult::addFailure( const TestFailure &failure )
 {
@@ -74,7 +50,6 @@ TestResult::addFailure( const TestFailure &failure )
 }
 
 
-/// Informs TestListener that a test will be started.
 void 
 TestResult::startTest( Test *test )
 { 
@@ -86,7 +61,6 @@ TestResult::startTest( Test *test )
 }
 
   
-/// Informs TestListener that a test was completed.
 void 
 TestResult::endTest( Test *test )
 { 
@@ -98,7 +72,6 @@ TestResult::endTest( Test *test )
 }
 
 
-/// Informs TestListener that a test suite will be started.
 void 
 TestResult::startSuite( Test *test )
 {
@@ -110,7 +83,6 @@ TestResult::startSuite( Test *test )
 }
 
 
-/// Informs TestListener that a test suite was completed.
 void 
 TestResult::endSuite( Test *test )
 {
@@ -122,7 +94,6 @@ TestResult::endSuite( Test *test )
 }
 
 
-/// Returns whether testing should be stopped
 bool 
 TestResult::shouldStop() const
 { 
@@ -131,7 +102,6 @@ TestResult::shouldStop() const
 }
 
 
-/// Stop testing
 void 
 TestResult::stop()
 { 

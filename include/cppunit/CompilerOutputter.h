@@ -55,7 +55,7 @@ class TestResultCollector;
 class CPPUNIT_API CompilerOutputter : public Outputter
 {
 public:
-  /*! Constructs a CompilerOutputter object.
+  /*! \brief Constructs a CompilerOutputter object.
    * \param result Result of the test run.
    * \param stream Stream used to output test result.
    * \param locationFormat Error location format used by your compiler. Default
@@ -70,7 +70,7 @@ public:
   /// Destructor.
   virtual ~CompilerOutputter();
 
-  /*! Sets the error location format.
+  /*! \brief Sets the error location format.
    * 
    * Indicates the format used to report location of failed assertion. This format should
    * match the one used by your compiler.
@@ -95,7 +95,7 @@ public:
    */
   void setLocationFormat( const std::string &locationFormat );
 
-  /*! Creates an instance of an outputter that matches your current compiler.
+  /*! \brief Creates an instance of an outputter that matches your current compiler.
    * \deprecated This class is specialized through parameterization instead of subclassing...
    *             Use CompilerOutputter::CompilerOutputter instead.
    */

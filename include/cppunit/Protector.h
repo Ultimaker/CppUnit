@@ -68,11 +68,19 @@ protected:
 };
 
 
+/*! \brief Scoped protector push to TestResult.
+ *
+ * Adds the specified Protector to the specified TestResult for the object
+ * life-time.
+ */
 class CPPUNIT_API ProtectorGuard
 {
 public:
+  /// Pushes the specified protector.
   ProtectorGuard( TestResult *result,
                   Protector *protector );
+
+  /// Pops the protector.
   ~ProtectorGuard();
 
 private:

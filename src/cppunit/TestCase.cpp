@@ -9,6 +9,10 @@
 
 CPPUNIT_NS_BEGIN
 
+/*! \brief Functor to call test case method (Implementation).
+ *
+ * Implementation detail.
+ */
 class TestCaseMethodFunctor : public Functor
 {
 public:

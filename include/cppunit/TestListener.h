@@ -99,7 +99,7 @@ public:
   /// Called when just before a TestCase is run.
   virtual void startTest( Test *test ) {}
 
-  /*! Called when a failure occurs while running a test.
+  /*! \brief Called when a failure occurs while running a test.
    * \see TestFailure.
    * \warning \a failure is a temporary object that is destroyed after the 
    *          method call. Use TestFailure::clone() to create a duplicate.
@@ -109,15 +109,15 @@ public:
   /// Called just after a TestCase was run (even if a failure occured).
   virtual void endTest( Test *test ) {}
 
-  /*! Called by a TestComposite just before running its child tests.
+  /*! \brief Called by a TestComposite just before running its child tests.
    */
   virtual void startSuite( Test *suite ) {}
 
-  /*! Called by a TestComposite after running its child tests.
+  /*! \brief Called by a TestComposite after running its child tests.
    */
   virtual void endSuite( Test *suite ) {}
 
-  /*! Called by a TestRunner before running the test.
+  /*! \brief Called by a TestRunner before running the test.
    * 
    * You can use this to do some global initialisation. A listener
    * could also use to output a 'prolog' to the test run.
@@ -128,7 +128,7 @@ public:
   virtual void startTestRun( Test *test, 
                              TestResult *eventManager ) {}
 
-  /*! Called by a TestRunner after running the test.
+  /*! \brief Called by a TestRunner after running the test.
    *
    * TextTestProgressListener use this to emit a line break. You can also use this
    * to do some global uninitialisation.

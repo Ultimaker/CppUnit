@@ -33,19 +33,19 @@ class Test;
 class CPPUNIT_API TestPath
 {
 public:
-  /*! Constructs an invalid path.
+  /*! \brief Constructs an invalid path.
    * 
    * The path is invalid until a test is added with add().
    */
   TestPath();
 
-  /*! Constructs a valid path.
+  /*! \brief Constructs a valid path.
    *
    * \param root Test to add.
    */
   TestPath( Test *root );
 
-  /*! Constructs a path using a slice of another path.
+  /*! \brief Constructs a path using a slice of another path.
    * \param otherPath Path the test are copied from.
    * \param indexFirst Zero based index of the first test to copy. Adjusted to be in valid
    *                   range. \a count is adjusted with \a indexFirst.
@@ -56,7 +56,7 @@ public:
             int indexFirst, 
             int count = -1 );
 
-  /*! Resolves a path from a string returned by toString().
+  /*! \brief Resolves a path from a string returned by toString().
    *
    * If \a pathAsString is an absolute path (begins with '/'), then the first test name
    * of the path must be the name of \a searchRoot. Otherwise, \a pathAsString is a 
@@ -74,36 +74,36 @@ public:
   TestPath( Test *searchRoot, 
             const std::string &pathAsString );
 
-  /*! Copy constructor.
+  /*! \brief Copy constructor.
    * \param other Object to copy.
    */
   TestPath( const TestPath &other );
 
   virtual ~TestPath();
 
-  /*! Tests if the path contains at least one test.
+  /*! \brief Tests if the path contains at least one test.
    * \return \c true if the path contains at least one test, otherwise returns \c false.
    */
   virtual bool isValid() const;
 
-  /*! Adds a test to the path.
+  /*! \brief Adds a test to the path.
    * \param test Pointer on the test to add. Must not be \c NULL.
    */
   virtual void add( Test *test );
 
-  /*! Adds all the tests of the specified path.
+  /*! \brief Adds all the tests of the specified path.
    * \param path Path that contains the test to add.
    */
   virtual void add( const TestPath &path );
 
-  /*! Inserts a test at the specified index.
+  /*! \brief Inserts a test at the specified index.
    * \param test Pointer on the test to insert. Must not be \c NULL.
    * \param index Zero based index indicating where the test is inserted.
    * \exception std::out_of_range is \a index < 0 or \a index > getTestCount().
    */
   virtual void insert( Test *test, int index );
 
-  /*! Inserts all the tests at the specified path at a given index.
+  /*! \brief Inserts all the tests at the specified path at a given index.
    * \param path Path that contains the test to insert.
    * \param index Zero based index indicating where the tests are inserted.
    * \exception std::out_of_range is \a index < 0 or \a index > getTestCount(), and
@@ -111,30 +111,30 @@ public:
    */
   virtual void insert( const TestPath &path, int index );
 
-  /*! Removes all the test from the path.
+  /*! \brief Removes all the test from the path.
    *
    * The path becomes invalid after this call.
    */
   virtual void removeTests();
 
-  /*! Removes the test at the specified index of the path.
+  /*! \brief Removes the test at the specified index of the path.
    * \param index Zero based index of the test to remove.
    * \exception std::out_of_range is \a index < 0 or \a index >= getTestCount().
    */
   virtual void removeTest( int index );
 
-  /*! Removes the last test.
+  /*! \brief Removes the last test.
    * \exception std::out_of_range is the path is invalid.
    * \see isValid().
    */
   virtual void up();
 
-  /*! Returns the number of tests in the path.
+  /*! \brief Returns the number of tests in the path.
    * \return Number of tests in the path.
    */
   virtual int getTestCount() const;
 
-  /*! Returns the test of the specified index.
+  /*! \brief Returns the test of the specified index.
    * \param index Zero based index of the test to return.
    * \return Pointer on the test at index \a index. Never \c NULL.
    * \exception std::out_of_range is \a index < 0 or \a index >= getTestCount().
@@ -159,14 +159,14 @@ public:
    */
   virtual std::string toString() const;
 
-  /*! Assignment operator.
+  /*! \brief Assignment operator.
    * \param other Object to copy.
    * \return This object.
    */
   TestPath &operator =( const TestPath &other );
 
 protected:
-  /*! Checks that the specified test index is within valid range.
+  /*! \brief Checks that the specified test index is within valid range.
    * \param index Zero based index to check.
    * \exception std::out_of_range is \a index < 0 or \a index >= getTestCount().
    */
@@ -175,7 +175,7 @@ protected:
   /// A list of test names.
   typedef CppUnitDeque<std::string> PathTestNames;
 
-  /*! Splits a path string into its test name components.
+  /*! \brief Splits a path string into its test name components.
    * \param pathAsString Path string created with toString().
    * \param testNames Test name components are added to that container.
    * \return \c true if the path is relative (does not begin with '/'), \c false
@@ -184,7 +184,7 @@ protected:
   bool splitPathString( const std::string &pathAsString,
                         PathTestNames &testNames );
 
-  /*! Finds the actual root of a path string and get the path string name components.
+  /*! \brief Finds the actual root of a path string and get the path string name components.
    * \param searchRoot Test used as root if the path string is absolute, or to search
    *                   the root test if the path string is relative.
    * \param pathAsString Path string. May be absolute or relative.

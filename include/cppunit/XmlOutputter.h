@@ -39,7 +39,7 @@ class XmlOutputterHook;
 class CPPUNIT_API XmlOutputter : public Outputter
 {
 public:
-  /*! Constructs a XmlOutputter object.
+  /*! \brief Constructs a XmlOutputter object.
    * \param result Result of the test run.
    * \param stream Stream used to output the XML output.
    * \param encoding Encoding used in the XML file (default is Latin-1). 
@@ -51,24 +51,24 @@ public:
   /// Destructor.
   virtual ~XmlOutputter();
 
-  /*! Adds the specified hook to the outputter.
+  /*! \brief Adds the specified hook to the outputter.
    * \param hook Hook to add. Must not be \c NULL.
    */
   virtual void addHook( XmlOutputterHook *hook );
 
-  /*! Removes the specified hook from the outputter.
+  /*! \brief Removes the specified hook from the outputter.
    * \param hook Hook to remove.
    */
   virtual void removeHook( XmlOutputterHook *hook );
 
-  /*! Writes the specified result as an XML document to the stream.
+  /*! \brief Writes the specified result as an XML document to the stream.
    *
    * Refer to examples/cppunittest/XmlOutputterTest.cpp for example
    * of use and XML document structure.
    */
   virtual void write();
 
-  /*! Sets the XSL style sheet used.
+  /*! \brief Sets the XSL style sheet used.
    *
    * \param styleSheet Name of the style sheet used. If empty, then no style sheet
    *                   is used (default).
@@ -78,7 +78,7 @@ public:
 
   typedef CppUnitMap<Test *,TestFailure*> FailedTests;
 
-  /*! Sets the root element and adds its children.
+  /*! \brief Sets the root element and adds its children.
    *
    * Set the root element of the XML Document and add its child elements.
    *
@@ -94,7 +94,7 @@ public:
   virtual void addSuccessfulTests( FailedTests &failedTests,
                                    XmlElement *rootNode );
 
-  /*! Adds the statics element to the root node.
+  /*! \brief Adds the statics element to the root node.
    * 
    * Creates a new element containing statistics data and adds it to the root element.
    * Then, for all hooks, call statisticsAdded().
@@ -102,7 +102,7 @@ public:
    */
   virtual void addStatistics( XmlElement *rootNode );
 
-  /*! Adds a failed test to the failed tests node.
+  /*! \brief Adds a failed test to the failed tests node.
    * Creates a new element containing datas about the failed test, and adds it to 
    * the failed tests element.
    * Then, for all hooks, call failTestAdded().
@@ -116,7 +116,7 @@ public:
                                    XmlElement *testElement );
 
 
-  /*! Adds a successful test to the successful tests node.
+  /*! \brief Adds a successful test to the successful tests node.
    * Creates a new element containing datas about the successful test, and adds it to 
    * the successful tests element.
    * Then, for all hooks, call successfulTestAdded().

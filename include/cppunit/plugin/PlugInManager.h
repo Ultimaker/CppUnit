@@ -33,7 +33,7 @@ public:
   /// Destructor.
   virtual ~PlugInManager();
 
-  /*! Loads the specified plug-in.
+  /*! \brief Loads the specified plug-in.
    *
    * After being loaded, the CppUnitTestPlugIn::initialize() is called.
    *
@@ -46,28 +46,28 @@ public:
   void load( const std::string &libraryFileName,
              const PlugInParameters &parameters = PlugInParameters() );
 
-  /*! Unloads the specified plug-in.
+  /*! \brief Unloads the specified plug-in.
    * \param libraryFileName Name of the file that contains the TestPlugIn passed
    *                        to a previous call to load().
    */
   void unload( const std::string &libraryFileName );
 
-  /*! Gives a chance to each loaded plug-in to register TestListener.
+  /*! \brief Gives a chance to each loaded plug-in to register TestListener.
    *
    * For each plug-in, call CppUnitTestPlugIn::addListener().
    */
   void addListener( TestResult *eventManager );
 
-  /*! Gives a chance to each loaded plug-in to unregister TestListener.
+  /*! \brief Gives a chance to each loaded plug-in to unregister TestListener.
    * For each plug-in, call CppUnitTestPlugIn::removeListener().
    */
   void removeListener( TestResult *eventManager );
 
-  /*! Provides a way for the plug-in to register some XmlOutputterHook.
+  /*! \brief Provides a way for the plug-in to register some XmlOutputterHook.
    */
   void addXmlOutputterHooks( XmlOutputter *outputter );
 
-  /*! Called when the XmlOutputter is destroyed.
+  /*! \brief Called when the XmlOutputter is destroyed.
    * 
    * Can be used to free some resources allocated by addXmlOutputterHooks().
    */

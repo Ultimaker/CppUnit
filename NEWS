@@ -103,7 +103,9 @@
     CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS. Changed method signature to
     static void aMethodName( TestSuiteBuilderContextType &context ).
     You can replace the 3 previous parameters by context. (See 
-    documentation for further detail). 
+    documentation for further detail).
+  - TestResult: removed reset(). Leftover from the split with 
+    TestResultCollector.
 
 
 

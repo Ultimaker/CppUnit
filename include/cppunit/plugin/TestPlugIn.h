@@ -42,7 +42,7 @@ CPPUNIT_NS_END
  */
 struct CppUnitTestPlugIn
 {
-  /*! Called just after loading the dynamic library. 
+  /*! \brief Called just after loading the dynamic library. 
    *
    * Override this method to add additional suite to the registry, though this
    * is preferably done using the macros (CPPUNIT_TEST_SUITE_REGISTRATION...).
@@ -58,7 +58,7 @@ struct CppUnitTestPlugIn
   virtual void initialize( CPPUNIT_NS::TestFactoryRegistry *registry,
                            const CPPUNIT_NS::PlugInParameters &parameters ) =0;
 
-  /*! Gives a chance to the plug-in to register TestListener.
+  /*! \brief Gives a chance to the plug-in to register TestListener.
    * 
    * Override this method to add a TestListener for the test run. This is useful
    * if you are writing a custom TestListener, but also if you need to
@@ -67,23 +67,23 @@ struct CppUnitTestPlugIn
    */
   virtual void addListener( CPPUNIT_NS::TestResult *eventManager ) =0;
 
-  /*! Gives a chance to the plug-in to remove its registered TestListener.
+  /*! \brief Gives a chance to the plug-in to remove its registered TestListener.
    *
    * Override this method to remove a TestListener that has been added.
    */
   virtual void removeListener( CPPUNIT_NS::TestResult *eventManager ) =0;
 
-  /*! Provides a way for the plug-in to register some XmlOutputterHook.
+  /*! \brief Provides a way for the plug-in to register some XmlOutputterHook.
    */
   virtual void addXmlOutputterHooks( CPPUNIT_NS::XmlOutputter *outputter ) =0;
 
-  /*! Called when the XmlOutputter is destroyed.
+  /*! \brief Called when the XmlOutputter is destroyed.
    * 
    * Can be used to free some resources allocated by addXmlOutputterHooks().
    */
   virtual void removeXmlOutputterHooks() = 0;
 
-  /*! Called just before unloading the dynamic library.
+  /*! \brief Called just before unloading the dynamic library.
    * 
    * Override this method to unregister test factory added in initialize().
    * This is necessary to keep the TestFactoryRegistry 'clean'. When
@@ -96,7 +96,7 @@ struct CppUnitTestPlugIn
 
 
 
-/*! Name of the function exported by a test plug-in.
+/*! \brief Name of the function exported by a test plug-in.
  * \ingroup WritingTestPlugIn
  *
  * The signature of the exported function is:
@@ -106,13 +106,13 @@ struct CppUnitTestPlugIn
  */
 #define CPPUNIT_PLUGIN_EXPORTED_NAME cppunitTestPlugIn
 
-/*! Type of the function exported by a plug-in.
+/*! \brief Type of the function exported by a plug-in.
  * \ingroup WritingTestPlugIn
  */
 typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 
 
-/*! Implements the function exported by the test plug-in
+/*! \brief Implements the function exported by the test plug-in
  * \ingroup WritingTestPlugIn
  */
 #define CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( TestPlugInInterfaceType )       \
@@ -172,7 +172,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 
 
 
-/*! Implements and exports the test plug-in interface.
+/*! \brief Implements and exports the test plug-in interface.
  * \ingroup WritingTestPlugIn
  *
  * This macro exports the test plug-in function using the subclass, 

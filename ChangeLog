@@ -1,11 +1,34 @@
 2002-08-29 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * include/cppunit/CompilerOutputter.h:
+  * include/cppunit/Exception.h:
+  * include/cppunit/Protector.h:
+  * include/cppunit/TestListener.h:
+  * include/cppunit/TestPath.h:
+  * include/cppunit/TestResult.h:
+  * include/cppunit/TestRunner.h:
+  * include/cppunit/XmlOutputter.h:
+  * include/cppunit/plugin/DynamicLibraryManager.h:
+  * include/cppunit/plugin/PlugInManager.h:
+  * include/cppunit/plugin/PlugInParameters.h:
+  * include/cppunit/TestPlugIn.h:
+  * src/cppunit/DefaultProtector.h:
+  * src/cppunit/ProtectorChain.h:
+  * src/cppunit/ProtectorContext.h:
+  * src/cppunit/TestCase.cpp:
+  * src/cppunit/TestResult.cpp: fixed a dew documentation bugs.
+
+  * include/cppunit/TestResult.h:
+  * src/cppunit/TestResult.cpp: moved documentation to header.
+
+2002-08-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+
   * include/cppunit/Asserter.h:
   * include/cppunit/Message.h:
   * include/cppunit/extensions/TestNamer.h:
   * include/cppunit/extensions/TestSuiteBuilder.h:
   * include/cppunit/tools/XmlDocument.h:
-  * include/cppunit/tools/XmlElement.h: Fixed a few documentation bug.
+  * include/cppunit/tools/XmlElement.h: Fixed a few documentation bugs.
 
 2002-08-28 Baptiste Lepilleur <gaiacrtn@free.fr>
 

@@ -10,6 +10,10 @@ class Test;
 class TestResult;
 
 
+/*! \brief Protector context (Implementation).
+ * Implementation detail.
+ * \internal Context use to report failure in Protector.
+ */
 class CPPUNIT_API ProtectorContext
 {
 public:

@@ -72,19 +72,19 @@ class TestResult;
 class CPPUNIT_API TestRunner
 {
 public:
-  /*! Constructs a TestRunner object.
+  /*! \brief Constructs a TestRunner object.
    */
   TestRunner(  );
 
   /// Destructor.
   virtual ~TestRunner();
 
-  /*! Adds the specified test.
+  /*! \brief Adds the specified test.
    * \param test Test to add. The TestRunner takes ownership of the test.
    */
   virtual void addTest( Test *test );
 
-  /*! Runs a test using the specified controller.
+  /*! \brief Runs a test using the specified controller.
    * \param controller Event manager and controller used for testing
    * \param testPath Test path string. See Test::resolveTestPath() for detail.
    * \exception std::invalid_argument if no test matching \a testPath is found.

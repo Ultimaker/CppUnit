@@ -36,7 +36,7 @@ public:
   typedef void *Symbol;
   typedef void *LibraryHandle;
 
-  /*! Loads the specified library.
+  /*! \brief Loads the specified library.
    * \param libraryFileName Name of the library to load.
    * \exception DynamicLibraryManagerException if a failure occurs while loading
    *            the library (fail to found or load the library).
@@ -46,7 +46,7 @@ public:
   /// Releases the loaded library..
   ~DynamicLibraryManager();
 
-  /*! Returns a pointer on the specified symbol exported by the library.
+  /*! \brief Returns a pointer on the specified symbol exported by the library.
    * \param symbol Name of the symbol exported by the library.
    * \return Pointer on the symbol. Should be casted to the actual type. Never \c NULL.
    * \exception DynamicLibraryManagerException if the symbol is not found.

@@ -5,6 +5,15 @@
 
 CPPUNIT_NS_BEGIN
 
+/*! \brief Default protector that catch all exceptions (Implementation).
+ *
+ * Implementation detail.
+ * \internal This protector catch and generate a failure for the following
+ * exception types:
+ * - Exception
+ * - std::exception
+ * - ...
+ */
 class DefaultProtector : public Protector
 {
 public:

@@ -12,7 +12,10 @@
 
 CPPUNIT_NS_BEGIN
 
-
+/*! \brief Protector chain (Implementation).
+ * Implementation detail.
+ * \internal Protector that protect a Functor using a chain of nested Protector.
+ */
 class CPPUNIT_API ProtectorChain : public Protector
 {
 public:
