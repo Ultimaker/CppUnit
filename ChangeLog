@@ -10,7 +10,6 @@
 	* src/cppunit/Makefile.am (libcppunit_la_SOURCES): Add
 	TestAssert.cpp, RepeatedTest.cpp.
 
-
 	* include/cppunit/TestCaller.h (NoExceptionExpected): Fix
 	constructor name.
 

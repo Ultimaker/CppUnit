@@ -1,3 +1,4 @@
+#include <config.h>
 #include <cppunit/config.h>
 
 #if CPPUNIT_USE_TYPEINFO
