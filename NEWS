@@ -5,16 +5,14 @@
 
   - In the process of adding XML Input for parametrized test.
 
-* XML Outputter
-
-	- Fixed bug #676505: no space inserted between attributes of 
-	  XmlElement.
-
 * Bug Fix:
 
   - MFC TestRunner: integrated bug fix from Tim Threlkeld for bug 
     #610191 and #610162. Fixed assertion when minizing dialog 
     (bug #643612).
+
+	- XMLOutputter: Fixed bug #676505: no space inserted between attributes
+    of XmlElement.
 
   - CppUnit portability: fixed many mistakes relating to compilation
     without type info or namespace reported by Philip Craig.
@@ -31,12 +29,14 @@
 	- Fixed compilation issues for Borland C++ 6 and STLPort. Bug #694971,
 	  #699794 and #662666.
 
-	- Fixed compilation issues for AIX
+	- Fixed compilation issues for AIX.
 
-	- Fixed compilation issues for Visual C++ .NET 2002
+	- Fixed compilation issues for Visual C++ .NET 2002.
 
 	- Fixed doxygen usage in mingw environment (space not allowed in 
 	  doxygen path). Bug #700730.
+
+  - Fixed compilation issue for mingw (bug #711583).
 
 
 	New in CppUnit 1.9.10:

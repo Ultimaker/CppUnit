@@ -1,3 +1,8 @@
+2003-04-31 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * src/cppunit/DynamicLibraryManager.cpp: fixed compilation issue on Mingw
+    (bug #711583)
+
 2003-03-20 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/TestNamer.h:

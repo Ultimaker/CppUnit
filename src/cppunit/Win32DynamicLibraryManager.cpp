@@ -32,7 +32,9 @@ DynamicLibraryManager::doReleaseLibrary()
 DynamicLibraryManager::Symbol 
 DynamicLibraryManager::doFindSymbol( const std::string &symbol )
 {
-  return ::GetProcAddress( (HINSTANCE)m_libraryHandle, symbol.c_str() );
+  return (DynamicLibraryManager::Symbol)::GetProcAddress( 
+     (HINSTANCE)m_libraryHandle, 
+     symbol.c_str() );
 }
 
 
