@@ -35,3 +35,4 @@ public:
 CPPUNIT_NS_END
 
 #endif // CPPUNIT_PROTECTORCONTEXT_H
+

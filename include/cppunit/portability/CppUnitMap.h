@@ -26,3 +26,4 @@ public:
 #endif
 
 #endif // CPPUNIT_PORTABILITY_CPPUNITMAP_H
+

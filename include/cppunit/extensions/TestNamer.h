@@ -81,3 +81,4 @@ protected:
 CPPUNIT_NS_END
 
 #endif // CPPUNIT_EXTENSIONS_TESTNAMER_H
+

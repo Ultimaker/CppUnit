@@ -25,3 +25,4 @@ public:
 #endif
 
 #endif // CPPUNIT_PORTABILITY_CPPUNITSET_H
+

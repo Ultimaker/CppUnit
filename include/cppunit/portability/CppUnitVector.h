@@ -22,3 +22,4 @@ public:
 #endif
 
 #endif // CPPUNIT_PORTABILITY_CPPUNITVECTOR_H
+

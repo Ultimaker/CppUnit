@@ -48,3 +48,4 @@ CPPUNIT_NS_END
 #endif
 
 #endif // CPPUNIT_PROTECTORCHAIN_H
+

@@ -91,3 +91,4 @@ CPPUNIT_NS_END
 
 
 #endif // CPPUNIT_PROTECTOR_H
+

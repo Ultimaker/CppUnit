@@ -24,3 +24,4 @@ public:
 CPPUNIT_NS_END
 
 #endif // CPPUNIT_DEFAULTPROTECTOR_H
+
