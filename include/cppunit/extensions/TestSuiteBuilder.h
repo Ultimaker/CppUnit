@@ -38,9 +38,10 @@ namespace CppUnit {
 
       void addTestCaller( std::string name, TestMethod testMethod )
       {
-        Test *test = makeTestCaller( m_suite->getName() + "." + name, 
-                                     testMethod );
-        addTest( test );
+          Test *test = 
+              new TestCaller<Fixture>( m_suite->getName() + "." + name, 
+                                       testMethod );
+          addTest( test );
       }
 
     private:

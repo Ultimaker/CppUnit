@@ -1,15 +1,9 @@
 #ifndef __BOARDGAMETEST_H__
 #define __BOARDGAMETEST_H__
 
-#include "cppunit/TestCaller.h"
-
-#ifndef CPPUNIT_TESTCASE_H
-#include "cppunit/TestCase.h"
-#endif
-
-#ifndef CPPUNIT_TESTSUITE_H
-#include "cppunit/TestSuite.h"
-#endif
+#include <cppunit/TestCaller.h>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestSuite.h>
 
 template<typename GAMECLASS> 
 class BoardGameTest : public CppUnit::TestCase {
@@ -24,9 +18,9 @@ class BoardGameTest : public CppUnit::TestCase {
     virtual void registerTests(CppUnit::TestSuite *suite) 
     {
       suite->addTest (new CppUnit::TestCaller<BoardGameTest<GAMECLASS> > ("testReset", 
-         &BoardGameTest<GAMECLASS>::testReset)); 
+         &BoardGameTest<GAMECLASS>::testReset, *this)); 
       suite->addTest (new CppUnit::TestCaller<BoardGameTest<GAMECLASS> > ("testReset", 
-         &BoardGameTest<GAMECLASS>::testResetShouldFail)); 
+         &BoardGameTest<GAMECLASS>::testResetShouldFail, *this)); 
     }
 
     BoardGameTest()

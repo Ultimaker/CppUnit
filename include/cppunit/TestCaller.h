@@ -1,7 +1,6 @@
 #ifndef CPPUNIT_TESTCALLER_H
 #define CPPUNIT_TESTCALLER_H
 
-#include <memory>
 #include <cppunit/TestCase.h>
 
 namespace CppUnit {
@@ -36,7 +35,6 @@ namespace CppUnit {
    *
    * You can use a TestCaller to bind any test method on a TestCase
    * class, as long as it accepts void and returns void.
-   * TestCallers are automatically registered in the TestRegistry.
    * 
    * \see TestCase
    */
@@ -47,26 +45,74 @@ namespace CppUnit {
         typedef void             (Fixture::*TestMethod)();
     
       public:
+        /**
+         * Constructor for TestCaller. This constructor builds a new Fixture
+         * instance owned by the TestCaller.
+         * \param name name of this TestCaller
+         * \param test the method this TestCaller calls in runTest()
+         **/
         TestCaller (std::string name, TestMethod test) :
           TestCase (name), 
-          m_fixture (new Fixture ()), 
+          m_ownFixture(true),
+          m_fixture (new Fixture ()),
           m_test (test)
         {}
+
+        /**
+         * Constructor for TestCaller. 
+         * This constructor does not create a new Fixture instance but accepts
+         * an existing one as parameter. The TestCaller will not own the
+         * Fixture object.
+         * \param name name of this TestCaller
+         * \param test the method this TestCaller calls in runTest()
+         * \param fixture the Fixture to invoke the test method on.
+         **/
+        TestCaller(std::string name, TestMethod test, Fixture& fixture) :
+          TestCase (name), 
+          m_ownFixture(false),
+          m_fixture (&fixture),
+          m_test (test)
+        {}
+
+        /**
+         * Constructor for TestCaller. 
+         * This constructor does not create a new Fixture instance but accepts
+         * an existing one as parameter. The TestCaller will own the
+         * Fixture object and delete it in its destructor.
+         * \param name name of this TestCaller
+         * \param test the method this TestCaller calls in runTest()
+         * \param fixture the Fixture to invoke the test method on.
+         **/
+         TestCaller(std::string name, TestMethod test, Fixture* fixture) :
+          TestCase (name), 
+          m_ownFixture(true),
+          m_fixture (fixture),
+          m_test (test)
+        {}
+
+        ~TestCaller() {
+            if (m_ownFixture) {
+                if (m_fixture) {
+                    delete m_fixture;
+                    m_fixture = NULL;
+                }
+            }
+        }
 
       protected:
         void runTest () 
         { 
-          (m_fixture.get ()->*m_test)(); 
+          (m_fixture->*m_test)(); 
         }  
 
         void setUp ()
         { 
-          m_fixture.get ()->setUp (); 
+          m_fixture->setUp (); 
         }
 
         void tearDown ()
         { 
-          m_fixture.get ()->tearDown (); 
+          m_fixture->tearDown (); 
         }
 
         std::string toString () const
@@ -79,21 +125,11 @@ namespace CppUnit {
         TestCaller& operator= (const TestCaller& other); 
 
       private:
-        std::auto_ptr<Fixture>   m_fixture;
-        TestMethod               m_test;
+        bool       m_ownFixture;
+        Fixture*   m_fixture;
+        TestMethod m_test;
 
     };
-
-  /** Returns a TestCaller for the specified method.
-   * \param name Name for the TestCaller.
-   * \param testMethod Method called by the TestCaller.
-   * \return TestCaller for the specified method.      
-   */
-  template<typename Fixture>
-    Test *makeTestCaller( std::string name, void (Fixture::*testMethod)() )
-    {
-      return new TestCaller<Fixture>( name, testMethod );
-    }
 
 } // namespace CppUnit
 

@@ -15,7 +15,7 @@ class ChessTest : public BoardGameTest<GAMECLASS> {
       BoardGameTest<GAMECLASS>::registerTests(suite);
       suite->addTest (
         new CppUnit::TestCaller<ChessTest<GAMECLASS> > ("testNumberOfPieces", 
-          &ChessTest<GAMECLASS>::testNumberOfPieces));
+          &ChessTest<GAMECLASS>::testNumberOfPieces, *this));
     }
 
     ChessTest() 
