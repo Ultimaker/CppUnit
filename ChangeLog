@@ -1,3 +1,8 @@
+2002-03-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* src/cppunit/TextTestProgressListener.cpp: flush the stream after each progess 
+	step.
+
 2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* configure.in: updated version number to 1.7.4
