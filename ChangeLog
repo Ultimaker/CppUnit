@@ -1,5 +1,7 @@
 2004-06-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * Release 10.0.2
+
   * include/cppunit/extension/TestSuiteBuilderContext.h:
   * src/cppunit/TestSuiteBuilderContext.cpp: fixed bug #921843. This bug
     was caused by a known STL bug in VC++ 6. 
