@@ -60,4 +60,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %prefix/lib/*.*a
 
 %files doc
-%doc doc/@PACKAGE@-@VERSION@/html/*
+%doc doc/html/*
