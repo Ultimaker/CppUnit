@@ -36,7 +36,6 @@ dist-hook:
 	cp -dpR $(top_srcdir)/src/msvc6 $(distdir)/src
 	cp -dpR $(top_srcdir)/src/qttestrunner $(distdir)/src
 	cp -dpR $(top_srcdir)/include/msvc6 $(distdir)/include 
-	cp -dpR $(top_srcdir)/include/cppunitui $(distdir)/include 
 	cp -dpR $(top_srcdir)/examples/msvc6 $(distdir)/examples
 	find $(distdir) -name CVS | xargs rm -rf
 	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'` \

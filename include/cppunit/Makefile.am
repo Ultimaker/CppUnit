@@ -1,4 +1,4 @@
-SUBDIRS = extensions
+SUBDIRS = extensions ui
 
 DISTCLEANFILES = config-auto.h
 

@@ -1,5 +1,11 @@
 2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* Makefile.am: removed directory cppunitui from copy when making the dist.
+
+	* include/cppunit/ui: added Makefile.am for dist and install.
+
+2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* include/cppunitui/: moved to include/cppunit/ui (fix unix install problem).
 
 	* doc/cookbook.dox:
