@@ -7,6 +7,10 @@
   * examples/qt/ExampleTestCase.h: fixed bug #789672: QT example should 
     use CPPUNIT_NS macro.
 
+  * src/cppunit/UnixDynamicLibraryManager.cpp: applied patch #816563
+    from Gareth Sylvester. Adding RTLD_GLOBAL allows test plug-ins 
+    to provide symbols to shared objects they load themselves.
+
 2004-02-20 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * release 1.9.12

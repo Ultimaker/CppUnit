@@ -1,10 +1,14 @@
-  New in CppUnit 1.10:
+  New in CppUnit 1.9.14:
   ---------------------
 
 * Bug Fix:
 
   - cppunit-config: bug #903363, missing -ldl from the output of
     cppunit-config --libs. Fixed thanks Eric Blossom patch.
+
+  - test plug-in(unix): Adding RTLD_GLOBAL allows test plug-ins 
+    to provide symbols to shared objects they load themselves.
+    Thanks goes to Gareth Sylvester for this patch (#816563).
 
 
   New in CppUnit 1.9.12:

@@ -13,7 +13,7 @@ CPPUNIT_NS_BEGIN
 DynamicLibraryManager::LibraryHandle 
 DynamicLibraryManager::doLoadLibrary( const std::string &libraryName )
 {
-  return ::dlopen( libraryName.c_str(), RTLD_NOW );   // RTLD_LAZY ?
+  return ::dlopen( libraryName.c_str(), RTLD_NOW | RTLD_GLOBAL );
 }
 
 
