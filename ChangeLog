@@ -1,12 +1,12 @@
 2004-06-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Portability.h: moved OStringStream alias definition to
-    Portability/Stream.h. User need to define EVC4 to indicate that 
+    portability/Stream.h. User need to define EVC4 to indicate that 
     config-evc4.h should be used. (how to we detect this automatically ?).
     Notes that this means it might be needed to add #include <string> to some
     headers since its no longer included by Portability.h.
 
-  * include/cppunit/Portability/Stream.h: define alias OStringStream, stdCOut(), 
+  * include/cppunit/portability/Stream.h: define alias OStringStream, stdCOut(), 
     and OFileStream. If CPPUNIT_NO_STREAM is defined (evc4 config), then provides
     our own implementation (based on sprintf and fwrite).
 
@@ -15,7 +15,7 @@
     EVC4 being defined...)
 
   * *.[cpp/h]: most source files have been impacted with the following change:
-    #include <iostream> -> #include <cppunit/Portability/Stream.h>
+    #include <iostream> -> #include <cppunit/portability/Stream.h>
     std::ostream -> CPPUNIT_NS::OStream
     std::ofstream -> CPPUNIT_NS::OFileStream
     std::cout -> CPPUNIT_NS::stdCOut()

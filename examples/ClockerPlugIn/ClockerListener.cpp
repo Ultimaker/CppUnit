@@ -4,7 +4,7 @@
 // Created: 2002/04/19
 // //////////////////////////////////////////////////////////////////////////
 #include <cppunit/Test.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 #include "ClockerListener.h"
 #include "ClockerModel.h"
 #include <stdio.h>

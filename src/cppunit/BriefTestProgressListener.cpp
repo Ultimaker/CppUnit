@@ -1,7 +1,7 @@
 #include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestFailure.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN

@@ -2,7 +2,7 @@
 #define __BOARDGAMETEST_H__
 
 #include <cppunit/extensions/HelperMacros.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 
 template<class GAMECLASS> 
 class BoardGameTest : public CPPUNIT_NS::TestFixture 

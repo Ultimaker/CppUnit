@@ -6,7 +6,7 @@
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/TestResult.h>
 #include <cppunit/ui/text/TextTestRunner.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 #include <stdexcept>
 
 

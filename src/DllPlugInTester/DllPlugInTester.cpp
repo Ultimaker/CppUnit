@@ -12,7 +12,7 @@
 #include <cppunit/plugin/PlugInParameters.h>
 #include <cppunit/plugin/PlugInManager.h>
 #include <cppunit/plugin/TestPlugIn.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 #include "CommandLineParser.h"
 
 

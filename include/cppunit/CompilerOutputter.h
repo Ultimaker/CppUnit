@@ -3,7 +3,7 @@
 
 #include <cppunit/Portability.h>
 #include <cppunit/Outputter.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 
 CPPUNIT_NS_BEGIN
 

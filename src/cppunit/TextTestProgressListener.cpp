@@ -1,6 +1,6 @@
 #include <cppunit/TestFailure.h>
 #include <cppunit/TextTestProgressListener.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN

@@ -3,7 +3,7 @@
 
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 
 CPPUNIT_NS_BEGIN
 

@@ -3,7 +3,7 @@
 #include <cppunit/TestFailure.h>
 #include <cppunit/TextTestResult.h>
 #include <cppunit/TextOutputter.h>
-#include <cppunit/Portability/Stream.h>
+#include <cppunit/portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN
