@@ -3,17 +3,25 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 exec_prefix_set=no
+includedir=@includedir@
 
 usage()
 {
     cat <<EOF
-Usage: cppunit-config [OPTIONS] [LIBRARIES]
-Options:
-	[--prefix[=DIR]]
-	[--exec-prefix[=DIR]]
-	[--version]
-	[--libs]
-	[--cflags]
+Usage: cppunit-config [OPTION]... [LIBRARY]...
+
+Generic options
+  --version	output CppUnit version information.
+  --help	display this help and exit.
+
+Compilation support options
+  --cflags	print pre-processor and compiler flags
+  --libs	print library linking information
+
+Install directories CppUnit was configured to
+  --prefix[=DIR]      
+  --exec-prefix[=DIR]
+
 EOF
 	exit $1
 }
@@ -48,6 +56,9 @@ while test $# -gt 0; do
     --version)
       echo @CPPUNIT_VERSION@
       ;;
+    --help)
+      usage 0
+      ;;
     --cflags)
       echo_cflags=yes
       ;;
@@ -70,8 +81,8 @@ if test "$echo_exec_prefix" = "yes"; then
 fi
 
 if test "$echo_cflags" = "yes"; then
-      if test @includedir@ != /usr/include ; then
-            echo -I@includedir@
+      if test "$includedir" != "/usr/include" ; then
+            echo -I$includedir
       fi
 fi
 
@@ -81,4 +92,7 @@ if test "$echo_libs" = "yes"; then
       fi
       echo ${my_linker_flags} -lcppunit
 fi      
+
+
+
 

@@ -37,6 +37,10 @@ rpm: dist
 	mv -f /usr/src/redhat/RPMS/*/$(PACKAGE)-$(VERSION)-*.rpm .
 	mv -f /usr/src/redhat/RPMS/*/$(PACKAGE)-doc-$(VERSION)-*.rpm .
 
+debian:
+	chmod a+x debian/rules
+	dpkg-buildpackage -rfakeroot -sa -us -uc -tc 
+
 docs:
 	$(MAKE) -C doc
 

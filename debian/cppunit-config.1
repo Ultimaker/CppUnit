@@ -1,0 +1,74 @@
+.\" 
+.\" cppunit-config manual page.
+.\" (C) Christian Leutloff <leutloff@debian.org>
+.\"
+.TH CPPUNIT 1 "April 21, 2001"
+.\" Please adjust this date whenever revising the manpage.
+.SH NAME
+cppunit-config \- CppUnit libraries and component information retrieval.
+.SH SYNOPSIS
+.PP
+.B cppunit-config
+[\-\-version] [\-\-help] [\-\-cflags] [\-\-libs]
+[\-\-prefix] [\-\-exec-prefix] [LIBRARY]...
+.SH DESCRIPTION
+The \fIcppunit-config\fP program is used to retrieve information from
+installed libraries in the system. It is typically used to compile
+and link against the CppUnit libraries. Here is a typical usage
+scenario in a Makefile:
+.PP
+.nf
+program: program.c
+	cc program.c `cppunit-config --cflags --libs cppunit`
+.fi
+.PP
+Usually, a combination of flags is used like --cflags and --libs in
+conjunction with the list of libraries that your program uses.  These
+libraries are specified as part of the command line.
+.SH OPTIONS
+The following Generic options are supported:
+.TP
+.I "--version"
+Requests that the CppUnit version information be displayed.
+.TP
+.I "--help"
+Displays a help message and terminates.
+.PP
+The following options are used to compile and link programs with CppUnit
+libraries and components:
+.TP
+.I "--cflags"
+This prints pre-processor and compiler flags required to compile the
+module with the libraries specified on the command line.
+.TP 
+.I "--libs"
+This prints the library linking information.  These flags can be
+passed to the compiler driver to link an object file with the
+libraries specified on the command line.
+.PP
+The following options are used to find out the directories that were
+used to install the files that are part of CppUnit.
+They correspond to the variable names used by the
+Makefiles (Makefiles in CppUnit are compliant with the GNU standard for
+makefiles, and they use GNU autoconf and GNU automake to get
+these right and uniform):
+.TP
+.I "--prefix"
+Outputs the prefix that was used to configure the CppUnit libraries.
+.TP
+.I "--exec-prefix"
+Outputs the exec-prefix used to install the CppUnit libraries.
+.PP
+The basic set of libraries you can link with are:
+.nf
+   cppunit
+.fi
+.SH AUTHORS
+CppUnit was written by Michael Feathers <mfeathers@objectmentor.com>,
+Jerome Lacoste <lacostej@altern.org>, E. Sommerlade <eric@sommerla.de>
+and J.E. Hoffmann <je-h@gmx.net>.
+.PP
+This manual page was written by Christian Leutloff
+<leutloff@debian.org>, for the Debian GNU/Linux system (but may be
+used by others). This manual page was derived from the man page for
+gnome-config, which was written by Miguel de Icaza.  
