@@ -63,7 +63,11 @@ void cdxCDynamicWndEx::OnInitialized()
 
 	if(!m_strAutoPos.IsEmpty())
 	{
+#if _MSC_VER < 1300   // vc6
 		if(!RestoreWindowPosition(_makeFullProfile(M_lpszAutoPosProfileSection,m_strAutoPos),rflg_all))
+#else                 // vc7
+		if(!RestoreWindowPosition(_makeFullProfile(M_lpszAutoPosProfileSection,m_strAutoPos),"",rflg_all))
+#endif
 		{
 			Window()->CenterWindow();
 			StretchWindow(10);
