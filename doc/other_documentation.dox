@@ -1,0 +1,55 @@
+/**
+ \mainpage
+ 
+ \section _history History
+ The first port of JUnit to C++ was done
+ by Michael Feathers. His versions
+ can be found on the 
+ <a href="http://www.xprogramming.com/software.htm">
+ XProgramming software page</a>. They are os-specific,
+ so Jerome Lacoste provided a port to Unix/Solaris.
+ His version can be found on the same page.
+ Now this is an attempt to combine efforts on further 
+ development of the library. This version is heavily 
+ based on the previous ones, e.g. most of the
+ documentation in the code was written by Michael Feathers.
+
+ \section _usage Usage
+ Take a look into 
+ <a href="../cookbook.html">the unix cookbook</a>.
+ It gives a quick start into using this 
+ testing framework.
+ For a discussion on CppUnit, check 
+ <a href="http://c2.com/cgi/wiki?CppUnit">
+ the WikiWiki Pages on CppUnit</a>. There you can also
+ find the original versions and various ports to other
+ OSses and languages.
+ 
+ \section _license License
+ This library is released under
+ the <a href="http://www.gnu.org/copyleft/lesser.html">LGPL</a>.
+ The previous versions (as mentioned in section \ref _history) 
+ had a different license, but the LGPL complies to its 
+ requirements.
+ 
+ \section _changes Changes
+ - Now there is a CppUnit namespace.
+ - CppUnit::TestCase objects register themselves
+   in the CppUnit::TestRegistry, which
+   can be used by a CppUnit::TestRunner.
+ - the CppUnit::TestRunner is factored out of the library.
+ - the global defines have been 
+   converted into const objects.
+ - the Guards.h file is not needed anymore.
+ 
+ \section _whats_next What's next?
+ - The CppUnit::Test::getName() method
+   will be used to 
+   register CppUnit::Test objects in a CppUnit::TestSuite or
+   the registry.
+ - The library will be made const consistent.
+ 
+ \author Eric Sommerlade (sommerlade@gmx.net)
+ \author Michael Feathers (mfeathers@objectmentor.com)
+ \author Jerome Lacoste (lacostej@altern.org)
+ */
