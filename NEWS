@@ -20,12 +20,19 @@
     CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE
     CPPUNIT_ASSERT_ASSERTION_PASS_MESSAGE
 
-    Some assertions failure message are now more detailed (exception, expression).
-    Thanks to Neil Ferguson who contributed this patch.
-
     Notes: change made to CPPUNIT_ASSERT_THROW may cause compilation error 
     if you're expecting std::exception as it would be caught twice. Contact us
     if it is an issue (we don't see much use for such a test).
+
+    Some assertions failure message are now more detailed (exception, 
+    expression).
+    Thanks to Neil Ferguson who contributed this patch.
+
+  - Assertion on real number now output expected and actual value using the
+    maximum available precision instead of the previous strategy of rounding 
+    to 6 digits.
+
+    Thanks to Neil Ferguson who contributed this patch.
 
 * Outputter:
 

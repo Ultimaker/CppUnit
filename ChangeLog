@@ -1,3 +1,9 @@
+2004-11-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/TestAssert.h: integrated Neil Ferguson patch for high
+    precision conversion to string for double number. Modified the patch
+    to works even if DBL_DIG C99 macro is not defined.
+
 2004-11-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/TestAssert.h:

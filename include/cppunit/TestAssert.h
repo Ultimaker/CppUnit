@@ -6,6 +6,8 @@
 #include <cppunit/Asserter.h>
 #include <cppunit/portability/Stream.h>
 
+#include <float.h> // For struct assertion_traits<double>
+
 
 CPPUNIT_NS_BEGIN
 
@@ -46,6 +48,36 @@ struct assertion_traits
         OStringStream ost;
         ost << x;
         return ost.str();
+    }
+};
+
+
+/*! \brief Traits used by CPPUNIT_ASSERT_DOUBLES_EQUAL(). 
+ * 
+ * This specialisation from @c struct @c assertion_traits<> ensures that 
+ * doubles are converted in full, instead of being rounded to the default 
+ * 6 digits of precision. Use the system defined ISO C99 macro DBL_DIG 
+ * within float.h is available to define the maximum precision, otherwise
+ * use the hard-coded maximum precision of 15.
+ */
+template <>
+struct assertion_traits<double>
+{  
+    static bool equal( double x, double y )
+    {
+        return x == y;
+    }
+
+    static std::string toString( double x )
+    {
+#ifdef DBL_DIG
+       const int precision = DBL_DIG;
+#else
+       const int precision = 15;
+#endif  // #ifdef DBL_DIG
+       char buffer[128];
+       sprintf(buffer, "%.*g", DBL_DIG, x); 
+       return buffer;
     }
 };
 
