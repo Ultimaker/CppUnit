@@ -3,10 +3,6 @@
 #include <map>
 #include <assert.h>
 
-#if CPPUNIT_USE_TYPEINFO_NAME
-#  include "cppunit/extensions/TypeInfoHelper.h"
-#endif
-
 
 namespace CppUnit {
 

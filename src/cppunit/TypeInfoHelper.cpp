@@ -1,9 +1,9 @@
 #include <cppunit/Portability.h>
+#include <cppunit/extensions/TypeInfoHelper.h>
 
-#if CPPUNIT_USE_TYPEINFO_NAME
+#if CPPUNIT_HAVE_RTTI
 
 #include <string>
-#include <cppunit/extensions/TypeInfoHelper.h>
 
 
 namespace CppUnit {
@@ -22,4 +22,4 @@ TypeInfoHelper::getClassName( const std::type_info &info )
 
 } //  namespace CppUnit
 
-#endif 
+#endif // CPPUNIT_HAVE_RTTI

@@ -6,9 +6,8 @@
   - [DONE] Update QtTestRunner to use findTest()
   - [DONE] Include DllPlugInTester, and update to use findTest() and TestPath().
   - [DONE] Add startSuite() and endSuite() to TestListener and TestResult
-  - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception and other
-    error catching (signal on Unix)
-  - Add a global set up decorator for all test run to TestResult 
+  - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception
+  - [DONE] Add a global set up decorator for all test run to TestResult 
     => extends TestListener: startTestRun(), endTestRun().
   - [DONE] Change CompilerOutputter to be customized with parameter instead of subclassing:
     provide a default string to the constructor that indicates the error report format:
@@ -34,6 +33,8 @@
   - [DONE] Wrap test plug-in suite retreival in a TestPlugInSuite.
   - [DONE] CrossPlatform TestPlugInSuite and TestPlugInInterface.
   - [DONE] CrossPlatform test runner for TestPlugIn.
+  - Advanced command line support for the plug-in runner 
+     (--xml, --compiler...) + plug-in parameter support.
 
   - STL orthodox template for container elements.
 
@@ -41,6 +42,7 @@
   - add tests for XmlOutputter::setStyleSheet (current assertion macro strip <?...> when
     testing )
   - add tests for TestRunner, TextUi::TestRunner, CompilerOutputter.
+  - add tests for test plug-in
 
 * VC++ TestRunner:
   - Make it possible to specify the registry path where settings are stored.
@@ -73,3 +75,5 @@ of a text (they disappear).
 	- other custmization stuff I haven't understood yet
 
 	CppUnit: architecture overview.
+	
+	- need to merge cookbook with Phil Verghese's contribution.

@@ -5,10 +5,8 @@
 #include <memory>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCaller.h>
+#include <cppunit/extensions/TypeInfoHelper.h>
 
-#if CPPUNIT_USE_TYPEINFO_NAME
-#  include <cppunit/extensions/TypeInfoHelper.h>
-#endif
 
 namespace CppUnit {
 

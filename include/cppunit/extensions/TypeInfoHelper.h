@@ -3,7 +3,7 @@
 
 #include <cppunit/Portability.h>
 
-#if CPPUNIT_USE_TYPEINFO_NAME
+#if CPPUNIT_HAVE_RTTI
 
 #include <typeinfo>
 
@@ -26,6 +26,6 @@ namespace CppUnit {
 
 }  // namespace CppUnit
 
-#endif
+#endif  // CPPUNIT_HAVE_RTTI
 
 #endif  // CPPUNIT_TYPEINFOHELPER_H

@@ -24,6 +24,9 @@ to write unit tests.
 
 * cppunit_dll(cppunit_dll.dll/lib) : same as above, but build as a DLL.
 
+* DllPlugInTester(DllPlugInTester.exe) : test plug-in runner executable.
+Use this to test DLL in your post-build step, or debug them.
+
 * TestRunner (testrunner.dll) : a MFC extension DLL to run and browser unit 
 tests from a GUI.
 
@@ -57,7 +60,7 @@ it in a 'cleaner' way. That sample has not been updated for a long time).
 failure. Also demonstrates the MFC Unicode TestRunner.
 
 * TestPlugIn : a sample demonstrating how to write a TestPlugIn for the
-TestPlugInRunner (experimental).
+TestPlugInRunner.
 
 
 Configuration:
@@ -69,8 +72,6 @@ CppUnit and TestRunner comes with 3 configurations.
 * Debug (d): Debug Multithreaded DLL, debug mode
 * Unicode Release (u): Unicode Multihtreaded DLL, release mode
 * Unicode Debug (ud): Unicode Debug Multithreaded DLL, debug mode
-* Debug Crossplatform (cd): Debug Multithreaded DLL, suite name for
-test cases are not extracted from the class name using type_info.
 
 For CppUnit, when building as dll, "dll" is appended to the 'suffix'.
 
@@ -83,7 +84,6 @@ Building:
 ---------
 
 * Open the src/CppUnitLibraries.dsw workspace in VC++.
-* Make TestPlugInRunner the active project.
 * In the 'Build' menu, select 'Batch Build...'
 * In the batch build dialog, select all projects and press the build button.
 * The resulting libraries can be found in the lib/ directory.
@@ -133,23 +133,20 @@ Using CppUnit:
 
 * Writing unit tests:
   To write unit tests, you need to link against cppunitXX.lib, where
-  XX is the chosen configuration suffix letters. You must
-  enable RTTI (Project Settings/C++/C++ Language) in your project.
+  XX is the chosen configuration suffix letters. 
   CppUnit include directory must be in the include search path.
   You can do that by adding the include directory in 
   Project Settings/C++/Preprocessor/Additional include directories,
   or Tools/Options/Directories/Include.
 
   Quick steps:
-  - enable RTTI
   - link lib/cppunitXX.lib
   - include/ must be in the include search path
 
 * Using the TestRunner GUI:
   To use the test runner GUI you need to link against testrunnerXX.lib
   and cppunitXX.lib, where XX is the chosen configuration suffix 
-  letters. You must enable RTTI (Project Settings/C++/C++ Language) in 
-  your project. testrunner.dll must be in the path when your program is
+  letters. testrunner.dll must be in the path when your program is
   run (the Debug/Release directory, your project dsp directory, or
   in a directory specified in the PATH environment variable).
   One of the easiest way to do that is to either add a post-build
@@ -163,7 +160,6 @@ Using CppUnit:
   test" settings are different for each application.
 
   Quick steps:
-  - enable RTTI
   - link lib/cppunitXX.lib and lib/testrunnerXX.lib
   - include/ must be in the include search path
   - lib/testrunnerXX.dll must be available to run your project

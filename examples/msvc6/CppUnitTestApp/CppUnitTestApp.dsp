@@ -164,11 +164,6 @@ InputName=testrunner
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\lib\testrunnercd.dll
-# PROP Exclude_From_Build 1
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\..\lib\testrunnerd.dll
 
 !IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"

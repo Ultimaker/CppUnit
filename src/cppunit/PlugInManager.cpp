@@ -76,6 +76,7 @@ PlugInManager::unload( PlugInInfo &plugIn )
   try
   {
     plugIn.m_interface->uninitialize( &TestFactoryRegistry::getRegistry() );
+    delete plugIn.m_manager;
   }
   catch (...)
   {

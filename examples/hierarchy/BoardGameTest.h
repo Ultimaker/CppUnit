@@ -2,6 +2,7 @@
 #define __BOARDGAMETEST_H__
 
 #include <cppunit/extensions/HelperMacros.h>
+#include <iostream>
 
 template<typename GAMECLASS> 
 class BoardGameTest : public CppUnit::TestFixture 

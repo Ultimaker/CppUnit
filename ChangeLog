@@ -1,5 +1,33 @@
 2002-04-19 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* src/cppunit/PlugInManager.cpp: fixed bug in unload().
+
+	* include/cppunit/TypeInfoHelper.h:
+	* src/cppunit/TypeInfoHelper.cpp: Implementation is now always available
+	  is CPPUNIT_HAVE_RTTI is not 0. This removes the need to use
+	  different libraries. CPPUNIT_USE_TYPEINFO_NAME can be set on a 
+	  case by case basis for HelperMacros.
+
+	* src/cppunit/TestFactoryRegistry.cpp: removed unused include of
+	  TypeInfoHelper.h.
+
+	* include/cppunit/TextTestProgressListener.h:
+	* src/cppunit/TextTestProgressListener.cpp: used endTest() instead
+	  of done() to finalize.
+
+	* src/msvc6/TestPlugInRunner/TestPlugIn.h:
+	* src/msvc6/TestPlugInRunner/TestPlugIn.cpp: updated to use the
+	  new test plug-in system.
+
+	* examples/simple/SimplePlugIn.cpp:
+	* examples/simple/simple_plugin.dsp: crossplatform test plug-in
+	  example using 'simple'.
+
+	* examples/msvc6/EasyTestPlugIn/*: projects replaced with the 
+	  crossplatform projecct examples/simple/simple_plugin.dsp.
+
+2002-04-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* configure.in: added some makefile.am
 
 	* contrib/readme.txt: updated.

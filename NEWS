@@ -4,12 +4,38 @@
 	- More versatile, easier to make test plug-in.
 	- A PlugInManager to manage multiple test plug-ins.
 	- Crossplatform test plug-in runner.
+	- Crossplatform test plug-in example.
 	- A brief progress listener 
 	- Easier test hierarchy creation
 	- Improved documentation.
 	- Tracking of test run start/end.
-	- Added simple example
 	- Contribution: XML style sheet & borland 5.5 makefile.
+	- Help needed on the Unix side!
+
+* Buildling on Unix:
+
+  - I did not get any feed back on the previous build issue on Unix. Using
+    a simple autobook example was useless to try to solve the problem. Here
+	is the issue:
+
+	CppUnit library build fine, it is the example I'm having trouble with.
+
+	Since the test plug-in have been added, CppUnit use the function
+	dlopen(), dlsym() and dlclose() on unix to load/unload the plug-in.
+
+	Those functions apparently requires to link another library when
+	building an exectuable. Here is was should be done:
+	- linking against the said library for each example.
+	- generates the shared library for the examples/simple/simple_plugin 
+	  example (source files are ExampleTestCase.cpp, ExampleTestCase.cpp 
+	  and SimplePlugIn.cpp).
+	- if possible, makes the above optionnal if --disable-test-plug-in 
+	  is defined:
+	  - don't link the dlXXX library 
+	  - don't compile the plug-in example
+	  - add #define CPPUNIT_NO_TESTPLUGIN 1 to the config file
+
+	Contact me on the mailing-list for more details.
 
 * TestPlugIn:
 
@@ -76,14 +102,18 @@
   - A new TestListener that prints the test name before running it. Most useful when
     a test crashing, mean a application crash.
 
-* Simple example (example/simple): 
-
-  - Added crossplatform simple example. Equivalent to VC++ HostApp example.
-
 * Documentation:
 
   - More details about the test plug-in, how to use it, how does it works...
     See module/Writing Test Plug-in.
+
+* Examples:
+
+  - examAdded crossplatform simple example. Equivalent to VC++ HostApp example.
+  - examples/simple: a very simple example, demonstrating the use of CppUnit
+    with a single TestFixture. Demonstrate both how to build an application
+	using TestRunner, and how to build a test plug-in to use with the
+	test plug-in runner.
 
 * Contribution
 
@@ -102,6 +132,9 @@
   - TestFactoryRegistry don't own register test anymore. AutoRegisterSuite has
     been updated to preverse its apparent behavior. It should be of concern
 	if you created and registered custom TestFactory.
+
+  - Removed TextTestProgressListener::done(). No longer needed, it listens
+    for endTestRun().
 
 * Compatiblity Break for 1.9.2 users:
 

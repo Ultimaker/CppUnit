@@ -32,11 +32,13 @@ TextTestProgressListener::addFailure( const TestFailure &failure )
 
 
 void 
-TextTestProgressListener::done()
+TextTestProgressListener::endTestRun( Test *test, 
+                                      TestResult *eventManager )
 {
   std::cerr  <<  std::endl;
   std::cerr.flush();
 }
+
 
 } //  namespace CppUnit
 

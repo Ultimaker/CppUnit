@@ -26,10 +26,6 @@ public:
 
   void endTest( Test *test );
 
-  /*! Call this method after running the tests.
-   */
-  void done();
-
 private:
   /// Prevents the use of the copy constructor.
   BriefTestProgressListener( const BriefTestProgressListener &copy );

@@ -1,4 +1,4 @@
-EXTRA_DIST = simple.dsp
+EXTRA_DIST = simple.dsp simple_plugin.dsp SimplePlugIn.cpp
 
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 

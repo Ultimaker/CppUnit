@@ -46,11 +46,5 @@ BriefTestProgressListener::endTest( Test *test )
 }
 
 
-void 
-BriefTestProgressListener::done()
-{
-}
-
-
 } //  namespace CppUnit
 

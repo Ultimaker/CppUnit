@@ -4,8 +4,6 @@
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/TestRunner.h>
-#include <cppunit/XmlOutputter.h>
-#include <fstream>
 
 
 int
@@ -26,13 +24,6 @@ main( int argc, char* argv[] )
   CppUnit::TestRunner runner;
   runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
   runner.run( controller );
-
-  // Write an XML file with the result
-  std::ofstream file( "tests.xml" );
-  CppUnit::XmlOutputter xml( &result, file );
-  xml.setStyleSheet( "report.xsl" );
-  xml.write();
-  file.close();
 
   // Print test in a compiler compatible format.
   CppUnit::CompilerOutputter outputter( &result, std::cerr );

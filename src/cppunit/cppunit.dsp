@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
-CFG=cppunit - Win32 Debug Crossplatform Setting
+CFG=CPPUNIT - WIN32 DEBUG
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,13 +13,12 @@ CFG=cppunit - Win32 Debug Crossplatform Setting
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "cppunit.mak" CFG="cppunit - Win32 Debug Crossplatform Setting"
+!MESSAGE NMAKE /f "cppunit.mak" CFG="CPPUNIT - WIN32 DEBUG"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
 !MESSAGE "cppunit - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "cppunit - Win32 Debug" (based on "Win32 (x86) Static Library")
-!MESSAGE "cppunit - Win32 Debug Crossplatform Setting" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -75,36 +74,12 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"..\..\lib\cppunitd.lib"
 
-!ELSEIF  "$(CFG)" == "cppunit - Win32 Debug Crossplatform Setting"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "cppunit___Win32_Debug_Without_CPPUNIT_USE_TYPEINFO"
-# PROP BASE Intermediate_Dir "cppunit___Win32_Debug_Without_CPPUNIT_USE_TYPEINFO"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 1
-# PROP Output_Dir "DebugCrossplatform"
-# PROP Intermediate_Dir "DebugCrossplatform"
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\include" /D "_DEBUG" /D "_MBCS" /D "_LIB" /D "CPPUNIT_USE_TYPEINFO" /D "WIN32" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\include" /D "_DEBUG" /D "_MBCS" /D "_LIB" /D "WIN32" /D "CPPUNIT_DONT_USE_TYPEINFO" /YX /FD /GZ /c
-# ADD BASE RSC /l 0x40c /d "_DEBUG"
-# ADD RSC /l 0x40c /d "_DEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LIB32=link.exe -lib
-# ADD BASE LIB32 /nologo /out:"..\..\lib\cppunitd.lib"
-# ADD LIB32 /nologo /out:"..\..\lib\cppunitcd.lib"
-
 !ENDIF 
 
 # Begin Target
 
 # Name "cppunit - Win32 Release"
 # Name "cppunit - Win32 Debug"
-# Name "cppunit - Win32 Debug Crossplatform Setting"
 # Begin Group "documentation"
 
 # PROP Default_Filter ""
@@ -119,6 +94,10 @@ SOURCE=..\..\doc\cookbook.dox
 # Begin Source File
 
 SOURCE=..\..\doc\FAQ
+# End Source File
+# Begin Source File
+
+SOURCE="..\..\INSTALL-WIN32.txt"
 # End Source File
 # Begin Source File
 
@@ -508,10 +487,6 @@ SOURCE=.\Win32DynamicLibraryManager.cpp
 # Begin Source File
 
 SOURCE=..\..\configure.in
-# End Source File
-# Begin Source File
-
-SOURCE="..\..\INSTALL-WIN32.txt"
 # End Source File
 # Begin Source File
 
