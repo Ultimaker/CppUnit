@@ -4,6 +4,9 @@
 #include <cppunit/Portability.h>
 #include <string>
 
+#if CPPUNIT_HAVE_RTTI
+#  include <typeinfo>
+#endif
 
 
 

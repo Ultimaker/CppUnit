@@ -2,6 +2,7 @@
 #include <cppunit/TestFailure.h>
 #include <cppunit/TestListener.h>
 #include <cppunit/TestResult.h>
+#include <cppunit/tools/Algorithm.h>
 #include <algorithm>
 #include "DefaultProtector.h"
 #include "ProtectorChain.h"
@@ -37,14 +38,16 @@ void
 TestResult::addError( Test *test, 
                       Exception *e )
 { 
-  addFailure( TestFailure( test, e, true ) );
+  TestFailure failure( test, e, true );
+  addFailure( failure );
 }
 
 
 void 
 TestResult::addFailure( Test *test, Exception *e )
 { 
-  addFailure( TestFailure( test, e, false ) );
+  TestFailure failure( test, e, false );
+  addFailure( failure );
 }
 
 
@@ -131,10 +134,7 @@ void
 TestResult::removeListener ( TestListener *listener )
 {
   ExclusiveZone zone( m_syncObject ); 
-  m_listeners.erase( std::remove( m_listeners.begin(), 
-                                  m_listeners.end(), 
-                                  listener ),
-                     m_listeners.end());
+  removeFromSequence( m_listeners, listener );
 }
 
 

@@ -608,6 +608,10 @@ SOURCE=.\Win32DynamicLibraryManager.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\tools\Algorithm.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\StringTools.cpp
 # End Source File
 # Begin Source File

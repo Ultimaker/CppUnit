@@ -1,3 +1,25 @@
+2003-03-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/tools/Algorithm.h:
+  * src/cppunit/TestResult.cpp:
+  * src/msvc6/testrunner/TestRunnerModel.cpp: added removeFromSequence 
+    algorithm in Algorithm.h to fix STLPort compatibility issue 
+	(std::remove use the one of cstdio instead of algorithm). Bug #694971.
+
+  * src/cppunit/TestResult.cpp: added intermediate temporary in call
+    to addFailure() as a work-around for a compilation issue on AIX.
+
+
+2003-01-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/TestNamer.h: fixed bug #662666 (missing include
+    for typeinfo).
+
+2002-12-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * src/cppunit/TestResult.cpp: TestFailure are no longer passed as temporary,
+    but explicitely instantiated on the stack. Work around AIX compiler bug.
+
 2002-12-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/TextTestResult.h: added missing dll export for 

@@ -6,6 +6,7 @@
 
 #include "StdAfx.h"
 #include "TestRunnerModel.h"
+#include <cppunit/tools/Algorithm.h>
 #include <algorithm>
 #include <stdexcept>
 #include <cppunit/testsuite.h>
@@ -36,9 +37,7 @@ TestRunnerModel::history() const
 void 
 TestRunnerModel::selectHistoryTest( CPPUNIT_NS::Test *test )
 {
-  History::iterator end = 
-      std::remove( m_history.begin(), m_history.end(), test );
-  m_history.erase( end, m_history.end() );
+  removeFromsSequence( m_history, test );
   
   if ( test != NULL )
     m_history.push_front( test );
