@@ -16,7 +16,7 @@ void
 TextTestResult::addError (Test *test, Exception *e)
 {
     TestResult::addError (test, e);
-    cerr << "E\n";
+    std::cerr << "E" << std::endl;
 
 }
 
@@ -24,7 +24,7 @@ void
 TextTestResult::addFailure (Test *test, Exception *e)
 {
     TestResult::addFailure (test, e);
-    cerr << "F\n";
+    std::cerr << "F" << std::endl;
 
 }
 
@@ -32,22 +32,22 @@ void
 TextTestResult::startTest (Test *test)
 {
 
-  cerr << "Running " << test->getName() << " ";
+  std::cerr << "Running " << test->getName() << " ";
   TestResult::startTest (test);
-  cerr << ".\n";
+  std::cerr << "." << std::endl;
 
 }
 
 
 void 
-TextTestResult::printErrors (ostream& stream)
+TextTestResult::printErrors (std::ostream& stream)
 {
     if (testErrors () != 0) {
 
         if (testErrors () == 1)
-            stream << "There was " << testErrors () << " error: " << endl;
+            stream << "There was " << testErrors () << " error: " << std::endl;
         else
-            stream << "There were " << testErrors () << " errors: " << endl;
+            stream << "There were " << testErrors () << " errors: " << std::endl;
 
         int i = 1;
 
@@ -60,7 +60,7 @@ TextTestResult::printErrors (ostream& stream)
                    << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
                    << (e ? e->fileName () : "") << " "
                    << "\"" << failure->thrownException ()->what () << "\""
-                   << endl;
+                   << std::endl;
             i++;
         }
     }
@@ -68,13 +68,13 @@ TextTestResult::printErrors (ostream& stream)
 }
 
 void 
-TextTestResult::printFailures (ostream& stream) 
+TextTestResult::printFailures (std::ostream& stream) 
 {
     if (testFailures () != 0) {
         if (testFailures () == 1)
-            stream << "There was " << testFailures () << " failure: " << endl;
+            stream << "There was " << testFailures () << " failure: " << std::endl;
         else
-            stream << "There were " << testFailures () << " failures: " << endl;
+            stream << "There were " << testFailures () << " failures: " << std::endl;
 
         int i = 1;
 
@@ -87,7 +87,7 @@ TextTestResult::printFailures (ostream& stream)
                    << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
                    << (e ? e->fileName () : "") << " "
                    << "\"" << failure->thrownException ()->what () << "\""
-                   << endl;
+                   << std::endl;
             i++;
         }
     }
@@ -96,7 +96,7 @@ TextTestResult::printFailures (ostream& stream)
 
 
 void 
-TextTestResult::print (ostream& stream) 
+TextTestResult::print (std::ostream& stream) 
 {
     printHeader (stream);
     printErrors (stream);
@@ -106,21 +106,21 @@ TextTestResult::print (ostream& stream)
 
 
 void 
-TextTestResult::printHeader (ostream& stream)
+TextTestResult::printHeader (std::ostream& stream)
 {
     if (wasSuccessful ())
-        stream << endl << "OK (" << runTests () << " tests)" << endl;
+        stream << std::endl << "OK (" << runTests () << " tests)" << std::endl;
     else
-        stream << endl
-             << "!!!FAILURES!!!" << endl
-             << "Test Results:" << endl
+        stream << std::endl
+             << "!!!FAILURES!!!" << std::endl
+             << "Test Results:" << std::endl
              << "Run:  "
              << runTests ()
              << "   Failures: "
              << testFailures ()
              << "   Errors: "
              << testErrors ()
-             << endl;
+             << std::endl;
 
 }
 

@@ -35,7 +35,7 @@ main(int argc, char** argv)
     (*it)->run(&res);
 
   }
-  cout << res << endl;
+  std::cout << res << endl;
   
   return 0;
 }
