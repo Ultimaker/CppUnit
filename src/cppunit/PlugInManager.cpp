@@ -45,7 +45,7 @@ PlugInManager::unload( const std::string &libraryFileName )
 {
   for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
   {
-    if ( it->m_fileName == libraryFileName )
+    if ( (*it).m_fileName == libraryFileName )
     {
       unload( *it );
       m_plugIns.erase( it );
@@ -59,7 +59,7 @@ void
 PlugInManager::addListener( TestResult *eventManager )
 {
   for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
-    it->m_interface->addListener( eventManager );
+    (*it).m_interface->addListener( eventManager );
 }
 
 
@@ -67,7 +67,7 @@ void
 PlugInManager::removeListener( TestResult *eventManager )
 {
   for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
-    it->m_interface->removeListener( eventManager );
+    (*it).m_interface->removeListener( eventManager );
 }
 
 
@@ -92,7 +92,7 @@ void
 PlugInManager::addXmlOutputterHooks( XmlOutputter *outputter )
 {
   for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
-    it->m_interface->addXmlOutputterHooks( outputter );
+    (*it).m_interface->addXmlOutputterHooks( outputter );
 }
 
 
@@ -100,7 +100,7 @@ void
 PlugInManager::removeXmlOutputterHooks()
 {
   for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
-    it->m_interface->removeXmlOutputterHooks();
+    (*it).m_interface->removeXmlOutputterHooks();
 }
 
 
