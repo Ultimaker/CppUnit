@@ -73,6 +73,11 @@ public:
   TestPath( Test *searchRoot, 
             const std::string &pathAsString );
 
+  /*! Copy constructor.
+   * \param other Object to copy.
+   */
+  TestPath( const TestPath &other );
+
   virtual ~TestPath();
 
   /*! Tests if the path contains at least one test.
@@ -153,6 +158,12 @@ public:
    */
   virtual std::string toString() const;
 
+  /*! Assignment operator.
+   * \param other Object to copy.
+   * \return This object.
+   */
+  TestPath &operator =( const TestPath &other );
+
 protected:
   /*! Checks that the specified test index is within valid range.
    * \param index Zero based index to check.
@@ -187,7 +198,7 @@ protected:
 
 protected:
   typedef std::deque<Test *> Tests;
-  Tests _tests;
+  Tests m_tests;
 
 };
 

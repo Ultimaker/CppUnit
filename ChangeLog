@@ -1,3 +1,57 @@
+2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* THANKS: updated
+
+	* src/cppunit/DynamicLibraryManager.cpp: bugfix: did not pass
+	  library name to exception.
+
+	* include/cppunit/TestPath.h:
+	* src/cppunit/TestPath.cpp: changed into value object.
+
+	* src/cppunit/BeosDynamicLibraryManager.cpp: integrated patch from
+	  Shibu Yoshiki for BeOS ('cuppa' project team).
+
+	* src/DllPlugInTester/CommandLineParser.h:
+	* src/DllPlugInTester/CommandLineParser.cpp: added. Command line
+	  parsing.
+
+	* src/DllPlugInTester/DllPlugInTester.cpp: full command line support
+	  with parameters for plug-ins.
+
+	* src/DllPlugInTester/makefile.am:
+	* examples/simple/makefile.am:
+	* examples/cppunittest/makefile.am: integrated Jeffrey Morgan patch,
+	  Unix side should be working again.
+
+	* examples/ReadMe.txt: added. Brief description of each example.
+
+	* examples/cppunittest/CppUnitTestPlugIn.cpp:
+	* examples/cppunittest/CppUnitTestPlugIn.dsp: added. New project to
+	  build CppUnit's test suite as a test plug-in.
+
+	* examples/cppunittest/CppUnitTestSuite.cpp: updated. Use new
+	  helper macros to create the test suite hierarchy.
+
+	* examples/simple/simple_plugin.opt: added. Contains debug tab
+	  settings.
+
+	* examples/ClockerPlugIn/ClockerListener.cpp:
+	* examples/ClockerPlugIn/ClockerListener.h:
+	* examples/ClockerPlugIn/Timer.cpp:
+	* examples/ClockerPlugIn/Timer.h:
+	* examples/ClockerPlugIn/WinNtTimer.cpp:
+	* examples/ClockerPlugIn/WinNtTimer.h:
+	* examples/ClockerPlugIn/ClockerPlugIn.cpp:
+	* examples/ClockerPlugIn/ClockerPlugIn.dsp: added. test listener 
+	  plug-in that times tests.
+
+	* examples/DumperPlugIn/DumperListener.cpp:
+	* examples/DumperPlugIn/DumperListener.h:
+	* examples/DumperPlugIn/DumperPlugIn.cpp:
+	* examples/DumperPlugIn/DumperPlugIn.dsp: added. test listener 
+	  plug-in that dump the test tree.
+
+
 2002-04-19 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* src/cppunit/PlugInManager.cpp: fixed bug in unload().

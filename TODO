@@ -33,8 +33,10 @@
   - [DONE] Wrap test plug-in suite retreival in a TestPlugInSuite.
   - [DONE] CrossPlatform TestPlugInSuite and TestPlugInInterface.
   - [DONE] CrossPlatform test runner for TestPlugIn.
-  - Advanced command line support for the plug-in runner 
+  - [DONE] Advanced command line support for the plug-in runner 
      (--xml, --compiler...) + plug-in parameter support.
+  - Custom Test macro helper
+    => naming convention Test *makeTest()
 
   - STL orthodox template for container elements.
 

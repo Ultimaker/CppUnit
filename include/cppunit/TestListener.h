@@ -121,7 +121,7 @@ public:
    * You can use this to do some global initialisation. A listener
    * could also use to output a 'prolog' to the test run.
    *
-   * \param suite Test that is going to be run.
+   * \param test Test that is going to be run.
    * \param eventManager Event manager used for the test run.
    */
   virtual void startTestRun( Test *test, 
@@ -132,7 +132,7 @@ public:
    * TextTestProgressListener use this to emit a line break. You can also use this
    * to do some global uninitialisation.
    *
-   * \param suite Test that was run.
+   * \param test Test that was run.
    * \param eventManager Event manager used for the test run.
    */
   virtual void endTestRun( Test *test, 

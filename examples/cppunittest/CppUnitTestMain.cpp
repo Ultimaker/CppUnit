@@ -5,7 +5,7 @@
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/XmlOutputter.h>
-#include "CppUnitTestSuite.h"
+#include <cppunit/extensions/TestFactoryRegistry.h>
 #include <stdexcept>
 #include <fstream>
 
@@ -34,7 +34,7 @@ main( int argc, char* argv[] )
 
   // Add the top suite to the test runner
   CppUnit::TestRunner runner;
-  runner.addTest( CppUnitTest::suite() );   
+  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );   
   try
   {
     std::cout << "Running "  <<  testPath;

@@ -101,6 +101,10 @@ SOURCE="..\..\INSTALL-WIN32.txt"
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\doc\Money.dox
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\NEWS
 # End Source File
 # Begin Source File

@@ -9,6 +9,7 @@ namespace CppUnit
 
 DynamicLibraryManager::DynamicLibraryManager( const std::string &libraryFileName )
     : m_libraryHandle( NULL )
+    , m_libraryName( libraryFileName )
 {
   loadLibrary( libraryFileName );
 }

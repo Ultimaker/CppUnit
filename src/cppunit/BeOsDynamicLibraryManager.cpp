@@ -20,7 +20,7 @@ DynamicLibraryManager::doLoadLibrary( const std::string &libraryName )
 void 
 DynamicLibraryManager::doReleaseLibrary()
 {
-  return ::unload_add_on( (image_id)m_libraryHandle ) == B_OK;
+  ::unload_add_on( (image_id)m_libraryHandle );
 }
 
 

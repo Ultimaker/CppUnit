@@ -75,8 +75,8 @@ PostBuild_Cmds=..\..\lib\DllPlugInTester_dll.exe $(TargetPath)
 # PROP Intermediate_Dir "DebugPlugIn"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /YX /FD /GZ  /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "../../include" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /D "CPPUNIT_DLL" /FD /GZ  /c
+# ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "../../include" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "SIMPLE_PLUGIN_EXPORTS" /D "CPPUNIT_DLL" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -92,7 +92,7 @@ LINK32=link.exe
 TargetPath=.\DebugPlugIn\simple_plugind.dll
 SOURCE="$(InputPath)"
 PostBuild_Desc=Running tests...
-PostBuild_Cmds=..\..\lib\DllPlugInTesterd_dll.exe $(TargetPath)
+PostBuild_Cmds=..\..\lib\DllPlugInTesterd_dll.exe -b --xml tests.xml -c $(TargetPath)
 # End Special Build Tool
 
 !ENDIF 

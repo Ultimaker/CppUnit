@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.29 2002-04-18 09:58:57 blep Exp $
+# $Id: Makefile.am,v 1.30 2002-04-20 21:51:33 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -47,7 +47,4 @@ libcppunit_la_SOURCES = \
 libcppunit_la_LDFLAGS= \
  -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
  -release $(LT_RELEASE)
-
-
-
 

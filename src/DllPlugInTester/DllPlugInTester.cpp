@@ -4,40 +4,58 @@
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/TestRunner.h>
+#include <cppunit/TextOutputter.h>
 #include <cppunit/TextTestProgressListener.h>
+#include <cppunit/XmlOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/plugin/DynamicLibraryManagerException.h>
 #include <cppunit/plugin/Parameters.h>
 #include <cppunit/plugin/PlugInManager.h>
 #include <cppunit/plugin/TestPlugIn.h>
 #include <iostream>
+#include <fstream>
+#include "CommandLineParser.h"
 
 
 /*! Runs the specified tests located in the root suite.
- * \param parameters List of string representing the command line arguments.
+ * \param parser Command line parser.
  * \return \c true if the run succeed, \c false if a test failed or if a test
  *         path was not resolved.
  */
 bool 
-runTests( CppUnit::Parameters parameters )
+runTests( const CommandLineParser &parser )
 {
   CppUnit::TestResult controller;
   CppUnit::TestResultCollector result;
   controller.addListener( &result );        
-  CppUnit::TextTestProgressListener progress;
-//  CppUnit::BriefTestProgressListener progress;
-  controller.addListener( &progress );      
 
-  std::string testPath;
+  // Set up outputters
+  std::ostream *stream = &std::cerr;
+  if ( parser.useCoutStream() )
+    stream = &std::cout;
+
+  std::ostream *xmlStream = stream;
+  if ( !parser.getXmlFileName().empty() )
+    xmlStream = new std::ofstream( parser.getXmlFileName().c_str() );
+
+  CppUnit::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
+  CppUnit::TextOutputter textOutputter( &result, *stream );
+  CppUnit::CompilerOutputter compilerOutputter( &result, *stream );
+
+  // Set up test listeners
+  CppUnit::BriefTestProgressListener briefListener;
+  CppUnit::TextTestProgressListener dotListener;
+  if ( parser.useBriefTestProgress() )
+    controller.addListener( &briefListener );
+  else if ( !parser.noTestProgress() )
+    controller.addListener( &dotListener );
+
+  // Set up plug-ins
   CppUnit::PlugInManager plugInManager;
-  // Loads plug-ins & get test path.
-  for ( int index =0; index < parameters.size(); ++index )
+  for ( int index =0; index < parser.getPlugInCount(); ++index )
   {
-    std::string parameter = parameters[index];
-    if ( parameter[0] == ':' )
-      testPath = parameter.substr(1);
-    else
-      plugInManager.load( parameter );
+    CommandLinePlugInInfo plugIn = parser.getPlugInAt( index );
+    plugInManager.load( plugIn.m_fileName, plugIn.m_parameters );
   }
 
   // Registers plug-in specific TestListener (global setUp/tearDown, custom TestListener...)
@@ -48,26 +66,36 @@ runTests( CppUnit::Parameters parameters )
   runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
 
   // Runs the specified test
+  bool wasSuccessful = false;
   try
   {
-    runner.run( controller );
+    runner.run( controller, parser.getTestPath() );
+    wasSuccessful = result.wasSuccessful();
   }
   catch ( std::invalid_argument & )
   {
-    std::cerr  <<  "Failed to resolve test path: "  <<  testPath  <<  std::endl;
-    return false;
+    std::cerr  <<  "Failed to resolve test path: "  
+               <<  parser.getTestPath() 
+               <<  std::endl;
   }
 
   // Removes plug-in specific TestListener (not really needed but...)
   plugInManager.removeListener( &controller );
 
-  std::cerr << std::endl;
+  // write using outputters
+  if ( parser.useCompilerOutputter() )
+    compilerOutputter.write();
 
-  // Outputs test result
-  CppUnit::CompilerOutputter outputter( &result, std::cerr );
-  outputter.write();
+  if ( parser.useTextOutputter() )
+    textOutputter.write();
 
-  return result.wasSuccessful();
+  if ( parser.useXmlOutputter() )
+    xmlOutputter.write();
+
+  if ( !parser.getXmlFileName().empty() )
+    delete xmlStream;
+
+  return wasSuccessful;
 }
 
 
@@ -96,7 +124,8 @@ runTests( CppUnit::Parameters parameters )
  *
  * If all test succeed and no error happen then the application exit with code 0.
  * If any error occurs (failed to load dll, failed to resolve test paths) or a 
- * test fail, the application exit with code 1.
+ * test fail, the application exit with code 1. If the application failed to
+ * parse the command line, it exits with code 2.
  */
 int 
 main( int argc, 
@@ -104,6 +133,7 @@ main( int argc,
 {
   const int successReturnCode = 0;
   const int failureReturnCode = 1;
+  const int badCommadLineReturnCode = 2;
 
   // check command line
   std::string applicationName( argv[0] );
@@ -113,16 +143,25 @@ main( int argc,
            <<  applicationName 
            <<  " dll-filename1 [dll-filename2 ...] [:test-path]..."
            <<  std::endl;
-    return failureReturnCode;
+    return badCommadLineReturnCode;
+  }
+
+  CommandLineParser parser( argc, argv );
+  try
+  {
+    parser.parse();
+  }
+  catch ( CommandLineParserException &e )
+  {
+    std::cerr  <<  "Error while parsing command line: "  <<  e.what()  
+               << std::endl;
+    return badCommadLineReturnCode;
   }
 
   bool wasSuccessful = false;
   try
   {
-    CppUnit::Parameters parameters;
-    for ( int index =1; index < argc; ++index )
-      parameters.push_back( argv[index] );
-    wasSuccessful = runTests( parameters );
+    wasSuccessful = runTests( parser );
   }
   catch ( CppUnit::DynamicLibraryManagerException &e )
   {

@@ -206,7 +206,19 @@ LINK32=link.exe
 # Name "DllPlugInTester - Win32 Debug"
 # Begin Source File
 
+SOURCE=.\CommandLineParser.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CommandLineParser.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DllPlugInTester.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Makefile.am
 # End Source File
 # End Target
 # End Project

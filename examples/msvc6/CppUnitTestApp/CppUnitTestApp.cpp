@@ -6,7 +6,6 @@
 #include "CppUnitTestAppDlg.h"
 #include <cppunit/ui/mfc/TestRunner.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
-#include <cppunittest/CppUnitTestSuite.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,7 +71,7 @@ CppUnitTestApp::RunTests()
 {
   CppUnit::MfcUi::TestRunner runner;
 
-  runner.addTest( CppUnitTest::suite() );
+  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
 
   runner.run();
 }

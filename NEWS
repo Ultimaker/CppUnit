@@ -1,3 +1,9 @@
+	New in CppUnit 1.9.6:
+	----------------------
+
+This release makes testable components a reality with more versatile, easier to make test plug-ins, and a new crossplatform test plug-in runner. Many little things to make life easier: a brief test progress listener, easier test hierarchy creation, tracking of test runs, and an improved documentation. It also features new contributions: a XML style sheet and Borland 5.5 makefiles. Help needed on the Unix side with configure and automake.
+
+
 	New in CppUnit 1.9.4:
 	----------------------
 

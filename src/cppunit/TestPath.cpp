@@ -70,8 +70,23 @@ TestPath::TestPath( Test *searchRoot,
 }
 
 
+TestPath::TestPath( const TestPath &other )
+  : m_tests( other.m_tests )
+{
+}
+
+
 TestPath::~TestPath()
 {
+}
+
+
+TestPath &
+TestPath::operator =( const TestPath &other )
+{
+  if ( &other != this )
+    m_tests = other.m_tests;
+  return *this;
 }
 
 
@@ -85,7 +100,7 @@ TestPath::isValid() const
 void 
 TestPath::add( Test *test )
 {
-  _tests.push_back( test );
+  m_tests.push_back( test );
 }
 
 
@@ -103,7 +118,7 @@ TestPath::insert( Test *test,
 {
   if ( index < 0  ||  index > getTestCount() )
     throw std::out_of_range( "TestPath::insert(): index out of range" );
-  _tests.insert( _tests.begin() + index, test );
+  m_tests.insert( m_tests.begin() + index, test );
 }
 
 void 
@@ -128,7 +143,7 @@ void
 TestPath::removeTest( int index )
 {
   checkIndexValid( index );
-  _tests.erase( _tests.begin() + index );
+  m_tests.erase( m_tests.begin() + index );
 }
 
 
@@ -143,7 +158,7 @@ TestPath::up()
 int 
 TestPath::getTestCount() const
 {
-  return _tests.size();
+  return m_tests.size();
 }
 
 
@@ -151,7 +166,7 @@ Test *
 TestPath::getTestAt( int index ) const
 {
   checkIndexValid( index );
-  return _tests[index];
+  return m_tests[index];
 }
 
 
