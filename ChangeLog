@@ -1,7 +1,16 @@
+2004-09-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * src/msvc6/DSPlugIn/StdAfx.h: add #error to prevent compilation on VC 7.
+
+  * src/msvc6/testrunner/MsDevCallerListCtrl.cpp:
+  * src/msvc6/testrunner/MsDevCallerListCtrl.h: integrated go to source line
+    features on double click contributed by Max Quatember and 
+    Andreas Pfaffenbichler.
+
 2004-08-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/XmlOutputter.h:
-  * include/cppunit/tools/XmlDocument.h
+  * include/cppunit/tools/XmlDocument.h:
   * src/cppunit/XmlDocument.cpp:
   * src/cppunit/XmlOutputter.cpp: integrated patch #997006 from Akos Maroy. 
     This patch makes the 'standalone' attribute in XML header optional.

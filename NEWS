@@ -16,6 +16,12 @@
     'stand-alone' attribute of the XML header optional. 
     See XmlOutputter::setStandalone() & XmlDocument::setStandalone().
 
+* MFC Test Runner
+
+  - Integration with VC++ 7.0 & 7.1. Double clicking on a failure will now
+    to the failure location in the open IDE (no add-in necessary). 
+    This was contributed by Max Quatember and Andreas Pfaffenbichler.
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
