@@ -32,5 +32,6 @@
 /* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) */
 #define CPPUNIT_HAVE_CPP_SOURCEANNOTATION   1
 
+#pragma warning( disable: 4786 )
 
 #endif

@@ -2,8 +2,45 @@
 #define CPPUNIT_TESTCALLER_H
 
 #include <cppunit/TestCase.h>
+#include <cppunit/Exception.h>
+
+#if CPPUNIT_USE_TYPEINFO
+#  include <cppunit/extensions/TypeInfoHelper.h>
+#endif  // CPPUNIT_USE_TYPEINFO
 
 namespace CppUnit {
+
+  class NoExceptionExpected
+  {
+  private:
+    // Nobody must be able to construct an exception of this type.
+    NoExpectedException();
+  };
+
+
+  template<typename ExceptionType>
+  struct ExpectedExceptionTraits
+  {
+    static void expectedException()
+    {
+#if CPPUNIT_USE_TYPEINFO
+      std::string message( "Expected exception of type " );
+      message += TypeInfoHelper::getClassName( typeid( ExceptionType ) );
+      message += ", but got none";
+#else
+      std::string message( "Expected exception but got none" );
+#endif  // CPPUNIT_USE_TYPEINFO
+      throw new Exception( message );
+    }
+  };
+
+  template<>
+  struct ExpectedExceptionTraits<NoExceptionExpected>
+  {
+    static void expectedException()
+    {
+    }
+  };
 
   /** Provides access to a test case method.
    * A test caller provides access to a test case method 
@@ -39,10 +76,11 @@ namespace CppUnit {
    * \see TestCase
    */
 
-  template <typename Fixture> 
+  template <typename Fixture,  
+            typename ExpectedException = NoExceptionExpected>
     class TestCaller : public TestCase
     { 
-        typedef void             (Fixture::*TestMethod)();
+        typedef void (Fixture::*TestMethod)();
     
       public:
         /**
@@ -102,7 +140,16 @@ namespace CppUnit {
       protected:
         void runTest () 
         { 
-          (m_fixture->*m_test)(); 
+          try
+          {
+            (m_fixture->*m_test)();
+          }
+          catch ( ExpectedException & )
+          {
+            return;
+          }
+
+          ExpectedExceptionTraits<ExpectedException>::expectedException();
         }  
 
         void setUp ()

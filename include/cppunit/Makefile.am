@@ -4,6 +4,7 @@ libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
 	config.h \
 	Exception.h \
+	NotEqualException.h \
 	Test.h \
 	TestAssert.h \
 	TestCaller.h \

@@ -79,8 +79,7 @@ namespace CppUnit {
    *
    */
 
-  class TestCase : public Test,
-                   public TestAssert
+  class TestCase : public Test
   {
     public:
       TestCase         ();

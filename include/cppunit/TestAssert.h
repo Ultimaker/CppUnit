@@ -1,7 +1,6 @@
 #ifndef CPPUNIT_TESTASSERT_H
 #define CPPUNIT_TESTASSERT_H
 
-#include <math.h>
 #include <string>
 #include <sstream>
 #include <cppunit/config.h>
@@ -29,26 +28,15 @@ namespace CppUnit {
 
   /*! \brief This class represents
    */
-  class TestAssert
+  namespace TestAssert
   {
-  public:
-    virtual ~TestAssert() {}
-
-    static void    assertImplementation(
-      bool         condition, 
-      std::string  conditionExpression = "",
-      long         lineNumber = Exception::UNKNOWNLINENUMBER,
-      std::string  fileName = Exception::UNKNOWNFILENAME)
-	{
-	    if (!condition) 
-		throw Exception (conditionExpression, 
-				 lineNumber, 
-				 fileName); 
-	}
-
+    void assertImplementation( bool         condition, 
+                               std::string  conditionExpression = "",
+                               long lineNumber = Exception::UNKNOWNLINENUMBER,
+                               std::string  fileName = Exception::UNKNOWNFILENAME );
 
     template <class T>
-    static std::string         notEqualsMessage (const T& expected, 
+    std::string         notEqualsMessage (const T& expected, 
 						 const T& actual)
     {
 	return "expected: " + assertion_traits<T>::toString(expected)
@@ -57,7 +45,7 @@ namespace CppUnit {
 
 
     template <class T>
-    static void    assertEquals     (
+    void    assertEquals     (
       const T&     expected,
       const T&     actual,
       long         lineNumber = Exception::UNKNOWNLINENUMBER,
@@ -69,18 +57,12 @@ namespace CppUnit {
 				  fileName); 
 	}
 
-    static void    assertEquals     (double       expected, 
-      double       actual, 
-      double       delta, 
-      long         lineNumber = Exception::UNKNOWNLINENUMBER,
-      std::string  fileName = Exception::UNKNOWNFILENAME)
-	{
-	    assertImplementation( fabs(expected - actual) <= delta,
-				  notEqualsMessage(expected, actual), 
-				  lineNumber, 
-				  fileName); 
-	}
-  };
+    void assertEquals( double expected, 
+                       double actual, 
+                       double delta, 
+                       long lineNumber = Exception::UNKNOWNLINENUMBER,
+                       std::string fileName = Exception::UNKNOWNFILENAME);
+  }
 
 
 /** A set of macros which allow us to get the line number
@@ -102,6 +84,17 @@ namespace CppUnit {
 
 #endif
 
+/** Assertion with a user specified message.
+ * \param message Message reported in diagnostic if \a condition evaluates
+ *                to \c false.
+ * \param condition If this condition evaluates to \c false then the
+ *                  test failed.
+ */
+#define CPPUNIT_ASSERT_MESSAGE(message,condition)\
+  (CppUnit::TestAssert::assertImplementation( condition, \
+                                              message, \
+                                              __LINE__, \
+                                              __FILE__ ) )
 
 /// Generalized macro for primitive value comparisons
 /** Equality and string representation can be defined with
