@@ -1,5 +1,8 @@
 2001-06-11  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* src/cppunit/Makefile.am (libcppunit_la_SOURCES): Add
+	TestAssert.cpp.
+
 	* include/cppunit/TestCaller.h (NoExceptionExpected): Fix
 	constructor name.
 
