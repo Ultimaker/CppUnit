@@ -96,7 +96,7 @@ namespace CppUnit {
                                  CPPUNIT_SOURCELINE() ) )
 #else
 #  define CPPUNIT_ASSERT(condition)                        \
-  ( ::CppUnit::Asserter::failIf( !(condition),             \ 
+  ( ::CppUnit::Asserter::failIf( !(condition),             \
                                  "",                       \
                                  CPPUNIT_SOURCELINE() ) )
 #endif

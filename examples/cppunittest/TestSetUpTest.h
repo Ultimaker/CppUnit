@@ -26,7 +26,7 @@ private:
   {
   public:
     SetUp( CppUnit::Test *test ) : 
-        TestSetUp( test ),
+        CppUnit::TestSetUp( test ),
         m_setUpCalled( false ),
         m_tearDownCalled( false )
     {

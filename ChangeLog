@@ -1,3 +1,21 @@
+2001-10-21  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Release 1.7.1 (alpha).
+
+	* Merged changes from cvs BRANCH_1_6; details follow.
+
+	* examples/cppunittest/TestSetUpTest.h (class SetUp): Add
+ 	namespace qualifier to CppUnit::TestSetup() constructor call.
+
+	* include/cppunit/Makefile.am (dist-hook): Restore hook to
+	remove config-auto.h from distribution.
+
+	* doc/Makefile.am: Move the definition of htmldir inside if DOC
+	conditional.  Add "else" branch to conditional with dummy targets
+	for install-data-hook and uninstall-local.  Move all-local outside
+	the conditional, and move "dox" target into both branches of the
+	conditional.
+
 2001-10-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* examples/cppunittest/Makefile.am (cppunittestmain_SOURCES):
@@ -320,9 +338,10 @@
 	CPPUNIT_TEST_EXCEPTION to create a test case for the specified method
 	that must throw an exception of the specified type.
 
-	* include/cppunit/extensions/TestSuiteBuilder.h : made makeTestName() public.
-	Added addTestCallerForException() to add a test case expecting an exception of
-	the specified type to be caught.
+	* include/cppunit/extensions/TestSuiteBuilder.h : made
+	makeTestName() public.  Added addTestCallerForException() to add a
+	test case expecting an exception of the specified type to be
+	caught.
 
 	* include/cppunit/TestAssert.h : added macro CPPUNIT_FAIL as a 
 	shortcut for CPPUNIT_ASSERT_MESSAGE( message, false ).

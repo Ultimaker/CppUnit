@@ -9,14 +9,14 @@
  XProgramming software page</a>. They are os-specific,
  so Jerome Lacoste provided a port to Unix/Solaris.
  His version can be found on the same page.
- The CppUnit project has combined and built on this work.
+ The %CppUnit project has combined and built on this work.
 
  \section _usage Usage
  Take a look into 
- the CppUnit <a href="cookbook.html">cookbook</a>.
+ the %CppUnit <a href="cookbook.html">cookbook</a>.
  It gives a quick start into using this 
  testing framework.
- For a discussion on CppUnit, check 
+ For a discussion on %CppUnit, check 
  <a href="http://c2.com/cgi/wiki?CppUnit">
  the WikiWiki Pages on CppUnit</a>. There you can also
  find the original versions and various ports to other

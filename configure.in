@@ -15,9 +15,9 @@ AC_PREREQ(2.50)
 #
 CPPUNIT_MAJOR_VERSION=1
 CPPUNIT_MINOR_VERSION=7
-CPPUNIT_MICRO_VERSION=0
+CPPUNIT_MICRO_VERSION=1
 CPPUNIT_INTERFACE_AGE=0
-CPPUNIT_BINARY_AGE=0
+CPPUNIT_BINARY_AGE=1
 CPPUNIT_VERSION=$CPPUNIT_MAJOR_VERSION.$CPPUNIT_MINOR_VERSION.$CPPUNIT_MICRO_VERSION
 AC_SUBST(CPPUNIT_MAJOR_VERSION)
 AC_SUBST(CPPUNIT_MINOR_VERSION)
@@ -64,6 +64,8 @@ BB_ENABLE_DOXYGEN
 
 
 # Check for headers
+# Note that the fourth argument to AC_CHECK_HEADERS is non-empty to force
+# the configure probe to try compiling "#include <header>".  See autoconf docs.
 # ----------------------------------------------------------------------------
 
 AC_CHECK_HEADERS(cmath,[],[],[/**/])

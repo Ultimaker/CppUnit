@@ -1,5 +1,3 @@
-htmldir = $(pkgdatadir)/html
-
 EXTRA_DIST = $(doxygen_input) $(static_pages)
 
 doxygen_input = other_documentation.dox header.html footer.html
@@ -17,6 +15,7 @@ static_pages = cookbook.html FAQ
 
 if DOC
 
+htmldir = $(pkgdatadir)/html
 html_DATA = $(static_pages) html/index.html
 
 install-data-hook:
@@ -27,12 +26,25 @@ install-data-hook:
 uninstall-local:
 	rm -rf $(DESTDIR)$(htmldir)
 
-all-local: dox #pdf
+dox: html/index.html
+
+else
+
+# We repeat the three targets in both the "if" and "else" clauses
+# of the conditional, because the generated makefile will contain
+# references to the targets (target "install" depends on target
+# "install-datahook", for example), and some make programs get upset
+# if no target exists.
+
+install-data-hook:
+uninstall-local:
+dox:
 
 endif
 
 
-dox: html/index.html
+all-local: dox
+
 
 html/index.html: Doxyfile $(doxygen_input)
 	@DOXYGEN@
