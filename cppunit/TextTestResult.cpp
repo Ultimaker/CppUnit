@@ -111,9 +111,9 @@ void
 TextTestResult::printHeader (ostream& stream)
 {
     if (wasSuccessful ())
-        cout << endl << "OK (" << runTests () << " tests)" << endl;
+        stream << endl << "OK (" << runTests () << " tests)" << endl;
     else
-        cout << endl
+        stream << endl
              << "!!!FAILURES!!!" << endl
              << "Test Results:" << endl
              << "Run:  "
