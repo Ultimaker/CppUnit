@@ -1,25 +1,32 @@
 #ifndef __BOARDGAMETEST_H__
 #define __BOARDGAMETEST_H__
 
-#include "TestCaller.h"
+#include "cppunit/TestCaller.h"
 
 #ifndef CPPUNIT_TESTCASE_H
-#include "TestCase.h"
+#include "cppunit/TestCase.h"
+#endif
+
+#ifndef CPPUNIT_TESTSUITE_H
+#include "cppunit/TestSuite.h"
 #endif
 
 template<class GAMECLASS> 
-class BoardGameTest : public TestCase {
+class BoardGameTest : public CppUnit::TestCase {
   protected:
     GAMECLASS	*m_game;
     
   public:
-    BoardGameTest (string name) : TestCase (name) 
+    BoardGameTest (string name) : CppUnit::TestCase (name) 
     {}
     
-    BoardGameTest (TestSuite *suite) : TestCase ("") 
+    BoardGameTest (CppUnit::TestSuite *suite) : CppUnit::TestCase ("") 
     { 
-      suite->addTest (new TestCaller<BoardGameTest> ("testReset", testReset)); 
+      suite->addTest (new CppUnit::TestCaller<BoardGameTest> ("testReset", testReset)); 
     }
+    
+    int countTestCases () const
+    { return 1; }
     
     void setUp () 
     { m_game = new GAMECLASS; }

@@ -10,10 +10,10 @@ class ChessTest : public BoardGameTest<GAMECLASS> {
     {
     }
     
-    ChessTest (TestSuite *suite) : BoardGameTest<GAMECLASS> (suite) 
+    ChessTest (CppUnit::TestSuite *suite) : BoardGameTest<GAMECLASS> (suite) 
     { 
       suite->addTest (
-        new TestCaller<ChessTest> ("testNumberOfPieces", testNumberOfPieces));
+        new CppUnit::TestCaller<ChessTest> ("testNumberOfPieces", testNumberOfPieces));
     }
     
     void testNumberOfPieces () 
