@@ -24,7 +24,7 @@ DefaultProtector::protect( const Functor &functor,
 #if CPPUNIT_USE_TYPEINFO_NAME
     shortDescription += TypeInfoHelper::getClassName( typeid(e) );
 #else
-    shortDescription += "std::exception (or derived)."
+    shortDescription += "std::exception (or derived).";
 #endif
     Message message( shortDescription, e.what() );
     reportError( context, message );
