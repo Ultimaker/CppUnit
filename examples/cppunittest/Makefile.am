@@ -18,6 +18,8 @@ cppunittestmain_SOURCES = \
 	HelperMacrosTest.h \
 	MockTestListener.cpp \
 	MockTestListener.h \
+	OrthodoxTest.cpp \
+	OrthodoxTest.h \
 	RepeatedTestTest.cpp \
 	RepeatedTestTest.h \
 	SubclassedTestCase.cpp \
@@ -41,11 +43,6 @@ cppunittestmain_SOURCES = \
 	TestSuiteTest.h \
 	TrackedTestCase.cpp \
 	TrackedTestCase.h
-
-#	OrthodoxTest.cpp \
-#	OrthodoxTest.h \
-#
-
 
 cppunittestmain_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 
