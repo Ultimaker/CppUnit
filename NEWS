@@ -11,6 +11,11 @@
     have libdld and not libdl (e.g. hp-ux). Thanks to
     Abdessattar Sassi for this.
 
+* RTTI
+
+  - TypeInfoHelper now used gcc c++ abi to demangle typeinfo name thanks to
+    Neil Ferguson contribution.
+
 * Bug Fix:
 
   - MFC TestRunner: integrated bug fix from Tim Threlkeld for bug 

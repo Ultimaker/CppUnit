@@ -77,6 +77,7 @@ AC_CHECK_HEADERS(cmath,[],[],[/**/])
 # ----------------------------------------------------------------------------
 
 AC_CXX_RTTI
+AX_CXX_GCC_ABI_DEMANGLE
 AC_CXX_STRING_COMPARE_STRING_FIRST
 AC_CXX_HAVE_SSTREAM
 AC_CXX_HAVE_STRSTREAM

@@ -7,7 +7,6 @@
 
 #include <typeinfo>
 
-
 CPPUNIT_NS_BEGIN
 
 

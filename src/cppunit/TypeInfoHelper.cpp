@@ -5,6 +5,10 @@
 
 #include <string>
 
+#if CPPUNIT_HAVE_GCC_ABI_DEMANGLE
+#include <cxxabi.h>
+#endif
+
 
 CPPUNIT_NS_BEGIN
 
@@ -12,6 +16,18 @@ CPPUNIT_NS_BEGIN
 std::string 
 TypeInfoHelper::getClassName( const std::type_info &info )
 {
+#if defined(CPPUNIT_HAVE_GCC_ABI_DEMANGLE)  &&  CPPUNIT_HAVE_GCC_ABI_DEMANGLE
+
+  int status = 0;
+  char* c_name = 0;
+
+  c_name = abi::__cxa_demangle( info.name(), 0, 0, &status );
+  
+  std::string name( c_name );
+  free( c_name );  
+
+#else   // CPPUNIT_HAVE_GCC_ABI_DEMANGLE
+
   static std::string classPrefix( "class " );
   std::string name( info.name() );
 
@@ -25,6 +41,9 @@ TypeInfoHelper::getClassName( const std::type_info &info )
 
   if ( name.substr( 0, classPrefix.length() ) == classPrefix )
     return name.substr( classPrefix.length() );
+
+#endif  // CPPUNIT_HAVE_GCC_ABI_DEMANGLE
+
   return name;
 }
 
