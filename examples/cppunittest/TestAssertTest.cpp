@@ -41,7 +41,7 @@ TestAssertTest::tearDown()
 void 
 TestAssertTest::testAssertThrow()
 {
-   CPPUNIT_ASSERT_THROW( throw std::exception( "dummy" ), std::exception );
+   CPPUNIT_ASSERT_THROW( throw std::exception(), std::exception );
 
    try
    {
@@ -52,7 +52,7 @@ TestAssertTest::testAssertThrow()
       return;
    }
 
-   throw std::exception( "CPPUT_ASSERT_THROW( 1234, std::exception ) did not fail." );
+   throw std::exception();
 }
 
 
@@ -63,13 +63,13 @@ TestAssertTest::testAssertNoThrow()
 
    try
    {
-      CPPUNIT_ASSERT_NO_THROW( throw std::exception( "dummy" ) );
+      CPPUNIT_ASSERT_NO_THROW( throw std::exception() );
    }
    catch ( CPPUNIT_NS::Exception & )
    {
       return;
    }
-   throw std::exception( "CPPUT_ASSERT_NO_THROW( throw std::exception( \"dummy\" ) ) did not fail." );
+   throw std::exception();
 }
 
 
@@ -87,7 +87,7 @@ TestAssertTest::testAssertAssertionFail()
       return;
    }
 
-   throw std::exception( "CPPUNIT_ASSERT_ASSERTION_FAIL( 1234 ) did not fail." );
+   throw std::exception();
 }
 
 
@@ -105,7 +105,7 @@ TestAssertTest::testAssertAssertionPass()
       return;
    }
 
-   throw std::exception( "CPPUNIT_ASSERT_ASSERTION_PASS did not fail." );
+   throw std::exception();
 }
 
 
