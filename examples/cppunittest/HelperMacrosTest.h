@@ -9,6 +9,10 @@ class HelperMacrosTest : public CppUnit::TestCase
   CPPUNIT_TEST_SUITE( HelperMacrosTest );
   CPPUNIT_TEST( testNoSubclassing );
   CPPUNIT_TEST( testSubclassing );
+  CPPUNIT_TEST( testFail );
+  CPPUNIT_TEST( testFailToFail );
+  CPPUNIT_TEST( testException );
+  CPPUNIT_TEST( testExceptionNotCaught );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -21,6 +25,12 @@ public:
   void testNoSubclassing();
 
   void testSubclassing();
+
+  void testFail();
+  void testFailToFail();
+
+  void testException();
+  void testExceptionNotCaught();
 
 private:
   HelperMacrosTest( const HelperMacrosTest &copy );

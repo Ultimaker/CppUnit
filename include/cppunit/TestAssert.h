@@ -92,6 +92,12 @@ namespace CppUnit {
                                               __LINE__, \
                                               __FILE__ ) )
 
+/** Failure with a user specified message.
+ * \param message Message reported in diagnostic.
+ */
+#define CPPUNIT_FAIL( message ) \
+                     CPPUNIT_ASSERT_MESSAGE( message, false )
+
 /// Generalized macro for primitive value comparisons
 /** Equality and string representation can be defined with
  * an appropriate assertion_traits class.

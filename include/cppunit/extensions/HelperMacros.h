@@ -164,6 +164,43 @@
                              (__ThisTestCaseType*)factory->makeTest() ) 
 
 
+/*!  Add a test which fail if the specified exception is not caught.
+ *
+ * Example:
+ * \code
+ * #include <cppunit/extensions/HelperMacros.h>
+ * #include <vector>
+ * class MyTest : public CppUnit::TestCase {
+ *   CPPUNIT_TEST_SUITE( MyTest );
+ *   CPPUNIT_TEST_EXCEPTION( testVectorAtThrow, std::invalid_argument );
+ *   CPPUNIT_TEST_SUITE_END();
+ * public:
+ *   void testVectorAtThrow()
+ *   {
+ *     std::vector<int> v;
+ *     v.at( 1 );     // must throw exception std::invalid_argument
+ *   }
+ * };
+ * \endcode
+ *
+ * \param testMethod Name of the method of the test case to add to the suite.
+ * \param ExceptionType Type of the exception that must be thrown by the test 
+ *                      method.
+ */
+#define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )             \
+      builder.addTestCallerForException( #testMethod,                   \
+                             &__ThisTestCaseType::testMethod ,          \
+                             (__ThisTestCaseType*)factory->makeTest(),  \
+                             (ExceptionType *)NULL ); 
+
+/*! Add a test which is excepted to fail.
+ *
+ * To use when writing test case for testing utility class.
+ *
+ */
+#define CPPUNIT_TEST_FAIL( testMethod ) \
+              CPPUNIT_TEST_EXCEPTION( testMethod, CppUnit::Exception )
+
 /** End declaration of the test suite.
  *
  * After this macro, member access is set to "private".

@@ -1,3 +1,15 @@
+	New in CppUnit 1.7.0
+	--------------------
+
+* New macros in HelperMacros.h: 
+
+  CPPUNIT_TEST_EXCEPTION that expect an exception of a specified type to
+  be throw.
+
+  CPPUNIT_TEST_FAIL that expect a test to fail.
+
+* Fail with arbitrary message: CPPUNIT_FAIL
+
 	New in CppUnit 1.6.1
 	--------------------
 
