@@ -87,6 +87,15 @@
 
 	* configure.in: added examples/cppunittest/Makefile to AC_OUTPUT.
 
+	* examples/cppunittest/TestCallerTest (suite),
+	examples/cppunittest/TestResultTest (suite): fixed 'ISO C++ 
+	forbids taking the address of a bound member function to form 
+	a pointer to member function' bug reported by g++.
+
+	* examples/cppunittest/TestCallerTest (suite),
+	examples/cppunittest/TestResultTest (suite): removed dependency on
+	RTTI.
+	
 2001-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* added project cppunittest to examples/: unit tests to test cppunit.
