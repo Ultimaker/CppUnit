@@ -3,7 +3,6 @@
 #include "cppunit/Exception.h"
 #include "cppunit/NotEqualException.h"
 #include "cppunit/Test.h"
-#include "estring.h"
 
 namespace CppUnit {
 
@@ -38,70 +37,72 @@ TextTestResult::startTest (Test *test)
 void 
 TextTestResult::printErrors (std::ostream& stream)
 {
-    if (testErrors () != 0) {
+    if ( testErrors() == 0 )
+	return;
 
-        if (testErrors () == 1)
-            stream << "There was " << testErrors () << " error: " << std::endl;
-        else
-            stream << "There were " << testErrors () << " errors: " << std::endl;
+    if (testErrors () == 1)
+	stream << "There was 1 error: " << std::endl;
+    else
+	stream << "There were " << testErrors () << " errors: " << std::endl;
 
-        int i = 1;
+    int i = 1;
 
-        for (std::vector<TestFailure *>::iterator it = errors ().begin (); it != errors ().end (); ++it) {
-            TestFailure             *failure    = *it;
-            Exception        *e          = failure->thrownException ();
+    for (std::vector<TestFailure *>::iterator it = errors ().begin (); it != errors ().end (); ++it) {
+	TestFailure* failure = *it;
+	Exception* e = failure->thrownException ();
 
-            stream << i 
-                   << ") "
-                   << "test: " << failure->failedTest()->getName()  << " "
-                   << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
-                   << (e ? e->fileName () : "") << " "
-                   << "\"" << failure->thrownException ()->what () << "\""
-                   << std::endl;
-            i++;
-        }
+	stream << i 
+	       << ")"
+	       << " test: " << failure->failedTest()->getName();
+	if ( e ) 
+	    stream << " line: " << e->lineNumber()
+		   << ' ' << e->fileName();
+	stream << " \"" << failure->thrownException()->what() << "\""
+	       << std::endl;
+	i++;
     }
-
 }
+
 
 void 
 TextTestResult::printFailures (std::ostream& stream) 
 {
-    if (testFailures () != 0) {
-        if (testFailures () == 1)
-            stream << "There was " << testFailures () << " failure: " << std::endl;
-        else
-            stream << "There were " << testFailures () << " failures: " << std::endl;
+    if ( testFailures() == 0 )
+	return;
 
-        int i = 1;
+    if (testFailures () == 1)
+	stream << "There was 1 failure: " << std::endl;
+    else
+	stream << "There were " << testFailures () << " failures: " << std::endl;
 
-        for (std::vector<TestFailure *>::iterator it = failures ().begin (); it != failures ().end (); ++it) {
-            TestFailure             *failure    = *it;
-            Exception        *e          = failure->thrownException ();
+    int i = 1;
 
-            stream << i 
-                   << ") "
-                   << "test: " << failure->failedTest()->getName()  << " "
-                   << "line: " << (e ? estring (e->lineNumber ()) : "") << " "
-                   << (e ? e->fileName () : "") << " ";
+    for (std::vector<TestFailure *>::iterator it = failures ().begin (); it != failures ().end (); ++it) {
+	TestFailure* failure = *it;
+	Exception* e = failure->thrownException();
 
-            if ( failure->thrownException()->isInstanceOf( NotEqualException::type() ) )
-            {
-              NotEqualException *e = (NotEqualException*)failure->thrownException();
-              stream << std::endl 
-                     << "expected: " << e->expectedValue() << std::endl
-                     << "but was:  " << e->actualValue();
-            }
-            else
-            {
-              stream << "\"" << failure->thrownException ()->what () << "\"";
-            }
+	stream << i 
+	       << ")"
+	       << " test: " << failure->failedTest()->getName();
+	if ( e ) 
+	    stream << " line: " << e->lineNumber()
+		   << ' ' << e->fileName();
 
-            stream << std::endl;
-            i++;
-        }
+	if ( failure->thrownException()->isInstanceOf( NotEqualException::type() ) )
+        {
+	    NotEqualException *e = (NotEqualException*)failure->thrownException();
+	    stream << std::endl 
+		   << "expected: " << e->expectedValue() << std::endl
+		   << "but was:  " << e->actualValue();
+	} 
+	else 
+        {
+	    stream << " \"" << failure->thrownException ()->what () << "\"";
+	}
+
+	stream << std::endl;
+	i++;
     }
-
 }
 
 

@@ -1,5 +1,11 @@
 2001-07-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* src/cppunit/estring.h: Removed.
+
+	* src/cppunit/Makefile.am:
+	* src/cppunit/TestCase.cpp:
+	* src/cppunit/TextTestResult.cpp: Recode to avoid use of estring.
+
 	* examples/cppunittest/OrthodoxTest.h: Add const qualifier
 	to operator== methods.
 

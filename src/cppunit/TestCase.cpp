@@ -6,7 +6,6 @@
 #include "cppunit/TestCase.h"
 #include "cppunit/Exception.h"
 #include "cppunit/TestResult.h"
-#include "estring.h"
 
 namespace CppUnit {
 
