@@ -1,8 +1,8 @@
 #
-# $Id: Makefile.am,v 1.21 2002-04-13 15:20:51 blep Exp $
+# $Id: Makefile.am,v 1.22 2002-04-13 15:26:55 blep Exp $
 #
 
-EXTRA_DIST = cppunit.dsw cppunit.dsp cppunit_dll.dsp DllMain.cpp
+EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 
 lib_LTLIBRARIES = libcppunit.la
