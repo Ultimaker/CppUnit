@@ -14,7 +14,7 @@ class TestResult;
 class TestResultCollector;
 
 /*!
- * A text mode test runner.
+ * \brief A text mode test runner.
  *
  * The test runner manage the life cycle of the added tests.
  *

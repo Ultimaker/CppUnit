@@ -22,7 +22,7 @@ namespace CppUnit
 #endif
 
 
-/*!
+/*! \brief Collects test result.
  * A TestResultCollector is a TestListener which collects the results of executing 
  * a test case. It is an instance of the Collecting Parameter pattern.
  *
@@ -30,6 +30,7 @@ namespace CppUnit
  * A failure is anticipated and checked for with assertions. Errors are
  * unanticipated problems signified by exceptions that are not generated
  * by the framework.
+ * \see TestListener, TestFailure.
  */
 class CPPUNIT_API TestResultCollector : public TestSucessListener
 {

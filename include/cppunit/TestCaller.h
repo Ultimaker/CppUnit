@@ -12,6 +12,7 @@
 
 namespace CppUnit {
 
+//! \internal
 class CPPUNIT_API NoExceptionExpected
 {
 private:
@@ -20,6 +21,7 @@ private:
 };
 
 
+//! \internal
 template<typename ExceptionType>
 struct ExpectedExceptionTraits
 {

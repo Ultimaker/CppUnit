@@ -7,7 +7,7 @@
 namespace CppUnit
 {
 
-/*! This class represents an abstract outputter.
+/*! \brief Abstract outputter to print test result summary.
  */
 class CPPUNIT_API Outputter
 {

@@ -1,5 +1,16 @@
 2002-03-27 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* include/msvc/testrunner/TestRunner.h: updated doc. reindented.
+
+	* include/cppunit/Asserter.h:
+	* include/cppunit/Asserter.cpp:
+	* include/cppunit/TestResultCollector.h:
+	* include/cppunit/TestResult.h:
+	* include/cppunit/SynchronizedObject.h:
+	* include/cppunit/extensions/TestCaller.h: doc update.
+
+2002-03-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* makefile.am: added src/CppUnitLibraries.dsw, new contribution, and
 	src/qttestrunner.
 
@@ -9,7 +20,7 @@
 	bloodchen@hotmail.com.
 
 	* constrib/msvc/readme.txt: updated.
-	
+
 	* include/cppunit/TestAsserter.h:
 	* include/cppunit/SourceLine.h: updated doc.
 

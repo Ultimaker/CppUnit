@@ -31,21 +31,37 @@
 
 
 
-// A Wrapper
+/*! \brief MFC TestRunner
+ * Use this to launch the MFC TestRunner. Usually called from you CWinApp subclass:
+ * \code
+ * #include <msvc6/testrunner/TestRunner.h>
+ * #include <cppunit/extensions/TestFactoryRegistry.h>
+ *
+ * void 
+ * CHostAppApp::RunUnitTests()
+ * {
+ *   TestRunner  runner;
+ *   runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+ *
+ *   runner.run();    
+ * }
+ * \endcode
+ * \see CppUnit::TextTestRunner, CppUnit::TestFactoryRegistry.
+ */
 class AFX_EXT_CLASS TestRunner 
 {
 public:
-         TestRunner ();
-         ~TestRunner ();
+  TestRunner();
+  ~TestRunner();
 
-    void run ();
+  void run();
 
-    void addTest (CppUnit::Test *test);
+  void addTest( CppUnit::Test *test );
 
-    void addTests (const std::vector<CppUnit::Test *> &tests); 
+  void addTests( const std::vector<CppUnit::Test *> &tests );
 
 protected:
-  CppUnit::Test *   getRootTest();
+  CppUnit::Test *getRootTest();
 
   CppUnit::TestSuite *m_suite;
 

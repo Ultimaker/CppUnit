@@ -9,7 +9,7 @@
 
 #include <cppunit/Test.h>
 
-/*! Abstract TestPlugIn.
+/*! \brief Abstract TestPlugIn for DLL.
  *
  * A Test plug-in DLL must subclass this class and "publish" an instance
  * using the following exported function:

@@ -10,7 +10,7 @@ namespace CppUnit
 /*! \brief Base class for synchronized object.
  *
  * Synchronized object are object which members are used concurrently by mutiple
- * threads.*
+ * threads.
  *
  * This class define the class SynchronizationObject which must be subclassed
  * to implement an actual lock.
@@ -22,6 +22,8 @@ namespace CppUnit
 class CPPUNIT_API SynchronizedObject
 {
 public:
+  /*! \brief Abstract synchronization object (mutex)
+   */
   class SynchronizationObject
   {
     public:
@@ -40,6 +42,8 @@ public:
   virtual ~SynchronizedObject();
 
 protected:
+  /*! \brief Locks a synchronization object in the current scope.
+   */
   class ExclusiveZone
   {
     SynchronizationObject *m_syncObject;

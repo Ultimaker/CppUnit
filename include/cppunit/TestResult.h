@@ -22,7 +22,7 @@ class TestListener;
   template class CPPUNIT_API std::deque<TestListener *>;
 #endif
 
-/*! Manages TestListener.
+/*! \brief Manages TestListener.
  *
  * A single instance of this class is used when running the test. It is usually
  * created by the test runner (TextTestRunner).
