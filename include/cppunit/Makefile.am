@@ -14,6 +14,7 @@ libcppunitinclude_HEADERS =  \
 	Outputter.h \
 	Portability.h \
 	SourceLine.h \
+	SynchronizedObject.h \
 	Test.h \
 	TestAssert.h \
 	TestCase.h \
@@ -24,6 +25,7 @@ libcppunitinclude_HEADERS =  \
 	TestResultCollector.h \
 	TestSucessListener.h \
 	TestSuite.h \
+	TextOutputter.h \
 	TextTestProgressListener.h \
 	TextTestResult.h \
 	TextTestRunner.h \

@@ -1,3 +1,10 @@
+2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/makefile.am:
+	* src/cppunit/makefile.am: added missing SynchronizedObject and TextOutputter.h.
+
+	* generated 1.7.3 tar ball.
+
 2002-02-29 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* inclued/cppunit/XmlOutputter.h:

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.15 2002-02-28 10:57:20 blep Exp $
+# $Id: Makefile.am,v 1.16 2002-03-03 11:57:26 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -14,6 +14,7 @@ libcppunit_la_SOURCES = \
   NotEqualException.cpp \
   RepeatedTest.cpp \
   SourceLine.cpp \
+  SynchronizedObject.cpp \
   TestAssert.cpp \
   TestCase.cpp \
   TestFactoryRegistry.cpp \
