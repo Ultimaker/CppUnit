@@ -27,8 +27,8 @@ XmlElement::~XmlElement()
   Elements::iterator itNode = m_elements.begin();
   while ( itNode != m_elements.end() )
   {
-    XmlElement *element = *itNode;
-    delete *itNode++;
+    XmlElement *element = *itNode++;
+    delete element;
   }
 }
 
