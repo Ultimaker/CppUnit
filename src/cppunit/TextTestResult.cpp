@@ -7,7 +7,7 @@
 namespace CppUnit {
 
 std::ostream& 
-CppUnit::operator<< (std::ostream& stream, TextTestResult& result)
+operator<< (std::ostream& stream, TextTestResult& result)
 { 
   result.print (stream); return stream; 
 }

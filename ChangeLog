@@ -1,5 +1,23 @@
 2001-08-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* doc/Makefile.am: Add workaround for broken Doxygen.
+
+	* src/cppunit/TextTestResult.cpp (operator<<): Remove CppUnit::
+	prefix.
+
+	* configure.in: Add check for <cmath>.
+	* src/cppunit/TestAssert.cpp: Use <math.h> if <cmath> not
+	available.
+	* src/cppunit/TestCase.cpp: Do not include <cmath>.
+
+	* include/cppunit/config-bcb5.h (HAVE_CMATH): 
+	* include/cppunit/config-msvc6.h (HAVE_CMATH): Add.
+
+	* src/cppunit/Exception.cpp: Qualify std::exception.
+
+	* examples/cppunittest/OrthodoxTest.h (TestCase): Add assignment
+	operator.  MIPSpro fails to compile without one.
+
 	* Makefile.am: Removed automake conditional "DOC".
 	* doc/Makefile.am: Placed "DOC" conditional around
 	rules that invoke Doxygen.

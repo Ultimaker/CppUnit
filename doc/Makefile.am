@@ -12,10 +12,16 @@ html_DATA = html/*
 all-local: dox #pdf
 endif
 
+man_extension_dir = man/man3/extensions
 
 dox: html/index.html
-html/* html/index.html: Doxyfile other_documentation.dox
+html/* html/index.html: Doxyfile other_documentation.dox $(man_extension_dir)
 	@DOXYGEN@
+
+# Workaround for broken Doxygen.  Version 1.2.9.1 doesn't create
+# this directory, though it does create man/man3.
+$(man_extension_dir):
+	mkdir -p $@
 
 pdf: @PACKAGE@.pdf
 @PACKAGE@.pdf:

@@ -1,5 +1,7 @@
 #ifndef _INCLUDE_CPPUNIT_CONFIG_MSVC6_H
 #define _INCLUDE_CPPUNIT_CONFIG_MSVC6_H 1
+
+#define HAVE_CMATH 1
  
 /* include/cppunit/config-msvc6.h. Manually adapted from 
    include/cppunit/config-auto.h */

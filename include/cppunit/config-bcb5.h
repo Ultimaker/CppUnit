@@ -1,5 +1,7 @@
 #ifndef _INCLUDE_CPPUNIT_CONFIG_BCB5_H
 #define _INCLUDE_CPPUNIT_CONFIG_BCB5_H 1
+
+#define HAVE_CMATH 1
  
 /* include/cppunit/config-bcb5.h. Manually adapted from 
    include/cppunit/config-auto.h */

@@ -10,7 +10,7 @@ const long Exception::UNKNOWNLINENUMBER = -1;
 
 
 /// Construct the exception
-Exception::Exception (const Exception& other) : exception (other)
+Exception::Exception (const Exception& other) : std::exception (other)
 { 
   m_message       = other.m_message; 
   m_lineNumber    = other.m_lineNumber;
@@ -38,7 +38,7 @@ Exception::~Exception () throw()
 Exception& 
 Exception::operator=( const Exception& other )
 { 
-  exception::operator= (other);
+  std::exception::operator= (other);
 
   if (&other != this) 
   {

@@ -1,4 +1,8 @@
-#include <cmath>
+#if HAVE_CMATH
+#   include <cmath>
+#else
+#   include <math.h>
+#endif
 
 #include <cppunit/TestAssert.h>
 #include <cppunit/NotEqualException.h>

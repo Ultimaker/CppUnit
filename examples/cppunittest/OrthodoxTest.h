@@ -37,6 +37,12 @@ private:
   public:
     Value( int value =0 ) : m_value( value ) {}
 
+    Value& operator= ( const Value& v )
+    {
+      m_value = v.m_value;
+      return *this;
+    }
+
     bool operator ==( const Value &other ) const
     {
       return m_value == other.m_value;

@@ -1,7 +1,6 @@
 #include <cppunit/Portability.h>
 #include <typeinfo>
 #include <stdexcept>
-#include <cmath>
 
 #include "cppunit/TestCase.h"
 #include "cppunit/Exception.h"

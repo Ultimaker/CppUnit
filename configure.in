@@ -48,7 +48,7 @@ dnl Checks for programs.
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
 
-# The libtool macro AM_PROG_LIBTOOL checks for the C preprocessor.
+# The libtool macro AC_PROG_LIBTOOL checks for the C preprocessor.
 # Configure gets confused if we try to check for a C preprocessor
 # without first checking for the C compiler
 # (see http://sources.redhat.com/ml/autoconf/2001-07/msg00036.html),
@@ -57,7 +57,7 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_LANG(C++)
 
-AM_PROG_LIBTOOL
+AC_PROG_LIBTOOL
 
 AC_ARG_ENABLE(debug-mode,   
 [  --enable-debug-mode     enable debugging mode],
@@ -71,6 +71,12 @@ AC_ARG_ENABLE(debug-mode,
 
 # check for doxygen
 BB_ENABLE_DOXYGEN
+
+
+# Check for headers
+# ----------------------------------------------------------------------------
+
+AC_CHECK_HEADERS(cmath,[],[],[/**/])
 
 # Check for compiler characteristics 
 # ----------------------------------------------------------------------------
