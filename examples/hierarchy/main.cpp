@@ -36,7 +36,7 @@ main(int argc, char** argv)
     (*it)->run(&res);
 
   }
-  std::cout << res << endl;
+  std::cout << res << std::endl;
 
   delete ct;
   delete bgt;
