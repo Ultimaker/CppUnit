@@ -1,3 +1,10 @@
+2001-05-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * Added some items to the TODO list for VC++ TestRunner.
+  * "Debug" configuration is now the default configuration in VC++ project.
+  * Modified sort order in the test browser of VC++ TestRunner so that test are in the same order as in the suite. Suite
+    are still sorted.
+
+
 2001-05-18 Baptiste Lepilleur <gaiacrtn@free.fr>
   * Symbol CU_USE_TYPEINFO must be defined instead of USE_TYPEINFO to
     compile RTTI.

@@ -23,7 +23,9 @@ public:
   void setRootTest( CppUnit::Test *test );
   CppUnit::Test *getSelectedTest() const;
 
-// Dialog Data
+  static bool isTestSuite( CppUnit::Test *test );
+
+  // Dialog Data
 	//{{AFX_DATA(TreeHierarchyDlg)
 	enum { IDD = IDD_DIALOG_TEST_HIERARCHY };
 	CTreeCtrl	m_treeTests;
@@ -55,7 +57,6 @@ private:
                      HTREEITEM hParent );
   void addTestSuiteChildrenTo( CppUnit::TestSuite *suite,
                                HTREEITEM hItemSuite );
-  static bool isTestSuite( CppUnit::Test *test );
 
   void sortByName( Tests &tests ) const;
   CppUnit::Test *findSelectedTest();

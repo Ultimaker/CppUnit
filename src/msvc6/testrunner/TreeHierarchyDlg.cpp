@@ -98,12 +98,9 @@ void
 TreeHierarchyDlg::addTestSuiteChildrenTo( CppUnit::TestSuite *suite,
                                           HTREEITEM hItemSuite )
 {
-  Tests tests;
-
-  tests.insert(tests.end(), suite->getTests().begin(), 
-               suite->getTests().end());
-  
+  Tests tests( suite->getTests() );
   sortByName( tests );
+
   for ( Tests::const_iterator it = tests.begin(); it != tests.end(); ++it )
   {
     addTest( *it, hItemSuite );
@@ -123,14 +120,20 @@ struct PredSortTest
 {
   bool operator()( CppUnit::Test *test1, CppUnit::Test *test2 ) const
   {
-    return test1->getName() < test2->getName();
+    bool isTest1Suite = TreeHierarchyDlg::isTestSuite( test1 );
+    bool isTest2Suite = TreeHierarchyDlg::isTestSuite( test2 );
+    if ( isTest1Suite  &&  !isTest2Suite )
+      return true;
+    if ( isTest1Suite  &&  isTest2Suite )
+      return test1->getName() < test2->getName();
+    return false;
   }
 };
 
 void 
 TreeHierarchyDlg::sortByName( Tests &tests ) const
 {
-  std::sort( tests.begin(), tests.end(), PredSortTest() );
+  std::stable_sort( tests.begin(), tests.end(), PredSortTest() );
 }
 
 
