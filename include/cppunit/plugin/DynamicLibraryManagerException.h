@@ -24,7 +24,7 @@ public:
     /// Failed to load the dynamic library
     loadingFailed =0,
     /// Symbol not found in the dynamic library
-    symbolNotFound,
+    symbolNotFound
   };
 
   /// Failed to load the dynamic library

@@ -67,7 +67,6 @@ public:
 
 private:
   std::vector<Test *> m_tests;
-  const std::string m_name;
 };
 
 
