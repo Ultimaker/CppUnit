@@ -110,4 +110,5 @@ AC_OUTPUT([
   doc/Doxyfile
   examples/Makefile
   examples/hierarchy/Makefile
+  examples/cppunittest/Makefile
 ],[chmod a+x cppunit-config])

@@ -1,13 +1,18 @@
+2001-06-01 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* examples/cppunittest/Makefile.am: added
+	* configure.in: added examples/cppunittest/Makefile to AC_OUTPUT.
+	
 2001-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* added project cppunittest to examples/: unit tests to test cppunit. The
-  main file is CppUnitTestMain.cpp. Unit tests have been implemented 
-  for TestCaller and TestListener.
+	* added project cppunittest to examples/: unit tests to test cppunit.
+	The main file is CppUnitTestMain.cpp. Unit tests have been implemented
+	for TestCaller and TestListener.
 
-	* added project CppUnitTestApp to examples/msvc6: graphical runner for
-  cppunittest. 
+	* added project CppUnitTestApp to examples/msvc6: graphical runner 
+	for cppunittest. 
 
-	* added TestListener to TestResult. It is a port of junit TestListener.
+	* added TestListener to TestResult. It is a port of junit 
+	TestListener.
 
 	* updated some .cvsignore to ignore files generated with VC++.
 
