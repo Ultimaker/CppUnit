@@ -1,5 +1,14 @@
-	New in CppUnit 1.9.12:
-	---------------------
+  New in CppUnit 1.10:
+  ---------------------
+
+* Bug Fix:
+
+  - cppunit-config: bug #903363, missing -ldl from the output of
+    cppunit-config --libs. Fixed thanks Eric Blossom patch.
+
+
+  New in CppUnit 1.9.12:
+  ---------------------
 
 * Test Plug-in
 
@@ -18,7 +27,7 @@
     #610191 and #610162. Fixed assertion when minizing dialog 
     (bug #643612).
 
-	- XMLOutputter: Fixed bug #676505: no space inserted between attributes
+  - XMLOutputter: Fixed bug #676505: no space inserted between attributes
     of XmlElement.
 
   - CppUnit portability: fixed many mistakes relating to compilation
@@ -33,21 +42,21 @@
 
 * Compilation
 
-	- Fixed compilation issues for Borland C++ 6 and STLPort. Bug #694971,
-	  #699794 and #662666.
+  - Fixed compilation issues for Borland C++ 6 and STLPort. Bug #694971,
+    #699794 and #662666.
 
-	- Fixed compilation issues for AIX.
+  - Fixed compilation issues for AIX.
 
-	- Fixed compilation issues for Visual C++ .NET 2002.
+  - Fixed compilation issues for Visual C++ .NET 2002.
 
-	- Fixed doxygen usage in mingw environment (space not allowed in 
-	  doxygen path). Bug #700730.
+  - Fixed doxygen usage in mingw environment (space not allowed in 
+    doxygen path). Bug #700730.
 
   - Fixed compilation issue for mingw (bug #711583).
 
 
-	New in CppUnit 1.9.10:
-	---------------------
+  New in CppUnit 1.9.10:
+  ---------------------
 
   - Major portability improvement
   - Protector
@@ -155,8 +164,8 @@
 
 
 
-	New in CppUnit 1.9.8:
-	---------------------
+  New in CppUnit 1.9.8:
+  ---------------------
 
   - New custom test macros for fixture suite
   - Exception message are now structured
@@ -315,163 +324,163 @@
     Exception message feature).
 
 
-	New in CppUnit 1.9.6:
-	---------------------
+  New in CppUnit 1.9.6:
+  ---------------------
 
-	- DllPlugInTester can be parametrized from command line
-	- Two test listener plug-in examples
-	- An 'hello world' example & getting started document : Money
-	- Contribution: generic makefile for Borland 5.5 free compiler.
-	- Bug fixes
+  - DllPlugInTester can be parametrized from command line
+  - Two test listener plug-in examples
+  - An 'hello world' example & getting started document : Money
+  - Contribution: generic makefile for Borland 5.5 free compiler.
+  - Bug fixes
 
 * DllPlugInTester:
 
-	- Advanced command line to support miscellaneous listener outputer.
-	  Parameters can now be passed to test plug-in:
+  - Advanced command line to support miscellaneous listener outputer.
+    Parameters can now be passed to test plug-in:
 
-		-c --compiler
-			Use CompilerOutputter
-		-x --xml [filename]
-			Use XmlOutputter (if filename is omitted, then output to cout or
-			cerr.
-		-s --xsl stylesheet
-			XML style sheet for XML Outputter
-		-e --encoding encoding
-			XML file encoding (UTF8, shift_jis, ISO-8859-1...)
-		-b --brief-progress
-			Use BriefTestProgressListener (default is TextTestProgressListener)
-		-n --no-progress
-			Show no test progress (disable default TextTestProgressListener)
-		-t --text
-			Use TextOutputter
-		-o --cout
-			Ouputters output to cout instead of the default cerr.
-		filename[="options"]
-			Many filenames can be specified. They are the name of the 
-			test plug-ins to load. Optional plug-ins parameters can be 
-			specified after the filename by adding '='.
-		[:testpath]
-			Optional. Only one test path can be specified. It must 
-			be prefixed with ':'. See TestPath constructor for syntax.
+    -c --compiler
+      Use CompilerOutputter
+    -x --xml [filename]
+      Use XmlOutputter (if filename is omitted, then output to cout or
+      cerr.
+    -s --xsl stylesheet
+      XML style sheet for XML Outputter
+    -e --encoding encoding
+      XML file encoding (UTF8, shift_jis, ISO-8859-1...)
+    -b --brief-progress
+      Use BriefTestProgressListener (default is TextTestProgressListener)
+    -n --no-progress
+      Show no test progress (disable default TextTestProgressListener)
+    -t --text
+      Use TextOutputter
+    -o --cout
+      Ouputters output to cout instead of the default cerr.
+    filename[="options"]
+      Many filenames can be specified. They are the name of the 
+      test plug-ins to load. Optional plug-ins parameters can be 
+      specified after the filename by adding '='.
+    [:testpath]
+      Optional. Only one test path can be specified. It must 
+      be prefixed with ':'. See TestPath constructor for syntax.
 
-		'parameters' (test plug-in or XML filename, test path...) may contains 
-		spaces if double quoted. Quote may be escaped with \".
+    'parameters' (test plug-in or XML filename, test path...) may contains 
+    spaces if double quoted. Quote may be escaped with \".
 
-		Some examples of command lines:
+    Some examples of command lines:
 DllPlugInTesterd_dll.exe -b -x tests.xml -c simple_plugind.dll CppUnitTestPlugInd.dll
-		Will load 2 tests plug-ins (available in lib/), use the brief test
-		progress, output the result in XML in file tests.xml and also
-		output the result using the compiler outputter.
+    Will load 2 tests plug-ins (available in lib/), use the brief test
+    progress, output the result in XML in file tests.xml and also
+    output the result using the compiler outputter.
 
 DllPlugInTesterd_dll.exe ClockerPlugInd.dll="flat" -n CppUnitTestPlugInd.dll
-		Will load the 2 test plug-ins, and pass the parameter string "flat"
-		to the Clocker plug-in, disable test progress. Clocker being a test
-		listener plug-ins (it doesn't implements any tests, it just register
-		a TestListener), this is equivalent to say 'run all the test
-		of CppUnitTestPlugIn and use ClockerPlugIn as a TestLisener'.
+    Will load the 2 test plug-ins, and pass the parameter string "flat"
+    to the Clocker plug-in, disable test progress. Clocker being a test
+    listener plug-ins (it doesn't implements any tests, it just register
+    a TestListener), this is equivalent to say 'run all the test
+    of CppUnitTestPlugIn and use ClockerPlugIn as a TestLisener'.
 
 DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
-		Will run the test named "Core" (a suite in the present case ) of the 
-		test plug-in.
+    Will run the test named "Core" (a suite in the present case ) of the 
+    test plug-in.
 
 * Documentation
 
-	- New getting started documentation. Not completed yet, but probably
-	  a good complement to the current cookbook. Explore the creation
-	  of the Money example.
+  - New getting started documentation. Not completed yet, but probably
+    a good complement to the current cookbook. Explore the creation
+    of the Money example.
 
 * Examples
 
-	- Money (examples/Money): the 'hello world' example. Unit tests for 
-	  a simple Money class.
+  - Money (examples/Money): the 'hello world' example. Unit tests for 
+    a simple Money class.
 
-	- DllPlugInTesterTest (src/DllPlugInTester/DllPlugInTester.dsp):
-	  unit tests for CommandLineParser. Not really an example, but only
-	  slightly more complex than Money.
+  - DllPlugInTesterTest (src/DllPlugInTester/DllPlugInTester.dsp):
+    unit tests for CommandLineParser. Not really an example, but only
+    slightly more complex than Money.
 
-	- ClockerPlugIn (examples/ClockerPlugIn): a test listener plug-in 
-	  that track tests and test suites running time. Parameter: "flat" 
-	  for a reporting with a flattened tree.
+  - ClockerPlugIn (examples/ClockerPlugIn): a test listener plug-in 
+    that track tests and test suites running time. Parameter: "flat" 
+    for a reporting with a flattened tree.
 
-	- DumperPlugIn (examples/DumperPlugIn): a test listener plug-in that 
-	  dump the test tree as it run. Paramater: "flat" for a reporting 
-	  with a flattened tree.
+  - DumperPlugIn (examples/DumperPlugIn): a test listener plug-in that 
+    dump the test tree as it run. Paramater: "flat" for a reporting 
+    with a flattened tree.
 
-	- CppUnitTestPlugIn (examples/cppunitest/CppUnitTestPlugIn.dsp):
-	  CppUnit's test suite as a test plug-in.
+  - CppUnitTestPlugIn (examples/cppunitest/CppUnitTestPlugIn.dsp):
+    CppUnit's test suite as a test plug-in.
 
 * Contribution
 
   - Contributed by project cuppa team (http://sourceforge.jp/projects/cuppa/):
 
-	- Makefile for CppUnit with Borland C++ 5.5 free compiler: does not
-	  depend on a specific CppUnit version.
+  - Makefile for CppUnit with Borland C++ 5.5 free compiler: does not
+    depend on a specific CppUnit version.
 
 * Compatiblity breaks
 
-	- DllPlugInTester: (1.9.4 only), should add -c to DllPlugInTester 
-	  command line.
+  - DllPlugInTester: (1.9.4 only), should add -c to DllPlugInTester 
+    command line.
 
 * Bug Fix:
 
-	- DynamicLibaryManager did not report the library name when loading a
-	  a library.
+  - DynamicLibaryManager did not report the library name when loading a
+    a library.
 
-	- BeosDynamicLibraryManager: fixed thanks to Shibu Yoshiki 
-	  ('cuppa' project team).
+  - BeosDynamicLibraryManager: fixed thanks to Shibu Yoshiki 
+    ('cuppa' project team).
 
-	- Broken build on Unix should be fixed for most (thanks to 
-	  Jeffrey Morgan).
+  - Broken build on Unix should be fixed for most (thanks to 
+    Jeffrey Morgan).
 
 
-	New in CppUnit 1.9.4:
-	----------------------
+  New in CppUnit 1.9.4:
+  ----------------------
 
-	- More versatile, easier to make test plug-in.
-	- A PlugInManager to manage multiple test plug-ins.
-	- Crossplatform test plug-in runner.
-	- Crossplatform test plug-in example.
-	- A brief progress listener 
-	- Easier test hierarchy creation
-	- Improved documentation.
-	- Tracking of test run start/end.
-	- Contribution: XML style sheet & borland 5.5 makefile.
-	- Help needed on the Unix side!
+  - More versatile, easier to make test plug-in.
+  - A PlugInManager to manage multiple test plug-ins.
+  - Crossplatform test plug-in runner.
+  - Crossplatform test plug-in example.
+  - A brief progress listener 
+  - Easier test hierarchy creation
+  - Improved documentation.
+  - Tracking of test run start/end.
+  - Contribution: XML style sheet & borland 5.5 makefile.
+  - Help needed on the Unix side!
 
 * Buildling on Unix:
 
   - I did not get any feed back on the previous build issue on Unix. Using
     a simple autobook example was useless to try to solve the problem. Here
-	is the issue:
+  is the issue:
 
-	CppUnit library build fine, it is the example I'm having trouble with.
+  CppUnit library build fine, it is the example I'm having trouble with.
 
-	Since the test plug-in have been added, CppUnit use the function
-	dlopen(), dlsym() and dlclose() on unix to load/unload the plug-in.
+  Since the test plug-in have been added, CppUnit use the function
+  dlopen(), dlsym() and dlclose() on unix to load/unload the plug-in.
 
-	Those functions apparently requires to link another library when
-	building an exectuable. Here is was should be done:
-	- linking against the said library for each example.
-	- generates the shared library for the examples/simple/simple_plugin 
-	  example (source files are ExampleTestCase.cpp, ExampleTestCase.cpp 
-	  and SimplePlugIn.cpp).
-	- if possible, makes the above optionnal if --disable-test-plug-in 
-	  is defined:
-	  - don't link the dlXXX library 
-	  - don't compile the plug-in example
-	  - add #define CPPUNIT_NO_TESTPLUGIN 1 to the config file
+  Those functions apparently requires to link another library when
+  building an exectuable. Here is was should be done:
+  - linking against the said library for each example.
+  - generates the shared library for the examples/simple/simple_plugin 
+    example (source files are ExampleTestCase.cpp, ExampleTestCase.cpp 
+    and SimplePlugIn.cpp).
+  - if possible, makes the above optionnal if --disable-test-plug-in 
+    is defined:
+    - don't link the dlXXX library 
+    - don't compile the plug-in example
+    - add #define CPPUNIT_NO_TESTPLUGIN 1 to the config file
 
-	Contact me on the mailing-list for more details.
+  Contact me on the mailing-list for more details.
 
 * TestPlugIn:
 
   - A simple fact I realised while testing: if you link your test plug-in 
     against the DLL version of cppunit (or shared library on Unix), then
-	test registered to the TestFactoryRegistry (it is what's hide behind
-	CPPUNIT_TEST_SUITE_REGISTRATION) are automatically shared. Changes
-	have been made to support that usage (CppUnit was crashing badly).
-	Using the TestFactoryRegistry provides much more flexiblity that
-	providing a single suite for the plug-in. As such:
+  test registered to the TestFactoryRegistry (it is what's hide behind
+  CPPUNIT_TEST_SUITE_REGISTRATION) are automatically shared. Changes
+  have been made to support that usage (CppUnit was crashing badly).
+  Using the TestFactoryRegistry provides much more flexiblity that
+  providing a single suite for the plug-in. As such:
 
   - CppUnit plug-in should be linked against the dll version of CppUnit library.
 
@@ -479,18 +488,18 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - 'homemade' suite can still be registred to the TestFactoryRegistry that is
      passed as parameter on plug-in initialization. Notes that you must 
-	 unregister those suites during plug-in uninitialization, otherwise on
-	 destruction, the TestFactoryRegistry will attempt to destroy them... Your
-	 plug-in would have been already unloaded...
+   unregister those suites during plug-in uninitialization, otherwise on
+   destruction, the TestFactoryRegistry will attempt to destroy them... Your
+   plug-in would have been already unloaded...
 
   - Plug-in can accept parameters on initialization (notes that the Parameters
     object is far from being stabilized, but whatever form it takes, it will be
-	a list of string).
+  a list of string).
     
   - Plug-in can register their one listener for a test run. This means that you
     can extends 'DllPlugInTester' by creating test plug-in... This also means
-	than you can listen to startTestRun()/endTestRun() to do some global
-	setUp/tearDown (to initialize globales resources, such as COM...)
+  than you can listen to startTestRun()/endTestRun() to do some global
+  setUp/tearDown (to initialize globales resources, such as COM...)
 
   - Why all this fuss around test plug-in ? Test plug-in are the incarnation of
     an old concept: testable components...
@@ -499,14 +508,14 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - The PlugInManager is used to load/unload plug-ins. It takes care of all
     the 'plug-in' protocol and makes it easy to use multiple plug-ins at the
-	same time. It dispatches the addListener()/removeListener() message to
-	each plug-in.
+  same time. It dispatches the addListener()/removeListener() message to
+  each plug-in.
 
 * Crossplatform test plug-in runner (src/DllPlugInRunner):
 
   - This application can be used to run your test plug-ins. It can load
     multiple test plug-ins and run all or a specific test in the test
-	hierarchy returned by TestFactoryRegistry::getRegistry().makeTest().
+  hierarchy returned by TestFactoryRegistry::getRegistry().makeTest().
 
   - Plug-in loaded by the plug-in may also be custom TestListener.
 
@@ -521,7 +530,7 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - added macros CPPUNIT_REGISTRY_ADD( which, to ) and 
     CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which ) to create test hierarchy at static
-	initialization (in the spirit of CPPUNIT_TEST_SUITE_xxx() macros).
+  initialization (in the spirit of CPPUNIT_TEST_SUITE_xxx() macros).
 
 * VerboseTestProgressListener:
 
@@ -538,15 +547,15 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
   - examAdded crossplatform simple example. Equivalent to VC++ HostApp example.
   - examples/simple: a very simple example, demonstrating the use of CppUnit
     with a single TestFixture. Demonstrate both how to build an application
-	using TestRunner, and how to build a test plug-in to use with the
-	test plug-in runner.
+  using TestRunner, and how to build a test plug-in to use with the
+  test plug-in runner.
 
 * Contribution
 
   - Contributed by project cuppa team (http://sourceforge.jp/projects/cuppa/):
 
-	- XML style sheet: transform CppUnit XML output into HTML.
-	- Makefile for CppUnit with Borland C++ 5.5 free compiler.
+  - XML style sheet: transform CppUnit XML output into HTML.
+  - Makefile for CppUnit with Borland C++ 5.5 free compiler.
 
 * Behavior changes:
 
@@ -557,7 +566,7 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - TestFactoryRegistry don't own register test anymore. AutoRegisterSuite has
     been updated to preverse its apparent behavior. It should be of concern
-	if you created and registered custom TestFactory.
+  if you created and registered custom TestFactory.
 
   - Removed TextTestProgressListener::done(). No longer needed, it listens
     for endTestRun().
@@ -581,32 +590,32 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - Crash when linking CppUnit DLL within another DLL that registered test. Caused
     by the destruction of tests registered to TestFactoryRegistry. Fixed by
-	providing a register/unregister interface and removing the ownership of 
-	TestFactory to TestFactoryRegistry.
+  providing a register/unregister interface and removing the ownership of 
+  TestFactory to TestFactoryRegistry.
  
 
 
-	New in CppUnit 1.9.2:
-	----------------------
+  New in CppUnit 1.9.2:
+  ----------------------
 
-	In short:
-	- Cleaner XML output
-	- Crossplatform Test plug-in
-	- TestPlugInSuite to wrap test plug-in
-	- More TestPlugIn documentation.
+  In short:
+  - Cleaner XML output
+  - Crossplatform Test plug-in
+  - TestPlugInSuite to wrap test plug-in
+  - More TestPlugIn documentation.
 
 * TestPlugIn:
   - The test plug-in functionnality has been rewritten from scrash. 
     TestPlugIn related macro are now crossplatform (exporting the plug-in
-	function from the dynamic library...).
+  function from the dynamic library...).
 
   - Class DynamicLibraryManager provides a generic way to access dynamic 
     library. Platform specific implementation provided for WIN32, unix, BeOs.
-	Can be very easily ported to new platform.
-	
+  Can be very easily ported to new platform.
+  
   - A More flexible and hopefully extensible interface has been introduced
     (CppUnitPlugIn). 
-	
+  
   - A default implementation using the test factory registry is provided 
     (TestPlugInDefaultImpl). Can be easily customized.
 
@@ -630,41 +639,41 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - TestPlugInInterface (include/msvc6/TestPlugInInterface.h): this header and class
     are now obsolete. You should use include/cppunit/plugin/TestPlugIn.h instead.
-	Macro CPPUNIT_TESTPLUGIN_IMPL have been replaced by CPPUNIT_PLUGIN_IMPLEMENT.
+  Macro CPPUNIT_TESTPLUGIN_IMPL have been replaced by CPPUNIT_PLUGIN_IMPLEMENT.
 
   - TestDecorator inherits Test instead of TestLeaf.
 
   - DllPlugInTester only run DLL implementing the new new TestPlugIn interface.
 
 
-	New in CppUnit 1.9.0:
-	----------------------
+  New in CppUnit 1.9.0:
+  ----------------------
 
-	In short:
-	- Exploration of the test hierarchy without RTTI support
-	- Utility methods to find a test in the hierarchy
-	- TestPath to store/load the path to a specific test in the hierarchy
-	- Generic TestRunner
-	- Style sheet support added to XML ouput.
-	- CompilerOutputter supports run-time parametrization of error location format.
-	- Tracking of test suite run.
-	- Debugging and post-build testing of DLL using DllPlugInTester.
-	- Easy creation a test plug-in and test plug-in new example
+  In short:
+  - Exploration of the test hierarchy without RTTI support
+  - Utility methods to find a test in the hierarchy
+  - TestPath to store/load the path to a specific test in the hierarchy
+  - Generic TestRunner
+  - Style sheet support added to XML ouput.
+  - CompilerOutputter supports run-time parametrization of error location format.
+  - Tracking of test suite run.
+  - Debugging and post-build testing of DLL using DllPlugInTester.
+  - Easy creation a test plug-in and test plug-in new example
 
 * Test:
 
   - Exploration of the test hierarchy without RTTI support:
     Added Test::getChildTestCount() and Test::getChildTestAt() to walk the test hierarchy
-	without RTTI.
+  without RTTI.
 
   - Utility methods to find a test in the hierarchy:
-	Added Test::findTest(), Test::findTestPath() and Test::resolveTestPath().
+  Added Test::findTest(), Test::findTestPath() and Test::resolveTestPath().
 
 * TestPath:
 
   - A new class that store the path to a specific test (list of pointer). Can be
     converted into a string and constructed from a string. Typically used with 
-	TestRunner.
+  TestRunner.
 
 * TestListener:
 
@@ -686,14 +695,14 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - An application to load a DLL test plug-in and run the specified test. Test
     result are reported using a CompilerOutputter. It can be used for post-build
-	testing, but to debug DLL too! See examples/msvc6/TestPlugIn/TestPlugIn.dsp
-	which demonstrate both.
+  testing, but to debug DLL too! See examples/msvc6/TestPlugIn/TestPlugIn.dsp
+  which demonstrate both.
 
 * TestPlugInInterface (include/msvc6/TestPlugInInterface.h):
 
   - Easy creation a test plug-in with the new macro CPPUNIT_TESTPLUGIN_IMPL
     that implements and exports everything for you. 
-	See examples/msvc6/EasyTestPlugIn for an example.
+  See examples/msvc6/EasyTestPlugIn for an example.
 
 
 * Compatibility break:
@@ -706,14 +715,14 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 
   - XmlOutput: added a message element to the XML structure. The message associated
     to a failure is now in the content of <Message> element instead of in the content
-	of the <FailedTest> element.
-	Changed from:
+  of the <FailedTest> element.
+  Changed from:
         <FailedTest id="6">
           <Name>test6</Name>
           <FailureType>Error</FailureType>
           error2
         </FailedTest>
-	To:
+  To:
         <FailedTest id="6">
           <Name>test6</Name>
           <FailureType>Error</FailureType>
@@ -736,22 +745,22 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
     VC++ 7.
 
 
-	New in CppUnit 1.8.0:
-	----------------------
+  New in CppUnit 1.8.0:
+  ----------------------
 
-	In short:
-	- new assertions
-	- new facilities to write custom assertions
-	- new macros to define test case in your fixture
-	- registration of test fixture in named suite
-	- xml & compiler format test result output
-	- a new graphic test runner for the QT library
-	- MFC test runner window is resizable
-	- cppunit as a DLL
-	- Unicode support for MFC test runner.
-	- architecture clean-up: TestResultCollector extracted from TestResult.
-	- architecture clean-up: TestFixture extracted from TestCase.
-	- cookbook and documentation updated.
+  In short:
+  - new assertions
+  - new facilities to write custom assertions
+  - new macros to define test case in your fixture
+  - registration of test fixture in named suite
+  - xml & compiler format test result output
+  - a new graphic test runner for the QT library
+  - MFC test runner window is resizable
+  - cppunit as a DLL
+  - Unicode support for MFC test runner.
+  - architecture clean-up: TestResultCollector extracted from TestResult.
+  - architecture clean-up: TestFixture extracted from TestCase.
+  - cookbook and documentation updated.
 
 * New assertion (TestAssert.h):
 
@@ -791,9 +800,9 @@ DllPlugInTesterd_dll.exe CppUnitTestPlugInd.dll :Core
 * TestListener (TestListener.h):
   - all failures and errors are reported using a single method:
     virtual void addFailure( const TestFailure &failure )
-	=> the failure object life time is limited to that of the method call.
-	Use TestFailure::isError() to distinguish error from failure.
-	Use TestFailure::clone() to obtain a duplicate of the failure.
+  => the failure object life time is limited to that of the method call.
+  Use TestFailure::isError() to distinguish error from failure.
+  Use TestFailure::clone() to obtain a duplicate of the failure.
 
 * New helpers to construct your own assertion (Asserter.h):
 
@@ -873,8 +882,8 @@ an example of usage.
 
 * Compatibility break:
 
-	TestResult has been splitted in two class. TestResultCollector compatibility
-	breaks refer to the methods that were previously in TestResult.
+  TestResult has been splitted in two class. TestResultCollector compatibility
+  breaks refer to the methods that were previously in TestResult.
 
   - TestListener::addError() was removed. addFailure() is used to report
 any kind of failure.
@@ -886,7 +895,7 @@ any kind of failure.
 
   - CPPUNIT_ASSERT_EQUAL_MESSAGE: changed arguments order. 'message' is now 
     the first argument instead of the last (like CPPUNIT_ASSERT_MESSAGE).
-	Notes that CPPUNIT_ASSERT_EQUAL was introduced in release 1.7.3.
+  Notes that CPPUNIT_ASSERT_EQUAL was introduced in release 1.7.3.
 
   - directory for TestRunners as moved from cppunitui/ to cppunit/ui/ (concern
   only users of release 1.7.10)
@@ -896,14 +905,14 @@ any kind of failure.
     for detail.
 
 
-	New in CppUnit 1.6.1
-	--------------------
+  New in CppUnit 1.6.1
+  --------------------
 
 * This is a bug-fixing release.
 
 
-	New in CppUnit 1.6.0
-	--------------------
+  New in CppUnit 1.6.0
+  --------------------
 
 * All CppUnit macros now begin with "CPPUNIT_".  
 

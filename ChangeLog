@@ -1,6 +1,11 @@
+2004-03-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * cppunit-config.in: bug #903363, missing -ldl from the output of
+    cppunit-config --libs. Fixed thanks Eric Blossom patch.
+
 2004-02-20 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-	* release 1.9.12
+  * release 1.9.12
 
 2004-02-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
