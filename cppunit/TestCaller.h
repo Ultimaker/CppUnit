@@ -14,6 +14,8 @@ namespace CppUnit {
    * on a test case class.  Test callers are useful when 
    * you want to run an individual test or add it to a 
    * suite.
+   * Test Callers invoke only one Test (i.e. test method) on one 
+   * Fixture of a TestCase.
    * 
    * Here is an example:
    * \code
