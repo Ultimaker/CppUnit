@@ -17,8 +17,8 @@ namespace CppUnit
   namespace QtUi
   {
 
-/*! \class TestRunner
- * \brief This class represents a test runner.
+/*! 
+ * \brief Qt Test Runner.
  */
 class QTTESTRUNNER_API TestRunner
 {

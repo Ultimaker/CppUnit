@@ -9,6 +9,8 @@
 	* include/cppunit/SynchronizedObject.h:
 	* include/cppunit/extensions/TestCaller.h: doc update.
 
+	* include/cppunitui/qt/TestRunner.h: doc update.
+
 2002-03-27 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* makefile.am: added src/CppUnitLibraries.dsw, new contribution, and
