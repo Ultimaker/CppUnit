@@ -1,10 +1,8 @@
 #ifndef CPPUNIT_TESTREGISTRY_H
 #define CPPUNIT_TESTREGISTRY_H
 
-
 #include <vector>
 #include <string>
-
 
 namespace CppUnit {
 

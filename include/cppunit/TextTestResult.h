@@ -2,7 +2,7 @@
 #define CPPUNIT_TEXTTESTRESULT_H
 
 #include <iosfwd>
-#include "TestResult.h"
+#include <cppunit/TestResult.h>
 
 namespace CppUnit {
 

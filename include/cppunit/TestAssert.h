@@ -2,10 +2,7 @@
 #define CPPUNIT_TESTASSERT_H
 
 #include <string>
-
-#ifndef CPPUNIT_EXCEPTION_H
-#include "Exception.h"
-#endif
+#include <cppunit/Exception.h>
 
 namespace CppUnit {
 

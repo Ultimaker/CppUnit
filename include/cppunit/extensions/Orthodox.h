@@ -1,10 +1,7 @@
+#ifndef CPPUNIT_EXTENSIONS_ORTHODOX_H
+#define CPPUNIT_EXTENSIONS_ORTHODOX_H
 
-#ifndef CPPUNIT_ORTHODOX_H
-#define CPPUNIT_ORTHODOX_H
-
-#ifndef CPPUNIT_TESTCASE_H
-#include "TestCase.h"
-#endif
+#include <cppunit/TestCase.h>
 
 namespace CppUnit {
 

@@ -1,10 +1,7 @@
+#ifndef CPPUNIT_EXTENSIONS_TESTSETUP_H
+#define CPPUNIT_EXTENSIONS_TESTSETUP_H
 
-#ifndef CPP_UINT_TESTSETUP_H
-#define CPP_UINT_TESTSETUP_H
-
-#ifndef CPPUNIT_TESTDECORATOR_H
-#include "TestDecorator.h"
-#endif
+#include <cppunit/extensions/TestDecorator.h>
 
 namespace CppUnit {
 
@@ -34,5 +31,5 @@ inline TestSetup::run (TestResult *result)
 
 } //  namespace CppUnit
 
-#endif
+#endif // CPPUNIT_EXTENSIONS_TESTSETUP_H
 

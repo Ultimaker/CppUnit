@@ -2,10 +2,7 @@
 #define CPPUNIT_TESTRESULT_H
 
 #include <vector>
-
-#ifndef CPPUNIT_TESTFAILURE_H
-#include "TestFailure.h"
-#endif
+#include <cppunit/TestFailure.h>
 
 namespace CppUnit {
 

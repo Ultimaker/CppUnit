@@ -1,11 +1,9 @@
-#ifndef CPPUNIT_AUTOREGISTERSUITE_H
-#define CPPUNIT_AUTOREGISTERSUITE_H
+#ifndef CPPUNIT_EXTENSIONS_AUTOREGISTERSUITE_H
+#define CPPUNIT_EXTENSIONS_AUTOREGISTERSUITE_H
 
 #include <string>
-
-#include "TestSuiteFactory.h"
-#include "TestFactoryRegistry.h"
-
+#include <cppunit/extensions/TestSuiteFactory.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
 
 namespace CppUnit {
 
@@ -44,4 +42,4 @@ namespace CppUnit {
 } // namespace CppUnit
 
 
-#endif  // CPPUNIT_AUTOREGISTERSUITE_H
+#endif  // CPPUNIT_EXTENSIONS_AUTOREGISTERSUITE_H

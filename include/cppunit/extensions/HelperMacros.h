@@ -3,12 +3,11 @@
 // (c)Copyright 2000, Baptiste Lepilleur.
 // Created: 2001/04/15
 // //////////////////////////////////////////////////////////////////////////
-#ifndef CPPUNIT_HELPERMACROS_H
-#define CPPUNIT_HELPERMACROS_H
+#ifndef CPPUNIT_EXTENSIONS_HELPERMACROS_H
+#define CPPUNIT_EXTENSIONS_HELPERMACROS_H
 
-#include "AutoRegisterSuite.h"
-#include "TestSuiteBuilder.h"
-
+#include <cppunit/extensions/AutoRegisterSuite.h>
+#include <cppunit/extensions/TestSuiteBuilder.h>
 
 /** Begins the declaration of the test suite
  *
@@ -160,4 +159,4 @@
              CU_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
-#endif  // CPPUNIT_HELPERMACROS_H
+#endif  // CPPUNIT_EXTENSIONS_HELPERMACROS_H

@@ -1,5 +1,5 @@
-#ifndef CPPUNIT_TESTFACTORYREGISTRY_H
-#define CPPUNIT_TESTFACTORYREGISTRY_H
+#ifndef CPPUNIT_EXTENSIONS_TESTFACTORYREGISTRY_H
+#define CPPUNIT_EXTENSIONS_TESTFACTORYREGISTRY_H
 
 #if _MSC_VER > 1000     // VC++
 #pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
@@ -7,7 +7,7 @@
 
 #include <map>
 #include <string>
-#include "cppunit/extensions/AbstractTestFactory.h"
+#include <cppunit/extensions/AbstractTestFactory.h>
 
 namespace CppUnit {
 
@@ -81,4 +81,4 @@ namespace CppUnit {
 }  // namespace CppUnit
 
 
-#endif  // CPPUNIT_TESTFACTORYREGISTRY_H
+#endif  // CPPUNIT_EXTENSIONS_TESTFACTORYREGISTRY_H

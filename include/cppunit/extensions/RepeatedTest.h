@@ -1,10 +1,7 @@
+#ifndef CPPUNIT_EXTENSIONS_REPEATEDTEST_H
+#define CPPUNIT_EXTENSIONS_REPEATEDTEST_H
 
-#ifndef CPPUNIT_REPEATEDTEST_H
-#define CPPUNIT_REPEATEDTEST_H
-
-#ifndef CPPUNIT_TESTDECORATOR_H
-#include "TestDecorator.h"
-#endif
+#include <cppunit/extensions/TestDecorator.h>
 
 namespace CppUnit {
 
@@ -59,4 +56,4 @@ inline void RepeatedTest::run (TestResult *result)
 
 } // namespace CppUnit
 
-#endif
+#endif // CPPUNIT_EXTENSIONS_REPEATEDTEST_H

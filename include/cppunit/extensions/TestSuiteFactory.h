@@ -1,10 +1,7 @@
-#ifndef CPPUNIT_TESTSUITEFACTORY_H
-#define CPPUNIT_TESTSUITEFACTORY_H
+#ifndef CPPUNIT_EXTENSIONS_TESTSUITEFACTORY_H
+#define CPPUNIT_EXTENSIONS_TESTSUITEFACTORY_H
 
-#ifndef CPPUNIT_ABSTRACTTESTFACTORY_H
-#include "AbstractTestFactory.h"
-#endif
-
+#include <cppunit/extensions/AbstractTestFactory.h>
 
 namespace CppUnit {
 
@@ -22,4 +19,4 @@ namespace CppUnit {
 
 }  // namespace CppUnit
 
-#endif  // CPPUNIT_TESTSUITEFACTORY_H
+#endif  // CPPUNIT_EXTENSIONS_TESTSUITEFACTORY_H

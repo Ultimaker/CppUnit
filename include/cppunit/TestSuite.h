@@ -3,14 +3,7 @@
 
 #include <vector>
 #include <string>
-
-#ifdef USE_TYPEINFO
-#include <typeinfo>
-#endif // USE_TYPEINFO
-
-#ifndef CPPUNIT_TEST_H
-#include "Test.h"
-#endif
+#include <cppunit/Test.h>
 
 namespace CppUnit {
 

@@ -2,14 +2,8 @@
 #define CPPUNIT_TESTCASE_H
 
 #include <string>
-
-#ifndef CPPUNIT_TEST_H
-#include "Test.h"
-#endif
-
-#ifndef CPPUNIT_TESTASSERT_H
-#include "TestAssert.h"
-#endif
+#include <cppunit/Test.h>
+#include <cppunit/TestAssert.h>
 
 namespace CppUnit {
 

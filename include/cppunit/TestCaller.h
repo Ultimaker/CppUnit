@@ -1,11 +1,8 @@
 #ifndef CPPUNIT_TESTCALLER_H
 #define CPPUNIT_TESTCALLER_H
 
-#ifndef CPPUNIT_TESTCASE_H
-#include "TestCase.h"
-#endif
-
 #include <memory>
+#include <cppunit/TestCase.h>
 
 namespace CppUnit {
 

@@ -1,10 +1,9 @@
-#ifndef CPPUNIT_TESTSUITEBUILDER_H
-#define CPPUNIT_TESTSUITEBUILDER_H
+#ifndef CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H
+#define CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H
 
 #include <memory>
-
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <cppunit/TestSuite.h>
+#include <cppunit/TestCaller.h>
 
 namespace CppUnit {
 
@@ -52,4 +51,4 @@ namespace CppUnit {
 
 }  // namespace CppUnit
 
-#endif  // CPPUNIT_TESTSUITEBUILDER_H
+#endif  // CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H

@@ -1,11 +1,7 @@
+#ifndef CPPUNIT_EXTENSIONS_TESTDECORATOR_H
+#define CPPUNIT_EXTENSIONS_TESTDECORATOR_H
 
-
-#ifndef CPPUNIT_TESTDECORATOR_H
-#define CPPUNIT_TESTDECORATOR_H
-
-#ifndef CPPUNIT_TEST_H
-#include "../Test.h"
-#endif
+#include <cppunit/Test.h>
 
 namespace CppUnit {
 
