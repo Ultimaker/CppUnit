@@ -1,3 +1,12 @@
+2001-07-15  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/TestFixture.h: New.  Declare class TextFixture.
+
+	* include/cppunit/TestCaller.h:
+	* include/cppunit/TestCase.h:
+	* src/cppunit/TestCase.cpp: 
+	* include/cppunit/Makefile.am: Subclass TestCase from TestFixture.
+
 2001-07-14  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* include/cppunit/Exception.h:

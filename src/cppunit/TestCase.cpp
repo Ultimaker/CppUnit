@@ -105,16 +105,6 @@ std::string
 }
 
 
-/// A hook for fixture set up
-void TestCase::setUp ()
-{}
-  
-
-/// A hook for fixture tear down
-void TestCase::tearDown ()
-{}
-
-
 /// Returns the name of the test case instance
 std::string 
   TestCase::toString () const

@@ -4,6 +4,8 @@
 #include <string>
 #include <cppunit/Test.h>
 #include <cppunit/TestAssert.h>
+#include <cppunit/TestFixture.h>
+
 
 namespace CppUnit {
 
@@ -88,7 +90,7 @@ class TestResult;
  *
  */
 
-class TestCase : public Test
+class TestCase : public Test, public TestFixture
 {
 public:
 
@@ -106,9 +108,6 @@ public:
     virtual TestResult  *run             ();
 
     
-    virtual void        setUp            ();
-    virtual void        tearDown         ();
-
 protected:
     //! FIXME: this should probably be pure virtual.
     virtual void        runTest          ();

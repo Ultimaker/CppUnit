@@ -12,8 +12,9 @@ libcppunitinclude_HEADERS =  \
 	Portability.h \
 	Test.h \
 	TestAssert.h \
-	TestCaller.h \
+	TestFixture.h \
 	TestCase.h \
+	TestCaller.h \
 	TestFailure.h \
 	TestResult.h \
 	TestRegistry.h \
