@@ -113,8 +113,16 @@ void TestCase::tearDown ()
 std::string 
   TestCase::toString () const
 { 
-  const type_info& thisClass = typeid (*this); 
-  return std::string (thisClass.name ()) + "." + getName (); 
+  std::string className;
+
+#ifdef CU_USE_TYPEINFO
+  const std::type_info& thisClass = typeid (*this);
+  className = thisClass.name();
+#else
+  className = "TestCase";
+#endif // CU_USE_TYPEINFO
+
+  return className + "." + getName (); 
 }
   
 } // namespace CppUnit

@@ -1,3 +1,7 @@
+2001-05-30 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* src/cppunit/TestCase.cpp (toString): put type_info in std 
+	namespace and inside CU_USE_TYPEINFO ifdef.
+	
 2001-05-29  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* examples/hierarchy/main.cpp: Remove extraneous includes.
