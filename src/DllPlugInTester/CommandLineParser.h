@@ -3,7 +3,7 @@
 
 #include <cppunit/Portability.h>
 #include <cppunit/portability/CppUnitDeque.h>
-#include <cppunit/plugin/Parameters.h>
+#include <cppunit/plugin/PlugInParameters.h>
 #include <string>
 #include <stdexcept>
 
@@ -23,7 +23,7 @@ public:
 struct CommandLinePlugInInfo
 {
   std::string m_fileName;
-  CPPUNIT_NS::Parameters m_parameters;
+  CPPUNIT_NS::PlugInParameters m_parameters;
 };
 
 

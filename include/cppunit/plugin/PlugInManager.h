@@ -10,7 +10,7 @@
 #pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
 #endif
 
-#include <cppunit/plugin/Parameters.h>
+#include <cppunit/plugin/PlugInParameters.h>
 struct CppUnitTestPlugIn;
 
 CPPUNIT_NS_BEGIN
@@ -44,7 +44,7 @@ public:
    * \exception DynamicLibraryManager is thrown if an error occurs during loading.
    */
   void load( const std::string &libraryFileName,
-             const Parameters &parameters = Parameters() );
+             const PlugInParameters &parameters = PlugInParameters() );
 
   /*! Unloads the specified plug-in.
    * \param libraryFileName Name of the file that contains the TestPlugIn passed

@@ -1,4 +1,7 @@
 #include "CoreSuite.h"
+#include "MockFunctor.h"
+#include "MockProtector.h"
+#include "MockTestCase.h"
 #include "TestResultTest.h"
 
 
@@ -22,7 +25,7 @@ TestResultTest::setUp()
   m_result = new CPPUNIT_NS::TestResult();
   m_listener1 = new MockTestListener( "listener1" );
   m_listener2 = new MockTestListener( "listener2" );
-  m_dummyTest = new CPPUNIT_NS::TestCase();
+  m_dummyTest = new MockTestCase( "dummy-test" );
 }
 
 
@@ -160,4 +163,106 @@ TestResultTest::testTwoListener()
 
   m_listener1->verify();
   m_listener2->verify();
+}
+
+
+void 
+TestResultTest::testDefaultProtectSucceed()
+{
+  MockFunctor functor;
+  functor.setShouldSucceed();
+  m_listener1->setExpectNoFailure();
+
+  m_result->addListener( m_listener1 );
+  CPPUNIT_ASSERT( m_result->protect( functor, m_dummyTest ) );
+  m_listener1->verify();
+  functor.verify();
+}
+
+
+void 
+TestResultTest::testDefaultProtectFail()
+{
+  MockFunctor functor;
+  functor.setShouldFail();
+  m_listener1->setExpectNoFailure();
+
+  m_result->addListener( m_listener1 );
+  CPPUNIT_ASSERT( !m_result->protect( functor, m_dummyTest ) );
+  m_listener1->verify();
+  functor.verify();
+}
+
+
+void 
+TestResultTest::testDefaultProtectFailIfThrow()
+{
+  MockFunctor functor;
+  functor.setThrowFailureException();
+  m_listener1->setExpectFailure();
+
+  m_result->addListener( m_listener1 );
+  CPPUNIT_ASSERT( !m_result->protect( functor, m_dummyTest ) );
+  m_listener1->verify();
+  functor.verify();
+}
+
+
+void 
+TestResultTest::testProtectChainPushOneTrap()
+{
+  MockFunctor functor;
+  MockProtector *protector = new MockProtector();
+  functor.setThrowMockProtectorException();
+  protector->setExpectException();
+  m_listener1->setExpectFailure();
+
+  m_result->pushProtector( protector );
+  m_result->addListener( m_listener1 );
+  CPPUNIT_ASSERT( !m_result->protect( functor, m_dummyTest ) );
+  protector->verify();
+  m_listener1->verify();
+  functor.verify();
+}
+
+
+void 
+TestResultTest::testProtectChainPushOnePassThrough()
+{
+  MockFunctor functor;
+  MockProtector *protector = new MockProtector();
+  functor.setThrowFailureException();
+  protector->setExpectNoException();
+  m_listener1->setExpectFailure();
+
+  m_result->pushProtector( protector );
+  m_result->addListener( m_listener1 );
+  CPPUNIT_ASSERT( !m_result->protect( functor, m_dummyTest ) );
+  protector->verify();
+  m_listener1->verify();
+  functor.verify();
+}
+
+
+void 
+TestResultTest::testProtectChainPushTwoTrap()
+{
+  MockFunctor functor;
+  functor.setThrowMockProtectorException();
+  // protector1 catch the exception retrown by protector2
+  MockProtector *protector1 = new MockProtector();
+  protector1->setExpectException();
+  // protector2 catch the exception and rethrow it
+  MockProtector *protector2 = new MockProtector();
+  protector2->setExpectCatchAndPropagateException();
+  m_listener1->setExpectFailure();
+
+  m_result->pushProtector( protector1 );
+  m_result->pushProtector( protector2 );
+  m_result->addListener( m_listener1 );
+  CPPUNIT_ASSERT( !m_result->protect( functor, m_dummyTest ) );
+  protector1->verify();
+  protector2->verify();
+  m_listener1->verify();
+  functor.verify();
 }

@@ -9,7 +9,7 @@
 #include <cppunit/XmlOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/plugin/DynamicLibraryManagerException.h>
-#include <cppunit/plugin/Parameters.h>
+#include <cppunit/plugin/PlugInParameters.h>
 #include <cppunit/plugin/PlugInManager.h>
 #include <cppunit/plugin/TestPlugIn.h>
 #include <iostream>

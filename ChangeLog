@@ -1,7 +1,51 @@
+2002-08-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * CodingGuideLines.txt: updated for OS/390 C++ limitation.
+
+  * examples/cppunittests/MockFunctor.h: added. Mock Functor to help 
+    testing.
+
+  * examples/cppunittests/MockProtector.h: qdded. Mock Protector to help
+    testing.
+
+  * examples/cppunittests/TestResultTest.h
+  * examples/cppunittests/TestResultTest.cpp: added tests for 
+    pushProtector(), popProtector() and protect().
+
+  * include/cppunit/TestAssert.h: removed default message value from
+    assertEquals(). Caused compilation error on OS/390.
+
+  * include/cppunit/plugin/PlugInParameters.h:
+  * src/cppunit/PlugInParameters.cpp: renamed commandLine() to 
+    getCommandLine().
+
+  * src/msvc6/testrunner/TestRunnerDlg.h:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp: bug fix, disabled Browse
+    button while running tests.
+
 2002-08-22  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* cppunit.m4: Doc fix: MINIMUM-VERSION is not optional when using
 	this macro.
+
+2002-08-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * src/cppunit/XmlDocument.cpp: fixed compatility bug with C++ builder.
+
+  * include/cppunit/plugin/Parameters.h: renamed PlugInParameters.h.
+
+  * src/cppunit/PlugInParameter.cpp: added. Implementation of class
+    PlugInParameters.
+
+  * examples/DumperPlugIn/DumperPlugIn.cpp:
+  * examples/ClockerPlugIn/ClockerPlugIn.cpp:
+  * src/DllPlugInTester/CommandLineParser.h:
+  * src/DllPlugInTester/CommandLineParser.cpp:
+  * include/cppunit/plugin/TestPlugInDefaultImpl.h:
+  * src/cppunit/TestPlugInDefaultImpl.cpp:
+  * include/cppunit/plugin/PlugInManager.h:
+  * src/cppunit/PlugInManager.cpp: updated against PlugInParameter
+    change.
 
 2002-08-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 

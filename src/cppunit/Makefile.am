@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.39 2002-08-04 11:04:18 blep Exp $
+# $Id: Makefile.am,v 1.40 2002-08-27 21:51:18 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -21,6 +21,7 @@ libcppunit_la_SOURCES = \
   Message.cpp \
   RepeatedTest.cpp \
   PlugInManager.cpp \
+  PlugInParameter.cpp \
   Protector.cpp \
   ProtectorChain.h \
   ProtectorContext.h \

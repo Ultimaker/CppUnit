@@ -5,7 +5,7 @@
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
-#include <cppunit/plugin/Parameters.h>
+#include <cppunit/plugin/PlugInParameters.h>
 
 CPPUNIT_NS_BEGIN
 
@@ -56,7 +56,7 @@ struct CppUnitTestPlugIn
    * not yet support plug-in parameter.
    */
   virtual void initialize( CPPUNIT_NS::TestFactoryRegistry *registry,
-                           const CPPUNIT_NS::Parameters &parameters ) =0;
+                           const CPPUNIT_NS::PlugInParameters &parameters ) =0;
 
   /*! Gives a chance to the plug-in to register TestListener.
    * 

@@ -124,7 +124,7 @@ CommandLineParserTest::testFileName()
 
   CommandLinePlugInInfo info( _parser->getPlugInAt( 0 ) );
   CPPUNIT_ASSERT_EQUAL( std::string("TestPlugIn.dll"), info.m_fileName );
-  CPPUNIT_ASSERT_EQUAL( 0, int(info.m_parameters.size()) );
+  CPPUNIT_ASSERT( info.m_parameters.getCommandLine().empty() );
 }
 
 
@@ -210,11 +210,10 @@ CommandLineParserTest::testPlugInsWithParameters()
   CommandLinePlugInInfo info1( _parser->getPlugInAt( 0 ) );
 
   CPPUNIT_ASSERT_EQUAL( std::string("TestPlugIn1.dll"), info1.m_fileName );
-  CPPUNIT_ASSERT_EQUAL( 1, int(info1.m_parameters.size()) );
   CPPUNIT_ASSERT_EQUAL( std::string("login = lain"), 
-                        info1.m_parameters[0] );
+                        info1.m_parameters.getCommandLine() );
 
   CommandLinePlugInInfo info2( _parser->getPlugInAt( 1 ) );
   CPPUNIT_ASSERT_EQUAL( std::string("Clocker.dll"), info2.m_fileName );
-  CPPUNIT_ASSERT_EQUAL( 0, int(info2.m_parameters.size()) );
+  CPPUNIT_ASSERT( info2.m_parameters.getCommandLine().empty() );
 }

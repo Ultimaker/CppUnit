@@ -19,6 +19,12 @@ class TestResultTest : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( testEndSuite );
   CPPUNIT_TEST( testRunTest );
   CPPUNIT_TEST( testTwoListener );
+  CPPUNIT_TEST( testDefaultProtectSucceed );
+  CPPUNIT_TEST( testDefaultProtectFail );
+  CPPUNIT_TEST( testDefaultProtectFailIfThrow );
+  CPPUNIT_TEST( testProtectChainPushOneTrap );
+  CPPUNIT_TEST( testProtectChainPushOnePassThrough );
+  CPPUNIT_TEST( testProtectChainPushTwoTrap );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -40,6 +46,15 @@ public:
   void testRunTest();
 
   void testTwoListener();
+
+  void testDefaultProtectSucceed();
+  void testDefaultProtectFail();
+  void testDefaultProtectFailIfThrow();
+
+  void testProtectChainPushOneTrap();
+  void testProtectChainPushOnePassThrough();
+
+  void testProtectChainPushTwoTrap();
 
 private:
   TestResultTest( const TestResultTest &copy );

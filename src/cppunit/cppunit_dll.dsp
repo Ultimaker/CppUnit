@@ -551,15 +551,19 @@ SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManagerException.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\plugin\Parameters.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\PlugInManager.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\plugin\PlugInManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PlugInParameters.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\PlugInParameters.h
 # End Source File
 # Begin Source File
 

@@ -32,6 +32,9 @@ CppUnit's coding guidelines for portability:
   class), instead declares them as simple template functions (even
   mainstream compiler such as VC++ 6 as trouble with them).
 
+- don't use default parameter value in template function. Not supported
+  by all compiler (on OS/390 for instance).
+
 - don't use STL container at() method, instead use the array accessor [].
   at() is not supported on some gcc versions.
 

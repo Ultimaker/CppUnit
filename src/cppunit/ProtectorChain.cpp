@@ -63,7 +63,7 @@ ProtectorChain::protect( const Functor &functor,
     return functor();
 
   Functors functors;
-  for ( int index = 0; index < m_protectors.size(); ++index )
+  for ( int index = m_protectors.size()-1; index >= 0; --index )
   {
     const Functor &protectedFunctor = 
               functors.empty() ? functor : *functors.back();

@@ -11,7 +11,18 @@
 CPPUNIT_NS_BEGIN
 
 
-typedef CppUnitDeque<std::string> Parameters;
+class CPPUNIT_API PlugInParameters
+{
+public:
+  PlugInParameters( const std::string &commandLine = "" );
+
+  virtual ~PlugInParameters();
+
+  std::string getCommandLine() const;
+
+private:
+  std::string m_commandLine;
+};
 
 
 CPPUNIT_NS_END

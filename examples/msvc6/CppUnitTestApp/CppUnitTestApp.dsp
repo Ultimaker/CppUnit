@@ -257,6 +257,14 @@ SOURCE=..\..\cppunittest\MessageTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\cppunittest\MockFunctor.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\MockProtector.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\cppunittest\MockTestCase.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -294,6 +302,14 @@ SOURCE=..\..\cppunittest\RepeatedTestTest.cpp
 # Begin Source File
 
 SOURCE=..\..\cppunittest\RepeatedTestTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\StringToolsTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\StringToolsTest.h
 # End Source File
 # Begin Source File
 

@@ -75,7 +75,7 @@ CommandLineParser::readNonOptionCommands()
     {
       plugIn.m_fileName = getCurrentArgument().substr( 0, indexParameter );
       std::string parameters = getCurrentArgument().substr( indexParameter +1 );
-      plugIn.m_parameters.push_back( parameters );
+      plugIn.m_parameters = CPPUNIT_NS::PlugInParameters( parameters );
     }
     
     m_plugIns.push_back( plugIn );

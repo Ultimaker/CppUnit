@@ -31,7 +31,7 @@ public:
   virtual ~TestPlugInDefaultImpl();
 
   void initialize( TestFactoryRegistry *registry,
-                   const Parameters &parameters );
+                   const PlugInParameters &parameters );
 
   void addListener( TestResult *eventManager );
 

@@ -22,7 +22,7 @@ TestPlugInDefaultImpl::~TestPlugInDefaultImpl()
 
 void 
 TestPlugInDefaultImpl::initialize( TestFactoryRegistry *registry,
-                                   const Parameters &parameters )
+                                   const PlugInParameters &parameters )
 {
 }
 

@@ -24,7 +24,7 @@ PlugInManager::~PlugInManager()
 
 void
 PlugInManager::load( const std::string &libraryFileName,
-                     const Parameters &parameters )
+                     const PlugInParameters &parameters )
 {
   PlugInInfo info;
   info.m_fileName = libraryFileName;

@@ -46,6 +46,8 @@
   - MFC TestRunner: bug #530426 (conflict between TestRunner and host 
     application's resources). A huge thanks to Steven Mitter for that one.
 
+  - MFC TestRunner: Browse button is now disabled while running test.
+
 * Deprecated
 
   - CppUnit::TextUi::TestRunner moved to CppUnit::TextTestRunner.
@@ -62,6 +64,15 @@
     assertImplementation(), assertNotEqualImplementation(), 
     assertEquals(). Moved non deprecated functions assertEquals() and
     assertEquals() into CppUnit namespace.
+  - Plug-ins 'Parameters' typedef has been replaced by class 
+    PlugInParameters. The method commandLine() returns what used to be in
+    Parameters[0]. This should avoid future compatibility break when the 
+    parameters passing API will be defined.
+  - TestPlugIn::initialize() now takes a PlugInParameters in argument 
+    instead of a Parameters.
+  - template <class T> void assertEquals() no longer has a default message 
+    value (no impact, unless you used this function directly instead of
+    assertion macros).
 
 
 	New in CppUnit 1.9.8:

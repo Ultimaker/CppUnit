@@ -12,12 +12,7 @@ DefaultProtector::protect( const Functor &functor,
 {
   try
   {
-    // BUG: => should return what is returned. Need to update
-    // UT to prove there is a bug. Consequence: runTest() is called
-    // even if setUp() failed in a 'sub-protector'.
-    functor();
-    return true;
-//    return functor();
+    return functor();
   }
   catch ( Exception &failure )
   {

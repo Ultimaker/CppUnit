@@ -6,4 +6,4 @@ libcppunitinclude_HEADERS = \
 	TestPlugIn.h \
 	TestPlugInDefaultImpl.h \
 	PlugInManager.h \
-	Parameters.h
+	PlugInParameters.h

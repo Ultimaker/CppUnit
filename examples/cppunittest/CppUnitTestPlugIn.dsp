@@ -140,6 +140,14 @@ SOURCE=.\FailureException.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MockFunctor.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockProtector.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\MockTestCase.cpp
 # End Source File
 # Begin Source File
@@ -361,6 +369,14 @@ SOURCE=.\XmlOutputterTest.h
 # Begin Group "Tools"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\StringToolsTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\StringToolsTest.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\XmlElementTest.cpp

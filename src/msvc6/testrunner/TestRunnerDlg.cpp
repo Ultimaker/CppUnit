@@ -78,11 +78,12 @@ TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
 {
   cdxCDynamicDialog::DoDataExchange(pDX);
   //{{AFX_DATA_MAP(TestRunnerDlg)
-	DDX_Control(pDX, IDC_DETAILS, m_details);
+    DDX_Control(pDX, IDC_DETAILS, m_details);
     DDX_Control(pDX, IDC_LIST, m_listCtrl);
     DDX_Control(pDX, IDOK, m_buttonClose);
     DDX_Control(pDX, ID_STOP, m_buttonStop);
     DDX_Control(pDX, ID_RUN, m_buttonRun);
+    DDX_Control(pDX, IDC_BROWSE_TEST, m_buttonBrowse);
     DDX_Check(pDX, IDC_CHECK_AUTORUN, m_bAutorunAtStartup);
 	//}}AFX_DATA_MAP
 }
@@ -309,6 +310,7 @@ TestRunnerDlg::beRunning()
   m_bIsRunning = true;
   m_buttonRun.EnableWindow( FALSE );
   m_buttonClose.EnableWindow( FALSE );
+  m_buttonBrowse.EnableWindow( FALSE );
 
 //    m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() & ~BS_DEFPUSHBUTTON );
 //    m_buttonStop.SetButtonStyle( m_buttonStop.GetButtonStyle() | BS_DEFPUSHBUTTON );
@@ -320,6 +322,7 @@ TestRunnerDlg::beIdle()
 {
   m_bIsRunning = false;
   m_buttonRun.EnableWindow( TRUE );
+  m_buttonBrowse.EnableWindow( TRUE );
   m_buttonClose.EnableWindow( TRUE );
 
   m_buttonRun.SetButtonStyle( m_buttonRun.GetButtonStyle() | BS_DEFPUSHBUTTON );
@@ -332,6 +335,7 @@ TestRunnerDlg::beRunDisabled()
 {
   m_bIsRunning = false;
   m_buttonRun.EnableWindow( FALSE );
+  m_buttonBrowse.EnableWindow( FALSE );
   m_buttonStop.EnableWindow( FALSE );
   m_buttonClose.EnableWindow( TRUE );
 

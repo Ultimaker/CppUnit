@@ -387,6 +387,14 @@ SOURCE=.\FailureException.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MockFunctor.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockProtector.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\MockTestCase.cpp
 # End Source File
 # Begin Source File

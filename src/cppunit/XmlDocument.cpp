@@ -31,7 +31,7 @@ XmlDocument::encoding() const
 void 
 XmlDocument::setEncoding( const std::string &encoding )
 {
-  m_encoding = encoding.empty() ? "ISO-8859-1" : encoding;
+  m_encoding = encoding.empty() ? std::string("ISO-8859-1") : encoding;
 }
 
 

@@ -70,6 +70,7 @@ public:
   CButton m_buttonClose;
   CButton m_buttonStop;
   CButton m_buttonRun;
+  CButton m_buttonBrowse;
   BOOL m_bAutorunAtStartup;
 	//}}AFX_DATA
 

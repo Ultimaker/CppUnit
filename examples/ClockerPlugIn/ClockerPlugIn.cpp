@@ -26,10 +26,10 @@ public:
 
 
   void initialize( CPPUNIT_NS::TestFactoryRegistry *registry,
-                   const CPPUNIT_NS::Parameters &parameters )
+                   const CPPUNIT_NS::PlugInParameters &parameters )
   {
     bool text = false;
-    if ( parameters.size() > 0  &&  parameters[0] == "text" )
+    if ( parameters.getCommandLine() == "text" )
       text = true;
 
     m_model = new ClockerModel();

@@ -22,6 +22,8 @@ cppunittestmain_SOURCES = \
 	HelperSuite.h \
 	MessageTest.h \
 	MessageTest.cpp \
+  MockFunctor.h \
+  MockProtector.h \
 	MockTestCase.h \
 	MockTestCase.cpp \
 	MockTestListener.cpp \

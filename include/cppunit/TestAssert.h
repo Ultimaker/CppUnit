@@ -57,7 +57,7 @@ template <class T>
 void assertEquals( const T& expected,
                    const T& actual,
                    SourceLine sourceLine,
-                   const std::string &message ="" )
+                   const std::string &message )
 {
   if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
   {
@@ -143,10 +143,11 @@ void CPPUNIT_API assertDoubleEquals( double expected,
  * The last two requirements (serialization and comparison) can be
  * removed by specializing the CppUnit::assertion_traits.
  */
-#define CPPUNIT_ASSERT_EQUAL(expected,actual)                      \
+#define CPPUNIT_ASSERT_EQUAL(expected,actual)          \
   ( CPPUNIT_NS::assertEquals( (expected),              \
                               (actual),                \
-                              CPPUNIT_SOURCELINE() ) )
+                              CPPUNIT_SOURCELINE(),    \
+                              "" ) )
 
 /** Asserts that two values are equals, provides additional messafe on failure.
  * \ingroup Assertions

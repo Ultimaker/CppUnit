@@ -19,10 +19,10 @@ public:
 
 
   void initialize( CPPUNIT_NS::TestFactoryRegistry *registry,
-                   const CPPUNIT_NS::Parameters &parameters )
+                   const CPPUNIT_NS::PlugInParameters &parameters )
   {
     bool flatten = false;
-    if ( parameters.size() > 0  &&  parameters[0] == "flat" )
+    if ( parameters.getCommandLine() == "flat" )
       flatten = true;
 
     m_dumper = new DumperListener( flatten );
