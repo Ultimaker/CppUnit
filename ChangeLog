@@ -1,7 +1,12 @@
+2002-08-22  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* cppunit.m4: Doc fix: MINIMUM-VERSION is not optional when using
+	this macro.
+
 2002-08-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
-  * include/cppunit/XmlOutputterHook.h: integrated Stephan Stapel 
-    documentation update.
+	* include/cppunit/XmlOutputterHook.h: integrated Stephan Stapel
+	documentation update.
 
 2002-08-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
