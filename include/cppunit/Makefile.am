@@ -11,4 +11,6 @@ libcppunitinclude_HEADERS =  \
 	TestResult.h \
 	TestRegistry.h \
 	TestSuite.h \
-	TextTestResult.h
+	TextTestResult.h \
+	TextTestRunner.h
+

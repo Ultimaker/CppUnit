@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.3 2001-05-17 20:24:46 bastiaan Exp $
+# $Id: Makefile.am,v 1.4 2001-05-19 17:41:03 bastiaan Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -16,9 +16,9 @@ libcppunit_la_SOURCES = \
   TestRegistry.cpp \
   Exception.cpp \
   TextTestResult.cpp \
+  TextTestRunner.cpp \
   TestFactoryRegistry.cpp \
   TypeInfoHelper.cpp \
-  TypeInfoHelper.h \
   estring.h
 
 libcppunit_la_LDFLAGS= \
