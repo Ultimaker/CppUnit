@@ -1,3 +1,4 @@
+#include <cppunit/tools/StringTools.h>
 #include <cppunit/tools/XmlElement.h>
 
 
@@ -17,7 +18,7 @@ XmlElement::XmlElement( std::string elementName,
                         int numericContent )
   : m_name( elementName )
 {
-  m_content = asString( numericContent );
+  setContent( numericContent );
 }
 
 
@@ -25,7 +26,45 @@ XmlElement::~XmlElement()
 {
   Elements::iterator itNode = m_elements.begin();
   while ( itNode != m_elements.end() )
+  {
+    XmlElement *element = *itNode;
     delete *itNode++;
+  }
+}
+
+
+std::string 
+XmlElement::name() const
+{
+  return m_name;
+}
+
+
+std::string 
+XmlElement::content() const
+{
+  return m_content;
+}
+
+
+void 
+XmlElement::setName( const std::string &name )
+{
+  m_name = name;
+}
+
+
+void 
+XmlElement::setContent( const std::string &content )
+{
+  m_content = content;
+}
+
+
+void 
+XmlElement::setContent( int numericContent )
+{
+  m_content = StringTools::toString( numericContent );
 }
 
 
@@ -41,14 +80,46 @@ void
 XmlElement::addAttribute( std::string attributeName,
                           int numericValue )
 {
-  addAttribute( attributeName, asString( numericValue ) );
+  addAttribute( attributeName, StringTools::toString( numericValue ) );
 }
 
 
 void 
-XmlElement::addNode( XmlElement *node )
+XmlElement::addElement( XmlElement *node )
 {
   m_elements.push_back( node );
+}
+
+
+int 
+XmlElement::elementCount() const
+{
+  return m_elements.size();
+}
+
+
+XmlElement *
+XmlElement::elementAt( int index ) const
+{
+  if ( index < 0  ||  index >= elementCount() )
+    throw std::invalid_argument( "XmlElement::elementAt(), out of range index" );
+
+  return m_elements[ index ];
+}
+
+
+XmlElement *
+XmlElement::elementFor( const std::string &name ) const
+{
+  Elements::const_iterator itElement = m_elements.begin();
+  for ( ; itElement != m_elements.end(); ++itElement )
+  {
+    if ( (*itElement)->name() == name )
+      return *itElement;
+  }
+
+  throw std::invalid_argument( "XmlElement::elementFor(), not matching child element found" );
+  return NULL;  // make some compilers happy.
 }
 
 
@@ -145,15 +216,6 @@ XmlElement::escape( std::string value ) const
   }
   
   return escaped;
-}
-
-// should be somewhere else... Future CppUnit::String ?    
-std::string 
-XmlElement::asString( int value )
-{
-  OStringStream stream;
-  stream << value;
-  return stream.str();
 }
 
 

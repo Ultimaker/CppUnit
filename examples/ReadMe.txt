@@ -11,7 +11,8 @@ cppunittest/: CppUnit's unit tests. Contains CppUnitTestMain which build an appl
 	with CppUnit's tests, and  which wrap the same unit tests into a test plug-in.
 
 ClockerPlugIn/: a 'TestListener' plug-in. Demonstrates the use of the test plug-in to
-extends DllPlugInRunner. The test plug-in tracks the time each test and suite takes to run.
+extends DllPlugInRunner. The test plug-in tracks the time each test and suite takes to run
+and includes the timing in the XML output.
 
 DumperPlugIn/: a 'TestListener' plug-in that dumps the test hierarchy as a tree or in
 a flattened format (using TestPath).

@@ -4,6 +4,6 @@ libcppunitinclude_HEADERS = \
 	DynamicLibraryManager.h \
 	DynamicLibraryManagerException.h \
 	TestPlugIn.h \
-	TestPlugInAdapter.h \
+	TestPlugInDefaultImpl.h \
 	PlugInManager.h \
 	Parameters.h

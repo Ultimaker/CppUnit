@@ -1,3 +1,4 @@
+#include <cppunit/XmlOutputterHook.h>
 #include <cppunit/plugin/PlugInManager.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/plugin/TestPlugIn.h>
@@ -84,6 +85,22 @@ PlugInManager::unload( PlugInInfo &plugIn )
     plugIn.m_manager = NULL;
     throw;
   }
+}
+
+
+void 
+PlugInManager::addXmlOutputterHooks( XmlOutputter *outputter )
+{
+  for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
+    it->m_interface->addXmlOutputterHooks( outputter );
+}
+
+
+void 
+PlugInManager::removeXmlOutputterHooks()
+{
+  for ( PlugIns::iterator it = m_plugIns.begin(); it != m_plugIns.end(); ++it )
+    it->m_interface->removeXmlOutputterHooks();
 }
 
 

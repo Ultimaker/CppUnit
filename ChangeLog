@@ -1,5 +1,64 @@
 2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * include/cppunit/plugin/PlugInManager.h:
+  * src/cppunit/PlugInManager.cpp: added two methods to use the plug-in
+    interface for Xml Outputter hooks.
+
+  * include/cppunit/plugin/TestPlugIn.h: added two methods to the plug-in
+    interface for Xml Outputter hooks.
+
+  * include/cppunit/plugin/TestPlugInAdapter.h:
+  * src/cppunit/plugin/TestPlugInAdapter.cpp: renamed TestPlugInDefaultImpl.
+    Added empty implementation for Xml outputter hook methods.
+
+  * include/cppunit/tools/StringTools.h:
+  * src/cppunit/tools/StringTools.cpp: added. Functions to manipulate string
+    (conversion, wrapping...)
+
+  * include/cppunit/tools/XmlElement.h:
+  * src/cppunit/XmlElement.cpp: renamed addNode() to addElement(). Added
+    methods to walk and modify XmlElement (for hook). Added documentation.
+    Use StringTools.
+
+  * include/cppunit/XmlOutputter.h:
+  * src/cppunit/XmlOutputter.cpp: added hook calls & management.
+
+  * include/cppunit/XmlOutputterHook.h:
+  * src/cppunit/XmlOutputterHook.cpp: added. Hook to customize XML output.
+
+  * src/DllPlugInTester/DllPlugInTester.cpp: call plug-in XmlOutputterHook
+    when writing XML output. Modified so that memory is freed before 
+    unloading the test plug-in (caused crash when freeing the XmlDocument).
+
+  * examples/ReadMe.txt:
+  * examples/ClockerPlugIn/ReadMe.txt: added details about the plug-in
+    (usage, xml content...)
+
+  * examples/ClockerPlugIn/ClockerModel.h:
+  * examples/ClockerPlugIn/ClockerModel.cpp: extracted from ClockerListener.
+    Represents the test hierarchy and tracked time for each test.
+
+  * examples/ClockerPlugIn/ClockerListener.h:
+  * examples/ClockerPlugIn/ClockerListener.cpp: extracted test hierarchy
+    tracking to ClockerModel. Replaced the 'flat' view option with a 'text'
+    option to print the timed test tree to stdout.
+
+  * examples/ClockerPlugIn/ClockerPlugIn.cpp: updated to hook the XML
+    output and use the new classes.
+
+  * examples/ClockerPlugIn/ClockerXmlHook.h:
+  * examples/ClockerPlugIn/ClockerXmlHook.cpp: added. XmlOutputterHook to
+    includes the timed test hierarchy and test timing in the XML output.
+
+  * examples/cppunittest/XmlElementTest.h:
+  * examples/cppunittest/XmlElementTest.cpp: added new test cases.
+
+  * examples/cppunittest/XmlOutputterTest.h:
+  * examples/cppunittest/XmlOutputterTest.cpp: added tests for 
+    XmlOutputterHook.
+
+2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+
   * src/cppunit/TypeInfoHelper.cpp: added work around for bug #565481.
     gcc 3.0 RTTI name() returns the type prefixed with a number (the
     length of the type). The work around strip the number.

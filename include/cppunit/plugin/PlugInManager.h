@@ -18,6 +18,7 @@ namespace CppUnit
 
 class DynamicLibraryManager;
 class TestResult;
+class XmlOutputter;
 
 
 /*! \brief Manges TestPlugIn.
@@ -61,6 +62,16 @@ public:
    * For each plug-in, call CppUnitTestPlugIn::removeListener().
    */
   void removeListener( TestResult *eventManager );
+
+  /*! Provides a way for the plug-in to register some XmlOutputterHook.
+   */
+  void addXmlOutputterHooks( XmlOutputter *outputter );
+
+  /*! Called when the XmlOutputter is destroyed.
+   * 
+   * Can be used to free some resources allocated by addXmlOutputterHooks().
+   */
+  void removeXmlOutputterHooks();
 
 protected:
   struct PlugInInfo

@@ -1,5 +1,4 @@
 * CppUnit:
-  - Update MfcTestRunner to use TestPath to store test in the registry
   - Provide a mean for the user to catch 'custom' exception in TestCase::run 
     (exception that do not subclass std::exception, such as MFC CException, or
     RogueWave RWXMsg).
@@ -8,8 +7,6 @@
     (test & doc level).
   - Allow test plug-in to 'hook' the XmlOutputter when used.
   - TextUi::TestRunner should use CppUnit::TestRunner as a base class
-  - Modify MfcUi::TestRunner to expose TestResult (which allow specific TestListener
-    for global initialization).
   - [DONE] Make Exception message more flexible: introduce a Message object which contains:
     - a short description ('assertion failed', 'equality assertion failed'...)
     - detail strings: "Expected : 3", "Actual   : 5"...
@@ -27,6 +24,9 @@
   - add tests for test plug-in
 
 * VC++ TestRunner:
+  - Modify MfcUi::TestRunner to expose TestResult (which allow specific TestListener
+    for global initialization).
+  - Update MfcTestRunner to use TestPath to store test in the registry
   - [DONE] Add "details" field to show detail of the selected failed test:
     - suite and test name,
     - failure message. If possible separate "was" and "expected" in the

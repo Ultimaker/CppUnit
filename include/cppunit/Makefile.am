@@ -33,7 +33,8 @@ libcppunitinclude_HEADERS =  \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h \
-	XmlOutputter.h
+	XmlOutputter.h \
+	XmlOutputterHook.h
 
 dist-hook:
 	rm -f $(distdir)/config-auto.h

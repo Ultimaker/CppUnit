@@ -1,10 +1,14 @@
 	New in CppUnit 1.9.8:
 	---------------------
 
-  - XmlDocument
   - Custom test macros.
-  - Exception message
-  - MFC TestRunner
+  - Exception message are now structured
+  - MFC TestRunner, detail field added.
+  - XmlDocument extracted from XmlOutputter to create different XML output
+  - Xml output customization.
+  - Test plug-in XML output Hook
+  - ClockerPlugIn example includes test time in XML output.
+  - DllPlugInTester allows test plug-in to hook the XML output.
 
 * Custom test macros
 
@@ -37,25 +41,55 @@
     This change allow ouputters to deal with all failure the same way (there is no
     special case for the equality assertion any more).
 
+* XmlDocument extracted from XmlOutputter to create different XML output
+
+  - Classes XmlDocument and XmlElement where extracted from XmlOutputter. This
+    help writing outputters that use a completly different XML format.
+
+* Xml output customization.
+
+  - Xml output can be customized using XmlOutputterHook. To do so, subclass
+    XmlOutputterHook and register it to the XmlOutputter with addHook() before
+    call XmlOutputter::write().
+
+    Hook can be used to add some datas to the XmlDocument or the XmlElement of
+    a specific hook. Methods have been added to XmlElement to help walking and
+    modifying the XmlDocument.
+
+    See ClockerPlugIn example.
+
 * MFC TestRunner
 
+  - The name of the test is displayed just before being run.
   - Browse dialog is resizable
   - Better (and cleaner) handling of windows resizing
   - Failure list on show the short description of the failure.
   - Edit field added to display the details of the failure.
 
+* MFC test plug-in runner (TestPlugInRunner):
+  
+  - command line: a dll name can be specified on the command after -testsuite:
+    example: TestPlugInRunnerd.exe -testsuite Simpled.dll
+
+* Test plug-in XML output Hook
+
+  - TestPlugIn interface provides a mean for plug-in to register hook for
+    XML output. Practically, this allow plug-in to add specific data to the
+    output. See ClockerPlugIn example, which add timing datas to the xml
+    output.
+
 * DllPlugInTester:
 
   - added option -w / --wait to wait for the user to press a key before exiting.
 
-* MfcUi:
+  - plug-in can now provides XmlOutputterHook to add specific datas to the 
+    XML ouput. See ClockerPlugIn example.
 
-  - the name of the test is displayed just before being run.
+* Examples:
 
-* MfcUi plug-in runner (TestPlugInRunner):
-  
-  - command line: a dll name can be specified on the command after -testsuite:
-    example: TestPlugInRunnerd.exe -testsuite Simpled.dll
+  - ClockerPlugIn: the example now use the new XmlOutputterHook. Test time are
+    now included in the XML output. See examples/ClockerPlugIn/ReadMe.txt for
+    details.
 
 * Bug Fix:
 
@@ -72,6 +106,9 @@
 
 * Compatibility Break:
 
+  - CompilerOutputter: removed printNotEqualMessage() and printDefaultMessage().
+    No longer needed since Exception message are processed in a generic way.
+
   - Exception constructor takes a Message instead of a string. Notes that the
     first argument in Message constructor is a short description, not the message.
     Therefore, the change will usualy have the following form:
@@ -79,13 +116,7 @@
     You may want to use Asserter functions instead of constructing and throwing
     the exception manually.
 
-  - CompilerOutputter: removed printNotEqualMessage() and printDefaultMessage().
-    No longer needed since Exception message are processed in a generic way.
-
-  - XmlOutputter: removed methods writeProlog() and writeTestResult() which
-    are replaced by XmlDocument.
-
-  - XmlOuputter::Node: class has been extracted and renamed XmlElement.
+  - TestPlugInAdapter: renamed TestPlugInDefaultImpl.
 
   - TestSuiteBuilder: removed default constructor. All remaining constructors
     take an additional argument of type TestNamer used to specify the fixture
@@ -95,6 +126,13 @@
 
   - TextTestResult: most printing method were removed. This task is now delegated
     to TextOuputter.
+
+  - XmlElement: renamed addNode() to addElement().
+
+  - XmlOutputter: removed methods writeProlog() and writeTestResult() which
+    are replaced by XmlDocument.
+
+  - XmlOuputter::Node: class has been extracted and renamed XmlElement.
 
 * Deprecated:
 

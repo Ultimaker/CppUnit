@@ -19,6 +19,7 @@ class XmlOutputterTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testWriteXmlResultWithOneError );
   CPPUNIT_TEST( testWriteXmlResultWithOneSuccess );
   CPPUNIT_TEST( testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess );
+  CPPUNIT_TEST( testHook );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -37,7 +38,11 @@ public:
   void testWriteXmlResultWithOneSuccess();
   void testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess();
 
+  void testHook();
+
 private:
+  class MockHook;
+
   /// Prevents the use of the copy constructor.
   XmlOutputterTest( const XmlOutputterTest &copy );
 

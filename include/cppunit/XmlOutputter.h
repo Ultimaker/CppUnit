@@ -9,6 +9,7 @@
 #endif
 
 #include <cppunit/Outputter.h>
+#include <deque>
 #include <iostream>
 #include <map>
 
@@ -21,10 +22,19 @@ class TestFailure;
 class TestResultCollector;
 class XmlDocument;
 class XmlElement;
+class XmlOutputterHook;
 
 
 /*! \brief Outputs a TestResultCollector in XML format.
  * \ingroup WritingTestResult
+ *
+ * Save the test result as a XML stream. 
+ *
+ * Additional datas can be added to the XML document using XmlOutputterHook. 
+ * Hook are not owned by the XmlOutputter. They should be valid until 
+ * destruction of the XmlOutputter. They can be removed with removeHook().
+ *
+ * \see XmlDocument, XmlElement, XmlOutputterHook.
  */
 class CPPUNIT_API XmlOutputter : public Outputter
 {
@@ -40,6 +50,16 @@ public:
 
   /// Destructor.
   virtual ~XmlOutputter();
+
+  /*! Adds the specified hook to the outputter.
+   * \param hook Hook to add. Must not be \c NULL.
+   */
+  virtual void addHook( XmlOutputterHook *hook );
+
+  /*! Removes the specified hook from the outputter.
+   * \param hook Hook to remove.
+   */
+  virtual void removeHook( XmlOutputterHook *hook );
 
   /*! Writes the specified result as an XML document to the stream.
    *
@@ -57,18 +77,48 @@ public:
 
 
   typedef std::map<Test *,TestFailure*> FailedTests;
+
+  /*! Returns the root element with its children.
+   *
+   * For all hooks, call beginDocument() just after creating the root element (it
+   * is empty at this time), and endDocument() once all the datas have been added
+   * to the root element.
+   *
+   * \return Root element.
+   */
   virtual XmlElement *makeRootNode();
   virtual void addFailedTests( FailedTests &failedTests,
                                XmlElement *rootNode );
   virtual void addSuccessfulTests( FailedTests &failedTests,
                                    XmlElement *rootNode );
+
+  /*! Adds the statics element to the root node.
+   * 
+   * Creates a new element containing statistics data and adds it to the root element.
+   * Then, for all hooks, call statisticsAdded().
+   * \param rootNode Root element.
+   */
   virtual void addStatistics( XmlElement *rootNode );
+
+  /*! Adds a failed test to the failed tests node.
+   * Creates a new element containing datas about the failed test, and adds it to 
+   * the failed tests element.
+   * Then, for all hooks, call failTestAdded().
+   */
   virtual void addFailedTest( Test *test,
                               TestFailure *failure,
                               int testNumber,
                               XmlElement *testsNode );
+
   virtual void addFailureLocation( TestFailure *failure,
                                    XmlElement *testNode );
+
+
+  /*! Adds a successful test to the successful tests node.
+   * Creates a new element containing datas about the successful test, and adds it to 
+   * the successful tests element.
+   * Then, for all hooks, call successfulTestAdded().
+   */
   virtual void addSuccessfulTest( Test *test, 
                                   int testNumber,
                                   XmlElement *testsNode );
@@ -76,11 +126,14 @@ protected:
   virtual void fillFailedTestsMap( FailedTests &failedTests );
 
 protected:
+  typedef std::deque<XmlOutputterHook *> Hooks;
+
   TestResultCollector *m_result;
   std::ostream &m_stream;
   std::string m_encoding;
   std::string m_styleSheet;
   XmlDocument *m_xml;
+  Hooks m_hooks;
 
 private:
   /// Prevents the use of the copy constructor.

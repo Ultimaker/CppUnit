@@ -3,9 +3,11 @@
 #include <cppunit/TestFailure.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/XmlOutputter.h>
+#include <cppunit/XmlOutputterHook.h>
 #include <cppunit/tools/XmlDocument.h>
 #include <cppunit/tools/XmlElement.h>
 #include <stdlib.h>
+#include <algorithm>
 
 
 namespace CppUnit
@@ -39,6 +41,20 @@ XmlOutputter::~XmlOutputter()
 
 
 void 
+XmlOutputter::addHook( XmlOutputterHook *hook )
+{
+  m_hooks.push_back( hook );
+}
+
+
+void 
+XmlOutputter::removeHook( XmlOutputterHook *hook )
+{
+  m_hooks.erase( std::find( m_hooks.begin(), m_hooks.end(), hook ) );
+}
+
+
+void 
 XmlOutputter::write()
 {
   m_xml->setRootElement( makeRootNode() );
@@ -58,12 +74,18 @@ XmlOutputter::makeRootNode()
 {
   XmlElement *rootNode = new XmlElement( "TestRun" );
 
+  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+    (*it)->beginDocument( m_xml, rootNode );
+
   FailedTests failedTests;
   fillFailedTestsMap( failedTests );
 
   addFailedTests( failedTests, rootNode );
   addSuccessfulTests( failedTests, rootNode );
   addStatistics( rootNode );
+
+  for ( Hooks::const_iterator itEnd = m_hooks.begin(); itEnd != m_hooks.end(); ++itEnd )
+    (*itEnd)->endDocument( m_xml, rootNode );
 
   return rootNode;
 }
@@ -87,7 +109,7 @@ XmlOutputter::addFailedTests( FailedTests &failedTests,
                                         XmlElement *rootNode )
 {
   XmlElement *testsNode = new XmlElement( "FailedTests" );
-  rootNode->addNode( testsNode );
+  rootNode->addElement( testsNode );
 
   const TestResultCollector::Tests &tests = m_result->tests();
   for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
@@ -104,7 +126,7 @@ XmlOutputter::addSuccessfulTests( FailedTests &failedTests,
                                            XmlElement *rootNode )
 {
   XmlElement *testsNode = new XmlElement( "SuccessfulTests" );
-  rootNode->addNode( testsNode );
+  rootNode->addElement( testsNode );
 
   const TestResultCollector::Tests &tests = m_result->tests();
   for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
@@ -120,12 +142,15 @@ void
 XmlOutputter::addStatistics( XmlElement *rootNode )
 {
   XmlElement *statisticsNode = new XmlElement( "Statistics" );
-  rootNode->addNode( statisticsNode );
-  statisticsNode->addNode( new XmlElement( "Tests", m_result->runTests() ) );
-  statisticsNode->addNode( new XmlElement( "FailuresTotal", 
-                                     m_result->testFailuresTotal() ) );
-  statisticsNode->addNode( new XmlElement( "Errors", m_result->testErrors() ) );
-  statisticsNode->addNode( new XmlElement( "Failures", m_result->testFailures() ) );
+  rootNode->addElement( statisticsNode );
+  statisticsNode->addElement( new XmlElement( "Tests", m_result->runTests() ) );
+  statisticsNode->addElement( new XmlElement( "FailuresTotal", 
+                                              m_result->testFailuresTotal() ) );
+  statisticsNode->addElement( new XmlElement( "Errors", m_result->testErrors() ) );
+  statisticsNode->addElement( new XmlElement( "Failures", m_result->testFailures() ) );
+
+  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+    (*it)->statisticsAdded( m_xml, statisticsNode );
 }
 
 
@@ -138,40 +163,47 @@ XmlOutputter::addFailedTest( Test *test,
   Exception *thrownException = failure->thrownException();
   
   XmlElement *testNode = new XmlElement( "FailedTest" );
-  testsNode->addNode( testNode );
+  testsNode->addElement( testNode );
   testNode->addAttribute( "id", testNumber );
-  testNode->addNode( new XmlElement( "Name", test->getName() ) );
-  testNode->addNode( new XmlElement( "FailureType", 
-                               failure->isError() ? "Error" : "Assertion" ) );
+  testNode->addElement( new XmlElement( "Name", test->getName() ) );
+  testNode->addElement( new XmlElement( "FailureType", 
+                                        failure->isError() ? "Error" : 
+                                                             "Assertion" ) );
 
   if ( failure->sourceLine().isValid() )
     addFailureLocation( failure, testNode );
 
-  testNode->addNode( new XmlElement( "Message", thrownException->what() ) );
+  testNode->addElement( new XmlElement( "Message", thrownException->what() ) );
+
+  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+    (*it)->failTestAdded( m_xml, testNode, test, failure );
 }
 
 
 void
 XmlOutputter::addFailureLocation( TestFailure *failure,
-                                            XmlElement *testNode )
+                                  XmlElement *testNode )
 {
   XmlElement *locationNode = new XmlElement( "Location" );
-  testNode->addNode( locationNode );
+  testNode->addElement( locationNode );
   SourceLine sourceLine = failure->sourceLine();
-  locationNode->addNode( new XmlElement( "File", sourceLine.fileName() ) );
-  locationNode->addNode( new XmlElement( "Line", sourceLine.lineNumber() ) );
+  locationNode->addElement( new XmlElement( "File", sourceLine.fileName() ) );
+  locationNode->addElement( new XmlElement( "Line", sourceLine.lineNumber() ) );
 }
 
 
 void
 XmlOutputter::addSuccessfulTest( Test *test, 
-                                          int testNumber,
-                                          XmlElement *testsNode )
+                                 int testNumber,
+                                 XmlElement *testsNode )
 {
   XmlElement *testNode = new XmlElement( "Test" );
-  testsNode->addNode( testNode );
+  testsNode->addElement( testNode );
   testNode->addAttribute( "id", testNumber );
-  testNode->addNode( new XmlElement( "Name", test->getName() ) );
+  testNode->addElement( new XmlElement( "Name", test->getName() ) );
+
+  for ( Hooks::const_iterator it = m_hooks.begin(); it != m_hooks.end(); ++it )
+    (*it)->successfulTestAdded( m_xml, testNode, test );
 }
 
 

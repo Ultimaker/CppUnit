@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.34 2002-06-13 18:17:42 blep Exp $
+# $Id: Makefile.am,v 1.35 2002-06-14 20:21:00 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -19,6 +19,7 @@ libcppunit_la_SOURCES = \
   RepeatedTest.cpp \
   PlugInManager.cpp \
   SourceLine.cpp \
+  StringTools.cpp \
   SynchronizedObject.cpp \
   Test.cpp \
   TestAssert.cpp \
@@ -29,7 +30,7 @@ libcppunit_la_SOURCES = \
   TestLeaf.cpp \
   TestNamer.cpp \
   TestPath.cpp \
-  TestPlugInAdapter.cpp \
+  TestPlugInDefaultImpl.cpp \
   TestResult.cpp \
   TestResultCollector.cpp \
   TestRunner.cpp \
@@ -45,6 +46,7 @@ libcppunit_la_SOURCES = \
   XmlDocument.cpp \
   XmlElement.cpp \
   XmlOutputter.cpp \
+  XmlOutputterHook.cpp \
   Win32DynamicLibraryManager.cpp
 
 libcppunit_la_LDFLAGS= \

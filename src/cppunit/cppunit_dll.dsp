@@ -349,6 +349,14 @@ SOURCE=.\XmlOutputter.cpp
 
 SOURCE=..\..\include\cppunit\XmlOutputter.h
 # End Source File
+# Begin Source File
+
+SOURCE=.\XmlOutputterHook.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\XmlOutputterHook.h
+# End Source File
 # End Group
 # Begin Group "portability"
 
@@ -487,11 +495,11 @@ SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestPlugInAdapter.cpp
+SOURCE=.\TestPlugInDefaultImpl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\plugin\TestPlugInAdapter.h
+SOURCE=..\..\include\cppunit\plugin\TestPlugInDefaultImpl.h
 # End Source File
 # Begin Source File
 
@@ -505,6 +513,14 @@ SOURCE=.\Win32DynamicLibraryManager.cpp
 # Begin Group "tools"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\StringTools.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\tools\StringTools.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\XmlDocument.cpp

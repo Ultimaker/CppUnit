@@ -7,27 +7,24 @@
 #define CLOCKERLISTENER_H
 
 #include <cppunit/TestListener.h>
-#include <cppunit/TestPath.h>
-#include <stack>
-#include <vector>
 
-#ifdef CLOCKER_USE_WINNTTIMER
-#include "WinNtTimer.h"
-typedef WinNtTimer Timer;
-#else
-#include "Timer.h"
-#endif
+class ClockerModel;
+
 
 /// TestListener that prints a flatten or hierarchical view of the test tree.
 class ClockerListener : public CppUnit::TestListener
 {
 public:
-  ClockerListener( bool flatten );
+  ClockerListener( ClockerModel *model,
+                   bool text );
 
   virtual ~ClockerListener();
 
   void startTestRun( CppUnit::Test *test, 
                      CppUnit::TestResult *eventManager );
+
+  void endTestRun( CppUnit::Test *test, 
+                   CppUnit::TestResult *eventManager );
 
   void startTest( CppUnit::Test *test );
 
@@ -37,37 +34,16 @@ public:
 
   void endSuite( CppUnit::Test *suite );
 
-  void endTestRun( CppUnit::Test *test, 
-                   CppUnit::TestResult *eventManager );
-
 private:
-  struct TestInfo
-  {
-    CppUnit::TestPath m_path;
-    Timer m_timer;
-    bool m_isSuite;
-    std::vector<int> m_childIndexes;
-  };
-
-  void enterTest( CppUnit::Test *test,
-                  bool isSuite );
-
-  void exitTest( CppUnit::Test *test,
-                 bool isSuite );
-
   void printStatistics() const;
 
-  void printTest( const TestInfo &info,
+  void printTest( int testIndex,
                   const std::string &indentString ) const;
 
   void printTestIndent( const std::string &indent,
                         const int indentLength ) const;
 
-  void printTestTime( double elapsedSeconds ) const;
-
-  void printFlattenedTestName( const TestInfo &info ) const;
-
-  void printTestName( const TestInfo &info ) const;
+  void printTime( double time ) const;
 
   /// Prevents the use of the copy constructor.
   ClockerListener( const ClockerListener &other );
@@ -76,14 +52,8 @@ private:
   void operator =( const ClockerListener &other );
 
 private:
-  bool m_flatten;
-  CppUnit::TestPath m_currentPath;
-  
-  int m_testCount;
-  double m_totalTestCaseTime;
-
-  std::stack<int> m_testIndexes;
-  std::vector<TestInfo> m_tests;
+  ClockerModel *m_model;
+  bool m_text;
 };
 
 

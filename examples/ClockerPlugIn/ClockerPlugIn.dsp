@@ -44,7 +44,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CLOCKERPLUGIN_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MDd /W3 /GX /O2 /I "..\..\include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_DLL" /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I "..\..\include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_DLL" /FD /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -130,11 +130,31 @@ SOURCE=.\ClockerListener.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\ClockerModel.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ClockerModel.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\ClockerPlugIn.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ClockerXmlHook.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ClockerXmlHook.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Makefile.am
+# End Source File
+# Begin Source File
+
+SOURCE=.\ReadMe.txt
 # End Source File
 # Begin Source File
 

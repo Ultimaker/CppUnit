@@ -17,6 +17,13 @@
 #include "CommandLineParser.h"
 
 
+/* Notes:
+
+  Memory allocated by test plug-in must be freed before unloading the test plug-in.
+  That is the reason why the XmlOutputter is explicitely destroyed.
+ */
+
+
 /*! Runs the specified tests located in the root suite.
  * \param parser Command line parser.
  * \return \c true if the run succeed, \c false if a test failed or if a test
@@ -25,76 +32,85 @@
 bool 
 runTests( const CommandLineParser &parser )
 {
-  CppUnit::TestResult controller;
-  CppUnit::TestResultCollector result;
-  controller.addListener( &result );        
-
-  // Set up outputters
-  std::ostream *stream = &std::cerr;
-  if ( parser.useCoutStream() )
-    stream = &std::cout;
-
-  std::ostream *xmlStream = stream;
-  if ( !parser.getXmlFileName().empty() )
-    xmlStream = new std::ofstream( parser.getXmlFileName().c_str() );
-
-  CppUnit::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
-  xmlOutputter.setStyleSheet( parser.getXmlStyleSheet() );
-  CppUnit::TextOutputter textOutputter( &result, *stream );
-  CppUnit::CompilerOutputter compilerOutputter( &result, *stream );
-
-  // Set up test listeners
-  CppUnit::BriefTestProgressListener briefListener;
-  CppUnit::TextTestProgressListener dotListener;
-  if ( parser.useBriefTestProgress() )
-    controller.addListener( &briefListener );
-  else if ( !parser.noTestProgress() )
-    controller.addListener( &dotListener );
-
-  // Set up plug-ins
-  CppUnit::PlugInManager plugInManager;
-  for ( int index =0; index < parser.getPlugInCount(); ++index )
-  {
-    CommandLinePlugInInfo plugIn = parser.getPlugInAt( index );
-    plugInManager.load( plugIn.m_fileName, plugIn.m_parameters );
-  }
-
-  // Registers plug-in specific TestListener (global setUp/tearDown, custom TestListener...)
-  plugInManager.addListener( &controller );
-
-  // Adds the default registry suite
-  CppUnit::TestRunner runner;
-  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
-
-  // Runs the specified test
   bool wasSuccessful = false;
-  try
+  CppUnit::PlugInManager plugInManager;
+
+  // The following scope is used to explicitely free all memory allocated before
+  // unload the test plug-ins (uppon plugInManager destruction).
   {
-    runner.run( controller, parser.getTestPath() );
-    wasSuccessful = result.wasSuccessful();
+    CppUnit::TestResult controller;
+    CppUnit::TestResultCollector result;
+    controller.addListener( &result );        
+
+    // Set up outputters
+    std::ostream *stream = &std::cerr;
+    if ( parser.useCoutStream() )
+      stream = &std::cout;
+
+    std::ostream *xmlStream = stream;
+    if ( !parser.getXmlFileName().empty() )
+      xmlStream = new std::ofstream( parser.getXmlFileName().c_str() );
+
+    CppUnit::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
+    xmlOutputter.setStyleSheet( parser.getXmlStyleSheet() );
+    CppUnit::TextOutputter textOutputter( &result, *stream );
+    CppUnit::CompilerOutputter compilerOutputter( &result, *stream );
+
+    // Set up test listeners
+    CppUnit::BriefTestProgressListener briefListener;
+    CppUnit::TextTestProgressListener dotListener;
+    if ( parser.useBriefTestProgress() )
+      controller.addListener( &briefListener );
+    else if ( !parser.noTestProgress() )
+      controller.addListener( &dotListener );
+
+    // Set up plug-ins
+    for ( int index =0; index < parser.getPlugInCount(); ++index )
+    {
+      CommandLinePlugInInfo plugIn = parser.getPlugInAt( index );
+      plugInManager.load( plugIn.m_fileName, plugIn.m_parameters );
+    }
+
+    // Registers plug-in specific TestListener (global setUp/tearDown, custom TestListener...)
+    plugInManager.addListener( &controller );
+
+    // Adds the default registry suite
+    CppUnit::TestRunner runner;
+    runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+
+    // Runs the specified test
+    try
+    {
+      runner.run( controller, parser.getTestPath() );
+      wasSuccessful = result.wasSuccessful();
+    }
+    catch ( std::invalid_argument & )
+    {
+      std::cerr  <<  "Failed to resolve test path: "  
+                 <<  parser.getTestPath() 
+                 <<  std::endl;
+    }
+
+    // Removes plug-in specific TestListener (not really needed but...)
+    plugInManager.removeListener( &controller );
+
+    // write using outputters
+    if ( parser.useCompilerOutputter() )
+      compilerOutputter.write();
+
+    if ( parser.useTextOutputter() )
+      textOutputter.write();
+
+    if ( parser.useXmlOutputter() )
+    {
+      plugInManager.addXmlOutputterHooks( &xmlOutputter );
+      xmlOutputter.write();
+      plugInManager.removeXmlOutputterHooks();
+    }
+
+    if ( !parser.getXmlFileName().empty() )
+      delete xmlStream;
   }
-  catch ( std::invalid_argument & )
-  {
-    std::cerr  <<  "Failed to resolve test path: "  
-               <<  parser.getTestPath() 
-               <<  std::endl;
-  }
-
-  // Removes plug-in specific TestListener (not really needed but...)
-  plugInManager.removeListener( &controller );
-
-  // write using outputters
-  if ( parser.useCompilerOutputter() )
-    compilerOutputter.write();
-
-  if ( parser.useTextOutputter() )
-    textOutputter.write();
-
-  if ( parser.useXmlOutputter() )
-    xmlOutputter.write();
-
-  if ( !parser.getXmlFileName().empty() )
-    delete xmlStream;
 
   return wasSuccessful;
 }

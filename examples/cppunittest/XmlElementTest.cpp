@@ -31,6 +31,116 @@ XmlElementTest::tearDown()
 
 
 void 
+XmlElementTest::testStringContentConstructor()
+{
+  CppUnit::XmlElement element( "aName", "someContent" );
+  CPPUNIT_ASSERT_EQUAL( std::string("aName"), element.name() );
+  CPPUNIT_ASSERT_EQUAL( std::string("someContent"), element.content() );
+}
+
+
+void 
+XmlElementTest::testNumericContentConstructor()
+{
+  CppUnit::XmlElement element( "numericName", 123456789 );
+  CPPUNIT_ASSERT_EQUAL( std::string("numericName"), element.name() );
+  CPPUNIT_ASSERT_EQUAL( std::string("123456789"), element.content() );
+}
+
+
+void 
+XmlElementTest::testSetName()
+{
+  CppUnit::XmlElement element( "aName" );
+  element.setName( "anotherName" );
+  CPPUNIT_ASSERT_EQUAL( std::string("anotherName"), element.name() );
+}
+
+
+void 
+XmlElementTest::testSetStringContent()
+{
+  CppUnit::XmlElement element( "aName", "someContent" );
+  element.setContent( "other" );
+  CPPUNIT_ASSERT_EQUAL( std::string("other"), element.content() );
+}
+
+
+void 
+XmlElementTest::testSetNumericContent()
+{
+  CppUnit::XmlElement element( "aName", "someContent" );
+  element.setContent( 87654321 );
+  CPPUNIT_ASSERT_EQUAL( std::string("87654321"), element.content() );
+}
+
+
+void 
+XmlElementTest::testNodeCount()
+{
+  CppUnit::XmlElement node( "element", "content" );
+  CPPUNIT_ASSERT_EQUAL( 0, node.elementCount() );
+
+  node.addElement( new CppUnit::XmlElement( "child1" ) );
+  node.addElement( new CppUnit::XmlElement( "child2" ) );
+  CPPUNIT_ASSERT_EQUAL( 2, node.elementCount() );
+}
+
+
+void 
+XmlElementTest::testElementAtNegativeIndexThrow()
+{
+  CppUnit::XmlElement node( "element" );
+  node.elementAt( -1 );
+}
+
+
+void 
+XmlElementTest::testElementAtTooLargeIndexThrow()
+{
+  CppUnit::XmlElement node( "element" );
+  node.elementAt( 0 );
+}
+
+
+void 
+XmlElementTest::testElementAt()
+{
+  CppUnit::XmlElement node( "element" );
+  CppUnit::XmlElement *element1 = new CppUnit::XmlElement( "element1" );
+  CppUnit::XmlElement *element2 = new CppUnit::XmlElement( "element2" );
+  node.addElement( element1 );
+  node.addElement( element2 );
+
+  CPPUNIT_ASSERT( element1 == node.elementAt(0) );
+  CPPUNIT_ASSERT( element2 == node.elementAt(1) );
+}
+
+
+void 
+XmlElementTest::testElementForThrow()
+{
+  CppUnit::XmlElement node( "element" );
+  node.addElement( new CppUnit::XmlElement( "element1" ) );
+  node.elementFor( "name2" );
+}
+
+
+void 
+XmlElementTest::testElementFor()
+{
+  CppUnit::XmlElement node( "element" );
+  CppUnit::XmlElement *element1 = new CppUnit::XmlElement( "element1" );
+  CppUnit::XmlElement *element2 = new CppUnit::XmlElement( "element2" );
+  node.addElement( element1 );
+  node.addElement( element2 );
+
+  CPPUNIT_ASSERT( element2 == node.elementFor( "element2" ) );
+  CPPUNIT_ASSERT( element1 == node.elementFor( "element1" ) );
+}
+
+
+void 
 XmlElementTest::testEmptyNodeToString()
 {
   CppUnit::XmlElement node( "element" );
@@ -79,8 +189,8 @@ void
 XmlElementTest::testNodeWithChildrenToString()
 {
   CppUnit::XmlElement node( "element" );
-  node.addNode( new CppUnit::XmlElement( "child1" ) );
-  node.addNode( new CppUnit::XmlElement( "child2" ) );
+  node.addElement( new CppUnit::XmlElement( "child1" ) );
+  node.addElement( new CppUnit::XmlElement( "child2" ) );
   std::string expectedXml = "<element><child1></child1>"
                             "<child2></child2></element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
@@ -109,7 +219,7 @@ void
 XmlElementTest::testNodeWithContentAndChildToString()
 {
   CppUnit::XmlElement node( "element", "content" );
-  node.addNode( new CppUnit::XmlElement( "child1" ) );
+  node.addElement( new CppUnit::XmlElement( "child1" ) );
   std::string expectedXml = "<element><child1></child1>content</element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
 }

@@ -256,32 +256,12 @@ InputName=cppunitd_dll
 # Begin Source File
 
 SOURCE=..\..\..\lib\testrunner.dll
-
-!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\..\lib\testrunnerd.dll
-
-!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # End Group
 # Begin Group "TestRunner-Was-In-Dll"

@@ -1,6 +1,7 @@
 #include <cppunit/XmlOutputter.h>
 #include <cppunit/TestFailure.h>
 #include <cppunit/XmlOutputter.h>
+#include <cppunit/XmlOutputterHook.h>
 #include "OutputSuite.h"
 #include "XmlOutputterTest.h"
 #include "XmlUniformiser.h"
@@ -220,6 +221,89 @@ XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess()
 }
 
 
+class XmlOutputterTest::MockHook : public CppUnit::XmlOutputterHook
+{
+public:
+  MockHook( int &beginCalls,
+            int &endCalls,
+            int &statisticsCalls,
+            int &successfulTestCalls,
+            int &failedTestCalls )
+      : m_successfulTestCalls( successfulTestCalls )
+      , m_failedTestCalls( failedTestCalls )
+      , m_beginCalls( beginCalls )
+      , m_endCalls( endCalls )
+      , m_statisticsCalls( statisticsCalls )
+  {
+  }
+
+  void beginDocument( CppUnit::XmlDocument *document,
+                      CppUnit::XmlElement *rootNode )
+  {
+    ++m_beginCalls;
+  }
+
+  void endDocument( CppUnit::XmlDocument *document,
+                    CppUnit::XmlElement *rootNode )
+  {
+    ++m_endCalls;
+  }
+
+  void failTestAdded( CppUnit::XmlDocument *document,
+                      CppUnit::XmlElement *testNode,
+                      CppUnit::Test *test,
+                      CppUnit::TestFailure *failure )
+  {
+    ++m_failedTestCalls;
+  }
+
+  void successfulTestAdded( CppUnit::XmlDocument *document,
+                            CppUnit::XmlElement *testNode,
+                            CppUnit::Test *test )
+  {
+    ++m_successfulTestCalls;
+  }
+
+  void statisticsAdded( CppUnit::XmlDocument *document,
+                        CppUnit::XmlElement *statisticsNode )
+  {
+    ++m_statisticsCalls;
+  }
+
+private:
+  int &m_beginCalls;
+  int &m_endCalls;
+  int &m_statisticsCalls;
+  int &m_successfulTestCalls;
+  int &m_failedTestCalls;
+};
+
+
+void 
+XmlOutputterTest::testHook()
+{
+  int begin =0, end =0, statistics =0, successful =0, failed =0;
+  MockHook hook( begin, end, statistics, successful, failed );
+
+  addTest( "test1" );
+  addTest( "test2" );
+  addTest( "test3" );
+  addTestFailure( "testfail1", "assertion failed" );
+  addTestError( "testerror1", "exception" );
+
+  CppUnit::OStringStream stream;
+  CppUnit::XmlOutputter outputter( m_result, stream );
+  outputter.addHook( &hook );
+  outputter.write();
+
+  CPPUNIT_ASSERT_EQUAL( 1, begin );
+  CPPUNIT_ASSERT_EQUAL( 1, end );
+  CPPUNIT_ASSERT_EQUAL( 1, statistics );
+  CPPUNIT_ASSERT_EQUAL( 3, successful );
+  CPPUNIT_ASSERT_EQUAL( 2, failed );
+}
+
+
 void 
 XmlOutputterTest::addTest( std::string testName )
 {
@@ -270,3 +354,4 @@ XmlOutputterTest::makeDummyTest( std::string testName )
   m_dummyTests.push_back( test );
   return test;
 }
+

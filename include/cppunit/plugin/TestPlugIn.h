@@ -12,6 +12,7 @@ namespace CppUnit
 class Test;
 class TestFactoryRegistry;
 class TestResult;
+class XmlOutputter;
 }
 
 /*! \file
@@ -67,6 +68,16 @@ struct CppUnitTestPlugIn
    */
   virtual void removeListener( CppUnit::TestResult *eventManager ) =0;
 
+  /*! Provides a way for the plug-in to register some XmlOutputterHook.
+   */
+  virtual void addXmlOutputterHooks( CppUnit::XmlOutputter *outputter ) =0;
+
+  /*! Called when the XmlOutputter is destroyed.
+   * 
+   * Can be used to free some resources allocated by addXmlOutputterHooks().
+   */
+  virtual void removeXmlOutputterHooks() = 0;
+
   /*! Called just before unloading the dynamic library.
    * 
    * Override this method to unregister test factory added in initialize().
@@ -109,7 +120,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 
 
 // Note: This include should remain after definition of CppUnitTestPlugIn
-#include <cppunit/plugin/TestPlugInAdapter.h>
+#include <cppunit/plugin/TestPlugInDefaultImpl.h>
 
 
 /*! \def CPPUNIT_PLUGIN_IMPLEMENT_MAIN()
@@ -170,8 +181,8 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
  * \see CppUnitTestPlugIn
  * \see CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL(), CPPUNIT_PLUGIN_IMPLEMENT_MAIN().
  */
-#define CPPUNIT_PLUGIN_IMPLEMENT()                                      \
-  CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( CppUnit::TestPlugInAdapter );  \
+#define CPPUNIT_PLUGIN_IMPLEMENT()                                          \
+  CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( CppUnit::TestPlugInDefaultImpl );  \
   CPPUNIT_PLUGIN_IMPLEMENT_MAIN()
 
 

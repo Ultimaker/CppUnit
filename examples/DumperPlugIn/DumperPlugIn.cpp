@@ -41,6 +41,16 @@ public:
   }
 
 
+  void addXmlOutputterHooks( CppUnit::XmlOutputter *outputter )
+  {
+  }
+
+
+  void removeXmlOutputterHooks()
+  {
+  }
+
+
   void uninitialize( CppUnit::TestFactoryRegistry *registry )
   {
   }
