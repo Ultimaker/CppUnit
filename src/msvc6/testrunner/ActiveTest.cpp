@@ -2,6 +2,41 @@
 #include "ActiveTest.h"
 
 
+
+// Construct the active test
+ActiveTest::ActiveTest( CPPUNIT_NS::Test *test )
+    : TestDecorator( test )
+    , m_runCompleted() 
+{ 
+  m_currentTestResult = NULL; 
+  m_threadHandle = INVALID_HANDLE_VALUE; 
+}
+
+
+// Pend until the test has completed
+ActiveTest::~ActiveTest()
+{ 
+  CSingleLock( &m_runCompleted, TRUE );
+  m_test = NULL;
+}
+
+
+// Set the test result that we are to run
+void 
+ActiveTest::setTestResult( CPPUNIT_NS::TestResult *result )
+{ 
+  m_currentTestResult = result; 
+}
+
+
+// Run our test result
+void 
+ActiveTest::run()
+{ 
+  TestDecorator::run( m_currentTestResult );
+}
+
+
 // Spawn a thread to a test
 void 
 ActiveTest::run( CPPUNIT_NS::TestResult *result )

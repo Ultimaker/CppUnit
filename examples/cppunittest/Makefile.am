@@ -13,6 +13,8 @@ cppunittestmain_SOURCES = \
 	CppUnitTestSuite.cpp \
 	ExceptionTest.cpp \
 	ExceptionTest.h \
+  ExceptionTestCaseDecoratorTest.h \
+  ExceptionTestCaseDecoratorTest.cpp \
 	ExtensionSuite.h \
 	FailureException.h \
 	HelperMacrosTest.cpp \

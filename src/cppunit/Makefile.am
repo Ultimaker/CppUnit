@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.37 2002-07-16 22:59:22 blep Exp $
+# $Id: Makefile.am,v 1.38 2002-08-03 15:47:52 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -21,6 +21,7 @@ libcppunit_la_SOURCES = \
   Message.cpp \
   RepeatedTest.cpp \
   PlugInManager.cpp \
+  Protector.cpp \
   ProtectorChain.h \
   ProtectorContext.h \
   ProtectorChain.cpp \
@@ -30,6 +31,7 @@ libcppunit_la_SOURCES = \
   Test.cpp \
   TestAssert.cpp \
   TestCase.cpp \
+  TestCaseDecorator.cpp \
   TestComposite.cpp \
   TestFactoryRegistry.cpp \
   TestFailure.cpp \

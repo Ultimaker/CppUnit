@@ -16,6 +16,7 @@ CPPUNIT_NS_BEGIN
 
 class Exception;
 class Functor;
+class Protector;
 class ProtectorChain;
 class Test;
 class TestFailure;
@@ -73,6 +74,10 @@ public:
   virtual bool protect( const Functor &functor,
                         Test *test,
                         const std::string &shortDescription = std::string("") );
+
+  virtual void pushProtector( Protector *protector );
+
+  virtual void popProtector();
 
 protected:
   void addFailure( const TestFailure &failure );

@@ -220,6 +220,14 @@ SOURCE=..\..\cppunittest\ExceptionTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\cppunittest\ExceptionTestCaseDecoratorTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\ExceptionTestCaseDecoratorTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\cppunittest\ExtensionSuite.h
 # End Source File
 # Begin Source File

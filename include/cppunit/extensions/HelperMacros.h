@@ -9,6 +9,7 @@
 #include <cppunit/Portability.h>
 #include <cppunit/extensions/AutoRegisterSuite.h>
 #include <cppunit/extensions/TestSuiteBuilder.h>
+#include <cppunit/extensions/ExceptionTestCaseDecorator.h>
 #include <string>
 
 CPPUNIT_NS_BEGIN
@@ -272,11 +273,17 @@ CPPUNIT_NS_END
  *                      method.
  */
 #define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )              \
-    CPPUNIT_TEST_ADD( (new CPPUNIT_NS::TestCaller<ThisTestFixtureType,   \
-                                                ExceptionType>(          \
+  CPPUNIT_TEST_ADD(                                                      \
+      (new CPPUNIT_NS::ExceptionTestCaseDecorator< ExceptionType >(      \
+          new CPPUNIT_NS::TestCaller< ThisTestFixtureType >(             \
                                namer.getTestNameFor( #testMethod ),      \
                                &ThisTestFixtureType::testMethod,         \
-                               factory.makeFixture() ) ) )
+                               factory.makeFixture() ) ) ) )
+//    CPPUNIT_TEST_ADD( (new CPPUNIT_NS::TestCaller<ThisTestFixtureType,   \
+//                                                ExceptionType>(          \
+//                               namer.getTestNameFor( #testMethod ),      \
+//                               &ThisTestFixtureType::testMethod,         \
+//                               factory.makeFixture() ) ) )
 
 /*! \brief Adds a test case which is excepted to fail.
  *

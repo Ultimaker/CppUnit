@@ -30,7 +30,6 @@ void
 RepeatedTestTest::tearDown()
 {
   delete m_repeatedTest;
-  delete m_test;
 }
 
 

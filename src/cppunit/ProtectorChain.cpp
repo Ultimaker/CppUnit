@@ -60,10 +60,7 @@ ProtectorChain::protect( const Functor &functor,
                          const ProtectorContext &context )
 {
   if ( m_protectors.empty() )
-  {
-    functor();
-    return true;
-  }
+    return functor();
 
   Functors functors;
   for ( int index = 0; index < m_protectors.size(); ++index )

@@ -200,4 +200,18 @@ TestResult::protect( const Functor &functor,
 }
 
 
+void 
+TestResult::pushProtector( Protector *protector )
+{
+  m_protectorChain->push( protector );
+}
+
+
+void 
+TestResult::popProtector()
+{
+  m_protectorChain->pop();
+}
+
+
 CPPUNIT_NS_END

@@ -91,6 +91,13 @@ Exception::message() const
 }
 
 
+void 
+Exception::setMessage( const Message &message )
+{
+  m_message = message;
+}
+
+
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 long 
 Exception::lineNumber() const

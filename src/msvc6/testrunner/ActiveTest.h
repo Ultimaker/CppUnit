@@ -42,40 +42,6 @@ protected:
   static UINT threadFunction( LPVOID thisInstance );
 };
 
-
-// Construct the active test
-inline 
-ActiveTest::ActiveTest( CPPUNIT_NS::Test *test )
-    : TestDecorator( test )
-    , m_runCompleted() 
-{ 
-  m_currentTestResult = NULL; 
-  m_threadHandle = INVALID_HANDLE_VALUE; 
-}
-
-
-// Pend until the test has completed
-inline 
-ActiveTest::~ActiveTest()
-{ 
-  CSingleLock( &m_runCompleted, TRUE );
-}
-
-
-// Set the test result that we are to run
-inline void 
-ActiveTest::setTestResult( CPPUNIT_NS::TestResult *result )
-{ 
-  m_currentTestResult = result; 
-}
-
-// Run our test result
-inline void 
-ActiveTest::run()
-{ 
-  TestDecorator::run( m_currentTestResult );
-}
-
 #endif
 
 

@@ -290,6 +290,14 @@ SOURCE=.\HelperMacrosTest.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\ExceptionTestCaseDecoratorTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ExceptionTestCaseDecoratorTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\OrthodoxTest.cpp
 # End Source File
 # Begin Source File

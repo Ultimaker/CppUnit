@@ -119,6 +119,10 @@ SOURCE=.\DllMain.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\extensions\ExceptionTestCaseDecorator.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\extensions\Orthodox.h
 # End Source File
 # Begin Source File
@@ -128,6 +132,18 @@ SOURCE=.\RepeatedTest.cpp
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\extensions\RepeatedTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestCaseDecorator.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TestCaseDecorator.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestDecorator.cpp
 # End Source File
 # Begin Source File
 

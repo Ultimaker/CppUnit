@@ -117,6 +117,8 @@ TextTestRunner::eventManager() const
  *
  * Notes that the outputter will be use after the test run only if \a printResult was
  * \c true.
+ * \param outputter New outputter to use. The previous outputter is destroyed. 
+ *                  The TextTestRunner assumes ownership of the outputter.
  * \see CompilerOutputter, XmlOutputter, TextOutputter.
  */
 void 

@@ -29,7 +29,6 @@ void
 TestDecoratorTest::tearDown()
 {
   delete m_decorator;
-  delete m_test;
 }
 
 

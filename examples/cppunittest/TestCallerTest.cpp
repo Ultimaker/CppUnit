@@ -154,6 +154,8 @@ TestCallerTest::testPointerConstructor()
   CPPUNIT_ASSERT_EQUAL( 1, m_destructorCount );
 }
 
+/*
+// Now done by ExceptionTestCaseDecorator
 
 void 
 TestCallerTest::testExpectFailureException()
@@ -189,7 +191,7 @@ TestCallerTest::testExpectedExceptionNotCaught()
   caller.run( m_result );
   m_testListener->verify();
 }
-
+*/
 
 void 
 TestCallerTest::checkNothingButConstructorCalled()

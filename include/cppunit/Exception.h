@@ -24,7 +24,7 @@ public:
    * \param sourceLine Source location related to the exception.
    */
   Exception( const Message &message = Message(), 
-	     const SourceLine &sourceLine = SourceLine() );
+             const SourceLine &sourceLine = SourceLine() );
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
   /*!
@@ -54,6 +54,9 @@ public:
 
   /// Message related to the exception.
   Message message() const;
+
+  /// Set the message.
+  void setMessage( const Message &message );
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
   /// The line on which the error occurred

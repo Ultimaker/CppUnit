@@ -39,7 +39,6 @@ public:
 
     std::string getName() const;
 
-protected:
     //! FIXME: this should probably be pure virtual.
     virtual void runTest();
     

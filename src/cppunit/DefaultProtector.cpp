@@ -12,12 +12,16 @@ DefaultProtector::protect( const Functor &functor,
 {
   try
   {
+    // BUG: => should return what is returned. Need to update
+    // UT to prove there is a bug. Consequence: runTest() is called
+    // even if setUp() failed in a 'sub-protector'.
     functor();
     return true;
+//    return functor();
   }
   catch ( Exception &failure )
   {
-    reportTestFailure( failure.message(), context, false );
+    reportFailure( context, failure );
   }
   catch ( std::exception &e )
   {
@@ -28,13 +32,12 @@ DefaultProtector::protect( const Functor &functor,
     shortDescription += "std::exception (or derived)."
 #endif
     Message message( shortDescription, e.what() );
-    reportTestFailure( message, context, true );
+    reportError( context, message );
   }
   catch ( ... )
   {
-    reportTestFailure( Message( "uncaught exception of unknown type"), 
-                       context, 
-                       true );
+    reportError( context,
+                 Message( "uncaught exception of unknown type") );
   }
   
   return false;

@@ -5,6 +5,7 @@
   - MFC TestRunner bug fixes
   - Major portability improvement
   - Protector
+  - Failure diagnostic
 
 * Asserter:
   
@@ -31,6 +32,14 @@
     such as CException or RWXMsg for example. Protector can also be
     used to implements the 'expected exception' assertion. Refer to
     module/Catching custom exception and Protector class documentation.
+
+* Failure diagnostic
+
+  - setUp() and tearDown() now provides a detailed diagnostic of the
+    failure (assertion, exception...)
+
+  - If RTTI is allowed to extract type info, CppUnit will report the
+    actual exception type in the diagnostic.
 
 * Bug Fix:
 

@@ -12,7 +12,7 @@
 
 CPPUNIT_NS_BEGIN
 
-
+#if 0
 /*! \brief Marker class indicating that no exception is expected by TestCaller.
  * This class is an implementation detail. You should never use this class directly.
  */
@@ -59,6 +59,7 @@ struct ExpectedExceptionTraits<NoExceptionExpected>
 };
 
 
+#endif
 
 //*** FIXME: rework this when class Fixture is implemented. ***//
 
@@ -99,8 +100,7 @@ struct ExpectedExceptionTraits<NoExceptionExpected>
  * \see TestCase
  */
 
-template <class Fixture,  
-          class ExpectedException = NoExceptionExpected>
+template <class Fixture>
 class TestCaller : public TestCase
 { 
   typedef void (Fixture::*TestMethod)();
@@ -160,17 +160,16 @@ public:
       delete m_fixture;
   }
 
-protected:
   void runTest()
   { 
-	  try {
+//	  try {
 	    (m_fixture->*m_test)();
-	  }
-	  catch ( ExpectedException & ) {
-	    return;
-	  }
+//	  }
+//	  catch ( ExpectedException & ) {
+//	    return;
+//	  }
 
-  	ExpectedExceptionTraits<ExpectedException>::expectedException();
+//  	ExpectedExceptionTraits<ExpectedException>::expectedException();
   }  
 
   void setUp()

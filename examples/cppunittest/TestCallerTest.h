@@ -15,9 +15,9 @@ class TestCallerTest : public CPPUNIT_NS::TestFixture,
   CPPUNIT_TEST( testBasicConstructor );
   CPPUNIT_TEST( testReferenceConstructor );
   CPPUNIT_TEST( testPointerConstructor );
-  CPPUNIT_TEST( testExpectFailureException );
-  CPPUNIT_TEST( testExpectException );
-  CPPUNIT_TEST( testExpectedExceptionNotCaught );
+//  CPPUNIT_TEST( testExpectFailureException );
+//  CPPUNIT_TEST( testExpectException );
+//  CPPUNIT_TEST( testExpectedExceptionNotCaught );
   CPPUNIT_TEST_SUITE_END();
 public:
   TestCallerTest();
@@ -30,9 +30,9 @@ public:
   void testReferenceConstructor();
   void testPointerConstructor();
 
-  void testExpectFailureException();
-  void testExpectException();
-  void testExpectedExceptionNotCaught();
+//  void testExpectFailureException();
+//  void testExpectException();
+//  void testExpectedExceptionNotCaught();
 
 private:
   class ExceptionThrower : public CPPUNIT_NS::TestCase
