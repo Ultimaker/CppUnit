@@ -8,6 +8,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include "resource.h"
 #include <TestRunnerDlg.h>
 #include <TestRunnerModel.h>
 #include "TestPlugInRunnerModel.h"

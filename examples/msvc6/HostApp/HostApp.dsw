@@ -21,18 +21,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "TFWKUI"=..\..\..\..\TfwkUi\TfwkUi.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
 Project: "TestRunner"=..\..\..\src\msvc6\testrunner\TestRunner.dsp - Package Owner=<4>
 
 Package=<5>

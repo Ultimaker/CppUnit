@@ -12,7 +12,8 @@ EXTRA_DIST = cppunit.m4 cppunit.spec.in cppunit.spec	\
 	config/ac_cxx_namespaces.m4			\
 	config/ac_cxx_rtti.m4				\
 	config/ac_cxx_string_compare_string_first.m4	\
-	config/bb_enable_doxygen.m4
+	config/bb_enable_doxygen.m4			\
+	INSTALL-WIN32.txt
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4

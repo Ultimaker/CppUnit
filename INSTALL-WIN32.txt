@@ -1,0 +1,126 @@
+At the current time, the only supported WIN32 platform is 
+Microsoft Visual C++. You must have VC++ 6.0 at least.
+
+Build Targets:
+--------------
+
+* cppunit.lib : unit testing framework library, the one you use to
+write unit tests.
+
+* testrunner.dll : a MFC extension DLL to run and browser unit tests 
+from a GUI.
+
+* dspluging.dll : a VC++ add-in used by testrunner.dll to open the
+file containing a test failure by double-clicking on the failure
+in the GUI.
+
+* testpluginrunner : (Warning: experimental) a VC++ application to run 
+test plug-in. A test plug-in is a DLL that publish a specified interface.
+This application is still incomplete (the auto-reload feature is missing).
+
+
+Configuration:
+--------------
+
+CppUnit and TestRunner comes with 3 configurations.
+
+* Release (): Multihtreaded DLL, release mode
+* Debug (d): Debug Multithreaded DLL, debug mode
+* Debug Crossplatform (cd): Debug Multithreaded DLL, suite name for
+test cases are not extracted from the class name using type_info.
+
+The letters enclosed in brackets indicates the suffix added to
+the library name. For example, the debug configuration cppunit library
+name is cppunitd.lib.
+
+Building:
+---------
+
+* Open the src/msvc6/testrunner/TestRunner.dsw workspace in VC++.
+* Make TestRunner is the active project.
+* Select the configuration you want to build (Release, Debug or
+  Debug Crossplatform)
+* Press F7 to compile TestRunner. Dependency should automatically
+compile the CppUnit and DSPlugIn which TestRunner depends on.
+* The resulting libraries can be found in the lib/ directory.
+
+Testing:
+--------
+
+* Open the workspace examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsw.
+* Make CppUnitTestApp the active project.
+* Select the configuration you build the library for.
+* Compile and run the project. The TestRunner GUI should appear.
+
+Using CppUnit:
+--------------
+
+* Writing unit tests:
+  To write unit tests, you need to link against cppunitXX.lib, where
+  XX is the chosen configuration suffix letters. You must
+  enable RTTI (Project Settings/C++/C++ Language) in your project.
+  CppUnit include directory must be in the include search path.
+  You can do that by adding the include directory in 
+  Project Settings/C++/Preprocessor/Additional include directories,
+  or Tools/Options/Directories/Include.
+
+  Quick steps:
+  - enable RTTI
+  - link lib/cppunitXX.lib
+  - include/ must be in the include search path
+
+* Using the TestRunner GUI:
+  To use the test runner GUI you need to link against testrunnerXX.lib
+  and cppunitXX.lib, where XX is the chosen configuration suffix 
+  letters. You must enable RTTI (Project Settings/C++/C++ Language) in 
+  your project. testrunner.dll must be in the path when your program is
+  run (the Debug/Release directory, your project dsp directory, or
+  in a directory specified in the PATH environment variable).
+  One of the easiest way to do that is to either add a post-build
+  command or add the testrunner.dll which is in the lib/ directory
+  to your project and define a custom build step that copy the
+  dll to your "Intermediate" directory (Debug or Release usually).
+
+  Since the TestRunner GUI is a MFC extension DLL, it can access
+  the CWinApp of the using application. Settings are stored using 
+  the application registry key. That means that "most recently used
+  test" settings are different for each application.
+
+  Quick steps:
+  - enable RTTI
+  - link lib/cppunitXX.lib and lib/testrunnerXX.lib
+  - include/ must be in the include search path
+  - lib/testrunnerXX.dll must be available to run your project
+
+* Using the DSPlugIn:
+  You must register the plug-in with VC++. This is done in 
+  Tools/Customize/Add-ins and Macro files, selecting browse and
+  selecting lib/DSPlugIn.dll. (BL's Note: I still haven't been able
+  to do that step successfully).
+
+* Using the Test Plug In Runner:
+  Your DLL must export a function that implement the interface
+defined in include/msvc6/testrunner/TestPlugInInterface.h.
+See examples/msvc6/TestPlugIn/TestPlugInInterfaceImpl.* for an example.
+Be warned, that runner is still experimental and have not been tested
+much.
+
+Frequently Asked Questions:
+---------------------------
+
+1) Why does my application crash when I use CppUnit ?
+   
+   You probably forgot to enable RTTI in your project/configuration.
+RTTI are disabled by default. 
+   Enable RTTI in Projects/Settings.../C++/C++ Langage. Make sure to
+do so for all configurations.
+
+2) Why does the compiler report an error when linking with CppUnit library ?
+
+   You most likely are not using the same C-RunTime library as CppUnit.
+   In Release configuration, CppUnit use "Mulithreaded DLL".
+   In Debug configurations, CppUnit use "Debug Multihreaded DLL".
+   Check that Projects/Settings.../C++/Code Generation is indeed using
+the correct library.
+
+   

@@ -40,9 +40,10 @@ RSC=rc.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "../../include" /I "../TestRunner" /I "..\..\..\include" /I "..\..\..\include\msvc6" /I "..\TestRunner" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "NDEBUG" /d "_AFXDLL"
@@ -68,7 +69,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "../../include" /I "../TestRunner" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /I "..\TestRunner" /D "_DEBUG" /D "CPPUNIT_TESTPLUGINRUNNER_BUILD" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD" /Yu"stdafx.h" /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "_DEBUG" /d "_AFXDLL"
@@ -79,15 +80,6 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 ../../../lib/cppunitd.lib ../../../lib/testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# Begin Custom Build
-IntDir=.\Debug
-InputPath=.\Debug\TestPlugInRunner.exe
-SOURCE="$(InputPath)"
-
-"$(IntDir)\testrunned.dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	copy ..\..\..\lib\testrunnerd.dll $(IntDir)
-
-# End Custom Build
 
 !ENDIF 
 
@@ -202,6 +194,59 @@ SOURCE=.\TestPlugInRunnerModel.cpp
 # Begin Source File
 
 SOURCE=.\TestPlugInRunnerModel.h
+# End Source File
+# End Group
+# Begin Group "DLL"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunner.dll
+
+!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
+
+# Begin Custom Build - Updating DLL: $(InputPath)
+IntDir=.\Release
+InputPath=..\..\..\lib\testrunner.dll
+
+"$(IntDir)\testrunner.dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\testrunner.dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnercd.dll
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\testrunnerd.dll
+
+!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
+
+# Begin Custom Build - Updating DLL: $(InputPath)
+IntDir=.\Debug
+InputPath=..\..\..\lib\testrunnerd.dll
+
+"$(IntDir)\testrunnerd.dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\testrunnerd.dll
+
+# End Custom Build
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Source File

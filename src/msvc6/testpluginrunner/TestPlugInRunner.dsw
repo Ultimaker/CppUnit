@@ -3,18 +3,6 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "CppUnitTestApp"=..\..\..\examples\msvc6\CppUnitTestApp\CppUnitTestApp.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
 Project: "TestPlugInRunner"=.\TestPlugInRunner.dsp - Package Owner=<4>
 
 Package=<5>
@@ -26,11 +14,29 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name TestRunner
     End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name cppunit
+    End Project Dependency
 }}}
 
 ###############################################################################
 
 Project: "TestRunner"=..\testrunner\TestRunner.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name cppunit
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "cppunit"=..\..\cppunit\cppunit.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

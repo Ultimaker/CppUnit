@@ -182,7 +182,7 @@
       {                                                                 \
         return new __ThisTestCaseType();                                \
       }                                                                 \
-    };
+    }
 
 #define __CPPUNIT_CONCATENATE_DIRECT( s1, s2 ) s1##s2
 #define __CPPUNIT_CONCATENATE( s1, s2 ) __CPPUNIT_CONCATENATE_DIRECT( s1, s2 )

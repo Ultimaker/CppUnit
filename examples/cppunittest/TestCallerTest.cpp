@@ -2,6 +2,8 @@
 #include "FailureException.h"
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
+#include <cppunit/TestResult.h>
+
 
 CPPUNIT_TEST_SUITE_REGISTRATION( TestCallerTest );
 
@@ -110,7 +112,7 @@ TestCallerTest::testBasicConstructor()
     checkTestName( caller.getName() );
     checkNothingButConstructorCalled();
 
-    caller.run();
+    delete caller.run();
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
@@ -129,7 +131,7 @@ TestCallerTest::testReferenceConstructor()
     checkTestName( caller.getName() );
     checkNothingButConstructorCalled();
 
-    caller.run();
+    delete caller.run();
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.
@@ -148,7 +150,7 @@ TestCallerTest::testPointerConstructor()
     checkTestName( caller.getName() );
     checkNothingButConstructorCalled();
 
-    caller.run();
+    delete caller.run();
 
     checkRunningSequenceCalled();
   } // Force destruction of the test caller.

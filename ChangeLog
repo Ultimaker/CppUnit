@@ -1,3 +1,31 @@
+2001-09-17 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* Makefile.am: Added INSTALL-WIN32.txt to EXTRA_DIST.
+
+	* INSTALL-WIN32.txt: added, short documentation for CppUnit and VC++.
+
+	* include/cppunit/extensions/HelperMacros.h: bug #448363, removed 
+	an extraneous ';' at the end of CPPUNIT_TEST_SUITE_END macro.
+
+	* examples/cppunittest/TestCallerTest.cpp: bug #448332, fixed
+	memory leaks.
+
+	* src/msvc6/testrunner/TestRunnerDlg.h:
+	* src/msvc6/testpluginrunner/TestPlugInRunnerDlg.h:
+	* src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp: change to define
+	IDD to a dummy value when subclassing the dialog.
+
+	* src/cppunit/cppunit.dsp:
+	* src/msvc6/testrunner/TestRunner.dsp:
+	* src/msvc6/testpluginrunner/TestPlugInRunner.dsp:
+	* examples/cppunitttest/CppUnitTestMain.dsp:
+	* examples/hierarchy.dsp:
+	* examples/msvc6/TestPlugIn/TestPlugIn.dsp:
+	* examples/msvc6/HostApp/HostApp.dsp: all configurations can be compiled.
+
+	* src/msvc6/testpluginrunner/TestPlugInRunner.dsw: added dependency to
+	cppunit.dsp and TestRunner.dsp.
+
 2001-09-16  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* Revert TestFixture-related changes from 2001-07-15:
@@ -16,9 +44,6 @@
 
 	* include/cppunit/Makefile.am (libcppunitinclude_HEADERS): Remove
 	TestFixture.h.
-
-2001-09-16 Baptiste Lepilleur <gaiacrtn@free.fr>
-	* INSTALL-WIN32.txt: Added.
 
 2001-09-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 	* src/msvc6/testrunner/TestRunner.dsp: fixed release configuration.

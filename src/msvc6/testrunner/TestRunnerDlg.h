@@ -20,7 +20,12 @@
    - you must define the symbol _AFX_DLL and _AFX_EXT
  */
 
+// Define the folowing symbol to subclass TestRunnerDlg
+#ifndef CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD
 #include "resource.h"
+#else
+#define IDD_DIALOG_TESTRUNNER 0
+#endif
 
 #include <vector>
 #include <cppunit/TestSuite.h>
@@ -53,8 +58,9 @@ public:
   void endTest( CppUnit::TestResult *result, 
                 CppUnit::Test *test );
 
+  // IDD is not use, it is just there for the wizard.
   //{{AFX_DATA(TestRunnerDlg)
-	enum { IDD = IDD_DIALOG_TESTRUNNER };
+  enum { IDD = IDD_DIALOG_TESTRUNNER };
 	MsDevCallerListCtrl	m_listCtrl;
   CButton	m_buttonClose;
   CButton	m_buttonStop;

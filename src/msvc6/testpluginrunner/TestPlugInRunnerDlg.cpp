@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "resource.h"
 #include "TestPlugInRunnerDlg.h"
 #include "TestPlugIn.h"
 #include "TestPlugInException.h"

@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O2 /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D "CPPUNIT_USE_TYPEINFO" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "../../../include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D "CPPUNIT_USE_TYPEINFO" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "NDEBUG" /d "_AFXDLL"
@@ -103,15 +103,7 @@ PostBuild_Cmds=copy ..\..\..\Lib\testrunnerd.dll Debug
 # Begin Source File
 
 SOURCE=..\..\cppunittest\BaseTestCase.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -120,15 +112,7 @@ SOURCE=..\..\cppunittest\BaseTestCase.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\ExceptionTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -137,15 +121,7 @@ SOURCE=..\..\cppunittest\ExceptionTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\FailingTestCase.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -158,15 +134,7 @@ SOURCE=..\..\cppunittest\FailureException.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\HelperMacrosTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -175,15 +143,7 @@ SOURCE=..\..\cppunittest\HelperMacrosTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\MockTestListener.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -192,15 +152,7 @@ SOURCE=..\..\cppunittest\MockTestListener.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\OrthodoxTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -209,15 +161,7 @@ SOURCE=..\..\cppunittest\OrthodoxTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\RepeatedTestTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -226,15 +170,7 @@ SOURCE=..\..\cppunittest\RepeatedTestTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\SubclassedTestCase.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -247,15 +183,7 @@ SOURCE=..\..\cppunittest\SynchronizedTestResult.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestAssertTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -264,15 +192,7 @@ SOURCE=..\..\cppunittest\TestAssertTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestCallerTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -281,15 +201,7 @@ SOURCE=..\..\cppunittest\TestCallerTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestCaseTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -298,15 +210,7 @@ SOURCE=..\..\cppunittest\TestCaseTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestDecoratorTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -315,15 +219,7 @@ SOURCE=..\..\cppunittest\TestDecoratorTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestFailureTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -332,15 +228,7 @@ SOURCE=..\..\cppunittest\TestFailureTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestListenerTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -349,15 +237,7 @@ SOURCE=..\..\cppunittest\TestListenerTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestResultTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -366,15 +246,7 @@ SOURCE=..\..\cppunittest\TestResultTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestSetUpTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -383,15 +255,7 @@ SOURCE=..\..\cppunittest\TestSetUpTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestSuiteTest.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -400,15 +264,7 @@ SOURCE=..\..\cppunittest\TestSuiteTest.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TrackedTestCase.cpp
-
-!IF  "$(CFG)" == "CppUnitTestApp - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "CppUnitTestApp - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
