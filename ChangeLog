@@ -1,3 +1,22 @@
+2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunitui/: moved to include/cppunit/ui (fix unix install problem).
+
+	* doc/cookbook.dox:
+	* examples/cppunittest/CppUnitTestMain.cpp:
+	* examples/msvc/CppUnitTestApp/HostApp.cpp:
+	* examples/msvc/HostApp/HostApp.cpp:
+	* examples/qt/Main.Cpp:
+	* examples/src/cppunit/TestRunner.cpp:
+	* examples/src/msvc6/TestRunner/TestRunner.cpp:
+	* examples/src/qttestrunner/TestRunner.cpp: updated to use <cppunit/ui/...> 
+	instead of <cppunitui/...> in include directives.
+
+	* doc/CppUnit-win.dox: generated documentation give the include path at the
+	bottom of the page for each class.
+
+	* NEWS: added compatibility break for 1.7.10 users.
+
 2002-04-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* examples/cppunittest/CppUnitTestMain.cpp: never wait for a key press.

@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "CppUnitTestApp.h"
 #include "CppUnitTestAppDlg.h"
-#include <cppunitui/mfc/TestRunner.h>
+#include <cppunit/ui/mfc/TestRunner.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunittest/CppUnitTestSuite.h>
 

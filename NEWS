@@ -150,6 +150,9 @@ any kind of failure.
     the first argument instead of the last (like CPPUNIT_ASSERT_MESSAGE).
 	Notes that CPPUNIT_ASSERT_EQUAL was introduced in release 1.7.3.
 
+  - directory for TestRunners as moved from cppunitui/ to cppunit/ui/ (concern
+  only users of release 1.7.10)
+
 * Bug fix:
   - test ExceptionTest.testAssignment() don't fail anymore on VC++. See FAQ
     for detail.

@@ -5,7 +5,7 @@
 // //////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include <cppunitui/mfc/TestRunner.h>
+#include <cppunit/ui/mfc/TestRunner.h>
 #include <cppunit/TestSuite.h>
 #include "TestRunnerModel.h"
 #include "TestRunnerDlg.h"

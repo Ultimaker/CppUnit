@@ -39,7 +39,7 @@ namespace MfcUi
  * Use this to launch the MFC TestRunner. Usually called from you CWinApp subclass:
  *
  * \code
- * #include <cppunitui/mfc/TestRunner.h>
+ * #include <cppunit/ui/mfc/TestRunner.h>
  * #include <cppunit/extensions/TestFactoryRegistry.h>
  *
  * void 

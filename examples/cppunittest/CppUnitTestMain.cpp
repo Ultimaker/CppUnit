@@ -1,6 +1,6 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/CompilerOutputter.h>
-#include <cppunitui/text/TestRunner.h>
+#include <cppunit/ui/text/TestRunner.h>
 #include "CppUnitTestSuite.h"
 
 

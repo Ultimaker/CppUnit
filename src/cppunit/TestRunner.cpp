@@ -3,7 +3,7 @@
 #include <cppunit/TextOutputter.h>
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/TestResult.h>
-#include <cppunitui/text/TestRunner.h>
+#include <cppunit/ui/text/TestRunner.h>
 #include <iostream>
 
 

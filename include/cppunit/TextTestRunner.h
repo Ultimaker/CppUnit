@@ -1,7 +1,7 @@
 #ifndef CPPUNIT_TEXTTESTRUNNER_H
 #define CPPUNIT_TEXTTESTRUNNER_H
 
-#include <cppunitui/text/TestRunner.h>
+#include <cppunit/ui/text/TestRunner.h>
 
 namespace CppUnit {
 

@@ -9,7 +9,7 @@
 #include "HostAppView.h"
 
 // CppUnit: MFC TestRunner
-#include <cppunitui/mfc/TestRunner.h>
+#include <cppunit/ui/mfc/TestRunner.h>
 // CppUnit: TestFactoryRegistry to retreive the top test suite that contains all registered tests.
 #include <cppunit/extensions/TestFactoryRegistry.h>
  

@@ -6,7 +6,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-#include <cppunitui/mfc/TestRunner.h>
+#include <cppunit/ui/mfc/TestRunner.h>
 
 /*! \brief MFC test runner (DEPRECATED)
  * \ingroup ExecutingTest

@@ -291,7 +291,7 @@ public:
 To use the text version, include the header files for the tests in Main.cpp:
 
 \code
-#include <cppunitui/text/TestRunner.h>
+#include <cppunit/ui/text/TestRunner.h>
 #include "ExampleTestCase.h"
 #include "ComplexNumberTest.h"
 \endcode
@@ -458,7 +458,7 @@ anymore:
 
 \code
 #include <cppunit/extensions/TestFactoryRegistry.h>
-#include <cppunitui/text/TestRunner.h>
+#include <cppunit/ui/text/TestRunner.h>
 
 int main( int argc, char **argv)
 {
@@ -496,7 +496,7 @@ a boolean indicating if the run was successful.
 Updating our main programm, we obtains:
 \code
 #include <cppunit/extensions/TestFactoryRegistry.h>
-#include <cppunitui/text/TestRunner.h>
+#include <cppunit/ui/text/TestRunner.h>
 
 int main( int argc, char **argv)
 {

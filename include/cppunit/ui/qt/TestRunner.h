@@ -24,7 +24,7 @@ namespace CppUnit
  * Here is an example of usage:
  * \code
  * #include <cppunit/extensions/TestFactoryRegistry.h>
- * #include <cppunitui/qt/TestRunner.h>
+ * #include <cppunit/ui/qt/TestRunner.h>
  *
  * [...]
  *

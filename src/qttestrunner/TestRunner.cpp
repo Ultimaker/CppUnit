@@ -6,7 +6,7 @@
 
 #include <qapplication.h>
 #include <cppunit/TestSuite.h>
-#include <cppunitui/qt/TestRunner.h>
+#include <cppunit/ui/qt/TestRunner.h>
 #include "TestRunnerDlgImpl.h"
 #include "TestRunnerModel.h"
 

@@ -1,6 +1,6 @@
 #include <qapplication.h>
 #define QTTESTRUNNER_API __declspec(dllimport)
-#include <cppunitui/qt/TestRunner.h>
+#include <cppunit/ui/qt/TestRunner.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 
 
