@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.23 2002-04-15 15:30:34 blep Exp $
+# $Id: Makefile.am,v 1.24 2002-04-15 15:44:23 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -9,7 +9,7 @@ lib_LTLIBRARIES = libcppunit.la
 
 libcppunit_la_SOURCES = \
   Asserter.cpp \
-  BeosDynamicLibraryManager.cpp \
+  BeOsDynamicLibraryManager.cpp \
   CompilerOutputter.cpp \
   DynamicLibraryManager.cpp \
   DynamicLibraryManagerException.cpp \
