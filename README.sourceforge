@@ -3,6 +3,10 @@
 
 * create files to distribute and copy them to sourceforge
 
+	Bump up release version in:
+	 - include/cppunit/Portability.h
+	 - doc/makedox.bat
+
 	make distcheck
 	make doc-dist
 	scp cppunit*tar.gz <account>@cppunit.sourceforge.net:
