@@ -10,7 +10,7 @@
 
 * Major portability improvement:
 
-  - Much work as been done to reduce C++ feature requirement to compile
+  - Much work has been done to reduce C++ feature requirement to compile
     CppUnit. It should now be possible to compile CppUnit on most 
     compilers, as long as STL are available (in std namespace or not), 
     with some form of strstream and iostream, as well as exception support.
@@ -20,17 +20,17 @@
 
   - Protector can be passed to the TestResult to 'protect' call to
     setUp(), runTest() and tearDown() method. With this, it is easy to
-    capture exception which do not have std::exception as a base class,
-    such as CException or RWXMsg for example. Protector can also be
-    used to implements the 'expected exception' assertion. Refer to
-    module/Catching custom exception and Protector class documentation.
+    capture exceptions which do not have std::exception as a base class,
+    such as CException or RWXMsg for example. TestResult and Protector 
+    class documentation. Look at src/cppunit/DefaultProtector.cpp for
+    an example of implementation.
 
 * Helper macros
 
   - Mostly rewritten. It no longer use TestSuiteBuilder. A new object
     TestSuiteBuilderContext was introduced. It is used to name test case,
     create test fixture instance and add test to the fixture suite. It
-    is now much easier to add custom test cases using
+    is now much more easier to add custom test cases using
     CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS. Should also prevent most 
     compability break concerning that macro.
 
