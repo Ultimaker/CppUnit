@@ -1,3 +1,14 @@
+2001-05-17  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+	* Makefile.am (dist-hook): Copy files relative to $(top_srcdir).
+	* doc/Makefile.am: Generated doc files depend on Doxyfile.
+	* doc/Doxyfile.in: Use autoconf substitutions in file names.
+	* examples/hierarchy/Makefile.am (check_PROGRAMS): Build hierarchy
+          with "make check", not "make all".
+	* examples/hierarchy/Makefile.am (INCLUDES): 
+	* src/cppunit/Makefile.am (INCLUDES): Search in 
+	  $(top_srcdir)/include.
+	* Added .cvsignore files.
+
 2001-05-16 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Merged Debian packaging support files by Christian Leutloff 
 	  from debian package version 1.5.4-2.
@@ -84,13 +95,13 @@
 	  only the TestCaller but not the Fixture instance is registered in
 	  the TestRegistry
 	  Patch #403541 / #403542
- 
- 	* examples/hierarchy/BoardGameTest.h, examples/hierarchy/ChessTest.h,
+
+	* examples/hierarchy/BoardGameTest.h, examples/hierarchy/ChessTest.h,
  	  examples/hierarchy/main.cpp: initialize example TestCases with 
           TestSuite so that the TestCallers are registered in the TestRegistry
 	  Patch #403542. Fixes bug #415249
  
- 	* cppunit/TestCaller.h, cppunit/TestCase.cpp, cppunit/TestCase.h: 
+	* cppunit/TestCaller.h, cppunit/TestCase.cpp, cppunit/TestCase.h: 
  	  changed documentation; made hopefully clearer which constructor 
  	  registers the instance in the TestRegistry; corrected syntax in code
  	  example

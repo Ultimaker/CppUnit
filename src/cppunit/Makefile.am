@@ -1,10 +1,9 @@
 #
-# $Id: Makefile.am,v 1.2 2001-04-29 14:09:16 bastiaan Exp $
+# $Id: Makefile.am,v 1.3 2001-05-17 20:24:46 bastiaan Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
-
-cppunitdir=$(includedir)/cppunit
+INCLUDES = -I$(top_srcdir)/include
 
 lib_LTLIBRARIES = libcppunit.la
 

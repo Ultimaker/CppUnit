@@ -6,7 +6,7 @@ EXTRA_DIST = cookbook.html header.html footer.html other_documentation.dox
 all-local: dox #pdf
 
 dox: html/index.html
-html/index.html:
+html/index.html: Doxyfile
 	@DOXYGEN@
 
 pdf: @PACKAGE@.pdf

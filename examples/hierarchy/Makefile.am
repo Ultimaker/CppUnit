@@ -1,10 +1,9 @@
 EXTRA_DIST = hierarchy.dsw hierarchy.dsp
 
 TESTS = hierarchy
+check_PROGRAMS = $(TESTS)
 
-noinst_PROGRAMS = hierarchy
-
-INCLUDES= -I$(top_srcdir) 
+INCLUDES = -I$(top_srcdir)/include
 
 hierarchy_SOURCES= BoardGame.cpp \
                    Chess.cpp \
