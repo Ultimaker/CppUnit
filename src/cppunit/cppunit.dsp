@@ -205,3 +205,12 @@ SOURCE=.\TextTestResult.cpp
 SOURCE=..\..\include\cppunit\TextTestResult.h
 # End Source File
 # Begin Source File
+
+SOURCE=.\TypeInfoHelper.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TypeInfoHelper.h
+# End Source File
+# End Target
+# End Project
