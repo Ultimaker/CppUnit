@@ -1,3 +1,4 @@
+#include <iostream>
 #include "TextTestResult.h"
 #include "Exception.h"
 #include "estring.h"
