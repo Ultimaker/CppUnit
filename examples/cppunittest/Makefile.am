@@ -1,4 +1,4 @@
-EXTRA_DIST = CppUnitTestMain.dsw CppUnitTestMain.dsp
+EXTRA_DIST = CppUnitTestMain.dsw CppUnitTestMain.dsp CppUnitTestPlugIn.dsp
 
 TESTS = cppunittestmain
 check_PROGRAMS = $(TESTS)
