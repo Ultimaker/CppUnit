@@ -1,8 +1,11 @@
 2001-09-19  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* README: Describe how to check if libtool is fixed.
+
 	* Makefile.am (dist-hook): Include INSTALL-WIN32.txt in the list
 	of files to convert to MSDOS line endings.
 	(snapshot): Use ISO-8601 compliant date for filename.
+	(ACLOCAL_AMFLAGS): Specify local directory.
 
 2001-09-18  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
