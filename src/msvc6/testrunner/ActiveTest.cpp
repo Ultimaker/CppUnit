@@ -39,7 +39,7 @@ ActiveTest::threadFunction( LPVOID thisInstance )
   test->run ();
 
   ::CloseHandle( test->m_threadHandle );
-  test->m_threadHandle = INVALID_HANDLE_VALUE
+  test->m_threadHandle = INVALID_HANDLE_VALUE;
 
   test->m_runCompleted.SetEvent();
 
