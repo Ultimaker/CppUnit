@@ -584,6 +584,10 @@ SOURCE=..\..\include\cppunit\plugin\PlugInParameters.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\ShlDynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
 # End Source File
 # Begin Source File

@@ -2,6 +2,25 @@
 
   * include/cppunit/extensions/Makefile.am: removed TestSuiteBuilder.h
 
+  * Makefile.am
+  * configure.in
+  * config/ac_dll.m4
+  * examples/cppunittest/Makefile.am
+  * examples/hierarchy/Makefile.am
+  * examples/money/Makefile.am
+  * examples/simple/Makefile.am
+  * include/cppunit/config/SelectDllLoader.h
+  * include/cppunit/plugin/TestPlugIn.h
+  * include/cppunit/tools/Algorithm.h
+  * src/DllPlugInTester/Makefile.am
+  * src/cppunit/Makefile.am
+  * src/cppunit/TestDecorator.cpp
+  * src/cppunit/ShlDynamicLibraryManager.cpp
+  * src/cppunit/UnixDynamicLibraryManager.cpp
+  * src/cppunit/Win32DynamicLibraryManager.cpp: applied patch from 
+    Abdessattar Sassi <abdesassi@users.sourceforge.net> to add support
+    for plug-in to hp-ux (patch #721546).
+
 2003-04-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/TestSuiteBuilder.h: removed (unused)

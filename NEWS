@@ -5,6 +5,12 @@
 
   - In the process of adding XML Input for parametrized test.
 
+* Test Plug-in
+
+  - added support contributed support for UNIX systems that
+    have libdld and not libdl (e.g. hp-ux). Thanks to
+    Abdessattar Sassi for this.
+
 * Bug Fix:
 
   - MFC TestRunner: integrated bug fix from Tim Threlkeld for bug 

@@ -54,7 +54,7 @@
 #elif defined(__BEOS__)
 #define CPPUNIT_HAVE_BEOS_DLL_LOADER 1
 
-// Is Unix platform and have shl_load()
+// Is Unix platform and have shl_load() (hp-ux)
 #elif defined(CPPUNIT_HAVE_SHL_LOAD)
 #define CPPUNIT_HAVE_UNIX_SHL_LOADER 1
 
