@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "../../include" /I "../TestRunner" /I "..\..\..\include" /I "..\..\..\include\msvc6" /I "..\TestRunner" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "../../include" /I "../TestRunner" /I "..\..\..\include" /I "..\..\..\include\msvc6" /I "..\TestRunner" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD" /D "CPPUNIT_DLL" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "NDEBUG" /d "_AFXDLL"
@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 ../../../lib/cppunit.lib ../../../lib/testrunner.lib /nologo /subsystem:windows /machine:I386
+# ADD LINK32 cppunit_dll.lib testrunner.lib /nologo /subsystem:windows /machine:I386 /libpath:"../../../lib/"
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
 
@@ -69,7 +69,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /I "..\TestRunner" /D "_DEBUG" /D "CPPUNIT_TESTPLUGINRUNNER_BUILD" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD" /Yu"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /I "..\TestRunner" /D "_DEBUG" /D "CPPUNIT_TESTPLUGINRUNNER_BUILD" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD" /D "CPPUNIT_DLL" /Yu"stdafx.h" /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "_DEBUG" /d "_AFXDLL"
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 ../../../lib/cppunitd.lib ../../../lib/testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 cppunitd_dll.lib testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"../../../lib/"
 
 !ENDIF 
 
@@ -201,16 +201,71 @@ SOURCE=.\TestPlugInRunnerModel.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\..\lib\cppunit_dll.dll
+
+!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
+
+# Begin Custom Build - Updating $(InputPath)
+IntDir=.\Release
+InputPath=..\..\..\lib\cppunit_dll.dll
+InputName=cppunit_dll
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
+
+# Begin Custom Build - Updating $(InputPath)
+IntDir=.\Debug
+InputPath=..\..\..\lib\cppunit_dll.dll
+InputName=cppunit_dll
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\cppunitd_dll.dll
+
+!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
+
+# Begin Custom Build - Updating $(InputPath)
+IntDir=.\Debug
+InputPath=..\..\..\lib\cppunitd_dll.dll
+InputName=cppunitd_dll
+
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
+
+# End Custom Build
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\..\lib\testrunner.dll
 
 !IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
 
-# Begin Custom Build - Updating DLL: $(InputPath)
+# Begin Custom Build - Updating $(InputPath)
 IntDir=.\Release
 InputPath=..\..\..\lib\testrunner.dll
+InputName=testrunner
 
-"$(IntDir)\testrunner.dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	copy $(InputPath) $(IntDir)\testrunner.dll
+"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	copy $(InputPath) $(IntDir)\$(InputName).dll
 
 # End Custom Build
 
@@ -224,7 +279,17 @@ InputPath=..\..\..\lib\testrunner.dll
 # Begin Source File
 
 SOURCE=..\..\..\lib\testrunnercd.dll
+
+!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
+
 # PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 

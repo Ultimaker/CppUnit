@@ -19,7 +19,6 @@ CFG=TestRunner - Win32 Debug Unicode
 !MESSAGE 
 !MESSAGE "TestRunner - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "TestRunner - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "TestRunner - Win32 Debug Crossplatform Setting" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "TestRunner - Win32 Release Unicode" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "TestRunner - Win32 Debug Unicode" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
@@ -86,35 +85,6 @@ LINK32=link.exe
 # ADD LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\lib\testrunnerd.dll" /implib:"..\..\..\lib\testrunnerd.lib" /pdbtype:sept
 # SUBTRACT LINK32 /profile /pdb:none /map
 
-!ELSEIF  "$(CFG)" == "TestRunner - Win32 Debug Crossplatform Setting"
-
-# PROP BASE Use_MFC 6
-# PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "TestRunner___Win32_Debug_Without_CPPUNIT_USE_TYPEINFO"
-# PROP BASE Intermediate_Dir "TestRunner___Win32_Debug_Without_CPPUNIT_USE_TYPEINFO"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 6
-# PROP Use_Debug_Libraries 1
-# PROP Output_Dir "DebugNoTypeInfo"
-# PROP Intermediate_Dir "DebugNoTypeInfo"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_AFXEXT" /D "CPPUNIT_USE_TYPEINFO" /D "WIN32" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_AFXEXT" /D "WIN32" /D "CPPUNIT_DONT_USE_TYPEINFO" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
-# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
-# ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\lib\testrunnerd.dll" /implib:"..\..\..\lib\testrunnerd.lib" /pdbtype:sept
-# SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 ..\..\..\lib\cppunitcd.lib winmm.lib /nologo /subsystem:windows /dll /pdb:"DebugCrossplatform/testrunnercd.pdb" /debug /machine:I386 /def:".\TestRunner.def" /out:"..\..\..\lib\testrunnercd.dll" /implib:"..\..\..\lib\testrunnercd.lib" /pdbtype:sept
-# SUBTRACT LINK32 /pdb:none
-
 !ELSEIF  "$(CFG)" == "TestRunner - Win32 Release Unicode"
 
 # PROP BASE Use_MFC 6
@@ -179,7 +149,6 @@ LINK32=link.exe
 
 # Name "TestRunner - Win32 Release"
 # Name "TestRunner - Win32 Debug"
-# Name "TestRunner - Win32 Debug Crossplatform Setting"
 # Name "TestRunner - Win32 Release Unicode"
 # Name "TestRunner - Win32 Debug Unicode"
 # Begin Group "Resource Files"
@@ -259,10 +228,6 @@ SOURCE=.\TestRunner.def
 # PROP Exclude_From_Build 1
 
 !ELSEIF  "$(CFG)" == "TestRunner - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "TestRunner - Win32 Debug Crossplatform Setting"
-
-# PROP Exclude_From_Build 1
 
 !ELSEIF  "$(CFG)" == "TestRunner - Win32 Release Unicode"
 
