@@ -194,6 +194,11 @@ public:
       return write( buffer );
    }
 
+   OStream &operator <<( const char *v )
+   {
+      return write( v ? v : "NULL" );
+   }
+
    OStream &operator <<( char c )
    {
       char buffer[16];
