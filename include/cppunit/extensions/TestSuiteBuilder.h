@@ -7,7 +7,7 @@
 
 namespace CppUnit {
 
-  template<class Fixture>
+  template<typename Fixture>
   class TestSuiteBuilder
   {
     public:
@@ -17,11 +17,9 @@ namespace CppUnit {
       {
       }
 
-#ifdef USE_TYPEINFO
-      TestSuiteBuilder() : m_suite( new TestSuite( typeid( Fixture) ) ) 
+      TestSuiteBuilder(std::string name) : m_suite( new TestSuite(name) ) 
       {
       }
-#endif // USE_TYPEINFO
 
       TestSuite *suite() const
       {

@@ -6,7 +6,6 @@
 #include <utility>
 #include "cppunit/TestSuite.h"
 #include "cppunit/extensions/TestFactoryRegistry.h"
-#include "cppunit/extensions/TestSuiteBuilder.h"
 
 #ifdef USE_TYPEINFO
 #include "TypeInfoHelper.h"
@@ -18,7 +17,6 @@ TestFactoryRegistry::TestFactoryRegistry( std::string name ) :
     m_name( name )
 {
 }
-
 
 TestFactoryRegistry::~TestFactoryRegistry()
 {

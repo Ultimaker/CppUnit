@@ -17,7 +17,7 @@ namespace CppUnit {
    * \param TestCaseType Type of the test case which suite is registered.
    * \see CU_TEST_SUITE_REGISTRATION.
    */
-  template<class TestCaseType>
+  template<typename TestCaseType>
   class AutoRegisterSuite
   {
     public:

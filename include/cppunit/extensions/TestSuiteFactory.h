@@ -7,7 +7,7 @@ namespace CppUnit {
 
   class Test;
 
-  template<class TestCaseType>
+  template<typename TestCaseType>
     class TestSuiteFactory : public AbstractTestFactory
   {
   public:

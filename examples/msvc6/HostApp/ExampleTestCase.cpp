@@ -1,11 +1,6 @@
-#include <cppunit/extensions/TestSuiteBuilder.h>
-
 #include "ExampleTestCase.h"
 
-
 CU_TEST_SUITE_REGISTRATION( ExampleTestCase );
-
-
 
 void ExampleTestCase::example ()
 {
@@ -45,10 +40,10 @@ void ExampleTestCase::testEquals ()
     std::auto_ptr<long>	l1 (new long (12));
     std::auto_ptr<long>	l2 (new long (12));
 
-	assertLongsEqual (12, 12);
-	assertLongsEqual (12L, 12L);
-	assertLongsEqual (*l1, *l2);
-
+    assertLongsEqual (12, 12);
+    assertLongsEqual (12L, 12L);
+    assertLongsEqual (*l1, *l2);
+    
 	assert (12L == 12L);
 	assertLongsEqual (12, 13);
 	assertDoublesEqual (12.0, 11.99, 0.5);

@@ -6,6 +6,7 @@
 #ifndef CPPUNIT_EXTENSIONS_HELPERMACROS_H
 #define CPPUNIT_EXTENSIONS_HELPERMACROS_H
 
+#include <string>
 #include <cppunit/extensions/AutoRegisterSuite.h>
 #include <cppunit/extensions/TestSuiteBuilder.h>
 
@@ -49,7 +50,7 @@
  * You only need to specify the full qualified name of the class. For example:
  *
  * \code
- * template<class CharType>
+ * template<typename CharType>
  * class StringTest : public CppUnit::Testcase {
  *   CU_TEST_SUITE( StringTest<CharType> );
  *   CU_TEST( testAppend );
@@ -76,11 +77,12 @@
     static CppUnit::Test *suite()                                       \
     {                                                                   \
       __ThisTestCaseType *test =NULL;                                   \
-      CppUnit::TestSuiteBuilder<__ThisTestCaseType> suite;              \
+      CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
+        suite(std::string(#ATestCaseType));                             \
       __ThisTestCaseType::registerTests( suite, test );                 \
       return suite.takeSuite();                                         \
     }                                                                   \
-    template<class TestCaseType>                                        \
+    template<typename TestCaseType>                                     \
     static void                                                         \
     registerTests( CppUnit::TestSuiteBuilder<TestCaseType> &suite,      \
                    TestCaseType *test )                                 \

@@ -41,7 +41,7 @@ namespace CppUnit {
    * \see TestCase
    */
 
-  template <class Fixture> 
+  template <typename Fixture> 
     class TestCaller : public TestCase
     { 
         typedef void             (Fixture::*TestMethod)();
@@ -89,7 +89,7 @@ namespace CppUnit {
    * \param testMethod Method called by the TestCaller.
    * \return TestCaller for the specified method.      
    */
-  template<class Fixture>
+  template<typename Fixture>
     Test *makeTestCaller( std::string name, void (Fixture::*testMethod)() )
     {
       return new TestCaller<Fixture>( name, testMethod );

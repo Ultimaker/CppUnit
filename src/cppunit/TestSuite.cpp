@@ -1,8 +1,5 @@
 #include "cppunit/TestSuite.h"
 #include "cppunit/TestResult.h"
-#ifdef USE_TYPEINFO
-#include "TypeInfoHelper.h"
-#endif // USE_TYPEINFO
 
 namespace CppUnit {
 
@@ -15,7 +12,6 @@ void TestSuite::deleteContents ()
     delete *it;
   m_tests.clear();
 }
-
 
 /// Runs the tests and collects their result in a TestResult.
 void TestSuite::run (TestResult *result)
@@ -47,32 +43,17 @@ int TestSuite::countTestCases () const
 
 }
 
-
-
 /// Default constructor
 TestSuite::TestSuite (std::string name)
   : m_name (name)
 {
 }
 
-#ifdef USE_TYPEINFO
-/** Constructs a test suite named after the specified type_info.
- * \param info type_info used to name the suite. The 'class' prefix
- *             is stripped from the name.
- */
-TestSuite::TestSuite(const std::type_info &info ) :
-  m_name( TypeInfoHelper::getClassName( info ) )
-{
-}
-#endif // USE_TYPEINFO
-
-
 /// Destructor
 TestSuite::~TestSuite ()
 { 
   deleteContents (); 
 }
-
 
 /// Adds a test to the suite. 
 void 

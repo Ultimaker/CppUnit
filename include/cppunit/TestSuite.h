@@ -32,9 +32,6 @@ namespace CppUnit {
   {
     public:
                         TestSuite       (std::string name = "");
-#ifdef USE_TYPEINFO
-                        TestSuite       (const std::type_info &info );
-#endif // USE_TYPEINFO
                         ~TestSuite      ();
 
     void                run             (TestResult *result);
