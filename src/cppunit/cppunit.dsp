@@ -241,5 +241,13 @@ SOURCE=.\TextTestResult.cpp
 
 SOURCE=..\..\include\cppunit\TextTestResult.h
 # End Source File
+# Begin Source File
+
+SOURCE=.\TextTestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestRunner.h
+# End Source File
 # End Target
 # End Project
