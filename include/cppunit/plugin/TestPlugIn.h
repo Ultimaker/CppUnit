@@ -112,10 +112,12 @@ typedef CppUnitTestPlugIn *(*CppUnitTestPlugInSignature)();
 #define CPPUNIT_PLUGIN_IMPLEMENT_MAIN()               \
   int main( int argc, char *argv[] )                  \
   {                                                   \
-    (void)argc; (void)argv;                           \ 
     return 0;                                         \
   }                                                   \
   typedef char __CppUnitPlugInImplementMainDummyTypeDef
+
+//     (void)argc; (void)argv;                           \ 
+
 
 // Other
 #else     // other platforms don't require anything specifics
