@@ -53,6 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,755)
 %attr(755,root,root) %prefix/lib/lib*.so.*
 %doc AUTHORS COPYING INSTALL NEWS README THANKS ChangeLog
+%attr(755,root,root) %prefix/bin/cppunit-config
 %prefix/include/*
 %prefix/man/*
 %prefix/share/*
