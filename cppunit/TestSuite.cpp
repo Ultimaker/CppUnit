@@ -35,7 +35,7 @@ int TestSuite::countTestCases () const
 {
     int count = 0;
 
-    for (std::vector<Test * const>::iterator it = m_tests.begin ();
+    for (std::vector<Test *>::const_iterator it = m_tests.begin ();
             it != m_tests.end ();
             ++it)
         count += (*it)->countTestCases ();
