@@ -4,9 +4,11 @@
 * New macros in HelperMacros.h: 
 
   CPPUNIT_TEST_EXCEPTION that expect an exception of a specified type to
-  be throw.
+  be thrown.
 
   CPPUNIT_TEST_FAIL that expect a test to fail.
+
+  CPPUNIT_TEST_SUITE_NAMED_REGISTRATION to register a suite in a named suite.
 
 * Fail with arbitrary message: CPPUNIT_FAIL
 

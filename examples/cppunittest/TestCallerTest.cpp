@@ -1,10 +1,12 @@
-#include "TestCallerTest.h"
 #include "FailureException.h"
+#include "HelperSuite.h"
+#include "TestCallerTest.h"
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
 
 
-CPPUNIT_TEST_SUITE_REGISTRATION( TestCallerTest );
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestCallerTest, 
+                                       CppUnitTest::helperSuiteName() );
 
 
 void 

@@ -15,7 +15,7 @@ namespace CppUnit {
    * This object is intented to be used as a static variable.
    *
    * \param TestCaseType Type of the test case which suite is registered.
-   * \see CPPUNIT_TEST_SUITE_REGISTRATION.
+   * \see CPPUNIT_TEST_SUITE_REGISTRATION, CppUnit::TestFactoryRegistry.
    */
   template<typename TestCaseType>
   class AutoRegisterSuite

@@ -1,8 +1,10 @@
+#include "ExtensionSuite.h"
 #include "RepeatedTestTest.h"
 #include <cppunit/extensions/RepeatedTest.h>
 #include <cppunit/TestResult.h>
 
-CPPUNIT_TEST_SUITE_REGISTRATION( RepeatedTestTest );
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( RepeatedTestTest,
+                                       CppUnitTest::extensionSuiteName() );
 
 
 RepeatedTestTest::RepeatedTestTest() :

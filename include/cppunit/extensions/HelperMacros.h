@@ -241,11 +241,32 @@
  * \param ATestCaseType Type of the test case class.
  * \warning This macro should be used only once per line of code (the line
  *          number is used to name a hidden static variable).
- * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite.
+ * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
+ *       CppUnit::TestFactoryRegistry.
  */
-#define CPPUNIT_TEST_SUITE_REGISTRATION( ATestCaseType )                     \
-  static CppUnit::AutoRegisterSuite< ATestCaseType >                    \
+#define CPPUNIT_TEST_SUITE_REGISTRATION( ATestCaseType )      \
+  static CppUnit::AutoRegisterSuite< ATestCaseType >          \
              __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
+
+
+/** Register test suite into the specified global registry suite.
+ *
+ * This macro declares a static variable whose construction
+ * causes a test suite factory to be inserted in the global registry
+ * suite of the specified name. The registry is available by calling
+ * the static function CppUnit::TestFactoryRegistry::getRegistry().
+ * 
+ * \param ATestCaseType Type of the test case class.
+ * \param suiteName Name of the global registry suite the test suite is 
+ *                  registered into.
+ * \warning This macro should be used only once per line of code (the line
+ *          number is used to name a hidden static variable).
+ * \see  CPPUNIT_TEST_SUITE, CppUnit::AutoRegisterSuite, 
+ *       CppUnit::TestFactoryRegistry..
+ */
+#define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestCaseType, suiteName ) \
+  static CppUnit::AutoRegisterSuite< ATestCaseType >                      \
+             __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
 
 
 // Backwards compatibility

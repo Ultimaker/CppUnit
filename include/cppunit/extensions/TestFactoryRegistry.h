@@ -66,8 +66,6 @@ namespace CppUnit {
     typedef std::map<std::string, TestFactory *> Factories;
     Factories m_factories;
 
-    typedef std::map<std::string, TestFactoryRegistry *> NamedRegistries;
-
     std::string m_name;
   };
 

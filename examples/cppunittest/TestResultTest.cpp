@@ -1,3 +1,4 @@
+#include "CoreSuite.h"
 #include "TestResultTest.h"
 #include <cppunit/TestResult.h>
 
@@ -8,7 +9,8 @@
  */
 
 
-CPPUNIT_TEST_SUITE_REGISTRATION( TestResultTest );
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestResultTest,
+                                       CppUnitTest::coreSuiteName() );
 
 
 TestResultTest::TestResultTest()

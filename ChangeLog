@@ -1,3 +1,50 @@
+2001-10-02 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/extensions/TestFactoryRegistry.h
+	* src/cppunit/TestFactoryRegistry.cpp : fixed memory leaks that 
+	occured when a TestFactoryRegistry was registered into another
+	TestFactoryRegistry.
+
+	* include/cppunit/extensions/AutoRegisterSuite.h : updated doc.
+
+	* include/cppunit/extensions/HelperMacros.h : added macro
+	CPPUNIT_TEST_SUITE_NAMED_REGISTRATION to register a suite into
+	a named suite. Updated doc.
+
+	* examples/cppunittest/CoreSuite.h:
+	* examples/cppunittest/ExtensionSuite.h:
+	* examples/cppunittest/HelperSuite.h: added, declaration of suite for
+	use with CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
+
+	* examples/cppunittest/makefile.am : added HelperSuite.h, CoreSuite.h,
+	ExtensionSuite.h, CppUnitTestSuite.h and CppUnitTestSuite.cpp.
+
+	* examples/cppunittest/CppUnitTestSuite.*: added.
+
+	* examples/cppunittest/ExceptionTest.cpp:
+	* examples/cppunittest/TestAssertTest.cpp:
+	* examples/cppunittest/TestCaseTest.cpp: 
+	* examples/cppunittest/TestFailureTest.cpp:
+	* examples/cppunittest/TestListenerTest.cpp:
+	* examples/cppunittest/TestResultTest.cpp:
+	* examples/cppunittest/TestSuiteTest.cpp: moved into named suite
+	"Core" using CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
+
+	* examples/cppunittest/OrthodoxTest.cpp:
+	* examples/cppunittest/RepeatedTest.cpp:
+	* examples/cppunittest/TestDecoratorTest.cpp:
+	* examples/cppunittest/TestSetUpTest.cpp: moved into named suite
+	"Extension" using CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
+
+	* examples/cppunittest/HelperMacrosTest.cpp:
+	* examples/cppunittest/TestCallerTest.cpp: moved into named suite
+	"Helper" using CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
+
+	* examples/cppunittest/CppUnitTest.dsp : 
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp : added 
+	Makefile.am, HelperSuite.h, CoreSuite.h, ExtensionSuite.h,
+	CppUnitTestSuite.h and CppUnitTestSuite.cpp.
+
 2001-10-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* NEWS : updated.

@@ -1,8 +1,9 @@
-#include <cppunit/TestResult.h>
-#include <memory>
 #include "FailureException.h"
 #include "HelperMacrosTest.h"
+#include "HelperSuite.h"
 #include "SubclassedTestCase.h"
+#include <cppunit/TestResult.h>
+#include <memory>
 
 /* Note:
  - no unit test for CPPUNIT_TEST_SUITE_REGISTRATION...
@@ -59,7 +60,8 @@ public:
 
 
 
-CPPUNIT_TEST_SUITE_REGISTRATION( HelperMacrosTest );
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( HelperMacrosTest, 
+                                       CppUnitTest::helperSuiteName() );
 
 
 HelperMacrosTest::HelperMacrosTest() : 

@@ -1,3 +1,4 @@
+#include "CoreSuite.h"
 #include "TestAssertTest.h"
 #include <algorithm>
 
@@ -11,7 +12,8 @@
  */
 
 
-CPPUNIT_TEST_SUITE_REGISTRATION( TestAssertTest );
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestAssertTest,
+                                       CppUnitTest::coreSuiteName() );
 
 
 TestAssertTest::TestAssertTest()

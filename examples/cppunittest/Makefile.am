@@ -8,14 +8,19 @@ INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 cppunittestmain_SOURCES = \
 	BaseTestCase.cpp \
 	BaseTestCase.h \
+	CoreSuite.h \
 	CppUnitTestMain.cpp \
+	CppUnitTestSuite.cpp \
+	CppUnitTestSuite.h \
 	ExceptionTest.cpp \
 	ExceptionTest.h \
+	ExtensionSuite.h \
 	FailingTestCase.cpp \
 	FailingTestCase.h \
 	FailureException.h \
 	HelperMacrosTest.cpp \
 	HelperMacrosTest.h \
+	HelperSuite.h \
 	MockTestListener.cpp \
 	MockTestListener.h \
 	NotEqualExceptionTest.cpp \

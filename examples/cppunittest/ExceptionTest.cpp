@@ -1,10 +1,12 @@
+#include "CoreSuite.h"
 #include "ExceptionTest.h"
 #include <cppunit/Exception.h>
 #include <cppunit/NotEqualException.h>
 #include <memory>
 
 
-CPPUNIT_TEST_SUITE_REGISTRATION( ExceptionTest );
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ExceptionTest,
+                                       CppUnitTest::coreSuiteName() );
 
 
 ExceptionTest::ExceptionTest()

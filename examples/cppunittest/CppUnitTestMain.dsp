@@ -123,7 +123,19 @@ SOURCE=.\BaseTestCase.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\CoreSuite.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CppUnitTestMain.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CppUnitTestSuite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CppUnitTestSuite.h
 # End Source File
 # Begin Source File
 
@@ -132,6 +144,10 @@ SOURCE=.\ExceptionTest.cpp
 # Begin Source File
 
 SOURCE=.\ExceptionTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ExtensionSuite.h
 # End Source File
 # Begin Source File
 
@@ -152,6 +168,14 @@ SOURCE=.\HelperMacrosTest.cpp
 # Begin Source File
 
 SOURCE=.\HelperMacrosTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Makefile.am
 # End Source File
 # Begin Source File
 
