@@ -79,9 +79,14 @@ BB_ENABLE_DOXYGEN
 AC_CXX_RTTI
 AC_CXX_STRING_COMPARE_STRING_FIRST
 
-# TODO: add --disable-typeinfo-name to turn this off at
-# configure time
-AC_DEFINE(USE_TYPEINFO_NAME,[CPPUNIT_HAVE_RTTI],
+cppunit_val='CPPUNIT_HAVE_RTTI'
+AC_ARG_ENABLE(typeinfo-name,
+[  --disable-typeinfo-name disable use of RTTI for class names],
+[  
+    test x$enableval = 'xno' && cppunit_val='0' 
+])
+
+AC_DEFINE_UNQUOTED(USE_TYPEINFO_NAME,$cppunit_val,
 [Define to 1 to use type_info::name() for class names])
 
 
