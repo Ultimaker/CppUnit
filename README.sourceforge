@@ -19,6 +19,7 @@
 * go through the file release process: select "Admin", then
   "Edit/Add File Releases"
   - name of release is version number
+  - make take 30 minutes to show up on downloads page
 
 
 * update web pages; this is done on cppunit.sourceforge.net
