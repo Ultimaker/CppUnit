@@ -11,6 +11,13 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include "TestPlugInException.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+
 
 TestPlugIn::TestPlugIn( const std::string fileName ) :
     m_fileName( fileName )
@@ -28,6 +35,7 @@ TestPlugIn::~TestPlugIn()
 void 
 TestPlugIn::deleteDllCopy()
 {
+  m_manager.unload( m_copyFileName );
   ::DeleteFile( m_copyFileName.c_str() );
 }
 

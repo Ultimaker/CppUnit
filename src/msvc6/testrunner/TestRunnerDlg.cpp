@@ -69,6 +69,9 @@ TestRunnerDlg::init(TestRunnerModel *model)
   m_selectedTest      = 0;
   m_bAutorunAtStartup = true;
   m_bIsRunning = false;
+  m_activeTest = 0;
+  m_result = 0;
+  m_testObserver = 0;
 
   ModifyFlags( flSWPCopyBits, 0 );      // anti-flickering option for resizing
 }
@@ -350,6 +353,9 @@ TestRunnerDlg::freeState()
   delete m_activeTest;
   delete m_result;
   delete m_testObserver;
+  m_activeTest = 0;
+  m_result = 0;
+  m_testObserver = 0;
 }
 
 
@@ -363,10 +369,7 @@ TestRunnerDlg::reset()
 
   updateCountsDisplay();
 
-  m_activeTest = NULL;
-  m_result = NULL;
-  m_testObserver = NULL;
-
+  freeState();
   CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
 
   listCtrl->DeleteAllItems();

@@ -56,7 +56,7 @@ public:
   TestRunnerDlg( TestRunnerModel *model,
                 const TCHAR* szDialogResourceId = NULL,
                 CWnd* pParent = NULL);
-  ~TestRunnerDlg();
+  virtual ~TestRunnerDlg();
 
   // overrided from TestListener;
   void startTest( CPPUNIT_NS::Test *test );

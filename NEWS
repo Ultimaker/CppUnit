@@ -7,6 +7,9 @@
   - Memory checker: bug #938753, array bound read in 
     splitPathString() with substr if an empty string is passed.
 
+  - Memory leaks: bug #952912, many memory leaks removed in the
+    MFC test plug-in runner.
+
   - Crash when using CPPUNIT_TEST_SUITE_REGISTRATION with cppunit dll.
     Bug #921843. This bug was caused by a known STL bug in VC++ 6. 
     See http://www.dinkumware.com/vc_fixes.html <xtree> issue with shared

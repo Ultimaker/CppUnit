@@ -10,6 +10,14 @@
     instead of const char *. Patch contributed by Curt Arnold has been
     applied.
 
+  * src/msvc6/testrunner/TestRunnerDlg.h:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp:
+  * src/msvc6/testpluginrunner/TestPlugIn.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerApp.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerModel.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerModel.h: bug #952912, 
+    memory leaks when loading/reloading plug-ins.
+
 2004-06-17 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Portability.h:
