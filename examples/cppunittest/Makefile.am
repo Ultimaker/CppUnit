@@ -56,6 +56,7 @@ cppunittestmain_SOURCES = \
 	TestSuiteTest.h \
 	TestTest.cpp \
 	TestTest.h \
+  ToolsSuite.h \
 	TrackedTestCase.cpp \
 	TrackedTestCase.h \
 	UnitTestToolSuite.h \
