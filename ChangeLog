@@ -21,6 +21,8 @@
     Abdessattar Sassi <abdesassi@users.sourceforge.net> to add support
     for plug-in to hp-ux (patch #721546).
 
+  * INSTALL-unix: added build instruction for HP-UX.
+
 2003-04-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/TestSuiteBuilder.h: removed (unused)

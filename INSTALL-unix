@@ -98,3 +98,14 @@ Solaris/Forte C++ compiler
 In Forte C++ compiler for Solaris all the linking has to go via
 CC and ar, ld should not be run directly. For archive use CC -xar and
 for linking and generating the .so use  CC -G 
+
+HP-UX
+-----
+Use the following options with configure to 
+enable the use of aCC and cc for the compilation of 
+CppUnit: 
+./configure --enable-hpuxshl CC=cc CXX=aCC CXXFLAGS="-AA"
+
+AA sets all the necessary flags to enable namespaces, 
+stl v2,.... 
+
