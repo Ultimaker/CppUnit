@@ -4,7 +4,7 @@
 #include <cppunit/TestResult.h>
 #include "MockTestListener.h"
 
-CU_TEST_SUITE_REGISTRATION( TestResultTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( TestResultTest );
 
 
 TestResultTest::TestResultTest() : 

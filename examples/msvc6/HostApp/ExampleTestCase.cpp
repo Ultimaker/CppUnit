@@ -1,6 +1,6 @@
 #include "ExampleTestCase.h"
 
-CU_TEST_SUITE_REGISTRATION( ExampleTestCase );
+CPPUNIT_TEST_SUITE_REGISTRATION( ExampleTestCase );
 
 void ExampleTestCase::example ()
 {

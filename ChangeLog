@@ -1,3 +1,10 @@
+2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* * (CU_TEST_SUITE, CU_TEST, CU_TEST_SUITE_END,
+	CU_TEST_SUITE_REGISTRATION): Replace prefix CU_ with CPPUNIT_.
+	
+	* examples/cppunittest/.cvsignore: Add UNIX generated files.
+
 2001-06-01 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* examples/cppunittest/Makefile.am: added
 	* configure.in: added examples/cppunittest/Makefile to AC_OUTPUT.

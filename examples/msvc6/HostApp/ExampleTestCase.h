@@ -13,13 +13,13 @@
 
 class ExampleTestCase : public CppUnit::TestCase
 {
-  CU_TEST_SUITE( ExampleTestCase );
-  CU_TEST( example );
-  CU_TEST( anotherExample );
-  CU_TEST( testAdd );
-  CU_TEST( testDivideByZero );
-  CU_TEST( testEquals );
-  CU_TEST_SUITE_END();
+  CPPUNIT_TEST_SUITE( ExampleTestCase );
+  CPPUNIT_TEST( example );
+  CPPUNIT_TEST( anotherExample );
+  CPPUNIT_TEST( testAdd );
+  CPPUNIT_TEST( testDivideByZero );
+  CPPUNIT_TEST( testEquals );
+  CPPUNIT_TEST_SUITE_END();
 protected:
 
 	double			m_value1;

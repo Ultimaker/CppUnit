@@ -5,9 +5,9 @@
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCaller.h>
 
-#ifdef CU_USE_TYPEINFO
+#ifdef CPPUNIT_USE_TYPEINFO
 #include <cppunit/extensions/TypeInfoHelper.h>
-#endif  // CU_USE_TYPEINFO
+#endif  // CPPUNIT_USE_TYPEINFO
 
 namespace CppUnit {
 
@@ -17,13 +17,13 @@ namespace CppUnit {
     public:
       typedef void (Fixture::*TestMethod)();
 
-#ifdef CU_USE_TYPEINFO
+#ifdef CPPUNIT_USE_TYPEINFO
       TestSuiteBuilder() : 
           m_suite( new TestSuite( 
               TypeInfoHelper::getClassName( typeid(Fixture) )  ) )
       {
       }
-#endif  // CU_USE_TYPEINFO
+#endif  // CPPUNIT_USE_TYPEINFO
 
       TestSuiteBuilder( TestSuite *suite ) : m_suite( suite ) 
       {

@@ -1,4 +1,4 @@
-#ifdef CU_USE_TYPEINFO
+#ifdef CPPUNIT_USE_TYPEINFO
 
 #include <string>
 #include <cppunit/extensions/TypeInfoHelper.h>
@@ -20,4 +20,4 @@ TypeInfoHelper::getClassName( const std::type_info &info )
 
 } //  namespace CppUnit
 
-#endif // CU_USE_TYPEINFO
+#endif // CPPUNIT_USE_TYPEINFO

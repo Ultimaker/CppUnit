@@ -2,7 +2,7 @@
 #include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-CU_TEST_SUITE_REGISTRATION( TestCallerTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( TestCallerTest );
 
 
 TestCallerTest::TestCallerTest() : 

@@ -8,9 +8,9 @@
 #include "cppunit/TestSuite.h"
 #include "cppunit/extensions/TestFactoryRegistry.h"
 
-#ifdef CU_USE_TYPEINFO
+#ifdef CPPUNIT_USE_TYPEINFO
 #include "cppunit/extensions/TypeInfoHelper.h"
-#endif // CU_USE_TYPEINFO
+#endif // CPPUNIT_USE_TYPEINFO
 
 namespace CppUnit {
 
