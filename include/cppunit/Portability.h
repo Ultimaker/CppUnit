@@ -7,18 +7,20 @@
 
 /* include platform specific config */
 #if defined(__BORLANDC__)
-#    include <cppunit/config/config-bcb5.h>
-#elif defined( EVC4 )
-#    include <cppunit/config/config-evc4.h>
+#  include <cppunit/config/config-bcb5.h>
 #elif defined (_MSC_VER)
+#  if _MSC_VER == 1200 && defined(_WIN32_WCE) //evc4
+#    include <cppunit/config/config-evc4.h>
+#  else
 #    include <cppunit/config/config-msvc6.h>
+#  endif
 #else
 #    include <cppunit/config-auto.h>
 #endif
 
 // Version number of package
 #ifndef CPPUNIT_VERSION 
-#define CPPUNIT_VERSION  "1.10.2"
+#define CPPUNIT_VERSION  "1.10.4"
 #endif
  
 #include <cppunit/config/CppUnitApi.h>    // define CPPUNIT_API & CPPUNIT_NEED_DLL_DECL

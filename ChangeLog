@@ -4,6 +4,8 @@
     precision conversion to string for double number. Modified the patch
     to works even if DBL_DIG C99 macro is not defined.
 
+  * include/cppunit/Portability.h: fixed EVC++ 4 detection.
+
 2004-11-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/TestAssert.h:
