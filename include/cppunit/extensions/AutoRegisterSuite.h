@@ -25,7 +25,7 @@ namespace CppUnit {
        */
       AutoRegisterSuite()
       {
-        AbstractTestFactory *factory = new TestSuiteFactory<TestCaseType>();
+        TestFactory *factory = new TestSuiteFactory<TestCaseType>();
         TestFactoryRegistry::getRegistry().registerFactory( factory );
       }
 

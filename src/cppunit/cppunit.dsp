@@ -85,7 +85,7 @@ LIB32=link.exe -lib
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\AbstractTestFactory.h
+SOURCE=..\..\include\cppunit\extensions\TestFactory.h
 # End Source File
 # Begin Source File
 

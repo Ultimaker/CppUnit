@@ -1,7 +1,7 @@
 libcppunitincludedir = $(includedir)/cppunit/extensions
 
 libcppunitinclude_HEADERS = \
-	AbstractTestFactory.h \
+	TestFactory.h \
 	AutoRegisterSuite.h \
 	HelperMacros.h \
 	Orthodox.h \

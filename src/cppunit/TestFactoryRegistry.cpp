@@ -22,7 +22,7 @@ TestFactoryRegistry::~TestFactoryRegistry()
 {
   for ( Factories::iterator it = m_factories.begin(); it != m_factories.end(); ++it )
   {
-    AbstractTestFactory *factory = it->second;
+    TestFactory *factory = it->second;
     delete factory;
   }
 }
@@ -60,7 +60,7 @@ TestFactoryRegistry::getRegistry( const std::string &name )
 
 void 
 TestFactoryRegistry::registerFactory( const std::string &name,
-                                      AbstractTestFactory *factory )
+                                      TestFactory *factory )
 {
   m_factories[name] = factory;
 }
@@ -68,7 +68,7 @@ TestFactoryRegistry::registerFactory( const std::string &name,
 
 #ifdef USE_TYPEINFO
 void 
-TestFactoryRegistry::registerFactory( AbstractTestFactory *factory )
+TestFactoryRegistry::registerFactory( TestFactory *factory )
 {
   std::string name = TypeInfoHelper::getClassName( typeid( *factory ) );
   registerFactory( name, factory );
@@ -91,7 +91,7 @@ TestFactoryRegistry::addTestToSuite( TestSuite *suite )
         it != m_factories.end(); 
         ++it )
   {
-    AbstractTestFactory *factory = (*it).second;
+    TestFactory *factory = (*it).second;
     suite->addTest( factory->makeTest() );
   }
 }

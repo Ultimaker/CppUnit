@@ -1,14 +1,14 @@
 #ifndef CPPUNIT_EXTENSIONS_TESTSUITEFACTORY_H
 #define CPPUNIT_EXTENSIONS_TESTSUITEFACTORY_H
 
-#include <cppunit/extensions/AbstractTestFactory.h>
+#include <cppunit/extensions/TestFactory.h>
 
 namespace CppUnit {
 
   class Test;
 
   template<typename TestCaseType>
-    class TestSuiteFactory : public AbstractTestFactory
+    class TestSuiteFactory : public TestFactory
   {
   public:
     virtual Test *makeTest()

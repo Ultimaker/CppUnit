@@ -1,5 +1,5 @@
-#ifndef CPPUNIT_EXTENSIONS_ABSTRACTTESTFACTORY_H
-#define CPPUNIT_EXTENSIONS_ABSTRACTTESTFACTORY_H
+#ifndef CPPUNIT_EXTENSIONS_TESTFACTORY_H
+#define CPPUNIT_EXTENSIONS_TESTFACTORY_H
 
 namespace CppUnit {
 
@@ -7,15 +7,15 @@ namespace CppUnit {
 
   /** This class represents an abstract Test factory.
    */
-  class AbstractTestFactory 
+  class TestFactory 
   {
   public:
-    virtual ~AbstractTestFactory() {}
+    virtual ~TestFactory() {}
 
     /** Makes a new test.
      * \return A new Test.
      */
-    virtual Test *makeTest() =0;
+    virtual Test* makeTest() = 0;
   };
 
 }  // namespace CppUnit

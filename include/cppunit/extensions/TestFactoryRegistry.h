@@ -7,7 +7,7 @@
 
 #include <map>
 #include <string>
-#include <cppunit/extensions/AbstractTestFactory.h>
+#include <cppunit/extensions/TestFactory.h>
 
 namespace CppUnit {
 
@@ -17,7 +17,7 @@ namespace CppUnit {
    *
    * Note that the registry assume lifetime control for any registered test.
    */
-  class TestFactoryRegistry : public AbstractTestFactory
+  class TestFactoryRegistry : public TestFactory
   {
   public:
     /** Constructs the registry with the specified name.
@@ -54,13 +54,13 @@ namespace CppUnit {
      * \param factory Factory to register. 
      */
     void registerFactory( const std::string &name,
-                          AbstractTestFactory *factory );
+                          TestFactory *factory );
 
 #ifdef USE_TYPEINFO
     /** Registers a test factory using its class name.
      * \param factory Factory to register. 
      */
-    void registerFactory( AbstractTestFactory *factory );
+    void registerFactory( TestFactory *factory );
 #endif // USE_TYPEINFO
 
   private:
@@ -68,7 +68,7 @@ namespace CppUnit {
     void operator =( const TestFactoryRegistry &copy );
 
   private:
-    typedef std::map<std::string, AbstractTestFactory *> Factories;
+    typedef std::map<std::string, TestFactory *> Factories;
     Factories m_factories;
 
     typedef std::map<std::string, TestFactoryRegistry *> NamedRegistries;
