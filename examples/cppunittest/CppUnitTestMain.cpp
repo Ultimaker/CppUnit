@@ -4,6 +4,7 @@
 #include <cppunit/TestRunner.h>
 #include <cppunit/TextTestProgressListener.h>
 #include "CppUnitTestSuite.h"
+#include <stdexcept>
 
 
 int 

@@ -6,6 +6,7 @@
 #include <cppunit/CompilerOutputter.h>
 #include <tchar.h>
 #include <msvc6/testrunner/TestPlugInInterface.h>
+#include <stdexcept>
 
 
 #ifdef _DEBUG
