@@ -26,7 +26,8 @@ m4sources = \
 	config/ac_cxx_namespaces.m4			\
 	config/ac_cxx_rtti.m4				\
 	config/ac_cxx_string_compare_string_first.m4	\
-	config/bb_enable_doxygen.m4
+	config/bb_enable_doxygen.m4			\
+	config/ac_dll.m4
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4

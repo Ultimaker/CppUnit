@@ -76,6 +76,6 @@ cppunittestmain_SOURCES = \
 cppunittestmain_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 
 
-cppunittestmain_LDFLAGS = -ldl
+cppunittestmain_LDFLAGS = $(LIBADD_DL)
 
 

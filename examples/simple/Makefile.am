@@ -9,4 +9,4 @@ simple_SOURCES= ExampleTestCase.cpp Main.cpp  ExampleTestCase.h
 simple_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 
 
-simple_LDFLAGS = -ldl
+simple_LDFLAGS = $(LIBADD_DL)

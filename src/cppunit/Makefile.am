@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.42 2002-08-28 22:20:52 blep Exp $
+# $Id: Makefile.am,v 1.43 2003-05-07 20:07:17 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -54,6 +54,7 @@ libcppunit_la_SOURCES = \
   TextTestRunner.cpp \
   TypeInfoHelper.cpp \
   UnixDynamicLibraryManager.cpp \
+  ShlDynamicLibraryManager.cpp \
   XmlDocument.cpp \
   XmlElement.cpp \
   XmlOutputter.cpp \

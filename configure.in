@@ -59,6 +59,9 @@ AC_LANG(C++)
 
 AC_PROG_LIBTOOL
 
+# check for dlopen,dlsym... or shl_load, shl_findsym...
+AC_LTDL_DLLIB
+
 # check for doxygen
 BB_ENABLE_DOXYGEN
 

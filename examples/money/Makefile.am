@@ -17,5 +17,5 @@ MoneyApp_CXXFLAGS = $(CPPUNIT_CFLAGS)
 MoneyApp_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 
 
-MoneyApp_LDFLAGS = $(CPPUNIT_LIBS) -ldl
+MoneyApp_LDFLAGS = $(CPPUNIT_LIBS) $(LIBADD_DL)
 
