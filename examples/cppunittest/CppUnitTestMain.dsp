@@ -341,6 +341,18 @@ SOURCE=.\XmlOutputterTest.cpp
 SOURCE=.\XmlOutputterTest.h
 # End Source File
 # End Group
+# Begin Group "Tools"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\XmlElementTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlElementTest.h
+# End Source File
+# End Group
 # End Group
 # Begin Group "TestSupport"
 
@@ -420,6 +432,10 @@ SOURCE=.\HelperSuite.h
 # Begin Source File
 
 SOURCE=.\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ToolsSuite.h
 # End Source File
 # Begin Source File
 

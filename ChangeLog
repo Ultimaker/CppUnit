@@ -1,3 +1,26 @@
+2002-05-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/XmlOutputter.h:
+  * src/cppunit/XmlOutputter.cpp: extracted class XmlOutputter::Node to 
+  XmlElement. Extracted xml 'prolog' generation to XmlDocument.
+
+  * include/cppunit/tools/XmlElement.h:
+  * src/cppunit/tools/XmlElement.cpp: added, extracted from XmlOutputter::Node.
+
+  * include/cppunit/tools/XmlDocument.h:
+  * src/cppunit/tools/XmlDocument.cpp: added, extracted from XmlOutputter. Handle
+  XML document prolog (encoding & style-sheet) and manage the root element.
+
+  * src/DllPlugInTester/DllPlugInTester.cpp: bug fix, flag --xsl was ignored.
+
+  * examples/cppunittest/XmlOutputterTest.h:
+  * examples/cppunittest/XmlOutputterTest.cpp: updated for XmlOuputter changes.
+  extracted tests for XmlOutputter::Node to XmlElementTest
+
+  * examples/cppunittest/XmlElementTest.h:
+  * examples/cppunittest/XmlElementTest.cpp: added, tests extracted from
+  XmlOutputterTest.
+
 2002-05-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * src/msvc6/testrunner/MsDevCallerListCtrl.h:

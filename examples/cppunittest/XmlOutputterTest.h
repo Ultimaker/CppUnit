@@ -14,14 +14,6 @@
 class XmlOutputterTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( XmlOutputterTest );
-  CPPUNIT_TEST( testEmptyNodeToString );
-  CPPUNIT_TEST( testNodeWithAttributesToString );
-  CPPUNIT_TEST( testEscapedAttributeValueToString );
-  CPPUNIT_TEST( testNodeToStringEscapeContent );
-  CPPUNIT_TEST( testNodeWithChildrenToString );
-  CPPUNIT_TEST( testNodeWithContentToString );
-  CPPUNIT_TEST( testNodeWithNumericContentToString );
-  CPPUNIT_TEST( testNodeWithContentAndChildToString );
   CPPUNIT_TEST( testWriteXmlResultWithNoTest );
   CPPUNIT_TEST( testWriteXmlResultWithOneFailure );
   CPPUNIT_TEST( testWriteXmlResultWithOneError );
@@ -39,16 +31,6 @@ public:
 
   void setUp();
   void tearDown();
-
-  void testEmptyNodeToString();
-  void testNodeWithAttributesToString();
-  void testEscapedAttributeValueToString();
-  void testNodeToStringEscapeContent();
-  void testNodeWithChildrenToString();
-  void testNodeWithContentToString();
-  void testNodeWithNumericContentToString();
-  void testNodeWithContentAndChildToString();
-
   void testWriteXmlResultWithNoTest();
   void testWriteXmlResultWithOneFailure();
   void testWriteXmlResultWithOneError();

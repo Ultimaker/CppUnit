@@ -494,6 +494,26 @@ SOURCE=.\UnixDynamicLibraryManager.cpp
 SOURCE=.\Win32DynamicLibraryManager.cpp
 # End Source File
 # End Group
+# Begin Group "tools"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\XmlDocument.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\tools\XmlDocument.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlElement.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\tools\XmlElement.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE="..\..\INSTALL-WIN32.txt"

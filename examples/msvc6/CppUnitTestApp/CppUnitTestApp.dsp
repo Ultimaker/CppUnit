@@ -69,7 +69,8 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "../../../include" /I "../.." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D "CPPUNIT_USE_TYPEINFO" /Yu"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "../../../include" /I "../.." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D "CPPUNIT_USE_TYPEINFO" /FD /GZ /c
+# SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "_DEBUG" /d "_AFXDLL"
@@ -400,6 +401,10 @@ SOURCE=..\..\cppunittest\TestTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\cppunittest\ToolsSuite.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\cppunittest\TrackedTestCase.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -410,6 +415,14 @@ SOURCE=..\..\cppunittest\TrackedTestCase.h
 # Begin Source File
 
 SOURCE=..\..\cppunittest\UnitTestToolSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlElementTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\XmlElementTest.h
 # End Source File
 # Begin Source File
 

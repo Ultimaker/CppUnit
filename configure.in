@@ -122,6 +122,7 @@ AC_OUTPUT([
   include/cppunit/config/Makefile
   include/cppunit/extensions/Makefile
   include/cppunit/plugin/Makefile
+  include/cppunit/tools/Makefile
   include/cppunit/ui/Makefile
   include/cppunit/ui/mfc/Makefile
   include/cppunit/ui/qt/Makefile

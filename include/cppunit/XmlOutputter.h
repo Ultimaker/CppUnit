@@ -9,11 +9,8 @@
 #endif
 
 #include <cppunit/Outputter.h>
-#include <deque>
 #include <iostream>
 #include <map>
-#include <string>
-#include <utility>
 
 
 namespace CppUnit
@@ -22,6 +19,8 @@ namespace CppUnit
 class Test;
 class TestFailure;
 class TestResultCollector;
+class XmlDocument;
+class XmlElement;
 
 
 /*! \brief Outputs a TestResultCollector in XML format.
@@ -56,63 +55,23 @@ public:
    */
   virtual void setStyleSheet( const std::string &styleSheet );
 
-  /*! \brief An XML Element.
-   * \warning This class will probably be replaced with an abstract
-   * builder in future version.
-   */
-  class CPPUNIT_API Node
-  {
-  public:
-    Node( std::string elementName,
-          std::string content ="" );
-    Node( std::string elementName,
-          int numericContent );
-    virtual ~Node();
-
-    void addAttribute( std::string attributeName,
-                       std::string value );
-    void addAttribute( std::string attributeName,
-                       int numericValue );
-    void addNode( Node *node );
-
-    std::string toString( const std::string &indent = "" ) const;
-
-  private:
-    typedef std::pair<std::string,std::string> Attribute;
-
-    std::string attributesAsString() const;
-    std::string escape( std::string value ) const;
-    static std::string asString( int value );
-
-  private:
-    std::string m_name;
-    std::string m_content;
-    typedef std::deque<Attribute> Attributes;
-    Attributes m_attributes;
-    typedef std::deque<Node *> Nodes;
-    Nodes m_nodes;
-  };
-
-
-  virtual void writeProlog();
-  virtual void writeTestsResult();
 
   typedef std::map<Test *,TestFailure*> FailedTests;
-  virtual Node *makeRootNode();
+  virtual XmlElement *makeRootNode();
   virtual void addFailedTests( FailedTests &failedTests,
-                               Node *rootNode );
+                               XmlElement *rootNode );
   virtual void addSuccessfulTests( FailedTests &failedTests,
-                                   Node *rootNode );
-  virtual void addStatistics( Node *rootNode );
+                                   XmlElement *rootNode );
+  virtual void addStatistics( XmlElement *rootNode );
   virtual void addFailedTest( Test *test,
                               TestFailure *failure,
                               int testNumber,
-                              Node *testsNode );
+                              XmlElement *testsNode );
   virtual void addFailureLocation( TestFailure *failure,
-                                   Node *testNode );
+                                   XmlElement *testNode );
   virtual void addSuccessfulTest( Test *test, 
                                   int testNumber,
-                                  Node *testsNode );
+                                  XmlElement *testsNode );
 protected:
   virtual void fillFailedTestsMap( FailedTests &failedTests );
 
@@ -121,6 +80,7 @@ protected:
   std::ostream &m_stream;
   std::string m_encoding;
   std::string m_styleSheet;
+  XmlDocument *m_xml;
 
 private:
   /// Prevents the use of the copy constructor.

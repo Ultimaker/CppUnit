@@ -1,4 +1,4 @@
-SUBDIRS = extensions ui plugin config
+SUBDIRS = extensions ui plugin config tools
 
 DISTCLEANFILES = config-auto.h
 

@@ -87,6 +87,94 @@ LINK32=link.exe
 
 # Name "CppUnitTestPlugIn - Win32 Release"
 # Name "CppUnitTestPlugIn - Win32 Debug"
+# Begin Group "Suites"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\CoreSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CppUnitTestSuite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CppUnitTestSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ExtensionSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HelperSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutputSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ToolsSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnitTestToolSuite.h
+# End Source File
+# End Group
+# Begin Group "TestSupport"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\BaseTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\BaseTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FailureException.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MockTestListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SubclassedTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\SubclassedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SynchronizedTestResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TrackedTestCase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TrackedTestCase.h
+# End Source File
+# End Group
 # Begin Group "Tests"
 
 # PROP Default_Filter ""
@@ -262,86 +350,18 @@ SOURCE=.\XmlOutputterTest.cpp
 SOURCE=.\XmlOutputterTest.h
 # End Source File
 # End Group
-# End Group
-# Begin Group "TestSupport"
+# Begin Group "Tools"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\BaseTestCase.cpp
+SOURCE=.\XmlElementTest.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\BaseTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\FailureException.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\MockTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\MockTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\MockTestListener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\MockTestListener.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\SubclassedTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\SubclassedTestCase.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\SynchronizedTestResult.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TrackedTestCase.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\TrackedTestCase.h
+SOURCE=.\XmlElementTest.h
 # End Source File
 # End Group
-# Begin Group "Suites"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\CoreSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\CppUnitTestSuite.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\ExtensionSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\HelperSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\OutputSuite.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\UnitTestToolSuite.h
-# End Source File
 # End Group
 # Begin Source File
 

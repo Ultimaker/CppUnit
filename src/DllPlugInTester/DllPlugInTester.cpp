@@ -39,6 +39,7 @@ runTests( const CommandLineParser &parser )
     xmlStream = new std::ofstream( parser.getXmlFileName().c_str() );
 
   CppUnit::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
+  xmlOutputter.setStyleSheet( parser.getXmlStyleSheet() );
   CppUnit::TextOutputter textOutputter( &result, *stream );
   CppUnit::CompilerOutputter compilerOutputter( &result, *stream );
 

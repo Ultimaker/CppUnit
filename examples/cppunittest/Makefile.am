@@ -57,6 +57,8 @@ cppunittestmain_SOURCES = \
 	TrackedTestCase.cpp \
 	TrackedTestCase.h \
 	UnitTestToolSuite.h \
+	XmlElementTest.h \
+	XmlElementTest.cpp \
 	XmlOutputterTest.h \
 	XmlOutputterTest.cpp \
 	XmlUniformiser.h \

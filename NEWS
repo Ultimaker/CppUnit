@@ -5,12 +5,33 @@
 
   - added option -w / --wait to wait for the user to press a key before exiting.
 
+* MfcUi:
+
+  - the name of the test is displayed just before being run.
+
+* MfcUi plug-in runner (TestPlugInRunner):
+  
+  - command line: a dll name can be specified on the command after -testsuite:
+    example: TestPlugInRunnerd.exe -testsuite Simpled.dll
+
 * Bug Fix:
 
-  - DllPlugInTester: use ISO-LATIN1 encoding if none is given.
+  - DllPlugInTester: use ISO-LATIN1 encoding if none is given. Flag --xsl was
+    ignored.
 
   - XmlOutputter: use the default encoding if an empty string is given as
     encoding
+
+  - MfcUi plug-in runner (TesTPlugInRunner): better handling of history when
+    loading and reloading a dll. 
+
+* Compatibility Break:
+
+  - XmlOutputter: removed methods writeProlog() and writeTestResult() which
+    are replaced by XmlDocument.
+
+  - XmlOuputter::Node: class has been extracted and renamed XmlElement.
+
 
 	New in CppUnit 1.9.6:
 	---------------------
