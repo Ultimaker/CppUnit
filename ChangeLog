@@ -1,3 +1,9 @@
+2001-07-06  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: Remove AM_DISABLE_STATIC.
+
+	* INSTALL: Update to version from autoconf 2.50.
+
 2001-07-05  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* include/cppunit/Portability.h: Remove definition of
