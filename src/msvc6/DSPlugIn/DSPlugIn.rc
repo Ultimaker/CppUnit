@@ -81,17 +81,20 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904B0"
+        BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "DSPlugIn DLL\0"
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "GNU\0"
+            VALUE "FileDescription", "Cppunit.TestRunner Developer Studio Addin\0"
             VALUE "FileVersion", "1, 0, 0, 1\0"
             VALUE "InternalName", "DSPlugIn\0"
             VALUE "LegalCopyright", "Copyright (C) 2001\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "DSPlugIn.DLL\0"
-            VALUE "ProductName", "DSPlugIn Dynamic Link Library\0"
+            VALUE "OriginalFilename", "TestRunnerDSPlugin.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "TestRunnerDSPlugin Dynamic Link Library\0"
             VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"

@@ -54,20 +54,24 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"../../../lib/TestRunnerDSPlugIn.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"Release/TestRunnerDSPlugIn.dll"
 # Begin Custom Build - Performing Registration
 OutDir=.\Release
-TargetPath=\prg\vc\Lib\cppunit\lib\TestRunnerDSPlugIn.dll
-InputPath=\prg\vc\Lib\cppunit\lib\TestRunnerDSPlugIn.dll
+TargetPath=.\Release\TestRunnerDSPlugIn.dll
+InputPath=.\Release\TestRunnerDSPlugIn.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	rem Following command disabled since it does not work 
-	rem "$(TargetPath)" /RegServer 
+	regsvr32 "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	echo Server registration done! 
 	
 # End Custom Build
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Desc=duplicating DLL to lib directory
+PostBuild_Cmds=echo The following command may fail if you have already registered the add-in	copy Release\TestRunnerDSPlugIn.dll ..\..\..\lib\TestRunnerDSPlugIn.dll
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
 
@@ -94,21 +98,25 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../../lib/TestRunnerDSPlugInD.dll" /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Debug/TestRunnerDSPlugInD.dll" /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing Registration
 OutDir=.\Debug
-TargetPath=\prg\vc\Lib\cppunit\lib\TestRunnerDSPlugInD.dll
-InputPath=\prg\vc\Lib\cppunit\lib\TestRunnerDSPlugInD.dll
+TargetPath=.\Debug\TestRunnerDSPlugInD.dll
+InputPath=.\Debug\TestRunnerDSPlugInD.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	rem Following command disabled since it does not work 
-	rem "$(TargetPath)" /RegServer 
+	regsvr32 "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	echo Server registration done! 
 	
 # End Custom Build
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Desc=duplicating DLL to lib directory
+PostBuild_Cmds=echo The following command may fail if you have already registered the add-in	copy Debug\TestRunnerDSPlugInD.dll ..\..\..\lib\TestRunnerDSPlugInD.dll
+# End Special Build Tool
 
 !ENDIF 
 

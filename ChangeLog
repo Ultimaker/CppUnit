@@ -1,3 +1,19 @@
+2001-09-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+	
+	* include/cppunit/TestFailure.h : made destructor virtual.
+
+	* INSTALL-WIN32.txt : added some more infos about DSPlugIn.
+
+	* src/msvc6/DSPlugIn/DSPlugIn.rgs: added some registry data
+	that where missing to register the COM object.
+
+	* src/msvc6/DSPlugIn/DSPlugIn.rc: updated some dll version info.
+
+	* src/msvc6/DSPlugIn/DSPlugIn.dsp: fixed the custom build step to
+	register the DLL using regsvr32.exe. Added a post-build step to 
+	copy the dll to the lib/ directory. This prevent a blocking 
+	compilation error if the DLL is in use by VC++.
+
 2001-09-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* Makefile.am (snapshot): Replace "date -I" GNUism with portable

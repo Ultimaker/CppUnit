@@ -21,7 +21,7 @@ class TestFailure
 {
 public:
     TestFailure (Test *failedTest, Exception *thrownException);
-    ~TestFailure ();
+    virtual ~TestFailure ();
 
     Test*        failedTest ();
 

@@ -4,7 +4,11 @@ Microsoft Visual C++. You must have VC++ 6.0 at least.
 Quick Steps to compile & run a sample using the GUI TestRunner:
 - Open examples/examples.dsw in VC++ (contains all the samples)
 - Make HostApp the Active project
-- Compile & Run
+- Compile
+- in VC++, Tools/Customize.../Add-ins and macro files/Browse...
+- select the file lib/TestRunnerDSPlugIn.dll and press ok to register
+  the add-ins (double-click on failure = open file in VC++).
+- Run the project
 
 
 Project build Target:
@@ -18,9 +22,9 @@ to write unit tests.
 * TestRunner (testrunner.dll) : a MFC extension DLL to run and browser unit 
 tests from a GUI.
 
-* DSPlugIn (dspluging.dll) : a VC++ add-in used by testrunner.dll to open 
-the file containing a test failure by double-clicking on the failure in the 
-GUI.
+* DSPlugIn (lib/TestRunnerDSPlugInXX.dll) : a VC++ add-in used by 
+testrunner.dll. If you double-click on a failure in the MFC TestRunner,
+a running instance of VC++ will open the file and highlight the line.
 
 * TestPlugInRunner : (Warning: experimental) a VC++ 
 application to run test plug-in. A test plug-in is a DLL that publish a 
@@ -128,8 +132,11 @@ Using CppUnit:
 * Using the DSPlugIn:
   You must register the plug-in with VC++. This is done in 
   Tools/Customize/Add-ins and Macro files, selecting browse and
-  selecting lib/DSPlugIn.dll. (BL's Note: I still haven't been able
-  to do that step successfully).
+  selecting lib/TestRunnerDSPlugIn.dll (you can register the release
+  or the debug version, both work).
+
+  If an instance of VC++ is running and you double-click on a failure,
+  VC++ will open the file and select the failure line.
 
 * Using the Test Plug In Runner:
   Your DLL must export a function that implement the interface
