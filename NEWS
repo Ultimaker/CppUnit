@@ -4,7 +4,7 @@
 
 * Portability:
 
-  - Support for embedded visual C++ 4 added. For this purpose, CppUnit now
+  - Support for Embedded Visual C++ 4 added. For this purpose, CppUnit now
     provides a very simple stream implementation if none is provided.
     This should also help porting on other platforms which have STL but
     no stream support. Just make sure that CPPUNIT_NO_STREAM is defined
@@ -46,10 +46,19 @@
     to the failure location in the open IDE (no add-in necessary). 
     This was contributed by Max Quatember and Andreas Pfaffenbichler.
 
+* Compilation:
+
+  - MinGW: patch #1024428 contributed by astar, fixed compilation issue in
+    Win32DynamicLibraryManager.cpp.
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
     if CppUnit is missing.
+
+  - Message/SourceLine: copy constructor have been specifically implemented
+    to ensure they are thread-safe even if std::string copy constructor
+    is not (usually on reference count based implementation).
 
 * (Possible) Compatiblity break:
 

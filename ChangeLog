@@ -1,3 +1,11 @@
+2004-11-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/Message.h
+  * include/cppunit/SourceLine.h:
+  * src/cppunit/Message.cpp:
+  * src/cppunit/SourceLine.cpp: provided thread-safe copy constructor on
+    platform that do not provide thread-safe copy constructor for std::string.
+
 2004-11-08 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/TestAssert.h: fixed portability bug pointed out by
