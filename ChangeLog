@@ -1,3 +1,6 @@
+2001-09-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+	* INSTALL-WIN32.txt: Added.
+
 2001-09-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 	* src/msvc6/testrunner/TestRunner.dsp: fixed release configuration.
 
