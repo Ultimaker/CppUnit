@@ -1,8 +1,8 @@
 #ifndef CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H
 #define CPPUNIT_EXTENSIONS_TESTSUITEBUILDER_H
 
+#include <cppunit/Portability.h>
 #include <memory>
-#include <cppunit/config.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCaller.h>
 

@@ -1,8 +1,8 @@
+#include <cppunit/Portability.h>
 #include <typeinfo>
 #include <stdexcept>
 #include <cmath>
 
-#include "cppunit/config.h"
 #include "cppunit/TestCase.h"
 #include "cppunit/Exception.h"
 #include "cppunit/TestResult.h"

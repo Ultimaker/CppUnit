@@ -1,8 +1,4 @@
-#if _MSC_VER > 1000     // VC++
-#pragma once
-#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
-#endif // _MSC_VER > 1000
-
+#include <cppunit/Portability.h>
 #include "cppunit/TestRegistry.h"
 #include "cppunit/Test.h"
 

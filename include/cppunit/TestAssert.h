@@ -1,9 +1,9 @@
 #ifndef CPPUNIT_TESTASSERT_H
 #define CPPUNIT_TESTASSERT_H
 
+#include <cppunit/Portability.h>
 #include <string>
 #include <sstream>
-#include <cppunit/config.h>
 #include <cppunit/Exception.h>
 
 
