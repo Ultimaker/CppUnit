@@ -29,6 +29,9 @@
   * examples/ClockerPlugIn/ClockerXmlHook.cpp: updated against 
     XmlOutputterHook changes.
 
+  * examples/cppunittest/MessageTest.cpp:
+  * examples/cppunittest/XmlElement.cpp: added missing include <stdexcept>.
+
   * examples/cppunittest/XmlElementTest.h:
   * examples/cppunittest/XmlElementTest.cpp: Renamed 'node' occurences 
     to 'element'.

@@ -3,6 +3,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/Message.h>
+#include <stdexcept>
 
 
 /// Unit tests for MessageTest

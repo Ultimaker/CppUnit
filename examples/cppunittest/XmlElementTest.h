@@ -2,6 +2,7 @@
 #define CPPUNITEST_XMLELEMENTTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
+#include <stdexcept>
 
 
 /*! Unit tests for XmlElement.
