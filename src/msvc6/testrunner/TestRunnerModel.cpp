@@ -37,7 +37,7 @@ TestRunnerModel::history() const
 void 
 TestRunnerModel::selectHistoryTest( CPPUNIT_NS::Test *test )
 {
-  removeFromsSequence( m_history, test );
+   CPPUNIT_NS::removeFromSequence( m_history, test );
   
   if ( test != NULL )
     m_history.push_front( test );
