@@ -15,6 +15,10 @@ EXTRA_DIST = cppunit.m4 cppunit.spec.in cppunit.spec
 m4datadir = $(datadir)/aclocal
 m4data_DATA = cppunit.m4
 
+dist-hook:
+	cp -dpR examples/msvc6 $(distdir)/examples
+	find $(distdir) -name CVS -exec rm -rf {} \;
+
 .PHONY: release snapshot rpm docs doc-dist
 
 release:
