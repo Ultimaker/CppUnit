@@ -1,3 +1,9 @@
+2002-04-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* doc/FAQ: removed question about the Exception::operator =() problem.
+
+	* release 1.8.0
+
 2002-04-11  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* include/cppunit/ui/mfc/Makefile.am:

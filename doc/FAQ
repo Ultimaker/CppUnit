@@ -29,14 +29,4 @@ do so for all configurations.
    In Debug configurations, CppUnit use "Debug Multihreaded DLL".
    Check that Projects/Settings.../C++/Code Generation is indeed using
 the correct library.
-
-2.3) Why does the test ExceptionTest.testAssignment use to failed in CppUnit 
-     test suite?
-
-   Thanks to Phil Taylor who gave me a partial answer, we have been able to
-   figure it out. VC++ STL implementation of std::exception::operator =()
-   call the destructor and copy constructor. This reset the virtual table
-   to std::exception virtual table. Therefore, all consecutive call to
-   the virtual method what() will call the std::exception::what() instead
-   of CppUnit::Exception::what().
    
