@@ -157,7 +157,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
   typedef char __CppUnitPlugInImplementMainDummyTypeDef
 
 // Unix
-#elif defined(CPPUNIT_HAVE_UNIX_DLL_LOADER) || defined(HAVE_UNIX_SHL_LOADER)
+#elif defined(CPPUNIT_HAVE_UNIX_DLL_LOADER) || defined(CPPUNIT_HAVE_UNIX_SHL_LOADER)
 #define CPPUNIT_PLUGIN_IMPLEMENT_MAIN()               \
   int main( int argc, char *argv[] )                  \
   {                                                   \

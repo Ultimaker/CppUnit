@@ -1,5 +1,10 @@
 2003-05-15 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * include/cppunit/plugin/testplugin.h: fixed bug #767358, wrong
+    preprocessor symbol for SHL_LOADER.
+
+2003-05-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+
   * include/cppunit/config/config-msvc6.h: changed the compiler outputter 
     default format (CPPUNIT_COMPILER_LOCATION_FORMAT) for Visual Studio 7.0.
     Assertion now appears in the task list.
