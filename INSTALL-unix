@@ -83,18 +83,15 @@ The library appears to function OK.  Please let us know if you find
 it otherwise.
 
 
-Solaris/Sun 6.0 compiler
-------------------------
+Solaris/Sun CC compiler
+-----------------------
 
-Sun 6.0 compiler requires the "-pta -instances=static" options.
+Use the following configure line:
 
-'make check' has been reported to fail to build, but 'make install' works.
+./configure CXX=CC CXXFLAGS="-pta -instances=static -mt 
+-xtarget=generic -g -features=no%transitions 
+-xildoff" LD=CC LDFLAGS=-xildoff
 
-
-Solaris/Forte C++ compiler
---------------------------
-
-(See Bug #544684 for details. Please report the exact directive if you have them)
 In Forte C++ compiler for Solaris all the linking has to go via
 CC and ar, ld should not be run directly. For archive use CC -xar and
 for linking and generating the .so use  CC -G 
