@@ -59,7 +59,7 @@ TargetPath=.\Release\TestPlugInRunner.exe
 TargetName=TestPlugInRunner
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).exe
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).exe
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
@@ -92,7 +92,7 @@ TargetPath=.\Debug\TestPlugInRunnerd.exe
 TargetName=TestPlugInRunnerd
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).exe
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).exe
 # End Special Build Tool
 
 !ENDIF 

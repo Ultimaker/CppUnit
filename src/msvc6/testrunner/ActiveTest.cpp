@@ -18,6 +18,13 @@ ActiveTest::~ActiveTest()
 { 
   CSingleLock( &m_runCompleted, TRUE );
   m_test = NULL;
+
+   CSingleLock (&m_runCompleted, TRUE); 
+   if ( m_threadHandle != INVALID_HANDLE_VALUE ) 
+   {
+     CloseHandle( m_threadHandle );
+     m_threadHandle = INVALID_HANDLE_VALUE;
+   }
 }
 
 

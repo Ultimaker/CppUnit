@@ -55,7 +55,7 @@ TargetPath=.\Release\cppunit.lib
 TargetName=cppunit
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "cppunit - Win32 Debug"

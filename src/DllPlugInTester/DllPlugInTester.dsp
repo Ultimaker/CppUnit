@@ -63,7 +63,7 @@ TargetPath=.\ReleaseUnicode\DllPlugInTesteru.exe
 TargetName=DllPlugInTesteru
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).exe
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Debug Unicode"
@@ -97,7 +97,7 @@ TargetPath=.\DebugUnicode\DllPlugInTesterud.exe
 TargetName=DllPlugInTesterud
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).exe
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Release Static"
@@ -199,7 +199,7 @@ TargetPath=.\ReleaseDll\DllPlugInTester_dll.exe
 TargetName=DllPlugInTester_dll
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).exe
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DllPlugInTester - Win32 Debug"
@@ -233,7 +233,7 @@ TargetPath=.\DebugDll\DllPlugInTesterd_dll.exe
 TargetName=DllPlugInTesterd_dll
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\lib\$(TargetName).exe
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\lib\$(TargetName).exe
 # End Special Build Tool
 
 !ENDIF 

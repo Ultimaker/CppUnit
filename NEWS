@@ -13,6 +13,9 @@
 
   - Compilation: make install does not work on SunOS. Bug #940650 fixed.
 
+  - Compilation: bug #933154, post-build step fails in directory with spaces
+    with Visual C++.
+
 
   New in CppUnit 1.10.0 (same as 1.9.14):
   --------------------------------------

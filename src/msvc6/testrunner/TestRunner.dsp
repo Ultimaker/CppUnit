@@ -63,7 +63,7 @@ TargetPath=.\Release\TestRunner.dll
 TargetName=TestRunner
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(TargetDir)\$(TargetName).lib" ..\..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "TestRunner - Win32 Debug"
@@ -98,7 +98,7 @@ TargetPath=.\Debug\testrunnerd.dll
 TargetName=testrunnerd
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(TargetDir)\$(TargetName).lib" ..\..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "TestRunner - Win32 Release Unicode"
@@ -172,7 +172,7 @@ TargetPath=.\DebugUnicode\testrunnerud.dll
 TargetName=testrunnerud
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying target to lib/
-PostBuild_Cmds=copy $(TargetPath) ..\..\..\lib\$(TargetName).dll	copy $(TargetDir)\$(TargetName).lib ..\..\..\lib\$(TargetName).lib
+PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(TargetDir)\$(TargetName).lib" ..\..\..\lib\$(TargetName).lib
 # End Special Build Tool
 
 !ENDIF 

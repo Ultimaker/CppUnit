@@ -59,7 +59,7 @@ LINK32=link.exe
 TargetPath=.\ReleasePlugIn\simple_plugin.dll
 SOURCE="$(InputPath)"
 PostBuild_Desc=Running tests...
-PostBuild_Cmds=..\..\lib\DllPlugInTester_dll.exe $(TargetPath)
+PostBuild_Cmds=..\..\lib\DllPlugInTester_dll.exe "$(TargetPath)"
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "simple_plugin - Win32 Debug"
@@ -92,7 +92,7 @@ LINK32=link.exe
 TargetPath=.\DebugPlugIn\simple_plugind.dll
 SOURCE="$(InputPath)"
 PostBuild_Desc=Running tests...
-PostBuild_Cmds=..\..\lib\DllPlugInTesterd_dll.exe -b --xml tests.xml -c $(TargetPath)
+PostBuild_Cmds=..\..\lib\DllPlugInTesterd_dll.exe -b --xml tests.xml -c "$(TargetPath)"
 # End Special Build Tool
 
 !ENDIF 

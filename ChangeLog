@@ -11,6 +11,8 @@
   * src/cppunit/TestPath.cpp: bug #938753, array bound read in 
     splitPathString() with substr if an empty string is passed.
 
+  * src/*/*.dsp: bug #933154, post build fail in directory with spaces.
+
 
 2004-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
 
