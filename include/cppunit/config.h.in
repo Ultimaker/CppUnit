@@ -12,10 +12,5 @@
 /* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) */
 #define CPPUNIT_HAVE_CPP_SOURCEANNOTATION   1
 
-/** FIXME: determine using autoconf. **/
-/* Define to 1 if std::string::compare(string,pos,len) is defined,
-   rather than std::string::compare(pos,len,string) */
-#define CPPUNIT_STRING_COMPARE_STRING_FIRST 1
-
 
 #endif

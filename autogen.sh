@@ -31,7 +31,7 @@ DIE=0
 if [ -d /usr/local/share/aclocal ]; then
   ACLOCAL_FLAGS="-I /usr/local/share/aclocal $ACLOCAL_FLAGS"
 fi
-aclocal $ACLOCAL_FLAGS 
+aclocal -I config $ACLOCAL_FLAGS 
 libtoolize --force 
 autoheader
 automake --add-missing

@@ -1,5 +1,18 @@
 2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* configure.in: Add AC_CXX_STRING_COMPARE_STRING_FIRST.
+
+	* autogen.sh: Add "-I config" to aclocal flags, to pick up 
+	the new .m4 files.
+
+	* config/ac_cxx_namespaces.m4: New.  Taken from
+	http://cryp.to/autoconf-archive.
+
+	* config/ac_cxx_string_compare_string_first.m4: New.  Detect
+	if std::string::compare() takes string argument first.
+
+2001-06-02  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
 	* include/cppunit/TestAssert.h: Declare generic assertion_traits
 	class.  Replace notEqualsMessage functions for long and double by
 	a generic, template function.  Replace assertEquals for longs by a

@@ -1,3 +1,4 @@
+#include <config.h>
 #include <cppunit/config.h>
 
 #if CPPUNIT_USE_TYPEINFO
@@ -15,7 +16,7 @@ TypeInfoHelper::getClassName( const std::type_info &info )
     std::string name( info.name() );
 
     bool has_class_prefix = 0 ==
-#if CPPUNIT_STRING_COMPARE_STRING_FIRST
+#if FUNC_STRING_COMPARE_STRING_FIRST
 	name.compare( classPrefix, 0, classPrefix.length() );
 #else
         name.compare( 0, classPrefix.length(), classPrefix );
