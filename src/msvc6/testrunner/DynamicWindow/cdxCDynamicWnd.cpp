@@ -701,7 +701,7 @@ void cdxCDynamicWnd::DoOnTimer(UINT nIDEvent)
 
 void cdxCDynamicWnd::DoOnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 {
-	if(IsWindow() && !IsDisabled())
+	if(IsWindow() && !IsDisabled()  &&  IsUp())
 	{
 		CSize	szDelta	=	GetBorderSize();
 

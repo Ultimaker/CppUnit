@@ -5,6 +5,12 @@
 
   * include/cppunit/input/XmlInputHelper.h: added.
 
+  * src/cppunit/XmlOuputter.cpp: use iterator instead of const_iterator.
+
+  * src/src/msvc6/testrunner/DynamicWindow/cdxCDynamicWnd.cpp: added call to
+    IsUp() in cdxCDynamicWnd::DoOnGetMinMaxInfo() before calling 
+    GetBorderSize() which caused an assertion. Bug #643612.
+
 2002-09-10 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/TestSuiteBuilderContext.h:
@@ -653,7 +659,7 @@
   * src/cppunit/TestCase.cpp: better short description when setUp() or
     tearDown() fail.
 
-  * src/msvc6/testrunner/TestRunnerDlg.cpp: replace '\n' in failure message
+  * src/msvc6/testrunner/TestRunnerDlg.cpp: replace '/n' in failure message
     with space.
 
   * examples/cppunittest/ExceptionTest.cpp:
@@ -1424,29 +1430,29 @@
 	* src/cppunit/TextTestRunner.cpp: made printing progress using a 
 	TextTestProgressListener optional.
 
-	* examples\cppunittest\ExceptionTest.h:
-	* examples\cppunittest\HelperMacrosTest.h:
-	* examples\cppunittest\HelperMacrosTest.cpp:
-	* examples\cppunittest\NotEqualException.h:
-	* examples\cppunittest\OrthodoxTest.h:
-	* examples\cppunittest\RepeatedTest.h:
-	* examples\cppunittest\TestAssertTest.h:
-	* examples\cppunittest\TestCallerTest.h:
-	* examples\cppunittest\TestDecoratorTest.h:
-	* examples\cppunittest\TestFailureTest.h:
-	* examples\cppunittest\TestResultCollectorTest.h:
-	* examples\cppunittest\TestResultTest.h:
-	* examples\cppunittest\TestSetUpTest.h:
-	* examples\cppunittest\TestSuiteTest.h:
-	* examples\cppunittest\XmlOutputterTest.h:
-	* examples\cppunittest\XmlOutputterTest.cpp:
-	* examples\cppunittest\XmlUniformizerTest.h:
-	* examples\cppunittest\XmlUniformizerTest.cpp: changed base class for fixture
+	* examples/cppunittest/ExceptionTest.h:
+	* examples/cppunittest/HelperMacrosTest.h:
+	* examples/cppunittest/HelperMacrosTest.cpp:
+	* examples/cppunittest/NotEqualException.h:
+	* examples/cppunittest/OrthodoxTest.h:
+	* examples/cppunittest/RepeatedTest.h:
+	* examples/cppunittest/TestAssertTest.h:
+	* examples/cppunittest/TestCallerTest.h:
+	* examples/cppunittest/TestDecoratorTest.h:
+	* examples/cppunittest/TestFailureTest.h:
+	* examples/cppunittest/TestResultCollectorTest.h:
+	* examples/cppunittest/TestResultTest.h:
+	* examples/cppunittest/TestSetUpTest.h:
+	* examples/cppunittest/TestSuiteTest.h:
+	* examples/cppunittest/XmlOutputterTest.h:
+	* examples/cppunittest/XmlOutputterTest.cpp:
+	* examples/cppunittest/XmlUniformizerTest.h:
+	* examples/cppunittest/XmlUniformizerTest.cpp: changed base class for fixture
 	from TestCase to TestFixture.
 
-	* examples\hierarchy\BoardGameTest.h:
-	* examples\hierarchy\ChessTest.h:
-	* examples\hierarchy\main.cpp: updated to use HelperMacros for correct 
+	* examples/hierarchy/BoardGameTest.h:
+	* examples/hierarchy/ChessTest.h:
+	* examples/hierarchy/main.cpp: updated to use HelperMacros for correct 
 	fixture instantiation (the ChessBoard::testReset test case was using 
 	BoardGame fixture instance instead of ChessBoard).
 

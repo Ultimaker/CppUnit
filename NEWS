@@ -8,7 +8,8 @@
 * Bug Fix:
 
   - MFC TestRunner: integrated bug fix from Tim Threlkeld for bug 
-    #610191 and #610162.
+    #610191 and #610162. Fixed assertion when minizing dialog 
+    (bug #643612).
 
   - CppUnit portability: fixed many mistakes relating to compilation
     without type info or namespace reported by Philip Craig.
