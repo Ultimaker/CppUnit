@@ -1,5 +1,5 @@
-#ifndef _INCLUDE_CPPUNIT_CONFIG_MSVC6_H
-#define _INCLUDE_CPPUNIT_CONFIG_MSVC6_H 1
+#ifndef _INCLUDE_CPPUNIT_CONFIG_EVC4_H
+#define _INCLUDE_CPPUNIT_CONFIG_EVC4_H 1
 
 #if _MSC_VER > 1000     // VC++
 #pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
@@ -41,8 +41,9 @@
 #endif
 
 #define CPPUNIT_NO_STREAM 1
+#define CPPUNIT_NO_ASSERT 1
 
-#define CPPUNIT_HAVE_SSTREAM 1
+#define CPPUNIT_HAVE_SSTREAM 0
 
 /* Name of package */
 #ifndef CPPUNIT_PACKAGE 
@@ -68,5 +69,5 @@
 */
 
 
-/* _INCLUDE_CPPUNIT_CONFIG_MSVC6_H */
+/* _INCLUDE_CPPUNIT_CONFIG_EVC4_H */
 #endif

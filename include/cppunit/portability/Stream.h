@@ -94,6 +94,13 @@ public:
    {
    }
 
+   OStream &flush()
+   {
+	   if ( buffer_ )
+		    buffer_->flush();
+	   return *this;
+   }
+
    void setBuffer( StreamBuffer *buffer )
    {
       buffer_ = buffer;
@@ -233,7 +240,7 @@ public:
    }
 
    OFileStream( const char *path )
-      : OFileStream( &buffer_ )
+      : OStream( &buffer_ )
       , buffer_( fopen( path, "wt" ) )
       , ownFile_( true )
    {
@@ -242,11 +249,12 @@ public:
    virtual ~OFileStream()
    {
       if ( ownFile_  &&  buffer_.file() )
-         fclose( file_ );
+         fclose( buffer_.file() );
    }
 
 private:
    FileStreamBuffer buffer_;
+   bool ownFile_;
 };
 
 inline OStream &stdCOut() 
