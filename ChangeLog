@@ -2,9 +2,9 @@
 
 	* src/DllPlugInTester/CommandLineParser.cpp: fixed compilation issue.
 
-  * src/msvc6/TestRunner/ActiveTest.h:
-  * src/msvc6/TestRunner/ActiveTest.cpp: reindented. bugfix: thread handle 
-    resource leak (bug #553424).
+	* src/msvc6/TestRunner/ActiveTest.h:
+	* src/msvc6/TestRunner/ActiveTest.cpp: reindented. bugfix: thread
+	handle resource leak (bug #553424).
 
 2002-04-25 Baptiste Lepilleur <gaiacrtn@free.fr>
 
