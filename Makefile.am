@@ -1,5 +1,6 @@
 
-SUBDIRS = cppunit 
+SUBDIRS = cppunit \
+          examples
 
 bin_SCRIPTS = cppunit-config
 
