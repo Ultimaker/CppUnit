@@ -4,7 +4,11 @@
 
 * Bug Fix:
 
-  - compilation with mingw & cigwin: bug #930338 & #945737 fixed.
+* Compilation:
+
+  - Compilation: mingw & cigwin, bug #930338 & #945737 fixed.
+
+  - Compilation: make install does not work on SunOS. Bug #940650 fixed.
 
 
   New in CppUnit 1.10.0 (same as 1.9.14):

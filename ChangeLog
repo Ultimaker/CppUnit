@@ -5,6 +5,9 @@
     with mingw & cygwin. WIN32 is now always defined if _WIN32 is defined.
     Bug #945737 & #930338.
 
+  * doc/Makefile.am: fixed bug #940650 => cp -dpR, removed option -p since
+    there is no link to preserve anyway (does not exist on SunOs).
+
 
 2004-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
 

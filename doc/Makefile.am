@@ -19,7 +19,7 @@ htmldir = $(pkgdatadir)/html
 html_DATA = $(static_pages) html/index.html
 
 install-data-hook:
-	cp -dpR html/* $(DESTDIR)$(htmldir)
+	cp -pR html/* $(DESTDIR)$(htmldir)
 
 # Automake's "distcheck" is sensitive to having files left over
 # after "make uninstall", so we have to clean up the install hook.
