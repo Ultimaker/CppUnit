@@ -40,6 +40,9 @@
 	than you can listen to startTestRun()/endTestRun() to do some global
 	setUp/tearDown (to initialize globales resources, such as COM...)
 
+  - Why all this fuss around test plug-in ? Test plug-in are the incarnation of
+    an old concept: testable components...
+
 * PlugInManager:
 
   - The PlugInManager is used to load/unload plug-ins. It takes care of all

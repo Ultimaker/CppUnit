@@ -24,8 +24,8 @@ runTests( CppUnit::Parameters parameters )
   CppUnit::TestResult controller;
   CppUnit::TestResultCollector result;
   controller.addListener( &result );        
-//  CppUnit::TextTestProgressListener progress;
-  CppUnit::BriefTestProgressListener progress;
+  CppUnit::TextTestProgressListener progress;
+//  CppUnit::BriefTestProgressListener progress;
   controller.addListener( &progress );      
 
   std::string testPath;

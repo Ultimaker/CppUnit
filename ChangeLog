@@ -7,6 +7,9 @@
 	* contrib/bc5/bc5-makefile.zip: added borland 5.5 makefile. Contributed by
 	  project cuppa.
 
+	* src/cppunit/TypeInfoHelper.cpp: fixed implementation to be more
+	  portable.
+
 
 2002-04-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
