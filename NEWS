@@ -12,6 +12,14 @@
 
 * Fail with arbitrary message: CPPUNIT_FAIL
 
+* Compatibility break:
+  - TestListener::addError() was removed. addFailure() is used to report
+any kind of failure.
+  - TestResult::errors() was removed. Use failures() instead.
+  - TestResult::failures() now reports all kind of failures.
+  - TestResult::failures() returns a const reference.
+
+
 	New in CppUnit 1.6.1
 	--------------------
 

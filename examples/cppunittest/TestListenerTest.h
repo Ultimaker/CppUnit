@@ -39,10 +39,9 @@ private:
     onEndTest
   };
 
-  virtual void addError( CppUnit::Test *test, CppUnit::Exception *e );
-  virtual void addFailure( CppUnit::Test *test, CppUnit::Exception *e );
-  virtual void startTest( CppUnit::Test *test );
-  virtual void endTest( CppUnit::Test *test );
+  void addFailure( CppUnit::TestFailure *failure );
+  void startTest( CppUnit::Test *test );
+  void endTest( CppUnit::Test *test );
 
   CppUnit::Exception *makeDummyError();
 

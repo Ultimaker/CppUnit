@@ -1,3 +1,36 @@
+2001-10-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/TestFailure.cpp :
+	* include/cppunit/TestFailure.h : fixed some constness issues. Added
+	argument to indicate the type of failure to constructor. Added
+	isError().
+
+	* include/cppunit/TestListener.h : removed addError(). addFailure()
+	now take a TestFailure as argument.
+
+	* include/cppunit/TestResult.h :
+	* include/cppunit/TestResult.cpp : removed errors(). Refactored. Fixed
+	some constness issues. Added typedef TestFailures for vector returned 
+	by failures(). failures() returns a const reference on the list of 
+	failure. added testFailuresTotal(). Constructor can take an optional 
+	synchronization object.
+
+	* include/cppunit/TextTestResult.h :
+	* include/cppunit/TextTestResult.cpp : removed printErrors(). 
+	Refactored. Updated to suit new TestResult, errors and failures are
+	reported in the same list.
+
+	* examples/cppunittest/TestFailureTest.cpp :
+	* examples/cppunittest/TestFailureTest.h : modified to use the new
+	TestFailure constructor. Added one test.
+
+	* examples/cppunittest/TestListenerTest.cpp: removed addError(). 
+	Refactored to suit new TestListener.
+
+	* examples/cppunittest/TestResultTest.h :
+	* examples/cppunittest/TestResultTest.cpp : modified to suit the
+	new TestResult. 
+
 2001-10-02 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/extensions/TestFactoryRegistry.h

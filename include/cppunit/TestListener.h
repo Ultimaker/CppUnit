@@ -6,6 +6,7 @@ namespace CppUnit {
 
 class Exception;
 class Test;
+class TestFailure;
 
 
 /*! \brief A listener for test progress.
@@ -18,8 +19,7 @@ public:
     virtual ~TestListener() {}
     
     virtual void startTest( Test *test ) {}
-    virtual void addError( Test *test, Exception *e ) {}
-    virtual void addFailure( Test *test, Exception *e ) {}
+    virtual void addFailure( TestFailure *failure ) {}
     virtual void endTest( Test *test ) {}
 };
 

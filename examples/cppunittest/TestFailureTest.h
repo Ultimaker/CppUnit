@@ -8,6 +8,7 @@ class TestFailureTest : public CppUnit::TestCase
 {
   CPPUNIT_TEST_SUITE( TestFailureTest );
   CPPUNIT_TEST( testConstructorAndGetters );
+  CPPUNIT_TEST( testConstructorAndGettersForError );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -18,6 +19,7 @@ public:
   virtual void tearDown();
 
   void testConstructorAndGetters();
+  void testConstructorAndGettersForError();
 
   void exceptionDestroyed();
 
@@ -43,7 +45,8 @@ private:
   TestFailureTest( const TestFailureTest &copy );
   void operator =( const TestFailureTest &copy );
   void checkTestFailure( CppUnit::Test *test, 
-                         CppUnit::Exception *error );
+                         CppUnit::Exception *error,
+                         bool isError );
 
 private:
   bool m_exceptionDestroyed;

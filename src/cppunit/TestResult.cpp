@@ -4,27 +4,25 @@
 
 namespace CppUnit {
 
-/// Destroys a test result
-TestResult::~TestResult ()
-{
-  std::vector<TestFailure *>::iterator it;
-
-  for (it = m_errors.begin (); it != m_errors.end (); ++it)
-    delete *it;
-
-  for (it = m_failures.begin (); it != m_failures.end (); ++it)
-    delete *it;
-
-  delete m_syncObject;
+/// Construct a TestResult
+TestResult::TestResult( SynchronizationObject *syncObject ) : 
+    m_syncObject( syncObject == 0 ?  new SynchronizationObject() :
+                                     syncObject  )
+{ 
+  m_runTests = 0;
+  m_testErrors = 0;
+  m_stop = false; 
 }
 
-/// Construct a TestResult
 
-  TestResult::TestResult ()
-    : m_syncObject (new SynchronizationObject ())
-{ 
-    m_runTests = 0; 
-    m_stop = false; 
+/// Destroys a test result
+TestResult::~TestResult()
+{
+  TestFailures::iterator itFailure = m_failures.begin();
+  while ( itFailure != m_failures.end() )
+    delete *itFailure++;
+
+  delete m_syncObject;
 }
 
 
@@ -33,15 +31,12 @@ TestResult::~TestResult ()
  *  caused the error
  */
 void 
-  TestResult::addError (Test *test, Exception *e)
+TestResult::addError( Test *test, 
+                      Exception *e )
 { 
-  ExclusiveZone zone (m_syncObject); 
-  m_errors.push_back (new TestFailure (test, e)); 
-
-  for ( std::vector<TestListener *>::iterator it = m_listeners.begin();
-        it != m_listeners.end(); 
-        ++it )
-    (*it)->addError( test, e );
+  ExclusiveZone zone( m_syncObject ); 
+  ++m_testErrors;
+  addFailure( new TestFailure( test, e, true ) );
 }
 
 
@@ -49,21 +44,30 @@ void
  * caused the failure.
  */
 void 
-  TestResult::addFailure (Test *test, Exception *e)
+TestResult::addFailure( Test *test, Exception *e )
 { 
-  ExclusiveZone zone (m_syncObject); 
-  m_failures.push_back (new TestFailure (test, e)); 
+  ExclusiveZone zone( m_syncObject ); 
+  addFailure( new TestFailure( test, e, false ) );
+}
+
+
+/** Called to add a failure to the list of failures.
+ */
+void 
+TestResult::addFailure( TestFailure *failure )
+{
+  m_failures.push_back( failure ); 
 
   for ( std::vector<TestListener *>::iterator it = m_listeners.begin();
         it != m_listeners.end(); 
         ++it )
-    (*it)->addFailure( test, e );
+    (*it)->addFailure( failure );
 }
 
 
 /// Informs the result that a test will be started.
 void 
-  TestResult::startTest (Test *test)
+TestResult::startTest( Test *test )
 { 
   ExclusiveZone zone (m_syncObject); 
   m_runTests++; 
@@ -77,7 +81,7 @@ void
   
 /// Informs the result that a test was completed.
 void 
-  TestResult::endTest (Test *test)
+TestResult::endTest( Test *test )
 { 
   ExclusiveZone zone (m_syncObject); 
 
@@ -90,72 +94,72 @@ void
 
 /// Gets the number of run tests.
 int 
-  TestResult::runTests ()
+TestResult::runTests() const
 { 
-  ExclusiveZone zone (m_syncObject); 
+  ExclusiveZone zone( m_syncObject ); 
   return m_runTests; 
 }
 
 
-/// Gets the number of detected errors.
+/// Gets the number of detected errors (uncaught exception).
 int 
-  TestResult::testErrors ()
+TestResult::testErrors() const
 { 
-  ExclusiveZone zone (m_syncObject); 
-  return m_errors.size (); 
+  ExclusiveZone zone( m_syncObject );
+  return m_testErrors;
 }
 
 
-/// Gets the number of detected failures.
+/// Gets the number of detected failures (failed assertion).
 int 
-  TestResult::testFailures ()
+TestResult::testFailures() const
 { 
-  ExclusiveZone zone (m_syncObject); 
-  return m_failures.size (); 
+  ExclusiveZone zone( m_syncObject ); 
+  return m_failures.size() - m_testErrors;
+}
+
+
+/// Gets the total number of detected failures.
+int 
+TestResult::testFailuresTotal() const
+{
+  ExclusiveZone zone( m_syncObject ); 
+  return m_failures.size();
 }
 
 
 /// Returns whether the entire test was successful or not.
 bool 
-  TestResult::wasSuccessful ()
+TestResult::wasSuccessful() const
 { 
-  ExclusiveZone zone (m_syncObject); 
-  return m_failures.size () == 0 && m_errors.size () == 0; 
-}
-
-
-/// Returns a vector of the errors.
-std::vector<TestFailure *>& 
-  TestResult::errors ()
-{ 
-  ExclusiveZone zone (m_syncObject); 
-  return m_errors; 
+  ExclusiveZone zone( m_syncObject );
+  return m_failures.size() == 0;
 }
 
 
 /// Returns a vector of the failures.
-std::vector<TestFailure *>& 
-  TestResult::failures ()
+const std::vector<TestFailure *>& 
+TestResult::failures() const
 { 
-  ExclusiveZone zone (m_syncObject); 
+  ExclusiveZone zone( m_syncObject );
   return m_failures; 
 }
 
 
 /// Returns whether testing should be stopped
 bool 
-  TestResult::shouldStop ()
+TestResult::shouldStop() const
 { 
-  ExclusiveZone zone (m_syncObject); 
+  ExclusiveZone zone( m_syncObject );
   return m_stop; 
 }
 
 
 /// Stop testing
 void 
-  TestResult::stop ()
+TestResult::stop()
 { 
-  ExclusiveZone zone (m_syncObject); 
+  ExclusiveZone zone( m_syncObject );
   m_stop = true; 
 }
 
@@ -164,7 +168,7 @@ void
  * TestResult assumes ownership of the object
  */
 void 
-  TestResult::setSynchronizationObject (SynchronizationObject *syncObject)
+TestResult::setSynchronizationObject( SynchronizationObject *syncObject )
 { 
   delete m_syncObject; 
   m_syncObject = syncObject; 
@@ -183,7 +187,9 @@ void
 TestResult::removeListener ( TestListener *listener )
 {
   ExclusiveZone zone (m_syncObject); 
-  m_listeners.erase( std::remove( m_listeners.begin(), m_listeners.end(), listener ),
+  m_listeners.erase( std::remove( m_listeners.begin(), 
+                                  m_listeners.end(), 
+                                  listener ),
                      m_listeners.end());
 }
 

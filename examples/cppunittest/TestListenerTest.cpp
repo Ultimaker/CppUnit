@@ -66,21 +66,14 @@ TestListenerTest::tearDown()
 
 
 void 
-TestListenerTest::addError( CppUnit::Test *test, CppUnit::Exception *e )
+TestListenerTest::addFailure( CppUnit::TestFailure *failure )
 {
-  m_listenerTest = test;
-  m_listenerError = e;
-  m_listenerCallbackType = onAddError;
+  m_listenerTest = failure->failedTest();
+  m_listenerError = failure->thrownException();
+  m_listenerCallbackType = failure->isError() ? onAddError : 
+                                                onAddFailure;
 }
 
-
-void 
-TestListenerTest::addFailure( CppUnit::Test *test, CppUnit::Exception *e )
-{
-  m_listenerTest = test;
-  m_listenerError = e;
-  m_listenerCallbackType = onAddFailure;
-}
 
 void 
 TestListenerTest::startTest( CppUnit::Test *test )

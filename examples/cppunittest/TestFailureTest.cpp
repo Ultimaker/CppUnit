@@ -36,7 +36,17 @@ TestFailureTest::testConstructorAndGetters()
 {
   CppUnit::TestCase test;
   CppUnit::Exception *error = new ObservedException( this );
-  checkTestFailure( &test, error );
+  checkTestFailure( &test, error, false );
+  CPPUNIT_ASSERT( m_exceptionDestroyed );
+}
+
+
+void 
+TestFailureTest::testConstructorAndGettersForError()
+{
+  CppUnit::TestCase test;
+  CppUnit::Exception *error = new ObservedException( this );
+  checkTestFailure( &test, error, true );
   CPPUNIT_ASSERT( m_exceptionDestroyed );
 }
 
@@ -50,9 +60,11 @@ TestFailureTest::exceptionDestroyed()
 
 void 
 TestFailureTest::checkTestFailure( CppUnit::Test *test, 
-                                   CppUnit::Exception *error )
+                                   CppUnit::Exception *error,
+                                   bool isError )
 {
-  CppUnit::TestFailure failure( test, error );
+  CppUnit::TestFailure failure( test, error, isError );
   CPPUNIT_ASSERT_EQUAL( test, failure.failedTest() );
   CPPUNIT_ASSERT_EQUAL( error, failure.thrownException() );
+  CPPUNIT_ASSERT_EQUAL( isError, failure.isError() );
 }

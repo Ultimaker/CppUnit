@@ -1,6 +1,7 @@
 #ifndef CPPUNIT_TESTFAILURE_H    // -*- C++ -*-
 #define CPPUNIT_TESTFAILURE_H
 
+#include <cppunit/Portability.h>
 #include <string>
 
 namespace CppUnit {
@@ -20,32 +21,29 @@ class Exception;
 class TestFailure 
 {
 public:
-    TestFailure (Test *failedTest, Exception *thrownException);
-    virtual ~TestFailure ();
+  TestFailure( Test *failedTest,
+               Exception *thrownException,
+               bool isError );
 
-    Test*        failedTest ();
+  virtual ~TestFailure ();
 
-    Exception*   thrownException ();
-    
-    std::string  toString () const;
+  Test *failedTest() const;
+
+  Exception *thrownException() const;
+
+  bool isError() const;
+  
+  std::string toString() const;
 
 protected:
-    Test         *m_failedTest;
-    Exception    *m_thrownException;
+  Test *m_failedTest;
+  Exception *m_thrownException;
+  bool m_isError;
 
 private: 
-    TestFailure (const TestFailure& other); 
-    TestFailure& operator= (const TestFailure& other); 
+  TestFailure( const TestFailure &other ); 
+  TestFailure &operator =( const TestFailure& other ); 
 };
-
-/// Gets the failed test.
-inline Test *TestFailure::failedTest ()
-{ return m_failedTest; }
-
-
-/// Gets the thrown exception.
-inline Exception *TestFailure::thrownException ()
-{ return m_thrownException; }
 
 
 } // namespace CppUnit
