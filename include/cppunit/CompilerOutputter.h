@@ -13,19 +13,22 @@ class Test;
 class TestFailure;
 class TestResult;
 
-/*! \class CompilerTestResultOutputter
+/*! \class CompilerOutputter
  * \brief This class implements output test result in a compiler compatible format.
  */
-class CompilerTestResultOutputter
+class CompilerOutputter
 {
 public:
-  /*! Constructs a CompilerTestResultOutputter object.
+  /*! Constructs a CompilerOutputter object.
    */
-  CompilerTestResultOutputter( TestResult *result,
+  CompilerOutputter( TestResult *result,
                                std::ostream &stream );
 
   /// Destructor.
-  virtual ~CompilerTestResultOutputter();
+  virtual ~CompilerOutputter();
+
+  static CompilerOutputter *defaultOutputter( TestResult *result,
+                                                        std::ostream &stream );
 
   virtual void write( );
 
@@ -44,10 +47,10 @@ public:
 
 private:
   /// Prevents the use of the copy constructor.
-  CompilerTestResultOutputter( const CompilerTestResultOutputter &copy );
+  CompilerOutputter( const CompilerOutputter &copy );
 
   /// Prevents the use of the copy operator.
-  void operator =( const CompilerTestResultOutputter &copy );
+  void operator =( const CompilerOutputter &copy );
 
 private:
   TestResult *m_result;

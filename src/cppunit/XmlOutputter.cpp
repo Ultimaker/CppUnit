@@ -1,7 +1,7 @@
 #include <cppunit/Exception.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestResult.h>
-#include <cppunit/XmlTestResultOutputter.h>
+#include <cppunit/XmlOutputter.h>
 #include <map>
 #include <stdlib.h>
 
@@ -9,11 +9,11 @@
 namespace CppUnit
 {
 
-// XmlTestResultOutputter::Node
+// XmlOutputter::Node
 // //////////////////////////////////////////////////////////////////
 
 
-XmlTestResultOutputter::Node::Node( std::string elementName,
+XmlOutputter::Node::Node( std::string elementName,
                                 std::string content ) :
     m_name( elementName ),
     m_content( content )
@@ -21,7 +21,7 @@ XmlTestResultOutputter::Node::Node( std::string elementName,
 }
 
     
-XmlTestResultOutputter::Node::Node( std::string elementName,
+XmlOutputter::Node::Node( std::string elementName,
                                     int numericContent ) :
     m_name( elementName )
 {
@@ -29,7 +29,7 @@ XmlTestResultOutputter::Node::Node( std::string elementName,
 }
 
 
-XmlTestResultOutputter::Node::~Node()
+XmlOutputter::Node::~Node()
 {
   Nodes::iterator itNode = m_nodes.begin();
   while ( itNode != m_nodes.end() )
@@ -38,7 +38,7 @@ XmlTestResultOutputter::Node::~Node()
 
 
 void 
-XmlTestResultOutputter::Node::addAttribute( std::string attributeName,
+XmlOutputter::Node::addAttribute( std::string attributeName,
                                             std::string value  )
 {
   m_attributes.push_back( Attribute( attributeName, value ) );
@@ -46,7 +46,7 @@ XmlTestResultOutputter::Node::addAttribute( std::string attributeName,
 
 
 void 
-XmlTestResultOutputter::Node::addAttribute( std::string attributeName,
+XmlOutputter::Node::addAttribute( std::string attributeName,
                                             int numericValue )
 {
   addAttribute( attributeName, asString( numericValue ) );
@@ -54,14 +54,14 @@ XmlTestResultOutputter::Node::addAttribute( std::string attributeName,
 
 
 void 
-XmlTestResultOutputter::Node::addNode( Node *node )
+XmlOutputter::Node::addNode( Node *node )
 {
   m_nodes.push_back( node );
 }
 
 
 std::string 
-XmlTestResultOutputter::Node::toString() const
+XmlOutputter::Node::toString() const
 {
   std::string element = "<";
   element += m_name;
@@ -87,7 +87,7 @@ XmlTestResultOutputter::Node::toString() const
 
 
 std::string 
-XmlTestResultOutputter::Node::attributesAsString() const
+XmlOutputter::Node::attributesAsString() const
 {
   std::string attributes;
   Attributes::const_iterator itAttribute = m_attributes.begin();
@@ -104,7 +104,7 @@ XmlTestResultOutputter::Node::attributesAsString() const
 
 
 std::string 
-XmlTestResultOutputter::Node::escape( std::string value ) const
+XmlOutputter::Node::escape( std::string value ) const
 {
   std::string escaped;
   for ( int index =0; index < value.length(); ++index )
@@ -137,7 +137,7 @@ XmlTestResultOutputter::Node::escape( std::string value ) const
 
 // should be somewhere else... Future CppUnit::String ?    
 std::string 
-XmlTestResultOutputter::Node::asString( int value )
+XmlOutputter::Node::asString( int value )
 {
   OStringStream stream;
   stream << value;
@@ -147,67 +147,68 @@ XmlTestResultOutputter::Node::asString( int value )
 
 
 
-// XmlTestResultOutputter
+// XmlOutputter
 // //////////////////////////////////////////////////////////////////
 
-XmlTestResultOutputter::XmlTestResultOutputter()
+XmlOutputter::XmlOutputter( TestResult *result,
+                                                std::ostream &stream ) :
+    m_result( result ),
+    m_stream( stream )
 {
 }
 
 
-XmlTestResultOutputter::~XmlTestResultOutputter()
+XmlOutputter::~XmlOutputter()
 {
-}
-
-
-void 
-XmlTestResultOutputter::write( TestResult *result,
-                               std::ostream &stream )
-{
-  writeProlog( stream );
-  writeTestsResult( result, stream );
 }
 
 
 void 
-XmlTestResultOutputter::writeProlog( std::ostream &stream )
+XmlOutputter::write()
 {
-  stream  <<  "<?xml version=\"1.0\" encoding='ISO-8859-1' standalone='yes' ?>"
-          <<  std::endl;
+  writeProlog();
+  writeTestsResult();
 }
 
 
 void 
-XmlTestResultOutputter::writeTestsResult( TestResult *result, 
-                                          std::ostream &stream )
+XmlOutputter::writeProlog()
 {
-  Node *rootNode = makeRootNode( result );
-  stream  <<  rootNode->toString();
+  m_stream  <<  "<?xml version=\"1.0\" "
+                "encoding='ISO-8859-1' standalone='yes' ?>"
+            <<  std::endl;
+}
+
+
+void 
+XmlOutputter::writeTestsResult()
+{
+  Node *rootNode = makeRootNode();
+  m_stream  <<  rootNode->toString();
   delete rootNode;
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeRootNode( TestResult *result )
+XmlOutputter::Node *
+XmlOutputter::makeRootNode()
 {
   Node *rootNode = new Node( "TestRun" );
 
   FailedTests failedTests;
-  fillFailedTestsMap( result, failedTests );
+  fillFailedTestsMap( failedTests );
 
-  rootNode->addNode( makeFailedTestsNode( failedTests, result ) );
-  rootNode->addNode( makeSucessfulTestsNode( failedTests, result ) );
-  rootNode->addNode( makeStatisticsNode( result ) );
+  addFailedTests( failedTests, rootNode );
+  addSucessfulTests( failedTests, rootNode );
+  addStatistics( rootNode );
 
   return rootNode;
 }
 
 
 void 
-XmlTestResultOutputter::fillFailedTestsMap( TestResult *result, 
-                                            FailedTests &failedTests )
+XmlOutputter::fillFailedTestsMap( FailedTests &failedTests )
 {
-  const TestResult::TestFailures &failures = result->failures();
+  const TestResult::TestFailures &failures = m_result->failures();
   TestResult::TestFailures::const_iterator itFailure = failures.begin();
   while ( itFailure != failures.end() )
   {
@@ -217,101 +218,94 @@ XmlTestResultOutputter::fillFailedTestsMap( TestResult *result,
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeFailedTestsNode( FailedTests &failedTests, 
-                                             TestResult *result )
+void
+XmlOutputter::addFailedTests( FailedTests &failedTests,
+                                        Node *rootNode )
 {
-  Node *rootNode = new Node( "FailedTests" );
+  Node *testsNode = new Node( "FailedTests" );
+  rootNode->addNode( testsNode );
 
-  const TestResult::Tests &tests = result->tests();
+  const TestResult::Tests &tests = m_result->tests();
   for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
   {
     Test *test = tests[testNumber];
     if ( failedTests.find( test ) != failedTests.end() )
-    {
-      rootNode->addNode( makeFailedTestNode( test, 
-                                             failedTests[test], 
-                                             testNumber+1 ) );
-    }
+      addFailedTest( test, failedTests[test], testNumber+1, testsNode );
   }
-
-  return rootNode;
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeSucessfulTestsNode( FailedTests &failedTests, 
-                                                TestResult *result )
+void
+XmlOutputter::addSucessfulTests( FailedTests &failedTests,
+                                           Node *rootNode )
 {
-  Node *rootNode = new Node( "SucessfulTests" );
+  Node *testsNode = new Node( "SucessfulTests" );
+  rootNode->addNode( testsNode );
 
-  const TestResult::Tests &tests = result->tests();
+  const TestResult::Tests &tests = m_result->tests();
   for ( int testNumber = 0; testNumber < tests.size(); ++testNumber )
   {
     Test *test = tests[testNumber];
     if ( failedTests.find( test ) == failedTests.end() )
-    {
-      rootNode->addNode( makeSucessfulTestNode( test, 
-                                                testNumber+1 ) );
-    }
+      addSucessfulTest( test, testNumber+1, testsNode );
   }
-
-  return rootNode;
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeStatisticsNode( TestResult *result )
+void
+XmlOutputter::addStatistics( Node *rootNode )
 {
   Node *statisticsNode = new Node( "Statistics" );
-  statisticsNode->addNode( new Node( "Tests", result->runTests() ) );
+  rootNode->addNode( statisticsNode );
+  statisticsNode->addNode( new Node( "Tests", m_result->runTests() ) );
   statisticsNode->addNode( new Node( "FailuresTotal", 
-                                     result->testFailuresTotal() ) );
-  statisticsNode->addNode( new Node( "Errors", result->testErrors() ) );
-  statisticsNode->addNode( new Node( "Failures", result->testFailures() ) );
-
-  return statisticsNode;
+                                     m_result->testFailuresTotal() ) );
+  statisticsNode->addNode( new Node( "Errors", m_result->testErrors() ) );
+  statisticsNode->addNode( new Node( "Failures", m_result->testFailures() ) );
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeFailedTestNode( Test *test,
-                                            TestFailure *failure,
-                                            int testNumber )
+void
+XmlOutputter::addFailedTest( Test *test,
+                                       TestFailure *failure,
+                                       int testNumber,
+                                       Node *testsNode )
 {
   Exception *thrownException = failure->thrownException();
   
   Node *testNode = new Node( "FailedTest", thrownException->what() );
+  testsNode->addNode( testNode );
   testNode->addAttribute( "id", testNumber );
   testNode->addNode( new Node( "Name", test->getName() ) );
   testNode->addNode( new Node( "FailureType", 
                                failure->isError() ? "Error" : "Assertion" ) );
 
   if ( failure->sourceLine().isValid() )
-    testNode->addNode( makeFailureLocationNode( failure ) );
-  return testNode;
+    addFailureLocation( failure, testNode );
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeFailureLocationNode( TestFailure *failure )
+void
+XmlOutputter::addFailureLocation( TestFailure *failure,
+                                            Node *testNode )
 {
   Node *locationNode = new Node( "Location" );
+  testNode->addNode( locationNode );
   SourceLine sourceLine = failure->sourceLine();
   locationNode->addNode( new Node( "File", sourceLine.fileName() ) );
   locationNode->addNode( new Node( "Line", sourceLine.lineNumber() ) );
-  return locationNode;
 }
 
 
-XmlTestResultOutputter::Node *
-XmlTestResultOutputter::makeSucessfulTestNode( Test *test, 
-                                               int testNumber )
+void
+XmlOutputter::addSucessfulTest( Test *test, 
+                                          int testNumber,
+                                          Node *testsNode )
 {
   Node *testNode = new Node( "Test" );
+  testsNode->addNode( testNode );
   testNode->addAttribute( "id", testNumber );
   testNode->addNode( new Node( "Name", test->getName() ) );
-  return testNode;
 }
 
 

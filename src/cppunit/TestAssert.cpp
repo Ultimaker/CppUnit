@@ -13,34 +13,38 @@ namespace CppUnit {
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 /// Check for a failed general assertion 
-void TestAssert::assertImplementation (bool          condition,
-  std::string   conditionExpression,
-  long          lineNumber,
-  std::string   fileName)
-{ 
-  if (!condition) 
-    throw Exception (conditionExpression, 
-                     lineNumber,
-                     fileName); 
+void 
+TestAssert::assertImplementation( bool condition,
+                                  std::string conditionExpression,
+                                  long lineNumber,
+                                  std::string fileName )
+{
+  Asserter::failIf( condition, 
+                    conditionExpression, 
+                    SourceLine( fileName, lineNumber ) );
 }
 
 
 /// Reports failed equality
-void TestAssert::assertNotEqualImplementation( std::string expected,
-     std::string actual,
-     long lineNumber,
-     std::string fileName )
+void 
+TestAssert::assertNotEqualImplementation( std::string expected,
+                                          std::string actual,
+                                          long lineNumber,
+                                          std::string fileName )
 {
-  throw NotEqualException( expected, actual, lineNumber, fileName );
+  Asserter::failNotEqual( expected, 
+                          actual, 
+                          SouceLine( fileName, lineNumber ), "" );
 }
 
 
 /// Check for a failed equality assertion
-void TestAssert::assertEquals (double        expected, 
-  double        actual, 
-  double        delta,
-  long          lineNumber,
-  std::string   fileName)
+void 
+TestAssert::assertEquals( double expected, 
+                          double actual, 
+                          double delta,
+                          long lineNumber,
+                          std::string fileName )
 { 
   if (fabs (expected - actual) > delta) 
     assertNotEqualImplementation( assertion_traits<double>::toString(expected),
@@ -49,7 +53,7 @@ void TestAssert::assertEquals (double        expected,
                                   fileName ); 
 }
 
-#else
+#else  // CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 
 void 
 TestAssert::assertDoubleEquals( double expected,

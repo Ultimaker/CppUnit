@@ -1,50 +1,50 @@
 #include <cppunit/TestResult.h>
-#include <cppunit/XmlTestResultOutputter.h>
+#include <cppunit/XmlOutputter.h>
 #include "OutputSuite.h"
-#include "XmlTestResultOutputterTest.h"
+#include "XmlOutputterTest.h"
 #include "XmlUniformiser.h"
 
 
-CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlTestResultOutputterTest, 
+CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlOutputterTest, 
                                        CppUnitTest::outputSuiteName() );
 
 
-XmlTestResultOutputterTest::XmlTestResultOutputterTest() : 
+XmlOutputterTest::XmlOutputterTest() : 
     CppUnit::TestCase()
 {
 }
 
 
-XmlTestResultOutputterTest::~XmlTestResultOutputterTest()
+XmlOutputterTest::~XmlOutputterTest()
 {
 }
 
 
 void 
-XmlTestResultOutputterTest::setUp()
+XmlOutputterTest::setUp()
 {
 }
 
 
 void 
-XmlTestResultOutputterTest::tearDown()
+XmlOutputterTest::tearDown()
 {
 }
 
 
 void 
-XmlTestResultOutputterTest::testEmptyNodeToString()
+XmlOutputterTest::testEmptyNodeToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element" );
+  CppUnit::XmlOutputter::Node node( "element" );
   std::string expectedXml = "<element></element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
 }
 
 
 void 
-XmlTestResultOutputterTest::testNodeWithAttributesToString()
+XmlOutputterTest::testNodeWithAttributesToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element" );
+  CppUnit::XmlOutputter::Node node( "element" );
   node.addAttribute( "id", 17 );
   node.addAttribute( "date-format", "iso-8901" );
   std::string expectedXml = "<element id=\"17\" "
@@ -55,9 +55,9 @@ XmlTestResultOutputterTest::testNodeWithAttributesToString()
 
 
 void 
-XmlTestResultOutputterTest::testEscapedAttributeValueToString()
+XmlOutputterTest::testEscapedAttributeValueToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element" );
+  CppUnit::XmlOutputter::Node node( "element" );
   node.addAttribute( "escaped", "&<>\"'" );
   std::string expectedXml = "<element escaped=\""
                             "&amp;&lt;&gt;&quot;&apos;"
@@ -67,11 +67,11 @@ XmlTestResultOutputterTest::testEscapedAttributeValueToString()
 
 
 void 
-XmlTestResultOutputterTest::testNodeWithChildrenToString()
+XmlOutputterTest::testNodeWithChildrenToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element" );
-  node.addNode( new CppUnit::XmlTestResultOutputter::Node( "child1" ) );
-  node.addNode( new CppUnit::XmlTestResultOutputter::Node( "child2" ) );
+  CppUnit::XmlOutputter::Node node( "element" );
+  node.addNode( new CppUnit::XmlOutputter::Node( "child1" ) );
+  node.addNode( new CppUnit::XmlOutputter::Node( "child2" ) );
   std::string expectedXml = "<element><child1></child1>"
                             "<child2></child2></element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
@@ -79,41 +79,41 @@ XmlTestResultOutputterTest::testNodeWithChildrenToString()
 
 
 void 
-XmlTestResultOutputterTest::testNodeWithContentToString()
+XmlOutputterTest::testNodeWithContentToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element", "content\nline2" );
+  CppUnit::XmlOutputter::Node node( "element", "content\nline2" );
   std::string expectedXml = "<element>content\nline2</element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
 }
 
 
 void 
-XmlTestResultOutputterTest::testNodeWithNumericContentToString()
+XmlOutputterTest::testNodeWithNumericContentToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element", 123456789 );
+  CppUnit::XmlOutputter::Node node( "element", 123456789 );
   std::string expectedXml = "<element>123456789</element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
 }
 
 
 void 
-XmlTestResultOutputterTest::testNodeWithContentAndChildToString()
+XmlOutputterTest::testNodeWithContentAndChildToString()
 {
-  CppUnit::XmlTestResultOutputter::Node node( "element", "content" );
-  node.addNode( new CppUnit::XmlTestResultOutputter::Node( "child1" ) );
+  CppUnit::XmlOutputter::Node node( "element", "content" );
+  node.addNode( new CppUnit::XmlOutputter::Node( "child1" ) );
   std::string expectedXml = "<element><child1></child1>content</element>";
   CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
 }
 
 
 void 
-XmlTestResultOutputterTest::testWriteXmlResultWithNoTest()
+XmlOutputterTest::testWriteXmlResultWithNoTest()
 {
   CppUnit::TestResult result;
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlTestResultOutputter outputter;
-  outputter.write( &result, stream );
+  CppUnit::XmlOutputter outputter( &result, stream );
+  outputter.write();
 
   std::string actualXml = stream.str();
   std::string expectedXml = 
@@ -132,7 +132,7 @@ XmlTestResultOutputterTest::testWriteXmlResultWithNoTest()
 
 
 void 
-XmlTestResultOutputterTest::testWriteXmlResultWithOneFailure()
+XmlOutputterTest::testWriteXmlResultWithOneFailure()
 {
   CppUnit::TestResult result;
   CppUnit::TestCase test1( "test1" );
@@ -143,8 +143,8 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneFailure()
   result.endTest( &test1 );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlTestResultOutputter outputter;
-  outputter.write( &result, stream );
+  CppUnit::XmlOutputter outputter( &result, stream );
+  outputter.write();
 
   std::string actualXml = stream.str();
   std::string expectedXml = 
@@ -173,7 +173,7 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneFailure()
 
 
 void 
-XmlTestResultOutputterTest::testWriteXmlResultWithOneError()
+XmlOutputterTest::testWriteXmlResultWithOneError()
 {
   CppUnit::TestResult result;
   CppUnit::TestCase test1( "test1" );
@@ -182,8 +182,8 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneError()
   result.endTest( &test1 );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlTestResultOutputter outputter;
-  outputter.write( &result, stream );
+  CppUnit::XmlOutputter outputter( &result, stream );
+  outputter.write();
 
   std::string actualXml = stream.str();
   std::string expectedXml = 
@@ -208,7 +208,7 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneError()
 
 
 void 
-XmlTestResultOutputterTest::testWriteXmlResultWithOneSucess()
+XmlOutputterTest::testWriteXmlResultWithOneSucess()
 {
   CppUnit::TestResult result;
   CppUnit::TestCase test1( "test1" );
@@ -216,8 +216,8 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneSucess()
   result.endTest( &test1 );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlTestResultOutputter outputter;
-  outputter.write( &result, stream );
+  CppUnit::XmlOutputter outputter( &result, stream );
+  outputter.write();
 
   std::string actualXml = stream.str();
   std::string expectedXml = 
@@ -240,7 +240,7 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneSucess()
 
 
 void 
-XmlTestResultOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
+XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
 {
   CppUnit::TestCase test1( "test1" );
   CppUnit::TestCase test2( "test2" );
@@ -271,8 +271,8 @@ XmlTestResultOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuc
   result.endTest( &test7 );
 
   CppUnit::OStringStream stream;
-  CppUnit::XmlTestResultOutputter outputter;
-  outputter.write( &result, stream );
+  CppUnit::XmlOutputter outputter( &result, stream );
+  outputter.write();
 
   std::string actualXml = stream.str();
   std::string expectedXml = 

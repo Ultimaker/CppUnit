@@ -262,12 +262,12 @@ SOURCE=..\..\include\cppunit\TestSuite.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\CompilerTestResultOutputter.cpp
+SOURCE=.\CompilerOutputter.cpp
 # SUBTRACT CPP /YX
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\CompilerTestResultOutputter.h
+SOURCE=..\..\include\cppunit\CompilerOutputter.h
 # End Source File
 # Begin Source File
 
@@ -287,11 +287,11 @@ SOURCE=..\..\include\cppunit\TextTestRunner.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlTestResultOutputter.cpp
+SOURCE=.\XmlOutputter.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\XmlTestResultOutputter.h
+SOURCE=..\..\include\cppunit\XmlOutputter.h
 # End Source File
 # End Group
 # Begin Group "portability"

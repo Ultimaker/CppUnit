@@ -1,7 +1,7 @@
 #include <cppunit/NotEqualException.h>
 #include <cppunit/SourceLine.h>
 #include <cppunit/TestResult.h>
-#include <cppunit/CompilerTestResultOutputter.h>
+#include <cppunit/CompilerOutputter.h>
 
 
 namespace CppUnit
@@ -21,7 +21,7 @@ namespace CppUnit
  *   bool wasSucessful = runner.run( "", false, !selfTest );
  *   if ( selfTest )
  *   {  
- *     CppUnit::CompilerTestResultOutputter outputter( runner.result(),
+ *     CppUnit::CompilerOutputter outputter( runner.result(),
  *                                                     std::cerr );
  *     outputter.write();
  *   }
@@ -30,7 +30,7 @@ namespace CppUnit
  * }
  * \endcode
  */
-CompilerTestResultOutputter::CompilerTestResultOutputter( 
+CompilerOutputter::CompilerOutputter( 
                                TestResult *result,
                                std::ostream &stream ) :
     m_result( result ),
@@ -39,13 +39,23 @@ CompilerTestResultOutputter::CompilerTestResultOutputter(
 }
 
 
-CompilerTestResultOutputter::~CompilerTestResultOutputter()
+CompilerOutputter::~CompilerOutputter()
 {
 }
 
 
+CompilerOutputter *
+CompilerOutputter::defaultOutputter( TestResult *result,
+                                               std::ostream &stream )
+{
+  return new CompilerOutputter( result, stream );
+// For automatic adpatation...
+//  return new CPPUNIT_DEFAULT_OUTPUTTER( result, stream );
+}
+
+
 void 
-CompilerTestResultOutputter::write()
+CompilerOutputter::write()
 {
   if ( m_result->wasSuccessful() )
     printSucess();
@@ -55,14 +65,15 @@ CompilerTestResultOutputter::write()
 
 
 void 
-CompilerTestResultOutputter::printSucess()
+CompilerOutputter::printSucess()
 {
-  m_stream  << "OK" << std::endl;
+  m_stream  << "OK (" << m_result->runTests()  << ")"  
+            <<  std::endl;
 }
 
 
 void 
-CompilerTestResultOutputter::printFailureReport()
+CompilerOutputter::printFailureReport()
 {
   printFailuresList();
   printStatistics();
@@ -70,7 +81,7 @@ CompilerTestResultOutputter::printFailureReport()
 
 
 void 
-CompilerTestResultOutputter::printFailuresList()
+CompilerOutputter::printFailuresList()
 {
   for ( int index =0; index < m_result->testFailuresTotal(); ++index)
   {
@@ -80,7 +91,7 @@ CompilerTestResultOutputter::printFailuresList()
 
 
 void 
-CompilerTestResultOutputter::printFailureDetail( TestFailure *failure )
+CompilerOutputter::printFailureDetail( TestFailure *failure )
 {
   printFailureLocation( failure->sourceLine() );
   printFailureType( failure );
@@ -90,7 +101,7 @@ CompilerTestResultOutputter::printFailureDetail( TestFailure *failure )
 
  
 void 
-CompilerTestResultOutputter::printFailureLocation( SourceLine sourceLine )
+CompilerOutputter::printFailureLocation( SourceLine sourceLine )
 {
   if ( sourceLine.isValid() )
     m_stream  <<  sourceLine.fileName()  
@@ -101,14 +112,14 @@ CompilerTestResultOutputter::printFailureLocation( SourceLine sourceLine )
 
 
 void 
-CompilerTestResultOutputter::printFailureType( TestFailure *failure )
+CompilerOutputter::printFailureType( TestFailure *failure )
 {
   m_stream  <<  (failure->isError() ? "Error" : "Assertion");
 }
 
 
 void 
-CompilerTestResultOutputter::printFailedTestName( TestFailure *failure )
+CompilerOutputter::printFailedTestName( TestFailure *failure )
 {
   m_stream  <<  std::endl;
   m_stream  <<  "Test name: "  <<  failure->failedTestName();
@@ -116,7 +127,7 @@ CompilerTestResultOutputter::printFailedTestName( TestFailure *failure )
 
 
 void 
-CompilerTestResultOutputter::printFailureMessage( TestFailure *failure )
+CompilerOutputter::printFailureMessage( TestFailure *failure )
 {
   m_stream  <<  std::endl;
   Exception *thrownException = failure->thrownException();
@@ -129,7 +140,7 @@ CompilerTestResultOutputter::printFailureMessage( TestFailure *failure )
 
 
 void 
-CompilerTestResultOutputter::printNotEqualMessage( Exception *thrownException )
+CompilerOutputter::printNotEqualMessage( Exception *thrownException )
 {
   NotEqualException *e = (NotEqualException *)thrownException;
   m_stream  <<  wrap( "- Expected : " + e->expectedValue() );
@@ -145,7 +156,7 @@ CompilerTestResultOutputter::printNotEqualMessage( Exception *thrownException )
 
 
 void 
-CompilerTestResultOutputter::printDefaultMessage( Exception *thrownException )
+CompilerOutputter::printDefaultMessage( Exception *thrownException )
 {
   std::string wrappedMessage = wrap( thrownException->what() );
   m_stream  <<  wrappedMessage  << std::endl;
@@ -153,7 +164,7 @@ CompilerTestResultOutputter::printDefaultMessage( Exception *thrownException )
 
 
 void 
-CompilerTestResultOutputter::printStatistics()
+CompilerOutputter::printStatistics()
 {
   m_stream  <<  "Failures !!!"  <<  std::endl;
   m_stream  <<  "Run: "  <<  m_result->runTests()  << "   "
@@ -165,9 +176,9 @@ CompilerTestResultOutputter::printStatistics()
 
 
 std::string
-CompilerTestResultOutputter::wrap( std::string message )
+CompilerOutputter::wrap( std::string message )
 {
-  const int maxLineLength = 60;
+  const int maxLineLength = 80;
   std::string wrapped;
   int index =0;
   while ( index < message.length() )

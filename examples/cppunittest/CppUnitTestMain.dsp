@@ -329,11 +329,11 @@ SOURCE=.\UnitTestToolSuite.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlTestResultOutputterTest.cpp
+SOURCE=.\XmlOutputterTest.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlTestResultOutputterTest.h
+SOURCE=.\XmlOutputterTest.h
 # End Source File
 # Begin Source File
 

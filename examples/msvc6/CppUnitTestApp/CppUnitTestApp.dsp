@@ -342,12 +342,12 @@ SOURCE=..\..\cppunittest\OutputSuite.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\cppunittest\XmlTestResultOutputterTest.cpp
+SOURCE=..\..\cppunittest\XmlOutputterTest.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\cppunittest\XmlTestResultOutputterTest.h
+SOURCE=..\..\cppunittest\XmlOutputterTest.h
 # End Source File
 # End Group
 # Begin Source File

@@ -27,22 +27,20 @@ with result().
   location.
 
   CPPUNIT_SOURCELINE() macro have been added. It capture the failure location
-  is a SourceLine object.
+  in a SourceLine object.
 
   Asserter namespace contains functions used to construct and throw exception
   to report failure. See Asserter documentation for an example of usage.
 
-* XML Output
+* Output
 
-  You can dump the TestResult as an XML document using XmlTestResultOutputter.
-  See examples/cppunittest/XmlTestResultOutputterTest.cpp for document
+  - XML output : You can dump the TestResult as an XML document using 
+  XmlOutputter. See examples/cppunittest/XmlOutputterTest.cpp for document
   structure and usage.
 
-* Compiler Output
-
-  CompilerTestResultOutputter print the result in a compiler compatible 
-  format. You can use your IDE to jump to the first failure. 
-  See examples/cppunittest/CppUniTestMain.cpp for an example of usage.
+  - Compiler compatible output : CompilerOutputter print the result in a 
+  compiler compatible format. You can use your IDE to jump to the first 
+  failure. See examples/cppunittest/CppUniTestMain.cpp for an example of usage.
 
 * Deprecated
 
@@ -61,7 +59,6 @@ any kind of failure.
   - TestResult::errors() was removed. Use failures() instead.
   - TestResult::failures() now reports all kind of failures.
   - TestResult::failures() returns a const reference.
-  - TestAssert  ### to detail ###
 
 * Bug fix:
   - test ExceptionTest.testAssignment() don't fail anymore on VC++. See FAQ

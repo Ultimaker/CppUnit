@@ -62,9 +62,10 @@ InputPath=.\Release\TestRunnerDSPlugIn.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 "$(TargetPath)" 
+	rem echo Automatically done when the add-in is registered with VC++ 
+	rem regsvr32 "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
-	echo Server registration done! 
+	rem echo Server registration done! 
 	
 # End Custom Build
 # Begin Special Build Tool
@@ -107,9 +108,10 @@ InputPath=.\Debug\TestRunnerDSPlugInD.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 "$(TargetPath)" 
+	rem echo Automatically done when the add-in is registered with VC++ 
+	rem regsvr32 "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
-	echo Server registration done! 
+	rem echo Server registration done! 
 	
 # End Custom Build
 # Begin Special Build Tool

@@ -8,7 +8,7 @@ libcppunitinclude_HEADERS =  \
 	config-msvc6.h \
 	config-bcb5.h \
 	Asserter.h \
-	CompilerTestResultOutputter.h \
+	CompilerOutputter.h \
 	Exception.h \
 	NotEqualException.h \
 	Portability.h \
@@ -24,4 +24,4 @@ libcppunitinclude_HEADERS =  \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h \
-	XmlTestResultOutputter.h
+	XmlOutputter.h

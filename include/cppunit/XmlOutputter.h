@@ -18,26 +18,26 @@ class TestResult;
 
 /*! This class ouputs a TestResult in XML format.
  */
-class XmlTestResultOutputter
+class XmlOutputter
 {
 public:
-  /*! Constructs a XmlTestResultOutputter object.
+  /*! Constructs a XmlOutputter object.
    */
-  XmlTestResultOutputter();
+  XmlOutputter( TestResult *result,
+                          std::ostream &stream );
 
   /// Destructor.
-  virtual ~XmlTestResultOutputter();
+  virtual ~XmlOutputter();
 
   /*! Write the specified result as an XML document in the specified stream.
    *
-   * Refer to examples/cppunittest/XmlTestResultOutputterTest.cpp for example
+   * Refer to examples/cppunittest/XmlOutputterTest.cpp for example
    * of use and XML document structure.
    *
    * \param result TestResult to write.
    * \param stream Output stream the result are wrote into.
    */
-  void write( TestResult *result,
-              std::ostream &stream );
+  virtual void write();
 
   /*! This class represents an XML Element.
    * \warning This class will probably be replaced with an abstract
@@ -77,33 +77,38 @@ public:
   };
 
 
-  virtual void writeProlog( std::ostream &stream );
-  virtual void writeTestsResult( TestResult *result, 
-                                 std::ostream &stream );
+  virtual void writeProlog();
+  virtual void writeTestsResult();
 
   typedef std::map<Test *,TestFailure*> FailedTests;
-  virtual Node *makeRootNode( TestResult *result );
-  virtual Node *makeFailedTestsNode( FailedTests &failedTests, 
-                                     TestResult *result );
-  virtual Node *makeSucessfulTestsNode( FailedTests &failedTests, 
-                                        TestResult *result );
-  virtual Node *makeStatisticsNode( TestResult *result );
-  virtual Node *makeFailedTestNode( Test *test,
-                                    TestFailure *failure,
-                                    int testNumber );
-  virtual Node *makeFailureLocationNode( TestFailure *failure );
-  virtual Node *makeSucessfulTestNode( Test *test, 
-                                       int testNumber );
+  virtual Node *makeRootNode();
+  virtual void addFailedTests( FailedTests &failedTests,
+                               Node *rootNode );
+  virtual void addSucessfulTests( FailedTests &failedTests,
+                                  Node *rootNode );
+  virtual void addStatistics( Node *rootNode );
+  virtual void addFailedTest( Test *test,
+                              TestFailure *failure,
+                              int testNumber,
+                              Node *testsNode );
+  virtual void addFailureLocation( TestFailure *failure,
+                                   Node *testNode );
+  virtual void addSucessfulTest( Test *test, 
+                                 int testNumber,
+                                 Node *testsNode );
 protected:
-  void fillFailedTestsMap( TestResult *result, 
-                           FailedTests &failedTests );
+  virtual void fillFailedTestsMap( FailedTests &failedTests );
+
+protected:
+  TestResult *m_result;
+  std::ostream &m_stream;
 
 private:
   /// Prevents the use of the copy constructor.
-  XmlTestResultOutputter( const XmlTestResultOutputter &copy );
+  XmlOutputter( const XmlOutputter &copy );
 
   /// Prevents the use of the copy operator.
-  void operator =( const XmlTestResultOutputter &copy );
+  void operator =( const XmlOutputter &copy );
 
 private:
 };

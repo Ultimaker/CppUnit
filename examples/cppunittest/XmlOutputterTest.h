@@ -5,12 +5,12 @@
 #include <cppunit/TestFailure.h>
 
 
-/*! \class XmlTestResultOutputterTest
- * \brief Unit tests for XmlTestResultOutputter.
+/*! \class XmlOutputterTest
+ * \brief Unit tests for XmlOutputter.
  */
-class XmlTestResultOutputterTest : public CppUnit::TestCase
+class XmlOutputterTest : public CppUnit::TestCase
 {
-  CPPUNIT_TEST_SUITE( XmlTestResultOutputterTest );
+  CPPUNIT_TEST_SUITE( XmlOutputterTest );
   CPPUNIT_TEST( testEmptyNodeToString );
   CPPUNIT_TEST( testNodeWithAttributesToString );
   CPPUNIT_TEST( testEscapedAttributeValueToString );
@@ -26,12 +26,12 @@ class XmlTestResultOutputterTest : public CppUnit::TestCase
   CPPUNIT_TEST_SUITE_END();
 
 public:
-  /*! Constructs a XmlTestResultOutputterTest object.
+  /*! Constructs a XmlOutputterTest object.
    */
-  XmlTestResultOutputterTest();
+  XmlOutputterTest();
 
   /// Destructor.
-  virtual ~XmlTestResultOutputterTest();
+  virtual ~XmlOutputterTest();
 
   void setUp();
   void tearDown();
@@ -52,10 +52,10 @@ public:
 
 private:
   /// Prevents the use of the copy constructor.
-  XmlTestResultOutputterTest( const XmlTestResultOutputterTest &copy );
+  XmlOutputterTest( const XmlOutputterTest &copy );
 
   /// Prevents the use of the copy operator.
-  void operator =( const XmlTestResultOutputterTest &copy );
+  void operator =( const XmlOutputterTest &copy );
 
   std::string statistics( int tests, 
                           int total, 

@@ -1,3 +1,58 @@
+2001-10-07 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/CompilerTestResultOutputter.h :
+	renamed CompilerOutputter.h
+
+	* src/cppunit/CompilerTestResultOutputter.cpp : 
+	renamed CompilerOutputter.cpp
+
+	* include/cppunit/CompilerTestResultOutputter.h :
+	* src/cppunit/CompilerTestResultOutputter.cpp : ajust max line length
+	for wrapping. Added static factory method defaultOutputter(). Print 
+	the number of test runs on success. 
+
+	* include/cppunit/CompilerTestResultOutputter.h : renamed
+	CompilerOutputter.h.
+
+	* src/cppunit/CompilerTestResultOutputter.cpp : renamed
+	CompilerOutputter.cpp.
+
+	* examples/cppunittest/CppUnitTestMain.cpp : use factory method 
+	CompilerTestResultOutputter::defaultOutputter().
+
+	* src/msvc6/DSPlugIn/DSPlugIn.dsp : removed COM registration in 
+	post-build step. IT is automatically done by VC++ when the add-in is
+	added. Caused build to failed if the add-in was used in VC++.
+
+	* NEWS : updated.
+
+	* src/cppunit/TestAssert.cpp : modified deprecated assert 
+	implementations to use Asserter.
+
+	* examples/cppunittest/XmlTestResultOutputterTest.h : 
+	renamed XmlOutputterTest.h.
+
+	* examples/cppunittest/XmlTestResultOutputterTest.cpp : 
+	renamed XmlOutputterTest.cpp.
+
+	* NEWS :
+	* examples/cppunittest/CppUnitTestMain.cpp :
+	* examples/cppunittest/CppUnitTestMain.dsp :
+	* examples/cppunittest/Makefile.am :
+	* examples/cppunittest/XmlTestResultOutputterTest.h :
+	* examples/cppunittest/XmlTestResultOutputterTest.cpp :
+	* examples/msvc6/CppUniTestApp/CppUnitTestApp.dsp
+	* include/cppunit/CompilerOutputter.h :
+	* include/cppunit/Makefile.am :
+	* include/cppunit/XmlTestResultOutputter.h :
+	* src/cppunit/CompilerOutputter.cpp :
+	* src/cppunit/cppunit.dsp :
+	* src/cppunit/Makefile.am :
+	* src/cppunit/XmlTestResultOutputter.cpp : change due to renaming
+	CompilerTestResultOutputter to CompilerOutputter, 
+	XmlTestResultOutputter to XmlOuputter, XmlTestResultOutputterTest
+	to XmlOutputterTest.
+
 2001-10-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/CompilerTestResultOutputter.h :
