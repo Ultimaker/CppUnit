@@ -1,3 +1,9 @@
+2004-06-1* Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
+    if CppUnit is missing.
+
+
 2004-06-18 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * Release 10.0.2
