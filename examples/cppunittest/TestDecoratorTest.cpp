@@ -4,7 +4,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestDecoratorTest,
-                                       CppUnitTest::extensionSuiteName() );
+                                       extensionSuiteName() );
 
 
 TestDecoratorTest::TestDecoratorTest()

@@ -14,7 +14,8 @@ class Test;
 class TestFactoryRegistry;
 class TestResult;
 class XmlOutputter;
-}
+
+CPPUNIT_NS_END
 
 /*! \file
  */

@@ -3,7 +3,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestResultTest,
-                                       CppUnitTest::coreSuiteName() );
+                                       coreSuiteName() );
 
 
 TestResultTest::TestResultTest()

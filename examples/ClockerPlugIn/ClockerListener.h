@@ -12,7 +12,7 @@ class ClockerModel;
 
 
 /// TestListener that prints a flatten or hierarchical view of the test tree.
-class ClockerListener : public CppUnit::TestListener
+class ClockerListener : public CPPUNIT_NS::TestListener
 {
 public:
   ClockerListener( ClockerModel *model,
@@ -20,19 +20,19 @@ public:
 
   virtual ~ClockerListener();
 
-  void startTestRun( CppUnit::Test *test, 
-                     CppUnit::TestResult *eventManager );
+  void startTestRun( CPPUNIT_NS::Test *test, 
+                     CPPUNIT_NS::TestResult *eventManager );
 
-  void endTestRun( CppUnit::Test *test, 
-                   CppUnit::TestResult *eventManager );
+  void endTestRun( CPPUNIT_NS::Test *test, 
+                   CPPUNIT_NS::TestResult *eventManager );
 
-  void startTest( CppUnit::Test *test );
+  void startTest( CPPUNIT_NS::Test *test );
 
-  void endTest( CppUnit::Test *test );
+  void endTest( CPPUNIT_NS::Test *test );
 
-  void startSuite( CppUnit::Test *suite );
+  void startSuite( CPPUNIT_NS::Test *suite );
 
-  void endSuite( CppUnit::Test *suite );
+  void endSuite( CPPUNIT_NS::Test *suite );
 
 private:
   void printStatistics() const;

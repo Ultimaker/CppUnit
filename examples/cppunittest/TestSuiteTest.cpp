@@ -5,7 +5,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestSuiteTest,
-                                       CppUnitTest::coreSuiteName() );
+                                       coreSuiteName() );
 
 
 TestSuiteTest::TestSuiteTest()

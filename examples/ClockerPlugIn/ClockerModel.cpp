@@ -26,7 +26,7 @@ ClockerModel::setExpectedTestCount( int count )
 
 
 void 
-ClockerModel::enterTest( CppUnit::Test *test,
+ClockerModel::enterTest( CPPUNIT_NS::Test *test,
                          bool isSuite )
 {
   m_currentPath.add( test );
@@ -50,7 +50,7 @@ ClockerModel::enterTest( CppUnit::Test *test,
 
 
 void 
-ClockerModel::exitTest( CppUnit::Test *test,
+ClockerModel::exitTest( CPPUNIT_NS::Test *test,
                         bool isSuite )
 {
   m_tests[ m_testIndexes.top() ].m_timer.finish();
@@ -113,7 +113,7 @@ ClockerModel::isSuite( int testIndex ) const
 }
 
 
-const CppUnit::TestPath &
+const CPPUNIT_NS::TestPath &
 ClockerModel::testPathFor( int testIndex ) const
 {
   return m_tests[ testIndex ].m_path;
@@ -121,7 +121,7 @@ ClockerModel::testPathFor( int testIndex ) const
 
 
 int 
-ClockerModel::indexOf( CppUnit::Test *test ) const
+ClockerModel::indexOf( CPPUNIT_NS::Test *test ) const
 {
   TestToIndexes::const_iterator itFound = m_testToIndexes.find( test );
   if ( itFound != m_testToIndexes.end() )

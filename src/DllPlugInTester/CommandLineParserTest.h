@@ -8,7 +8,7 @@ class CommandLineParser;
 class CommandLineParserException;
 
 
-class CommandLineParserTest : public CppUnit::TestCase
+class CommandLineParserTest : public CPPUNIT_NS::TestCase
 {
   CPPUNIT_TEST_SUITE( CommandLineParserTest );
   CPPUNIT_TEST( testEmptyCommandLine );

@@ -108,8 +108,8 @@ BOOL CHostAppApp::InitInstance()
 void 
 CHostAppApp::RunUnitTests()
 {
-  CppUnit::MfcUi::TestRunner runner;
-  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+  CPPUNIT_NS::MfcUi::TestRunner runner;
+  runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );
 
   runner.run();    
 }

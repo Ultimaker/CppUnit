@@ -49,65 +49,33 @@ struct assertion_traits
 };
 
 
-namespace TestAssert
+/*! \brief (Implementation) Asserts that two objects of the same type are equals.
+ * Use CPPUNIT_ASSERT_EQUAL instead of this function.
+ * \sa assertion_traits, Asserter::failNotEqual().
+ */
+template <class T>
+void assertEquals( const T& expected,
+                   const T& actual,
+                   SourceLine sourceLine,
+                   const std::string &message ="" )
 {
-#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
-  void CPPUNIT_API assertImplementation( bool         condition, 
-                                         std::string  conditionExpression = "",
-                                         long lineNumber,
-                                         std::string  fileName );
-
-  void CPPUNIT_API assertNotEqualImplementation( std::string expected,
-                                                 std::string actual,
-                                                 long lineNumber,
-                                                 std::string fileName );
-    
-
-  template <class T>
-  void assertEquals( const T& expected,
-                     const T& actual,
-                     long lineNumber,
-                     std::string fileName )
+  if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
   {
-    if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
-    {
-      assertNotEqualImplementation( assertion_traits<T>::toString(expected),
-                                    assertion_traits<T>::toString(actual),
-                                    lineNumber, 
-                                    fileName );
-    }
+    Asserter::failNotEqual( assertion_traits<T>::toString(expected),
+                            assertion_traits<T>::toString(actual),
+                            sourceLine,
+                            message );
   }
-
-  void CPPUNIT_API assertEquals( double expected, 
-                                 double actual, 
-                                 double delta, 
-                                 long lineNumber,
-                                 std::string fileName );
-
-#else   //                  using SourceLine
-
-  template <class T>
-  void assertEquals( const T& expected,
-                     const T& actual,
-                     SourceLine sourceLine,
-                     const std::string &message ="" )
-  {
-    if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
-    {
-      Asserter::failNotEqual( assertion_traits<T>::toString(expected),
-                              assertion_traits<T>::toString(actual),
-                              sourceLine,
-                              message );
-    }
-  }
-
-  void CPPUNIT_API assertDoubleEquals( double expected,
-                                       double actual,
-                                       double delta,
-                                       SourceLine sourceLine );
-
-#endif
 }
+
+/*! \brief (Implementation) Asserts that two double are equals given a tolerance.
+ * Use CPPUNIT_ASSERT_DOUBLES_EQUAL instead of this function.
+ * \sa Asserter::failNotEqual().
+ */
+void CPPUNIT_API assertDoubleEquals( double expected,
+                                     double actual,
+                                     double delta,
+                                     SourceLine sourceLine );
 
 
 /* A set of macros which allow us to get the line number
@@ -155,9 +123,9 @@ namespace TestAssert
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 /// Generalized macro for primitive value comparisons
 #define CPPUNIT_ASSERT_EQUAL(expected,actual)                     \
-  ( CPPUNIT_NS::TestAssert::assertEquals( (expected),             \
-                                          (actual),               \
-                                          __LINE__, __FILE__ ) )
+  ( CPPUNIT_NS::assertEquals( (expected),             \
+                              (actual),               \
+                              __LINE__, __FILE__ ) )
 #else
 /** Asserts that two values are equals.
  * \ingroup Assertions
@@ -176,9 +144,9 @@ namespace TestAssert
  * removed by specializing the CppUnit::assertion_traits.
  */
 #define CPPUNIT_ASSERT_EQUAL(expected,actual)                      \
-  ( CPPUNIT_NS::TestAssert::assertEquals( (expected),              \
-                                          (actual),                \
-                                          CPPUNIT_SOURCELINE() ) )
+  ( CPPUNIT_NS::assertEquals( (expected),              \
+                              (actual),                \
+                              CPPUNIT_SOURCELINE() ) )
 
 /** Asserts that two values are equals, provides additional messafe on failure.
  * \ingroup Assertions
@@ -199,20 +167,20 @@ namespace TestAssert
  * removed by specializing the CppUnit::assertion_traits.
  */
 #define CPPUNIT_ASSERT_EQUAL_MESSAGE(message,expected,actual)      \
-  ( CPPUNIT_NS::TestAssert::assertEquals( (expected),              \
-                                          (actual),                \
-                                          CPPUNIT_SOURCELINE(),    \
-                                          (message) ) )
+  ( CPPUNIT_NS::assertEquals( (expected),              \
+                              (actual),                \
+                              CPPUNIT_SOURCELINE(),    \
+                              (message) ) )
 #endif
 
 /*! \brief Macro for primitive value comparisons
  * \ingroup Assertions
  */
 #define CPPUNIT_ASSERT_DOUBLES_EQUAL(expected,actual,delta)        \
-  ( CPPUNIT_NS::TestAssert::assertDoubleEquals( (expected),        \
-                                                (actual),          \
-                                                (delta),           \
-                                                CPPUNIT_SOURCELINE() ) )
+  ( CPPUNIT_NS::assertDoubleEquals( (expected),        \
+                                    (actual),          \
+                                    (delta),           \
+                                    CPPUNIT_SOURCELINE() ) )
 
 // Backwards compatibility
 

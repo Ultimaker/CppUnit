@@ -4,7 +4,7 @@
 #include <cppunit/TestResult.h>
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( OrthodoxTest,
-                                       CppUnitTest::extensionSuiteName() );
+                                       extensionSuiteName() );
 
 OrthodoxTest::OrthodoxTest()
 {

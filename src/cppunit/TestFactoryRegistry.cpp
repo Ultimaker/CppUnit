@@ -1,6 +1,6 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/portability/CppUnitMap.h>
 #include <cppunit/TestSuite.h>
-#include <map>
 #include <assert.h>
 
 
@@ -11,7 +11,7 @@ CPPUNIT_NS_BEGIN
 class TestFactoryRegistryList
 {
 private:
-  typedef std::map<std::string, TestFactoryRegistry *> Registries;
+  typedef CppUnitMap<std::string, TestFactoryRegistry *> Registries;
   Registries m_registries;
 
   enum State {

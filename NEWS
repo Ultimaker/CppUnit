@@ -2,7 +2,8 @@
 	---------------------
 
   - AdditionalMessage
-  - MFC TestRunner bug fixes.
+  - MFC TestRunner bug fixes
+  - Major portability improvement
 
 * Asserter:
   
@@ -13,16 +14,24 @@
     message can be a single string or a complex Message object. See
     documentation for example of use.
 
-* Portability improvement:
+* Major portability improvement:
 
-  - Use 'class' instead of 'typename' in template declaration.
-  - Don't use templatized member methods anymore.
-  - Replaced usage of 'mutable' with a 'const_cast' on 'this'.
+  - Much work as been done to reduce C++ feature requirement to compile
+    CppUnit. It should now be possible to compile CppUnit on most 
+    compilers, as long as STL are available (in std namespace or not), 
+    with some form of strstream and iostream, as well as exception support.
+    See CodingGuideLines.txt for details.
 
 * Bug Fix:
 
   - MFC TestRunner: bug #530426 (conflict between TestRunner and host 
     application's resources). A huge thanks to Steven Mitter for that one.
+
+* Deprecated
+
+  - CppUnit::TextUi::TestRunner moved to CppUnit::TextTestRunner.
+  - CppUnit::MfcUi::TestRunner moved to CppUnit::MfcTestRunner.
+  - CppUnit::QtUi::TestRunner moved to CppUnit::QtTestRunner.
 
 * Compatiblity break:
 
@@ -30,6 +39,10 @@
   - TestSuiteBuilder: removed templatized method 
     addTestCallerForException(). See implementation of 
     CPPUNIT_TEST_EXCEPTION implementation for an alternative.
+  - TestAssert: removed deprecated functions (those not using SourceLine) 
+    assertImplementation(), assertNotEqualImplementation(), 
+    assertEquals(). Moved non deprecated functions assertEquals() and
+    assertEquals() into CppUnit namespace.
 
 
 	New in CppUnit 1.9.8:

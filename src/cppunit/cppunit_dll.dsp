@@ -399,6 +399,30 @@ SOURCE="..\..\include\cppunit\config\config-msvc6.h"
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\config\CppUnitApi.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitDeque.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitMap.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitSet.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitStack.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitVector.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\Portability.h
 # End Source File
 # Begin Source File
@@ -411,11 +435,19 @@ SOURCE=..\..\include\cppunit\config\SelectDllLoader.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\ui\text\TestRunner.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TextTestRunner.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\TextTestRunner.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\ui\text\TextTestRunner.h
 # End Source File
 # End Group
 # Begin Group "listener"

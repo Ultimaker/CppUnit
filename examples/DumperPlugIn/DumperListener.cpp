@@ -22,7 +22,7 @@ DumperListener::~DumperListener()
 
 
 void 
-DumperListener::startTest( CppUnit::Test *test )
+DumperListener::startTest( CPPUNIT_NS::Test *test )
 {
   printPath( test, false );
   ++m_testCount;
@@ -30,7 +30,7 @@ DumperListener::startTest( CppUnit::Test *test )
 
 
 void 
-DumperListener::endTest( CppUnit::Test *test )
+DumperListener::endTest( CPPUNIT_NS::Test *test )
 {
   m_path.up();
   if ( !m_suiteHasTest.empty() )
@@ -42,7 +42,7 @@ DumperListener::endTest( CppUnit::Test *test )
 
 
 void 
-DumperListener::startSuite( CppUnit::Test *suite )
+DumperListener::startSuite( CPPUNIT_NS::Test *suite )
 {
   printPath( suite, true );
   ++m_suiteCount;
@@ -51,7 +51,7 @@ DumperListener::startSuite( CppUnit::Test *suite )
 
 
 void 
-DumperListener::endSuite( CppUnit::Test *suite )
+DumperListener::endSuite( CPPUNIT_NS::Test *suite )
 {
   m_path.up();
   if ( m_suiteHasTest.top() )
@@ -61,8 +61,8 @@ DumperListener::endSuite( CppUnit::Test *suite )
 
 
 void 
-DumperListener::endTestRun( CppUnit::Test *test, 
-                            CppUnit::TestResult *eventManager )
+DumperListener::endTestRun( CPPUNIT_NS::Test *test, 
+                            CPPUNIT_NS::TestResult *eventManager )
 {
   double average = 0;
   if ( m_suiteWithTestCount > 0 )
@@ -76,7 +76,7 @@ DumperListener::endTestRun( CppUnit::Test *test,
 
 
 void 
-DumperListener::printPath( CppUnit::Test *test, 
+DumperListener::printPath( CPPUNIT_NS::Test *test, 
                            bool isSuite )
 {
   m_path.add( test );

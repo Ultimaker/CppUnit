@@ -10,7 +10,7 @@
 int 
 main(int argc, char** argv)
 {
-  CppUnit::TextUi::TestRunner runner;
+  CPPUNIT_NS::TextUi::TestRunner runner;
 
   runner.addTest( BoardGameTest<BoardGame>::suite() );
   runner.addTest( ChessTest<Chess>::suite() );

@@ -3,14 +3,9 @@
 
 #include <string>
 
-namespace CppUnitTest
+inline std::string coreSuiteName()
 {
-
-  inline std::string coreSuiteName()
-  {
-    return "Core";
-  }
-
+  return "Core";
 }
 
 #endif // CPPUNITTEST_CORESUITE_H

@@ -103,6 +103,10 @@ SOURCE=..\..\ChangeLog
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\CodingGuideLines.txt
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\doc\cookbook.dox
 # End Source File
 # Begin Source File
@@ -220,6 +224,14 @@ SOURCE=..\..\include\cppunit\portability\CppUnitDeque.h
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\portability\CppUnitMap.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitSet.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\CppUnitStack.h
 # End Source File
 # Begin Source File
 

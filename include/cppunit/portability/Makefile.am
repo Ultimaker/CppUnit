@@ -2,5 +2,7 @@ libcppunitincludedir = $(includedir)/cppunit/portability
 
 libcppunitinclude_HEADERS = \
 	CppUnitDeque.h \
-	CppUnitVector.h \
-	CppUnitMap.h
+	CppUnitMap.h \
+	CppUnitSet.h \
+	CppUnitStack.h \
+	CppUnitVector.h

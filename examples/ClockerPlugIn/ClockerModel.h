@@ -7,10 +7,10 @@
 #define CLOCKERMODEL_H
 
 #include <cppunit/TestPath.h>
-#include <map>
-#include <stack>
+#include <cppunit/portability/CppUnitVector.h>
+#include <cppunit/portability/CppUnitMap.h>
+#include <cppunit/portability/CppUnitStack.h>
 #include <string>
-#include <vector>
 
 #ifdef CLOCKER_USE_WINNTTIMER
 #include "WinNtTimer.h"
@@ -33,17 +33,17 @@ public:
 
   void setExpectedTestCount( int count );
 
-  void enterTest( CppUnit::Test *test,
+  void enterTest( CPPUNIT_NS::Test *test,
                   bool isSuite );
 
-  void exitTest( CppUnit::Test *test,
+  void exitTest( CPPUNIT_NS::Test *test,
                  bool isSuite );
 
   double totalElapsedTime() const;
 
   double averageTestCaseTime() const;
 
-  double testTimeFor( CppUnit::Test *test ) const;
+  double testTimeFor( CPPUNIT_NS::Test *test ) const;
 
   double testTimeFor( int testIndex ) const;
 
@@ -51,10 +51,10 @@ public:
 
   bool isSuite( int testIndex ) const;
 
-  const CppUnit::TestPath &testPathFor( int testIndex ) const;
+  const CPPUNIT_NS::TestPath &testPathFor( int testIndex ) const;
 
   // -1 is none
-  int indexOf( CppUnit::Test *test ) const;
+  int indexOf( CPPUNIT_NS::Test *test ) const;
 
   int childCountFor( int testIndex ) const;
 
@@ -64,10 +64,10 @@ public:
 private:
   struct TestInfo
   {
-    CppUnit::TestPath m_path;
+    CPPUNIT_NS::TestPath m_path;
     Timer m_timer;
     bool m_isSuite;
-    std::vector<int> m_childIndexes;
+    CppUnitVector<int> m_childIndexes;
   };
 
   /// Prevents the use of the copy constructor.
@@ -77,16 +77,16 @@ private:
   void operator =( const ClockerModel &other );
 
 private:
-  CppUnit::TestPath m_currentPath;
+  CPPUNIT_NS::TestPath m_currentPath;
   
   int m_testCaseCount;
   double m_totalTestCaseTime;
 
-  typedef std::map<CppUnit::Test *, int> TestToIndexes;
+  typedef CppUnitMap<CPPUNIT_NS::Test *, int> TestToIndexes;
   
   TestToIndexes m_testToIndexes;
-  std::stack<int> m_testIndexes;
-  std::vector<TestInfo> m_tests;
+  CppUnitStack<int> m_testIndexes;
+  CppUnitVector<TestInfo> m_tests;
 };
 
 

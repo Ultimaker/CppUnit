@@ -6,29 +6,29 @@
 #ifndef DUMPERLISTENER_H
 #define DUMPERLISTENER_H
 
+#include <cppunit/portability/CppUnitStack.h>
 #include <cppunit/TestListener.h>
 #include <cppunit/TestPath.h>
-#include <stack>
 
 
 /// TestListener that prints a flatten or hierarchical view of the test tree.
-class DumperListener : public CppUnit::TestListener
+class DumperListener : public CPPUNIT_NS::TestListener
 {
 public:
   DumperListener( bool flatten );
 
   virtual ~DumperListener();
 
-  void startTest( CppUnit::Test *test );
+  void startTest( CPPUNIT_NS::Test *test );
 
-  void endTest( CppUnit::Test *test );
+  void endTest( CPPUNIT_NS::Test *test );
 
-  void startSuite( CppUnit::Test *suite );
+  void startSuite( CPPUNIT_NS::Test *suite );
 
-  void endSuite( CppUnit::Test *suite );
+  void endSuite( CPPUNIT_NS::Test *suite );
 
-  void endTestRun( CppUnit::Test *test, 
-                   CppUnit::TestResult *eventManager );
+  void endTestRun( CPPUNIT_NS::Test *test, 
+                   CPPUNIT_NS::TestResult *eventManager );
 
 private:
   /// Prevents the use of the copy constructor.
@@ -37,7 +37,7 @@ private:
   /// Prevents the use of the copy operator.
   void operator =( const DumperListener &other );
 
-  void printPath( CppUnit::Test *test, 
+  void printPath( CPPUNIT_NS::Test *test, 
                   bool isSuite );
 
   void printFlattenedPath( bool isSuite );
@@ -48,13 +48,13 @@ private:
 
 private:
   bool m_flatten;
-  CppUnit::TestPath m_path;
+  CPPUNIT_NS::TestPath m_path;
   
   int m_suiteCount;
   int m_testCount;
   int m_suiteWithTestCount;
 
-  std::stack<bool> m_suiteHasTest;
+  CppUnitStack<bool> m_suiteHasTest;
 };
 
 

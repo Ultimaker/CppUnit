@@ -2,10 +2,10 @@
 #define CPPUNIT_HELPER_COMMANDLINEPARSER_H
 
 #include <cppunit/Portability.h>
+#include <cppunit/portability/CppUnitDeque.h>
 #include <cppunit/plugin/Parameters.h>
 #include <string>
 #include <stdexcept>
-#include <deque>
 
 
 /*! Exception thrown on error while parsing command line.
@@ -23,7 +23,7 @@ public:
 struct CommandLinePlugInInfo
 {
   std::string m_fileName;
-  CppUnit::Parameters m_parameters;
+  CPPUNIT_NS::Parameters m_parameters;
 };
 
 
@@ -113,10 +113,10 @@ protected:
   bool m_waitBeforeExit;
   std::string m_testPath;
 
-  typedef std::deque<CommandLinePlugInInfo> PlugIns;
+  typedef CppUnitDeque<CommandLinePlugInInfo> PlugIns;
   PlugIns m_plugIns;
 
-  typedef std::deque<std::string> Arguments;
+  typedef CppUnitDeque<std::string> Arguments;
   Arguments m_arguments;
   int m_currentArgument;
 

@@ -33,13 +33,13 @@ bool
 runTests( const CommandLineParser &parser )
 {
   bool wasSuccessful = false;
-  CppUnit::PlugInManager plugInManager;
+  CPPUNIT_NS::PlugInManager plugInManager;
 
   // The following scope is used to explicitely free all memory allocated before
   // unload the test plug-ins (uppon plugInManager destruction).
   {
-    CppUnit::TestResult controller;
-    CppUnit::TestResultCollector result;
+    CPPUNIT_NS::TestResult controller;
+    CPPUNIT_NS::TestResultCollector result;
     controller.addListener( &result );        
 
     // Set up outputters
@@ -51,14 +51,14 @@ runTests( const CommandLineParser &parser )
     if ( !parser.getXmlFileName().empty() )
       xmlStream = new std::ofstream( parser.getXmlFileName().c_str() );
 
-    CppUnit::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
+    CPPUNIT_NS::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
     xmlOutputter.setStyleSheet( parser.getXmlStyleSheet() );
-    CppUnit::TextOutputter textOutputter( &result, *stream );
-    CppUnit::CompilerOutputter compilerOutputter( &result, *stream );
+    CPPUNIT_NS::TextOutputter textOutputter( &result, *stream );
+    CPPUNIT_NS::CompilerOutputter compilerOutputter( &result, *stream );
 
     // Set up test listeners
-    CppUnit::BriefTestProgressListener briefListener;
-    CppUnit::TextTestProgressListener dotListener;
+    CPPUNIT_NS::BriefTestProgressListener briefListener;
+    CPPUNIT_NS::TextTestProgressListener dotListener;
     if ( parser.useBriefTestProgress() )
       controller.addListener( &briefListener );
     else if ( !parser.noTestProgress() )
@@ -75,8 +75,8 @@ runTests( const CommandLineParser &parser )
     plugInManager.addListener( &controller );
 
     // Adds the default registry suite
-    CppUnit::TestRunner runner;
-    runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+    CPPUNIT_NS::TestRunner runner;
+    runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );
 
     // Runs the specified test
     try
@@ -240,7 +240,7 @@ main( int argc,
   {
     wasSuccessful = runTests( parser );
   }
-  catch ( CppUnit::DynamicLibraryManagerException &e )
+  catch ( CPPUNIT_NS::DynamicLibraryManagerException &e )
   {
     std::cerr  << "Failed to load test plug-in:"  <<  std::endl
                << e.what() << std::endl;

@@ -6,7 +6,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestCallerTest, 
-                                       CppUnitTest::helperSuiteName() );
+                                       helperSuiteName() );
 
 
 void 

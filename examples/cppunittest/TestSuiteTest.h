@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 
-class TestSuiteTest : public CppUnit::TestFixture
+class TestSuiteTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestSuiteTest );
   CPPUNIT_TEST( testConstructor );
@@ -52,7 +52,7 @@ private:
   void operator =( const TestSuiteTest &copy );
 
 private:
-  CppUnit::TestSuite *m_suite;
+  CPPUNIT_NS::TestSuite *m_suite;
 };
 
 

@@ -13,7 +13,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestAssertTest,
-                                       CppUnitTest::coreSuiteName() );
+                                       coreSuiteName() );
 
 
 TestAssertTest::TestAssertTest()

@@ -1,3 +1,34 @@
+2002-07-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * CodingGuideLines.txt: added. CppUnit's coding guidelines for portability.
+
+  * include/cppunit/portability/CppUnitStack.h: added. wrapper for std::stack.
+
+  * include/cppunit/portability/CppUnitSet.h: added. wrapper for std::set.
+
+  * include/cppunit/ui/text/TestRunner.h: fixed namespace definition for
+    deprecated TestRunner.
+
+  * include/cppunit/TestAssert.h:
+  * src/cppunit/TestAssert.cpp: removed old deprecated functions that did
+    not use SourceLine. Moved assertEquals() and assertDoubleEquals() into
+    CppUnit namespace.
+
+  * src/cppunit/TestFactoryRegistry.cpp: use CppUnitMap instead of std::map.
+
+  * src/DllPlugInTester/CommandLineParser.h: use CppUnitDeque instead 
+    std::deque.
+
+  * examples/cppunittest/*.h:
+  * examples/cppunittest/*.cpp: removed all usage of CppUnitTest namespace.
+    Everything is now in global space.
+
+  * examples/*/*.h:
+  * examples/*/*.cpp: replaced usage of CppUnit:: with CPPUNIT_NS::.
+
+  * examples/ClockerPlugIn/ClockerModel.h: use CppUnit STL wrapper instead
+    of STL container.
+
 2002-07-13 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/ui/text/TestRunner.h: 

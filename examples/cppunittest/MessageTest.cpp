@@ -2,7 +2,7 @@
 #include "MessageTest.h"
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( MessageTest,
-                                       CppUnitTest::coreSuiteName() );
+                                       coreSuiteName() );
 
 
 MessageTest::MessageTest()

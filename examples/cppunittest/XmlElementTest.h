@@ -7,7 +7,7 @@
 
 /*! Unit tests for XmlElement.
  */
-class XmlElementTest : public CppUnit::TestFixture
+class XmlElementTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( XmlElementTest );
   CPPUNIT_TEST( testStringContentConstructor );

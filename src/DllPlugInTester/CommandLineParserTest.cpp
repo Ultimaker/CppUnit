@@ -4,8 +4,7 @@
 CPPUNIT_TEST_SUITE_REGISTRATION( CommandLineParserTest );
 
 
-CommandLineParserTest::CommandLineParserTest() : 
-    CppUnit::TestCase()
+CommandLineParserTest::CommandLineParserTest()
 {
 }
 

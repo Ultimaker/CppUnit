@@ -10,7 +10,7 @@
  */
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestCaseTest,
-                                       CppUnitTest::coreSuiteName() );
+                                       coreSuiteName() );
 
 
 TestCaseTest::TestCaseTest()

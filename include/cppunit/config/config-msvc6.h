@@ -56,8 +56,9 @@
 // Uncomment to turn on STL wrapping => use this to test compilation. 
 // This will make CppUnit subclass std::vector & co to provide default
 // parameter.
-#define CPPUNIT_STD_NEED_ALLOCATOR 1
-#define CPPUNIT_STD_ALLOCATOR std::allocator<T>
+//#define CPPUNIT_STD_NEED_ALLOCATOR 1
+//#define CPPUNIT_STD_ALLOCATOR std::allocator<T>
+#define CPPUNIT_NO_NAMESPACE 1
 
 
 /* _INCLUDE_CPPUNIT_CONFIG_MSVC6_H */

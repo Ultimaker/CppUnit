@@ -10,8 +10,8 @@
 
 #include <cppunit/Outputter.h>
 #include <cppunit/portability/CppUnitDeque.h>
+#include <cppunit/portability/CppUnitMap.h>
 #include <iostream>
-#include <map>
 
 
 CPPUNIT_NS_BEGIN
@@ -76,7 +76,7 @@ public:
   virtual void setStyleSheet( const std::string &styleSheet );
 
 
-  typedef std::map<Test *,TestFailure*> FailedTests;
+  typedef CppUnitMap<Test *,TestFailure*> FailedTests;
 
   /*! Sets the root element and adds its children.
    *

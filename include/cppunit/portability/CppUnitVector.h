@@ -9,15 +9,11 @@
 
 #if CPPUNIT_STD_NEED_ALLOCATOR
 
-CPPUNIT_NS_BEGIN
-
 template<class T>
 class CppUnitVector : public std::vector<T,CPPUNIT_STD_ALLOCATOR>
 {
 public:
 };
-
-CPPUNIT_NS_END
 
 #else // CPPUNIT_STD_NEED_ALLOCATOR
 

@@ -5,7 +5,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlElementTest, 
-                                       CppUnitTest::toolsSuiteName() );
+                                       toolsSuiteName() );
 
 
 XmlElementTest::XmlElementTest()

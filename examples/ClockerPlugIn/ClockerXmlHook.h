@@ -13,7 +13,7 @@ class ClockerModel;
 
 
 /// XML output hook to add test timing and test hierarchy timing.
-class ClockerXmlHook : public CppUnit::XmlOutputterHook
+class ClockerXmlHook : public CPPUNIT_NS::XmlOutputterHook
 {
 public:
   /*! Constructs a ClockerXmlHook object.
@@ -23,19 +23,19 @@ public:
   /// Destructor.
   virtual ~ClockerXmlHook();
 
-  void endDocument( CppUnit::XmlDocument *document );
+  void endDocument( CPPUNIT_NS::XmlDocument *document );
 
-  void failTestAdded( CppUnit::XmlDocument *document,
-                      CppUnit::XmlElement *testElement,
-                      CppUnit::Test *test,
-                      CppUnit::TestFailure *failure );
+  void failTestAdded( CPPUNIT_NS::XmlDocument *document,
+                      CPPUNIT_NS::XmlElement *testElement,
+                      CPPUNIT_NS::Test *test,
+                      CPPUNIT_NS::TestFailure *failure );
 
-  void successfulTestAdded( CppUnit::XmlDocument *document,
-                            CppUnit::XmlElement *testElement,
-                            CppUnit::Test *test );
+  void successfulTestAdded( CPPUNIT_NS::XmlDocument *document,
+                            CPPUNIT_NS::XmlElement *testElement,
+                            CPPUNIT_NS::Test *test );
 
-  void statisticsAdded( CppUnit::XmlDocument *document,
-                        CppUnit::XmlElement *statisticsElement );
+  void statisticsAdded( CPPUNIT_NS::XmlDocument *document,
+                        CPPUNIT_NS::XmlElement *statisticsElement );
 
 private:
   /// Prevents the use of the copy constructor.
@@ -44,7 +44,7 @@ private:
   /// Prevents the use of the copy operator.
   void operator =( const ClockerXmlHook &other );
 
-  void addTimedTest( CppUnit::XmlElement *parentElement, 
+  void addTimedTest( CPPUNIT_NS::XmlElement *parentElement, 
                      int testIndex );
 
 private:

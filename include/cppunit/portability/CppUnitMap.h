@@ -10,8 +10,6 @@
 
 #if CPPUNIT_STD_NEED_ALLOCATOR
 
-CPPUNIT_NS_BEGIN
-
 template<class Key, class T>
 class CppUnitMap : public std::map<Key
                                   ,T
@@ -20,8 +18,6 @@ class CppUnitMap : public std::map<Key
 {
 public:
 };
-
-CPPUNIT_NS_END
 
 #else // CPPUNIT_STD_NEED_ALLOCATOR
 

@@ -115,7 +115,7 @@ public:
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( HelperMacrosTest, 
-                                       CppUnitTest::helperSuiteName() );
+                                       helperSuiteName() );
 
 
 HelperMacrosTest::HelperMacrosTest()

@@ -5,7 +5,7 @@
 #include <iostream>
 
 template<class GAMECLASS> 
-class BoardGameTest : public CppUnit::TestFixture 
+class BoardGameTest : public CPPUNIT_NS::TestFixture 
 {
   CPPUNIT_TEST_SUITE( BoardGameTest );
   CPPUNIT_TEST( testReset );

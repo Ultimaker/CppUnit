@@ -4,7 +4,7 @@
 #include "XmlUniformiser.h"
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlUniformiserTest, 
-                                       CppUnitTest::unitTestToolSuiteName() );
+                                       unitTestToolSuiteName() );
 
 
 XmlUniformiserTest::XmlUniformiserTest()
@@ -142,6 +142,6 @@ void
 XmlUniformiserTest::check( const std::string &xml, 
                            const std::string &expectedStrippedXml )
 {
-  std::string actual = CppUnitTest::XmlUniformiser( xml ).stripped();
+  std::string actual = XmlUniformiser( xml ).stripped();
   CPPUNIT_ASSERT_EQUAL( expectedStrippedXml, actual );
 }

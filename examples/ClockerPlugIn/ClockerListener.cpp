@@ -24,16 +24,16 @@ ClockerListener::~ClockerListener()
 
 
 void 
-ClockerListener::startTestRun( CppUnit::Test *test, 
-                               CppUnit::TestResult *eventManager )
+ClockerListener::startTestRun( CPPUNIT_NS::Test *test, 
+                               CPPUNIT_NS::TestResult *eventManager )
 {
   m_model->setExpectedTestCount( test->countTestCases() *2 );
 }
 
 
 void 
-ClockerListener::endTestRun( CppUnit::Test *test, 
-                             CppUnit::TestResult *eventManager )
+ClockerListener::endTestRun( CPPUNIT_NS::Test *test, 
+                             CPPUNIT_NS::TestResult *eventManager )
 {
   if ( m_text )
     printStatistics();
@@ -41,28 +41,28 @@ ClockerListener::endTestRun( CppUnit::Test *test,
 
 
 void 
-ClockerListener::startTest( CppUnit::Test *test )
+ClockerListener::startTest( CPPUNIT_NS::Test *test )
 {
   m_model->enterTest( test, false );
 }
 
 
 void 
-ClockerListener::endTest( CppUnit::Test *test )
+ClockerListener::endTest( CPPUNIT_NS::Test *test )
 {
   m_model->exitTest( test, false );
 }
 
 
 void 
-ClockerListener::startSuite( CppUnit::Test *suite )
+ClockerListener::startSuite( CPPUNIT_NS::Test *suite )
 {
   m_model->enterTest( suite, true );
 }
 
 
 void 
-ClockerListener::endSuite( CppUnit::Test *suite )
+ClockerListener::endSuite( CPPUNIT_NS::Test *suite )
 {
   m_model->exitTest( suite, true );
 }

@@ -8,8 +8,8 @@
 #pragma warning( disable: 4251)  // X needs to have dll-interface to be used by clients of class Z
 #endif
 
+#include <cppunit/portability/CppUnitSet.h>
 #include <cppunit/extensions/TestFactory.h>
-#include <set>
 #include <string>
 
 CPPUNIT_NS_BEGIN
@@ -165,7 +165,7 @@ private:
   void operator =( const TestFactoryRegistry &copy );
 
 private:
-  typedef std::set<TestFactory *> Factories;
+  typedef CppUnitSet<TestFactory *> Factories;
   Factories m_factories;
 
   std::string m_name;

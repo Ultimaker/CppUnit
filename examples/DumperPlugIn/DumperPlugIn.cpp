@@ -18,8 +18,8 @@ public:
   }
 
 
-  void initialize( CppUnit::TestFactoryRegistry *registry,
-                   const CppUnit::Parameters &parameters )
+  void initialize( CPPUNIT_NS::TestFactoryRegistry *registry,
+                   const CPPUNIT_NS::Parameters &parameters )
   {
     bool flatten = false;
     if ( parameters.size() > 0  &&  parameters[0] == "flat" )
@@ -29,19 +29,19 @@ public:
   }
 
 
-  void addListener( CppUnit::TestResult *eventManager )
+  void addListener( CPPUNIT_NS::TestResult *eventManager )
   {
     eventManager->addListener( m_dumper );
   }
 
 
-  void removeListener( CppUnit::TestResult *eventManager )
+  void removeListener( CPPUNIT_NS::TestResult *eventManager )
   {
     eventManager->removeListener( m_dumper );
   }
 
 
-  void addXmlOutputterHooks( CppUnit::XmlOutputter *outputter )
+  void addXmlOutputterHooks( CPPUNIT_NS::XmlOutputter *outputter )
   {
   }
 
@@ -51,7 +51,7 @@ public:
   }
 
 
-  void uninitialize( CppUnit::TestFactoryRegistry *registry )
+  void uninitialize( CPPUNIT_NS::TestFactoryRegistry *registry )
   {
   }
 

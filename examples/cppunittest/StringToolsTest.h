@@ -6,7 +6,7 @@
 
 
 /// Unit tests for StringToolsTest
-class StringToolsTest : public CppUnit::TestCase
+class StringToolsTest : public CPPUNIT_NS::TestCase
 {
   CPPUNIT_TEST_SUITE( StringToolsTest );
   CPPUNIT_TEST( testToStringInt );

@@ -10,23 +10,23 @@ int
 main( int argc, char* argv[] )
 {
   // Create the event manager and test controller
-  CppUnit::TestResult controller;
+  CPPUNIT_NS::TestResult controller;
 
   // Add a listener that colllects test result
-  CppUnit::TestResultCollector result;
+  CPPUNIT_NS::TestResultCollector result;
   controller.addListener( &result );        
 
   // Add a listener that print dots as test run.
-  CppUnit::BriefTestProgressListener progress;
+  CPPUNIT_NS::BriefTestProgressListener progress;
   controller.addListener( &progress );      
 
   // Add the top suite to the test runner
-  CppUnit::TestRunner runner;
-  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );
+  CPPUNIT_NS::TestRunner runner;
+  runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );
   runner.run( controller );
 
   // Print test in a compiler compatible format.
-  CppUnit::CompilerOutputter outputter( &result, std::cerr );
+  CPPUNIT_NS::CompilerOutputter outputter( &result, std::cerr );
   outputter.write(); 
 
   return result.wasSuccessful() ? 0 : 1;

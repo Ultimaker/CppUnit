@@ -4,7 +4,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-class MoneyTest : public CppUnit::TestFixture
+class MoneyTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( MoneyTest );
   CPPUNIT_TEST( testConstructor );

@@ -6,10 +6,6 @@
 #include <string>
 
 
-namespace CppUnitTest
-{
-
-
 /*! Uniformise an XML string.
  *
  * Strips spaces between attribut in Element.
@@ -54,16 +50,14 @@ private:
 void 
 checkXmlEqual( std::string expectedXml,
                std::string actualXml,
-               CppUnit::SourceLine sourceLine );
+               CPPUNIT_NS::SourceLine sourceLine );
 
 
 /// Asserts that two XML strings are equivalent.
 #define CPPUNITTEST_ASSERT_XML_EQUAL( expected, actual ) \
-    ::CppUnitTest::checkXmlEqual( expected, actual,      \
-                                  CPPUNIT_SOURCELINE() )
+    ::checkXmlEqual( expected, actual,      \
+                     CPPUNIT_SOURCELINE() )
 
 
-
-}  // namespace CppUnitTest
 
 #endif  // XMLUNIFORMISER_H

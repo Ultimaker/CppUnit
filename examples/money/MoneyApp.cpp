@@ -7,14 +7,14 @@
 int main(int argc, char* argv[])
 {
   // Get the top level suite from the registry
-  CppUnit::Test *suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
+  CPPUNIT_NS::Test *suite = CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest();
 
   // Adds the test to the list of test to run
-  CppUnit::TextUi::TestRunner runner;
+  CPPUNIT_NS::TextUi::TestRunner runner;
   runner.addTest( suite );
 
   // Change the default outputter to a compiler error format outputter
-  runner.setOutputter( new CppUnit::CompilerOutputter( &runner.result(),
+  runner.setOutputter( new CPPUNIT_NS::CompilerOutputter( &runner.result(),
                                                        std::cerr ) );
   // Run the test.
   bool wasSucessful = runner.run();

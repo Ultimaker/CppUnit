@@ -4,7 +4,6 @@
 
 #include <cppunit/Portability.h>
 #include <string>
-#include <vector>
 #include <cppunit/TestRunner.h>
 
 CPPUNIT_NS_BEGIN

@@ -11,7 +11,7 @@
  *
  */
 
-class ExampleTestCase : public CppUnit::TestCase
+class ExampleTestCase : public CPPUNIT_NS::TestCase
 {
   CPPUNIT_TEST_SUITE( ExampleTestCase );
   CPPUNIT_TEST( example );

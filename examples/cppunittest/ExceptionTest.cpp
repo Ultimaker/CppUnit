@@ -5,7 +5,7 @@
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ExceptionTest,
-                                       CppUnitTest::coreSuiteName() );
+                                       coreSuiteName() );
 
 
 ExceptionTest::ExceptionTest()

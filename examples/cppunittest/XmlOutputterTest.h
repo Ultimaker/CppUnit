@@ -2,10 +2,10 @@
 #define CPPUNITEST_XMLTESTRESULTOUTPUTTERTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
+#include <cppunit/portability/CppUnitDeque.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestFailure.h>
 #include <cppunit/TestResultCollector.h>
-#include <deque>
 
 
 /*! \class XmlOutputterTest
@@ -70,7 +70,7 @@ private:
 
 private:
   CPPUNIT_NS::TestResultCollector *m_result;
-  std::deque<CPPUNIT_NS::Test *> m_dummyTests;
+  CppUnitDeque<CPPUNIT_NS::Test *> m_dummyTests;
 };
 
 

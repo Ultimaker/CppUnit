@@ -4,7 +4,7 @@
 #include <cppunit/TestResult.h>
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( RepeatedTestTest,
-                                       CppUnitTest::extensionSuiteName() );
+                                       extensionSuiteName() );
 
 
 RepeatedTestTest::RepeatedTestTest() :

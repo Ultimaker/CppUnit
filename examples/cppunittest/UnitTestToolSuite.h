@@ -3,14 +3,9 @@
 
 #include <string>
 
-namespace CppUnitTest
+inline std::string unitTestToolSuiteName()
 {
-
-  inline std::string unitTestToolSuiteName()
-  {
-    return "UnitTestTool";
-  }
-
+  return "UnitTestTool";
 }
 
 #endif // CPPUNITTEST_UNITTESTTOOLSUITE_H

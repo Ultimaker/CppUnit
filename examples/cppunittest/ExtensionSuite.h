@@ -3,14 +3,9 @@
 
 #include <string>
 
-namespace CppUnitTest
+inline std::string extensionSuiteName()
 {
-
-  inline std::string extensionSuiteName()
-  {
-    return "Extensions";
-  }
-
+  return "Extensions";
 }
 
 #endif // CPPUNITTEST_EXTENSIONSSUITE_H

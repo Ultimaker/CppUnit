@@ -3,7 +3,7 @@
 #include <cppunit/TestResult.h>
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestSetUpTest,
-                                       CppUnitTest::extensionSuiteName() );
+                                       extensionSuiteName() );
 
 
 TestSetUpTest::TestSetUpTest()

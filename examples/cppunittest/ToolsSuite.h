@@ -3,14 +3,9 @@
 
 #include <string>
 
-namespace CppUnitTest
+inline std::string toolsSuiteName()
 {
-
-  inline std::string toolsSuiteName()
-  {
-    return "Tools";
-  }
-
+  return "Tools";
 }
 
 #endif // CPPUNITTEST_TOOLSSUITE_H

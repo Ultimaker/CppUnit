@@ -1,9 +1,5 @@
 #include "XmlUniformiser.h"
 
-namespace CppUnitTest
-{
-
-
 
 int 
 notEqualIndex( std::string expectedXml,
@@ -36,10 +32,10 @@ checkXmlEqual( std::string expectedXml,
   message  <<  "differ at index: "  <<  index  << "\n"
            <<  "expected: "  <<  expected.substr(index) << "\n"
            <<  "but was : "  <<  actual.substr( index );
-  ::CPPUNIT_NS::Asserter::failNotEqual( expected,
-                                     actual,
-                                     sourceLine,
-                                     message.str() );
+  CPPUNIT_NS::Asserter::failNotEqual( expected,
+                                      actual,
+                                      sourceLine,
+                                      message.str() );
 }
 
 
@@ -235,6 +231,3 @@ XmlUniformiser::removeTrailingSpaces()
     --index;
   m_stripped.resize( index );
 }
-
-
-}  // namespace CppUnitTest
