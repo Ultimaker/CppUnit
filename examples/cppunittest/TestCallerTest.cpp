@@ -1,7 +1,6 @@
 #include "FailureException.h"
 #include "HelperSuite.h"
 #include "TestCallerTest.h"
-#include <cppunit/extensions/TestSuiteBuilder.h>
 #include <cppunit/extensions/HelperMacros.h>
 
 

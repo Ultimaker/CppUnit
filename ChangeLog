@@ -1,4 +1,8 @@
-2003-04-31 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-04-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/TestSuiteBuilder.h: removed (unused)
+
+2003-03-31 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * src/cppunit/DynamicLibraryManager.cpp: fixed compilation issue on Mingw
     (bug #711583)

@@ -46,11 +46,12 @@ main( int argc, char* argv[] )
     CPPUNIT_NS::CompilerOutputter outputter( &result, std::cerr );
     outputter.write(); 
 
-    std::ofstream file( "tests.xml" );
-    CPPUNIT_NS::XmlOutputter xml( &result, file );
-    xml.setStyleSheet( "report.xsl" );
-    xml.write();
-    file.close();
+// Uncomment this for XML output
+//    std::ofstream file( "tests.xml" );
+//    CPPUNIT_NS::XmlOutputter xml( &result, file );
+//    xml.setStyleSheet( "report.xsl" );
+//    xml.write();
+//    file.close();
   }
   catch ( std::invalid_argument &e )  // Test path not resolved
   {
