@@ -1,3 +1,10 @@
+2005-02-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * examples/hierarchy/BoardGameTest.h:
+  * examples/hierarchy/ChessTest.h: fixed compilation issue, prefixed access 
+    to class member with 'this' (inheriting from template parameter 
+    dependent class).
+
 2004-11-19 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/Message.h

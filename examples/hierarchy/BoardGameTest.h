@@ -26,23 +26,23 @@ public:
   
   void setUp() 
   { 
-    m_game = new GAMECLASS; 
+    this->m_game = new GAMECLASS; 
   }
   
   void tearDown()
   { 
-    delete m_game; 
+    delete this->m_game; 
   }
   
   void testReset() 
   { 
-    CPPUNIT_ASSERT( m_game->reset() );
+    CPPUNIT_ASSERT( this->m_game->reset() );
   }
 
   void testResetShouldFail() 
   { 
     CPPUNIT_NS::stdCOut() << "The following test fails, this is intended:" << "\n";
-    CPPUNIT_ASSERT( !m_game->reset() );
+    CPPUNIT_ASSERT( !this->m_game->reset() );
   }
 };
 
