@@ -11,7 +11,7 @@
 #include <cppunit/Outputter.h>
 #include <cppunit/portability/CppUnitDeque.h>
 #include <cppunit/portability/CppUnitMap.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN
@@ -45,7 +45,7 @@ public:
    * \param encoding Encoding used in the XML file (default is Latin-1). 
    */
   XmlOutputter( TestResultCollector *result,
-                std::ostream &stream,
+                OStream &stream,
                 std::string encoding = std::string("ISO-8859-1") );
 
   /// Destructor.
@@ -131,7 +131,7 @@ protected:
   typedef CppUnitDeque<XmlOutputterHook *> Hooks;
 
   TestResultCollector *m_result;
-  std::ostream &m_stream;
+  OStream &m_stream;
   std::string m_encoding;
   std::string m_styleSheet;
   XmlDocument *m_xml;

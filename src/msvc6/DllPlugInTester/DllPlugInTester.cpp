@@ -12,7 +12,7 @@
 
 
 #ifndef _UNICODE
-#define TCERR std::cerr
+#define TCERR CPPUNIT_NS::stdCOut()
 #else
 #define TCERR std::wcerr
 #endif
@@ -111,7 +111,7 @@ runDllTest( CppUnit::Test *root,
       }
       catch ( std::invalid_argument & )
       {
-        TCERR  <<  _T("Failed to resolve test path: ")  <<  testPath  <<  std::endl;
+        TCERR  <<  _T("Failed to resolve test path: ")  <<  testPath  <<  "\n";
         return false;
       }
     }
@@ -119,9 +119,9 @@ runDllTest( CppUnit::Test *root,
 
   runner.run( controller );
 
-  std::cerr << std::endl;
+  stdCOut() << "\n";
 
-  CppUnit::CompilerOutputter outputter( &result, std::cerr );
+  CppUnit::CompilerOutputter outputter( &result, stdCOut() );
   outputter.write();
 
   return result.wasSuccessful();
@@ -167,10 +167,9 @@ _tmain( int argc,
   const TCHAR *applicationName = argv[0];
   if ( argc < 2 )
   {
-    TCERR  <<  _T("Usage: ")  <<  std::endl
+    TCERR  <<  _T("Usage:\n")
            <<  applicationName 
-           <<  " dll-filename [test-path] [test-path]..."
-           <<  std::endl;
+           <<  " dll-filename [test-path] [test-path]...\n";
     return failureReturnCode;
   }
 
@@ -185,8 +184,8 @@ _tmain( int argc,
   }
   catch ( CppUnit::DynamicLibraryManagerException &e )
   {
-    TCERR  << "Failed to load test plug-in:"  <<  std::endl
-           << toVariableString( e.what() )  << std::endl;
+    TCERR  << "Failed to load test plug-in:\n"
+           << toVariableString( e.what() )  << "\n";
   }
 
   return wasSuccessful ? successReturnCode : failureReturnCode;

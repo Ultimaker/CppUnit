@@ -211,6 +211,10 @@ SOURCE="..\..\include\cppunit\config\config-bcb5.h"
 # End Source File
 # Begin Source File
 
+SOURCE="..\..\include\cppunit\config\config-evc4.h"
+# End Source File
+# Begin Source File
+
 SOURCE="..\..\include\cppunit\config\config-mac.h"
 # End Source File
 # Begin Source File
@@ -248,6 +252,10 @@ SOURCE=..\..\include\cppunit\Portability.h
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\config\SelectDllLoader.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\portability\Stream.h
 # End Source File
 # End Group
 # Begin Group "output"

@@ -14,7 +14,7 @@ CPPUNIT_NS_BEGIN
 
 
 XmlOutputter::XmlOutputter( TestResultCollector *result,
-                            std::ostream &stream,
+                            OStream &stream,
                             std::string encoding )
   : m_result( result )
   , m_stream( stream )

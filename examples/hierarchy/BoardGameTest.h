@@ -2,7 +2,7 @@
 #define __BOARDGAMETEST_H__
 
 #include <cppunit/extensions/HelperMacros.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 
 template<class GAMECLASS> 
 class BoardGameTest : public CPPUNIT_NS::TestFixture 
@@ -41,7 +41,7 @@ public:
 
   void testResetShouldFail() 
   { 
-    std::cout << "The following test fails, this is intended:" << std::endl;
+    CPPUNIT_NS::stdCOut() << "The following test fails, this is intended:" << "\n";
     CPPUNIT_ASSERT( !m_game->reset() );
   }
 };

@@ -3,7 +3,7 @@
 #include <cppunit/TestFailure.h>
 #include <cppunit/TextTestResult.h>
 #include <cppunit/TextOutputter.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN
@@ -19,7 +19,7 @@ void
 TextTestResult::addFailure( const TestFailure &failure )
 {
   TestResultCollector::addFailure( failure );
-  std::cerr << ( failure.isError() ? "E" : "F" );
+  stdCOut() << ( failure.isError() ? "E" : "F" );
 }
 
 
@@ -27,20 +27,20 @@ void
 TextTestResult::startTest( Test *test )
 {
   TestResultCollector::startTest (test);
-  std::cerr << ".";
+  stdCOut() << ".";
 }
 
 
 void 
-TextTestResult::print( std::ostream& stream ) 
+TextTestResult::print( OStream &stream ) 
 {
   TextOutputter outputter( this, stream );
   outputter.write();
 }
 
 
-std::ostream &
-operator <<( std::ostream &stream, 
+OStream &
+operator <<( OStream &stream, 
              TextTestResult &result )
 { 
   result.print (stream); return stream; 

@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 
   // Change the default outputter to a compiler error format outputter
   runner.setOutputter( new CPPUNIT_NS::CompilerOutputter( &runner.result(),
-                                                       std::cerr ) );
+                                                          CPPUNIT_NS::stdCOut() ) );
   // Run the test.
   bool wasSucessful = runner.run();
 

@@ -1,6 +1,6 @@
 #include <cppunit/TestFailure.h>
 #include <cppunit/TextTestProgressListener.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN
@@ -19,14 +19,14 @@ TextTestProgressListener::~TextTestProgressListener()
 void 
 TextTestProgressListener::startTest( Test *test )
 {
-  std::cerr << ".";
+  stdCOut() << ".";
 }
 
 
 void 
 TextTestProgressListener::addFailure( const TestFailure &failure )
 {
-  std::cerr << ( failure.isError() ? "E" : "F" );
+  stdCOut() << ( failure.isError() ? "E" : "F" );
 }
 
 
@@ -34,8 +34,8 @@ void
 TextTestProgressListener::endTestRun( Test *test, 
                                       TestResult *eventManager )
 {
-  std::cerr  <<  std::endl;
-  std::cerr.flush();
+  stdCOut()  <<  "\n";
+  stdCOut().flush();
 }
 
 

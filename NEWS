@@ -1,10 +1,35 @@
   New in CppUnit 1.10.4:
   ----------------------
 
+
+* Portability:
+
+  - Support for embedded visual C++ 4 added. For this purpose, CppUnit now
+    provides a very simple stream implementation if none is provided.
+    This should also help porting on other platforms which have STL but
+    no stream support. Just make sure that CPPUNIT_NO_STREAM is defined
+    to 1 in your config header.
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
     if CppUnit is missing.
+
+* (Possible) Compatiblity break:
+
+  - All text output is now done on cout() instead of sometime cerr & 
+    sometime cout depending on the component.
+
+  - OStringStream definition has been removed from Portability.h. This
+    means that <sstream> is no longer included, and that ostringstream and
+    string might not be defined. In practice this should have no impact 
+    since those includes have been moved to other CppUnit headers.
+
+* Notes:
+
+  - CppUnit now uses the alias OStream when refering to std::ostream for 
+    portability.
+
 
 
   New in CppUnit 1.10.2:

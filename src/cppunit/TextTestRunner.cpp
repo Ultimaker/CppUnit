@@ -6,7 +6,7 @@
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/TestResult.h>
 #include <cppunit/ui/text/TextTestRunner.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 #include <stdexcept>
 
 
@@ -22,7 +22,7 @@ TextTestRunner::TextTestRunner( Outputter *outputter )
     , m_eventManager( new TestResult() )
 {
   if ( !m_outputter )
-    m_outputter = new TextOutputter( m_result, std::cout );
+    m_outputter = new TextOutputter( m_result, stdCOut() );
   m_eventManager->addListener( m_result );
 }
 
@@ -75,18 +75,21 @@ TextTestRunner::run( std::string testName,
 void 
 TextTestRunner::wait( bool doWait )
 {
+#if !defined( CPPUNIT_NO_STREAM )
   if ( doWait ) 
   {
-    std::cout << "<RETURN> to continue" << std::endl;
+    stdCOut() << "<RETURN> to continue\n";
+    stdCOut().flush();
     std::cin.get ();
   }
+#endif
 }
 
 
 void 
 TextTestRunner::printResult( bool doPrintResult )
 {
-  std::cout << std::endl;
+  stdCOut() << "\n";
   if ( doPrintResult )
     m_outputter->write();
 }

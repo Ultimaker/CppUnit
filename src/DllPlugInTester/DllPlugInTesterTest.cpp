@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
   CPPUNIT_NS::TextUi::TestRunner runner;
   runner.addTest( suite );
   runner.setOutputter( new CPPUNIT_NS::CompilerOutputter( &runner.result(),
-                                                       std::cerr ) );
+                                                          CPPUNIT_NS::stdCOut() ) );
   bool wasSucessful = runner.run();
   return wasSucessful ? 0 : 1;
 }

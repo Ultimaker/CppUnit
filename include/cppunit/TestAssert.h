@@ -4,6 +4,7 @@
 #include <cppunit/Portability.h>
 #include <cppunit/Exception.h>
 #include <cppunit/Asserter.h>
+#include <cppunit/Portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN

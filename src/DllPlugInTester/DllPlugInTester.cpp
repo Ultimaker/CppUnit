@@ -12,8 +12,7 @@
 #include <cppunit/plugin/PlugInParameters.h>
 #include <cppunit/plugin/PlugInManager.h>
 #include <cppunit/plugin/TestPlugIn.h>
-#include <iostream>
-#include <fstream>
+#include <cppunit/Portability/Stream.h>
 #include "CommandLineParser.h"
 
 
@@ -43,13 +42,13 @@ runTests( const CommandLineParser &parser )
     controller.addListener( &result );        
 
     // Set up outputters
-    std::ostream *stream = &std::cerr;
+    CPPUNIT_NS::OStream *stream = &CPPUNIT_NS::stdCErr();
     if ( parser.useCoutStream() )
-      stream = &std::cout;
+      stream = &CPPUNIT_NS::stdCOut();
 
-    std::ostream *xmlStream = stream;
+    CPPUNIT_NS::OStream *xmlStream = stream;
     if ( !parser.getXmlFileName().empty() )
-      xmlStream = new std::ofstream( parser.getXmlFileName().c_str() );
+      xmlStream = new CPPUNIT_NS::OFileStream( parser.getXmlFileName().c_str() );
 
     CPPUNIT_NS::XmlOutputter xmlOutputter( &result, *xmlStream, parser.getEncoding() );
     xmlOutputter.setStyleSheet( parser.getXmlStyleSheet() );
@@ -86,9 +85,9 @@ runTests( const CommandLineParser &parser )
     }
     catch ( std::invalid_argument & )
     {
-      std::cerr  <<  "Failed to resolve test path: "  
-                 <<  parser.getTestPath() 
-                 <<  std::endl;
+      CPPUNIT_NS::stdCOut()  <<  "Failed to resolve test path: "  
+                             <<  parser.getTestPath() 
+                             <<  "\n";
     }
 
     // Removes plug-in specific TestListener (not really needed but...)
@@ -119,10 +118,9 @@ runTests( const CommandLineParser &parser )
 void
 printShortUsage( const std::string &applicationName )
 {
-  std::cout  << "Usage:"  <<  std::endl
+   CPPUNIT_NS::stdCOut()  << "Usage:\n"
              << applicationName  <<  " [-c -b -n -t -o -w] [-x xml-filename]"
-             "[-s stylesheet] [-e encoding] plug-in[=parameters] [plug-in...] [:testPath]"
-             << std::endl  <<  std::endl;
+             "[-s stylesheet] [-e encoding] plug-in[=parameters] [plug-in...] [:testPath]\n\n";
 }
 
 
@@ -130,7 +128,7 @@ void
 printUsage( const std::string &applicationName )
 {
   printShortUsage( applicationName );
-  std::cout  <<
+  CPPUNIT_NS::stdCOut()  <<
 "-c --compiler\n"
 "	Use CompilerOutputter\n"
 "-x --xml [filename]\n"
@@ -172,8 +170,7 @@ printUsage( const std::string &applicationName )
 "DllPlugInTesterd_dll.exe ClockerPlugInd.dll=\"flat\" -n CppUnitTestPlugInd.dll\n"
 "\n"
 " Will load the 2 test plug-ins, and pass the parameter string \"flat\"\n"
-"to the Clocker plug-in, disable test progress.\n"
-  << std::endl;
+"to the Clocker plug-in, disable test progress.\n\n";
 
 }
 
@@ -229,8 +226,8 @@ main( int argc,
   }
   catch ( CommandLineParserException &e )
   {
-    std::cerr  <<  "Error while parsing command line: "  <<  e.what()  
-               << std::endl << std::endl;
+    CPPUNIT_NS::stdCOut()  <<  "Error while parsing command line: "  <<  e.what()  
+                           << "\n\n";
     printShortUsage( applicationName );
     return badCommadLineReturnCode;
   }
@@ -242,15 +239,18 @@ main( int argc,
   }
   catch ( CPPUNIT_NS::DynamicLibraryManagerException &e )
   {
-    std::cerr  << "Failed to load test plug-in:"  <<  std::endl
-               << e.what() << std::endl;
+    CPPUNIT_NS::stdCOut()  << "Failed to load test plug-in:\n"
+                           << e.what() << "\n";
   }
 
+#if !defined( CPPUNIT_NO_STREAM )
   if ( parser.waitBeforeExit() )
   {
-    std::cout << "Please press <RETURN> to exit" << std::endl;
+    CPPUNIT_NS::stdCOut() << "Please press <RETURN> to exit\n";
+    CPPUNIT_NS::stdCOut().flush();
     std::cin.get();
   }
+#endif
 
   return wasSuccessful ? successReturnCode : failureReturnCode;
 }

@@ -1,4 +1,5 @@
 #include <cppunit/tools/StringTools.h>
+#include <cppunit/Portability/Stream.h>
 #include <algorithm>
 
 

@@ -4,7 +4,7 @@
 // Created: 2002/04/19
 // //////////////////////////////////////////////////////////////////////////
 #include <cppunit/Test.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 #include "ClockerListener.h"
 #include "ClockerModel.h"
 #include <stdio.h>
@@ -72,10 +72,10 @@ void
 ClockerListener::printStatistics() const
 {
   printTest( 0, "" );
-  std::cout  <<  std::endl;
-  std::cout  <<  "Total elapsed time: ";
+  CPPUNIT_NS::stdCOut()  <<  "\n";
+  CPPUNIT_NS::stdCOut()  <<  "Total elapsed time: ";
   printTime( m_model->totalElapsedTime() );
-  std::cout  <<  ", average test case time: ";
+  CPPUNIT_NS::stdCOut()  <<  ", average test case time: ";
   printTime( m_model->averageTestCaseTime() );
 }
 
@@ -90,8 +90,8 @@ ClockerListener::printTest( int testIndex,
   printTestIndent( indentString, indentLength );
   printTime( m_model->testTimeFor( testIndex ) );
 
-  std::cout  <<  m_model->testPathFor( testIndex ).getChildTest()->getName();
-  std::cout  <<  std::endl;
+  CPPUNIT_NS::stdCOut()  <<  m_model->testPathFor( testIndex ).getChildTest()->getName();
+  CPPUNIT_NS::stdCOut()  <<  "\n";
 
   if ( m_model->childCountFor( testIndex ) == 0 )
     indent+= std::string( indentLength, ' ' );
@@ -110,14 +110,14 @@ ClockerListener::printTestIndent( const std::string &indent,
   if ( indent.empty() )
     return;
 
-  std::cout << "   ";
-  std::cout << indent.substr( 0, indent.length() - indentLength ) ;
-  std::cout << "+"  <<  std::string( indentLength -1, '-' );
+  CPPUNIT_NS::stdCOut() << "   ";
+  CPPUNIT_NS::stdCOut() << indent.substr( 0, indent.length() - indentLength ) ;
+  CPPUNIT_NS::stdCOut() << "+"  <<  std::string( indentLength -1, '-' );
 }
 
 
 void 
 ClockerListener::printTime( double time ) const
 {
-  std::cout <<  '('  <<  ClockerModel::timeStringFor( time )  <<  "s) ";
+  CPPUNIT_NS::stdCOut() <<  '('  <<  ClockerModel::timeStringFor( time )  <<  "s) ";
 }

@@ -11,7 +11,7 @@ CPPUNIT_NS_BEGIN
 
 
 CompilerOutputter::CompilerOutputter( TestResultCollector *result,
-                                      std::ostream &stream,
+                                      OStream &stream,
                                       const std::string &locationFormat )
     : m_result( result )
     , m_stream( stream )
@@ -35,7 +35,7 @@ CompilerOutputter::setLocationFormat( const std::string &locationFormat )
 
 CompilerOutputter *
 CompilerOutputter::defaultOutputter( TestResultCollector *result,
-                                     std::ostream &stream )
+                                     OStream &stream )
 {
   return new CompilerOutputter( result, stream );
 }
@@ -54,8 +54,7 @@ CompilerOutputter::write()
 void 
 CompilerOutputter::printSuccess()
 {
-  m_stream  << "OK (" << m_result->runTests()  << ")"  
-            <<  std::endl;
+  m_stream  << "OK (" << m_result->runTests()  << ")\n";
 }
 
 
@@ -161,35 +160,34 @@ CompilerOutputter::printFailureType( TestFailure *failure )
 void 
 CompilerOutputter::printFailedTestName( TestFailure *failure )
 {
-  m_stream  <<  std::endl;
-  m_stream  <<  "Test name: "  <<  failure->failedTestName();
+  m_stream  <<  "\nTest name: "  <<  failure->failedTestName();
 }
 
 
 void 
 CompilerOutputter::printFailureMessage( TestFailure *failure )
 {
-  m_stream  <<  std::endl;
+  m_stream  <<  "\n";
   Exception *thrownException = failure->thrownException();
-  m_stream  << thrownException->message().shortDescription()  <<  std::endl;
+  m_stream  << thrownException->message().shortDescription()  <<  "\n";
 
   std::string message = thrownException->message().details();
   if ( m_wrapColumn > 0 )
     message = StringTools::wrap( message, m_wrapColumn );
 
-  m_stream  <<  message  <<  std::endl;
+  m_stream  <<  message  <<  "\n";
 }
 
 
 void 
 CompilerOutputter::printStatistics()
 {
-  m_stream  <<  "Failures !!!"  <<  std::endl;
+  m_stream  <<  "Failures !!!\n";
   m_stream  <<  "Run: "  <<  m_result->runTests()  << "   "
             <<  "Failure total: "  <<  m_result->testFailuresTotal()  << "   "
             <<  "Failures: "  <<  m_result->testFailures()  << "   "
             <<  "Errors: "  <<  m_result->testErrors()
-            <<  std::endl;
+            <<  "\n";
 }
 
 

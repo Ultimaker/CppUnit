@@ -9,7 +9,7 @@ CPPUNIT_NS_BEGIN
 
 
 TextOutputter::TextOutputter( TestResultCollector *result,
-                              std::ostream &stream )
+                              OStream &stream )
     : m_result( result )
     , m_stream( stream )
 {
@@ -25,9 +25,9 @@ void
 TextOutputter::write() 
 {
   printHeader();
-  m_stream << std::endl;
+  m_stream << "\n";
   printFailures();
-  m_stream << std::endl;
+  m_stream << "\n";
 }
 
 
@@ -38,7 +38,7 @@ TextOutputter::printFailures()
   int failureNumber = 1;
   while ( itFailure != m_result->failures().end() ) 
   {
-    m_stream  <<  std::endl;
+    m_stream  <<  "\n";
     printFailure( *itFailure++, failureNumber++ );
   }
 }
@@ -55,9 +55,9 @@ TextOutputter::printFailure( TestFailure *failure,
   printFailureType( failure );
   m_stream << ' ';
   printFailureLocation( failure->sourceLine() );
-  m_stream << std::endl;
+  m_stream << "\n";
   printFailureDetail( failure->thrownException() );
-  m_stream << std::endl;
+  m_stream << "\n";
 }
 
 
@@ -98,7 +98,7 @@ TextOutputter::printFailureLocation( SourceLine sourceLine )
 void 
 TextOutputter::printFailureDetail( Exception *thrownException )
 {
-  m_stream  <<  thrownException->message().shortDescription()  <<  std::endl;
+  m_stream  <<  thrownException->message().shortDescription()  <<  "\n";
   m_stream  <<  thrownException->message().details();
 }
 
@@ -107,11 +107,10 @@ void
 TextOutputter::printHeader()
 {
   if ( m_result->wasSuccessful() )
-    m_stream << std::endl << "OK (" << m_result->runTests () << " tests)" 
-             << std::endl;
+    m_stream << "\nOK (" << m_result->runTests () << " tests)\n" ;
   else
   {
-    m_stream << std::endl;
+    m_stream << "\n";
     printFailureWarning();
     printStatistics();
   }
@@ -121,19 +120,19 @@ TextOutputter::printHeader()
 void 
 TextOutputter::printFailureWarning()
 {
-  m_stream  << "!!!FAILURES!!!" << std::endl;
+  m_stream  << "!!!FAILURES!!!\n";
 }
 
 
 void 
 TextOutputter::printStatistics()
 {
-  m_stream  << "Test Results:" << std::endl;
+  m_stream  << "Test Results:\n";
 
   m_stream  <<  "Run:  "  <<  m_result->runTests()
             <<  "   Failures: "  <<  m_result->testFailures()
             <<  "   Errors: "  <<  m_result->testErrors()
-            <<  std::endl;
+            <<  "\n";
 }
 
 

@@ -1,7 +1,7 @@
 #include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestFailure.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 
 
 CPPUNIT_NS_BEGIN
@@ -21,8 +21,8 @@ BriefTestProgressListener::~BriefTestProgressListener()
 void 
 BriefTestProgressListener::startTest( Test *test )
 {
-  std::cerr << test->getName();
-  std::cerr.flush();
+  stdCOut() << test->getName();
+  stdCOut().flush();
 
   m_lastTestFailed = false;
 }
@@ -31,7 +31,7 @@ BriefTestProgressListener::startTest( Test *test )
 void 
 BriefTestProgressListener::addFailure( const TestFailure &failure )
 {
-  std::cerr << " : " << (failure.isError() ? "error" : "assertion");
+  stdCOut() << " : " << (failure.isError() ? "error" : "assertion");
   m_lastTestFailed  = true;
 }
 
@@ -40,8 +40,8 @@ void
 BriefTestProgressListener::endTest( Test *test )
 {
   if ( !m_lastTestFailed )
-    std::cerr  <<  " : OK";
-  std::cerr << std::endl;
+    stdCOut()  <<  " : OK";
+  stdCOut() << "\n";
 }
 
 

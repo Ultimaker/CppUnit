@@ -37,13 +37,13 @@ main( int argc, char* argv[] )
   runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );   
   try
   {
-    std::cout << "Running "  <<  testPath;
+    CPPUNIT_NS::stdCOut() << "Running "  <<  testPath;
     runner.run( controller, testPath );
 
-    std::cerr << std::endl;
+    CPPUNIT_NS::stdCOut() << "\n";
 
     // Print test in a compiler compatible format.
-    CPPUNIT_NS::CompilerOutputter outputter( &result, std::cerr );
+    CPPUNIT_NS::CompilerOutputter outputter( &result, CPPUNIT_NS::stdCOut() );
     outputter.write(); 
 
 // Uncomment this for XML output
@@ -55,9 +55,9 @@ main( int argc, char* argv[] )
   }
   catch ( std::invalid_argument &e )  // Test path not resolved
   {
-    std::cerr  <<  std::endl  
-               <<  "ERROR: "  <<  e.what()
-               << std::endl;
+    CPPUNIT_NS::stdCOut()  <<  "\n"  
+                            <<  "ERROR: "  <<  e.what()
+                            << "\n";
     return 0;
   }
 

@@ -3,7 +3,7 @@
 
 #include <cppunit/Portability.h>
 #include <cppunit/Outputter.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 
 CPPUNIT_NS_BEGIN
 
@@ -64,7 +64,7 @@ public:
    * \see setLocationFormat().
    */
   CompilerOutputter( TestResultCollector *result,
-                     std::ostream &stream,
+                     OStream &stream,
                      const std::string &locationFormat = CPPUNIT_COMPILER_LOCATION_FORMAT );
 
   /// Destructor.
@@ -100,7 +100,7 @@ public:
    *             Use CompilerOutputter::CompilerOutputter instead.
    */
   static CompilerOutputter *defaultOutputter( TestResultCollector *result,
-                                              std::ostream &stream );
+                                              OStream &stream );
 
   void write();
 
@@ -134,7 +134,7 @@ private:
 
 private:
   TestResultCollector *m_result;
-  std::ostream &m_stream;
+  OStream &m_stream;
   std::string m_locationFormat;
   int m_wrapColumn;
 };

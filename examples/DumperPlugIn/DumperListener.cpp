@@ -4,7 +4,7 @@
 // Created: 2002/04/19
 // //////////////////////////////////////////////////////////////////////////
 #include <cppunit/Test.h>
-#include <iostream>
+#include <cppunit/Portability/Stream.h>
 #include "DumperListener.h"
 
 DumperListener::DumperListener( bool flatten )
@@ -68,10 +68,11 @@ DumperListener::endTestRun( CPPUNIT_NS::Test *test,
   if ( m_suiteWithTestCount > 0 )
     average = double(m_testCount) / m_suiteWithTestCount;
 
-  std::cout << "Statistics: "  <<  m_testCount  <<  " test cases, "
+  CPPUNIT_NS::stdCOut() 
+            << "Statistics: "  <<  m_testCount  <<  " test cases, "
             << m_suiteCount << " suites, "
             << average << " test cases / suite with test cases"
-            << std::endl;
+            << "\n";
 }
 
 
@@ -94,7 +95,7 @@ DumperListener::printFlattenedPath( bool isSuite )
   std::string path = m_path.toString();
   if ( isSuite )
     path += "/";
-  std::cout  <<  path  <<  std::endl;
+  CPPUNIT_NS::stdCOut()  <<  path  <<  "\n";
 }
 
 
@@ -102,7 +103,7 @@ void
 DumperListener::printIndentedPathChild()
 {
   std::string indent = makeIndentString( m_path.getTestCount() -1 );
-  std::cout  <<  indent  <<  m_path.getChildTest()->getName()  <<  std::endl;
+  CPPUNIT_NS::stdCOut()  <<  indent  <<  m_path.getChildTest()->getName()  <<  "\n";
 }
 
 

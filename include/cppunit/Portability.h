@@ -8,6 +8,8 @@
 /* include platform specific config */
 #if defined(__BORLANDC__)
 #    include <cppunit/config/config-bcb5.h>
+#elif defined( EVC4 )
+#    include <cppunit/config/config-evc4.h>
 #elif defined (_MSC_VER)
 #    include <cppunit/config/config-msvc6.h>
 #else
@@ -164,50 +166,5 @@
 #if !defined(CPPUNIT_WRAP_COLUMN)
 # define CPPUNIT_WRAP_COLUMN 79
 #endif
-
-
-/* perform portability hacks */
-
-
-/* Define CPPUNIT_SSTREAM as a stream with a "std::string str()"
- * method.
- */
-#if CPPUNIT_HAVE_SSTREAM
-# include <sstream>
-    CPPUNIT_NS_BEGIN
-
-    typedef std::ostringstream OStringStream;
-
-    CPPUNIT_NS_END
-#elif CPPUNIT_HAVE_CLASS_STRSTREAM
-# include <string>
-# if CPPUNIT_HAVE_STRSTREAM
-#   include <strstream>
-# else // CPPUNIT_HAVE_STRSTREAM
-#  include <strstream.h>
-# endif // CPPUNIT_HAVE_CLASS_STRSTREAM
-
-    CPPUNIT_NS_BEGIN
-
-      class OStringStream : public std::ostrstream 
-      {
-      public:
-          std::string str()
-          {
-//            (*this) << '\0';
-//            std::string msg(std::ostrstream::str());
-//            std::ostrstream::freeze(false);
-//            return msg;
-// Alternative implementation that don't rely on freeze which is not
-// available on some platforms:
-            return std::string( std::ostrstream::str(), pcount() );
-          }
-      };
-
-    CPPUNIT_NS_END
-#else // CPPUNIT_HAVE_CLASS_STRSTREAM
-#   error Cannot define CppUnit::OStringStream.
-#endif // CPPUNIT_HAVE_SSTREAM
-
 
 #endif // CPPUNIT_PORTABILITY_H
