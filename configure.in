@@ -86,7 +86,6 @@ AC_OUTPUT([
   src/cppunit/Makefile
   include/Makefile
   include/cppunit/Makefile
-  include/cppunit/config.h
   include/cppunit/extensions/Makefile
   doc/Makefile
   doc/Doxyfile
