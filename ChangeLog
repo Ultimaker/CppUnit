@@ -1,3 +1,8 @@
+2001-10-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/Exception.h:
+	* src/cppunit/Exception.cpp: what(), added back the throw() qualifier.
+
 2001-10-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunitui/* : added, Qt TestRunner.
