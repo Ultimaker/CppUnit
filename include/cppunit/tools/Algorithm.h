@@ -10,14 +10,10 @@ void
 removeFromSequence( SequenceType &sequence, 
                     const ValueType &valueToRemove )
 {
-   SequenceType::iterator it = sequence.begin();
-   SequenceType::iterator itEnd = sequence.end();
-   while ( it != itEnd )
+   for ( int index =0; index < sequence.size(); ++index )
    {
-      if ( *it == valueToRemove )
-         it = sequence.erase( it );
-      else
-         ++it;
+      if ( sequence[ index ] == valueToRemove )
+         sequence.erase( sequence.begin() + index );
    }
 }
 
