@@ -13,6 +13,10 @@
 
 	* src/msvc6/TestPlugIn/*: removed.
 
+	* examples/Money/*: added. New 'hello world' example.
+
+	* doc/Money.dox: added. Article that go along with the Money example.
+
 2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* THANKS: updated
