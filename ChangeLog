@@ -1,5 +1,9 @@
 2002-03-28 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* configure.in: bumped version to 1.7.11
+
+2002-03-28 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* doc/cookbook.html: removed. Replaced by cookbook.doc.
 
 	* doc/cookbook.dox: added, conversion of cookbook.html to Doxygen format.
