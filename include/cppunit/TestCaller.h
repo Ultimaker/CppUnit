@@ -32,7 +32,7 @@ struct ExpectedExceptionTraits
 #else
 	std::string message( "Expected exception but got none" );
 #endif
-	throw new Exception( message );
+	throw Exception( message );
     }
 };
 

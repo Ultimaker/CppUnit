@@ -1,9 +1,9 @@
 #ifndef CPPUNIT_TESTASSERT_H
 #define CPPUNIT_TESTASSERT_H
 
-#include <string>
 #include <cppunit/Portability.h>
 #include <cppunit/Exception.h>
+#include <string>
 
 
 namespace CppUnit {
