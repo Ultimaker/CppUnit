@@ -39,7 +39,7 @@ private:
   void removeTrailingSpaces();
 
 private:
-  int m_index;
+  unsigned int m_index;
   std::string m_xml;
   std::string m_stripped;
 };

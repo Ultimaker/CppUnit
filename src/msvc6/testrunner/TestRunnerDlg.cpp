@@ -426,7 +426,7 @@ TestRunnerDlg::OnOK()
 void 
 TestRunnerDlg::OnSelectTestInHistoryCombo() 
 {
-  int currentSelection = getHistoryCombo()->GetCurSel ();
+  unsigned int currentSelection = getHistoryCombo()->GetCurSel ();
 
   if ( currentSelection >= 0  &&
        currentSelection < m_model->history().size() )
@@ -651,10 +651,10 @@ TestRunnerDlg::OnSelectedFailureChange( NMHDR* pNMHDR,
 
 
 void 
-TestRunnerDlg::displayFailureDetailsFor( int failureIndex )
+TestRunnerDlg::displayFailureDetailsFor( unsigned int failureIndex )
 {
   CString details;
-  if ( failureIndex >= 0  &&  failureIndex < m_result->failures().size() )
+  if ( failureIndex < m_result->failures().size() )
     details = m_result->failures()[ failureIndex ]->thrownException()->what();
 
   details.Replace( _T("\n"), _T("\r\n") );

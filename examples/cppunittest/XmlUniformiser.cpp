@@ -5,7 +5,7 @@ int
 notEqualIndex( std::string expectedXml,
                std::string actualXml )
 {
-  int index = 0;
+  unsigned int index = 0;
   while ( index < actualXml.length()  &&  
           index < expectedXml.length()  &&
           actualXml[index] == expectedXml[index] )

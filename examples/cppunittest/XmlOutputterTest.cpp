@@ -33,7 +33,7 @@ void
 XmlOutputterTest::tearDown()
 {
   delete m_result;
-  for ( int index =0; index < m_dummyTests.size(); ++index )
+  for ( unsigned int index =0; index < m_dummyTests.size(); ++index )
     delete m_dummyTests[index];
   m_dummyTests.clear();
 }

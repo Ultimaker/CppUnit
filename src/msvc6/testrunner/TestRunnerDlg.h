@@ -143,7 +143,7 @@ protected:
   void saveSettings();
   TestRunnerModel &model();
   void updateHistoryCombo();
-  void displayFailureDetailsFor( int failureIndex );
+  void displayFailureDetailsFor( unsigned int failureIndex );
 
   CRect getItemWindowRect( unsigned int itemId );
   CRect getItemClientRect( unsigned int itemId );

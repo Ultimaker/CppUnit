@@ -118,7 +118,7 @@ protected:
 
   typedef CppUnitDeque<std::string> Arguments;
   Arguments m_arguments;
-  int m_currentArgument;
+  unsigned int m_currentArgument;
 
   std::string m_option;
 };
