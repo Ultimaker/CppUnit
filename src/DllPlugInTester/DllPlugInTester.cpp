@@ -229,7 +229,7 @@ main( int argc,
                << e.what() << std::endl;
   }
 
-  if ( parser.askBeforeExit() )
+  if ( parser.waitBeforeExit() )
   {
     std::cout << "Please press <RETURN> to exit" << std::endl;
     std::cin.get();
