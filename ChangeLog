@@ -1,3 +1,7 @@
+2002-04-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* examples/cppunittest/CppUnitTestMain.cpp: never wait for a key press.
+
 2002-04-04 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* NEW: added CPPUNIT_ASSERT_EQUAL_MESSAGE compatiblity break.

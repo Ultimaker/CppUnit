@@ -23,8 +23,8 @@ main( int argc, char* argv[] )
                                                         std::cerr ) );
   }
 
-  // Run the test and don't wait a key if post build check.
-  bool wasSucessful = runner.run( "", !selfTest );
+  // Run the test.
+  bool wasSucessful = runner.run( "" );
 
   // Return error code 1 if the one of test failed.
   return wasSucessful ? 0 : 1;
