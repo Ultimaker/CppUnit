@@ -352,7 +352,7 @@ namespace CppUnit
  */
 #define CPPUNIT_REGISTRY_ADD( which, to )                                     \
   static CppUnit::AutoRegisterRegistry                                        \
-             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry)( which, to )
+             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which, to )
 
 /*! Adds that the specified registry suite to the default registry suite.
  * \ingroup CreatingTestSuite
@@ -365,7 +365,7 @@ namespace CppUnit
  */
 #define CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which )                         \
   static CppUnit::AutoRegisterRegistry                                   \
-             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry)( which )
+             CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which )
 
 // Backwards compatibility
 // (Not tested!)

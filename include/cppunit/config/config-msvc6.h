@@ -42,22 +42,6 @@
 #define CPPUNIT_PACKAGE  "cppunit" 
 #endif
 
-#undef CPPUNIT_API
-
-// define CPPUNIT_DLL_BUILD when building CppUnit dll.
-#ifdef CPPUNIT_BUILD_DLL
-#define CPPUNIT_API __declspec(dllexport)
-#endif
-
-// define CPPUNIT_DLL when linking to CppUnit dll.
-#ifdef CPPUNIT_DLL
-#define CPPUNIT_API __declspec(dllimport)
-#endif
-
-#ifdef CPPUNIT_API
-#undef CPPUNIT_NEED_DLL_DECL
-#define CPPUNIT_NEED_DLL_DECL 1
-#endif
 
 // Compiler error location format for CompilerOutputter
 // See class CompilerOutputter for format.

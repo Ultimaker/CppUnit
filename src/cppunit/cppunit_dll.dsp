@@ -383,6 +383,14 @@ SOURCE=..\..\include\cppunit\TextTestRunner.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\BriefTestProgressListener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\BriefTestProgressListener.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestSuccessListener.cpp
 # End Source File
 # Begin Source File

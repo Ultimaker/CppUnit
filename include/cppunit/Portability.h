@@ -10,6 +10,7 @@
 #    include <cppunit/config-auto.h>
 #endif
 
+#include <cppunit/config/CppUnitApi.h>    // define CPPUNIT_API & CPPUNIT_NEED_DLL_DECL
 #include <cppunit/config/SelectDllLoader.h>
 
 
@@ -35,14 +36,6 @@
 #ifndef CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION
 #define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
 #endif
-
-// CPPUNIT_API is defined in <config_msvc6.h> if required (building or using as dll)
-#ifndef CPPUNIT_API
-#define CPPUNIT_API
-#undef CPPUNIT_NEED_DLL_DECL
-#define CPPUNIT_NEED_DLL_DECL 0
-#endif
-
 
 // Compiler error location format for CompilerOutputter
 // If not define, assumes that it's gcc

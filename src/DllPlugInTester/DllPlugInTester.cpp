@@ -1,3 +1,4 @@
+#include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/TestPath.h>
 #include <cppunit/TestResult.h>
@@ -23,7 +24,8 @@ runTests( CppUnit::Parameters parameters )
   CppUnit::TestResult controller;
   CppUnit::TestResultCollector result;
   controller.addListener( &result );        
-  CppUnit::TextTestProgressListener progress;
+//  CppUnit::TextTestProgressListener progress;
+  CppUnit::BriefTestProgressListener progress;
   controller.addListener( &progress );      
 
   std::string testPath;

@@ -8,7 +8,7 @@
 
 /* define if library uses std::string::compare(string,pos,n) */
 #ifndef CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST 
-#define CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST  1 
+#define CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST  0
 #endif
 
 /* Define if you have the <dlfcn.h> header file. */

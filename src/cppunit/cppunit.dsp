@@ -202,6 +202,10 @@ SOURCE="..\..\include\cppunit\config\config-msvc6.h"
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\config\CppUnitApi.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\Portability.h
 # End Source File
 # Begin Source File

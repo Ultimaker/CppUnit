@@ -10,7 +10,7 @@ namespace CppUnit
 /*! \brief TestListener that prints the name of each test before running it.
  * \ingroup TrackingTestExecution
  */
-class BriefTestProgressListener : public TestListener
+class CPPUNIT_API BriefTestProgressListener : public TestListener
 {
 public:
   /*! Constructs a BriefTestProgressListener object.
