@@ -237,13 +237,13 @@ RECURSIVE             = YES
 # excluded from the INPUT source files. This way you can easily exclude a 
 # subdirectory from a directory tree whose root is specified with the INPUT tag. 
 
-EXCLUDE               = ../include/config.h ../cppunit/estring.h
+EXCLUDE               = 
 
 # If the value of the INPUT tag contains directories, you can use the 
 # EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude 
 # certain files from those directories. 
 
-EXCLUDE_PATTERNS      = 
+EXCLUDE_PATTERNS      = config.h estring.h
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or 
 # directories that contain example code fragments that are included (see 
