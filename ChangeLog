@@ -1,3 +1,11 @@
+2001-04-24 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Merged Baptiste Lepilleurs patch for TestRegistry: 
+	  now TestCases do not automatically register with the Registry 
+	  anymore.
+
+	* Added extension headers from Micheal Feathers port to 
+	  include/cppunit/extensions.
+	
 2001-04-19 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Added MSVC++ workspace and project files, submitted by 
 	  Baptiste Lepilleur.
