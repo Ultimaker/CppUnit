@@ -1,3 +1,8 @@
+2001-05-16 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Merged Debian packaging support files by Christian Leutloff 
+	  from debian package version 1.5.4-2.
+	  Added make target 'debian' for debian package creation.
+	
 2001-05-09 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Release as 1.5.5.
 	* Finished CppUnitW 1.2 merge. 
