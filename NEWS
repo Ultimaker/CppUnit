@@ -1,5 +1,14 @@
+  New in CppUnit 1.10.4:
+  ----------------------
+
+* Bug Fix:
+
+  - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
+    if CppUnit is missing.
+
+
   New in CppUnit 1.10.2:
-  --------------------------------------
+  ----------------------
 
 * Bug Fix:
 
