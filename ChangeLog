@@ -1,4 +1,13 @@
 2001-04-29 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Merged Baptiste Lepilleurs CppUnitW 1.2. Some differences:
+	  TypeInfo stuff (in TestSuite) compiled in only if USE_TYPEINFO 
+	  is set. 
+	  TestSuite.getTests now returns a const ref instead of taking a 
+	  ref as parameter.
+	  Removed auto_ptr stuff from TestFactoryRegistry: 
+	  auto_ptr cannot be used in containers.
+	
+2001-04-28 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Merged MSVC++ specific TestRunner and example adapted from
 	  Micheal Feathers version by Baptiste Lepilleur.
 	* Moved cppunit subdir into src.
