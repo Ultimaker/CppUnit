@@ -1,5 +1,5 @@
 # Include cookbook.html in distro
-EXTRA_DIST = Money.dsp Money.dsw configure.in StdAfx.cpp
+EXTRA_DIST = money.dsp money.dsw configure.in StdAfx.cpp
 
 # Rules to make the production code
 #bin_PROGRAMS = Money
