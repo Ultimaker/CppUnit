@@ -1,3 +1,8 @@
+2002-12-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/TextTestResult.h: added missing dll export for 
+    operator << (bug #610119).
+
 2002-12-02 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/plugin/DynamicLibraryManagerException.h: added constructor

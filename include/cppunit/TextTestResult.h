@@ -29,8 +29,8 @@ public:
 };
 
 /** insertion operator for easy output */
-std::ostream &operator <<( std::ostream &stream, 
-                           TextTestResult &result );
+CPPUNIT_API std::ostream &operator <<( std::ostream &stream, 
+                                       TextTestResult &result );
 
 CPPUNIT_NS_END
 

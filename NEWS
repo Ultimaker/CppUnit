@@ -17,6 +17,8 @@
   - Missing destructor with no throw specification for 
     DynamicLibraryManagerException. Bug #619059.
 
+  - Fixed missing export for operator <<(TextTestResult). Bug #610119.
+
 
 	New in CppUnit 1.9.10:
 	---------------------
