@@ -5,21 +5,28 @@
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/CompilerOutputter.h>
 #include <tchar.h>
-#include <msvc6/testrunner/TestPlugInInterface.h>
-#include <stdexcept>
+#include <cppunit/plugin/TestPlugIn.h>
+#include <cppunit/plugin/TestPlugInSuite.h>
+#include <cppunit/plugin/DynamicLibraryManagerException.h>
+#include <cppunit/extensions/TestDecorator.h>
 
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
 
 #ifndef _UNICODE
 #define TCERR std::cerr
 #else
 #define TCERR std::wcerr
 #endif
+
+class NotOwningTestRunner : public CppUnit::TestRunner
+{
+public:
+  typedef CppUnit::TestRunner SuperClass;   // work around VC++ bug
+
+  void addTest( CppUnit::Test *test )
+  {
+    SuperClass::addTest( new CppUnit::TestDecorator( test ) );
+  }
+};
 
 
 /*! Converts a ansi string to a TCHAR string.
@@ -90,7 +97,7 @@ runDllTest( CppUnit::Test *root,
   CppUnit::TextTestProgressListener progress;
   controller.addListener( &progress );      
 
-  CppUnit::TestRunner runner;
+  NotOwningTestRunner runner;
   if ( numberOfPath == 0 )
     runner.addTest( root );
   else
@@ -100,7 +107,7 @@ runDllTest( CppUnit::Test *root,
       const TCHAR *testPath = testPaths[index];
       try
       {
-        runner.addTest( root->resolveTestPath( toAnsiString( testPath ) ).getChildTest() );
+        runner.addTest( root->resolveTestPath( testPath).getChildTest() );
       }
       catch ( std::invalid_argument & )
       {
@@ -115,7 +122,7 @@ runDllTest( CppUnit::Test *root,
   std::cerr << std::endl;
 
   CppUnit::CompilerOutputter outputter( &result, std::cerr );
-  outputter.write();                      
+  outputter.write();
 
   return result.wasSuccessful();
 }
@@ -169,42 +176,18 @@ _tmain( int argc,
 
   // open the dll
   const TCHAR *dllFileName = argv[1];
-  HINSTANCE dllHandle = ::LoadLibrary( dllFileName );
-  if ( dllHandle == NULL )
-  {
-    TCERR  <<  "Failed to load dll: "  <<  dllFileName  <<  std::endl;
-    return failureReturnCode;
-  } 
 
-  // get the plug in function in the dll
-  const TCHAR *plugFunctionName = _T("GetTestPlugInInterface");
-  GetTestPlugInInterfaceFunction plug = (GetTestPlugInInterfaceFunction)
-      ::GetProcAddress( dllHandle, plugFunctionName );
   bool wasSuccessful = false;
   try
   {
-    if ( plug != NULL )
-    {
-      TestPlugInInterface *theInterface = (*plug)();
-      wasSuccessful = runDllTest( theInterface->makeTest(), argv+2, argc-2 );
-    }
-    else
-    {
-      TCERR  <<  _T("Failed to find exported function named '")
-             <<  plugFunctionName  <<  _T("'")
-             <<  std::endl;
-    }
+    CppUnit::TestPlugInSuite suite( dllFileName );
+    wasSuccessful = runDllTest( &suite, argv+2, argc-2 );
   }
-  catch ( std::exception &e )
+  catch ( CppUnit::DynamicLibraryManagerException &e )
   {
-    TCERR  <<  _T( "Unexpected exception when running test. You should report this"
-                   " and the context which produced the exception:" )  
-           << std::endl
-           << toVariableString( e.what() )
-           << std::endl;
+    TCERR  << "Failed to load test plug-in:"  <<  std::endl
+           << toVariableString( e.what() )  << std::endl;
   }
-
-  ::FreeLibrary( dllHandle );
 
   return wasSuccessful ? successReturnCode : failureReturnCode;
 }

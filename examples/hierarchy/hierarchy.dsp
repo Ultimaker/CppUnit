@@ -137,5 +137,9 @@ SOURCE=.\ChessTest.h
 
 SOURCE=.\main.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\Makefile.am
+# End Source File
 # End Target
 # End Project

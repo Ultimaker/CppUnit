@@ -3,12 +3,14 @@
 
 /* include platform specific config */
 #if defined(__BORLANDC__)
-#    include <cppunit/config-bcb5.h>
+#    include <cppunit/config/config-bcb5.h>
 #elif defined (_MSC_VER)
-#    include <cppunit/config-msvc6.h>
+#    include <cppunit/config/config-msvc6.h>
 #else
 #    include <cppunit/config-auto.h>
 #endif
+
+#include <cppunit/config/SelectDllLoader.h>
 
 
 /* Options that the library user may switch on or off.
@@ -49,6 +51,55 @@
 #define CPPUNIT_COMPILER_LOCATION_FORMAT "%f:%l:"
 #endif
 
+
+/*! Stringize a symbol.
+ * 
+ * Use this macro to convert a preprocessor symbol to a string.
+ *
+ * Example of usage:
+ * \code
+ * #define CPPUNIT_PLUGIN_EXPORTED_NAME cppunitTestPlugIn
+ * const char *name = CPPUNIT_STRINGIZE( CPPUNIT_PLUGIN_EXPORTED_NAME );
+ * \endcode
+ */
+#define CPPUNIT_STRINGIZE( symbol ) _CPPUNIT_DO_STRINGIZE( symbol )
+
+/// \internal
+#define _CPPUNIT_DO_STRINGIZE( symbol ) #symbol
+
+/*! Joins to symbol after expanding them into string.
+ *
+ * Use this macro to join two symbols. Example of usage:
+ *
+ * \code
+ * #define MAKE_UNIQUE_NAME(prefix) CPPUNIT_JOIN( prefix, __LINE__ )
+ * \endcode
+ *
+ * The macro defined in the example concatenate a given prefix with the line number
+ * to obtain a 'unique' identifier.
+ *
+ * \internal From boost documentation:
+ * The following piece of macro magic joins the two 
+ * arguments together, even when one of the arguments is
+ * itself a macro (see 16.3.1 in C++ standard).  The key
+ * is that macro expansion of macro arguments does not
+ * occur in CPPUNIT_JOIN2 but does in CPPUNIT_JOIN.
+ */
+#define CPPUNIT_JOIN( symbol1, symbol2 ) _CPPUNIT_DO_JOIN( symbol1, symbol2 )
+
+/// \internal
+#define _CPPUNIT_DO_JOIN( symbol1, symbol2 ) _CPPUNIT_DO_JOIN2( symbol1, symbol2 )
+
+/// \internal
+#define _CPPUNIT_DO_JOIN2( symbol1, symbol2 ) symbol1##symbol2
+
+/*! Adds the line number to the specified string to create a unique identifier.
+ * \param prefix Prefix added to the line number to create a unique identifier.
+ * \see CPPUNIT_TEST_SUITE_REGISTRATION for an example of usage.
+ */
+#define CPPUNIT_MAKE_UNIQUE_NAME( prefix ) CPPUNIT_JOIN( prefix, __LINE__ )
+
+
 /* perform portability hacks */
 
 
@@ -88,5 +139,6 @@
 #   error Cannot define CppUnit::OStringStream.
 #endif
 #endif
+
 
 #endif // CPPUNIT_PORTABILITY_H

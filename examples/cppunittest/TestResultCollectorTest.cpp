@@ -147,7 +147,7 @@ TestResultCollectorTest::testWasSuccessfulWithErrorsAndFailures()
 
 
 void 
-TestResultCollectorTest::testWasSuccessfulWithSucecssfulTest()
+TestResultCollectorTest::testWasSuccessfulWithSuccessfulTest()
 {
   m_result->startTest( m_test );
   m_result->endTest( m_test );

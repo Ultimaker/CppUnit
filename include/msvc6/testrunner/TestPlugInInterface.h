@@ -3,7 +3,6 @@
 
 #include <cppunit/Test.h>
 #include <cppunit/TestSuite.h>
-#include <cppunit/extensions/TestFactoryRegistry.h>
 
 #if !defined(WINAPI)
 #define WIN32_LEAN_AND_MEAN 
@@ -16,7 +15,7 @@
 #endif
 
 /*! \brief Abstract TestPlugIn for DLL.
- * \ingroup WritingTestPlugIn
+ * \deprecated Use CppUnitTestPlugIn instead.
  *
  * A Test plug-in DLL must subclass this class and "publish" an instance
  * using the following exported function:
@@ -50,44 +49,6 @@ typedef TestPlugInInterface* (WINAPI *GetTestPlugInInterfaceFunction)(void);
 extern "C" {
   __declspec(dllexport) TestPlugInInterface *GetTestPlugInInterface();
 }
-
-
-/*! Implements the TestPlugInInterface and export the interface.
- * \ingroup WritingTestPlugIn
- *
- * Creates a subclass of TestPlugInInterface and implements 
- * TestPlugInInterface::makeTest() by returning a suite that contains
- * all the test registered to the default test factory registry 
- * ( TestFactoryRegistry::getRegistry() ).
- *
- * The name of the returned suite is specified by \a rootSuiteName.
- *
- * This macro also implements the GetTestPlugInInterface() function that
- * is exported by the DLL.
- *
- * \param rootSuiteName Name of the suite exported by the DLL.
- */
-#define CPPUNIT_TESTPLUGIN_IMPL( rootSuiteName )                           \
-  class TestPlugInInterfaceImpl : public TestPlugInInterface               \
-  {                                                                        \
-  public:                                                                  \
-    CppUnit::Test *makeTest()                                              \
-    {                                                                      \
-      CppUnit::TestSuite *suite = new CppUnit::TestSuite( rootSuiteName ); \
-      CppUnit::TestFactoryRegistry::getRegistry().addTestToSuite( suite ); \
-      return suite;                                                        \
-    }                                                                      \
-  };                                                                       \
-                                                                           \
-                                                                           \
-  TestPlugInInterface *GetTestPlugInInterface()                            \
-  {                                                                        \
-    static TestPlugInInterfaceImpl plugInInterface;                        \
-    return &plugInInterface;                                               \
-  }                                                                        \
-                                                                           \
-  /* A dummy typedef to allow ending of macro with ';' */                  \
-  typedef TestPlugInInterfaceImpl __TheTestPlugInInterfaceDummyDecl
 
 
 

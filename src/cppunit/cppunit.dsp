@@ -105,76 +105,184 @@ LIB32=link.exe -lib
 # Name "cppunit - Win32 Release"
 # Name "cppunit - Win32 Debug"
 # Name "cppunit - Win32 Debug Crossplatform Setting"
-# Begin Group "extension"
+# Begin Group "plugin"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\Orthodox.h
+SOURCE=.\BeosDynamicLibraryManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\RepeatedTest.cpp
+SOURCE=.\DynamicLibraryManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\RepeatedTest.h
+SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TestDecorator.h
+SOURCE=.\DynamicLibraryManagerException.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestSetUp.cpp
+SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManagerException.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TestSetUp.h
+SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPlugInDefaultImpl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugInDefaultImpl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPlugInSuite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugInSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnixDynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Win32DynamicLibraryManager.cpp
 # End Source File
 # End Group
-# Begin Group "helper"
+# Begin Group "documentation"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\AutoRegisterSuite.h
+SOURCE=..\..\ChangeLog
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\HelperMacros.h
+SOURCE=..\..\doc\cookbook.dox
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\TestCaller.h
+SOURCE=..\..\doc\FAQ
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TestFactory.h
+SOURCE=..\..\NEWS
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestFactoryRegistry.cpp
+SOURCE=..\..\doc\other_documentation.dox
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TestFactoryRegistry.h
+SOURCE=..\..\TODO
+# End Source File
+# End Group
+# Begin Group "listener"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TestSuccessListener.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TestSuiteBuilder.h
+SOURCE=.\TextTestProgressListener.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TestSuiteFactory.h
+SOURCE=..\..\include\cppunit\TextTestProgressListener.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TypeInfoHelper.cpp
+SOURCE=.\TextTestResult.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\extensions\TypeInfoHelper.h
+SOURCE=..\..\include\cppunit\TextTestResult.h
+# End Source File
+# End Group
+# Begin Group "textui"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TextTestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestRunner.h
+# End Source File
+# End Group
+# Begin Group "portability"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE="..\..\include\cppunit\config\config-bcb5.h"
+# End Source File
+# Begin Source File
+
+SOURCE="..\..\include\cppunit\config\config-mac.h"
+# End Source File
+# Begin Source File
+
+SOURCE="..\..\include\cppunit\config\config-msvc6.h"
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Portability.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\config\SelectDllLoader.h
+# End Source File
+# End Group
+# Begin Group "output"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\CompilerOutputter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\CompilerOutputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Outputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestResultCollector.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestResultCollector.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TextOutputter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextOutputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlOutputter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\XmlOutputter.h
 # End Source File
 # End Group
 # Begin Group "core"
@@ -309,121 +417,76 @@ SOURCE=.\TestSuite.cpp
 SOURCE=..\..\include\cppunit\TestSuite.h
 # End Source File
 # End Group
-# Begin Group "output"
+# Begin Group "helper"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\CompilerOutputter.cpp
-# SUBTRACT CPP /YX
+SOURCE=..\..\include\cppunit\extensions\AutoRegisterSuite.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\CompilerOutputter.h
+SOURCE=..\..\include\cppunit\extensions\HelperMacros.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\Outputter.h
+SOURCE=..\..\include\cppunit\TestCaller.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestResultCollector.cpp
+SOURCE=..\..\include\cppunit\extensions\TestFactory.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\TestResultCollector.h
+SOURCE=.\TestFactoryRegistry.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\TextOutputter.cpp
+SOURCE=..\..\include\cppunit\extensions\TestFactoryRegistry.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\TextOutputter.h
+SOURCE=..\..\include\cppunit\extensions\TestSuiteBuilder.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\XmlOutputter.cpp
+SOURCE=..\..\include\cppunit\extensions\TestSuiteFactory.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\XmlOutputter.h
+SOURCE=.\TypeInfoHelper.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\TypeInfoHelper.h
 # End Source File
 # End Group
-# Begin Group "portability"
+# Begin Group "extension"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE="..\..\include\cppunit\config-msvc6.h"
+SOURCE=..\..\include\cppunit\extensions\Orthodox.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\Portability.h
-# End Source File
-# End Group
-# Begin Group "textui"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\TextTestRunner.cpp
+SOURCE=.\RepeatedTest.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\TextTestRunner.h
-# End Source File
-# End Group
-# Begin Group "listener"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\TestSuccessListener.cpp
+SOURCE=..\..\include\cppunit\extensions\RepeatedTest.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TextTestProgressListener.cpp
+SOURCE=..\..\include\cppunit\extensions\TestDecorator.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\TextTestProgressListener.h
+SOURCE=.\TestSetUp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\TextTestResult.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TextTestResult.h
-# End Source File
-# End Group
-# Begin Group "documentation"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\ChangeLog
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\doc\cookbook.dox
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\doc\FAQ
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\NEWS
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\doc\other_documentation.dox
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\TODO
+SOURCE=..\..\include\cppunit\extensions\TestSetUp.h
 # End Source File
 # End Group
 # Begin Source File

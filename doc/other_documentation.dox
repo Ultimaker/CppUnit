@@ -65,4 +65,29 @@
  */
 
 /*! \defgroup WritingTestPlugIn Writing Test Plug-in
+ *
+ * Creating a test plug-in is really simple:
+ * - make your project a dynamic library (with VC++, choose Win32 Dynamic Library in
+ *   the project wizard).
+ * - in a cpp file, include TestPlugIn.h, and use the macro CPPUNIT_PLUGIN_IMPLEMENT
+ *   passing your plug-in root suite name to declare the test plug-in.
+ * - That's it, you're done!
+ *
+ * Example:
+ * \code
+ * #include <cppunit/include/plugin/TestPlugIn.h>
+ *
+ * CPPUNIT_PLUGIN_IMPLEMENT( "My test plug-in root suite name" );
+ * \endcode
+ *
+ * The default implementation of the CppUnitTestPlugIn interface use the default
+ * TestFactoryRegistry to retreive the root test suite of the plug-in.
+ *
+ * To provide your custom implementation of the plug-in, you must:
+ * - create a class that implements the CppUnitTestPlugIn interface
+ * - use CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL() with your class to export
+ *   the plug-in interface
+ * - implements the 'main' function with CPPUNIT_PLUGIN_IMPLEMENT_MAIN().
+ *
+ * See implementation of macro CPPUNIT_PLUGIN_IMPLEMENT() for an example.
  */

@@ -31,6 +31,8 @@
 	- Compatibility break for NotEqualException::expected(), actual() and additionalInfo().
 	- Update MfcTestRuner to use wstr() in Unicode build => introduce a utility function
 	  toCString( CppUnit::String &) that returns a CString using the appropriate method.
+  - [DONE] Wrap test plug-in suite retreival in a TestPlugInSuite.
+  - [DONE] CrossPlatform TestPlugInSuite and TestPlugInInterface.
 
   - STL orthodox template for container elements.
 

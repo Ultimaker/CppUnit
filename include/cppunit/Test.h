@@ -42,13 +42,6 @@ public:
    */
   virtual int getChildTestCount() const =0;
 
-  /*! \brief Returns the test name.
-   * 
-   * Each test has a name.  This name may be used to find the
-   * test in a suite or registry of tests.
-   */
-  virtual std::string getName () const =0;
-
   /*! \brief Returns the child test of the specified index.
    *
    * This method test if the index is valid, then call doGetChildTestAt() if 
@@ -61,6 +54,13 @@ public:
    * \exception std::out_of_range is \a index is < 0 or >= getChildTestCount().
    */
   virtual Test *getChildTestAt( int index ) const;
+
+  /*! \brief Returns the test name.
+   * 
+   * Each test has a name.  This name may be used to find the
+   * test in a suite or registry of tests.
+   */
+  virtual std::string getName () const =0;
 
   /*! \brief Finds the test with the specified name and its parents test.
    * \param testName Name of the test to find.

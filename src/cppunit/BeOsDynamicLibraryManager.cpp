@@ -1,0 +1,43 @@
+#include <cppunit/Portability.h>
+
+#if defined(CPPUNIT_HAVE_BEOS_DLL_LOADER)
+#include <cppunit/plugin/DynamicLibraryManager.h>
+
+#include <kernel/image.h>
+
+
+namespace CppUnit
+{
+
+
+DynamicLibraryManager::LibraryHandle 
+DynamicLibraryManager::doLoadLibrary( const std::string &libraryName )
+{
+  return (LibraryHandle)::load_add_on( libraryName.c_str() );
+}
+
+
+void 
+DynamicLibraryManager::doReleaseLibrary()
+{
+  return ::unload_add_on( (image_id)m_libraryHandle ) == B_OK;
+}
+
+
+DynamicLibraryManager::Symbol 
+DynamicLibraryManager::doFindSymbol( const std::string &symbol )
+{
+  void *symbolPointer;
+  if ( ::get_image_symbol( (image_id)m_libraryHandle, 
+                           symbol.c_str(), 
+                           B_SYMBOL_TYPE_TEXT, 
+                           &symbolPointer ) == B_OK )
+    return symnolPointer;
+  return NULL;
+}
+
+
+} //  namespace CppUnit
+
+
+#endif // defined(CPPUNIT_HAVE_BEOS_DLL_LOADER)

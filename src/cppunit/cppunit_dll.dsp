@@ -70,7 +70,8 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_DLL_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_BUILD_DLL" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CPPUNIT_BUILD_DLL" /FD /GZ /c
+# SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x40c /d "_DEBUG"
@@ -89,6 +90,14 @@ LINK32=link.exe
 
 # Name "cppunit_dll - Win32 Release"
 # Name "cppunit_dll - Win32 Debug"
+# Begin Group "DllSpecific"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\DllMain.cpp
+# End Source File
+# End Group
 # Begin Group "extension"
 
 # PROP Default_Filter ""
@@ -278,6 +287,14 @@ SOURCE=..\..\include\cppunit\TestResult.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestRunner.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestSuite.cpp
 # End Source File
 # Begin Source File
@@ -310,19 +327,63 @@ SOURCE=..\..\include\cppunit\TestResultCollector.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestSuccessListener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TestSuccessListener.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\TextOutputter.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\TextOutputter.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XmlOutputter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\XmlOutputter.h
+# End Source File
+# End Group
+# Begin Group "portability"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE="..\..\include\cppunit\config\config-bcb5.h"
+# End Source File
+# Begin Source File
+
+SOURCE="..\..\include\cppunit\config\config-mac.h"
+# End Source File
+# Begin Source File
+
+SOURCE="..\..\include\cppunit\config\config-msvc6.h"
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Portability.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\config\SelectDllLoader.h
+# End Source File
+# End Group
+# Begin Group "textui"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TextTestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TextTestRunner.h
+# End Source File
+# End Group
+# Begin Group "listener"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\TestSuccessListener.cpp
 # End Source File
 # Begin Source File
 
@@ -340,55 +401,87 @@ SOURCE=.\TextTestResult.cpp
 
 SOURCE=..\..\include\cppunit\TextTestResult.h
 # End Source File
-# Begin Source File
-
-SOURCE=.\XmlOutputter.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\XmlOutputter.h
-# End Source File
 # End Group
-# Begin Group "portability"
+# Begin Group "documentation"
 
 # PROP Default_Filter ""
-# Begin Source File
-
-SOURCE="..\..\include\cppunit\config-msvc6.h"
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\Portability.h
-# End Source File
-# End Group
-# Begin Group "textui"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\TestRunner.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\ui\text\TestRunner.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\TextTestRunner.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TextTestRunner.h
-# End Source File
-# End Group
 # Begin Source File
 
 SOURCE=..\..\ChangeLog
 # End Source File
 # Begin Source File
 
-SOURCE=.\DllMain.cpp
+SOURCE=..\..\doc\cookbook.dox
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\doc\FAQ
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\NEWS
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\doc\other_documentation.dox
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\TODO
+# End Source File
+# End Group
+# Begin Group "plugin"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\BeosDynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicLibraryManagerException.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\DynamicLibraryManagerException.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugIn.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPlugInDefaultImpl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugInDefaultImpl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPlugInSuite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\plugin\TestPlugInSuite.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UnixDynamicLibraryManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Win32DynamicLibraryManager.cpp
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE="..\..\INSTALL-WIN32.txt"
@@ -400,10 +493,6 @@ SOURCE=..\..\include\cppunit\Makefile.am
 # Begin Source File
 
 SOURCE=.\Makefile.am
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\NEWS
 # End Source File
 # End Target
 # End Project

@@ -259,16 +259,8 @@ namespace CppUnit
 /** @}
  */
 
-#define __CPPUNIT_CONCATENATE_DIRECT( s1, s2 ) s1##s2
-#define __CPPUNIT_CONCATENATE( s1, s2 ) __CPPUNIT_CONCATENATE_DIRECT( s1, s2 )
 
-/** Decorates the specified string with the line number to obtain a unique name;
- * @param str String to decorate.
- */
-#define __CPPUNIT_MAKE_UNIQUE_NAME( str ) __CPPUNIT_CONCATENATE( str, __LINE__ )
-
-
-/** Adds the specified fixture suite to the unnamed registry.
+/*! Adds the specified fixture suite to the unnamed registry.
  * \ingroup CreatingTestSuite
  *
  * This macro declares a static variable whose construction
@@ -285,7 +277,7 @@ namespace CppUnit
  */
 #define CPPUNIT_TEST_SUITE_REGISTRATION( ATestFixtureType )      \
   static CppUnit::AutoRegisterSuite< ATestFixtureType >          \
-             __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
+             CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
 /** Adds the specified fixture suite to the specified registry suite.
@@ -325,7 +317,7 @@ namespace CppUnit
  */
 #define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestFixtureType, suiteName ) \
   static CppUnit::AutoRegisterSuite< ATestFixtureType >                      \
-             __CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
+             CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
 
 
 // Backwards compatibility

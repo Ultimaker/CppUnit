@@ -1,4 +1,61 @@
-2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* NEWS: updated.
+
+	* configure.in: added include/cppunit/config/Makefile and 
+	  include/cppunit/plugin/Makefile to the list of target.
+
+	* doc/CppUnit-win.dox: enabled generation of HTML Help documentation.
+
+	* include/cppunit/config/Makefile.am:
+	* include/cppunit/plugin/Makefile.am: added.
+
+	* include/cppunit/config-bcb5.h:
+	* include/cppunit/config-msvc6.h:
+	* include/cppunit/config-mac.h: moved to include/cppunit/config/.
+
+	* include/cppunit/Portability.h: updated config files location. Added macros
+	  CPPUNIT_STRINGIZE and CPPUNIT_JOIN (implementation adapted from boost.org).
+	  Added macro CPPUNIT_MAKE_UNIQUE_NAME.
+
+	* include/cppunit/Test.h: modified methods order.
+
+	* include/cppunit/extensions/HelperMacros.h: renamed macro 
+	  __CPPUNIT_MAKE_UNIQUE_NAME to CPPUNIT_MAKE_UNIQUE_NAME and moved its 
+	  definition to include/cppunit/Portability.h.
+
+	* include/cppunit/extensions/TestDecorator.h: Inherits Test instead of TestLeaf.
+
+	* include/cppunit/plugin/DynamicLibraryManager.h:
+	* src/cppunit/DynamicLibraryManager.cpp: added. DLL manager (load & lookup
+	  symbol).
+
+	* src/cppunit/BeOsDynamicLibraryManager.cpp:
+	* src/cppunit/UnixDynamicLibraryManager.cpp:
+	* src/cppunit/Win32DynamicLibraryManager.cpp: added. Implementation of 
+	  platform dependent methods of DynamicLibraryManager.
+
+	* include/cppunit/plugin/DynamicLibraryManagerException.h:
+	* src/cppunit/DynamicLibraryManagerException.cpp: added. Exception thrown
+	  by DynamicLibraryManager.
+
+	* include/cppunit/plugin/TestPlugIn.h: added. CppUnitTestPlugIn interface
+	  definition. Helper macros to implements plug-in.
+
+	* include/cppunit/plugin/TestPlugInSuite.h:
+	* src/cppunit/plugin/TestPlugInSuite.cpp: added. A suite to wrap a test
+	  plug-in.
+
+	* include/cppunit/plugin/TestPlugInDefaultImpl.h:
+	* src/cppunit/TestPlugInDefaultImpl.cpp: added. A default implementation
+	  of the test plug-in interface.
+
+	* src/msvc6/DllPlugInTester/DllPlugInTester.cpp: updated to use the
+	  new TestPlugIn.
+
+	* examples/cppunittest/TestResultCollectorTest.cpp: fixed typo.
+
+2002-04-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* NEWS: updated.
 

@@ -3,6 +3,28 @@
 
 	In short:
 	- Cleaner XML output
+	- Crossplatform Test plug-in
+	- TestPlugInSuite to wrap test plug-in
+	- More TestPlugIn documentation.
+
+* TestPlugIn:
+  - The test plug-in functionnality has been rewritten from scrash. 
+    TestPlugIn related macro are now crossplatform (exporting the plug-in
+	function from the dynamic library...).
+
+  - Class DynamicLibraryManager provides a generic way to access dynamic 
+    library. Platform specific implementation provided for WIN32, unix, BeOs.
+	Can be very easily ported to new platform.
+	
+  - A More flexible and hopefully extensible interface has been introduced
+    (CppUnitPlugIn). 
+	
+  - A default implementation using the test factory registry is provided 
+    (TestPlugInDefaultImpl). Can be easily customized.
+
+  - The one line test plug-in declaration was renamed CPPUNIT_PLUGIN_IMPLEMENT.
+
+  See modules/Writing Test Plug-in documentation and examples/EasyTestPlugIn.
 
 * XmlOutputter:
 
@@ -17,6 +39,14 @@
 
   - Global fix of the 'success' typo (was misspelled 'sucess'). Main impacts are listed
     above, but check your own code in case you override some protected/private methods.
+
+  - TestPlugInInterface (include/msvc6/TestPlugInInterface.h): this header and class
+    are now obsolete. You should use include/cppunit/plugin/TestPlugIn.h instead.
+	Macro CPPUNIT_TESTPLUGIN_IMPL have been replaced by CPPUNIT_PLUGIN_IMPLEMENT.
+
+  - TestDecorator inherits Test instead of TestLeaf.
+
+  - DllPlugInTester only run DLL implementing the new new TestPlugIn interface.
 
 
 	New in CppUnit 1.9.0:
@@ -102,9 +132,11 @@
           <Message>error2</Message>
         </FailedTest>
 
+
 * Deprecated:
 
   - CompilerOutputter::defaultOutputter(): use default constructor instead.
+
 
 * Bug fix:
 
