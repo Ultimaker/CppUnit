@@ -1,5 +1,7 @@
 SUBDIRS = extensions
 
+DISTCLEANFILES = config-auto.h
+
 libcppunitincludedir = $(includedir)/cppunit
 libcppunitinclude_HEADERS =  \
 	config-auto.h \
@@ -19,7 +21,3 @@ libcppunitinclude_HEADERS =  \
 	TextTestResult.h \
 	TextTestRunner.h \
 	TestListener.h
-
-dist-hook:
-	rm -f $(distdir)/config-auto.h
-

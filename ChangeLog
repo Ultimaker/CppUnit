@@ -1,5 +1,11 @@
 2001-07-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* include/cppunit/Makefile.am: Clean config-auto.h using
+	DISTCLEANFILES.
+
+	* doc/Makefile.am: Temporarily disable manpage installation.  
+	Fix html installation to ensure files removed by uninstall.
+
 	* src/cppunit/estring.h: Removed.
 
 	* src/cppunit/Makefile.am:
