@@ -211,6 +211,10 @@ SOURCE=..\..\include\cppunit\TestFailure.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\TestListener.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestRegistry.cpp
 # End Source File
 # Begin Source File

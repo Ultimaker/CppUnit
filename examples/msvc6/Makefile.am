@@ -1,2 +1,2 @@
-SUBDIRS = HostApp
+SUBDIRS = HostApp CppUnitTestApp
 

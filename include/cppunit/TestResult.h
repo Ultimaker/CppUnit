@@ -8,6 +8,7 @@ namespace CppUnit {
 
   class Exception;
   class Test;
+  class TestListener;
 
 
   /**
@@ -51,6 +52,9 @@ namespace CppUnit {
       virtual std::vector<TestFailure *>& errors         ();
       virtual std::vector<TestFailure *>& failures       ();
 
+      virtual void                        addListener    ( TestListener *listener );
+      virtual void                        removeListener ( TestListener *listener );
+
 
       class SynchronizationObject
       {
@@ -80,6 +84,7 @@ namespace CppUnit {
 
       std::vector<TestFailure *>  m_errors;
       std::vector<TestFailure *>  m_failures;
+      std::vector<TestListener *> m_listeners;
       int                         m_runTests;
       bool                        m_stop;
       SynchronizationObject       *m_syncObject;
