@@ -7,30 +7,32 @@ namespace CppUnit {
 
 class TestResult;
 
-/*
- * A Decorator for Tests
+
+/*! \brief  Decorator for Tests.
+ *
+ * TestDecorator provides an alternate means to extend functionality
+ * of a test class without subclassing the test.  Instead, one can
+ * subclass the decorater and use it to wrap the test class.
  *
  * Does not assume ownership of the test it decorates
- *
  */ 
-
 class TestDecorator : public Test 
 {
 public:
-                TestDecorator   (Test *test);
-                ~TestDecorator  ();
+    TestDecorator   (Test *test);
+    ~TestDecorator  ();
 
-    int         countTestCases  () const;
     void        run             (TestResult *result);
-    std::string toString        () const;
+    int         countTestCases  () const;
     std::string getName         () const;
+    std::string toString        () const;
 
 protected:
     Test        *m_test;
 
 private:
-  TestDecorator( const TestDecorator &);
-  void operator =( const TestDecorator & );
+    TestDecorator( const TestDecorator &);
+    void operator =( const TestDecorator & );
 };
 
 

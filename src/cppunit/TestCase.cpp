@@ -7,50 +7,50 @@
 #include "cppunit/Exception.h"
 #include "cppunit/TestResult.h"
 
+
 namespace CppUnit {
 
 /// Create a default TestResult
 CppUnit::TestResult* TestCase::defaultResult ()
 { return new TestResult; } 
 
+
 /// Run the test and catch any exceptions that are triggered by it 
 void 
 TestCase::run (TestResult *result)
 {
-  result->startTest (this);
+    result->startTest (this);
 
-  try
-  {
-    setUp ();
+    try {
+	setUp ();
   
-    try {
-      runTest ();
-    }
-    catch (Exception& e) {
-      Exception *copy = e.clone();
-      result->addFailure (this, copy);
-    }
-    catch (std::exception& e) {
-      result->addError (this, new Exception (e.what ()));
-    }
-    catch (...) {
-      Exception *e = new Exception ("caught unknown exception");
-      result->addError (this, e);
-    }
+	try {
+	    runTest ();
+	}
+	catch (Exception& e) {
+	    Exception *copy = e.clone();
+	    result->addFailure (this, copy);
+	}
+	catch (std::exception& e) {
+	    result->addError (this, new Exception (e.what ()));
+	}
+	catch (...) {
+	    Exception *e = new Exception ("caught unknown exception");
+	    result->addError (this, e);
+	}
 
-    try {
-      tearDown ();
+	try {
+	    tearDown ();
+	}
+	catch ( ... ) {
+	    result->addError( this, new Exception( "tearDown() failed" ) );
+	}
     }
     catch ( ... ) {
-      result->addError( this, new Exception( "tearDown() failed" ) );
+	result->addError( this, new Exception( "setUp() failed" ) );
     }
-  }
-  catch ( ... ) {
-    result->addError( this, new Exception( "setUp() failed" ) );
-  }
-
-  result->endTest (this);
-
+    
+    result->endTest (this);
 }
 
 

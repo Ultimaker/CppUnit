@@ -1,56 +1,52 @@
-#ifndef CPPUNIT_TESTFAILURE_H
+#ifndef CPPUNIT_TESTFAILURE_H    // -*- C++ -*-
 #define CPPUNIT_TESTFAILURE_H
 
 #include <string>
 
 namespace CppUnit {
 
-  class Test;
-  class Exception;
+class Test;
+class Exception;
 
 
-  /**
-   * A TestFailure collects a failed test together with
-   * the caught exception.
-   *
-   * TestFailure assumes lifetime control for any exception
-   * passed to it.  The lifetime of tests is handled by
-   * their TestSuite (if they have been added to one) or
-   * whomever creates them.
-   * 
-   * see TestResult
-   * see TestSuite
-   *
-   */
-  class TestFailure 
-  {
-    public:
-      TestFailure (Test *failedTest, Exception *thrownException);
-      ~TestFailure ();
+/*! \brief Record of a failed test execution.
+ *
+ * A TestFailure collects a failed test together with
+ * the caught exception.
+ *
+ * TestFailure assumes lifetime control for any exception
+ * passed to it.
+ */
+class TestFailure 
+{
+public:
+    TestFailure (Test *failedTest, Exception *thrownException);
+    ~TestFailure ();
 
-      Test*        failedTest ();
+    Test*        failedTest ();
 
-      Exception*   thrownException ();
+    Exception*   thrownException ();
+    
+    std::string  toString () const;
 
-      std::string  toString () const;
+protected:
+    Test         *m_failedTest;
+    Exception    *m_thrownException;
 
-    protected:
-      Test         *m_failedTest;
-      Exception    *m_thrownException;
+private: 
+    TestFailure (const TestFailure& other); 
+    TestFailure& operator= (const TestFailure& other); 
+};
 
-    private: 
-      TestFailure (const TestFailure& other); 
-      TestFailure& operator= (const TestFailure& other); 
-  };
-
-  /// Gets the failed test.
-  inline Test *TestFailure::failedTest ()
-  { return m_failedTest; }
+/// Gets the failed test.
+inline Test *TestFailure::failedTest ()
+{ return m_failedTest; }
 
 
-  /// Gets the thrown exception.
-  inline Exception *TestFailure::thrownException ()
-  { return m_thrownException; }
+/// Gets the thrown exception.
+inline Exception *TestFailure::thrownException ()
+{ return m_thrownException; }
+
 
 } // namespace CppUnit
 

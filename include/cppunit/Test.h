@@ -5,25 +5,54 @@
 
 namespace CppUnit {
 
-  class TestResult;
+class TestResult;
 
-  /**
-   * A Test can be run and collect its results.
-   * \see TestResult.
-   * 
-   */
-  class Test
-  {
-    public:
-      virtual                       ~Test () {};
+/*! \brief Base class for all test objects.
+ *
+ * All test objects should be a subclass of Test.  Some test objects,
+ * TestCase for example, represent one individual test.  Other test
+ * objects, such as TestSuite, are comprised of several tests.  
+ *
+ * When a Test is run, the result is collected by a TestResult object.
+ *
+ * \see TestCase
+ * \see TestSuite
+ */
+class Test
+{
+public:
+    virtual                       ~Test () {};
 
-      virtual void                  run (TestResult *result)    = 0;
-      virtual int                   countTestCases () const     = 0;
-      virtual std::string           toString () const           = 0;
-      virtual std::string           getName () const            = 0;
+    /*! \brief Run the test, collecting results.
+     */
+    virtual void                  run (TestResult *result)    = 0;
+
+    /*! \brief Return the number of test cases invoked by run().
+     *
+     * The base unit of testing is the class TestCase.  This
+     * method returns the number of TestCase objects invoked by
+     * the run() method.
+     */
+    virtual int                   countTestCases () const     = 0;
+
+    /*! \brief Returns the test name.
+     * 
+     * Each test has a name.  This name may be used to find the
+     * test in a suite or registry of tests.
+     */
+    virtual std::string           getName () const            = 0;
+
+    /*! \brief Description of the test, for diagnostic output.
+     *
+     * The test description will typically include the test name,
+     * but may have additional description.  For example, a test
+     * suite named <tt>complex_add</tt> may be described as 
+     * <tt>suite complex_add</tt>.
+     */
+    virtual std::string           toString () const           = 0;
 
 
-  };
+};
 
 
 } // namespace CppUnit

@@ -1,3 +1,16 @@
+2001-07-14  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/Exception.h:
+	* include/cppunit/Test.h:
+	* include/cppunit/TestCaller.h:
+	* include/cppunit/TestCase.h:
+	* include/cppunit/TestFailure.h:
+	* include/cppunit/TestListener.h:
+	* include/cppunit/TestSuite.h:
+	* include/cppunit/extensions/RepeatedTest.h:
+	* include/cppunit/extensions/TestDecorator.h:
+	* src/cppunit/TestCase.cpp:  Add documentation.
+
 2001-07-13  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* examples/cppunittest/TestAssertTest.h:

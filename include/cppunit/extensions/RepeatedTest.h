@@ -9,10 +9,9 @@ class Test;
 class TestResult;
 
 
-/*
- * A decorator that runs a test repeatedly.
- * Does not assume ownership of the test it decorates
+/*! \brief Decorator that runs a test repeatedly.
  *
+ * Does not assume ownership of the test it decorates
  */
 class RepeatedTest : public TestDecorator 
 {
@@ -22,9 +21,9 @@ public:
         TestDecorator( test ), 
         m_timesRepeat(timesRepeat) {}
 
+    void run( TestResult *result );
     int countTestCases();
     std::string toString();
-    void run( TestResult *result );
 
 private:
     RepeatedTest( const RepeatedTest & );
