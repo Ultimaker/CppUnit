@@ -38,6 +38,12 @@ with result().
   See examples/cppunittest/XmlTestResultOutputterTest.cpp for document
   structure and usage.
 
+* Compiler Output
+
+  CompilerTestResultOutputter print the result in a compiler compatible 
+  format. You can use your IDE to jump to the first failure. 
+  See examples/cppunittest/CppUniTestMain.cpp for an example of usage.
+
 * Deprecated
 
   - Methods having fileName, lineNumber as parameter. Usually replaced by

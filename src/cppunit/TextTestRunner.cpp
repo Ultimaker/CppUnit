@@ -96,6 +96,7 @@ TextTestRunner::wait( bool doWait )
 void 
 TextTestRunner::printResult( bool doPrintResult )
 {
+  std::cout << std::endl;
   if ( doPrintResult )
     std::cout << *m_result << std::endl;
 }

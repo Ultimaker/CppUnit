@@ -262,6 +262,15 @@ SOURCE=..\..\include\cppunit\TestSuite.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\CompilerTestResultOutputter.cpp
+# SUBTRACT CPP /YX
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\CompilerTestResultOutputter.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TextTestResult.cpp
 # End Source File
 # Begin Source File

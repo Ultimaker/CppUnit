@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.12 2001-10-05 22:27:14 blep Exp $
+# $Id: Makefile.am,v 1.13 2001-10-06 12:03:30 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp
@@ -9,6 +9,7 @@ lib_LTLIBRARIES = libcppunit.la
 
 libcppunit_la_SOURCES = \
   Asserter.cpp \
+  CompilerTestResultOutputter.cpp \
   NotEqualException.cpp \
   RepeatedTest.cpp \
   SourceLine.cpp \

@@ -1,5 +1,28 @@
 2001-10-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* include/cppunit/CompilerTestResultOutputter.h :
+	* src/cppunit/CompilerTestResultOutputter.cpp : added. Output result
+	in a compiler compatible format.
+
+	* src/cppunit/CppUnit.dsp :
+	* include/cppunit/MakeFile.am :
+	* src/cppunit/MakeFile.am : added CompilerTestResultOutputter.cpp
+	and CompilerTestResultOutputter.h.
+
+	* examples/cppunittest/CppUnitTestMain.cpp : if -selftest is specified
+	on the command line, no standard test result are printed, but compiler
+	compatible result at printed.
+
+	* examples/cppunittest/CppUnitTestMain.dsp : added post-build step to
+	run the test suite with -selftest.
+
+	* NEWS : updated.
+
+	* src/cppunit/TextTestRunner.cpp : skip a line after printing 
+	progress.
+
+2001-10-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* examples/cppunittest/CppUnitTestMain.cpp : application returns
 	0 is test suite run sucessfuly, 1 otherwise.
 
