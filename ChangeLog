@@ -1,3 +1,8 @@
+2001-04-29 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Merged MSVC++ specific TestRunner and example adapted from
+	  Micheal Feathers version by Baptiste Lepilleur.
+	* Moved cppunit subdir into src.
+	
 2001-04-24 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Merged Baptiste Lepilleurs patch for TestRegistry: 
 	  now TestCases do not automatically register with the Registry 
