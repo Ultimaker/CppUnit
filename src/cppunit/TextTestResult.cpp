@@ -16,16 +16,14 @@ void
 TextTestResult::addError (Test *test, Exception *e)
 {
     TestResult::addError (test, e);
-    std::cerr << "E" << std::endl;
-
+    std::cerr << "E";
 }
 
 void 
 TextTestResult::addFailure (Test *test, Exception *e)
 {
     TestResult::addFailure (test, e);
-    std::cerr << "F" << std::endl;
-
+    std::cerr << "F";
 }
 
 void 
@@ -33,7 +31,6 @@ TextTestResult::startTest (Test *test)
 {
   TestResult::startTest (test);
   std::cerr << ".";
-
 }
 
 

@@ -1,5 +1,8 @@
 2001-05-29  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* src/cppunit/TextTestResult.cpp (addError, addFailure): Do not
+	emit a newline.
+
 	* include/cppunit/extensions/HelperMacros.h: Rework documentation.
 	(CU_TEST_SUITE): Move definition of member function suite() ...
 	(CU_TEST_SUITE_END): ... to here.
