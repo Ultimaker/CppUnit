@@ -1,6 +1,8 @@
 #
-# $Id: Makefile.am,v 1.4 2001-04-14 22:42:36 bastiaan Exp $
+# $Id: Makefile.am,v 1.5 2001-04-19 20:47:22 bastiaan Exp $
 #
+
+EXTRA_DIST = cppunit.dsw cppunit.dsp
 
 cppunitdir=$(includedir)/cppunit
 

@@ -1,3 +1,5 @@
+EXTRA_DIST = hierarchy.dsw hierarchy.dsp
+
 TESTS = hierarchy
 
 noinst_PROGRAMS = hierarchy

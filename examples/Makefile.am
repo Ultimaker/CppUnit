@@ -1,5 +1,6 @@
 
 SUBDIRS = hierarchy 
 
-EXTRA_DIST = 
+EXTRA_DIST = examples.dsw
+
 
