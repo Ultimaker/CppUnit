@@ -25,6 +25,59 @@ class TestFailure;
  * unanticipated problems signified by exceptions that are not generated
  * by the framework.
  *
+ * \code
+ *
+ * #include <cppunit/TestListener.h>
+ * #include <cppunit/Test.h>
+ * #include <time.h>    // for clock()
+ *
+ * class TimingListener : public CppUnit::TestListener
+ * {
+ * public:
+ *   void startTest( CppUnit::Test *test )
+ *   {
+ *     _chronometer.start();
+ *   }
+ *  
+ *   void endTest( CppUnit::Test *test )
+ *   {
+ *     _chronometer.end();
+ *     addTest( test, _chronometer.elapsedTime() );
+ *   }
+ *
+ *   // ... (interface to add/read test timing result)
+ *
+ * private:
+ *
+ *   class Clock
+ *   {
+ *   public:
+ *     Clock() : _startTime( 0 ), _endTime(0) {}
+ * 
+ *     void start()
+ *     {
+ *       _startTime = clock();
+ *     }
+ * 
+ *     void end()
+ *     {
+ *       _endTime = clock();
+ *     }
+ *
+ *     double elapsedTime() const
+ *     {
+ *       return double(_endTime - _startTime) / CLOCKS_PER_SEC;
+ *     }
+ *  
+ *   private:
+ *     clock_t _startTime, _endTime;   
+ *   };
+ *
+ *   Clock _chronometer;
+ * };
+ *   
+ *
+ *
  * \see TestResult
  */
 class CPPUNIT_API TestListener

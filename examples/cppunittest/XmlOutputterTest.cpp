@@ -73,6 +73,17 @@ XmlOutputterTest::testEscapedAttributeValueToString()
 
 
 void 
+XmlOutputterTest::testNodeToStringEscapeContent()
+{
+  CppUnit::XmlOutputter::Node node( "element", "ChessTest<class Chess>" );
+  std::string expectedXml = "<element>"
+                            "ChessTest&lt;class Chess&gt;"
+                            "</element>";
+  CPPUNITTEST_ASSERT_XML_EQUAL( expectedXml, node.toString() );
+}
+
+
+void 
 XmlOutputterTest::testNodeWithChildrenToString()
 {
   CppUnit::XmlOutputter::Node node( "element" );
@@ -155,7 +166,7 @@ XmlOutputterTest::testWriteXmlResultWithOneFailure()
             "<File>test.cpp</File>"
             "<Line>3</Line>"
           "</Location>"
-          "message failure1"
+          "<Message>message failure1</Message>"
         "</FailedTest>"
       "</FailedTests>"
       "<SucessfulTests></SucessfulTests>"
@@ -186,7 +197,7 @@ XmlOutputterTest::testWriteXmlResultWithOneError()
         "<FailedTest id=\"1\">"
           "<Name>test1</Name>"
           "<FailureType>Error</FailureType>"
-          "message error1"
+          "<Message>message error1</Message>"
         "</FailedTest>"
       "</FailedTests>"
       "<SucessfulTests></SucessfulTests>"
@@ -252,27 +263,27 @@ XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
         "<FailedTest id=\"1\">"
           "<Name>test1</Name>"
           "<FailureType>Assertion</FailureType>"
-          "failure1"
+          "<Message>failure1</Message>"
         "</FailedTest>"
         "<FailedTest id=\"2\">"
           "<Name>test2</Name>"
           "<FailureType>Error</FailureType>"
-          "error1"
+          "<Message>error1</Message>"
         "</FailedTest>"
         "<FailedTest id=\"3\">"
           "<Name>test3</Name>"
           "<FailureType>Assertion</FailureType>"
-          "failure2"
+          "<Message>failure2</Message>"
         "</FailedTest>"
         "<FailedTest id=\"4\">"
           "<Name>test4</Name>"
           "<FailureType>Assertion</FailureType>"
-          "failure3"
+          "<Message>failure3</Message>"
         "</FailedTest>"
         "<FailedTest id=\"6\">"
           "<Name>test6</Name>"
           "<FailureType>Error</FailureType>"
-          "error2"
+          "<Message>error2</Message>"
         "</FailedTest>"
       "</FailedTests>"
      "<SucessfulTests>"

@@ -1,9 +1,42 @@
 * CppUnit:
-  - Unicode support
+  - Update TextTestRunner to use Test::findTest()
+  - [DONE] Introduce a new generic CppUnit::TestRunner
+  - [DONE]Update MfcTestRunner to use Test::findTest()
+  - Update MfcTestRunner to use TestPath to store test in the registry
+  - Update QtTestRunner to use findTest()
+  - Include DllPlugInTester, and update to use findTest() and TestPath().
+  - Add startSuite() and endSuite() to TestListener and TestResult
+  - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception and other
+    error catching (signal on Unix)
+  - Add a global set up decorator for all test run to TestResult 
+    (subclass TestSetupDecorator, and add a setTest() method )
+  - Change CompilerOutputter to be customized with parameter instead of subclassing:
+    provide a default string to the constructor that indicates the error report format:
+	%p => full path (D:\prg\..\File.cpp)
+	%f => just the file name (File.cpp)
+	%l => line (123)
+	For VC++: "%p(%l):"
+	For GCC: "%f:%l:"
+	String could be defined in the configuration file, and be guessed by configure (?)
+	Assume GCC if not VC++ ?
+	Notes: gcc error format:
+		g++ -DHAVE_CONFIG_H -I. -I. -I../../config -I../../include -I../../include -g -O2 -c TextOutputter.cpp -Wp,-MD,.deps/TextOutputter.TPlo  -fPIC -DPIC
+		TextOutputter.cpp:5: cppunit/TextOutputter.h: No such file or directory
+  - True Unicode support:
+    - Introduce a new CppUnit::String class. This class allow implicit construction from
+	const char *, std::string, wchar_t * and std::wstring. Provides accessor str() and
+	wstr() to retreive the string as either ANSI or UNICODE string.
+	- Update Asserter to use String instead of std::string
+	- Deprecate Exception::what(), and add String Exception::message().
+	- Compatibility break for NotEqualException::expected(), actual() and additionalInfo().
+	- Update MfcTestRuner to use wstr() in Unicode build => introduce a utility function
+	  toCString( CppUnit::String &) that returns a CString using the appropriate method.
+
   - STL orthodox template for container elements.
-  - CompilerOutputter support for gcc error format:
-	g++ -DHAVE_CONFIG_H -I. -I. -I../../config -I../../include -I../../include -g -O2 -c TextOutputter.cpp -Wp,-MD,.deps/TextOutputter.TPlo  -fPIC -DPIC
-	TextOutputter.cpp:5: cppunit/TextOutputter.h: No such file or directory
+
+* UnitTest
+  - add test for XmlOutputter::setStyleSheet (current assertion macro strip <?...> when
+    testing )
 
 * VC++ TestRunner:
   - Make it possible to specify the registry path where settings are stored.
@@ -26,7 +59,7 @@ of a text (they disappear).
 	  - advanced assertions with the CPPUNIT_ASSERT_MESSAGE
 	- Helper Macros for convenience
 	- Creating a suite
-	- Composing a suite from more suits (i.e. compose tests for n modules to
+	- Composing a suite from more suites (i.e. compose tests for n modules to
 	  form a big test for the whole program)
 	- customizing output using an user defined TestListener
 	  - how to write the TestListener (subclass of TestListener)

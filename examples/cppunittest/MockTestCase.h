@@ -27,6 +27,7 @@ public:
   void makeSetUpThrow();
   void makeTearDownThrow();
   void makeRunTestThrow();
+  void makeFindTestPathPassFor( const CppUnit::Test *testFound );
   
   void verify();
 
@@ -35,6 +36,8 @@ protected:
   void setUp();
   void tearDown();
   void runTest();
+//  bool findTestPath( const CppUnit::Test *test,
+//                     CppUnit::TestPath &testPath );
 
 private:
   /// Prevents the use of the copy constructor.
@@ -62,6 +65,7 @@ private:
   bool m_setUpThrow;
   bool m_tearDownThrow;
   bool m_runTestThrow;
+  const CppUnit::Test *m_passingTest;
 };
 
 

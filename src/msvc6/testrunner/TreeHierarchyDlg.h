@@ -7,7 +7,7 @@
 // TreeHierarchyDlg.h : header file
 //
 
-#include <cppunit/TestSuite.h>
+#include <cppunit/Test.h>
 #include <vector>
 
 
@@ -23,7 +23,7 @@ public:
   void setRootTest( CppUnit::Test *test );
   CppUnit::Test *getSelectedTest() const;
 
-  static bool isTestSuite( CppUnit::Test *test );
+  static bool isSuite( CppUnit::Test *test );
 
   // Dialog Data
 	//{{AFX_DATA(TreeHierarchyDlg)
@@ -55,7 +55,7 @@ private:
   void fillTree();
   HTREEITEM addTest( CppUnit::Test *test, 
                      HTREEITEM hParent );
-  void addTestSuiteChildrenTo( CppUnit::TestSuite *suite,
+  void addTestSuiteChildrenTo( CppUnit::Test *suite,
                                HTREEITEM hItemSuite );
 
   void sortByName( Tests &tests ) const;

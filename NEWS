@@ -2,6 +2,62 @@
 	----------------------
 
 	In short:
+	- Exploration of the test hierarchy without RTTI support
+	- Utility methods to find a test in the hierarchy
+	- TestPath to store/load the path to a specific test in the hierarchy
+	- Generic TestRunner
+	- Style sheet support added to XML ouput.
+
+* Test
+
+  - Exploration of the test hierarchy without RTTI support:
+    Added Test::getChildTestCount() and Test::getChildTestAt() to walk the test hierarchy
+	without RTTI.
+
+  - Utility methods to find a test in the hierarchy:
+	Added Test::findTest(), Test::findTestPath() and Test::resolveTestPath().
+
+* TestPath
+
+  - A new class that store the path to a specific test (list of pointer). Can be
+    converted into a string and constructed from a string. Typically used with 
+	TestRunner.
+
+* XmlOutputter:
+
+  - Added style sheet support.
+
+  - XML structure change (see Compatibility break)
+
+* Compatibility break:
+
+  - Test::toString() has been removed. Applies to all subclass of Test. 
+    It was not used by the framework and was source of confusion with getName().
+
+  - TestCase::run(void) and TestCase::defaultResult() have been removed. Using the
+    run() method with a TestResult instead.
+
+  - XmlOutput: added a message element to the XML structure. The message associated
+    to a failure is now in the content of <Message> element instead of in the content
+	of the <FailedTest> element.
+	Changed from:
+        <FailedTest id="6">
+          <Name>test6</Name>
+          <FailureType>Error</FailureType>
+          error2
+        </FailedTest>
+	To:
+        <FailedTest id="6">
+          <Name>test6</Name>
+          <FailureType>Error</FailureType>
+          <Message>error2</Message>
+        </FailedTest>
+
+* Bug fix:
+
+  - XmlOutputter: did not escape content (bug #540944).
+
+  - Included qt/examples in distribution
 
 
 	New in CppUnit 1.8.0:

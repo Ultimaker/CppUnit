@@ -7,6 +7,7 @@
 #include "StdAfx.h"
 #include "TestRunnerModel.h"
 #include <algorithm>
+#include <stdexcept>
 #include <cppunit/testsuite.h>
 
 
@@ -84,9 +85,13 @@ TestRunnerModel::loadHistory()
     if ( testName.IsEmpty() )
       break;
 
-    CppUnit::Test *test = findTestByName( testName );
-    if ( test != NULL )
-      m_history.push_back( test );
+    try
+    {
+      m_history.push_back( m_rootTest->findTest( toAnsiString(testName ) ) );
+    }
+    catch ( std::invalid_argument &)
+    {
+    }
   }
   while ( true );
 }
@@ -196,4 +201,29 @@ TestRunnerModel::findTestByNameFor( const CString &name,
       return testFound;
   }
   return NULL;
+}
+
+
+// Utility method, should be moved somewhere else...
+std::string 
+TestRunnerModel::toAnsiString( const CString &text )
+{
+#ifdef _UNICODE
+  int bufferLength = ::WideCharToMultiByte( CP_THREAD_ACP, 0, 
+                                            text, text.GetLength(),
+                                            NULL, 0, NULL, NULL ) +1;
+  char *ansiString = new char[bufferLength];
+  ::WideCharToMultiByte( CP_THREAD_ACP, 0, 
+                         text, text.GetLength(),
+                         ansiString, bufferLength, 
+                                            NULL,
+                                            NULL );
+
+  std::string str( ansiString, bufferLength-1 );
+  delete[] ansiString;
+
+  return str;
+#else
+  return std::string( (LPCTSTR)text );
+#endif
 }

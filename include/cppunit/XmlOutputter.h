@@ -49,6 +49,13 @@ public:
    */
   virtual void write();
 
+  /*! Sets the XSL style sheet used.
+   *
+   * \param styleSheet Name of the style sheet used. If empty, then no style sheet
+   *                   is used (default).
+   */
+  virtual void setStyleSheet( const std::string &styleSheet );
+
   /*! \brief An XML Element.
    * \warning This class will probably be replaced with an abstract
    * builder in future version.
@@ -113,6 +120,7 @@ protected:
   TestResultCollector *m_result;
   std::ostream &m_stream;
   std::string m_encoding;
+  std::string m_styleSheet;
 
 private:
   /// Prevents the use of the copy constructor.

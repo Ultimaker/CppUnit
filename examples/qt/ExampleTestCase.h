@@ -2,7 +2,7 @@
 #ifndef CPP_UNIT_EXAMPLETESTCASE_H
 #define CPP_UNIT_EXAMPLETESTCASE_H
 
-#include <cppunit/TestCase.h>
+#include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
 /* 
@@ -11,7 +11,7 @@
  *
  */
 
-class ExampleTestCase : public CppUnit::TestCase
+class ExampleTestCase : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( ExampleTestCase );
   CPPUNIT_TEST( example );

@@ -77,7 +77,7 @@ XmlOutputter::Node::toString() const
     element += node->toString();
   }
 
-  element += m_content;
+  element += escape( m_content );
 
   element += "</";
   element += m_name;
@@ -175,11 +175,25 @@ XmlOutputter::write()
 
 
 void 
+XmlOutputter::setStyleSheet( const std::string &styleSheet )
+{
+  m_styleSheet = styleSheet;
+}
+
+
+void 
 XmlOutputter::writeProlog()
 {
   m_stream  <<  "<?xml version=\"1.0\" "
                 "encoding='"  <<  m_encoding  << "' standalone='yes' ?>"
             <<  std::endl;
+
+  if ( !m_styleSheet.empty() )
+  {
+    m_stream << "<?xml-stylesheet type=\"text/xsl\" href=\""
+             << m_styleSheet << "\"?>" 
+             << std::endl;
+  }
 }
 
 
@@ -270,13 +284,13 @@ XmlOutputter::addStatistics( Node *rootNode )
 
 void
 XmlOutputter::addFailedTest( Test *test,
-                                       TestFailure *failure,
-                                       int testNumber,
-                                       Node *testsNode )
+                             TestFailure *failure,
+                             int testNumber,
+                             Node *testsNode )
 {
   Exception *thrownException = failure->thrownException();
   
-  Node *testNode = new Node( "FailedTest", thrownException->what() );
+  Node *testNode = new Node( "FailedTest" );
   testsNode->addNode( testNode );
   testNode->addAttribute( "id", testNumber );
   testNode->addNode( new Node( "Name", test->getName() ) );
@@ -285,6 +299,8 @@ XmlOutputter::addFailedTest( Test *test,
 
   if ( failure->sourceLine().isValid() )
     addFailureLocation( failure, testNode );
+
+  testNode->addNode( new Node( "Message", thrownException->what() ) );
 }
 
 

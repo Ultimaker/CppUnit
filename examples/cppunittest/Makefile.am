@@ -43,6 +43,8 @@ cppunittestmain_SOURCES = \
 	TestDecoratorTest.h \
 	TestFailureTest.cpp \
 	TestFailureTest.h \
+	TestPathTest.h \
+	TestPathTest.cpp \
 	TestResultCollectorTest.cpp \
 	TestResultCollectorTest.h \
 	TestResultTest.cpp \
@@ -51,6 +53,8 @@ cppunittestmain_SOURCES = \
 	TestSetUpTest.h \
 	TestSuiteTest.cpp \
 	TestSuiteTest.h \
+	TestTest.cpp \
+	TestTest.h \
 	TrackedTestCase.cpp \
 	TrackedTestCase.h \
 	UnitTestToolSuite.h \

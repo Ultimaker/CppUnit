@@ -54,11 +54,11 @@ TreeHierarchyDlg::setRootTest( CppUnit::Test *test )
 BOOL 
 TreeHierarchyDlg::OnInitDialog() 
 {
-	CDialog::OnInitDialog();
+  CDialog::OnInitDialog();
 	
   fillTree();
   	
-	return TRUE;
+  return TRUE;
 }
 
 
@@ -78,7 +78,7 @@ HTREEITEM
 TreeHierarchyDlg::addTest( CppUnit::Test *test, 
                            HTREEITEM hParent )
 {
-  int testType = isTestSuite( test ) ? imgSuite : imgUnitTest;
+  int testType = isSuite( test ) ? imgSuite : imgUnitTest;
   HTREEITEM hItem = m_treeTests.InsertItem( CString(test->getName().c_str()),
                                             testType,
                                             testType,
@@ -86,33 +86,33 @@ TreeHierarchyDlg::addTest( CppUnit::Test *test,
   if ( hItem != NULL )
   {
     VERIFY( m_treeTests.SetItemData( hItem, (DWORD)test ) );
-    if ( isTestSuite( test ) )
-      addTestSuiteChildrenTo( static_cast<CppUnit::TestSuite *>(test),
-                              hItem );
+    if ( isSuite( test ) )
+      addTestSuiteChildrenTo( test, hItem );
   }
   return hItem;
 }
 
 
 void 
-TreeHierarchyDlg::addTestSuiteChildrenTo( CppUnit::TestSuite *suite,
+TreeHierarchyDlg::addTestSuiteChildrenTo( CppUnit::Test *suite,
                                           HTREEITEM hItemSuite )
 {
-  Tests tests( suite->getTests() );
+  Tests tests;
+  int childIndex = 0;
+  for ( ; childIndex < suite->getChildTestCount(); ++childIndex )
+    tests.push_back( suite->getChildTestAt( childIndex ) );
   sortByName( tests );
 
-  for ( Tests::const_iterator it = tests.begin(); it != tests.end(); ++it )
-  {
-    addTest( *it, hItemSuite );
-  }
+  for ( childIndex = 0; childIndex < suite->getChildTestCount(); ++childIndex )
+    addTest( suite->getChildTestAt( childIndex ), hItemSuite );
 }
 
 
 bool 
-TreeHierarchyDlg::isTestSuite( CppUnit::Test *test )
+TreeHierarchyDlg::isSuite( CppUnit::Test *test )
 {
-  CppUnit::TestSuite *suite = dynamic_cast<CppUnit::TestSuite *>(test);
-  return suite != NULL;
+  return ( test->getChildTestCount() > 0  ||    // suite with test
+           test->countTestCases() == 0 );       // empty suite
 }
 
 
@@ -120,8 +120,8 @@ struct PredSortTest
 {
   bool operator()( CppUnit::Test *test1, CppUnit::Test *test2 ) const
   {
-    bool isTest1Suite = TreeHierarchyDlg::isTestSuite( test1 );
-    bool isTest2Suite = TreeHierarchyDlg::isTestSuite( test2 );
+    bool isTest1Suite = TreeHierarchyDlg::isSuite( test1 );
+    bool isTest2Suite = TreeHierarchyDlg::isSuite( test2 );
     if ( isTest1Suite  &&  !isTest2Suite )
       return true;
     if ( isTest1Suite  &&  isTest2Suite )

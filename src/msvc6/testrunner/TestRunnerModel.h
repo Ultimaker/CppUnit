@@ -59,6 +59,8 @@ protected:
 
   CString getHistoryEntryName( int idx ) const;
 
+  static std::string toAnsiString( const CString &text );
+
 private:
   /// Prevents the use of the copy constructor.
   TestRunnerModel( const TestRunnerModel &copy );

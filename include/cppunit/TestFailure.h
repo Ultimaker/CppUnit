@@ -38,8 +38,6 @@ public:
   virtual bool isError() const;
 
   virtual std::string failedTestName() const;
-  
-  virtual std::string toString() const;
 
   virtual TestFailure *clone() const;
 

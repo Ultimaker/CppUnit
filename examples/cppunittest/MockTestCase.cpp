@@ -1,5 +1,6 @@
 #include "FailureException.h"
 #include "MockTestCase.h"
+#include <cppunit/TestPath.h>
 
 
 MockTestCase::MockTestCase( std::string name )
@@ -19,6 +20,7 @@ MockTestCase::MockTestCase( std::string name )
     , m_setUpThrow( false )
     , m_tearDownThrow( false )
     , m_runTestThrow( false )
+    , m_passingTest( NULL )
 {
 }
 
@@ -85,6 +87,20 @@ MockTestCase::runTest()
     throw FailureException();
 }
 
+/*
+bool 
+MockTestCase::findTestPath( const CppUnit::Test *test,
+                            CppUnit::TestPath &testPath )
+{
+  if ( m_passingTest == test )
+  {
+    testPath.add( this );
+    return true;
+  }
+
+  return false;
+}
+*/
 
 void 
 MockTestCase::setExpectedSetUpCall( int callCount )

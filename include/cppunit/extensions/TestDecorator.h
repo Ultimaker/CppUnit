@@ -2,7 +2,7 @@
 #define CPPUNIT_EXTENSIONS_TESTDECORATOR_H
 
 #include <cppunit/Portability.h>
-#include <cppunit/Test.h>
+#include <cppunit/TestLeaf.h>
 
 namespace CppUnit {
 
@@ -17,48 +17,57 @@ class TestResult;
  *
  * Does not assume ownership of the test it decorates
  */ 
-class CPPUNIT_API TestDecorator : public Test 
+class CPPUNIT_API TestDecorator : public TestLeaf
 {
 public:
-    TestDecorator   (Test *test);
-    ~TestDecorator  ();
+  TestDecorator( Test *test );
+  ~TestDecorator();
 
-    void        run             (TestResult *result);
-    int         countTestCases  () const;
-    std::string getName         () const;
-    std::string toString        () const;
+  int countTestCases() const;
+  std::string getName() const;
+  void run( TestResult *result );
 
 protected:
-    Test        *m_test;
+  Test *m_test;
 
 private:
-    TestDecorator( const TestDecorator &);
-    void operator =( const TestDecorator & );
+  TestDecorator( const TestDecorator &);
+  void operator =( const TestDecorator & );
 };
 
 
-inline TestDecorator::TestDecorator (Test *test)
-{ m_test = test; }
+inline 
+TestDecorator::TestDecorator( Test *test )
+{ 
+  m_test = test; 
+}
 
 
-inline TestDecorator::~TestDecorator ()
-{}
+inline 
+TestDecorator::~TestDecorator()
+{
+}
 
 
-inline int TestDecorator::countTestCases () const
-{ return m_test->countTestCases (); }
+inline int 
+TestDecorator::countTestCases() const
+{ 
+  return m_test->countTestCases(); 
+}
 
 
-inline void TestDecorator::run (TestResult *result)
-{ m_test->run (result); }
+inline void 
+TestDecorator::run( TestResult *result )
+{ 
+  m_test->run(result); 
+}
 
 
-inline std::string TestDecorator::toString () const
-{ return m_test->toString (); }
-
-
-inline std::string TestDecorator::getName () const
-{ return m_test->getName(); }
+inline std::string 
+TestDecorator::getName() const
+{ 
+  return m_test->getName(); 
+}
 
 } // namespace CppUnit
 

@@ -351,6 +351,15 @@ SOURCE=..\..\cppunittest\TestFailureTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\cppunittest\TestPathTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestPathTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\cppunittest\TestResultCollectorTest.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -384,6 +393,15 @@ SOURCE=..\..\cppunittest\TestSuiteTest.cpp
 # Begin Source File
 
 SOURCE=..\..\cppunittest\TestSuiteTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestTest.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\cppunittest\TestTest.h
 # End Source File
 # Begin Source File
 

@@ -60,14 +60,6 @@ TestFailure::failedTestName() const
 }
 
 
-/// Returns a short description of the failure.
-std::string 
-TestFailure::toString() const 
-{ 
-  return m_failedTest->toString() + ": " + m_thrownException->what();
-}
-
-
 TestFailure *
 TestFailure::clone() const
 {

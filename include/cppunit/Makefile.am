@@ -19,12 +19,17 @@ libcppunitinclude_HEADERS =  \
 	TestAssert.h \
 	TestCase.h \
 	TestCaller.h \
+	TestComposite.h \
 	TestFailure.h \
 	TestFixture.h \
+	TestLeaf.h \
+	TestPath.h \
 	TestResult.h \
 	TestResultCollector.h \
+	TestRunner.h \
 	TestSucessListener.h \
 	TestSuite.h \
+	TestTest.h \
 	TextOutputter.h \
 	TextTestProgressListener.h \
 	TextTestResult.h \

@@ -1,3 +1,86 @@
+2002-04-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* Makefile.am: added examples/qt to tar ball release.
+
+	* TODO: heavily updated.
+
+	* contrib/msvc/CppUnit*.wwtpl: changed base class for unit test to TestFixture.
+
+	* include/cppunit/Test.h: removed toString() method. Not used by the framework
+	  and source of confusions with getName().
+	  Added getChildTestCount() and getChildTestAt(), introducing the composite pattern
+	  at top level. Added utility methods findTest() and findTestPath().
+
+	* src/cppunit/Test.cpp: added. Implementation of new utility methods.
+
+	* include/cppunit/TestCase.h:
+	* src/cppunit/TestCase.cpp: inherits TestLeaf. Removed toString(), run(void) and
+	  defaultResult(). Removed default constructor.
+
+	* src/cppunit/TestCase.cpp:
+	* src/cppunit/TestSuite.cpp: fixed some includes that used "" instead of <>.
+
+	* include/cppunit/TestComposite.h:
+	* src/cppunit/TestComposite.cpp: added. Common implementation of Test for composite
+	  tests (TestSuite).
+
+	* include/cppunit/TestFailure.h:
+	* src/cppunit/TestFailure.cpp: removed toString().
+
+	* include/cppunit/TestLeaf.h:
+	* src/cppunit/TestLeaf.cpp: added. Common implementation of Test for single test
+	  (TestCase).
+
+	* include/cppunit/TestListener.h: added TimingListener example to documentation.
+
+	* include/cppunit/TestPath.h: 
+	* src/cppunit/TestPath.cpp: added. List of test traversed to access a test in the
+	  test hierarchy.
+
+	* include/cppunit/TestRunner.h: added. Generic TestRunner.
+
+	* src/cppunit/TestRunner.cpp: moved to TextTestRunner.cpp. Added new implementation
+	  of includecppunit/TestRunner.h.
+
+	* include/cppunit/TestSuite.h:
+	* src/cppunit/TestSuite.cpp: inherits TestComposite and implements new Test 
+	  interface. Removed toString().
+
+	* src/cppunit/TextTestRunner.cpp: moved from TestRunner.cpp. Implementation of
+	  include/cppunit/ui/text/TestRunner.h.
+
+	* include/cppunit/extensions/RepeatedTest.h:
+	* src/cppunit/RepeatedTest.cpp: removed toString().
+
+	* include/cppunit/extensions/TestDecorator.h: inherits TestLeaf. 
+	  Removed toString()
+
+	* include/cppunit/XmlOutputter.h:
+	* src/cppunit/XmlOutputter.cpp:
+	* examples/cppunittest/XmlOutputterTest.cpp:
+	* examples/cppunittest/XmlOutputterTest.h: XML outputter now escape node content.
+	  Add unit test for that bug (#540944). Added style sheet support. Modified
+	  XML structure: failure message as its own element.
+
+	* src/msvc/testrunner/TestRunnerModel.h:
+	* src/msvc/testrunner/TestRunnerModel.cpp: used Test::findTest() to find a test
+	  by name instead of using RTTI. Added toAnsiString() for convertion when 
+	  compiling as UNICODE.
+
+	* src/msvc/testrunner/TreeHierarchyDlg.h:
+	* src/msvc/testrunner/TreeHierarchyDlg.cpp: used new composite interface of Test
+	  to explorer the test hierarchy instead of RTTI.
+
+	* examples/cppunittest/TestPathTest.h:
+	* examples/cppunittest/TestPathTest.cpp: added, unit tests for TestPath.
+
+	* examples/cppunittest/TestCaseTest.h:
+	* examples/cppunittest/TestCaseTest.cpp: added test for TestLeaf.
+
+	* examples/cppunittest/TestSuiteTest.h:
+	* examples/cppunittest/TestSuiteTest.cpp: added test for TestComposite and 
+	  new Test interface.
+
 2002-04-11 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* configure.in: bumped version to 1.9.0

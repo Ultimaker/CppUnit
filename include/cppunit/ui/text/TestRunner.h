@@ -1,5 +1,5 @@
-#ifndef CPPUNITUI_TEXT_TESTRUNNER_H
-#define CPPUNITUI_TEXT_TESTRUNNER_H
+#ifndef CPPUNIT_UI_TEXT_TESTRUNNER_H
+#define CPPUNIT_UI_TEXT_TESTRUNNER_H
 
 #include <cppunit/Portability.h>
 #include <string>
@@ -100,4 +100,4 @@ protected:
 
 } // namespace CppUnit
 
-#endif  // CPPUNITUI_TEXT_TESTRUNNER_H
+#endif  // CPPUNIT_UI_TEXT_TESTRUNNER_H

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.19 2002-03-28 15:47:08 blep Exp $
+# $Id: Makefile.am,v 1.20 2002-04-12 19:28:47 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -15,19 +15,25 @@ libcppunit_la_SOURCES = \
   RepeatedTest.cpp \
   SourceLine.cpp \
   SynchronizedObject.cpp \
+  Test.cpp \
   TestAssert.cpp \
   TestCase.cpp \
+  TestComposite.cpp \
   TestFactoryRegistry.cpp \
   TestFailure.cpp \
+  TestLeaf.cpp \
+  TestPath.cpp \
   TestResult.cpp \
   TestResultCollector.cpp \
   TestRunner.cpp \
   TestSetUp.cpp \
   TestSucessListener.cpp \
   TestSuite.cpp \
+  TestTest.cpp \
   TextOutputter.cpp \
   TextTestProgressListener.cpp \
   TextTestResult.cpp \
+  TextTestRunner.cpp \
   TypeInfoHelper.cpp \
   XmlOutputter.cpp
 

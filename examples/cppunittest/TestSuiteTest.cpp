@@ -140,3 +140,40 @@ TestSuiteTest::testDeleteContents()
   m_suite->deleteContents();
   CPPUNIT_ASSERT_EQUAL( 0, int(m_suite->getTests().size()) );
 }
+
+
+void 
+TestSuiteTest::testGetChildTestCount()
+{
+  m_suite->addTest( new CppUnit::TestCase( "test1" ) );
+  m_suite->addTest( new CppUnit::TestCase( "test2" ) );
+
+  CPPUNIT_ASSERT_EQUAL( 2, m_suite->getChildTestCount() );
+}
+
+
+void 
+TestSuiteTest::testGetChildTestAt()
+{
+  CppUnit::TestCase *test1 = new CppUnit::TestCase( "test1" );
+  CppUnit::TestCase *test2 = new CppUnit::TestCase( "test2" );
+  m_suite->addTest( test1 );
+  m_suite->addTest( test2 );
+
+  CPPUNIT_ASSERT( test1 == m_suite->getChildTestAt(0) );
+  CPPUNIT_ASSERT( test2 == m_suite->getChildTestAt(1) );
+}
+
+
+void 
+TestSuiteTest::testGetChildTestAtThrow1()
+{
+  m_suite->getChildTestAt(-1);
+}
+
+
+void 
+TestSuiteTest::testGetChildTestAtThrow2()
+{
+  m_suite->getChildTestAt(0);
+}

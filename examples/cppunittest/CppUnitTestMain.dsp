@@ -59,7 +59,7 @@ LINK32=link.exe
 TargetPath=.\Release\CppUnitTestMain.exe
 SOURCE="$(InputPath)"
 PostBuild_Desc=Self test
-PostBuild_Cmds=$(TargetPath) -selftest
+PostBuild_Cmds=$(TargetPath)
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "CppUnitTestMain - Win32 Debug"
@@ -90,7 +90,7 @@ LINK32=link.exe
 TargetPath=.\Debug\CppUnitTestMain.exe
 SOURCE="$(InputPath)"
 PostBuild_Desc=Self test
-PostBuild_Cmds=$(TargetPath) -selftest
+PostBuild_Cmds=$(TargetPath)
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "CppUnitTestMain - Win32 Debug Crossplatform Setting"
@@ -123,7 +123,7 @@ LINK32=link.exe
 TargetPath=.\DebugCrossplatform\CppUnitTestMain.exe
 SOURCE="$(InputPath)"
 PostBuild_Desc=Self test
-PostBuild_Cmds=$(TargetPath) -selftest
+PostBuild_Cmds=$(TargetPath)
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "CppUnitTestMain - Win32 Release DLL"
@@ -156,7 +156,7 @@ LINK32=link.exe
 TargetPath=.\ReleaseDLL\CppUnitTestMain.exe
 SOURCE="$(InputPath)"
 PostBuild_Desc=Self test
-PostBuild_Cmds=$(TargetPath) -selftest
+PostBuild_Cmds=$(TargetPath)
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "CppUnitTestMain - Win32 Debug DLL"
@@ -189,7 +189,7 @@ LINK32=link.exe
 TargetPath=.\DebugDLL\CppUnitTestMain.exe
 SOURCE="$(InputPath)"
 PostBuild_Desc=Self test
-PostBuild_Cmds=$(TargetPath) -selftest
+PostBuild_Cmds=$(TargetPath)
 # End Special Build Tool
 
 !ENDIF 
@@ -257,6 +257,14 @@ SOURCE=.\TestFailureTest.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestPathTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPathTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestResultTest.cpp
 # End Source File
 # Begin Source File
@@ -270,6 +278,14 @@ SOURCE=.\TestSuiteTest.cpp
 # Begin Source File
 
 SOURCE=.\TestSuiteTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestTest.h
 # End Source File
 # End Group
 # Begin Group "UnitTestTools"

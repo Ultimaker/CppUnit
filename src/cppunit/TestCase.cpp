@@ -2,19 +2,21 @@
 #include <typeinfo>
 #include <stdexcept>
 
-#include "cppunit/TestCase.h"
-#include "cppunit/Exception.h"
-#include "cppunit/TestResult.h"
+#include <cppunit/TestCase.h>
+#include <cppunit/Exception.h>
+#include <cppunit/TestResult.h>
 
 
 namespace CppUnit {
 
-/// Create a default TestResult
-CppUnit::TestResult* 
-TestCase::defaultResult()
-{ 
-  return new TestResult; 
-} 
+
+/** Constructs a test case.
+ *  \param name the name of the TestCase.
+ **/
+TestCase::TestCase( const std::string &name )
+    : m_name(name)
+{
+}
 
 
 /// Run the test and catch any exceptions that are triggered by it 
@@ -24,46 +26,35 @@ TestCase::run( TestResult *result )
   result->startTest(this);
 
   try {
-	  setUp();
+    setUp();
 
-	  try {
-	    runTest();
-	  }
-	  catch ( Exception &e ) {
-	    Exception *copy = e.clone();
-	    result->addFailure( this, copy );
-	  }
-	  catch ( std::exception &e ) {
-	    result->addError( this, new Exception( e.what() ) );
-	  }
-	  catch (...) {
-	    Exception *e = new Exception( "caught unknown exception" );
-	    result->addError( this, e );
-	  }
+    try {
+      runTest();
+    }
+    catch ( Exception &e ) {
+      Exception *copy = e.clone();
+      result->addFailure( this, copy );
+    }
+    catch ( std::exception &e ) {
+      result->addError( this, new Exception( e.what() ) );
+    }
+    catch (...) {
+      Exception *e = new Exception( "caught unknown exception" );
+      result->addError( this, e );
+    }
 
-	  try {
-	    tearDown();
-	  }
-	  catch (...) {
-	    result->addError( this, new Exception( "tearDown() failed" ) );
-	  }
+    try {
+      tearDown();
+    }
+    catch (...) {
+      result->addError( this, new Exception( "tearDown() failed" ) );
+    }
   }
   catch (...) {
-	  result->addError( this, new Exception( "setUp() failed" ) );
+          result->addError( this, new Exception( "setUp() failed" ) );
   }
   
   result->endTest( this );
-}
-
-
-/// A default run method 
-TestResult *
-TestCase::run()
-{
-  TestResult *result = defaultResult();
-
-  run (result);
-  return result;
 }
 
 
@@ -74,17 +65,11 @@ TestCase::runTest()
 }
 
 
-/** Constructs a test case.
- *  \param name the name of the TestCase.
- **/
-TestCase::TestCase( std::string name )
-    : m_name(name)
-{
-}
-
-
 /** Constructs a test case for a suite.
- *  This TestCase is intended for use by the TestCaller and should not
+ * \deprecated This constructor was used by fixture when TestFixture did not exist.
+ *             Have your fixture inherits TestFixture instead of TestCase.
+ * \internal
+ *  This TestCase was intended for use by the TestCaller and should not
  *  be used by a test case for which run() is called.
  **/
 TestCase::TestCase()
@@ -99,36 +84,11 @@ TestCase::~TestCase()
 }
 
 
-/// Returns a count of all the tests executed
-int 
-TestCase::countTestCases() const
-{ 
-  return 1; 
-}
-
-
 /// Returns the name of the test case
 std::string 
 TestCase::getName() const
 { 
   return m_name; 
-}
-
-
-/// Returns the name of the test case instance
-std::string 
-TestCase::toString() const
-{ 
-  std::string className;
-
-#if CPPUNIT_USE_TYPEINFO_NAME
-  const std::type_info& thisClass = typeid( *this );
-  className = thisClass.name();
-#else
-  className = "TestCase";
-#endif
-
-  return className + "." + getName(); 
 }
   
 

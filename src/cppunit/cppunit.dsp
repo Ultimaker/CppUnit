@@ -222,6 +222,10 @@ SOURCE=..\..\include\cppunit\SynchronizedObject.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Test.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\Test.h
 # End Source File
 # Begin Source File
@@ -242,6 +246,14 @@ SOURCE=..\..\include\cppunit\TestCase.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestComposite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestComposite.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestFailure.cpp
 # End Source File
 # Begin Source File
@@ -254,7 +266,23 @@ SOURCE=..\..\include\cppunit\TestFixture.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\TestLeaf.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestLeaf.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\include\cppunit\TestListener.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestPath.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestPath.h
 # End Source File
 # Begin Source File
 
@@ -263,6 +291,14 @@ SOURCE=.\TestResult.cpp
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\TestResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\TestRunner.h
 # End Source File
 # Begin Source File
 
@@ -331,11 +367,11 @@ SOURCE=..\..\include\cppunit\Portability.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\TestRunner.cpp
+SOURCE=..\..\include\cppunit\ui\text\TestRunner.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunitui\text\TestRunner.h
+SOURCE=.\TextTestRunner.cpp
 # End Source File
 # Begin Source File
 
@@ -392,6 +428,10 @@ SOURCE=..\..\NEWS
 # Begin Source File
 
 SOURCE=..\..\doc\other_documentation.dox
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\TODO
 # End Source File
 # End Group
 # Begin Source File

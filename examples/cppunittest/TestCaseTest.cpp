@@ -130,19 +130,6 @@ TestCaseTest::testConstructorWithName()
 
 
 void 
-TestCaseTest::testDefaultRun()
-{
-  MockTestCase test( "mocktest" );
-  test.setExpectedSetUpCall();
-  test.setExpectedRunTestCall();
-  test.setExpectedTearDownCall();
-
-  std::auto_ptr<CppUnit::TestResult> result( test.run() );
-  test.verify();
-}
-
-
-void 
 TestCaseTest::testTwoRun()
 {
   MockTestCase test1( "mocktest1" );
@@ -155,4 +142,20 @@ TestCaseTest::testTwoRun()
   test1.run( m_result );
 
   m_testListener->verify();
+}
+
+
+void 
+TestCaseTest::testGetChildTestCount()
+{
+  CppUnit::TestCase test( "test" );
+  CPPUNIT_ASSERT_EQUAL( 0, test.getChildTestCount() );
+}
+
+
+void 
+TestCaseTest::testGetChildTestAtThrow()
+{
+  CppUnit::TestCase test( "test" );
+  test.getChildTestAt( 0 );
 }
