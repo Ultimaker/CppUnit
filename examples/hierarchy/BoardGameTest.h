@@ -4,7 +4,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include <iostream>
 
-template<typename GAMECLASS> 
+template<class GAMECLASS> 
 class BoardGameTest : public CppUnit::TestFixture 
 {
   CPPUNIT_TEST_SUITE( BoardGameTest );

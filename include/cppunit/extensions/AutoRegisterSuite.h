@@ -23,7 +23,7 @@ namespace CppUnit {
  * \see CPPUNIT_TEST_SUITE_REGISTRATION, CPPUNIT_TEST_SUITE_NAMED_REGISTRATION
  * \see CppUnit::TestFactoryRegistry.
  */
-template<typename TestCaseType>
+template<class TestCaseType>
 class AutoRegisterSuite
 {
 public:

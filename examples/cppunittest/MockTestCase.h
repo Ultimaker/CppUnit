@@ -60,7 +60,7 @@ private:
   int m_actualRunTestCallCount;
   bool m_expectCountTestCasesCall;
   int m_expectedCountTestCasesCallCount;
-  mutable int m_actualCountTestCasesCallCount;
+  int m_actualCountTestCasesCallCount;
 
   bool m_setUpThrow;
   bool m_tearDownThrow;

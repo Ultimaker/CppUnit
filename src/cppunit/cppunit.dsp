@@ -179,6 +179,10 @@ SOURCE=..\..\include\cppunit\TextTestResult.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\include\cppunit\ui\text\TestRunner.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TextTestRunner.cpp
 # End Source File
 # Begin Source File

@@ -18,7 +18,6 @@ namespace TextUi {
  */
 TestRunner::TestRunner( Outputter *outputter ) 
     : m_outputter( outputter )
-    , m_suite( new TestSuite( "All Tests" ) )
     , m_result( new TestResultCollector() )
     , m_eventManager( new TestResult() )
 {
@@ -33,19 +32,6 @@ TestRunner::~TestRunner()
   delete m_eventManager;
   delete m_outputter;
   delete m_result;
-  delete m_suite;
-}
-
-
-/*! Adds the specified test.
- *
- * \param test Test to add.
- */
-void 
-TestRunner::addTest( Test *test )
-{
-  if ( test != NULL )
-    m_suite->addTest( test );
 }
 
 
@@ -69,29 +55,20 @@ TestRunner::run( std::string testName,
                  bool doPrintResult,
                  bool doPrintProgress )
 {
-  runTestByName( testName, doPrintProgress );
+  TextTestProgressListener progress;
+  if ( doPrintProgress )
+    m_eventManager->addListener( &progress );
+
+  SuperClass *pThis = this;
+  pThis->run( *m_eventManager, testName );
+
+  if ( doPrintProgress )
+    m_eventManager->removeListener( &progress );
+
   printResult( doPrintResult );
   wait( doWait );
+
   return m_result->wasSuccessful();
-}
-
-
-bool
-TestRunner::runTestByName( std::string testName,
-                           bool doPrintProgress )
-{
-  if ( testName.empty() )
-    return runTest( m_suite, doPrintProgress );
-
-  try
-  {
-    return runTest( m_suite->findTest( testName ), doPrintProgress );
-  }
-  catch ( std::invalid_argument & )
-  {
-    std::cout << "Test " << testName << " not found." << std::endl;
-  }
-  return false;
 }
 
 
@@ -112,22 +89,6 @@ TestRunner::printResult( bool doPrintResult )
   std::cout << std::endl;
   if ( doPrintResult )
     m_outputter->write();
-}
-
-
-bool
-TestRunner::runTest( Test *test,
-                     bool doPrintProgress )
-{
-  TextTestProgressListener progress;
-  if ( doPrintProgress )
-    m_eventManager->addListener( &progress );
-
-  m_eventManager->runTest( test );
-
-  if ( doPrintProgress )
-    m_eventManager->removeListener( &progress );
-  return m_result->wasSuccessful();
 }
 
 

@@ -102,7 +102,7 @@ protected:
 
     int getChildTestCount() const;
 
-    std::string getName () const;
+    std::string getName() const;
 
     void run( TestResult *result );
 

@@ -116,11 +116,6 @@ SOURCE="$(InputPath)"
 	rem echo Server registration done! 
 	
 # End Custom Build
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PostBuild_Desc=duplicating DLL to lib directory
-PostBuild_Cmds=echo The following command may fail if you have already registered the add-in	copy Debug\TestRunnerDSPlugInD.dll ..\..\..\lib\TestRunnerDSPlugInD.dll
-# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
 
@@ -149,11 +144,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"Release/TestRunnerDSPlugIn.dll"
-# ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /dll /machine:I386 /out:"Release/TestRunnerDSPlugIn.dll"
+# ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /dll /machine:I386 /out:"ReleaseUnicode/TestRunnerDSPlugIn.dll"
 # Begin Custom Build - Performing Registration
 OutDir=.\ReleaseUnicode
-TargetPath=.\Release\TestRunnerDSPlugIn.dll
-InputPath=.\Release\TestRunnerDSPlugIn.dll
+TargetPath=.\ReleaseUnicode\TestRunnerDSPlugIn.dll
+InputPath=.\ReleaseUnicode\TestRunnerDSPlugIn.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -163,11 +158,6 @@ SOURCE="$(InputPath)"
 	rem echo Server registration done! 
 	
 # End Custom Build
-# Begin Special Build Tool
-SOURCE="$(InputPath)"
-PostBuild_Desc=duplicating DLL to lib directory
-PostBuild_Cmds=echo The following command may fail if you have already registered the add-in	copy Release\TestRunnerDSPlugIn.dll ..\..\..\lib\TestRunnerDSPlugIn.dll
-# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
 
@@ -197,12 +187,12 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Debug/TestRunnerDSPlugInD.dll" /pdbtype:sept
 # SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 /nologo /entry:"" /subsystem:windows /dll /debug /machine:I386 /out:"Debug/TestRunnerDSPlugInD.dll" /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"DebugUnicode/TestRunnerDSPlugInD.dll" /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing Registration
 OutDir=.\DebugUnicode
-TargetPath=.\Debug\TestRunnerDSPlugInD.dll
-InputPath=.\Debug\TestRunnerDSPlugInD.dll
+TargetPath=.\DebugUnicode\TestRunnerDSPlugInD.dll
+InputPath=.\DebugUnicode\TestRunnerDSPlugInD.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -232,23 +222,112 @@ PostBuild_Cmds=echo The following command may fail if you have already registere
 # Begin Source File
 
 SOURCE=.\DSAddIn.cpp
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\DSPlugIn.cpp
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\DSPlugIn.def
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\DSPlugIn.rc
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\StdAfx.cpp
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
 # ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+# ADD CPP /Yc"stdafx.h"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -260,15 +339,18 @@ SOURCE=.\TestRunnerDSPlugin.idl
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
 
+# PROP Exclude_From_Build 1
 # ADD MTL /tlb "TestRunnerDSPlugin.tlb" /h "ToAddToDistribution/TestRunnerDSPluginVC6.h" /iid "ToAddToDistribution/TestRunnerDSPluginVC6_i.c" /Oicf
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
 
+# PROP Exclude_From_Build 1
 # ADD BASE MTL /tlb "TestRunnerDSPlugin.tlb" /h "ToAddToDistribution/TestRunnerDSPluginVC6.h" /iid "ToAddToDistribution/TestRunnerDSPluginVC6_i.c"
 # ADD MTL /tlb "TestRunnerDSPlugin.tlb" /h "ToAddToDistribution/TestRunnerDSPluginVC6.h" /iid "ToAddToDistribution/TestRunnerDSPluginVC6_i.c"
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
 
+# PROP Exclude_From_Build 1
 # ADD BASE MTL /tlb "TestRunnerDSPlugin.tlb" /h "ToAddToDistribution/TestRunnerDSPluginVC6.h" /iid "ToAddToDistribution/TestRunnerDSPluginVC6_i.c" /Oicf
 # ADD MTL /tlb "TestRunnerDSPlugin.tlb" /h "ToAddToDistribution/TestRunnerDSPluginVC6.h" /iid "ToAddToDistribution/TestRunnerDSPluginVC6_i.c" /Oicf
 
@@ -278,6 +360,23 @@ SOURCE=.\TestRunnerDSPlugin.idl
 # Begin Source File
 
 SOURCE=.\ToAddToDistribution\TestRunnerDSPluginVC6_i.c
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -286,22 +385,107 @@ SOURCE=.\ToAddToDistribution\TestRunnerDSPluginVC6_i.c
 # Begin Source File
 
 SOURCE=.\COMHelper.h
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\DSAddIn.h
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\DSPlugIn.h
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\Resource.h
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Group "Resource Files"
@@ -317,23 +501,108 @@ SOURCE=.\res\DSPlugIn.rc2
 # Begin Source File
 
 SOURCE=.\DSPlugIn.rgs
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\res\TBarLrge.bmp
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\res\TBarMedm.bmp
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Source File
 
 SOURCE=.\ReadMe.txt
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\TestRunnerDSPlugin.tlb
+
+!IF  "$(CFG)" == "DSPlugIn - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Release Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug Unicode"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # End Target
 # End Project

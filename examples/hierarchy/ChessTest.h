@@ -3,7 +3,7 @@
 
 #include "BoardGameTest.h"
 
-template<typename GAMECLASS> 
+template<class GAMECLASS> 
 class ChessTest : public BoardGameTest<GAMECLASS> 
 {
   CPPUNIT_TEST_SUB_SUITE( ChessTest, BoardGameTest<GAMECLASS> );

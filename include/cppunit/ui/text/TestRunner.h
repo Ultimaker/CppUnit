@@ -1,9 +1,12 @@
 #ifndef CPPUNIT_UI_TEXT_TESTRUNNER_H
 #define CPPUNIT_UI_TEXT_TESTRUNNER_H
 
+// Notes: this class is implemented in TextTestRunner.cpp.
+
 #include <cppunit/Portability.h>
 #include <string>
 #include <vector>
+#include <cppunit/TestRunner.h>
 
 namespace CppUnit {
 
@@ -59,19 +62,20 @@ namespace TextUi
  *
  * \see CompilerOutputter, XmlOutputter, TextOutputter.
  */
-class CPPUNIT_API TestRunner
+class CPPUNIT_API TestRunner : public CppUnit::TestRunner
 {
 public:
+  // Work around VC++ bug (class has same name as parent)
+  typedef CppUnit::TestRunner SuperClass;
+
   TestRunner( Outputter *outputter =NULL );
 
   virtual ~TestRunner();
 
-  bool run( std::string testName ="",
+  bool run( std::string testPath ="",
             bool doWait = false,
             bool doPrintResult = true,
             bool doPrintProgress = true );
-
-  void addTest( Test *test );
 
   void setOutputter( Outputter *outputter );
 
@@ -80,14 +84,9 @@ public:
   TestResult &eventManager() const;
 
 protected:
-  virtual bool runTest( Test *test,
-                        bool doPrintProgress );
-  virtual bool runTestByName( std::string testName,
-                              bool printProgress );
   virtual void wait( bool doWait );
   virtual void printResult( bool doPrintResult );
 
-  TestSuite *m_suite;
   TestResultCollector *m_result;
   TestResult *m_eventManager;
   Outputter *m_outputter;

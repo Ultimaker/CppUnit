@@ -38,7 +38,7 @@ namespace CppUnit {
  */
 
 
-template <typename ClassUnderTest> class Orthodox : public TestCase
+template <class ClassUnderTest> class Orthodox : public TestCase
 {
 public:
                     Orthodox () : TestCase ("Orthodox") {}
@@ -52,7 +52,7 @@ protected:
 
 
 // Run an orthodoxy test
-template <typename ClassUnderTest> void Orthodox<ClassUnderTest>::runTest ()
+template <class ClassUnderTest> void Orthodox<ClassUnderTest>::runTest ()
 {
     // make sure we have a default constructor
     ClassUnderTest   a, b, c;
@@ -82,7 +82,7 @@ template <typename ClassUnderTest> void Orthodox<ClassUnderTest>::runTest ()
 
 
 // Exercise a call
-template <typename ClassUnderTest> 
+template <class ClassUnderTest> 
 ClassUnderTest Orthodox<ClassUnderTest>::call (ClassUnderTest object)
 {
     return object;

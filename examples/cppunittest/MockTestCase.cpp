@@ -33,7 +33,8 @@ MockTestCase::~MockTestCase()
 int 
 MockTestCase::countTestCases() const
 {
-  ++m_actualCountTestCasesCallCount;
+  MockTestCase *mutableThis = const_cast<MockTestCase *>( this );
+  ++mutableThis->m_actualCountTestCasesCallCount;
   if ( m_expectCountTestCasesCall )
   {
     CPPUNIT_ASSERT_MESSAGE( getName() + ": unexpected MockTestCase::countTestCases() call",

@@ -19,7 +19,7 @@ namespace CppUnit {
  * MyTestSuiteName.myTestName
  * \see TestNamer.
  */
-template<typename Fixture>
+template<class Fixture>
 class TestSuiteBuilder
 {
 public:
@@ -73,20 +73,6 @@ public:
                                    fixture);
       addTest( test );
   }
-
-  template<typename ExceptionType>
-  void addTestCallerForException( std::string methodName, 
-                                  TestMethod testMethod, 
-                                  Fixture *fixture,
-                                  ExceptionType *dummyPointer )
-  {
-      Test *test = new TestCaller<Fixture,ExceptionType>( 
-                                   makeTestName( methodName ), 
-                                   testMethod,
-                                   fixture);
-      addTest( test );
-  }
-
 
   std::string makeTestName( const std::string &methodName )
   {

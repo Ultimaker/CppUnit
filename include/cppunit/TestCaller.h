@@ -27,7 +27,7 @@ private:
  *
  * This class is an implementation detail. You should never use this class directly.
  */
-template<typename ExceptionType>
+template<class ExceptionType>
 struct ExpectedExceptionTraits
 {
   static void expectedException()
@@ -98,8 +98,8 @@ struct ExpectedExceptionTraits<NoExceptionExpected>
  * \see TestCase
  */
 
-template <typename Fixture,  
-	  typename ExpectedException = NoExceptionExpected>
+template <class Fixture,  
+          class ExpectedException = NoExceptionExpected>
 class TestCaller : public TestCase
 { 
   typedef void (Fixture::*TestMethod)();

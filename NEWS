@@ -1,7 +1,39 @@
-	New in CppUnit 1.9.8:
+	New in CppUnit 1.9.10:
 	---------------------
 
-This release features custom macros for fixture suite, XmlOutputter customization, possibility for test plug-in to customize XML output, the introduction of a new XmlDocument class to help creating XML output of specific format, enhancement of ClockerPlugIn to output test timing as XML, increased usability of the MFC TestRunner with the addition of a detail field, as well as many bug fixes.
+  - AdditionalMessage
+  - MFC TestRunner bug fixes.
+
+* Asserter:
+  
+  - A new AdditionalMessage class has been introduced. It is used for
+    assertion that takes an additional 'message' argument. Since this
+    macro has an implicit constructor that take a string, which creates
+    a Message with the specified string as detail. That way, additional
+    message can be a single string or a complex Message object. See
+    documentation for example of use.
+
+* Portability improvement:
+
+  - Use 'class' instead of 'typename' in template declaration.
+  - Don't use templatized member methods anymore.
+  - Replaced usage of 'mutable' with a 'const_cast' on 'this'.
+
+* Bug Fix:
+
+  - MFC TestRunner: bug #530426 (conflict between TestRunner and host 
+    application's resources). A huge thanks to Steven Mitter for that one.
+
+* Compatiblity break:
+
+  - CppUnitTextUi::TestRunner, removed runTestByName() and runTest().
+  - TestSuiteBuilder: removed templatized method 
+    addTestCallerForException(). See implementation of 
+    CPPUNIT_TEST_EXCEPTION implementation for an alternative.
+
+
+	New in CppUnit 1.9.8:
+	---------------------
 
   - New custom test macros for fixture suite
   - Exception message are now structured

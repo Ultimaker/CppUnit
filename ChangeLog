@@ -1,3 +1,31 @@
+2002-07-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/AutoRegisterSuite.h:
+  * include/cppunit/extensions/Orthodox.h:
+  * include/cppunit/extensions/TestSuiteBuilder.h:
+  * include/cppunit/extensions/TestSuiteFactory.h:
+  * include/cppunit/TestCaller.h:
+  * examples/hierarchy/BoardGameTest.h:
+  * examples/hierarchy/ChessTest.h: replaced usage of 'typename' in template
+    declaration with 'class'.
+
+  * include/cppunit/ui/text/TestRunner.h:
+  * src/cppunit/TextTestRunner.cpp: updated to use the generic TestRunner.
+    Removed methods runTestByName() and runTest(). Inherits 
+    CppUnit::TestRunner.
+
+  * include/cppunit/extensions/TestSuiteBuilder.h: removed templatized method
+    addTestCallerForException(). It is no longer used since release 1.9.8.
+
+  * examples/cppunittest/MockTestCase.h
+  * examples/cppunittest/MockTestCase.cpp: removed the usage of 'mutable'
+    keyword.
+
+2002-07-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * src/msvc6/DSPlugIn/DSPlugIn.dsp: updated so that only the release
+    configuration get copied to the lib/ directory.
+
 2002-07-03 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/XmlOutputter.h: fixed XmlOutputter constructed default
@@ -16,8 +44,8 @@
   * src/msvc6/testpluginrunner/TestPlugInRunnerApp.cpp:
   * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp:
   * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.h: applied Steven Mitter
-    patch to fix bug #530426 (conflict between TestRunner and host application
-    resources). Adapted patch to compile work with Unicode.
+    patch to fix bug #530426 (conflict between TestRunner and host 
+    application's resources). Adapted patch to compile work with Unicode.
 
   * src/msvc6/testrunner/ResourceLoaders.h:
   * src/msvc6/testrunner/ResourceLoaders.cpp:
