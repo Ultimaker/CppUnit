@@ -98,7 +98,7 @@ void
 XmlUniformiserTest::testElementWithContent()
 {
   check( "<Element>\nContent\n</Element>\n",
-         "<Element>Content\n</Element>" );
+         "<Element>Content</Element>" );
 }
 
 

@@ -1,5 +1,15 @@
 2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* include/cppunit/XmlOutputter.h:
+	* src/cppunit/XmlOutputter.cpp: Made XML output more human readable. Idented element.
+
+	* examples/cppunittest/XmlUniformiser.h:
+	* examples/cppunittest/XmlUniformiser.cpp:
+	* examples/cppunittest/XmlUniformiserTest.cpp: modified to ignore trailing space
+	  at the end of element content.
+
+2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* NEWS: updated
 
 	* doc/other_documentation.dox: addded new module for test plug-in.

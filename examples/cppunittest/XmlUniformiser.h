@@ -40,6 +40,7 @@ private:
   bool isEndOfAttributeName();
   void copyAttributeValue();
   void copyUntilDoubleQuote();
+  void removeTrailingSpaces();
 
 private:
   int m_index;

@@ -3,8 +3,10 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/TestRunner.h>
 #include <cppunit/TextTestProgressListener.h>
+#include <cppunit/XmlOutputter.h>
 #include "CppUnitTestSuite.h"
 #include <stdexcept>
+#include <fstream>
 
 
 int 
@@ -37,7 +39,13 @@ main( int argc, char* argv[] )
 
     // Print test in a compiler compatible format.
     CppUnit::CompilerOutputter outputter( &result, std::cerr );
-    outputter.write();                      
+    outputter.write(); 
+
+    std::ofstream file( "tests.xml" );
+    CppUnit::XmlOutputter xml( &result, file );
+    xml.setStyleSheet( "report.xsl" );
+    xml.write();
+    file.close();
   }
   catch ( std::invalid_argument &e )  // Test path not resolved
   {

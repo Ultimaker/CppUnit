@@ -62,22 +62,42 @@ XmlOutputter::Node::addNode( Node *node )
 
 
 std::string 
-XmlOutputter::Node::toString() const
+XmlOutputter::Node::toString( const std::string &indent ) const
 {
-  std::string element = "<";
+  std::string element( indent );
+  element += "<";
   element += m_name;
-  element += " ";
-  element += attributesAsString();
-  element += " >\n";
-
-  Nodes::const_iterator itNode = m_nodes.begin();
-  while ( itNode != m_nodes.end() )
+  if ( !m_attributes.empty() )
   {
-    const Node *node = *itNode++;
-    element += node->toString();
+    element += " ";
+    element += attributesAsString();
+  }
+  element += ">";
+
+  if ( !m_nodes.empty() )
+  {
+    element += "\n";
+
+    std::string subNodeIndent( indent + "  " );
+    Nodes::const_iterator itNode = m_nodes.begin();
+    while ( itNode != m_nodes.end() )
+    {
+      const Node *node = *itNode++;
+      element += node->toString( subNodeIndent );
+    }
+
+    element += indent;
   }
 
-  element += escape( m_content );
+  if ( !m_content.empty() )
+  {
+    element += escape( m_content );
+    if ( !m_nodes.empty() )
+    {
+      element += "\n";
+      element += indent;
+    }
+  }
 
   element += "</";
   element += m_name;

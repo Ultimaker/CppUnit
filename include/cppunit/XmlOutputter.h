@@ -75,7 +75,7 @@ public:
                        int numericValue );
     void addNode( Node *node );
 
-    std::string toString() const;
+    std::string toString( const std::string &indent = "" ) const;
 
   private:
     typedef std::pair<std::string,std::string> Attribute;

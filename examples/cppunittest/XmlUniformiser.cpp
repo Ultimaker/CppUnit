@@ -223,6 +223,17 @@ XmlUniformiser::copyElementContent()
 {
   while ( isValidIndex()  &&  !startsWith( "<" ) )
     copyNext();
+  removeTrailingSpaces();
+}
+
+
+void 
+XmlUniformiser::removeTrailingSpaces()
+{
+  int index = m_stripped.length();
+  while ( index-1 > 0  &&  isSpace( m_stripped[index-1] ) )
+    --index;
+  m_stripped.resize( index );
 }
 
 
