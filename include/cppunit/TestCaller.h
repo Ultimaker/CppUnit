@@ -3,7 +3,6 @@
 
 #include <cppunit/Exception.h>
 #include <cppunit/TestCase.h>
-#include <cppunit/TestFixture.h>
 
 
 #if CPPUNIT_USE_TYPEINFO_NAME

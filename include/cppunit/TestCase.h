@@ -4,7 +4,6 @@
 #include <cppunit/Portability.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestAssert.h>
-#include <cppunit/TestFixture.h>
 #include <string>
 
 
@@ -13,14 +12,13 @@ namespace CppUnit {
 class TestResult;
 
 
+/* FIXME: most of this documentation belongs to proposed class Fixture.
+ */
+
 /*! \brief A single test object.
  *
  * This class is used to implement a simple test case: define a subclass
  * that overrides the runTest method.
- *
- */
-
-/* FIXME: this documentation belongs to proposed class Fixture.
  *
  * A test case defines the fixture to run multiple tests. 
  * To define a test case
@@ -91,7 +89,7 @@ class TestResult;
  *
  */
 
-class TestCase : public Test, public TestFixture
+class TestCase : public Test
 {
 public:
 
@@ -108,6 +106,10 @@ public:
     //! FIXME: what is this for?
     virtual TestResult  *run             ();
 
+    // FIXME: move back to class TestFixture, in future.
+    virtual void        setUp            ();
+    virtual void        tearDown         ();
+ 
     
 protected:
     //! FIXME: this should probably be pure virtual.

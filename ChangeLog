@@ -1,3 +1,22 @@
+2001-09-16  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Revert TestFixture-related changes from 2001-07-15:
+
+	* src/cppunit/cppunit.dsp (SOURCE): Remove TestFixture.h.
+
+	* src/cppunit/TestCase.cpp (setUp, tearDown): Restore function
+	bodies.
+
+	* include/cppunit/TestCase.h (class TestCase): Do not derive
+	from class TestFixture.  Restore member functions setUp()
+	and tearDown().
+
+	* include/cppunit/TestCaller.h: Do not include
+	<cppunit/TestFixture.h>.
+
+	* include/cppunit/Makefile.am (libcppunitinclude_HEADERS): Remove
+	TestFixture.h.
+
 2001-09-16 Baptiste Lepilleur <gaiacrtn@free.fr>
 	* INSTALL-WIN32.txt: Added.
 
