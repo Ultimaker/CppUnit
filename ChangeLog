@@ -1,3 +1,16 @@
+2001-09-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* examples/examples.dsw:
+	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsw:
+	* examples/msvc6/HostApp/HostApp.dsw:
+	* examples/msvc6/TestPlugIn/TestPlugIn.dsw: Added missing
+	project dependency.
+
+	* src/msvc6/DSPlugIn/DSPlugIn.dsp: fixed *.tlb output directory.
+
+	* include/msvc6/testrunner/TestPlugInInterface.h: does not define
+	NOMINMAX if already defined.
+
 2001-09-17 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* Makefile.am: Added INSTALL-WIN32.txt to EXTRA_DIST.

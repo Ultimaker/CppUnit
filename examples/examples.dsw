@@ -17,6 +17,9 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name TestRunner
     End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DSPlugIn
+    End Project Dependency
 }}}
 
 ###############################################################################
@@ -36,6 +39,18 @@ Package=<4>
 
 ###############################################################################
 
+Project: "DSPlugIn"=..\src\msvc6\DSPlugIn\DSPlugIn.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "HostApp"=.\msvc6\HostApp\HostApp.dsp - Package Owner=<4>
 
 Package=<5>
@@ -46,6 +61,12 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name TestRunner
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name cppunit
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DSPlugIn
     End Project Dependency
 }}}
 
@@ -61,6 +82,9 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name cppunit
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DSPlugIn
     End Project Dependency
 }}}
 

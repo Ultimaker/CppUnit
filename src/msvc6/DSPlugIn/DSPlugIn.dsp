@@ -148,7 +148,7 @@ SOURCE=.\TestRunnerDSPlugin.idl
 
 !ELSEIF  "$(CFG)" == "DSPlugIn - Win32 Debug"
 
-# ADD MTL /tlb "../../../lib/TestRunnerDSPlugin.tlb" /h "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin.h" /iid "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin_i.c" /Oicf
+# ADD MTL /tlb "TestRunnerDSPlugin.tlb" /h "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin.h" /iid "../../../include/msvc6/DSPlugin/TestRunnerDSPlugin_i.c" /Oicf
 
 !ENDIF 
 
@@ -156,7 +156,6 @@ SOURCE=.\TestRunnerDSPlugin.idl
 # Begin Source File
 
 SOURCE=..\..\..\include\msvc6\DSPlugin\TestRunnerDSPlugin_i.c
-# ADD CPP /I "../../../include"
 # End Source File
 # End Group
 # Begin Group "Header Files"
