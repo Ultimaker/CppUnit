@@ -6,6 +6,7 @@
 #include <deque>
 #include <iostream>
 #include <map>
+#include <string>
 #include <utility>
 
 
@@ -25,7 +26,8 @@ public:
   /*! Constructs a XmlOutputter object.
    */
   XmlOutputter( TestResultCollector *result,
-                std::ostream &stream );
+                std::ostream &stream,
+                std::string encoding = "ISO-8859-1" );
 
   /// Destructor.
   virtual ~XmlOutputter();
@@ -103,6 +105,7 @@ protected:
 protected:
   TestResultCollector *m_result;
   std::ostream &m_stream;
+  std::string m_encoding;
 
 private:
   /// Prevents the use of the copy constructor.

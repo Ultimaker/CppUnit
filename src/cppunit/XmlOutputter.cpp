@@ -15,7 +15,7 @@ namespace CppUnit
 
 
 XmlOutputter::Node::Node( std::string elementName,
-                                std::string content ) :
+                          std::string content ) :
     m_name( elementName ),
     m_content( content )
 {
@@ -23,7 +23,7 @@ XmlOutputter::Node::Node( std::string elementName,
 
     
 XmlOutputter::Node::Node( std::string elementName,
-                                    int numericContent ) :
+                          int numericContent ) :
     m_name( elementName )
 {
   m_content = asString( numericContent );
@@ -40,7 +40,7 @@ XmlOutputter::Node::~Node()
 
 void 
 XmlOutputter::Node::addAttribute( std::string attributeName,
-                                            std::string value  )
+                                  std::string value  )
 {
   m_attributes.push_back( Attribute( attributeName, value ) );
 }
@@ -48,7 +48,7 @@ XmlOutputter::Node::addAttribute( std::string attributeName,
 
 void 
 XmlOutputter::Node::addAttribute( std::string attributeName,
-                                            int numericValue )
+                                  int numericValue )
 {
   addAttribute( attributeName, asString( numericValue ) );
 }
@@ -152,9 +152,11 @@ XmlOutputter::Node::asString( int value )
 // //////////////////////////////////////////////////////////////////
 
 XmlOutputter::XmlOutputter( TestResultCollector *result,
-                            std::ostream &stream ) :
+                            std::ostream &stream,
+                            std::string encoding ) :
     m_result( result ),
-    m_stream( stream )
+    m_stream( stream ),
+    m_encoding( encoding )
 {
 }
 
@@ -176,7 +178,7 @@ void
 XmlOutputter::writeProlog()
 {
   m_stream  <<  "<?xml version=\"1.0\" "
-                "encoding='ISO-8859-1' standalone='yes' ?>"
+                "encoding='"  <<  m_encoding  << "' standalone='yes' ?>"
             <<  std::endl;
 }
 

@@ -1,3 +1,11 @@
+2002-02-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* inclued/cppunit/XmlOutputter.h:
+	* inclued/cppunit/XmlOutputter.cpp: added optional parameter to constructor
+	to specify the encoding.
+
+	* configure.in: updated version number to 1.7.3
+
 2002-02-28 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* NEW: updated and restructured.
