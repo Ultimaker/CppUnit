@@ -217,15 +217,7 @@ InputName=cppunit_dll
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
 
-# Begin Custom Build - Updating $(InputPath)
-IntDir=.\Debug
-InputPath=..\..\..\lib\cppunit_dll.dll
-InputName=cppunit_dll
-
-"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	copy $(InputPath) $(IntDir)\$(InputName).dll
-
-# End Custom Build
+# PROP Exclude_From_Build 1
 
 !ENDIF 
 
@@ -279,17 +271,7 @@ InputName=testrunner
 # Begin Source File
 
 SOURCE=..\..\..\lib\testrunnercd.dll
-
-!IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 

@@ -1,3 +1,23 @@
+2002-05-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * src/msvc6/testrunner/MsDevCallerListCtrl.h:
+  * src/msvc6/testrunner/MsDevCallerListCtrl.cpp:
+  * src/msvc6/testrunner/Resource.h:
+  * src/msvc6/testrunner/TestRunner.rc:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp:
+  * src/msvc6/testrunner/TestRunnerModel.h:
+  * src/msvc6/testpluginrunner/TestPlugInRunner.rc:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.h:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerModel.cpp: integrated patch from 
+  Marco Welti (Welti@GretagMacbeth.ch) with a few clean up.
+  Display the name of the test being run during above the progress bar. Allow the
+  VC++ add-ins to works with TestPlugInRunner (COM init). DLL name can be specified
+  on the command line after flag '-testsuite'. Display wait cursor, clear and reload
+  history when reloading DLL.
+
+  * THANKS: added Marco Welti to the list.
+
 2002-05-07 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* src/DllPlugInTester/CommandLineParser.cpp: fixed compilation issue.

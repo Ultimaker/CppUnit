@@ -23,10 +23,13 @@ MsDevCallerListCtrl::MsDevCallerListCtrl()
     : m_lineNumberSubItem( 3 )
     , m_fileNameSubItem( 4 )
 {
+  m_comInitialized = SUCCEEDED( CoInitialize(NULL) );
 }
 
 MsDevCallerListCtrl::~MsDevCallerListCtrl()
 {
+	if ( m_comInitialized )
+    CoUninitialize();
 }
 
 

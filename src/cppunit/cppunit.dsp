@@ -113,6 +113,10 @@ SOURCE=..\..\doc\other_documentation.dox
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\THANKS
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\TODO
 # End Source File
 # End Group

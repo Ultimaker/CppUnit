@@ -45,6 +45,7 @@ protected:
 private:
   int m_lineNumberSubItem;
   int m_fileNameSubItem;
+  bool m_comInitialized;
 };
 
 /////////////////////////////////////////////////////////////////////////////

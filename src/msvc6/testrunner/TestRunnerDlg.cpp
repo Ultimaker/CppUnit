@@ -241,6 +241,9 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
 void 
 TestRunnerDlg::startTest( CppUnit::Test *test )
 {
+  CWnd *runningTestCaseLabel = GetDlgItem(IDC_RUNNING_TEST_CASE_LABEL);
+  if ( runningTestCaseLabel )
+    runningTestCaseLabel->SetWindowText( test->getName().c_str() );
 }
 
 

@@ -37,7 +37,11 @@ TestPlugInRunnerModel::reloadPlugIn()
 {
   try 
   {
+    CWaitCursor waitCursor;
+    m_history.clear();
     setRootTest( m_plugIn->makeTest() );
+
+    loadHistory();
   }
   catch (...)
   {

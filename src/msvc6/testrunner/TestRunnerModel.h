@@ -68,7 +68,7 @@ private:
   /// Prevents the use of the copy operator.
   TestRunnerModel &operator =( const TestRunnerModel &copy );
 
-private:
+protected:
   History m_history;
 
   CppUnit::Test *m_rootTest;
