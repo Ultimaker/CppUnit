@@ -1,3 +1,7 @@
+2003-05-07 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/Makefile.am: removed TestSuiteBuilder.h
+
 2003-04-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/extensions/TestSuiteBuilder.h: removed (unused)

@@ -13,7 +13,6 @@ libcppunitinclude_HEADERS = \
 	TestFixtureFactory.h \
 	TestNamer.h \
 	TestSetUp.h \
-	TestSuiteBuilder.h \
 	TestSuiteBuilderContext.h \
 	TestSuiteFactory.h \
 	TypeInfoHelper.h
