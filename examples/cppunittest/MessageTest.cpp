@@ -32,7 +32,8 @@ MessageTest::tearDown()
 void 
 MessageTest::testDefaultConstructor()
 {
-  CPPUNIT_ASSERT_EQUAL( std::string(), m_message->shortDescription() );
+  std::string empty;
+  CPPUNIT_ASSERT_EQUAL( empty, m_message->shortDescription() );
   CPPUNIT_ASSERT_EQUAL( 0, m_message->detailCount() );
 }
 
@@ -185,7 +186,8 @@ MessageTest::testConstructorDetail3()
 void 
 MessageTest::testDetailsNone()
 {
-  CPPUNIT_ASSERT_EQUAL( std::string(), m_message->details() );
+  std::string empty;
+  CPPUNIT_ASSERT_EQUAL( empty, m_message->details() );
 }
 
 

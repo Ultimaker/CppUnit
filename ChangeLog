@@ -29,7 +29,9 @@
   * examples/ClockerPlugIn/ClockerXmlHook.cpp: updated against 
     XmlOutputterHook changes.
 
-  * examples/cppunittest/MessageTest.cpp:
+  * examples/cppunittest/MessageTest.cpp: removed std::string() from
+    assertion. Somehow gcc can't parse it. Added missing include <stdexcept>.
+
   * examples/cppunittest/XmlElement.cpp: added missing include <stdexcept>.
 
   * examples/cppunittest/XmlElementTest.h:
