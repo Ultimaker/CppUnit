@@ -13,6 +13,7 @@ CPPUNIT_NS_BEGIN
 TestResult::TestResult( SynchronizationObject *syncObject )
     : SynchronizedObject( syncObject )
     , m_protectorChain( new ProtectorChain() )
+    , m_stop( false )
 { 
   m_protectorChain->push( new DefaultProtector() );
 }
@@ -21,6 +22,14 @@ TestResult::TestResult( SynchronizationObject *syncObject )
 TestResult::~TestResult()
 {
   delete m_protectorChain;
+}
+
+
+void 
+TestResult::reset()
+{
+  ExclusiveZone zone( m_syncObject ); 
+  m_stop = false;
 }
 
 

@@ -104,8 +104,6 @@
     static void aMethodName( TestSuiteBuilderContextType &context ).
     You can replace the 3 previous parameters by context. (See 
     documentation for further detail).
-  - TestResult: removed reset(). Leftover from the split with 
-    TestResultCollector.
 
 
 

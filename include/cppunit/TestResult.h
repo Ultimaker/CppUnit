@@ -57,7 +57,11 @@ public:
   virtual ~TestResult();
 
   virtual void addListener( TestListener *listener );
+
   virtual void removeListener( TestListener *listener );
+
+  /// Resets the stop flag.
+  virtual void reset();
   
   /// Stop testing
   virtual void stop();
