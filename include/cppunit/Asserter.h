@@ -11,23 +11,23 @@ namespace CppUnit
 namespace Asserter
 {
 
-  void fail( std::string message, 
-             SourceLine sourceLine = SourceLine() );
+  void CPPUNIT_API fail( std::string message, 
+                         SourceLine sourceLine = SourceLine() );
 
-  void failIf( bool shouldFail, 
-               std::string message, 
-               SourceLine sourceLine = SourceLine() );
+  void CPPUNIT_API failIf( bool shouldFail, 
+                           std::string message, 
+                           SourceLine sourceLine = SourceLine() );
 
-  void failNotEqual( std::string expected, 
-                     std::string actual, 
-                     SourceLine sourceLine = SourceLine(),
-                     std::string additionalMessage ="" );
+  void CPPUNIT_API failNotEqual( std::string expected, 
+                                 std::string actual, 
+                                 SourceLine sourceLine = SourceLine(),
+                                 std::string additionalMessage ="" );
 
-  void failNotEqualIf( bool shouldFail,
-                       std::string expected, 
-                       std::string actual, 
-                       SourceLine sourceLine = SourceLine(),
-                       std::string additionalMessage ="" );
+  void CPPUNIT_API failNotEqualIf( bool shouldFail,
+                                   std::string expected, 
+                                   std::string actual, 
+                                   SourceLine sourceLine = SourceLine(),
+                                   std::string additionalMessage ="" );
 
 } // namespace Asserter
 } // namespace CppUnit

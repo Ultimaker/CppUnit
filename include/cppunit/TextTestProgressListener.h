@@ -10,7 +10,7 @@ namespace CppUnit
 /*! \class TextTestProgressListener
  * \brief This class represents
  */
-class TextTestProgressListener : public TestListener
+class CPPUNIT_API TextTestProgressListener : public TestListener
 {
 public:
   /*! Constructs a TextTestProgressListener object.

@@ -9,7 +9,7 @@ namespace CppUnit
 
 /*! This class represents an abstract outputter.
  */
-class Outputter
+class CPPUNIT_API Outputter
 {
 public:
   /// Destructor.

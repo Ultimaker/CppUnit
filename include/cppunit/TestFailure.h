@@ -19,7 +19,7 @@ class Test;
  * TestFailure assumes lifetime control for any exception
  * passed to it.
  */
-class TestFailure 
+class CPPUNIT_API TestFailure 
 {
 public:
   TestFailure( Test *failedTest,

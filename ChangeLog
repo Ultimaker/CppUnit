@@ -1,3 +1,51 @@
+2002-03-24 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* INSTALL-WIN32.txt: added some info to build cppunit as a DLL.
+
+	* include/cppunit/config-msvc6.h: added definition of macro CPPUNIT_API when
+	building or linking DLL. Defined CPPUNIT_BUILD_DLL when building, and
+	CPPUNIT_DLL when linking.
+
+	* include/cppunit/Portability.h: added empty definition of macro CPPUNIT_API
+	when not building or using CppUnit as a DLL. When any of those symbol is defined,
+	the symbol CPPUNIT_NEED_DLL_DECL is set to 1.
+
+	* include/cppunit/extensions/RepeatedTest.h:
+	* include/cppunit/extensions/TestDecorator.h:
+	* include/cppunit/extensions/TestSetUp.h:
+	* include/cppunit/TestCaller.h
+	* include/cppunit/extensions/TestFactory.h
+	* include/cppunit/extensions/TestFactoryRegistry.h
+	* include/cppunit/extensions/TypeInfoHelper.h
+	* include/cppunit/Asserter.h
+	* include/cppunit/Exception.h
+	* include/cppunit/NotEqualException.h
+	* include/cppunit/SourceLine.h
+	* include/cppunit/SynchronizedObject.h
+	* include/cppunit/Test.h
+	* include/cppunit/TestAssert.h
+	* include/cppunit/TestCase.h
+	* include/cppunit/TestFailure.h
+	* include/cppunit/TestListener.h
+	* include/cppunit/TestResult.h
+	* include/cppunit/TestSuite.h
+	* include/cppunit/CompilerOutputter.h
+	* include/cppunit/Outputter.h
+	* include/cppunit/TestResultCollector.h
+	* include/cppunit/TestSuccessListener.h
+	* include/cppunit/TextOutputter.h
+	* include/cppunit/TextTestProgressListener.h
+	* include/cppunit/TextTestResult.h
+	* include/cppunit/TextTestRunner.h
+	* include/cppunit/XmlOutputter.h: added CPPUNIT_API for DLL export.
+	
+	* include/cppunit/TestSuite.h:
+	* src/cppunit/TestSuite.cpp: reindented
+
+	* include/cppunit/extensions/TestSetUp.h:
+	* src/cppunit/TestSetUp.cpp: added .cpp. extracted inline method and moved them
+	to cpp file.
+
 2002-03-06 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* src/cppunit/TextTestProgressListener.cpp: flush the stream after each progess 

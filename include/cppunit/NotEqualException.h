@@ -7,7 +7,7 @@
 namespace CppUnit {
 
 
-class NotEqualException : public Exception
+class CPPUNIT_API NotEqualException : public Exception
 {
 public:
   NotEqualException( std::string expected,

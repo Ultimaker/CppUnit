@@ -18,7 +18,7 @@ class TestResultCollector;
 /*! \class CompilerOutputter
  * \brief This class implements output test result in a compiler compatible format.
  */
-class CompilerOutputter : public Outputter
+class CPPUNIT_API CompilerOutputter : public Outputter
 {
 public:
   /*! Constructs a CompilerOutputter object.

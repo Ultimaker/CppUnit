@@ -13,7 +13,7 @@ namespace CppUnit {
  * Exception is an exception that serves
  * descriptive strings through its what() method
  */
-class Exception : public std::exception
+class CPPUNIT_API Exception : public std::exception
 {
 public:
 

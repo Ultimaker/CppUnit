@@ -15,8 +15,8 @@ class Test;
  * 
  * Use class TextTestProgressListener and TextOutputter instead.
  */
-class TextTestResult : public TestResult,
-                       public TestResultCollector
+class CPPUNIT_API TextTestResult : public TestResult,
+                                   public TestResultCollector
 {
 public:
   TextTestResult();

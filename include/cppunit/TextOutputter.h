@@ -16,7 +16,7 @@ class TestFailure;
 
 /*! Print a TestResultCollector in text format.
  */
-class TextOutputter : public Outputter
+class CPPUNIT_API TextOutputter : public Outputter
 {
 public:
   TextOutputter( TestResultCollector *result,

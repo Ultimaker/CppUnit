@@ -11,6 +11,9 @@ class Test;
 class TestFailure;
 class TestListener;
 
+#if CPPUNIT_NEED_DLL_DECL
+  template class CPPUNIT_API std::deque<TestListener *>;
+#endif
 
 /**
  * A TestResult collects the results of executing a test case. It is an 
@@ -33,8 +36,7 @@ class TestListener;
  *
  * \see Test, TestResultCollector
  */
-
-class TestResult : protected SynchronizedObject
+class CPPUNIT_API TestResult : protected SynchronizedObject
 {
 public:
   TestResult( SynchronizationObject *syncObject = 0 );

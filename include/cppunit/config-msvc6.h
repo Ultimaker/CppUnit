@@ -38,6 +38,21 @@
 #define CPPUNIT_PACKAGE  "cppunit" 
 #endif
 
+// define CPPUNIT_DLL when linking to CppUnit dll.
+#ifdef CPPUNIT_DLL
+#undef CPPUNIT_API
+#define CPPUNIT_API __declspec(dllimport)
+#undef CPPUNIT_NEED_DLL_DECL
+#define CPPUNIT_NEED_DLL_DECL 1
+#endif
+
+// define CPPUNIT_DLL_BUILD when building CppUnit dll.
+#ifdef CPPUNIT_BUILD_DLL
+#undef CPPUNIT_API
+#define CPPUNIT_API __declspec(dllexport)
+#undef CPPUNIT_NEED_DLL_DECL
+#define CPPUNIT_NEED_DLL_DECL 1
+#endif
 
 
 #if _MSC_VER > 1000     // VC++

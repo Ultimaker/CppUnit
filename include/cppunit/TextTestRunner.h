@@ -32,7 +32,7 @@ class TestResultCollector;
  * runner.run( "", true );    // Run all tests and wait
  * \endcode
  */
-class TextTestRunner
+class CPPUNIT_API TextTestRunner
 {
 public:
   /*! Constructs a new text runner.

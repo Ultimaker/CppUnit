@@ -1,6 +1,7 @@
 #ifndef CPPUNIT_EXTENSIONS_TESTDECORATOR_H
 #define CPPUNIT_EXTENSIONS_TESTDECORATOR_H
 
+#include <cppunit/Portability.h>
 #include <cppunit/Test.h>
 
 namespace CppUnit {
@@ -16,7 +17,7 @@ class TestResult;
  *
  * Does not assume ownership of the test it decorates
  */ 
-class TestDecorator : public Test 
+class CPPUNIT_API TestDecorator : public Test 
 {
 public:
     TestDecorator   (Test *test);

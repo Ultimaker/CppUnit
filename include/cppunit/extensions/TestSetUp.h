@@ -9,30 +9,21 @@ class Test;
 class TestResult;
 
 
-class TestSetUp : public TestDecorator 
+class CPPUNIT_API TestSetUp : public TestDecorator 
 {
 public:
-    TestSetUp (Test *test) : TestDecorator (test) {}
+  TestSetUp( Test *test );
 
-    void run (TestResult *result);
+  void run( TestResult *result );
 
 protected:
-    virtual void setUp () {}
-    virtual void tearDown () {}
+  virtual void setUp();
+  virtual void tearDown();
 
 private:
   TestSetUp( const TestSetUp & );
   void operator =( const TestSetUp & );
 };
-
-
-inline void
-TestSetUp::run (TestResult *result)
-{ 
-  setUp (); 
-  TestDecorator::run (result); 
-  tearDown (); 
-}
 
 
 } //  namespace CppUnit

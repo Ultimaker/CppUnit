@@ -19,7 +19,7 @@ namespace CppUnit
  *
  * See src/msvc6/MfcSynchronizedObject.h for an example.
  */
-class SynchronizedObject
+class CPPUNIT_API SynchronizedObject
 {
 public:
   class SynchronizationObject

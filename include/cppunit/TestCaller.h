@@ -12,7 +12,7 @@
 
 namespace CppUnit {
 
-class NoExceptionExpected
+class CPPUNIT_API NoExceptionExpected
 {
 private:
     // Nobody must be able to construct an exception of this type.

@@ -28,15 +28,15 @@ namespace CppUnit {
   namespace TestAssert
   {
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
-    void assertImplementation( bool         condition, 
-                               std::string  conditionExpression = "",
-                               long lineNumber,
-                               std::string  fileName );
+    void CPPUNIT_API assertImplementation( bool         condition, 
+                                           std::string  conditionExpression = "",
+                                           long lineNumber,
+                                           std::string  fileName );
 
-    void assertNotEqualImplementation( std::string expected,
-                                       std::string actual,
-                                       long lineNumber,
-                                       std::string fileName );
+    void CPPUNIT_API assertNotEqualImplementation( std::string expected,
+                                                   std::string actual,
+                                                   long lineNumber,
+                                                   std::string fileName );
       
 
     template <class T>
@@ -54,11 +54,11 @@ namespace CppUnit {
       }
     }
 
-    void assertEquals( double expected, 
-                       double actual, 
-                       double delta, 
-                       long lineNumber,
-                       std::string fileName );
+    void CPPUNIT_API assertEquals( double expected, 
+                                   double actual, 
+                                   double delta, 
+                                   long lineNumber,
+                                   std::string fileName );
 
 #else   //                  using SourceLine
 
@@ -77,10 +77,10 @@ namespace CppUnit {
       }
     }
 
-    void assertDoubleEquals( double expected,
-                             double actual,
-                             double delta,
-                             SourceLine sourceLine );
+    void CPPUNIT_API assertDoubleEquals( double expected,
+                                         double actual,
+                                         double delta,
+                                         SourceLine sourceLine );
 
 #endif
   }

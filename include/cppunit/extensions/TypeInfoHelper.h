@@ -12,7 +12,7 @@ namespace CppUnit {
 
   /** Helper to use type_info.
    */
-  class TypeInfoHelper
+  class CPPUNIT_API TypeInfoHelper
   {
   public:
     /** Get the class name of the specified type_info.

@@ -89,7 +89,7 @@ class TestResult;
  *
  */
 
-class TestCase : public Test
+class CPPUNIT_API TestCase : public Test
 {
 public:
 

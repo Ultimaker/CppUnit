@@ -1,6 +1,7 @@
 #ifndef CPPUNIT_EXTENSIONS_REPEATEDTEST_H
 #define CPPUNIT_EXTENSIONS_REPEATEDTEST_H
 
+#include <cppunit/Portability.h>
 #include <cppunit/extensions/TestDecorator.h>
 
 namespace CppUnit {
@@ -13,7 +14,7 @@ class TestResult;
  *
  * Does not assume ownership of the test it decorates
  */
-class RepeatedTest : public TestDecorator 
+class CPPUNIT_API RepeatedTest : public TestDecorator 
 {
 public:
     RepeatedTest( Test *test, 

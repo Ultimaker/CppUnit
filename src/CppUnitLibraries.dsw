@@ -3,22 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "CppUnitTestApp"=.\msvc6\CppUnitTestApp\CppUnitTestApp.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name TestRunner
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "CppUnitTestMain"=.\cppunittest\CppUnitTestMain.dsp - Package Owner=<4>
+Project: "DSPlugIn"=.\msvc6\DSPlugIn\DSPlugIn.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -29,26 +14,11 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name cppunit
     End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name cppunit_dll
-    End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "DSPlugIn"=..\src\msvc6\DSPlugIn\DSPlugIn.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "HostApp"=.\msvc6\HostApp\HostApp.dsp - Package Owner=<4>
+Project: "TestPlugInRunner"=.\msvc6\testpluginrunner\TestPlugInRunner.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -59,11 +29,14 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name TestRunner
     End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name cppunit
+    End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "TestRunner"=..\src\msvc6\testrunner\TestRunner.dsp - Package Owner=<4>
+Project: "TestRunner"=.\msvc6\testrunner\TestRunner.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -81,7 +54,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "cppunit"=..\src\cppunit\cppunit.dsp - Package Owner=<4>
+Project: "cppunit"=.\cppunit\cppunit.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -93,7 +66,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "cppunit_dll"=..\src\cppunit\cppunit_dll.dsp - Package Owner=<4>
+Project: "cppunit_dll"=.\cppunit\cppunit_dll.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -101,21 +74,6 @@ Package=<5>
 
 Package=<4>
 {{{
-}}}
-
-###############################################################################
-
-Project: "hierarchy"=.\hierarchy\hierarchy.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name cppunit
-    End Project Dependency
 }}}
 
 ###############################################################################

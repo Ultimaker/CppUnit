@@ -20,7 +20,7 @@ class TestResultCollector;
 
 /*! Outputs a TestResultCollector in XML format.
  */
-class XmlOutputter : public Outputter
+class CPPUNIT_API XmlOutputter : public Outputter
 {
 public:
   /*! Constructs a XmlOutputter object.
@@ -46,7 +46,7 @@ public:
    * \warning This class will probably be replaced with an abstract
    * builder in future version.
    */
-  class Node
+  class CPPUNIT_API Node
   {
   public:
     Node( std::string elementName,
@@ -116,6 +116,7 @@ private:
 
 private:
 };
+
 
 
 }  // namespace CppUnit

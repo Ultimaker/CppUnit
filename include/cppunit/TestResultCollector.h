@@ -9,6 +9,12 @@ namespace CppUnit
 {
 
 
+#if CPPUNIT_NEED_DLL_DECL
+  template class CPPUNIT_API std::deque<TestFailure *>;
+  template class CPPUNIT_API std::deque<Test *>;
+#endif
+
+
 /*!
  * A TestResultCollector is a TestListener which collects the results of executing 
  * a test case. It is an instance of the Collecting Parameter pattern.
@@ -18,7 +24,7 @@ namespace CppUnit
  * unanticipated problems signified by exceptions that are not generated
  * by the framework.
  */
-class TestResultCollector : public TestSucessListener
+class CPPUNIT_API TestResultCollector : public TestSucessListener
 {
 public:
   typedef std::deque<TestFailure *> TestFailures;

@@ -1,6 +1,7 @@
 #ifndef CPPUNIT_TEST_H
 #define CPPUNIT_TEST_H
 
+#include <cppunit/Portability.h>
 #include <string>
 
 namespace CppUnit {
@@ -18,7 +19,7 @@ class TestResult;
  * \see TestCase
  * \see TestSuite
  */
-class Test
+class CPPUNIT_API Test
 {
 public:
     virtual                       ~Test () {};

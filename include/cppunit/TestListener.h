@@ -16,7 +16,7 @@ class TestFailure;
  *
  * \see TestResult
  */
-class TestListener
+class CPPUNIT_API TestListener
 {
 public:
   virtual ~TestListener() {}

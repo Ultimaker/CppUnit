@@ -8,7 +8,7 @@ namespace CppUnit {
   class Test;
 
   template<typename TestCaseType>
-    class TestSuiteFactory : public TestFactory
+  class TestSuiteFactory : public TestFactory
   {
   public:
     virtual Test *makeTest()

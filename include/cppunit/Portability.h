@@ -34,6 +34,12 @@
 #define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
 #endif
 
+// CPPUNIT_API is defined in <config_msvc6.h> if required (building or using as dll)
+#ifndef CPPUNIT_API
+#define CPPUNIT_API
+#undef CPPUNIT_NEED_DLL_DECL
+#define CPPUNIT_NEED_DLL_DECL 0
+#endif
 
 
 /* perform portability hacks */

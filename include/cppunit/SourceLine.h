@@ -17,7 +17,7 @@ namespace CppUnit
 /*! \class SourceLine
  * \brief This class represents the location of a line of text in a specified file.
  */
-class SourceLine
+class CPPUNIT_API SourceLine
 {
 public:
   SourceLine();
