@@ -1,3 +1,38 @@
+2001-06-17 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+
+	* configure.in: moved config.h from include/ to config/
+
+	* configure.in: added AC_CREATE_PREFIX_CONFIG_H call
+	
+	* config/ac_create_prefix_config_h.m4: added
+
+	* configure.in: removed include/cppunit/config.h from AC_OUTPUT
+	* include/cppunit/config.h.in: obsoleted by
+	AC_CREATE_PREFIX_CONFIG_H macro.
+	
+	* configure.in:
+	* config/bb_enable_doxygen.m4: moved doxygen stuff into 
+	BB_ENABLE_DOXYGEN macro
+
+	* include/cppunit/Makefile.am: removed config.h, added config-auto.h,
+	config-msvc6.h, config-bcb5.h, Portability.h
+	
+	* include/cppunit/Makefile.am: added dist-hook to exclude 
+	config-auto.h from dist tar
+	
+	* include/cppunit/TestAssert.h:
+	* include/cppunit/extensions/TypeInfoHelper.h:
+	* include/cppunit/extensions/TestSuiteBuilder.h:
+	* include/cppunit/extensions/HelperMacros.h:
+	* src/cppunit/TypeInfoHelper.cpp:
+	* src/cppunit/TestRegistry.cpp:
+	* src/cppunit/TestFactoryRegistry.cpp:
+	* src/cppunit/TestCase.cpp: replaced #include of <config.h> with 
+	<cppunit/Portability.h>
+	
+	* src/cppunit/TypeInfoHelper.cpp: use new macro name 
+	CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST
+	
 2001-06-12 Baptiste Lepilleur <gaiacrtn@free.fr>
 	
 	* include/cppunit/NotEqualException.h
