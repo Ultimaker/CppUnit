@@ -226,7 +226,7 @@ bool
 TestPath::splitPathString( const std::string &pathAsString,
                            PathTestNames &testNames )
 {
-  bool isRelative = (pathAsString.substr(0,1) != "/");
+  bool isRelative = pathAsString.length()  &&  pathAsString[0] != "/";
 
   int index = (isRelative ? 0 : 1);
   while ( true )

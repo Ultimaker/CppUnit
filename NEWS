@@ -4,6 +4,9 @@
 
 * Bug Fix:
 
+  - Memory checker: bug #938753, array bound read in 
+    splitPathString() with substr if an empty string is passed.
+
 * Compilation:
 
   - Compilation: mingw & cigwin, bug #930338 & #945737 fixed.

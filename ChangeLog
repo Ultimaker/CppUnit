@@ -8,6 +8,9 @@
   * doc/Makefile.am: fixed bug #940650 => cp -dpR, removed option -p since
     there is no link to preserve anyway (does not exist on SunOs).
 
+  * src/cppunit/TestPath.cpp: bug #938753, array bound read in 
+    splitPathString() with substr if an empty string is passed.
+
 
 2004-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
 
