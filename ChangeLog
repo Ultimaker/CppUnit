@@ -1,5 +1,7 @@
 2001-09-30  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* Release 1.6.1.
+
 	* doc/footer.html: Do not meddle with font size.
 
 	* doc/header.html: Add link to FAQ.  Do not meddle with font size.
