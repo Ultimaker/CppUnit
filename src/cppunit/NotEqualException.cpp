@@ -24,7 +24,7 @@ NotEqualException::NotEqualException( const NotEqualException &other ) :
 }
 
 
-NotEqualException::~NotEqualException()
+NotEqualException::~NotEqualException() throw()
 {
 }
 

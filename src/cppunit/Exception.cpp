@@ -29,7 +29,7 @@ Exception::Exception( std::string message,
 
 
 /// Destruct the exception
-Exception::~Exception ()
+Exception::~Exception () throw()
 {
 }
 

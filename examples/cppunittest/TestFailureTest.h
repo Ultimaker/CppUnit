@@ -31,7 +31,7 @@ private:
     {
     }
 
-    virtual ~ObservedException() 
+    virtual ~ObservedException() throw()
     {
       m_listener->exceptionDestroyed();
     }

@@ -34,7 +34,7 @@ namespace CppUnit {
                  std::string fileName = UNKNOWNFILENAME);
       Exception (const Exception& other);
 
-      virtual ~Exception ();
+      virtual ~Exception () throw();
 
       Exception& operator= (const Exception& other);
 

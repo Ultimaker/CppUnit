@@ -17,7 +17,8 @@ namespace CppUnit {
 
     NotEqualException( const NotEqualException &other );
 
-    virtual ~NotEqualException();
+
+    virtual ~NotEqualException() throw();
 
     std::string expectedValue() const;
 
