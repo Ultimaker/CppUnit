@@ -1,5 +1,7 @@
 2001-10-21  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* configure.in: Bump version to 1.7.2.
+
 	* Release 1.7.1 (alpha).
 
 	* Merged changes from cvs BRANCH_1_6; details follow.
