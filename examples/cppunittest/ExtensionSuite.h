@@ -1,6 +1,7 @@
 #ifndef CPPUNITTEST_EXTENSIONSSUITE_H
 #define CPPUNITTEST_EXTENSIONSSUITE_H
 
+#include <cppunit/Portability.h>
 #include <string>
 
 inline std::string extensionSuiteName()

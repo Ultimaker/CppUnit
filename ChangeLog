@@ -1,3 +1,33 @@
+2002-12-02 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/plugin/DynamicLibraryManagerException.h: added constructor
+    to fix compilation issues on recents version of gcc and sun CC (bug #619059)
+
+  * include/cppunit/input/XmlInputHelper.h: added.
+
+2002-09-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/extensions/TestSuiteBuilderContext.h:
+  * src/cppunit/TestSuiteBuilderContext.cpp: added addProperty() and
+    getStringProperty(). Added macros CPPUNIT_TEST_SUITE_PROPERTY.
+
+  * src/msvc6/testrunner/TestRunnerDlg.cpp: integrated Tim Threlkeld's
+    bug fix #610162: browse button was disabled if history was empty.
+
+  * src/msvc6/testrunner/DynamicWindow/cdxCSizeIconCtrl.cpp: integrated 
+    Tim Threlkeld's bug fix #610191: common control were not initialized.
+
+  * include/cppunit/extensions/ExceptionTestCaseDecorator.h: bug #603172,
+    missing Message construction.
+
+  * src/cppunit/DefaultProtector.cpp: bug #603172. Fixed missing ';'.
+
+  * src/cppunit/TestCase.cpp: bug #603671. Removed unguarded typeinfo
+    include.
+
+  * examples/cppunittests/*Suite.h: bug #603666. Added missing Portability.h
+    include.
+
 2002-09-01 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/ui/text/TextTestRunner.h: fixed header guards.

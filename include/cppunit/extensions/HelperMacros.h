@@ -400,6 +400,17 @@
 #define CPPUNIT_TEST_SUITE_ADD_CUSTOM_TESTS( testAdderMethod ) \
       testAdderMethod( context )
 
+/*! \brief Adds a property to the test suite builder context.
+ * \param APropertyKey   Key of the property to add.
+ * \param APropertyValue Value for the added property.
+ * Example:
+ * \code
+ * CPPUNIT_TEST_SUITE_PROPERTY("XmlFileName", "paraTest.xml"); \endcode
+ */
+#define CPPUNIT_TEST_SUITE_PROPERTY( APropertyKey, APropertyValue ) \
+    context.addProperty( std::string(APropertyKey),                 \
+                         std::string(APropertyValue) )
+
 /** @}
  */
 

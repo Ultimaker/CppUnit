@@ -443,10 +443,6 @@ SOURCE=.\CppUnitTestSuite.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\CppUnitTestSuite.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\ExtensionSuite.h
 # End Source File
 # Begin Source File

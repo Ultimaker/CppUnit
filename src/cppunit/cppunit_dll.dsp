@@ -670,5 +670,9 @@ SOURCE=..\..\include\cppunit\Makefile.am
 
 SOURCE=.\Makefile.am
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\XmlInputHelper.h
+# End Source File
 # End Target
 # End Project

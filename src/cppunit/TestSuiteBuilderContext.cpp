@@ -46,4 +46,22 @@ TestSuiteBuilderContextBase::makeTestFixture() const
 }
 
 
+void 
+TestSuiteBuilderContextBase::addProperty( const std::string &key, 
+                                          const std::string &value )
+{
+    m_properties[ key ] = value;
+}
+
+const std::string 
+TestSuiteBuilderContextBase::getStringProperty( const std::string &key ) const
+{
+    Properties::const_iterator itFound = m_properties.find( key );
+    if ( itFound == m_properties.end() )
+        return "";
+
+    return (*itFound).second;
+}
+
+
 CPPUNIT_NS_END

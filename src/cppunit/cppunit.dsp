@@ -663,6 +663,69 @@ SOURCE=.\ProtectorChain.h
 SOURCE=.\ProtectorContext.h
 # End Source File
 # End Group
+# Begin Group "input"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\DummyInputTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\DummyTestInput.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\GenericTestInputFactory.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\InputTestCall.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\InputTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\XmlInput\ParameterizedTestCase.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\ParameterizedTestCase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\ParamTestCaller.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\XmlInput\ParamTestLeaf.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\ParamTestLeaf.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\TestInput.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\XmlInput\XmlInputDefinition.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\input\XmlInputDefinition.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\extensions\XmlInputHelper.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\..\configure.in

@@ -32,6 +32,10 @@ public:
                                   const std::string &errorDetail,
                                   Cause cause );
 
+  ~DynamicLibraryManagerException() throw()
+  {
+  }
+
   Cause getCause() const;
 
   const char *what() const throw();

@@ -2,7 +2,13 @@
 #define CPPUNIT_HELPER_TESTSUITEBUILDERCONTEXT_H
 
 #include <cppunit/Portability.h>
+#include <cppunit/Portability/CppUnitMap.h>
 #include <string>
+
+#if CPPUNIT_NEED_DLL_DECL
+#pragma warning( push )
+#pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
+#endif
 
 CPPUNIT_NS_BEGIN
 
@@ -53,12 +59,27 @@ public:
    */
   std::string getTestNameFor( const std::string &testMethodName ) const;
 
+  /*! \brief Adds property pair.
+   * \param key   PropertyKey string to add.
+   * \param value PropertyValue string to add.
+   */
+  void addProperty( const std::string &key, 
+                    const std::string &value );
+  
+  /*! \brief Returns property value assigned to param key.
+   * \param key PropertyKey string.
+   */
+  const std::string getStringProperty( const std::string &key ) const;
+
 protected:
   TestFixture *makeTestFixture() const;
+
+  typedef CppUnitMap<std::string,std::string> Properties;
 
   TestSuite &m_suite;
   const TestNamer &m_namer;
   TestFixtureFactory &m_factory;
+  Properties m_properties;
 };
 
 
@@ -92,6 +113,10 @@ public:
 
 
 CPPUNIT_NS_END
+
+#if CPPUNIT_NEED_DLL_DECL
+#pragma warning( pop )
+#endif
 
 #endif // CPPUNIT_HELPER_TESTSUITEBUILDERCONTEXT_H
 

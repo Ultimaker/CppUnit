@@ -83,7 +83,7 @@ public:
                            TypeInfoHelper::getClassName( 
                                typeid( ExpectedExceptionType ) ) ) );
 #else
-      throw Exception( "expected exception not thrown" );
+      throw Exception( Message("expected exception not thrown") );
 #endif
   }
 

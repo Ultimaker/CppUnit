@@ -43,6 +43,8 @@ cdxCSizeIconCtrl::AutoOEMImageList::AutoOEMImageList(UINT nBitmapID, COLORREF cr
 
 	m_szImage.cx	=	bmp.bmWidth;
 	m_szImage.cy	=	bmp.bmHeight;
+  
+	InitCommonControls();
 
 	VERIFY( Create(bmp.bmWidth,bmp.bmHeight,ILC_COLOR16|ILC_MASK,0,1) );
 	int	i	=	Add(&cbmp,crMask);

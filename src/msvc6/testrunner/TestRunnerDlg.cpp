@@ -463,7 +463,10 @@ TestRunnerDlg::updateHistoryCombo()
     beIdle();
   }
   else
+  {
     beRunDisabled();
+    m_buttonBrowse.EnableWindow( TRUE );
+	}
 
   getHistoryCombo()->UnlockWindowUpdate();
 }
