@@ -11,7 +11,7 @@ CPPUNIT_NS_BEGIN
 class TestFactoryRegistryList
 {
 private:
-  typedef CppUnitMap<std::string, TestFactoryRegistry *> Registries;
+  typedef CppUnitMap<std::string, TestFactoryRegistry *, std::less<std::string> > Registries;
   Registries m_registries;
 
   enum State {
@@ -41,10 +41,10 @@ private:
     if ( foundIt == m_registries.end() )
     {
       TestFactoryRegistry *factory = new TestFactoryRegistry( name );
-      m_registries.insert( std::make_pair( name, factory ) );
+      m_registries.insert( std::pair<const std::string, TestFactoryRegistry*>( name, factory ) );
       return factory;
     }
-    return foundIt->second;
+    return (*foundIt).second;
   }
 
 public:
@@ -56,7 +56,7 @@ public:
   ~TestFactoryRegistryList()
   {
     for ( Registries::iterator it = m_registries.begin(); it != m_registries.end(); ++it )
-      delete it->second;
+      delete (*it).second;
 
     stateFlag( destroyed );
   }
