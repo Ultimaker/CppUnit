@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.5 2001-04-19 20:47:22 bastiaan Exp $
+# $Id: Makefile.am,v 1.1 2001-04-28 18:23:32 bastiaan Exp $
 #
 
 EXTRA_DIST = cppunit.dsw cppunit.dsp

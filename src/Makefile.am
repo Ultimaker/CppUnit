@@ -1,1 +1,3 @@
-SUBDIRS = msvc6
+SUBDIRS = cppunit 
+
+DIST_SUBDIRS = msvc6
