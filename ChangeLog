@@ -1,5 +1,11 @@
 2002-04-11 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* configure.in: bumped version to 1.9.0
+	
+	* NEWS: added version 1.9.0
+
+2002-04-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* doc/FAQ: removed question about the Exception::operator =() problem.
 
 	* release 1.8.0
