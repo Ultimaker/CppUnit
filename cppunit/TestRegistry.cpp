@@ -13,8 +13,10 @@ static bool instanciated=false;
 TestRegistry&
 TestRegistry::getRegistry ()
 {
-  if(!instanciated)
+  if(!instanciated) {
     s_registry=new TestRegistry();
+    instanciated=true;
+  }
   return *s_registry;
 }
 
