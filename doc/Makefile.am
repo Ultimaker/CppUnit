@@ -32,20 +32,13 @@ all-local: dox #pdf
 endif
 
 
-# Workaround for broken Doxygen.  Version 1.2.9.1 doesn't create
-# this directory, though it does create man/man3.
-man_extension_dir = man/man3/extensions
-$(man_extension_dir):
-	mkdir -p $@
-
-
 dox: html/index.html
 
-html/index.html: Doxyfile $(doxygen_input) $(man_extension_dir)
+html/index.html: Doxyfile $(doxygen_input)
 	@DOXYGEN@
 
 
-# Distribute the HTML documentation.
+# Make tarfile to distribute the HTML documentation.
 doc-dist: dox
 	cp $(static_pages) html
 	tar -czf $(PACKAGE)-docs-$(VERSION).tar.gz -C html .

@@ -57,7 +57,9 @@ cppunittestmain_SOURCES = \
 	XmlOutputterTest.h \
 	XmlOutputterTest.cpp \
 	XmlUniformiser.h \
-	XmlUniformiser.cpp
+	XmlUniformiser.cpp \
+	XmlUniformiserTest.h \
+	XmlUniformiserTest.cpp
 
 cppunittestmain_LDADD= \
   $(top_builddir)/src/cppunit/libcppunit.la 

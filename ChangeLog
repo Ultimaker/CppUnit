@@ -1,3 +1,11 @@
+2001-10-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* examples/cppunittest/Makefile.am (cppunittestmain_SOURCES):
+	Include XmlUnformiserTest files.
+
+	* doc/Doxyfile.in (GENERATE_MAN): Do not generate man pages.
+	* doc/Makefile.am: Do not make man directories.
+
 2001-10-19 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* include/cppunit/Exception.h:
