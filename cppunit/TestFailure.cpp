@@ -5,7 +5,8 @@
 using namespace CppUnit;
 
 /// Returns a short description of the failure.
-std::string TestFailure::toString () const 
+std::string 
+TestFailure::toString () const 
 { 
   return m_failedTest->toString () + ": " + m_thrownException->what ();
 }
@@ -17,5 +18,7 @@ TestFailure::TestFailure (Test *failedTest, Exception *thrownException)
 }
 
 /// Deletes the owned exception.
-inline TestFailure::~TestFailure ()
-{ delete m_thrownException; }
+TestFailure::~TestFailure ()
+{ 
+  delete m_thrownException; 
+}

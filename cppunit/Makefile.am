@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.1.1.1 2000-10-05 18:37:28 e-s Exp $
+# $Id: Makefile.am,v 1.2 2000-10-11 18:53:13 e-s Exp $
 #
 
 cppunitdir=$(includedir)/cppunit
@@ -11,9 +11,12 @@ libcppunit_la_SOURCES = \
   TestSuite.cpp \
   TestResult.cpp \
   TestFailure.cpp \
-  TestRegistry.cpp
+  TestRegistry.cpp \
+  Exception.cpp \
+  TextTestResult.cpp 
 
 cppunit_HEADERS = \
+  estring.h \
   Test.h \
   TestCase.h \
   TestSuite.h \
@@ -21,7 +24,9 @@ cppunit_HEADERS = \
   TestFailure.h \
   TestRegistry.h \
   TestCaller.h \
-  Exception.h
+  Exception.h \
+  TextTestResult.h
+
 
 
 libcppunit_la_LDFLAGS= \

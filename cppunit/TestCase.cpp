@@ -2,6 +2,7 @@
 #include "Exception.h"
 #include "TestResult.h"
 #include "estring.h"
+#include "TestRegistry.h"
 
 #include <typeinfo>
 #include <stdexcept>
@@ -117,7 +118,13 @@ std::string TestCase::notEqualsMessage (double expected, double actual)
 /// Constructs a test case
 inline TestCase::TestCase (std::string name) 
   : m_name (name) 
-{}
+{
+  if(m_name=="") 
+    return;
+
+  TestRegistry::getRegistry().addTest(m_name, this);
+  
+}
 
 
 /// Destructs a test case

@@ -75,8 +75,8 @@ namespace CppUnit {
         }
 
       private: 
-        className (const TestCaller& other); 
-        className& operator= (const TestCaller& other); 
+        TestCaller (const TestCaller& other); 
+        TestCaller& operator= (const TestCaller& other); 
 
       private:
         std::auto_ptr<Fixture>   m_fixture;

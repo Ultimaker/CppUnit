@@ -2,11 +2,13 @@
 
 using namespace CppUnit;
 
-const std::string Exception::UNKNOWNFILENAME = "<unknown>";
-const int Exception::UNKNOWNLINENUMBER = -1;
+const std::string 
+CppUnit::Exception::UNKNOWNFILENAME = 
+  "<unknown>";
+const int CppUnit::Exception::UNKNOWNLINENUMBER = -1;
 
 /// Construct the exception
-inline Exception::Exception (const Exception& other)
+CppUnit::Exception::Exception (const Exception& other)
   : exception (other)
 { 
   m_message       = other.m_message; 
@@ -14,19 +16,19 @@ inline Exception::Exception (const Exception& other)
   m_fileName      = other.m_fileName;
 } 
 
-inline Exception::Exception (std::string message, long lineNumber, std::string fileName)
+CppUnit::Exception::Exception (std::string message, long lineNumber, std::string fileName)
   : m_message (message), m_lineNumber (lineNumber), m_fileName (fileName)
 {}
 
 
 /// Destruct the exception
-inline Exception::~Exception ()
+CppUnit::Exception::~Exception ()
 {}
 
 
 /// Perform an assignment
-inline Exception& 
-  Exception::operator= (const Exception& other)
+Exception& 
+CppUnit::Exception::operator= (const Exception& other)
 { 
   exception::operator= (other);
 
@@ -41,18 +43,18 @@ inline Exception&
 
 
 /// Return descriptive message
-inline const char*
-  Exception::what() const throw ()
+const char*
+CppUnit::Exception::what() const throw ()
 { return m_message.c_str (); }
 
 /// The line on which the error occurred
-inline long 
-  Exception::lineNumber ()
+long 
+CppUnit::Exception::lineNumber ()
 { return m_lineNumber; }
 
 
 /// The file in which the error occurred
-inline std::string 
-  Exception::fileName ()
+std::string 
+CppUnit::Exception::fileName ()
 { return m_fileName; }
 
