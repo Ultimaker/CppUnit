@@ -4,10 +4,7 @@
 #include "estring.h"
 #include "Test.h"
 
-using namespace std;
-using namespace CppUnit;
-
-
+namespace CppUnit {
 
 std::ostream& 
 CppUnit::operator<< (std::ostream& stream, TextTestResult& result)
@@ -126,3 +123,5 @@ TextTestResult::printHeader (ostream& stream)
              << endl;
 
 }
+
+} // namespace CppUnit

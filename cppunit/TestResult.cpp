@@ -1,6 +1,6 @@
 #include "TestResult.h"
 
-using namespace CppUnit;
+namespace CppUnit {
 
 /// Destroys a test result
 TestResult::~TestResult ()
@@ -107,3 +107,4 @@ void
   TestResult::setSynchronizationObject (SynchronizationObject *syncObject)
 { delete m_syncObject; m_syncObject = syncObject; }
 
+} // namespace CppUnit

@@ -2,7 +2,7 @@
 #include "Exception.h"
 #include "Test.h"
 
-using namespace CppUnit;
+namespace CppUnit {
 
 /// Returns a short description of the failure.
 std::string 
@@ -22,3 +22,5 @@ TestFailure::~TestFailure ()
 { 
   delete m_thrownException; 
 }
+
+} // namespace CppUnit

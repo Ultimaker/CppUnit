@@ -1,7 +1,7 @@
 #include "TestSuite.h"
 #include "TestResult.h"
 
-using namespace CppUnit;
+namespace CppUnit {
 
 /// Deletes all tests in the suite.
 void TestSuite::deleteContents ()
@@ -82,4 +82,5 @@ std::string
   return m_name; 
 }
 
+} // namespace CppUnit
 

@@ -13,8 +13,6 @@
 #include <vector>
 #include <iostream>
 
-using namespace CppUnit;
-
 BoardGameTest<BoardGame> bgt("BoardGameTest<BoardGame>");
 ChessTest<Chess> ct("ChessTest<Chess>");
 
@@ -22,15 +20,16 @@ ChessTest<Chess> ct("ChessTest<Chess>");
 int 
 main(int argc, char** argv)
 {
-  TextTestResult res;
-  TestSuite suite;
+  CppUnit::TextTestResult res;
+  CppUnit::TestSuite suite;
 
   bgt.registerTests(&suite);
   ct.registerTests(&suite);
 
-  vector<Test*> tests=TestRegistry::getRegistry().getAllTests();
+  std::vector<CppUnit::Test*> tests = 
+      CppUnit::TestRegistry::getRegistry().getAllTests();
 
-  for(vector<Test*>::iterator it=tests.begin();
+  for(std::vector<CppUnit::Test*>::iterator it=tests.begin();
       it!=tests.end(); ++it) {
     
     (*it)->run(&res);

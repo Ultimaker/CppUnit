@@ -1,8 +1,9 @@
 #include "TestRegistry.h"
 #include "Test.h"
 
-using namespace std;
-using namespace CppUnit;
+//using namespace std;
+
+namespace CppUnit {
 
 std::vector<std::string> s_registry_names;
 std::vector<Test*> s_registry_tests;
@@ -69,4 +70,5 @@ TestRegistry::TestRegistry ()
 {
 }
 
+} // namespace CppUnit
 

@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <cmath>
 
-using namespace CppUnit;
+namespace CppUnit {
 
 /// Create a default TestResult
 CppUnit::TestResult* TestCase::defaultResult ()
@@ -175,3 +175,4 @@ std::string
   return std::string (thisClass.name ()) + "." + getName (); 
 }
   
+} // namespace CppUnit

@@ -1,6 +1,6 @@
 #include "Exception.h"
 
-using namespace CppUnit;
+namespace CppUnit {
 
 const std::string 
 CppUnit::Exception::UNKNOWNFILENAME = 
@@ -59,3 +59,4 @@ std::string
 CppUnit::Exception::fileName ()
 { return m_fileName; }
 
+} // namespace CppUnit
