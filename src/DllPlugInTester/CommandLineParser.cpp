@@ -304,7 +304,7 @@ CommandLineParser::getPlugInCount() const
 CommandLinePlugInInfo 
 CommandLineParser::getPlugInAt( int index ) const
 {
-  return m_plugIns.at( index );
+  return m_plugIns[ index ];
 }
 
 
