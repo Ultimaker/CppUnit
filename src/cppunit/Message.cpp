@@ -9,6 +9,11 @@ Message::Message()
 {
 }
 
+Message::Message( const Message &other )
+{
+   *this = other;
+}
+
 
 Message::Message( const std::string &shortDescription )
     : m_shortDescription( shortDescription )
@@ -40,6 +45,22 @@ Message::Message( const std::string &shortDescription,
     : m_shortDescription( shortDescription )
 {
   addDetail( detail1, detail2, detail3 );
+}
+
+Message &
+Message::operator =( const Message &other )
+{
+   if ( this != &other )
+   {
+      m_shortDescription = other.m_shortDescription.c_str();
+      m_details.clear();
+      Details::const_iterator it = other.m_details.begin();
+      Details::const_iterator itEnd = other.m_details.end();
+      while ( it != itEnd )
+         m_details.push_back( (*it++).c_str() );
+   }
+
+   return *this;
 }
 
 

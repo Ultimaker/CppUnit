@@ -10,11 +10,30 @@ SourceLine::SourceLine() :
 }
 
 
-SourceLine::SourceLine( const std::string &fileName,
-                        int lineNumber ) :
-    m_fileName( fileName ),
-    m_lineNumber( lineNumber )
+SourceLine::SourceLine( const SourceLine &other )
+   : m_fileName( other.m_fileName.c_str() )
+   , m_lineNumber( other.m_lineNumber )
 {
+}
+
+
+SourceLine::SourceLine( const std::string &fileName,
+                        int lineNumber )
+   : m_fileName( fileName.c_str() )
+   , m_lineNumber( lineNumber )
+{
+}
+
+
+SourceLine &
+SourceLine::operator =( const SourceLine &other )
+{
+   if ( this != &other )
+   {
+      m_fileName = other.m_fileName.c_str();
+      m_lineNumber = other.m_lineNumber;
+   }
+   return *this;
 }
 
 
