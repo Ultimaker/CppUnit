@@ -1,11 +1,18 @@
 2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* bumped version to 1.9.7
+
+	* comitted stuffs I forgot to in 1.9.6.
+
+2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* contrib/bc5/bcc-makefile.zip: updated, generic makefile for
 	  Borland 5.5, contributed by project cuppa.
 
 	* examples/cppunittest/*Suite.h: integrated Jeffrey Morgan's patch,
 	  to remove warning with gcc.
 
+	* release 1.9.6
 
 2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
 
