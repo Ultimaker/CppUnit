@@ -25,8 +25,10 @@ class TestFailure;
  * unanticipated problems signified by exceptions that are not generated
  * by the framework.
  *
- * \code
+ * Here is an example to track test time:
  *
+ *
+ * \code
  * #include <cppunit/TestListener.h>
  * #include <cppunit/Test.h>
  * #include <time.h>    // for clock()
@@ -48,35 +50,42 @@ class TestFailure;
  *   // ... (interface to add/read test timing result)
  *
  * private:
- *
- *   class Clock
- *   {
- *   public:
- *     Clock() : _startTime( 0 ), _endTime(0) {}
- * 
- *     void start()
- *     {
- *       _startTime = clock();
- *     }
- * 
- *     void end()
- *     {
- *       _endTime = clock();
- *     }
- *
- *     double elapsedTime() const
- *     {
- *       return double(_endTime - _startTime) / CLOCKS_PER_SEC;
- *     }
- *  
- *   private:
- *     clock_t _startTime, _endTime;   
- *   };
- *
  *   Clock _chronometer;
  * };
+ * \endcode
  *   
+ * And another example that track failure/sucess at test suite level and captures
+ * the TestPath of each suite:
+ * \code
+ * class SuiteTracker : public CppUnit::TestListener
+ * {
+ * public:
+ *   void startSuite( CppUnit::Test *suite )
+ *   {
+ *     m_currentPath.add( suite );
+ *   }
+ *   
+ *   void addFailure( const TestFailure &failure )
+ *   {
+ *     m_suiteFailure.top() = false;
+ *   }
+ * 
+ *   void endSuite( CppUnit::Test *suite )
+ *   {
+ *     m_suiteStatus.insert( std::make_pair( suite, m_suiteFailure.top() ) );
+ *     m_suitePaths.insert( std::make_pair( suite, m_currentPath ) );
  *
+ *     m_currentPath.up();
+ *     m_suiteFailure.pop();
+ *   }
+ *
+ * private:
+ *   std::stack<bool> m_suiteFailure;
+ *   CppUnit::TestPath m_currentPath;
+ *   std::map<CppUnit::Test *, bool> m_suiteStatus;
+ *   std::map<CppUnit::Test *, CppUnit::TestPath> m_suitePaths;
+ * };
+ * \endcode
  *
  * \see TestResult
  */
@@ -97,6 +106,14 @@ public:
 
   /// Called just after a TestCase was run (even if a failure occured).
   virtual void endTest( Test *test ) {}
+
+  /*! Called by a TestComposite just before running its child tests.
+   */
+  virtual void startSuite( Test *suite ) {}
+
+  /*! Called by a TestComposite after running its child tests.
+   */
+  virtual void endSuite( Test *suite ) {}
 };
 
 

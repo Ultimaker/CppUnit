@@ -64,6 +64,8 @@ public:
 
   /*! \brief Finds the test with the specified name and its parents test.
    * \param testName Name of the test to find.
+   * \param testPath If the test is found, then all the tests traversed to access
+   *                 \a test are added to \a testPath, including \c this and \a test.
    * \return \c true if a test with the specified name is found, \c false otherwise.
    */
   virtual bool findTestPath( const std::string &testName,
@@ -71,6 +73,8 @@ public:
 
   /*! \brief Finds the specified test and its parents test.
    * \param test Test to find.
+   * \param testPath If the test is found, then all the tests traversed to access
+   *                 \a test are added to \a testPath, including \c this and \a test.
    * \return \c true if the specified test is found, \c false otherwise.
    */
   virtual bool findTestPath( const Test *test,
@@ -93,7 +97,7 @@ public:
 
 protected:
   /*! Throws an exception if the specified index is invalid.
-   * \param Zero base index of a child test.
+   * \param index Zero base index of a child test.
    * \exception std::out_of_range is \a index is < 0 or >= getChildTestCount().
    */
   virtual void checkIsValidIndex( int index ) const;

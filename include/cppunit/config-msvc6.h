@@ -55,6 +55,11 @@
 #define CPPUNIT_NEED_DLL_DECL 1
 #endif
 
+// Compiler error location format for CompilerOutputter
+// See class CompilerOutputter for format.
+#undef CPPUNIT_COMPILER_LOCATION_FORMAT
+#define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
+
 #if _MSC_VER > 1000     // VC++
 #pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
 #endif // _MSC_VER > 1000

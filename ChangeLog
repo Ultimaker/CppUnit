@@ -1,3 +1,36 @@
+2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/CompilerOutputter.h:
+	* src/cppunit/CompilerOutputter.h: deprecated defaultOuputter(). Added 
+	  setLocationFormat() and format specifiation in constructor. A string that 
+	  represent the location format is used to output the location. Default format
+	  is defined by CPPUNIT_COMPILER_LOCATION_FORMAT.
+
+	* include/cppunit/config-msvc6.h:
+	* include/cppunit/Portability.h: added CPPUNIT_COMPILER_LOCATION_FORMAT. Use
+	  gcc location format if VC++ is not detected.
+
+	* include/cppunit/Test.h: fixed documentation.
+
+	* include/cppunit/TestListener.h: added startSuite() and endSuite() 
+	  callbacks. Added new example to documentation.
+
+	* include/cppunit/TestResult.h:
+	* src/cppunit/TestResult.cpp:
+	* include/cppunit/TestComposite.h:
+	* src/cppunit/TestComposite.cpp: Updated to inform the listeners.
+
+	* src/qttestrunner/TestBrowserDlgImpl.cpp: used Test new composite interface
+	  instead of RTTI to explore the test hierarchy.
+
+	* examples/cppunittest/MockTestListener.h:
+	* examples/cppunittest/MockTestListener.cpp: updated,added support for
+	  startSuite() and endSuite().
+
+	* examples/cppunittest/TestResultTest.h:
+	* examples/cppunittest/TestResultTest.cpp: added tests for startSuite() 
+	  and endSuite().
+
 2002-04-12 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* Makefile.am: added examples/qt to tar ball release.

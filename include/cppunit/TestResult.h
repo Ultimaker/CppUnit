@@ -61,6 +61,9 @@ public:
   virtual void addFailure( Test *test, Exception *e );
   virtual void endTest( Test *test );
 
+  virtual void startSuite( Test *test );
+  virtual void endSuite( Test *test );
+
 protected:
   void addFailure( const TestFailure &failure );
   

@@ -3,14 +3,14 @@
   - [DONE] Introduce a new generic CppUnit::TestRunner
   - [DONE]Update MfcTestRunner to use Test::findTest()
   - Update MfcTestRunner to use TestPath to store test in the registry
-  - Update QtTestRunner to use findTest()
+  - [DONE]Update QtTestRunner to use findTest()
   - Include DllPlugInTester, and update to use findTest() and TestPath().
-  - Add startSuite() and endSuite() to TestListener and TestResult
+  - [DONE] Add startSuite() and endSuite() to TestListener and TestResult
   - Add TestResult::protectedRun( ProtectedTest * ) to allow custom exception and other
     error catching (signal on Unix)
   - Add a global set up decorator for all test run to TestResult 
-    (subclass TestSetupDecorator, and add a setTest() method )
-  - Change CompilerOutputter to be customized with parameter instead of subclassing:
+    (subclass TestSetupDecorator, and add a setTest() method ) => thread, CoInitInstance...
+  - [DONE]Change CompilerOutputter to be customized with parameter instead of subclassing:
     provide a default string to the constructor that indicates the error report format:
 	%p => full path (D:\prg\..\File.cpp)
 	%f => just the file name (File.cpp)

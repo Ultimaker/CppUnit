@@ -21,10 +21,16 @@ public:
   void setExpectedStartTestCall( int callCount );
   void setExpectEndTest( CppUnit::Test *test );
   void setExpectedEndTestCall( int callCount );
+  void setExpectStartSuite( CppUnit::Test *suite );
+  void setExpectedStartSuiteCall( int callCount );
+  void setExpectEndSuite( CppUnit::Test *suite );
+  void setExpectedEndSuiteCall( int callCount );
 
   void addFailure( const CppUnit::TestFailure &failure );
   void startTest( CppUnit::Test *test );
   void endTest( CppUnit::Test *test );
+  void startSuite( CppUnit::Test *suite );
+  void endSuite( CppUnit::Test *suite );
 
   void verify();
 
@@ -42,6 +48,18 @@ private:
   int m_expectedEndTestCallCount;
   CppUnit::Test *m_expectedEndTest;
   int m_endTestCall;
+
+  bool m_hasExpectationForStartSuite;
+  bool m_hasParametersExpectationForStartSuite;
+  int m_expectedStartSuiteCallCount;
+  CppUnit::Test *m_expectedStartSuite;
+  int m_startSuiteCall;
+
+  bool m_hasExpectationForEndSuite;
+  bool m_hasParametersExpectationForEndSuite;
+  int m_expectedEndSuiteCallCount;
+  CppUnit::Test *m_expectedEndSuite;
+  int m_endSuiteCall;
 
   bool m_hasExpectationForAddFailure;
   bool m_hasExpectationForSomeFailure;

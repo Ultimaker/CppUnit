@@ -13,6 +13,14 @@ MockTestListener::MockTestListener( std::string name )
     , m_hasParametersExpectationForEndTest( false )
     , m_expectedEndTestCallCount( 0 )
     , m_endTestCall( 0 )
+    , m_hasExpectationForStartSuite( false )
+    , m_hasParametersExpectationForStartSuite( false )
+    , m_expectedStartSuiteCallCount( 0 )
+    , m_startSuiteCall( 0 )
+    , m_hasExpectationForEndSuite( false )
+    , m_hasParametersExpectationForEndSuite( false )
+    , m_expectedEndSuiteCallCount( 0 )
+    , m_endSuiteCall( 0 )
     , m_hasExpectationForAddFailure( false )
     , m_hasExpectationForSomeFailure( false )
     , m_hasParametersExpectationForAddFailure( false )
@@ -99,6 +107,42 @@ MockTestListener::setExpectedEndTestCall( int callCount )
 
 
 void 
+MockTestListener::setExpectStartSuite( CppUnit::Test *test )
+{
+  m_hasExpectationForStartSuite = true;
+  m_hasParametersExpectationForStartSuite = true;
+  m_expectedStartSuiteCallCount = 1;
+  m_expectedStartSuite = test;
+}
+
+
+void 
+MockTestListener::setExpectedStartSuiteCall( int callCount )
+{
+  m_hasExpectationForStartSuite = true;
+  m_expectedStartSuiteCallCount = callCount;
+}
+
+
+void 
+MockTestListener::setExpectEndSuite( CppUnit::Test *test )
+{
+  m_hasExpectationForEndSuite = true;
+  m_hasParametersExpectationForEndSuite = true;
+  m_expectedEndSuiteCallCount = 1;
+  m_expectedEndSuite = test;
+}
+
+
+void 
+MockTestListener::setExpectedEndSuiteCall( int callCount )
+{
+  m_hasExpectationForEndSuite = true;
+  m_expectedEndSuiteCallCount = callCount;
+}
+
+
+void 
 MockTestListener::addFailure( const CppUnit::TestFailure &failure )
 {
   if ( m_hasExpectationForAddFailure  ||  m_hasExpectationForSomeFailure )
@@ -160,6 +204,42 @@ MockTestListener::endTest( CppUnit::Test *test )
 
 
 void 
+MockTestListener::startSuite( CppUnit::Test *test )
+{
+  if ( m_hasExpectationForStartSuite )
+  {
+    ++m_startSuiteCall;
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": unexpected call",
+                            m_startSuiteCall <= m_expectedStartSuiteCallCount );
+  }
+
+  if ( m_hasParametersExpectationForStartSuite )
+  {
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": bad test",
+                            m_expectedStartSuite == test );
+  }
+}
+
+
+void 
+MockTestListener::endSuite( CppUnit::Test *test )
+{
+  if ( m_hasExpectationForEndSuite )
+  {
+    ++m_endSuiteCall;
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": unexpected call",
+                            m_endSuiteCall <= m_expectedEndSuiteCallCount );
+  }
+
+  if ( m_hasParametersExpectationForEndSuite )
+  {
+    CPPUNIT_ASSERT_MESSAGE( m_name + ": bad test",
+                            m_expectedEndSuite == test );
+  }
+}
+
+
+void 
 MockTestListener::verify()
 {
   if ( m_hasExpectationForStartTest )
@@ -174,6 +254,20 @@ MockTestListener::verify()
     CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing endTest calls",
                                   m_expectedEndTestCallCount, 
                                   m_endTestCall );
+  }
+
+  if ( m_hasExpectationForStartSuite )
+  {
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing startSuite calls",
+                                  m_expectedStartSuiteCallCount, 
+                                  m_startSuiteCall );
+  }
+
+  if ( m_hasExpectationForEndSuite )
+  {
+    CPPUNIT_ASSERT_EQUAL_MESSAGE( m_name + ": missing endSuite calls",
+                                  m_expectedEndSuiteCallCount, 
+                                  m_endSuiteCall );
   }
 
   if ( m_hasExpectationForAddFailure )

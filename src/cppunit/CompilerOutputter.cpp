@@ -10,9 +10,11 @@ namespace CppUnit
 {
 
 CompilerOutputter::CompilerOutputter( TestResultCollector *result,
-                                      std::ostream &stream ) :
-    m_result( result ),
-    m_stream( stream )
+                                      std::ostream &stream,
+                                      const std::string &locationFormat )
+    : m_result( result )
+    , m_stream( stream )
+    , m_locationFormat( locationFormat )
 {
 }
 
@@ -22,13 +24,18 @@ CompilerOutputter::~CompilerOutputter()
 }
 
 
+void 
+CompilerOutputter::setLocationFormat( const std::string &locationFormat )
+{
+  m_locationFormat = locationFormat;
+}
+
+
 CompilerOutputter *
 CompilerOutputter::defaultOutputter( TestResultCollector *result,
                                      std::ostream &stream )
 {
   return new CompilerOutputter( result, stream );
-// For automatic adpatation...
-//  return new CPPUNIT_DEFAULT_OUTPUTTER( result, stream );
 }
 
 
@@ -81,11 +88,64 @@ CompilerOutputter::printFailureDetail( TestFailure *failure )
 void 
 CompilerOutputter::printFailureLocation( SourceLine sourceLine )
 {
-  if ( sourceLine.isValid() )
-    m_stream  <<  sourceLine.fileName()  
-              <<  "("  << sourceLine.lineNumber()  << ") : ";
-  else
+  if ( !sourceLine.isValid() )
+  {
     m_stream  <<  "##Failure Location unknown## : ";
+    return;
+  }
+
+  std::string location;
+  for ( int index = 0; index < m_locationFormat.length(); ++index )
+  {
+    char c = m_locationFormat[ index ];
+    if ( c == '%'  &&  ( index+1 < m_locationFormat.length() ) )
+    {
+      char command = m_locationFormat[index+1];
+      if ( processLocationFormatCommand( command, sourceLine ) )
+      {
+        ++index;
+        continue;
+      }
+    }
+
+    m_stream  << c;
+  }
+}
+
+
+bool 
+CompilerOutputter::processLocationFormatCommand( char command, 
+                                                 const SourceLine &sourceLine )
+{
+  switch ( command )
+  {
+  case 'p':
+    m_stream  <<  sourceLine.fileName();
+    return true;
+  case 'l':
+    m_stream  <<  sourceLine.lineNumber();
+    return true;
+  case 'f':
+    m_stream  <<  extractBaseName( sourceLine.fileName() );
+    return true;
+  }
+  
+  return false;
+}
+
+
+std::string 
+CompilerOutputter::extractBaseName( const std::string &fileName ) const
+{
+  int indexLastDirectorySeparator = fileName.find_last_of( '/' );
+  
+  if ( indexLastDirectorySeparator < 0 )
+    indexLastDirectorySeparator = fileName.find_last_of( '\\' );
+  
+  if ( indexLastDirectorySeparator < 0 )
+    return fileName;
+
+  return fileName.substr( indexLastDirectorySeparator +1 );
 }
 
 

@@ -102,6 +102,30 @@ TestResultTest::testEndTest()
 
 
 void 
+TestResultTest::testStartSuite()
+{
+  m_listener1->setExpectStartSuite( m_dummyTest );
+  m_result->addListener( m_listener1 );
+  
+  m_result->startSuite( m_dummyTest );
+
+  m_listener1->verify();
+}
+
+
+void 
+TestResultTest::testEndSuite()
+{
+  m_listener1->setExpectEndSuite( m_dummyTest );
+  m_result->addListener( m_listener1 );
+  
+  m_result->endSuite( m_dummyTest );
+
+  m_listener1->verify();
+}
+
+
+void 
 TestResultTest::testTwoListener()
 {
   m_listener1->setExpectStartTest( m_dummyTest );

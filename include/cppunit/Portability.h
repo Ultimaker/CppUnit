@@ -42,6 +42,13 @@
 #endif
 
 
+// Compiler error location format for CompilerOutputter
+// If not define, assumes that it's gcc
+// See class CompilerOutputter for format.
+#ifndef CPPUNIT_COMPILER_LOCATION_FORMAT
+#define CPPUNIT_COMPILER_LOCATION_FORMAT "%f:%l:"
+#endif
+
 /* perform portability hacks */
 
 

@@ -15,6 +15,8 @@ class TestResultTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testAddFailure );
   CPPUNIT_TEST( testStartTest );
   CPPUNIT_TEST( testEndTest );
+  CPPUNIT_TEST( testStartSuite );
+  CPPUNIT_TEST( testEndSuite );
   CPPUNIT_TEST( testTwoListener );
   CPPUNIT_TEST_SUITE_END();
 
@@ -32,6 +34,8 @@ public:
   void testAddFailure();
   void testStartTest();
   void testEndTest();
+  void testStartSuite();
+  void testEndSuite();
 
   void testNoListener();
   void testTwoListener();

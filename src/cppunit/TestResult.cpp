@@ -66,7 +66,7 @@ TestResult::addFailure( const TestFailure &failure )
 }
 
 
-/// Informs the result that a test will be started.
+/// Informs TestListener that a test will be started.
 void 
 TestResult::startTest( Test *test )
 { 
@@ -78,7 +78,7 @@ TestResult::startTest( Test *test )
 }
 
   
-/// Informs the result that a test was completed.
+/// Informs TestListener that a test was completed.
 void 
 TestResult::endTest( Test *test )
 { 
@@ -87,6 +87,30 @@ TestResult::endTest( Test *test )
         it != m_listeners.end(); 
         ++it )
     (*it)->endTest( test );
+}
+
+
+/// Informs TestListener that a test suite will be started.
+void 
+TestResult::startSuite( Test *test )
+{
+  ExclusiveZone zone( m_syncObject ); 
+  for ( TestListeners::iterator it = m_listeners.begin();
+        it != m_listeners.end(); 
+        ++it )
+    (*it)->startSuite( test );
+}
+
+
+/// Informs TestListener that a test suite was completed.
+void 
+TestResult::endSuite( Test *test )
+{
+  ExclusiveZone zone( m_syncObject ); 
+  for ( TestListeners::iterator it = m_listeners.begin();
+        it != m_listeners.end(); 
+        ++it )
+    (*it)->endSuite( test );
 }
 
 

@@ -7,6 +7,8 @@
 	- TestPath to store/load the path to a specific test in the hierarchy
 	- Generic TestRunner
 	- Style sheet support added to XML ouput.
+	- CompilerOutputter supports run-time parametrization of error location format.
+	- Tracking of test suite run.
 
 * Test
 
@@ -22,6 +24,16 @@
   - A new class that store the path to a specific test (list of pointer). Can be
     converted into a string and constructed from a string. Typically used with 
 	TestRunner.
+
+* TestListener
+
+  - Added startSuite() and endSuite() callback that are called before and after a
+    test suite runs its child tests. See TestListener for detail and new example.
+
+* CompilerOutputter:
+
+  - Support run-time parametrization of compiler error format. Support for gcc error
+    format added. See CompilerOutputter::setLocationFormat().
 
 * XmlOutputter:
 
@@ -52,6 +64,10 @@
           <FailureType>Error</FailureType>
           <Message>error2</Message>
         </FailedTest>
+
+* Deprecated:
+
+  - CompilerOutputter::defaultOutputter(): use default constructor instead.
 
 * Bug fix:
 
