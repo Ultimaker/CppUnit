@@ -1,3 +1,12 @@
+  New in CppUnit 1.10.1:
+  --------------------------------------
+
+
+* Bug Fix:
+
+  - compilation with mingw & cigwin: bug #930338 & #945737 fixed.
+
+
   New in CppUnit 1.10.0 (same as 1.9.14):
   --------------------------------------
 

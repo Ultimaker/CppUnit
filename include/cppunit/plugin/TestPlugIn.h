@@ -145,6 +145,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 #define NOKERNEL
 #define NOSOUND
 #define NOMINMAX
+#define BLENDFUNCTION void    // for mingw & gcc
 #include <windows.h>
 #endif
 #define CPPUNIT_PLUGIN_IMPLEMENT_MAIN()               \

@@ -1,3 +1,11 @@
+2004-06-17 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/Portability.h:
+  * include/cppunit/plugin/TestPlugIn.h: fixed report compilation issue 
+    with mingw & cygwin. WIN32 is now always defined if _WIN32 is defined.
+    Bug #945737 & #930338.
+
+
 2004-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * release 1.10.0

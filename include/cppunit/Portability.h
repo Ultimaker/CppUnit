@@ -1,6 +1,10 @@
 #ifndef CPPUNIT_PORTABILITY_H
 #define CPPUNIT_PORTABILITY_H
 
+#if defined(_WIN32) and !defined(WIN32)
+# define WIN32 1
+#endif
+
 /* include platform specific config */
 #if defined(__BORLANDC__)
 #    include <cppunit/config/config-bcb5.h>
@@ -12,7 +16,7 @@
 
 // Version number of package
 #ifndef CPPUNIT_VERSION 
-#define CPPUNIT_VERSION  "1.9.10" 
+#define CPPUNIT_VERSION  "1.10.1"
 #endif
  
 #include <cppunit/config/CppUnitApi.h>    // define CPPUNIT_API & CPPUNIT_NEED_DLL_DECL
