@@ -174,6 +174,87 @@ SOURCE=.\res\tfwkui_r.bmp
 # Begin Group "UserInterface"
 
 # PROP Default_Filter ""
+# Begin Group "DynamicWindow"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicBar.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicControlsManager.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicControlsManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicDialog.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicDialog.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicFormView.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicFormView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicPropSheet.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicPropSheet.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicWnd.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicWnd.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicWndEx.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCDynamicWndEx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCSizeIconCtrl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\cdxCSizeIconCtrl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\SizeCBar.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\DynamicWindow\SizeCBar.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\ListCtrlFormatter.cpp

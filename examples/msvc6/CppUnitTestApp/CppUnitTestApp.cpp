@@ -57,6 +57,8 @@ CppUnitTestApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
+  SetRegistryKey(_T("Local AppWizard-Generated Applications"));
+
   RunTests();        
 
   

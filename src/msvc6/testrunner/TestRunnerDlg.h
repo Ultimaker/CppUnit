@@ -37,6 +37,7 @@
 #include "ActiveTest.h"
 #include "MsDevCallerListCtrl.h"
 #include "TestRunnerModel.h"
+#include "DynamicWindow/cdxCDynamicDialog.h"
 
 class ProgressBar;
 class TestRunnerModel;
@@ -45,7 +46,7 @@ class TestRunnerModel;
 /////////////////////////////////////////////////////////////////////////////
 // TestRunnerDlg dialog
 
-class AFX_EXT_CLASS TestRunnerDlg : public CDialog,
+class AFX_EXT_CLASS TestRunnerDlg : public cdxCDynamicDialog,
                                     public CppUnit::TestListener
 {
 public:
@@ -61,13 +62,14 @@ public:
 
   // IDD is not use, it is just there for the wizard.
   //{{AFX_DATA(TestRunnerDlg)
-  enum { IDD = IDD_DIALOG_TESTRUNNER };
+	enum { IDD = IDD_DIALOG_TESTRUNNER };
+	CEdit	m_details;
   MsDevCallerListCtrl m_listCtrl;
   CButton m_buttonClose;
   CButton m_buttonStop;
   CButton m_buttonRun;
   BOOL m_bAutorunAtStartup;
-  //}}AFX_DATA
+	//}}AFX_DATA
 
   //{{AFX_VIRTUAL(TestRunnerDlg)
 public:
@@ -83,13 +85,13 @@ protected:
   afx_msg void OnRun();
   afx_msg void OnStop();
   virtual void OnOK();
-  afx_msg void OnSelchangeComboTest();
-  afx_msg void OnPaint();
   afx_msg void OnBrowseTest();
   afx_msg void OnQuitApplication();
   afx_msg void OnClose();
-  afx_msg void OnSize(UINT nType, int cx, int cy);
-  //}}AFX_MSG
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnSelectedFailureChange(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnSelectTestInHistoryCombo();
+	//}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 
   typedef std::vector<CppUnit::Test *> Tests;
@@ -108,6 +110,7 @@ protected:
   bool m_bIsRunning;
   TestRunnerModel *m_model;
   CImageList m_errorListBitmap;
+  CFont m_fixedSizeFont;
 
   enum ErrorTypeBitmaps
   {
@@ -137,32 +140,19 @@ protected:
   void saveSettings();
   TestRunnerModel &model();
   void updateHistoryCombo();
-
-  void updateTopButtonPosition( unsigned int buttonId,
-                                int xButtonLeft,
-                                int xButtonRight );
-  void updateBottomButtonPosition( unsigned int buttonId,
-                                   int xButtonLeft,
-                                   int xButtonRight,
-                                   int yButtonBottom );
-
-  // layout management
-  void updateLayoutInfo();
+  void displayFailureDetailsFor( int failureIndex );
 
   CRect getItemWindowRect( unsigned int itemId );
-  CRect getDialogBounds();
-  void updateListPosition( int xButtonLeft );
+  CRect getItemClientRect( unsigned int itemId );
+
+  //CRect getDialogBounds();
+
+  virtual void initializeLayout();
+  void updateListColumnSize();
+  void initializeFixedSizeFont();
+
 
 private:
-
-  int m_margin;
-
-  /// distance from bottom of ListView
-  int m_listViewDelta;
-
-  /// distance from timing edit box
-  int m_editDelta;
-
   TestRunnerModel::Settings m_settings;
 };
 

@@ -36,14 +36,11 @@ const CString TestRunnerDlg::ms_cppunitKey( "CppUnit" );
 
 TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
                               int nDialogResourceId,
-                              CWnd* pParent ) :
-    CDialog( nDialogResourceId == -1 ? IDD_DIALOG_TESTRUNNER :
-                                       nDialogResourceId, 
-             pParent),
-    m_model( model ),
-    m_margin( 0 ),
-    m_listViewDelta( 0 ),
-    m_editDelta( 0 )
+                              CWnd* pParent )
+    : cdxCDynamicDialog( nDialogResourceId == -1 ? IDD_DIALOG_TESTRUNNER :
+                                                   nDialogResourceId, 
+                         pParent)
+    , m_model( model )
 {
   //{{AFX_DATA_INIT(TestRunnerDlg)
     m_bAutorunAtStartup = FALSE;
@@ -53,34 +50,37 @@ TestRunnerDlg::TestRunnerDlg( TestRunnerModel *model,
   m_selectedTest      = 0;
   m_bAutorunAtStartup = true;
   m_bIsRunning = false;
+
+  ModifyFlags( flSWPCopyBits, 0 );      // anti-flickering option for resizing
 }
 
 
 void 
 TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
 {
-  CDialog::DoDataExchange(pDX);
+  cdxCDynamicDialog::DoDataExchange(pDX);
   //{{AFX_DATA_MAP(TestRunnerDlg)
+	DDX_Control(pDX, IDC_DETAILS, m_details);
     DDX_Control(pDX, IDC_LIST, m_listCtrl);
     DDX_Control(pDX, IDOK, m_buttonClose);
     DDX_Control(pDX, ID_STOP, m_buttonStop);
     DDX_Control(pDX, ID_RUN, m_buttonRun);
     DDX_Check(pDX, IDC_CHECK_AUTORUN, m_bAutorunAtStartup);
-  //}}AFX_DATA_MAP
+	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(TestRunnerDlg, CDialog)
+BEGIN_MESSAGE_MAP(TestRunnerDlg, cdxCDynamicDialog)
   //{{AFX_MSG_MAP(TestRunnerDlg)
   ON_BN_CLICKED(ID_RUN, OnRun)
   ON_BN_CLICKED(ID_STOP, OnStop)
-  ON_CBN_SELCHANGE(IDC_COMBO_TEST, OnSelchangeComboTest)
-  ON_WM_PAINT()
   ON_BN_CLICKED(IDC_BROWSE_TEST, OnBrowseTest)
   ON_COMMAND(ID_QUIT_APPLICATION, OnQuitApplication)
   ON_WM_CLOSE()
-  ON_WM_SIZE()
-  //}}AFX_MSG_MAP
+	ON_WM_SIZE()
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST, OnSelectedFailureChange)
+	ON_CBN_SELCHANGE(IDC_COMBO_TEST, OnSelectTestInHistoryCombo)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ END_MESSAGE_MAP()
 BOOL 
 TestRunnerDlg::OnInitDialog() 
 {
-  CDialog::OnInitDialog();
+  cdxCDynamicDialog::OnInitDialog();
 
 //    m_hAccelerator = ::LoadAccelerators( AfxGetResourceHandle(),
   m_hAccelerator = ::LoadAccelerators( g_testRunnerResource,
@@ -104,7 +104,15 @@ TestRunnerDlg::OnInitDialog()
   VERIFY( m_errorListBitmap.Create( IDB_ERROR_TYPE, 16, 1, 
                                     RGB( 255,0,255 ) ) );
 
+  m_testsProgress = new ProgressBar();
+  m_testsProgress->Create( NULL, NULL, WS_CHILD, CRect(), this, 0 );
+  m_testsProgress->ShowWindow( SW_SHOW );
+  m_testsProgress->MoveWindow( getItemClientRect( IDC_STATIC_PROGRESS_BAR ) );
+
+  initializeLayout();
   loadSettings();
+  initializeFixedSizeFont();
+  m_details.SetFont( &m_fixedSizeFont );  // Does not work. Need to investigate...
       
   m_listCtrl.SetImageList( &m_errorListBitmap, LVSIL_SMALL );
   m_listCtrl.SetExtendedStyle( m_listCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT );
@@ -124,19 +132,11 @@ TestRunnerDlg::OnInitDialog()
   m_listCtrl.setFileNameSubItem( formatter.GetNextColumnIndex() );
   formatter.AddColumn( IDS_ERRORLIST_FILE_NAME, col_5_width, LVCFMT_LEFT, 4 );
 
-  m_testsProgress = new ProgressBar (this, CRect (50, 85, 50 + 425, 85 + 25));
-
   reset ();
-
-  updateLayoutInfo();
-      
   updateHistoryCombo();
-
   UpdateData( FALSE );
 
-  RECT & r = m_settings.dlgBounds;
-  if ( r.right-r.left > 0  &&  r.bottom-r.top > 0 )
-      MoveWindow( &r );
+  updateListColumnSize();
 
   m_buttonRun.SetFocus();
 
@@ -148,9 +148,9 @@ TestRunnerDlg::OnInitDialog()
 }
 
 
-TestRunnerDlg::~TestRunnerDlg ()
+TestRunnerDlg::~TestRunnerDlg()
 { 
-  freeState ();
+  freeState();
   delete m_testsProgress;
 }
 
@@ -211,7 +211,7 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
   setter.addSubItem( failure.failedTestName().c_str(), errorType );
 
   // Set the asserted text
-  CString message( failure.thrownException()->what() );
+  CString message( failure.thrownException()->message().shortDescription().c_str() );
   message.Replace( '\n', ' ' );   // should only print the short description there,
   setter.addSubItem( message );   // and dump the detail on an edit control when clicked.
 
@@ -228,15 +228,15 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
   // Set the file name
   setter.addSubItem( failure.sourceLine().fileName().c_str() );
 
-/* In place of the missing detail field...
-  std::string dump = "Test: " + test->getName() + "\n";
-  dump += e->what();
-  dump += "\n";
-  ::OutputDebugString( dump.c_str() );
-*/
+  if ( !listCtrl->GetFirstSelectedItemPosition() )
+  {
+    // Select first entry => display details of first entry.
+    listCtrl->SetItemState( currentEntry, LVIS_SELECTED, LVIS_SELECTED );
+    listCtrl->SetFocus();   // Does not work ?!?
+  }
 
-  listCtrl->RedrawItems (currentEntry, currentEntry);
-  listCtrl->UpdateWindow ();
+  listCtrl->RedrawItems( currentEntry, currentEntry );
+  listCtrl->UpdateWindow();
 }
 
 
@@ -345,6 +345,7 @@ TestRunnerDlg::reset()
 
   listCtrl->DeleteAllItems();
   m_testsProgress->reset();
+  displayFailureDetailsFor( -1 );
 }
 
 
@@ -392,12 +393,12 @@ TestRunnerDlg::OnOK()
   UpdateData();
   saveSettings();
 
-  CDialog::OnOK ();
+  cdxCDynamicDialog::OnOK ();
 }
 
 
 void 
-TestRunnerDlg::OnSelchangeComboTest() 
+TestRunnerDlg::OnSelectTestInHistoryCombo() 
 {
   int currentSelection = getHistoryCombo()->GetCurSel ();
 
@@ -443,15 +444,6 @@ TestRunnerDlg::updateHistoryCombo()
 
 
 void 
-TestRunnerDlg::OnPaint() 
-{
-  CPaintDC dc (this); 
-  
-  m_testsProgress->paint(dc);
-}
-
-
-void 
 TestRunnerDlg::OnBrowseTest() 
 {
   TreeHierarchyDlg dlg;
@@ -473,7 +465,7 @@ TestRunnerDlg::PreTranslateMessage(MSG* pMsg)
   {
     return TRUE;
   }
-  return CDialog::PreTranslateMessage(pMsg);
+  return cdxCDynamicDialog::PreTranslateMessage(pMsg);
 }
 
 
@@ -490,6 +482,9 @@ void
 TestRunnerDlg::loadSettings()
 {
   m_model->loadSettings(m_settings);
+  RestoreWindowPosition( TestRunnerModel::settingKey, 
+                         TestRunnerModel::settingMainDialogKey );
+
 
   m_bAutorunAtStartup = m_settings.autorunOnLaunch;
 }
@@ -499,7 +494,8 @@ void
 TestRunnerDlg::saveSettings()
 {
   m_settings.autorunOnLaunch = ( m_bAutorunAtStartup != 0 );
-  GetWindowRect(&m_settings.dlgBounds);
+  StoreWindowPosition( TestRunnerModel::settingKey, 
+                       TestRunnerModel::settingMainDialogKey );
   
   m_settings.col_1 = m_listCtrl.GetColumnWidth(0);
   m_settings.col_2 = m_listCtrl.GetColumnWidth(1);
@@ -540,187 +536,6 @@ TestRunnerDlg::OnClose()
 }
 
 
-void 
-TestRunnerDlg::updateLayoutInfo()
-{
-  // get dialog in screen co-ordinates
-  RECT dlgBounds;
-  GetWindowRect( &dlgBounds );
-
-  // Set general margin according to distance of browse button from the right
-  m_margin = dlgBounds.right - getItemWindowRect(IDC_BROWSE_TEST).right;
-  m_listViewDelta = dlgBounds.bottom - getItemWindowRect( IDC_LIST ).bottom;
-  m_editDelta = dlgBounds.bottom - getItemWindowRect( IDC_EDIT_TIME ).bottom;
-}
-
-
-void 
-TestRunnerDlg::OnSize(UINT nType, int cx, int cy) 
-{
-  CDialog::OnSize(nType, cx, cy);
-  
-  // Layout controls according to new size	
-  CRect r;
-  CRect dlgBounds = getDialogBounds();
-  
-  int buttonLeft  = 0;
-  int buttonRight = 0;
-  
-  CWnd * pItem = GetDlgItem(IDC_BROWSE_TEST);
-  if (pItem)
-  {
-    pItem->GetWindowRect( &r );
-    // adjust to dialog units
-    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
-    
-    int buttonWidth = r.Width();
-    buttonLeft  = cx - buttonWidth - m_margin; 
-    buttonRight = buttonLeft + buttonWidth;
-    r.left =  buttonLeft;
-    r.right = buttonRight;
-    
-    pItem->MoveWindow( &r );
-    pItem->Invalidate();
-  }
-
-  updateTopButtonPosition( ID_RUN, buttonLeft, buttonRight );
-  updateTopButtonPosition( IDC_CHECK_AUTORUN, buttonLeft, buttonRight );
-  updateBottomButtonPosition( IDOK, buttonLeft, buttonRight, cy - m_editDelta );
-  updateBottomButtonPosition( ID_STOP, buttonLeft, buttonRight, cy - m_listViewDelta );
-  
-  pItem = GetDlgItem(IDC_COMBO_TEST);
-  if (pItem)
-  {
-    pItem->GetClientRect( &r );
-    pItem->ClientToScreen( &r );
-    
-    // adjust to dialog units
-    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
-    r.right = buttonLeft - m_margin;
-    
-    pItem->MoveWindow( &r );
-    pItem->Invalidate();
-  }
-
-  updateListPosition( buttonLeft );
-  
-  if (m_testsProgress)
-  {
-    m_testsProgress->setWidth(r.right - r.left);
-  }
-  
-  pItem = GetDlgItem(IDC_EDIT_TIME);
-  if (pItem)
-  {
-    pItem->GetWindowRect( &r );
-    
-    // adjust to dialog units
-    r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
-    
-    r.right =  buttonLeft - m_margin;
-    
-    int height = r.Height();
-    // order matters here ( r.top uses new r.bottom )
-    r.bottom = cy - m_editDelta;
-    r.top = r.bottom - height;
-    
-    pItem->MoveWindow( &r );
-    pItem->Invalidate();
-  }
-}
-
-
-void 
-TestRunnerDlg::updateTopButtonPosition( unsigned int buttonId,
-                                        int xButtonLeft,
-                                        int xButtonRight )
-{
-  CWnd *pItem = GetDlgItem( buttonId );
-  if ( !pItem )
-    return;
-  
-  CRect r;
-  pItem->GetClientRect( &r );
-  pItem->ClientToScreen( &r );
-  
-  // adjust to dialog units
-  CRect dlgBounds = getDialogBounds();
-  r.OffsetRect( -dlgBounds.left, -dlgBounds.top );
-  r.left = xButtonLeft;
-  r.right = xButtonRight;
-  
-  pItem->MoveWindow( &r );
-  pItem->Invalidate();
-}
-
-
-void 
-TestRunnerDlg::updateBottomButtonPosition( unsigned int buttonId,
-                                           int xButtonLeft,
-                                           int xButtonRight,
-                                           int yButtonBottom )
-{
-  CWnd *pItem = GetDlgItem( buttonId );
-  if ( !pItem )
-    return;
-  
-  CRect r;
-  pItem->GetClientRect( &r );
-  pItem->ClientToScreen( &r );
-  
-  // adjust to dialog units
-  CRect dlgBounds = getDialogBounds();
-  r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
-  r.left =  xButtonLeft;
-  r.right = xButtonRight;
-  
-  int height = r.Height();
-  // order matters here ( r.top uses new r.bottom )
-  r.bottom = yButtonBottom;
-  r.top = r.bottom - height;
-  
-  pItem->MoveWindow( &r );
-  pItem->Invalidate();
-}
-
-
-void 
-TestRunnerDlg::updateListPosition( int xButtonLeft )
-{
-  CWnd *pItem = GetDlgItem( IDC_LIST );
-  if ( !pItem )
-    return;
-  CRect r;
-  pItem->GetWindowRect( &r );
-  
-  // adjust to dialog units
-  CRect dlgBounds = getDialogBounds();
-  r.OffsetRect(-dlgBounds.left, -dlgBounds.top);
-  
-  r.right = xButtonLeft - m_margin;
-  
-  // resize to fit last column
-  
-  LVCOLUMN lv;
-  lv.mask = LVCF_WIDTH;
-  int width_1_4 = 0;
-  for (int i = 0; i < 4; ++i)
-  {
-    m_listCtrl.GetColumn(i, &lv);
-    width_1_4 += lv.cx;
-  }
-  
-  // the 4 offset is so no horiz scroll bar will appear
-  m_listCtrl.SetColumnWidth(4, r.Width() - width_1_4 - 4); 
-  
-  // order matters here ( r.top uses new r.bottom )
-  r.bottom = getDialogBounds().Height() - m_listViewDelta;
-  
-  pItem->MoveWindow( &r );
-  pItem->Invalidate();
-}
-
-
 CRect 
 TestRunnerDlg::getItemWindowRect( unsigned int itemId )
 {
@@ -733,10 +548,98 @@ TestRunnerDlg::getItemWindowRect( unsigned int itemId )
 
 
 CRect 
-TestRunnerDlg::getDialogBounds()
+TestRunnerDlg::getItemClientRect( unsigned int itemId )
 {
-  CRect dlgBounds;
-  GetClientRect( &dlgBounds );
-  ClientToScreen( &dlgBounds );
-  return dlgBounds;
+  CRect rect = getItemWindowRect( itemId );
+  if ( !rect.IsRectNull() )
+  {
+    CPoint clientTopLeft = rect.TopLeft();
+    ScreenToClient( &clientTopLeft );
+    rect = CRect( clientTopLeft, rect.Size() );
+  }
+
+  return rect;
+}
+
+
+void 
+TestRunnerDlg::initializeLayout()
+{
+  // see DynamicWindow/doc for documentation
+  const int listGrowthRatio = 30;
+  AddSzXControl( IDC_COMBO_TEST, mdResize );
+  AddSzXControl( IDC_BROWSE_TEST, mdRepos );
+  AddSzXControl( IDC_RUNNING_TEST_CASE_LABEL, mdResize );
+  AddSzXControl( ID_RUN, mdRepos );
+  AddSzXControl( *m_testsProgress, mdResize );
+  AddSzXControl( IDC_CHECK_AUTORUN, mdRepos );
+  AddSzControl( IDC_LIST, 0, 0, 100, listGrowthRatio );
+  AddSzXControl( ID_STOP, mdRepos );
+  AddSzXControl( IDOK, mdRepos );
+  AddSzYControl( IDC_STATIC_DETAILS, listGrowthRatio, listGrowthRatio );
+  AddSzControl( IDC_DETAILS, 0, listGrowthRatio, 100, 100 );
+  AddSzControl( IDC_EDIT_TIME, mdResize, mdRepos );
+}
+
+
+void 
+TestRunnerDlg::OnSize( UINT nType, int cx, int cy ) 
+{
+	cdxCDynamicDialog::OnSize(nType, cx, cy);
+	updateListColumnSize();
+}
+
+
+void 
+TestRunnerDlg::updateListColumnSize()
+{
+  if ( !m_listCtrl.GetSafeHwnd() )
+    return;
+
+  // resize to fit last column
+  CRect listBounds = getItemClientRect( IDC_LIST );
+  
+  int width_1_4 = 0;
+  for (int i = 0; i < 4; ++i)
+    width_1_4 += m_listCtrl.GetColumnWidth( i );
+  
+  // the 4 offset is so no horiz scroll bar will appear
+  m_listCtrl.SetColumnWidth(4, listBounds.Width() - width_1_4 - 4); 
+}
+
+
+void 
+TestRunnerDlg::OnSelectedFailureChange( NMHDR* pNMHDR, 
+                                        LRESULT* pResult )
+{
+	NM_LISTVIEW *pNMListView = (NM_LISTVIEW*)pNMHDR;
+
+  if ( (pNMListView->uNewState & LVIS_SELECTED) != 0 )  // item selected
+    displayFailureDetailsFor( pNMListView->iItem );
+	
+	*pResult = 0;
+}
+
+
+void 
+TestRunnerDlg::displayFailureDetailsFor( int failureIndex )
+{
+  CString details;
+  if ( failureIndex >= 0  &&  failureIndex < m_result->failures().size() )
+    details = m_result->failures()[ failureIndex ]->thrownException()->what();
+
+  details.Replace( "\n", "\r\n" );
+
+  m_details.SetWindowText( details );
+}
+
+
+void 
+TestRunnerDlg::initializeFixedSizeFont()
+{
+  LOGFONT font;
+  GetFont()->GetLogFont( &font );
+  font.lfPitchAndFamily = FIXED_PITCH | //VARIABLE_PITCH
+                          (font.lfPitchAndFamily & ~15);   // font family
+  m_fixedSizeFont.CreateFontIndirect( &font );
 }

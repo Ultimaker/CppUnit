@@ -4,6 +4,7 @@
   - XmlDocument
   - Custom test macros.
   - Exception message
+  - MFC TestRunner
 
 * Custom test macros
 
@@ -35,6 +36,13 @@
 
     This change allow ouputters to deal with all failure the same way (there is no
     special case for the equality assertion any more).
+
+* MFC TestRunner
+
+  - Browse dialog is resizable
+  - Better (and cleaner) handling of windows resizing
+  - Failure list on show the short description of the failure.
+  - Edit field added to display the details of the failure.
 
 * DllPlugInTester:
 

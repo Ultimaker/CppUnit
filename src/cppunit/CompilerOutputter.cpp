@@ -194,12 +194,12 @@ CompilerOutputter::wrap( std::string message )
   for ( Lines::iterator it = lines.begin(); it != lines.end(); ++it )
   {
     std::string line( *it );
-    const int maxLineLength = 80;
+    const int maxLineLength = 79;
     int index =0;
     while ( index < line.length() )
     {
-      std::string line( line.substr( index, maxLineLength ) );
-      wrapped += line;
+      std::string lineSlice( line.substr( index, maxLineLength ) );
+      wrapped += lineSlice;
       index += maxLineLength;
       if ( index < line.length() )
         wrapped += "\n";

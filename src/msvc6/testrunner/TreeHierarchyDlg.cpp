@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "TreeHierarchyDlg.h"
+#include "TestRunnerModel.h"
 #include <algorithm>
 
 
@@ -18,9 +19,11 @@ static char THIS_FILE[] = __FILE__;
 
 
 TreeHierarchyDlg::TreeHierarchyDlg(CWnd* pParent )
-	: CDialog(TreeHierarchyDlg::IDD, pParent),
-    m_selectedTest( NULL )
+	: cdxCDynamicDialog(TreeHierarchyDlg::IDD, pParent)
+  , m_selectedTest( NULL )
 {
+  ModifyFlags( flSWPCopyBits, 0 );      // anti-flickering option for resizing
+
 	//{{AFX_DATA_INIT(TreeHierarchyDlg)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
@@ -30,14 +33,14 @@ TreeHierarchyDlg::TreeHierarchyDlg(CWnd* pParent )
 void 
 TreeHierarchyDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	cdxCDynamicDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(TreeHierarchyDlg)
 	DDX_Control(pDX, IDC_TREE_TEST, m_treeTests);
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(TreeHierarchyDlg, CDialog)
+BEGIN_MESSAGE_MAP(TreeHierarchyDlg, cdxCDynamicDialog)
 	//{{AFX_MSG_MAP(TreeHierarchyDlg)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -54,11 +57,24 @@ TreeHierarchyDlg::setRootTest( CppUnit::Test *test )
 BOOL 
 TreeHierarchyDlg::OnInitDialog() 
 {
-  CDialog::OnInitDialog();
+  cdxCDynamicDialog::OnInitDialog();
 	
   fillTree();
+  initializeLayout();
+  RestoreWindowPosition( TestRunnerModel::settingKey, 
+                         TestRunnerModel::settingBrowseDialogKey );
   	
   return TRUE;
+}
+
+
+void 
+TreeHierarchyDlg::initializeLayout()
+{
+  // see DynamicWindow/doc for documentation
+  AddSzControl( IDC_TREE_TEST, mdResize, mdResize );
+  AddSzControl( IDOK, mdRepos, mdNone );
+  AddSzControl( IDCANCEL, mdRepos, mdNone );
 }
 
 
@@ -148,7 +164,16 @@ TreeHierarchyDlg::OnOK()
   }
 
   m_selectedTest = test;
-  CDialog::OnOK();
+  storeDialogBounds();
+  cdxCDynamicDialog::OnOK();
+}
+
+
+void 
+TreeHierarchyDlg::OnCancel() 
+{
+  storeDialogBounds();
+	cdxCDynamicDialog::OnCancel();
 }
 
 
@@ -170,4 +195,12 @@ CppUnit::Test *
 TreeHierarchyDlg::getSelectedTest() const
 {
   return m_selectedTest;
+}
+
+
+void 
+TreeHierarchyDlg::storeDialogBounds()
+{
+  StoreWindowPosition( TestRunnerModel::settingKey, 
+                       TestRunnerModel::settingBrowseDialogKey );
 }

@@ -16,10 +16,13 @@
 class AFX_CLASS_EXPORT TestRunnerModel
 {
 public:
+  static const CString settingKey;
+  static const CString settingMainDialogKey;
+  static const CString settingBrowseDialogKey;
+
   struct Settings
   {
     bool autorunOnLaunch;
-    RECT dlgBounds;	
     int  col_1; // 1st column width in list view
     int  col_2; // 2nd column width in list view
     int  col_3; // 3rd column width in list view

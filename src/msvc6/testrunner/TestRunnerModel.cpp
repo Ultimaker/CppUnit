@@ -11,6 +11,11 @@
 #include <cppunit/testsuite.h>
 
 
+const CString TestRunnerModel::settingKey( _T("CppUnit") );
+const CString TestRunnerModel::settingMainDialogKey( _T( "MainDialog" ) );
+const CString TestRunnerModel::settingBrowseDialogKey( _T( "BrowseDialog" ) );
+
+
 TestRunnerModel::TestRunnerModel( CppUnit::Test *rootTest ) :
     m_rootTest( rootTest )
 {
@@ -59,11 +64,6 @@ TestRunnerModel::loadSettings(Settings & s)
                                     _T("AutorunAtStartup"),
                                     1 );
   s.autorunOnLaunch = (autorun == 1);
-
-  s.dlgBounds.left = app->GetProfileInt( _T("CppUnit"), _T("Left"), 0 );
-  s.dlgBounds.top = app->GetProfileInt( _T("CppUnit"), _T("Top"), 0 );
-  s.dlgBounds.right = app->GetProfileInt( _T("CppUnit"), _T("Right"), 0 );
-  s.dlgBounds.bottom= app->GetProfileInt( _T("CppUnit"), _T("Bottom"), 0 );  
 
   s.col_1 = app->GetProfileInt( _T("CppUnit"), _T("Col_1"), 40 );
   s.col_2 = app->GetProfileInt( _T("CppUnit"), _T("Col_2"), 40 );
@@ -115,11 +115,6 @@ TestRunnerModel::saveSettings( const Settings & s )
 
   int autorun = s.autorunOnLaunch ? 1 : 0;
   app->WriteProfileInt( _T("CppUnit"), _T("AutorunAtStartup"), autorun );
-
-  app->WriteProfileInt( _T("CppUnit"), _T("Left"),	 s.dlgBounds.left );
-  app->WriteProfileInt( _T("CppUnit"), _T("Top"),	 s.dlgBounds.top );
-  app->WriteProfileInt( _T("CppUnit"), _T("Right"),  s.dlgBounds.right );
-  app->WriteProfileInt( _T("CppUnit"), _T("Bottom"), s.dlgBounds.bottom );
 
   app->WriteProfileInt( _T("CppUnit"), _T("Col_1"),	 s.col_1 );
   app->WriteProfileInt( _T("CppUnit"), _T("Col_2"),	 s.col_2 );

@@ -1,5 +1,36 @@
 2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * src/cppunit/CompilerOutputter.cpp: fixed bug #549762 (line wrap).
+
+  * src/msvc6/testrunner/DynamicWindow/*: added. Dynamic Window library
+    from Hans Bühler (hans.buehler@topmail.de) to resize window.
+
+  * src/msvc6/testrunner/TestRunnerModel.h:
+  * src/msvc6/testrunner/TestRunnerModel.cpp: removed dialog bounds from
+    settings. Added public registry keys for cppunit, main dialog, and
+    browse dialog.
+
+  * src/msvc6/testrunner/TreeHierarchyDlg.h:
+  * src/msvc6/testrunner/TreeHierarchyDlg.cpp: dialog is now resizable.
+    Window placement is stored and restored.
+
+  * src/msvc6/testrunner/TestRunnerDlg.h:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp: replaced dialog resizing code
+    by usage of Hans Bühler's Dynamic Window library. Dialog placement
+    is stored/restored by that library. ProgressBar is now a child window.
+    Added edit field to see the details of the failure. List on show
+    the short description of the failure.
+
+  * src/msvc6/testrunner/ProgressBar.h:
+  * src/msvc6/testrunner/ProgressBar.cpp: is now a CWnd.
+
+  * src/msvc6/testrunner/TestRunner.rc: named all static fill ID for resizing.
+    Added an invisble static field for progress bar placement.
+
+2002-06-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * doc/other_documentation.dox: fixed some typos.
+
   * include/cppunit/NotEqualException.h:
   * src/cppunit/NotEqualException.cpp: removed.
 

@@ -9,12 +9,13 @@
 
 #include <cppunit/Test.h>
 #include <vector>
+#include "DynamicWindow/cdxCDynamicDialog.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
 // TreeHierarchyDlg dialog
 
-class TreeHierarchyDlg : public CDialog
+class TreeHierarchyDlg : public cdxCDynamicDialog
 {
 // Construction
 public:
@@ -41,11 +42,14 @@ public:
 
 // Implementation
 protected:
+  virtual void initializeLayout();
+  void storeDialogBounds();
 
 	// Generated message map functions
 	//{{AFX_MSG(TreeHierarchyDlg)
 	virtual BOOL OnInitDialog();
   virtual void OnOK( );
+	virtual void OnCancel();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP();
 
