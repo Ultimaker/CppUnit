@@ -1,3 +1,6 @@
+2001-05-20 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * Fixed bug #424320 (VC++ TestRunner): access violation caused by NULL pointer in history list. NULL pointer are not added to the history anymore.
+
 2001-05-19 Baptiste Lepilleur <gaiacrtn@free.fr>
   * Added some items to the TODO list for VC++ TestRunner.
   * "Debug" configuration is now the default configuration in VC++ project.

@@ -49,7 +49,9 @@ TestRunnerModel::selectHistoryTest( CppUnit::Test *test )
   History::iterator end = 
       std::remove( m_history.begin(), m_history.end(), test );
   m_history.erase( end, m_history.end() );
-  m_history.push_front( test );
+  
+  if ( test != NULL )
+    m_history.push_front( test );
 }
 
 
@@ -83,7 +85,8 @@ TestRunnerModel::loadSettings()
       break;
 
     CppUnit::Test *test = findTestByName( testName );
-    m_history.push_back( test );
+    if ( test != NULL )
+      m_history.push_back( test );
   }
   while ( true );
 }
