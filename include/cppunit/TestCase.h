@@ -1,10 +1,11 @@
 #ifndef CPPUNIT_TESTCASE_H
 #define CPPUNIT_TESTCASE_H
 
-#include <string>
+#include <cppunit/Portability.h>
 #include <cppunit/Test.h>
 #include <cppunit/TestAssert.h>
 #include <cppunit/TestFixture.h>
+#include <string>
 
 
 namespace CppUnit {

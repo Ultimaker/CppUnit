@@ -1,13 +1,10 @@
 #ifndef CPPUNIT_EXTENSIONS_TESTFACTORYREGISTRY_H
 #define CPPUNIT_EXTENSIONS_TESTFACTORYREGISTRY_H
 
-#if _MSC_VER > 1000     // VC++
-#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
-#endif // _MSC_VER > 1000
-
+#include <cppunit/Portability.h>
+#include <cppunit/extensions/TestFactory.h>
 #include <map>
 #include <string>
-#include <cppunit/extensions/TestFactory.h>
 
 namespace CppUnit {
 

@@ -1,9 +1,10 @@
 #ifndef CPPUNIT_TESTSUITE_H    // -*- C++ -*-
 #define CPPUNIT_TESTSUITE_H
 
+#include <cppunit/Portability.h>
+#include <cppunit/Test.h>
 #include <vector>
 #include <string>
-#include <cppunit/Test.h>
 
 namespace CppUnit {
 

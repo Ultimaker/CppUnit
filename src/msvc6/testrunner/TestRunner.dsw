@@ -3,6 +3,18 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "DSPlugIn"=..\DSPlugIn\DSPlugIn.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "TestRunner"=.\TestRunner.dsp - Package Owner=<4>
 
 Package=<5>
@@ -13,6 +25,9 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name cppunit
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DSPlugIn
     End Project Dependency
 }}}
 

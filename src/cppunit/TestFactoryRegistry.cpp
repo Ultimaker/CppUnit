@@ -1,8 +1,5 @@
-#include <utility>
-
-#include <cppunit/Portability.h>
-#include <cppunit/TestSuite.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/TestSuite.h>
 
 #if CPPUNIT_USE_TYPEINFO_NAME
 #  include "cppunit/extensions/TypeInfoHelper.h"

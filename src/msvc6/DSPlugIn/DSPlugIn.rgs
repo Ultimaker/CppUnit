@@ -1,0 +1,12 @@
+HKCR
+{
+	NoRemove Interface
+	{
+		ForceRemove {3ADE0E37-5A56-4a68-BD8D-67E9E7502971} = s 'ITestRunnerDSPlugin'
+		{
+			ProxyStubClsid = s '{00020424-0000-0000-C000-000000000046}'
+			ProxyStubClsid32 = s '{00020424-0000-0000-C000-000000000046}'
+			TypeLib = s '{3ADE0E38-5A56-4a68-BD8D-67E9E7502971}'
+		}
+	}
+}

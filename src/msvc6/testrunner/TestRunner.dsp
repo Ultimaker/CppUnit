@@ -157,6 +157,14 @@ SOURCE=.\ListCtrlSetter.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MsDevCallerListCtrl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MsDevCallerListCtrl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\ProgressBar.cpp
 # End Source File
 # Begin Source File
@@ -268,6 +276,11 @@ SOURCE=.\MostRecentTests.cpp
 # Begin Source File
 
 SOURCE=.\MostRecentTests.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\include\msvc6\DSPlugIn\TestRunnerDSPlugin_i.c
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # End Group
 # Begin Source File

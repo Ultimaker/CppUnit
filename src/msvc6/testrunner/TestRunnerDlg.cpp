@@ -55,6 +55,7 @@ void TestRunnerDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(TestRunnerDlg)
+	DDX_Control(pDX, IDC_LIST, m_listCtrl);
 	DDX_Control(pDX, IDOK, m_buttonClose);
 	DDX_Control(pDX, ID_STOP, m_buttonStop);
 	DDX_Control(pDX, ID_RUN, m_buttonRun);
@@ -115,6 +116,13 @@ BOOL TestRunnerDlg::OnInitDialog()
     updateHistoryCombo();
 
     UpdateData( FALSE );
+
+    // somehow doesn't have the desired effect?
+    LONG extendedStyle = GetWindowLong( m_listCtrl.GetSafeHwnd(), 
+                                        GWL_EXSTYLE);;
+    SetWindowLong( m_listCtrl.GetSafeHwnd(), 
+                   GWL_EXSTYLE, 
+                   extendedStyle | LVS_EX_FULLROWSELECT);
 
     m_buttonRun.SetFocus();
 

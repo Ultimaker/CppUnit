@@ -24,8 +24,8 @@
 
 
 /* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) */
-#ifndef CPPUNIT_HAVE_CPP_SOURCEANNOTATION
-#define CPPUNIT_HAVE_CPP_SOURCEANNOTATION   1
+#ifndef CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION
+#define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
 #endif
 
 
@@ -63,12 +63,6 @@
 #   error Cannot define CppUnit::OStringStream.
 #endif
 #endif
-
-
-#if _MSC_VER > 1000     // VC++
-#pragma once
-#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
-#endif // _MSC_VER > 1000
 
 
 #endif // CPPUNIT_PORTABILITY_H

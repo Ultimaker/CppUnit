@@ -28,9 +28,14 @@ TestRunner::~TestRunner()
 void 
 TestRunner::run() 
 { 
+  bool comInit = SUCCEEDED( CoInitialize( NULL) );
+
   TestRunnerModel model( getRootTest() );
   TestRunnerDlg dlg( &model ); 
   dlg.DoModal (); 
+
+  if ( comInit)
+    CoUninitialize();
 }
 
 

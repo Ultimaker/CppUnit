@@ -20,12 +20,14 @@
    - you must define the symbol _AFX_DLL and _AFX_EXT
  */
 
+#include "resource.h"
 
 #include <vector>
 #include <cppunit/TestSuite.h>
 #include <cppunit/Exception.h>
 
 #include "ActiveTest.h"
+#include "MsDevCallerListCtrl.h"
 
 class ProgressBar;
 class TestRunnerModel;
@@ -52,6 +54,8 @@ public:
                 CppUnit::Test *test );
 
   //{{AFX_DATA(TestRunnerDlg)
+	enum { IDD = IDD_DIALOG_TESTRUNNER };
+	MsDevCallerListCtrl	m_listCtrl;
   CButton	m_buttonClose;
   CButton	m_buttonStop;
   CButton	m_buttonRun;

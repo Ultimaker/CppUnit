@@ -38,7 +38,7 @@ Exception::~Exception () throw()
 Exception& 
 Exception::operator=( const Exception& other )
 { 
-  std::exception::operator= (other);
+  SuperClass::operator= (other);
 
   if (&other != this) 
   {

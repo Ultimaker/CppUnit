@@ -1,3 +1,42 @@
+2001-09-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+	* src/msvc6/testrunner/TestRunner.dsp: fixed release configuration.
+
+	* src/msvc6/testrunner/TestRunner.dsw: added DSPlugIn.dsp. TestRunner
+	depends on DSPlugIn.
+
+	* src/msvc6/testrunner/TestRunner.cpp:
+	* src/msvc6/testrunner/TestRunnerDlg.h:
+	* src/msvc6/testrunner/TestRunnerDlg.cpp: 
+	* src/msvc6/testrunner/MsDevCallerListCtrl.cpp: 
+	* src/msvc6/testrunner/MsDevCallerListCtrl.h:
+	* src/msvc6/DSPlugIn/*: integrated patch from 
+	Patrick Berny (PPBerny@web.de). An add-ins for VC++. Double-cliking
+	a failed test in the TestRunner, VC++ will open the source file and 
+	go to the failure location.
+
+	* src/cppunit/Exception.cpp:
+	* include/cppunit/Exception.h: compile fix, call to overrided
+	operator = of parent class failed. Using typedef to the parent
+	class fix that.
+
+	* src/cppunit/cppunit.dsp: added TestFixture.h
+
+	* src/cppunit/TestFactoryRegistry.cpp: removed <utility> which isn't
+	needed any more.
+
+	* include/cppunit/TestCase.h:
+	* include/cppunit/TestSuite.h:
+	* include/cppunit/extensions/TestFactoryRegistry.h: added
+	include <Portability.h> before any other includes to remove warning
+	with VC++.
+
+	* include/cppunit/Portability.h: moved platform specific includes at 
+	the beginning of the header. fixed CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION 
+	declaration.
+
+	* include/cppunit/config-msvc6.h: removed pragma once (useless, should 
+	be put in each header to have an effect).
+
 2001-08-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* doc/Makefile.am: Add workaround for broken Doxygen.

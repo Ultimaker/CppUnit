@@ -42,6 +42,13 @@
 #ifndef CPPUNIT_VERSION 
 #define CPPUNIT_VERSION  "1.5.5" 
 #endif
+
+
+
+#if _MSC_VER > 1000     // VC++
+#pragma warning( disable : 4786 )   // disable warning debug symbol > 255...
+#endif // _MSC_VER > 1000
+
  
 /* _INCLUDE_CPPUNIT_CONFIG_MSVC6_H */
 #endif

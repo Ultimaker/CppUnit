@@ -53,6 +53,10 @@ public:
     static Type type();
 
 private:
+    // VC++ does not recognize call to parent class when prefixed
+    // with a namespace. This is a workaround.
+    typedef std::exception SuperClass;
+
     std::string m_message;
     long m_lineNumber;
     std::string m_fileName;
