@@ -13,8 +13,6 @@
 #include <vector>
 #include <iostream>
 
-BoardGameTest<BoardGame> bgt("BoardGameTest<BoardGame>");
-ChessTest<Chess> ct("ChessTest<Chess>");
 
 
 int 
@@ -23,8 +21,11 @@ main(int argc, char** argv)
   CppUnit::TextTestResult res;
   CppUnit::TestSuite suite;
 
-  bgt.registerTests(&suite);
-  ct.registerTests(&suite);
+  BoardGameTest<BoardGame>* bgt = new BoardGameTest<BoardGame>("BoardGameTest<BoardGame>");
+  ChessTest<Chess>* ct = new ChessTest<Chess>("ChessTest<Chess>");
+  
+  bgt->registerTests(&suite);
+  ct->registerTests(&suite);
 
   std::vector<CppUnit::Test*> tests = 
       CppUnit::TestRegistry::getRegistry().getAllTests();
@@ -36,6 +37,8 @@ main(int argc, char** argv)
 
   }
   std::cout << res << endl;
-  
+
+  delete ct;
+  delete bgt;
   return 0;
 }

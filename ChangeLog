@@ -1,3 +1,7 @@
+2001-04-19 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
+	* Added MSVC++ workspace and project files, submitted by 
+	  Baptiste Lepilleur.
+	
 2001-04-15 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Moved public headers from cppunit into new subdir include/cppunit.
 	  This should make more clear which headers are used internally only
@@ -5,6 +9,8 @@
 	
 	* Moved autoconf auxiliary stuff into new subdir config, to make the
 	  top dir less crowded.
+
+	* Prefixed std:: to cerr, cout and endl.
 	
 2001-04-14 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 	* Release as 1.5.4

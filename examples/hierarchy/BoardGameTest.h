@@ -17,7 +17,7 @@ class BoardGameTest : public CppUnit::TestCase {
     GAMECLASS	*m_game;
     
   public:
-    BoardGameTest (string name) : CppUnit::TestCase (name) 
+    BoardGameTest (std::string name) : CppUnit::TestCase (name) 
     {
     }
 
@@ -53,7 +53,7 @@ class BoardGameTest : public CppUnit::TestCase {
 
     void testResetShouldFail () 
     { 
-      cout << "The following test fails, this is intended:" << endl;
+      std::cout << "The following test fails, this is intended:" << std::endl;
       assertImplementation (!m_game->reset (),"!m_game->reset ()",__LINE__,__FILE__); 
     }
     

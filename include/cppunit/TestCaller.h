@@ -5,7 +5,7 @@
 #include "TestCase.h"
 #endif
 
-#include <stl.h>
+#include <memory>
 
 namespace CppUnit {
 

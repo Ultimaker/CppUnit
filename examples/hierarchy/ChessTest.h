@@ -6,7 +6,7 @@
 template<class GAMECLASS> 
 class ChessTest : public BoardGameTest<GAMECLASS> {
   public:
-    ChessTest (string name) : BoardGameTest<GAMECLASS> (name) 
+    ChessTest (std::string name) : BoardGameTest<GAMECLASS> (name) 
     {
     }
     
