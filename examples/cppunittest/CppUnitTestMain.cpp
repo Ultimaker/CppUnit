@@ -15,7 +15,7 @@ main( int argc, char* argv[] )
 {
   // Retreive test path from command line first argument. Default to "" which resolve
   // to the top level suite.
-  std::string testPath = (argc > 1) ? std::string(argv[1]) : "";
+  std::string testPath = (argc > 1) ? std::string(argv[1]) : std::string("");
 
   // Create the event manager and test controller
   CPPUNIT_NS::TestResult controller;

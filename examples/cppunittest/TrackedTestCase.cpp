@@ -3,7 +3,7 @@
 Tracker *TrackedTestCase::ms_tracker = NULL;
 
 TrackedTestCase::TrackedTestCase()
-: TestCase( "" )
+: CPPUNIT_NS::TestCase( "" )
 {
   if ( ms_tracker != NULL )
     ms_tracker->onConstructor();

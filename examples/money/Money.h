@@ -8,7 +8,7 @@
 class IncompatibleMoneyError : public std::runtime_error
 {
 public:
-  IncompatibleMoneyError() : runtime_error( "Incompatible moneys" )
+   IncompatibleMoneyError() : std::runtime_error( "Incompatible moneys" )
   {
   }
 };

@@ -4,7 +4,7 @@
     allowed in doxygen path)
 
   * src/cppunit/XmlElement.cpp:
-  * src/examples/CppUnitTest/XmlUniformser.cpp: fixed bug #676505 (no space
+  * src/examples/cppunittest/XmlUniformser.cpp: fixed bug #676505 (no space
     between attributes of XmlElement).
 
   * include/cppunit/tools/Algorithm.h:
@@ -12,6 +12,11 @@
   * src/msvc6/testrunner/TestRunnerModel.cpp: added removeFromSequence 
     algorithm in Algorithm.h to fix STLPort compatibility issue 
 	(std::remove use the one of cstdio instead of algorithm). Bug #694971.
+
+  * src/examples/cppunittest/TrackedTestCase.cpp:
+  * src/examples/cppunittest/CppUnitTestMain.cpp:
+  * src/examples/money/Money.h: partially applied patch #699794. Fixed 
+    compilation issues with Borland C++ 6.
 
 2003-01-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
