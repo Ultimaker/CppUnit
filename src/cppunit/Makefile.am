@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.27 2002-04-18 09:51:54 blep Exp $
+# $Id: Makefile.am,v 1.28 2002-04-18 09:56:17 blep Exp $
 #
 
 EXTRA_DIST = cppunit.dsp cppunit_dll.dsp DllMain.cpp
@@ -16,6 +16,7 @@ libcppunit_la_SOURCES = \
   Exception.cpp \
   NotEqualException.cpp \
   RepeatedTest.cpp \
+  PlugInManager.cpp \
   SourceLine.cpp \
   SynchronizedObject.cpp \
   Test.cpp \
@@ -27,7 +28,6 @@ libcppunit_la_SOURCES = \
   TestLeaf.cpp \
   TestPath.cpp \
   TestPlugInAdapter.cpp \
-  TestPlugInSuite.cpp \
   TestResult.cpp \
   TestResultCollector.cpp \
   TestRunner.cpp \
