@@ -11,7 +11,7 @@
 /*! \class XmlOutputterTest
  * \brief Unit tests for XmlOutputter.
  */
-class XmlOutputterTest : public CppUnit::TestFixture
+class XmlOutputterTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( XmlOutputterTest );
   CPPUNIT_TEST( testWriteXmlResultWithNoTest );
@@ -57,20 +57,20 @@ private:
   void addTest( std::string testName );
   void addTestFailure( std::string testName,
                        std::string message,
-                       CppUnit::SourceLine sourceLine = CppUnit::SourceLine() );
+                       CPPUNIT_NS::SourceLine sourceLine = CPPUNIT_NS::SourceLine() );
   void addTestError( std::string testName,
                      std::string message,
-                     CppUnit::SourceLine sourceLine = CppUnit::SourceLine() );
+                     CPPUNIT_NS::SourceLine sourceLine = CPPUNIT_NS::SourceLine() );
   void addGenericTestFailure( std::string testName,
-                              CppUnit::Message message,
-                              CppUnit::SourceLine sourceLine,
+                              CPPUNIT_NS::Message message,
+                              CPPUNIT_NS::SourceLine sourceLine,
                               bool isError );
 
-  CppUnit::Test *makeDummyTest( std::string testName );
+  CPPUNIT_NS::Test *makeDummyTest( std::string testName );
 
 private:
-  CppUnit::TestResultCollector *m_result;
-  std::deque<CppUnit::Test *> m_dummyTests;
+  CPPUNIT_NS::TestResultCollector *m_result;
+  std::deque<CPPUNIT_NS::Test *> m_dummyTests;
 };
 
 

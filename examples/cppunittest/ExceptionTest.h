@@ -4,7 +4,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 
-class ExceptionTest : public CppUnit::TestFixture
+class ExceptionTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( ExceptionTest );
   CPPUNIT_TEST( testConstructor );
@@ -30,8 +30,8 @@ public:
 private:
   ExceptionTest( const ExceptionTest &copy );
   void operator =( const ExceptionTest &copy );
-  void checkIsSame( CppUnit::Exception &e, 
-                    CppUnit::Exception &other );
+  void checkIsSame( CPPUNIT_NS::Exception &e, 
+                    CPPUNIT_NS::Exception &other );
 
 private:
 };

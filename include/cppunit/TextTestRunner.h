@@ -1,18 +1,20 @@
 #ifndef CPPUNIT_TEXTTESTRUNNER_H
 #define CPPUNIT_TEXTTESTRUNNER_H
 
-#include <cppunit/ui/text/TestRunner.h>
-
-CPPUNIT_NS_BEGIN
+#include <cppunit/ui/text/TextTestRunner.h>
 
 
-/*!
- * \brief A text mode test runner.
- * \ingroup ExecutingTest
- * \deprecated Use CppUnit::TextUi::TestRunner instead.
- */
-typedef CPPUNIT_NS(TextUi::TestRunner) TextTestRunner;
+#if !defined(CPPUNIT_NO_NAMESPACE)
+namespace TextUi
+{
 
-CPPUNIT_NS_END
+  /*! Text TestRunner (DEPRECATED).
+   * \deprecated Use TextTestRunner instead.
+   */
+  typedef TextTestRunner TestRunner;
+
+}
+#endif
+
 
 #endif  // CPPUNIT_TEXTTESTRUNNER_H

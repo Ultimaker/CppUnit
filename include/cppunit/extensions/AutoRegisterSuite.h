@@ -8,7 +8,7 @@
 CPPUNIT_NS_BEGIN
 
 
-/** Automatically register the test suite of the specified type. (Implementation)
+/*! \brief (Implementation) Automatically register the test suite of the specified type.
  *
  * You should not use this class directly. Instead, use the following macros:
  * - CPPUNIT_TEST_SUITE_REGISTRATION()
@@ -57,7 +57,7 @@ private:
 };
 
 
-/*! Automatically adds a registry into another registry. (Implementation)
+/*! \brief (Implementation) Automatically adds a registry into another registry.
  *
  * Don't use this class. Use the macros CPPUNIT_REGISTRY_ADD() and
  * CPPUNIT_REGISTRY_ADD_TO_DEFAULT() instead.

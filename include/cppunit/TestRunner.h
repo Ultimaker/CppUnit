@@ -95,6 +95,8 @@ public:
                     const std::string &testPath = "" );
 
 protected:
+  /*! \brief (INTERNAL) Mutating test suite.
+   */
   class CPPUNIT_API WrappingSuite : public TestSuite
   {
   public:

@@ -22,7 +22,7 @@ CPPUNIT_NS_BEGIN
   {
   public:
     //! Creates a new TestFixture instance.
-    virtual CPPUNIT_NS(TestFixture) *makeFixture() =0;
+    virtual CPPUNIT_NS::TestFixture *makeFixture() =0;
   };
 
 CPPUNIT_NS_END
@@ -114,14 +114,14 @@ CPPUNIT_NS_END
 #define CPPUNIT_TEST_SUITE( ATestFixtureType )                             \
   private:                                                                 \
     typedef ATestFixtureType ThisTestFixtureType;                          \
-    class __ThisTestFixtureFactory : public CPPUNIT_NS(TestFixtureFactory) \
+    class __ThisTestFixtureFactory : public CPPUNIT_NS::TestFixtureFactory \
     {                                                                      \
-      virtual CPPUNIT_NS(TestFixture) *makeFixture()                       \
+      virtual CPPUNIT_NS::TestFixture *makeFixture()                       \
       {                                                                    \
         return new ATestFixtureType();                                     \
       }                                                                    \
     };                                                                     \
-    static const CPPUNIT_NS(TestNamer) &__getTestNamer()                   \
+    static const CPPUNIT_NS::TestNamer &__getTestNamer()                   \
     {                                                                      \
       static CPPUNIT_TESTNAMER_DECL( testNamer, ATestFixtureType );        \
       return testNamer;                                                    \
@@ -130,7 +130,7 @@ CPPUNIT_NS_END
     class ThisTestFixtureFactory                                           \
     {                                                                      \
     public:                                                                \
-      ThisTestFixtureFactory( CPPUNIT_NS(TestFixtureFactory) *factory )    \
+      ThisTestFixtureFactory( CPPUNIT_NS::TestFixtureFactory *factory )    \
         : m_factory( factory )                                             \
       {                                                                    \
       }                                                                    \
@@ -139,16 +139,16 @@ CPPUNIT_NS_END
         return (ThisTestFixtureType *)m_factory->makeFixture();            \
       }                                                                    \
     private:                                                               \
-      CPPUNIT_NS(TestFixtureFactory) *m_factory;                           \
+      CPPUNIT_NS::TestFixtureFactory *m_factory;                           \
     };                                                                     \
                                                                            \
     static void                                                            \
-    __registerTests( CPPUNIT_NS(TestSuite) *suite,                         \
-                     CPPUNIT_NS(TestFixtureFactory) *fixtureFactory,       \
-                     const CPPUNIT_NS(TestNamer) &namer )                  \
+    __registerTests( CPPUNIT_NS::TestSuite *suite,                         \
+                     CPPUNIT_NS::TestFixtureFactory *fixtureFactory,       \
+                     const CPPUNIT_NS::TestNamer &namer )                  \
     {                                                                      \
       const ThisTestFixtureFactory factory( fixtureFactory );              \
-      CPPUNIT_NS(TestSuiteBuilder)<ThisTestFixtureType> builder( suite, namer )
+      CPPUNIT_NS::TestSuiteBuilder<ThisTestFixtureType> builder( suite, namer )
 
 
 /*! \brief Begin test suite (includes parent suite)
@@ -272,7 +272,7 @@ CPPUNIT_NS_END
  *                      method.
  */
 #define CPPUNIT_TEST_EXCEPTION( testMethod, ExceptionType )              \
-    CPPUNIT_TEST_ADD( (new CPPUNIT_NS(TestCaller)<ThisTestFixtureType,   \
+    CPPUNIT_TEST_ADD( (new CPPUNIT_NS::TestCaller<ThisTestFixtureType,   \
                                                 ExceptionType>(          \
                                namer.getTestNameFor( #testMethod ),      \
                                &ThisTestFixtureType::testMethod,         \
@@ -294,7 +294,7 @@ CPPUNIT_NS_END
  * \see CreatingNewAssertions.
  */
 #define CPPUNIT_TEST_FAIL( testMethod ) \
-              CPPUNIT_TEST_EXCEPTION( testMethod, CPPUNIT_NS(Exception) )
+              CPPUNIT_TEST_EXCEPTION( testMethod, CPPUNIT_NS::Exception )
 
 /*! \brief Adds a custom test case.
  *
@@ -398,10 +398,10 @@ CPPUNIT_NS_END
 #define CPPUNIT_TEST_SUITE_END()                                                    \
       builder.takeSuite();                                                          \
     }                                                                               \
-    static CPPUNIT_NS(TestSuite) *suite()                                              \
+    static CPPUNIT_NS::TestSuite *suite()                                              \
     {                                                                               \
-      const CPPUNIT_NS(TestNamer) &namer = __getTestNamer();                           \
-      CPPUNIT_NS(TestSuiteBuilder)<ThisTestFixtureType> builder( namer );            \
+      const CPPUNIT_NS::TestNamer &namer = __getTestNamer();                           \
+      CPPUNIT_NS::TestSuiteBuilder<ThisTestFixtureType> builder( namer );            \
       __ThisTestFixtureFactory factory;                                             \
       ThisTestFixtureType::__registerTests( builder.suite(), &factory, namer );   \
       return builder.takeSuite();                                                   \
@@ -431,7 +431,7 @@ CPPUNIT_NS_END
  *      CppUnit::TestFactoryRegistry.
  */
 #define CPPUNIT_TEST_SUITE_REGISTRATION( ATestFixtureType )      \
-  static CPPUNIT_NS(AutoRegisterSuite)< ATestFixtureType >       \
+  static CPPUNIT_NS::AutoRegisterSuite< ATestFixtureType >       \
              CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )
 
 
@@ -473,7 +473,7 @@ CPPUNIT_NS_END
  *      CppUnit::TestFactoryRegistry..
  */
 #define CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ATestFixtureType, suiteName ) \
-  static CPPUNIT_NS(AutoRegisterSuite)< ATestFixtureType >                   \
+  static CPPUNIT_NS::AutoRegisterSuite< ATestFixtureType >                   \
              CPPUNIT_MAKE_UNIQUE_NAME(__autoRegisterSuite )(suiteName)
 
 /*! Adds that the specified registry suite to another registry suite.
@@ -504,7 +504,7 @@ CPPUNIT_NS_END
  * \see CPPUNIT_REGISTRY_ADD_TO_DEFAULT, CPPUNIT_TEST_SUITE_NAMED_REGISTRATION.
  */
 #define CPPUNIT_REGISTRY_ADD( which, to )                                     \
-  static CPPUNIT_NS(AutoRegisterRegistry)                                     \
+  static CPPUNIT_NS::AutoRegisterRegistry                                     \
              CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which, to )
 
 /*! Adds that the specified registry suite to the default registry suite.
@@ -517,7 +517,7 @@ CPPUNIT_NS_END
  * \see CPPUNIT_REGISTRY_ADD.
  */
 #define CPPUNIT_REGISTRY_ADD_TO_DEFAULT( which )                         \
-  static CPPUNIT_NS(AutoRegisterRegistry)                                \
+  static CPPUNIT_NS::AutoRegisterRegistry                                \
              CPPUNIT_MAKE_UNIQUE_NAME( __autoRegisterRegistry )( which )
 
 // Backwards compatibility

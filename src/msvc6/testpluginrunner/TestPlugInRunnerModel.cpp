@@ -11,7 +11,7 @@
 
 
 TestPlugInRunnerModel::TestPlugInRunnerModel() : 
-    TestRunnerModel( new CppUnit::TestSuite( "Default" ) ),
+    TestRunnerModel( new CPPUNIT_NS::TestSuite( "Default" ) ),
     m_plugIn( new TestPlugIn( "default plug-in" ) )
 {
 }
@@ -45,7 +45,7 @@ TestPlugInRunnerModel::reloadPlugIn()
   }
   catch (...)
   {
-    setRootTest( new CppUnit::TestSuite( "Default" ) );  
+    setRootTest( new CPPUNIT_NS::TestSuite( "Default" ) );  
     loadHistory();
     throw;
   }

@@ -79,7 +79,7 @@ TestAssertTest::testAssertMessageFalse()
   {
     CPPUNIT_ASSERT_MESSAGE( message, 2==3 );
   }
-  catch( CppUnit::Exception &e )
+  catch( CPPUNIT_NS::Exception &e )
   {
     exceptionCaught = true; // ok, we were expecting an exception.
     checkMessageContains( &e, message );
@@ -134,7 +134,7 @@ TestAssertTest::testFail()
   {
     CPPUNIT_FAIL( failure );
   }
-  catch( CppUnit::Exception &e )
+  catch( CPPUNIT_NS::Exception &e )
   {
     exceptionCaught = true;
     checkMessageContains( &e, failure );
@@ -144,7 +144,7 @@ TestAssertTest::testFail()
 
 
 void 
-TestAssertTest::checkMessageContains( CppUnit::Exception *e,
+TestAssertTest::checkMessageContains( CPPUNIT_NS::Exception *e,
                                       std::string expected )
 {
   std::string actual = e->what();

@@ -4,7 +4,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 
-class TestAssertTest : public CppUnit::TestFixture
+class TestAssertTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestAssertTest );
   CPPUNIT_TEST( testAssertTrue );
@@ -53,7 +53,7 @@ private:
                              double actual, 
                              double delta );
 
-  void checkMessageContains( CppUnit::Exception *e,
+  void checkMessageContains( CPPUNIT_NS::Exception *e,
                              std::string expectedMessage );
 
 private:

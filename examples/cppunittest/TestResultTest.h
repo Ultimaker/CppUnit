@@ -6,7 +6,7 @@
 #include "MockTestListener.h"
 
 
-class TestResultTest : public CppUnit::TestFixture
+class TestResultTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestResultTest );
   CPPUNIT_TEST( testConstructor );
@@ -46,10 +46,10 @@ private:
   void operator =( const TestResultTest &copy );
 
 private:
-  CppUnit::TestResult *m_result;
+  CPPUNIT_NS::TestResult *m_result;
   MockTestListener *m_listener1;
   MockTestListener *m_listener2;
-  CppUnit::Test *m_dummyTest;
+  CPPUNIT_NS::Test *m_dummyTest;
 };
 
 

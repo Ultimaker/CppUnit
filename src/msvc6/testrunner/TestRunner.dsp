@@ -410,7 +410,15 @@ SOURCE=.\MfcSynchronizationObject.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestRunner.cpp
+SOURCE=.\MfcTestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\include\cppunit\ui\mfc\MfcTestRunner.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\include\cppunit\ui\mfc\TestRunner.h
 # End Source File
 # Begin Source File
 

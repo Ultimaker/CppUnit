@@ -4,7 +4,7 @@
 
 
 MockTestCase::MockTestCase( std::string name )
-    : CppUnit::TestCase( name )
+    : CPPUNIT_NS::TestCase( name )
     , m_hasSetUpExpectation( false )
     , m_expectedSetUpCall( 0 )
     , m_actualSetUpCall( 0 )
@@ -90,8 +90,8 @@ MockTestCase::runTest()
 
 /*
 bool 
-MockTestCase::findTestPath( const CppUnit::Test *test,
-                            CppUnit::TestPath &testPath )
+MockTestCase::findTestPath( const CPPUNIT_NS::Test *test,
+                            CPPUNIT_NS::TestPath &testPath )
 {
   if ( m_passingTest == test )
   {

@@ -29,33 +29,33 @@ public:
     int  col_4; // 4th column width in list view  
   };
 
-  typedef std::deque<CppUnit::Test *> History;
+  typedef std::deque<CPPUNIT_NS::Test *> History;
 
   /*! Constructs a TestRunnerModel object.
    */
-  TestRunnerModel( CppUnit::Test *rootTest );
+  TestRunnerModel( CPPUNIT_NS::Test *rootTest );
 
   /*! Destructor.
    */
   virtual ~TestRunnerModel();
 
-  virtual void setRootTest( CppUnit::Test *rootTest );
+  virtual void setRootTest( CPPUNIT_NS::Test *rootTest );
 
   void loadSettings(Settings & s);
   void saveSettings(const Settings & s);
 
   const History &history() const;
-  void selectHistoryTest( CppUnit::Test *test );
-  CppUnit::Test *selectedTest() const;
+  void selectHistoryTest( CPPUNIT_NS::Test *test );
+  CPPUNIT_NS::Test *selectedTest() const;
 
-  CppUnit::Test *rootTest();
+  CPPUNIT_NS::Test *rootTest();
 
 protected:
   void loadHistory();
   CString loadHistoryEntry( int idx );
-  CppUnit::Test *findTestByName( CString name ) const;
-  CppUnit::Test *findTestByNameFor( const CString &name, 
-                                    CppUnit::Test *test ) const;
+  CPPUNIT_NS::Test *findTestByName( CString name ) const;
+  CPPUNIT_NS::Test *findTestByNameFor( const CString &name, 
+                                    CPPUNIT_NS::Test *test ) const;
 
   void saveHistoryEntry( int idx, 
                          CString testName );
@@ -74,7 +74,7 @@ private:
 protected:
   History m_history;
 
-  CppUnit::Test *m_rootTest;
+  CPPUNIT_NS::Test *m_rootTest;
 };
 
 

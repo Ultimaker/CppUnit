@@ -31,8 +31,8 @@ TestSetUpTest::tearDown()
 void 
 TestSetUpTest::testRun()
 {
-  CppUnit::TestResult result;
-  CppUnit::TestCase test;
+  CPPUNIT_NS::TestResult result;
+  CPPUNIT_NS::TestCase test;
   MockSetUp setUpTest( &test );
   
   setUpTest.run( &result );

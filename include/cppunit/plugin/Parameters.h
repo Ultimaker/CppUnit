@@ -5,13 +5,13 @@
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
-#include <deque>
+#include <cppunit/portability/CppUnitDeque.h>
 #include <string>
 
 CPPUNIT_NS_BEGIN
 
 
-typedef std::deque<std::string> Parameters;
+typedef CppUnitDeque<std::string> Parameters;
 
 
 CPPUNIT_NS_END

@@ -4,7 +4,7 @@
 
 // Spawn a thread to a test
 void 
-ActiveTest::run( CppUnit::TestResult *result )
+ActiveTest::run( CPPUNIT_NS::TestResult *result )
 {
   CWinThread *thread;
   

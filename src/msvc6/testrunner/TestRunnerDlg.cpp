@@ -198,8 +198,8 @@ TestRunnerDlg::OnRun()
   m_testsProgress->start( numberOfTests );
 
   
-  m_result = new CppUnit::TestResultCollector( new MfcSynchronizationObject() );
-  m_testObserver = new CppUnit::TestResult( new MfcSynchronizationObject() );
+  m_result = new CPPUNIT_NS::TestResultCollector( new MfcSynchronizationObject() );
+  m_testObserver = new CPPUNIT_NS::TestResult( new MfcSynchronizationObject() );
   m_testObserver->addListener( m_result );
   m_testObserver->addListener( this );
   m_activeTest = new ActiveTest( m_selectedTest );
@@ -213,7 +213,7 @@ TestRunnerDlg::OnRun()
 
 
 void 
-TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
+TestRunnerDlg::addListEntry( const CPPUNIT_NS::TestFailure &failure )
 {
   CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
   int currentEntry = m_result->testErrors() + 
@@ -263,7 +263,7 @@ TestRunnerDlg::addListEntry( const CppUnit::TestFailure &failure )
 
 
 void 
-TestRunnerDlg::startTest( CppUnit::Test *test )
+TestRunnerDlg::startTest( CPPUNIT_NS::Test *test )
 {
   CWnd *runningTestCaseLabel = GetDlgItem(IDC_RUNNING_TEST_CASE_LABEL);
   if ( runningTestCaseLabel )
@@ -272,7 +272,7 @@ TestRunnerDlg::startTest( CppUnit::Test *test )
 
 
 void 
-TestRunnerDlg::addFailure( const CppUnit::TestFailure &failure )
+TestRunnerDlg::addFailure( const CPPUNIT_NS::TestFailure &failure )
 {
   addListEntry( failure );
   if ( failure.isError() )
@@ -285,7 +285,7 @@ TestRunnerDlg::addFailure( const CppUnit::TestFailure &failure )
 
 
 void 
-TestRunnerDlg::endTest( CppUnit::Test *test )
+TestRunnerDlg::endTest( CPPUNIT_NS::Test *test )
 {
   if ( m_selectedTest == 0 )
     return;
@@ -427,7 +427,7 @@ TestRunnerDlg::OnSelectTestInHistoryCombo()
   if ( currentSelection >= 0  &&
        currentSelection < m_model->history().size() )
   {
-    CppUnit::Test *selectedTest = m_model->history()[currentSelection];
+    CPPUNIT_NS::Test *selectedTest = m_model->history()[currentSelection];
     m_model->selectHistoryTest( selectedTest );
     updateHistoryCombo();
     beIdle();
@@ -449,7 +449,7 @@ TestRunnerDlg::updateHistoryCombo()
         it != history.end(); 
         ++it )
   {
-    CppUnit::Test *test = *it;
+    CPPUNIT_NS::Test *test = *it;
     getHistoryCombo()->AddString( CString(test->getName().c_str()) );
   }
 

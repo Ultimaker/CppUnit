@@ -19,10 +19,10 @@ TestResultTest::~TestResultTest()
 void 
 TestResultTest::setUp()
 {
-  m_result = new CppUnit::TestResult();
+  m_result = new CPPUNIT_NS::TestResult();
   m_listener1 = new MockTestListener( "listener1" );
   m_listener2 = new MockTestListener( "listener2" );
-  m_dummyTest = new CppUnit::TestCase();
+  m_dummyTest = new CPPUNIT_NS::TestCase();
 }
 
 
@@ -54,8 +54,8 @@ TestResultTest::testStop()
 void 
 TestResultTest::testAddError()
 {
-  CppUnit::Exception *dummyException = new CppUnit::Exception( 
-                                           CppUnit::Message( "some_error" ) );
+  CPPUNIT_NS::Exception *dummyException = new CPPUNIT_NS::Exception( 
+                                           CPPUNIT_NS::Message( "some_error" ) );
   m_listener1->setExpectFailure( m_dummyTest, dummyException, true );
   m_result->addListener( m_listener1 );
 
@@ -68,8 +68,8 @@ TestResultTest::testAddError()
 void 
 TestResultTest::testAddFailure()
 {
-  CppUnit::Exception *dummyException = new CppUnit::Exception( 
-                                            CppUnit::Message("some_error" ) );
+  CPPUNIT_NS::Exception *dummyException = new CPPUNIT_NS::Exception( 
+                                            CPPUNIT_NS::Message("some_error" ) );
   m_listener1->setExpectFailure( m_dummyTest, dummyException, false );
   m_result->addListener( m_listener1 );
 
@@ -145,8 +145,8 @@ TestResultTest::testTwoListener()
 {
   m_listener1->setExpectStartTest( m_dummyTest );
   m_listener2->setExpectStartTest( m_dummyTest );
-  CppUnit::Exception *dummyException1 = new CppUnit::Exception( 
-                                             CppUnit::Message( "some_error" ) );
+  CPPUNIT_NS::Exception *dummyException1 = new CPPUNIT_NS::Exception( 
+                                             CPPUNIT_NS::Message( "some_error" ) );
   m_listener1->setExpectFailure( m_dummyTest, dummyException1, true );
   m_listener2->setExpectFailure( m_dummyTest, dummyException1, true );
   m_listener1->setExpectEndTest( m_dummyTest );

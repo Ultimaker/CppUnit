@@ -6,29 +6,26 @@
 CPPUNIT_NS_BEGIN
 
 
-namespace Asserter
-{
-
 void 
-fail( std::string message, 
-      const SourceLine &sourceLine )
+Asserter::fail( std::string message, 
+                const SourceLine &sourceLine )
 {
   fail( Message( "assertion failed", message ), sourceLine );
 }
 
 
 void 
-fail( const Message &message, 
-      const SourceLine &sourceLine )
+Asserter::fail( const Message &message, 
+                const SourceLine &sourceLine )
 {
   throw Exception( message, sourceLine );
 }
 
 
 void 
-failIf( bool shouldFail, 
-        const Message &message, 
-        const SourceLine &sourceLine )
+Asserter::failIf( bool shouldFail, 
+                  const Message &message, 
+                  const SourceLine &sourceLine )
 {
   if ( shouldFail )
     fail( message, sourceLine );
@@ -36,33 +33,33 @@ failIf( bool shouldFail,
 
 
 void 
-failIf( bool shouldFail, 
-        std::string message, 
-        const SourceLine &sourceLine )
+Asserter::failIf( bool shouldFail, 
+                  std::string message, 
+                  const SourceLine &sourceLine )
 {
   failIf( shouldFail, Message( "assertion failed", message ), sourceLine );
 }
 
 
 std::string 
-makeExpected( const std::string &expectedValue )
+Asserter::makeExpected( const std::string &expectedValue )
 {
   return "Expected: " + expectedValue;
 }
 
 
 std::string 
-makeActual( const std::string &actualValue )
+Asserter::makeActual( const std::string &actualValue )
 {
   return "Actual  : " + actualValue;
 }
 
 
 Message 
-makeNotEqualMessage( const std::string &expectedValue,
-                     const std::string &actualValue,
-                     const AdditionalMessage &additionalMessage,
-                     const std::string &shortDescription )
+Asserter::makeNotEqualMessage( const std::string &expectedValue,
+                               const std::string &actualValue,
+                               const AdditionalMessage &additionalMessage,
+                               const std::string &shortDescription )
 {
   Message message( shortDescription,
                    makeExpected( expectedValue ),
@@ -74,11 +71,11 @@ makeNotEqualMessage( const std::string &expectedValue,
 
 
 void 
-failNotEqual( std::string expected, 
-              std::string actual, 
-              const SourceLine &sourceLine,
-              const AdditionalMessage &additionalMessage,
-              std::string shortDescription )
+Asserter::failNotEqual( std::string expected, 
+                        std::string actual, 
+                        const SourceLine &sourceLine,
+                        const AdditionalMessage &additionalMessage,
+                        std::string shortDescription )
 {
   fail( makeNotEqualMessage( expected,
                              actual,
@@ -89,17 +86,16 @@ failNotEqual( std::string expected,
 
 
 void 
-failNotEqualIf( bool shouldFail,
-                std::string expected, 
-                std::string actual, 
-                const SourceLine &sourceLine,
-                const AdditionalMessage &additionalMessage,
-                std::string shortDescription )
+Asserter::failNotEqualIf( bool shouldFail,
+                          std::string expected, 
+                          std::string actual, 
+                          const SourceLine &sourceLine,
+                          const AdditionalMessage &additionalMessage,
+                          std::string shortDescription )
 {
   if ( shouldFail )
     failNotEqual( expected, actual, sourceLine, additionalMessage, shortDescription );
 }
 
 
-} // namespace Asserter
 CPPUNIT_NS_END

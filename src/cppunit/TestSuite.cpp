@@ -38,7 +38,7 @@ TestSuite::addTest( Test *test )
 }
 
 
-const std::vector<Test *> &
+const CppUnitVector<Test *> &
 TestSuite::getTests() const
 {
   return m_tests;

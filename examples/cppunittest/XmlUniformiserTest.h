@@ -7,7 +7,7 @@
 /*! \class XmlUniformiserTest
  * \brief Unit test for XmlUniformiser.
  */
-class XmlUniformiserTest : public CppUnit::TestFixture
+class XmlUniformiserTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( XmlUniformiserTest );
   CPPUNIT_TEST( testEmpty );

@@ -10,7 +10,7 @@
  * Used to write your own assertion macros.
  * \see Asserter for example of usage.
  */
-#define CPPUNIT_SOURCELINE() CPPUNIT_NS(SourceLine)( __FILE__, __LINE__ )
+#define CPPUNIT_SOURCELINE() CPPUNIT_NS::SourceLine( __FILE__, __LINE__ )
 
 
 CPPUNIT_NS_BEGIN

@@ -7,7 +7,7 @@
 
 
 /// Unit tests for MessageTest
-class MessageTest : public CppUnit::TestFixture
+class MessageTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( MessageTest );
   CPPUNIT_TEST( testDefaultConstructor );
@@ -68,7 +68,7 @@ private:
   void operator =( const MessageTest &other );
 
 private:
-  CppUnit::Message *m_message;
+  CPPUNIT_NS::Message *m_message;
 };
 
 

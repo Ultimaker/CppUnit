@@ -74,6 +74,8 @@ public:
   void removeXmlOutputterHooks();
 
 protected:
+  /*! \brief (INTERNAL) Information about a specific plug-in.
+   */
   struct PlugInInfo
   {
     std::string m_fileName;
@@ -94,7 +96,7 @@ private:
   void operator =( const PlugInManager &copy );
 
 private:
-  typedef std::deque<PlugInInfo> PlugIns;
+  typedef CppUnitDeque<PlugInInfo> PlugIns;
   PlugIns m_plugIns;
 };
 

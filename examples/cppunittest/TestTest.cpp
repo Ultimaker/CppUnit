@@ -7,7 +7,7 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( TestTest,
 
 
 TestTest::TestTest() : 
-    CppUnit::TestFixture()
+    CPPUNIT_NS::TestFixture()
 {
 }
 
@@ -20,13 +20,13 @@ TestTest::~TestTest()
 void 
 TestTest::setUp()
 {
-  m_suite = new CppUnit::TestSuite( "suite" );
+  m_suite = new CPPUNIT_NS::TestSuite( "suite" );
   m_test1 = new MockTestCase( "test1" );
   m_test2 = new MockTestCase( "test2" );
   m_suite->addTest( m_test1 );
   m_suite->addTest( m_test2 );
   
-  m_path = new CppUnit::TestPath();
+  m_path = new CPPUNIT_NS::TestPath();
 }
 
 
@@ -122,11 +122,11 @@ TestTest::testFindTestThrow()
 void 
 TestTest::testResolveTestPath()
 {
-  CppUnit::TestPath path1 = m_suite->resolveTestPath( "suite");
+  CPPUNIT_NS::TestPath path1 = m_suite->resolveTestPath( "suite");
   CPPUNIT_ASSERT_EQUAL( 1, path1.getTestCount() );
   CPPUNIT_ASSERT( m_suite == path1.getTestAt(0) );
 
-  CppUnit::TestPath path2 = m_suite->resolveTestPath( "suite/test2");
+  CPPUNIT_NS::TestPath path2 = m_suite->resolveTestPath( "suite/test2");
   CPPUNIT_ASSERT_EQUAL( 2, path2.getTestCount() );
   CPPUNIT_ASSERT( m_suite == path2.getTestAt(0) );
   CPPUNIT_ASSERT( m_test2 == path2.getTestAt(1) );

@@ -5,7 +5,7 @@
 #include "MockTestListener.h"
 
 
-class HelperMacrosTest : public CppUnit::TestFixture
+class HelperMacrosTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( HelperMacrosTest );
   CPPUNIT_TEST( testNoSubclassing );
@@ -45,7 +45,7 @@ private:
   void operator =( const HelperMacrosTest &copy );
 
 private:
-  CppUnit::TestResult *m_result;
+  CPPUNIT_NS::TestResult *m_result;
   MockTestListener *m_testListener;
 };
 

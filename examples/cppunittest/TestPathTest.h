@@ -10,7 +10,7 @@
 /*! \class TestPathTest
  * \brief Unit tests for class TestPath.
  */
-class TestPathTest : public CppUnit::TestFixture
+class TestPathTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestPathTest );
   CPPUNIT_TEST( testDefaultConstructor );
@@ -126,15 +126,15 @@ private:
   void operator =( const TestPathTest &copy );
 
 private:
-  CppUnit::TestPath *m_path;
-  CppUnit::TestCase *m_test1;
-  CppUnit::TestCase *m_test2;
-  CppUnit::TestCase *m_test3;
-  CppUnit::TestCase *m_test4;
-  CppUnit::TestSuite *m_suite1;
-  CppUnit::TestSuite *m_suite2;
-  CppUnit::TestCase *m_testSuite2a;
-  CppUnit::TestCase *m_testSuite2b;
+  CPPUNIT_NS::TestPath *m_path;
+  CPPUNIT_NS::TestCase *m_test1;
+  CPPUNIT_NS::TestCase *m_test2;
+  CPPUNIT_NS::TestCase *m_test3;
+  CPPUNIT_NS::TestCase *m_test4;
+  CPPUNIT_NS::TestSuite *m_suite1;
+  CPPUNIT_NS::TestSuite *m_suite2;
+  CPPUNIT_NS::TestCase *m_testSuite2a;
+  CPPUNIT_NS::TestCase *m_testSuite2b;
 };
 
 

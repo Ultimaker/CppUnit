@@ -25,7 +25,7 @@ void
 XmlOutputterTest::setUp()
 {
   m_dummyTests.clear();
-  m_result = new CppUnit::TestResultCollector();
+  m_result = new CPPUNIT_NS::TestResultCollector();
 }
 
 
@@ -42,8 +42,8 @@ XmlOutputterTest::tearDown()
 void 
 XmlOutputterTest::testWriteXmlResultWithNoTest()
 {
-  CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( m_result, stream );
+  CPPUNIT_NS::OStringStream stream;
+  CPPUNIT_NS::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -65,10 +65,10 @@ XmlOutputterTest::testWriteXmlResultWithNoTest()
 void 
 XmlOutputterTest::testWriteXmlResultWithOneFailure()
 {
-  addTestFailure( "test1", "message failure1", CppUnit::SourceLine( "test.cpp", 3 ) );
+  addTestFailure( "test1", "message failure1", CPPUNIT_NS::SourceLine( "test.cpp", 3 ) );
 
-  CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( m_result, stream );
+  CPPUNIT_NS::OStringStream stream;
+  CPPUNIT_NS::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -102,8 +102,8 @@ XmlOutputterTest::testWriteXmlResultWithOneError()
 {
   addTestError( "test1", "message error1" );
 
-  CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( m_result, stream );
+  CPPUNIT_NS::OStringStream stream;
+  CPPUNIT_NS::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -133,8 +133,8 @@ XmlOutputterTest::testWriteXmlResultWithOneSuccess()
 {
   addTest( "test1" );
 
-  CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( m_result, stream );
+  CPPUNIT_NS::OStringStream stream;
+  CPPUNIT_NS::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -168,8 +168,8 @@ XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess()
   addTestError( "test6", "error2" );
   addTest( "test7" );
 
-  CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( m_result, stream );
+  CPPUNIT_NS::OStringStream stream;
+  CPPUNIT_NS::XmlOutputter outputter( m_result, stream );
   outputter.write();
 
   std::string actualXml = stream.str();
@@ -221,7 +221,7 @@ XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess()
 }
 
 
-class XmlOutputterTest::MockHook : public CppUnit::XmlOutputterHook
+class XmlOutputterTest::MockHook : public CPPUNIT_NS::XmlOutputterHook
 {
 public:
   MockHook( int &beginCalls,
@@ -237,33 +237,33 @@ public:
   {
   }
 
-  void beginDocument( CppUnit::XmlDocument *document )
+  void beginDocument( CPPUNIT_NS::XmlDocument *document )
   {
     ++m_beginCalls;
   }
 
-  void endDocument( CppUnit::XmlDocument *document )
+  void endDocument( CPPUNIT_NS::XmlDocument *document )
   {
     ++m_endCalls;
   }
 
-  void failTestAdded( CppUnit::XmlDocument *document,
-                      CppUnit::XmlElement *testElement,
-                      CppUnit::Test *test,
-                      CppUnit::TestFailure *failure )
+  void failTestAdded( CPPUNIT_NS::XmlDocument *document,
+                      CPPUNIT_NS::XmlElement *testElement,
+                      CPPUNIT_NS::Test *test,
+                      CPPUNIT_NS::TestFailure *failure )
   {
     ++m_failedTestCalls;
   }
 
-  void successfulTestAdded( CppUnit::XmlDocument *document,
-                            CppUnit::XmlElement *testElement,
-                            CppUnit::Test *test )
+  void successfulTestAdded( CPPUNIT_NS::XmlDocument *document,
+                            CPPUNIT_NS::XmlElement *testElement,
+                            CPPUNIT_NS::Test *test )
   {
     ++m_successfulTestCalls;
   }
 
-  void statisticsAdded( CppUnit::XmlDocument *document,
-                        CppUnit::XmlElement *statisticsElement )
+  void statisticsAdded( CPPUNIT_NS::XmlDocument *document,
+                        CPPUNIT_NS::XmlElement *statisticsElement )
   {
     ++m_statisticsCalls;
   }
@@ -289,8 +289,8 @@ XmlOutputterTest::testHook()
   addTestFailure( "testfail1", "assertion failed" );
   addTestError( "testerror1", "exception" );
 
-  CppUnit::OStringStream stream;
-  CppUnit::XmlOutputter outputter( m_result, stream );
+  CPPUNIT_NS::OStringStream stream;
+  CPPUNIT_NS::XmlOutputter outputter( m_result, stream );
   outputter.addHook( &hook );
   outputter.write();
 
@@ -305,7 +305,7 @@ XmlOutputterTest::testHook()
 void 
 XmlOutputterTest::addTest( std::string testName )
 {
-  CppUnit::Test *test = makeDummyTest( testName );
+  CPPUNIT_NS::Test *test = makeDummyTest( testName );
   m_result->startTest( test );
   m_result->endTest( test );
 }
@@ -314,41 +314,41 @@ XmlOutputterTest::addTest( std::string testName )
 void 
 XmlOutputterTest::addTestFailure( std::string testName,
                                   std::string message,
-                                  CppUnit::SourceLine sourceLine )
+                                  CPPUNIT_NS::SourceLine sourceLine )
 {
-  addGenericTestFailure( testName, CppUnit::Message(message), sourceLine, false );
+  addGenericTestFailure( testName, CPPUNIT_NS::Message(message), sourceLine, false );
 }
 
 
 void 
 XmlOutputterTest::addTestError( std::string testName,
                                 std::string message,
-                                CppUnit::SourceLine sourceLine )
+                                CPPUNIT_NS::SourceLine sourceLine )
 {
-  addGenericTestFailure( testName, CppUnit::Message(message), sourceLine, true );
+  addGenericTestFailure( testName, CPPUNIT_NS::Message(message), sourceLine, true );
 }
 
 
 void 
 XmlOutputterTest::addGenericTestFailure(  std::string testName,
-                                          CppUnit::Message message,
-                                          CppUnit::SourceLine sourceLine,
+                                          CPPUNIT_NS::Message message,
+                                          CPPUNIT_NS::SourceLine sourceLine,
                                           bool isError )
 {
-  CppUnit::Test *test = makeDummyTest( testName );
+  CPPUNIT_NS::Test *test = makeDummyTest( testName );
   m_result->startTest( test );
-  CppUnit::TestFailure failure( test, 
-                                new CppUnit::Exception( message, sourceLine ),
+  CPPUNIT_NS::TestFailure failure( test, 
+                                new CPPUNIT_NS::Exception( message, sourceLine ),
                                 isError );
   m_result->addFailure( failure );
   m_result->endTest( test );
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 XmlOutputterTest::makeDummyTest( std::string testName )
 {
-  CppUnit::Test *test = new CppUnit::TestCase( testName );
+  CPPUNIT_NS::Test *test = new CPPUNIT_NS::TestCase( testName );
   m_dummyTests.push_back( test );
   return test;
 }

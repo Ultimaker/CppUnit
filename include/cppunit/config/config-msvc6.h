@@ -53,6 +53,12 @@
 #undef CPPUNIT_COMPILER_LOCATION_FORMAT
 #define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
 
- 
+// Uncomment to turn on STL wrapping => use this to test compilation. 
+// This will make CppUnit subclass std::vector & co to provide default
+// parameter.
+#define CPPUNIT_STD_NEED_ALLOCATOR 1
+#define CPPUNIT_STD_ALLOCATOR std::allocator<T>
+
+
 /* _INCLUDE_CPPUNIT_CONFIG_MSVC6_H */
 #endif

@@ -12,7 +12,7 @@
 #include <stdexcept>
 
 
-class TestCaseTest : public CppUnit::TestFixture
+class TestCaseTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestCaseTest );
   CPPUNIT_TEST( testSetUpFailure );
@@ -62,10 +62,10 @@ private:
   void checkResult( int failures,
                     int errors,
                     int testsRun,
-                    CppUnit::TestResult *result );
+                    CPPUNIT_NS::TestResult *result );
 */
 private:
-  CppUnit::TestResult *m_result;
+  CPPUNIT_NS::TestResult *m_result;
   MockTestListener *m_testListener;
 };
 

@@ -9,7 +9,7 @@
 #endif
 
 #include <cppunit/Outputter.h>
-#include <deque>
+#include <cppunit/portability/CppUnitDeque.h>
 #include <iostream>
 #include <map>
 
@@ -128,7 +128,7 @@ protected:
   virtual void fillFailedTestsMap( FailedTests &failedTests );
 
 protected:
-  typedef std::deque<XmlOutputterHook *> Hooks;
+  typedef CppUnitDeque<XmlOutputterHook *> Hooks;
 
   TestResultCollector *m_result;
   std::ostream &m_stream;

@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 
 
 void 
-TreeHierarchyDlg::setRootTest( CppUnit::Test *test )
+TreeHierarchyDlg::setRootTest( CPPUNIT_NS::Test *test )
 {
   m_rootTest = test;
 }
@@ -93,7 +93,7 @@ TreeHierarchyDlg::fillTree()
 
 
 HTREEITEM
-TreeHierarchyDlg::addTest( CppUnit::Test *test, 
+TreeHierarchyDlg::addTest( CPPUNIT_NS::Test *test, 
                            HTREEITEM hParent )
 {
   int testType = isSuite( test ) ? imgSuite : imgUnitTest;
@@ -112,7 +112,7 @@ TreeHierarchyDlg::addTest( CppUnit::Test *test,
 
 
 void 
-TreeHierarchyDlg::addTestSuiteChildrenTo( CppUnit::Test *suite,
+TreeHierarchyDlg::addTestSuiteChildrenTo( CPPUNIT_NS::Test *suite,
                                           HTREEITEM hItemSuite )
 {
   Tests tests;
@@ -127,7 +127,7 @@ TreeHierarchyDlg::addTestSuiteChildrenTo( CppUnit::Test *suite,
 
 
 bool 
-TreeHierarchyDlg::isSuite( CppUnit::Test *test )
+TreeHierarchyDlg::isSuite( CPPUNIT_NS::Test *test )
 {
   return ( test->getChildTestCount() > 0  ||    // suite with test
            test->countTestCases() == 0 );       // empty suite
@@ -136,7 +136,7 @@ TreeHierarchyDlg::isSuite( CppUnit::Test *test )
 
 struct PredSortTest
 {
-  bool operator()( CppUnit::Test *test1, CppUnit::Test *test2 ) const
+  bool operator()( CPPUNIT_NS::Test *test1, CPPUNIT_NS::Test *test2 ) const
   {
     bool isTest1Suite = TreeHierarchyDlg::isSuite( test1 );
     bool isTest2Suite = TreeHierarchyDlg::isSuite( test2 );
@@ -158,7 +158,7 @@ TreeHierarchyDlg::sortByName( Tests &tests ) const
 void 
 TreeHierarchyDlg::OnOK() 
 {
-  CppUnit::Test *test = findSelectedTest();
+  CPPUNIT_NS::Test *test = findSelectedTest();
   if ( test == NULL )
   {
     AfxMessageBox( loadCString(IDS_ERROR_SELECT_TEST), MB_OK );
@@ -179,7 +179,7 @@ TreeHierarchyDlg::OnCancel()
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 TreeHierarchyDlg::findSelectedTest()
 {
   HTREEITEM hItem = m_treeTests.GetSelectedItem();
@@ -187,13 +187,13 @@ TreeHierarchyDlg::findSelectedTest()
   {
     DWORD data;
     VERIFY( data = m_treeTests.GetItemData( hItem ) );
-    return reinterpret_cast<CppUnit::Test *>( data );
+    return reinterpret_cast<CPPUNIT_NS::Test *>( data );
   }
   return NULL;
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 TreeHierarchyDlg::getSelectedTest() const
 {
   return m_selectedTest;

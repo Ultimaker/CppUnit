@@ -6,7 +6,8 @@
 
 CPPUNIT_NS_BEGIN
 
-
+/*! \brief (INTERNAL) List of all TestFactoryRegistry.
+ */
 class TestFactoryRegistryList
 {
 private:

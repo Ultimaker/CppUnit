@@ -11,7 +11,7 @@
 /*! \class TestTest
  * \brief Unit test for class Test.
  */
-class TestTest : public CppUnit::TestFixture
+class TestTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( TestTest );
   CPPUNIT_TEST( testFindTestPathPointerThis );
@@ -57,10 +57,10 @@ private:
   void operator =( const TestTest &copy );
 
 private:
-  CppUnit::TestSuite *m_suite;
+  CPPUNIT_NS::TestSuite *m_suite;
   MockTestCase *m_test1;
   MockTestCase *m_test2;
-  CppUnit::TestPath *m_path;
+  CPPUNIT_NS::TestPath *m_path;
 };
 
 

@@ -1,3 +1,58 @@
+2002-07-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/ui/text/TestRunner.h: 
+  * src/cppunit/TextTestRunner.cpp: Renamed TextUi::TestRunner 
+    TextTestRunner and moved it to the CppUnit namespace. Added 
+    a deprecated typedef for compatibility with previous version.
+
+  * include/cppunit/ui/text/TextTestRunner.h: added.
+
+  * include/cppunit/ui/mfc/TestRunner.h:
+  * src/cppunit/msvc6/testrunner/TestRunner.cpp: Renamed MfcUi::TestRunner
+    MfcTestRunner. Added deprecated typedef for compatibility. Renamed
+    TestRunner.cpp to MfcTestRunner.cpp.
+
+  * include/cppunit/ui/mfc/MfcTestRunner.h: added.
+
+  * include/cppunit/ui/qt/TestRunner.h:
+  * src/qttestrunner/TestRunner.cpp: renamed QtUi::TestRunner QtTestRunner
+    and moved it to CppUnit namespace. Added a deprecated typedef for
+    compatibility. Renamed TestRunner.cpp to QtTestRunner.cpp.
+
+  * include/cppunit/ui/qt/TestRunner.h:
+  * src/qttestrunner/TestRunner.h: Moved TestRunner to CppUnit namespace 
+    and renamed it QtTestRunner. Added deprecated typedef for compatibility.
+
+  * include/cppunit/Asserter.h:
+  * src/cppunit/Asserter.cpp: changed namespace Asserter to a struct and
+    made all methods static.
+
+  * include/cppunit/extensions/HelperMacros.h:
+  * include/cppunit/extensions/SourceLine.h:
+  * include/cppunit/extensions/TestAssert.h:
+  * include/cppunit/extensions/TestPlugIn.h: 
+  * include/cppunit/Portability.h: changed CPPUNIT_NS(symbol) to a
+    symbol macro that expand either to CppUnit or nothing. The symbol is
+    no longer a parameter.
+
+  * include/cppunit/portability/CppUnitVector.h:
+  * include/cppunit/portability/CppUnitDeque.h:
+  * include/cppunit/portability/CppUnitMap.h: added. STL Wrapper for
+    compilers that do not support template default argumenent and need
+    the allocator to be passed when instantiating STL container.
+
+  * examples/cppunittest/*.h:
+  * examples/cppunittest/*.cpp:
+  * src/msvc6/testrunner/*.h:
+  * src/msvc6/testrunner/*.cpp:
+  * src/msvc6/testpluginrunner/*.h:
+  * src/msvc6/testpluginrunner/*.cpp:
+  * src/qttestrunner/*.h:
+  * src/qttestrunner/*.cpp: replaced occurence of CppUnit:: by CPPUNIT_NS.
+
+  * src/cppunit/TestSuite.h: 
+  replaced occurence of std::vector by CppUnitVector.
+
 2002-07-12 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/config/Portability.h: If the compiler does not support

@@ -5,19 +5,18 @@
 #include <cppunit/TextOutputter.h>
 #include <cppunit/TextTestProgressListener.h>
 #include <cppunit/TestResult.h>
-#include <cppunit/ui/text/TestRunner.h>
+#include <cppunit/ui/text/TextTestRunner.h>
 #include <iostream>
 #include <stdexcept>
 
 
 CPPUNIT_NS_BEGIN
 
-namespace TextUi {
 
 /*! Constructs a new text runner.
  * \param outputter used to print text result. Owned by the runner.
  */
-TestRunner::TestRunner( Outputter *outputter ) 
+TextTestRunner::TextTestRunner( Outputter *outputter ) 
     : m_outputter( outputter )
     , m_result( new TestResultCollector() )
     , m_eventManager( new TestResult() )
@@ -28,7 +27,7 @@ TestRunner::TestRunner( Outputter *outputter )
 }
 
 
-TestRunner::~TestRunner()
+TextTestRunner::~TextTestRunner()
 {
   delete m_eventManager;
   delete m_outputter;
@@ -51,16 +50,16 @@ TestRunner::~TestRunner()
  *         failed or was not found.
  */
 bool
-TestRunner::run( std::string testName,
-                 bool doWait,
-                 bool doPrintResult,
-                 bool doPrintProgress )
+TextTestRunner::run( std::string testName,
+                       bool doWait,
+                       bool doPrintResult,
+                       bool doPrintProgress )
 {
   TextTestProgressListener progress;
   if ( doPrintProgress )
     m_eventManager->addListener( &progress );
 
-  SuperClass *pThis = this;
+  TestRunner *pThis = this;
   pThis->run( *m_eventManager, testName );
 
   if ( doPrintProgress )
@@ -74,7 +73,7 @@ TestRunner::run( std::string testName,
 
 
 void 
-TestRunner::wait( bool doWait )
+TextTestRunner::wait( bool doWait )
 {
   if ( doWait ) 
   {
@@ -85,7 +84,7 @@ TestRunner::wait( bool doWait )
 
 
 void 
-TestRunner::printResult( bool doPrintResult )
+TextTestRunner::printResult( bool doPrintResult )
 {
   std::cout << std::endl;
   if ( doPrintResult )
@@ -97,7 +96,7 @@ TestRunner::printResult( bool doPrintResult )
  * Use this after calling run() to access the result of the test run.
  */
 TestResultCollector &
-TestRunner::result() const
+TextTestRunner::result() const
 {
   return *m_result;
 }
@@ -108,7 +107,7 @@ TestRunner::result() const
  * test. Use this to register additional TestListener before running the tests.
  */
 TestResult &
-TestRunner::eventManager() const
+TextTestRunner::eventManager() const
 {
   return *m_eventManager;
 }
@@ -121,12 +120,11 @@ TestRunner::eventManager() const
  * \see CompilerOutputter, XmlOutputter, TextOutputter.
  */
 void 
-TestRunner::setOutputter( Outputter *outputter )
+TextTestRunner::setOutputter( Outputter *outputter )
 {
   delete m_outputter;
   m_outputter = outputter;
 }
 
 
-} // namespace TextUi
 CPPUNIT_NS_END

@@ -1,31 +1,27 @@
 // //////////////////////////////////////////////////////////////////////////
-// Implementation file TestRunner.cpp for class TestRunner
+// Implementation file MfcTestRunner.cpp for class MfcTestRunner
 // (c)Copyright 2000, Baptiste Lepilleur.
 // Created: 2001/04/26
 // //////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include <cppunit/ui/mfc/TestRunner.h>
+#include <cppunit/ui/mfc/MfcTestRunner.h>
 #include <cppunit/TestSuite.h>
 #include "TestRunnerModel.h"
 #include "TestRunnerDlg.h"
 
 
 
-namespace CppUnit
-{
-
-namespace MfcUi
-{
+CPPUNIT_NS_BEGIN
 
 
-TestRunner::TestRunner() :
-    m_suite( new CppUnit::TestSuite() )
+MfcTestRunner::MfcTestRunner()
+  : m_suite( new CPPUNIT_NS::TestSuite() )
 {
 }
 
 
-TestRunner::~TestRunner() 
+MfcTestRunner::~MfcTestRunner() 
 {
   delete m_suite;
 
@@ -35,7 +31,7 @@ TestRunner::~TestRunner()
 
 
 void 
-TestRunner::run() 
+MfcTestRunner::run() 
 { 
   bool comInit = SUCCEEDED( CoInitialize( NULL) );
 
@@ -49,16 +45,16 @@ TestRunner::run()
 
 
 void            
-TestRunner::addTest(CppUnit::Test *test) 
+MfcTestRunner::addTest( CPPUNIT_NS::Test *test ) 
 { 
   m_tests.push_back( test );
 }
 
 
 void            
-TestRunner::addTests ( const std::vector<CppUnit::Test *> &tests ) 
+MfcTestRunner::addTests( const CppUnitVector<CPPUNIT_NS::Test *> &tests )
 { 
-  for ( std::vector<CppUnit::Test *>::const_iterator it=tests.begin();
+  for ( Tests::const_iterator it=tests.begin();
         it != tests.end();
         ++it )
   {
@@ -67,8 +63,8 @@ TestRunner::addTests ( const std::vector<CppUnit::Test *> &tests )
 }
 
 
-CppUnit::Test *   
-TestRunner::getRootTest()
+CPPUNIT_NS::Test *   
+MfcTestRunner::getRootTest()
 {
   if ( m_tests.size() != 1 )
   {
@@ -80,6 +76,4 @@ TestRunner::getRootTest()
   return m_tests[0];
 }
 
-} // namespace MfcUi
-
-} // namespace CppUnit
+CPPUNIT_NS_END

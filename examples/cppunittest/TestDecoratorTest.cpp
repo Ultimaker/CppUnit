@@ -21,7 +21,7 @@ void
 TestDecoratorTest::setUp()
 {
   m_test = new MockTestCase( "mocktest" );
-  m_decorator = new CppUnit::TestDecorator( m_test );
+  m_decorator = new CPPUNIT_NS::TestDecorator( m_test );
 }
 
 
@@ -48,7 +48,7 @@ TestDecoratorTest::testRun()
   m_test->setExpectedSetUpCall( 1 );
   m_test->setExpectedRunTestCall( 1 );
   m_test->setExpectedTearDownCall( 1 );
-  CppUnit::TestResult result;
+  CPPUNIT_NS::TestResult result;
 
   m_decorator->run( &result );
   m_test->verify();

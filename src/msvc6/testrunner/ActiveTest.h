@@ -24,28 +24,28 @@
  *
  */
 
-class ActiveTest : public CppUnit::TestDecorator
+class ActiveTest : public CPPUNIT_NS::TestDecorator
 {
 public:
-  ActiveTest( CppUnit::Test *test );
+  ActiveTest( CPPUNIT_NS::Test *test );
   ~ActiveTest();
 
-  void run( CppUnit::TestResult *result );
+  void run( CPPUNIT_NS::TestResult *result );
 
 protected:
   HANDLE m_threadHandle;
   CEvent m_runCompleted;
-  CppUnit::TestResult *m_currentTestResult;
+  CPPUNIT_NS::TestResult *m_currentTestResult;
 
   void run();
-  void setTestResult( CppUnit::TestResult *result );
+  void setTestResult( CPPUNIT_NS::TestResult *result );
   static UINT threadFunction( LPVOID thisInstance );
 };
 
 
 // Construct the active test
 inline 
-ActiveTest::ActiveTest( CppUnit::Test *test )
+ActiveTest::ActiveTest( CPPUNIT_NS::Test *test )
     : TestDecorator( test )
     , m_runCompleted() 
 { 
@@ -64,7 +64,7 @@ ActiveTest::~ActiveTest()
 
 // Set the test result that we are to run
 inline void 
-ActiveTest::setTestResult( CppUnit::TestResult *result )
+ActiveTest::setTestResult( CPPUNIT_NS::TestResult *result )
 { 
   m_currentTestResult = result; 
 }

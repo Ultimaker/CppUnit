@@ -42,18 +42,18 @@ class Message;
  *                    CPPUNIT_SOURCELINE() )
  * \endcode
  */
-namespace Asserter
+struct Asserter
 {
   /*! Throws a Exception with the specified message and location.
    */
-  void CPPUNIT_API fail( const Message &message, 
-                         const SourceLine &sourceLine = SourceLine() );
+  static void CPPUNIT_API fail( const Message &message, 
+                                const SourceLine &sourceLine = SourceLine() );
 
   /*! Throws a Exception with the specified message and location.
    * \deprecated Use fail( Message, SourceLine ) instead.
    */
-  void CPPUNIT_API fail( std::string message, 
-                         const SourceLine &sourceLine = SourceLine() );
+  static void CPPUNIT_API fail( std::string message, 
+                                const SourceLine &sourceLine = SourceLine() );
 
   /*! Throws a Exception with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
@@ -61,9 +61,9 @@ namespace Asserter
    * \param message Message explaining the assertion failiure.
    * \param sourceLine Location of the assertion.
    */
-  void CPPUNIT_API failIf( bool shouldFail, 
-                           const Message &message, 
-                           const SourceLine &sourceLine = SourceLine() );
+  static void CPPUNIT_API failIf( bool shouldFail, 
+                                  const Message &message, 
+                                  const SourceLine &sourceLine = SourceLine() );
 
   /*! Throws a Exception with the specified message and location.
    * \deprecated Use failIf( bool, Message, SourceLine ) instead.
@@ -72,9 +72,9 @@ namespace Asserter
    * \param message Message explaining the assertion failiure.
    * \param sourceLine Location of the assertion.
    */
-  void CPPUNIT_API failIf( bool shouldFail, 
-                           std::string message, 
-                           const SourceLine &sourceLine = SourceLine() );
+  static void CPPUNIT_API failIf( bool shouldFail, 
+                                  std::string message, 
+                                  const SourceLine &sourceLine = SourceLine() );
 
   /*! \brief Returns a expected value string for a message.
    * Typically used to create 'not equal' message, or to check that a message
@@ -85,7 +85,7 @@ namespace Asserter
    * \return \a expectedValue prefixed with "Expected: ".
    * \see makeActual().
    */
-  std::string CPPUNIT_API makeExpected( const std::string &expectedValue );
+  static std::string CPPUNIT_API makeExpected( const std::string &expectedValue );
 
   /*! \brief Returns an actual value string for a message.
    * Typically used to create 'not equal' message, or to check that a message
@@ -96,12 +96,12 @@ namespace Asserter
    * \return \a actualValue prefixed with "Actual  : ".
    * \see makeExpected().
    */
-  std::string CPPUNIT_API makeActual( const std::string &actualValue );
+  static std::string CPPUNIT_API makeActual( const std::string &actualValue );
 
-  Message CPPUNIT_API makeNotEqualMessage( const std::string &expectedValue,
-                                           const std::string &actualValue,
-                                           const AdditionalMessage &additionalMessage = AdditionalMessage(),
-                                           const std::string &shortDescription = "equality assertion failed");
+  static Message CPPUNIT_API makeNotEqualMessage( const std::string &expectedValue,
+                                                  const std::string &actualValue,
+                                                  const AdditionalMessage &additionalMessage = AdditionalMessage(),
+                                                  const std::string &shortDescription = "equality assertion failed");
 
   /*! Throws an Exception with the specified message and location.
    * \param expected Text describing the expected value.
@@ -110,11 +110,11 @@ namespace Asserter
    *                          what are the differences between the expected and actual value.
    * \param sourceLine Location of the assertion.
    */
-  void CPPUNIT_API failNotEqual( std::string expected, 
-                                 std::string actual, 
-                                 const SourceLine &sourceLine,
-                                 const AdditionalMessage &additionalMessage = AdditionalMessage(),
-                                 std::string shortDescription = "equality assertion failed" );
+  static void CPPUNIT_API failNotEqual( std::string expected, 
+                                        std::string actual, 
+                                        const SourceLine &sourceLine,
+                                        const AdditionalMessage &additionalMessage = AdditionalMessage(),
+                                        std::string shortDescription = "equality assertion failed" );
 
   /*! Throws an Exception with the specified message and location.
    * \param shouldFail if \c true then the exception is thrown. Otherwise
@@ -125,14 +125,14 @@ namespace Asserter
    *                          where the "difference" is located.
    * \param sourceLine Location of the assertion.
    */
-  void CPPUNIT_API failNotEqualIf( bool shouldFail,
-                                   std::string expected, 
-                                   std::string actual, 
-                                   const SourceLine &sourceLine,
-                                   const AdditionalMessage &additionalMessage = AdditionalMessage(),
-                                   std::string shortDescription = "equality assertion failed" );
+  static void CPPUNIT_API failNotEqualIf( bool shouldFail,
+                                          std::string expected, 
+                                          std::string actual, 
+                                          const SourceLine &sourceLine,
+                                          const AdditionalMessage &additionalMessage = AdditionalMessage(),
+                                          std::string shortDescription = "equality assertion failed" );
 
-} // namespace Asserter
+};
 
 
 CPPUNIT_NS_END

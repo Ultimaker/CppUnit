@@ -27,7 +27,7 @@ void
 TestCaseTest::setUp()
 {
   m_testListener = new MockTestListener( "mock-testlistener" );
-  m_result = new CppUnit::TestResult();
+  m_result = new CPPUNIT_NS::TestResult();
   m_result->addListener( m_testListener );
 }
 
@@ -107,7 +107,7 @@ TestCaseTest::checkFailure( bool failSetUp,
 void 
 TestCaseTest::testCountTestCases()
 {
-  CppUnit::TestCase test;
+  CPPUNIT_NS::TestCase test;
   CPPUNIT_ASSERT_EQUAL( 1, test.countTestCases() );
 }
 
@@ -115,7 +115,7 @@ TestCaseTest::testCountTestCases()
 void 
 TestCaseTest::testDefaultConstructor()
 {
-  CppUnit::TestCase test;
+  CPPUNIT_NS::TestCase test;
   CPPUNIT_ASSERT_EQUAL( std::string(""), test.getName() );
 }
 
@@ -124,7 +124,7 @@ void
 TestCaseTest::testConstructorWithName()
 {
   std::string testName( "TestName" );
-  CppUnit::TestCase test( testName );
+  CPPUNIT_NS::TestCase test( testName );
   CPPUNIT_ASSERT_EQUAL( testName, test.getName() );
 }
 
@@ -148,7 +148,7 @@ TestCaseTest::testTwoRun()
 void 
 TestCaseTest::testGetChildTestCount()
 {
-  CppUnit::TestCase test( "test" );
+  CPPUNIT_NS::TestCase test( "test" );
   CPPUNIT_ASSERT_EQUAL( 0, test.getChildTestCount() );
 }
 
@@ -156,6 +156,6 @@ TestCaseTest::testGetChildTestCount()
 void 
 TestCaseTest::testGetChildTestAtThrow()
 {
-  CppUnit::TestCase test( "test" );
+  CPPUNIT_NS::TestCase test( "test" );
   test.getChildTestAt( 0 );
 }

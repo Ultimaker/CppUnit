@@ -18,23 +18,23 @@ main( int argc, char* argv[] )
   std::string testPath = (argc > 1) ? std::string(argv[1]) : "";
 
   // Create the event manager and test controller
-  CppUnit::TestResult controller;
+  CPPUNIT_NS::TestResult controller;
 
   // Add a listener that colllects test result
-  CppUnit::TestResultCollector result;
+  CPPUNIT_NS::TestResultCollector result;
   controller.addListener( &result );        
 
   // Add a listener that print dots as test run.
 #ifdef WIN32
-  CppUnit::TextTestProgressListener progress;
+  CPPUNIT_NS::TextTestProgressListener progress;
 #else
-  CppUnit::BriefTestProgressListener progress;
+  CPPUNIT_NS::BriefTestProgressListener progress;
 #endif
   controller.addListener( &progress );      
 
   // Add the top suite to the test runner
-  CppUnit::TestRunner runner;
-  runner.addTest( CppUnit::TestFactoryRegistry::getRegistry().makeTest() );   
+  CPPUNIT_NS::TestRunner runner;
+  runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );   
   try
   {
     std::cout << "Running "  <<  testPath;
@@ -43,11 +43,11 @@ main( int argc, char* argv[] )
     std::cerr << std::endl;
 
     // Print test in a compiler compatible format.
-    CppUnit::CompilerOutputter outputter( &result, std::cerr );
+    CPPUNIT_NS::CompilerOutputter outputter( &result, std::cerr );
     outputter.write(); 
 
     std::ofstream file( "tests.xml" );
-    CppUnit::XmlOutputter xml( &result, file );
+    CPPUNIT_NS::XmlOutputter xml( &result, file );
     xml.setStyleSheet( "report.xsl" );
     xml.write();
     file.close();

@@ -20,7 +20,7 @@ MostRecentTests::~MostRecentTests()
 
 
 void 
-MostRecentTests::setLastTestRun( CppUnit::Test *test )
+MostRecentTests::setLastTestRun( CPPUNIT_NS::Test *test )
 {
   for ( TestRuns::iterator it = m_runs.begin(); it != m_runs.end(); ++it )
   {
@@ -36,7 +36,7 @@ MostRecentTests::setLastTestRun( CppUnit::Test *test )
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 MostRecentTests::lastTestRun() const
 {
   return m_runs.front().second;
@@ -50,7 +50,7 @@ MostRecentTests::getRunCount() const
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 MostRecentTests::getTestAt( int indexTest ) const
 {
   return m_runs.at( indexTest ).second;

@@ -7,10 +7,10 @@
 /*! \class MockTestCase
  * \brief This class represents a mock test case.
  */
-class MockTestCase : public CppUnit::TestCase
+class MockTestCase : public CPPUNIT_NS::TestCase
 {
 public:
-  typedef CppUnit::TestCase SuperClass;   // work around VC++ call to super class method.
+  typedef CPPUNIT_NS::TestCase SuperClass;   // work around VC++ call to super class method.
 
   /*! Constructs a MockTestCase object.
    */
@@ -27,7 +27,7 @@ public:
   void makeSetUpThrow();
   void makeTearDownThrow();
   void makeRunTestThrow();
-  void makeFindTestPathPassFor( const CppUnit::Test *testFound );
+  void makeFindTestPathPassFor( const CPPUNIT_NS::Test *testFound );
   
   void verify();
 
@@ -36,8 +36,8 @@ protected:
   void setUp();
   void tearDown();
   void runTest();
-//  bool findTestPath( const CppUnit::Test *test,
-//                     CppUnit::TestPath &testPath );
+//  bool findTestPath( const CPPUNIT_NS::Test *test,
+//                     CPPUNIT_NS::TestPath &testPath );
 
 private:
   /// Prevents the use of the copy constructor.
@@ -65,7 +65,7 @@ private:
   bool m_setUpThrow;
   bool m_tearDownThrow;
   bool m_runTestThrow;
-  const CppUnit::Test *m_passingTest;
+  const CPPUNIT_NS::Test *m_passingTest;
 };
 
 

@@ -26,7 +26,7 @@ SOURCES		= MostRecentTests.cpp \
 		  TestFailureInfo.cpp \
 		  TestFailureListViewItem.cpp \
 		  TestListViewItem.cpp \
-		  TestRunner.cpp \
+		  QtTestRunner.cpp \
 		  TestRunnerDlgImpl.cpp \
 		  TestRunnerFailureEvent.cpp \
 		  TestRunnerModel.cpp \

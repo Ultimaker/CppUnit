@@ -9,7 +9,7 @@
 #endif
 
 #include <cppunit/SynchronizedObject.h>
-#include <deque>
+#include <cppunit/portability/CppUnitDeque.h>
 
 CPPUNIT_NS_BEGIN
 
@@ -74,7 +74,7 @@ protected:
   virtual void endTestRun( Test *test );
   
 protected:
-  typedef std::deque<TestListener *> TestListeners;
+  typedef CppUnitDeque<TestListener *> TestListeners;
   TestListeners m_listeners;
   bool m_stop;
 

@@ -1,30 +1,26 @@
 // //////////////////////////////////////////////////////////////////////////
-// Implementation file TestRunner.cpp for class TestRunner
+// Implementation file QtTestRunner.cpp for class QtTestRunner
 // (c)Copyright 2000, Baptiste Lepilleur.
 // Created: 2001/09/19
 // //////////////////////////////////////////////////////////////////////////
 
 #include <qapplication.h>
 #include <cppunit/TestSuite.h>
-#include <cppunit/ui/qt/TestRunner.h>
+#include <cppunit/ui/qt/QtTestRunner.h>
 #include "TestRunnerDlgImpl.h"
 #include "TestRunnerModel.h"
 
 
-namespace CppUnit
-{
-  namespace QtUi
-  {
+CPPUNIT_NS_BEGIN
 
-
-TestRunner::TestRunner() :
-  _suite( new CppUnit::TestSuite( "All Tests" ) ),
+QtTestRunner::QtTestRunner() :
+  _suite( new CPPUNIT_NS::TestSuite( "All Tests" ) ),
   _tests( new Tests() )
 {
 }
 
 
-TestRunner::~TestRunner()
+QtTestRunner::~QtTestRunner()
 {
   delete _suite;
 
@@ -37,7 +33,7 @@ TestRunner::~TestRunner()
 
 
 Test *
-TestRunner::getRootTest()
+QtTestRunner::getRootTest()
 {
   if ( _tests->size() != 1 )
   {
@@ -52,10 +48,10 @@ TestRunner::getRootTest()
 
 
 void 
-TestRunner::run( bool autoRun )
+QtTestRunner::run( bool autoRun )
 {
   TestRunnerDlg *dlg = new TestRunnerDlg( qApp->mainWidget(), 
-                                          "TestRunner", 
+                                          "QtTestRunner", 
                                           TRUE );
   dlg->setModel( new TestRunnerModel( getRootTest() ),
                  autoRun );
@@ -65,11 +61,10 @@ TestRunner::run( bool autoRun )
 
 
 void 
-TestRunner::addTest( CppUnit::Test *test )
+QtTestRunner::addTest( CPPUNIT_NS::Test *test )
 {
   _tests->push_back( test );
 }
 
 
-  }  // namespace QtUi
-}  // namespace CppUnit
+CPPUNIT_NS_END

@@ -16,7 +16,7 @@ const CString TestRunnerModel::settingMainDialogKey( _T( "MainDialog" ) );
 const CString TestRunnerModel::settingBrowseDialogKey( _T( "BrowseDialog" ) );
 
 
-TestRunnerModel::TestRunnerModel( CppUnit::Test *rootTest ) :
+TestRunnerModel::TestRunnerModel( CPPUNIT_NS::Test *rootTest ) :
     m_rootTest( rootTest )
 {
 }
@@ -34,7 +34,7 @@ TestRunnerModel::history() const
 
 
 void 
-TestRunnerModel::selectHistoryTest( CppUnit::Test *test )
+TestRunnerModel::selectHistoryTest( CPPUNIT_NS::Test *test )
 {
   History::iterator end = 
       std::remove( m_history.begin(), m_history.end(), test );
@@ -45,7 +45,7 @@ TestRunnerModel::selectHistoryTest( CppUnit::Test *test )
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 TestRunnerModel::selectedTest() const
 {
   if ( m_history.size() > 0 )
@@ -126,7 +126,7 @@ TestRunnerModel::saveSettings( const Settings & s )
         it != m_history.end(); 
         ++it , ++idx )
   {
-    CppUnit::Test *test = *it;
+    CPPUNIT_NS::Test *test = *it;
     saveHistoryEntry( idx, test->getName().c_str() );
   }
 }
@@ -154,7 +154,7 @@ TestRunnerModel::getHistoryEntryName( int idx ) const
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 TestRunnerModel::rootTest()
 {
   return m_rootTest;
@@ -162,36 +162,36 @@ TestRunnerModel::rootTest()
 
 
 void 
-TestRunnerModel::setRootTest( CppUnit::Test *test )
+TestRunnerModel::setRootTest( CPPUNIT_NS::Test *test )
 {
   m_rootTest = test;
 }
 
 
-CppUnit::Test * 
+CPPUNIT_NS::Test * 
 TestRunnerModel::findTestByName( CString name ) const
 {
   return findTestByNameFor( name, m_rootTest );
 }
 
 
-CppUnit::Test * 
+CPPUNIT_NS::Test * 
 TestRunnerModel::findTestByNameFor( const CString &name, 
-                                    CppUnit::Test *test ) const
+                                    CPPUNIT_NS::Test *test ) const
 {
   if ( name == test->getName().c_str() )
     return test;
 
-  CppUnit::TestSuite *suite = dynamic_cast<CppUnit::TestSuite *>(test);
+  CPPUNIT_NS::TestSuite *suite = dynamic_cast<CPPUNIT_NS::TestSuite *>(test);
   if ( suite == NULL )
     return NULL;
 
-  const std::vector<CppUnit::Test *> &tests = suite->getTests();
-  for ( std::vector<CppUnit::Test *>::const_iterator it = tests.begin(); 
+  const std::vector<CPPUNIT_NS::Test *> &tests = suite->getTests();
+  for ( std::vector<CPPUNIT_NS::Test *>::const_iterator it = tests.begin(); 
         it != tests.end(); 
         ++it )
   {
-    CppUnit::Test *testFound = findTestByNameFor( name, *it );
+    CPPUNIT_NS::Test *testFound = findTestByNameFor( name, *it );
     if ( testFound != NULL )
       return testFound;
   }

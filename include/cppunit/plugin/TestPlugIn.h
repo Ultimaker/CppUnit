@@ -20,7 +20,7 @@ class XmlOutputter;
  */
 
 
-/*! Test plug-in interface.
+/*! \brief Test plug-in interface.
  * \ingroup WritingTestPlugIn
  *
  * This class define the interface implemented by test plug-in. A pointer to that
@@ -54,8 +54,8 @@ struct CppUnitTestPlugIn
    * N.B.: Parameters interface is not define yet, and the plug-in runner does
    * not yet support plug-in parameter.
    */
-  virtual void initialize( CPPUNIT_NS(TestFactoryRegistry) *registry,
-                           const CPPUNIT_NS(Parameters) &parameters ) =0;
+  virtual void initialize( CPPUNIT_NS::TestFactoryRegistry *registry,
+                           const CPPUNIT_NS::Parameters &parameters ) =0;
 
   /*! Gives a chance to the plug-in to register TestListener.
    * 
@@ -64,17 +64,17 @@ struct CppUnitTestPlugIn
    * setUp some global resource: listen to TestListener::startTestRun(), 
    * and TestListener::endTestRun().
    */
-  virtual void addListener( CPPUNIT_NS(TestResult) *eventManager ) =0;
+  virtual void addListener( CPPUNIT_NS::TestResult *eventManager ) =0;
 
   /*! Gives a chance to the plug-in to remove its registered TestListener.
    *
    * Override this method to remove a TestListener that has been added.
    */
-  virtual void removeListener( CPPUNIT_NS(TestResult) *eventManager ) =0;
+  virtual void removeListener( CPPUNIT_NS::TestResult *eventManager ) =0;
 
   /*! Provides a way for the plug-in to register some XmlOutputterHook.
    */
-  virtual void addXmlOutputterHooks( CPPUNIT_NS(XmlOutputter) *outputter ) =0;
+  virtual void addXmlOutputterHooks( CPPUNIT_NS::XmlOutputter *outputter ) =0;
 
   /*! Called when the XmlOutputter is destroyed.
    * 
@@ -90,7 +90,7 @@ struct CppUnitTestPlugIn
    * reference on test that are no longer available if they are not 
    * unregistered.
    */
-  virtual void uninitialize( CPPUNIT_NS(TestFactoryRegistry) *registry ) =0;
+  virtual void uninitialize( CPPUNIT_NS::TestFactoryRegistry *registry ) =0;
 };
 
 
@@ -186,7 +186,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
  * \see CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL(), CPPUNIT_PLUGIN_IMPLEMENT_MAIN().
  */
 #define CPPUNIT_PLUGIN_IMPLEMENT()                                          \
-  CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( CPPUNIT_NS(TestPlugInDefaultImpl) );  \
+  CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL( CPPUNIT_NS::TestPlugInDefaultImpl );  \
   CPPUNIT_PLUGIN_IMPLEMENT_MAIN()
 
 

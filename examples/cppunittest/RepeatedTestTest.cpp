@@ -22,7 +22,7 @@ void
 RepeatedTestTest::setUp()
 {
   m_test = new RunCountTest();
-  m_repeatedTest = new CppUnit::RepeatedTest( m_test, m_repeatCount );
+  m_repeatedTest = new CPPUNIT_NS::RepeatedTest( m_test, m_repeatCount );
 }
 
 
@@ -37,7 +37,7 @@ RepeatedTestTest::tearDown()
 void 
 RepeatedTestTest::testRun()
 {
-  CppUnit::TestResult result;
+  CPPUNIT_NS::TestResult result;
   m_repeatedTest->run( &result );
 
   CPPUNIT_ASSERT_EQUAL( 17, m_test->m_runCount );

@@ -120,14 +120,14 @@ namespace TestAssert
  * \ingroup Assertions
  */
 #define CPPUNIT_ASSERT(condition)                                                 \
-  ( CPPUNIT_NS(Asserter)::failIf( !(condition),                                   \
-                                 CPPUNIT_NS(Message)( "assertion failed",         \
+  ( CPPUNIT_NS::Asserter::failIf( !(condition),                                   \
+                                 CPPUNIT_NS::Message( "assertion failed",         \
                                                       "Expression: " #condition), \
                                  CPPUNIT_SOURCELINE() ) )
 #else
 #define CPPUNIT_ASSERT(condition)                                            \
-  ( CPPUNIT_NS(Asserter)::failIf( !(condition),                              \
-                                  CPPUNIT_NS(Message)( "assertion failed" ), \
+  ( CPPUNIT_NS::Asserter::failIf( !(condition),                              \
+                                  CPPUNIT_NS::Message( "assertion failed" ), \
                                   CPPUNIT_SOURCELINE() ) )
 #endif
 
@@ -139,7 +139,7 @@ namespace TestAssert
  *                  test failed.
  */
 #define CPPUNIT_ASSERT_MESSAGE(message,condition)          \
-  ( CPPUNIT_NS(Asserter)::failIf( !(condition),            \
+  ( CPPUNIT_NS::Asserter::failIf( !(condition),            \
                                   (message),               \
                                   CPPUNIT_SOURCELINE() ) )
 
@@ -148,14 +148,14 @@ namespace TestAssert
  * \param message Message reported in diagnostic.
  */
 #define CPPUNIT_FAIL( message )                                         \
-  ( CPPUNIT_NS(Asserter)::fail( CPPUNIT_NS(Message)( "forced failure",  \
+  ( CPPUNIT_NS::Asserter::fail( CPPUNIT_NS::Message( "forced failure",  \
                                                      message ),         \
                                 CPPUNIT_SOURCELINE() ) )
 
 #ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 /// Generalized macro for primitive value comparisons
 #define CPPUNIT_ASSERT_EQUAL(expected,actual)                     \
-  ( CPPUNIT_NS(TestAssert)::assertEquals( (expected),             \
+  ( CPPUNIT_NS::TestAssert::assertEquals( (expected),             \
                                           (actual),               \
                                           __LINE__, __FILE__ ) )
 #else
@@ -176,7 +176,7 @@ namespace TestAssert
  * removed by specializing the CppUnit::assertion_traits.
  */
 #define CPPUNIT_ASSERT_EQUAL(expected,actual)                      \
-  ( CPPUNIT_NS(TestAssert)::assertEquals( (expected),              \
+  ( CPPUNIT_NS::TestAssert::assertEquals( (expected),              \
                                           (actual),                \
                                           CPPUNIT_SOURCELINE() ) )
 
@@ -199,7 +199,7 @@ namespace TestAssert
  * removed by specializing the CppUnit::assertion_traits.
  */
 #define CPPUNIT_ASSERT_EQUAL_MESSAGE(message,expected,actual)      \
-  ( CPPUNIT_NS(TestAssert)::assertEquals( (expected),              \
+  ( CPPUNIT_NS::TestAssert::assertEquals( (expected),              \
                                           (actual),                \
                                           CPPUNIT_SOURCELINE(),    \
                                           (message) ) )
@@ -209,7 +209,7 @@ namespace TestAssert
  * \ingroup Assertions
  */
 #define CPPUNIT_ASSERT_DOUBLES_EQUAL(expected,actual,delta)        \
-  ( CPPUNIT_NS(TestAssert)::assertDoubleEquals( (expected),        \
+  ( CPPUNIT_NS::TestAssert::assertDoubleEquals( (expected),        \
                                                 (actual),          \
                                                 (delta),           \
                                                 CPPUNIT_SOURCELINE() ) )

@@ -29,7 +29,7 @@ TestBrowser::~TestBrowser()
 
 
 void 
-TestBrowser::setRootTest( CppUnit::Test *rootTest )
+TestBrowser::setRootTest( CPPUNIT_NS::Test *rootTest )
 {
   QListViewItem *dummyRoot = new QListViewItem( _listTests );
 
@@ -44,7 +44,7 @@ TestBrowser::setRootTest( CppUnit::Test *rootTest )
 
 
 void 
-TestBrowser::insertItemFor( CppUnit::Test *test,
+TestBrowser::insertItemFor( CPPUNIT_NS::Test *test,
                             QListViewItem *parentItem )
 {
   QListViewItem *item = new TestListViewItem( test, parentItem );
@@ -59,7 +59,7 @@ TestBrowser::insertItemFor( CppUnit::Test *test,
 }
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 TestBrowser::selectedTest()
 {
   return _selectedTest;

@@ -13,7 +13,7 @@ CPPUNIT_NS_BEGIN
 class TestSuite;
 
 
-/*! Default implementation of test plug-in interface.
+/*! \brief Default implementation of test plug-in interface.
  * \ingroup WritingTestPlugIn
  *
  * Override getSuiteName() to specify the suite name. Default is "All Tests".

@@ -28,7 +28,7 @@ public:
   /*! Obtains a new test from a new copy of the dll.
    * \exception TestPlugInException if a error occurs.
    */
-  CppUnit::Test *makeTest();
+  CPPUNIT_NS::Test *makeTest();
 
 private:
   /// Prevents the use of the copy constructor.
@@ -55,7 +55,7 @@ private:
 private:
   std::string m_fileName;
   std::string m_copyFileName;
-  CppUnit::PlugInManager m_manager;
+  CPPUNIT_NS::PlugInManager m_manager;
 };
 
 

@@ -47,7 +47,7 @@ class TestRunnerModel;
 // TestRunnerDlg dialog
 
 class TestRunnerDlg : public cdxCDynamicDialog,
-                      public CppUnit::TestListener
+                      public CPPUNIT_NS::TestListener
 {
 public:
   TestRunnerDlg( TestRunnerModel *model,
@@ -59,9 +59,9 @@ public:
   ~TestRunnerDlg();
 
   // overrided from TestListener;
-  void startTest( CppUnit::Test *test );
-  void addFailure( const CppUnit::TestFailure &failure );
-  void endTest( CppUnit::Test *test );
+  void startTest( CPPUNIT_NS::Test *test );
+  void addFailure( const CPPUNIT_NS::TestFailure &failure );
+  void endTest( CPPUNIT_NS::Test *test );
 
   // IDD is not use, it is just there for the wizard.
   //{{AFX_DATA(TestRunnerDlg)
@@ -96,12 +96,12 @@ protected:
 	//}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 
-  typedef std::vector<CppUnit::Test *> Tests;
+  typedef std::vector<CPPUNIT_NS::Test *> Tests;
   ProgressBar *m_testsProgress;
-  CppUnit::Test *m_selectedTest;
+  CPPUNIT_NS::Test *m_selectedTest;
   ActiveTest *m_activeTest;
-  CppUnit::TestResult *m_testObserver;
-  CppUnit::TestResultCollector *m_result;
+  CPPUNIT_NS::TestResult *m_testObserver;
+  CPPUNIT_NS::TestResultCollector *m_result;
   int m_testsRun;
   int m_errors;
   int m_failures;
@@ -120,7 +120,7 @@ protected:
     errorTypeError
   };
 
-  void addListEntry( const CppUnit::TestFailure &failure );
+  void addListEntry( const CPPUNIT_NS::TestFailure &failure );
   void beIdle();
   void beRunning();
   void beRunDisabled();
@@ -128,13 +128,13 @@ protected:
   void freeState();
   void updateCountsDisplay();
   void setupHistoryCombo();
-  CppUnit::Test *findTestByName( std::string name ) const;
-  CppUnit::Test *findTestByNameFor( const std::string &name, 
-                                    CppUnit::Test *test ) const;
-  void addNewTestToHistory( CppUnit::Test *test );
-  void addTestToHistoryCombo( CppUnit::Test *test, 
+  CPPUNIT_NS::Test *findTestByName( std::string name ) const;
+  CPPUNIT_NS::Test *findTestByNameFor( const std::string &name, 
+                                    CPPUNIT_NS::Test *test ) const;
+  void addNewTestToHistory( CPPUNIT_NS::Test *test );
+  void addTestToHistoryCombo( CPPUNIT_NS::Test *test, 
                               int idx =-1 );
-  void removeTestFromHistory( CppUnit::Test *test );
+  void removeTestFromHistory( CPPUNIT_NS::Test *test );
   CComboBox *getHistoryCombo();
   void updateSelectedItem();
   void saveHistory();

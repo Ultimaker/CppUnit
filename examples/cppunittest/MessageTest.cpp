@@ -18,7 +18,7 @@ MessageTest::~MessageTest()
 void 
 MessageTest::setUp()
 {
-  m_message = new CppUnit::Message();
+  m_message = new CPPUNIT_NS::Message();
 }
 
 
@@ -92,7 +92,7 @@ MessageTest::testAddDetail3()
 void 
 MessageTest::testAddDetailEmptyMessage()
 {
-  m_message->addDetail( CppUnit::Message() );
+  m_message->addDetail( CPPUNIT_NS::Message() );
   CPPUNIT_ASSERT_EQUAL( 0, m_message->detailCount() );
 }
 
@@ -102,7 +102,7 @@ MessageTest::testAddDetailMessage()
 {
   std::string expected1( "first" );
   std::string expected2( "second" );
-  m_message->addDetail( CppUnit::Message( "shortDesc", expected1, expected2 ) );
+  m_message->addDetail( CPPUNIT_NS::Message( "shortDesc", expected1, expected2 ) );
   CPPUNIT_ASSERT_EQUAL( 2, m_message->detailCount() );
   CPPUNIT_ASSERT_EQUAL( expected1, m_message->detailAt(0) );
   CPPUNIT_ASSERT_EQUAL( expected2, m_message->detailAt(1) );
@@ -131,7 +131,7 @@ void
 MessageTest::testConstructor()
 {
   std::string expected( "short" );
-  CppUnit::Message message( expected );
+  CPPUNIT_NS::Message message( expected );
   
   CPPUNIT_ASSERT_EQUAL( expected, message.shortDescription() );
   CPPUNIT_ASSERT_EQUAL( 0, message.detailCount() );
@@ -143,7 +143,7 @@ MessageTest::testConstructorDetail1()
 {
   std::string expected( "short" );
   std::string expected1( "detail-1" );
-  CppUnit::Message message( expected, expected1 );
+  CPPUNIT_NS::Message message( expected, expected1 );
   
   CPPUNIT_ASSERT_EQUAL( expected, message.shortDescription() );
   CPPUNIT_ASSERT_EQUAL( 1, message.detailCount() );
@@ -157,7 +157,7 @@ MessageTest::testConstructorDetail2()
   std::string expected( "short" );
   std::string expected1( "detail-1" );
   std::string expected2( "detail-2" );
-  CppUnit::Message message( expected, expected1, expected2 );
+  CPPUNIT_NS::Message message( expected, expected1, expected2 );
   
   CPPUNIT_ASSERT_EQUAL( expected, message.shortDescription() );
   CPPUNIT_ASSERT_EQUAL( 2, message.detailCount() );
@@ -173,7 +173,7 @@ MessageTest::testConstructorDetail3()
   std::string expected1( "detail-1" );
   std::string expected2( "detail-2" );
   std::string expected3( "detail-3" );
-  CppUnit::Message message( expected, expected1, expected2, expected3 );
+  CPPUNIT_NS::Message message( expected, expected1, expected2, expected3 );
   
   CPPUNIT_ASSERT_EQUAL( expected, message.shortDescription() );
   CPPUNIT_ASSERT_EQUAL( 3, message.detailCount() );
@@ -205,21 +205,21 @@ MessageTest::testDetailsSome()
 void 
 MessageTest::testEqual()
 {
-  CPPUNIT_ASSERT( *m_message == CppUnit::Message() );
+  CPPUNIT_ASSERT( *m_message == CPPUNIT_NS::Message() );
   
-  CppUnit::Message message1( "short", "det1", "det2", "det3" );
-  CppUnit::Message message2( message1 );
+  CPPUNIT_NS::Message message1( "short", "det1", "det2", "det3" );
+  CPPUNIT_NS::Message message2( message1 );
   CPPUNIT_ASSERT( message1 == message2 );
 
   CPPUNIT_ASSERT( !(*m_message == message1) );
 
-  CppUnit::Message message3( "short" );
+  CPPUNIT_NS::Message message3( "short" );
   CPPUNIT_ASSERT( !(message3 == message1) );
 
-  CppUnit::Message message4( "long" );
+  CPPUNIT_NS::Message message4( "long" );
   CPPUNIT_ASSERT( !(message3 == message4) );
 
-  CppUnit::Message message5( "short", "det1", "det-2", "det3" );
+  CPPUNIT_NS::Message message5( "short", "det1", "det-2", "det3" );
   CPPUNIT_ASSERT( !(message1 == message5) );
 }
 
@@ -227,8 +227,8 @@ MessageTest::testEqual()
 void 
 MessageTest::testNotEqual()
 {
-  CppUnit::Message message1( "short", "det1", "det2", "det3" );
-  CppUnit::Message message2( "short", "det1", "det-2", "det3" );
+  CPPUNIT_NS::Message message1( "short", "det1", "det2", "det3" );
+  CPPUNIT_NS::Message message2( "short", "det1", "det-2", "det3" );
   CPPUNIT_ASSERT( message1 != message2 );
   CPPUNIT_ASSERT( !(message1 != message1) );
 }

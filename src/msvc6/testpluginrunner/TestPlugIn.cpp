@@ -32,7 +32,7 @@ TestPlugIn::deleteDllCopy()
 }
 
 
-class NullTest : public CppUnit::TestCase
+class NullTest : public CPPUNIT_NS::TestCase
 {
 public:
   NullTest( std::string name ) : TestCase( name ) 
@@ -50,11 +50,11 @@ public:
 };
 
 
-CppUnit::Test *
+CPPUNIT_NS::Test *
 TestPlugIn::makeTest()
 {
   reloadDll();
-  return CppUnit::TestFactoryRegistry::getRegistry().makeTest();
+  return CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest();
 }
 
 
@@ -85,7 +85,7 @@ TestPlugIn::loadDll()
   {
     m_manager.load( m_copyFileName );
   }
-  catch ( CppUnit::DynamicLibraryManagerException &e )
+  catch ( CPPUNIT_NS::DynamicLibraryManagerException &e )
   {
     throw TestPlugInException( e.what(), 
                                TestPlugInException::failedToLoadDll );

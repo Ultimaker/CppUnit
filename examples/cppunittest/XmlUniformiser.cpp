@@ -23,7 +23,7 @@ notEqualIndex( std::string expectedXml,
 void 
 checkXmlEqual( std::string expectedXml,
                std::string actualXml,
-               CppUnit::SourceLine sourceLine )
+               CPPUNIT_NS::SourceLine sourceLine )
 {
   std::string expected = XmlUniformiser( expectedXml ).stripped();
   std::string actual = XmlUniformiser( actualXml ).stripped();
@@ -32,11 +32,11 @@ checkXmlEqual( std::string expectedXml,
     return;
 
   int index = notEqualIndex( expected, actual );
-  CppUnit::OStringStream message;
+  CPPUNIT_NS::OStringStream message;
   message  <<  "differ at index: "  <<  index  << "\n"
            <<  "expected: "  <<  expected.substr(index) << "\n"
            <<  "but was : "  <<  actual.substr( index );
-  ::CppUnit::Asserter::failNotEqual( expected,
+  ::CPPUNIT_NS::Asserter::failNotEqual( expected,
                                      actual,
                                      sourceLine,
                                      message.str() );

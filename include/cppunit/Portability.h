@@ -26,67 +26,81 @@
 
 /* Define to 1 if you wish to have the old-style macros
    assert(), assertEqual(), assertDoublesEqual(), and assertLongsEqual() */
-#ifndef CPPUNIT_ENABLE_NAKED_ASSERT
-#define CPPUNIT_ENABLE_NAKED_ASSERT          0
+#if !defined(CPPUNIT_ENABLE_NAKED_ASSERT)
+# define CPPUNIT_ENABLE_NAKED_ASSERT          0
 #endif
 
 /* Define to 1 if you wish to have the old-style CU_TEST family
    of macros. */
-#ifndef CPPUNIT_ENABLE_CU_TEST_MACROS
-#define CPPUNIT_ENABLE_CU_TEST_MACROS        0
+#if !defined(CPPUNIT_ENABLE_CU_TEST_MACROS)
+# define CPPUNIT_ENABLE_CU_TEST_MACROS        0
 #endif
 
 /* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) 
    I don't think there is any C preprocess that does NOT support this! */
-#ifndef CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION
-#define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
+#if !defined(CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION)
+# define CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION   1
 #endif
 
 /* Assumes that STL and CppUnit are in global space if the compiler does not
    support namespace. */
 #if !defined(CPPUNIT_HAVE_NAMESPACES)
-#ifndef CPPUNIT_NO_NAMESPACE
-#define CPPUNIT_NO_NAMESPACE 1
-#endif // CPPUNIT_NO_NAMESPACE
-#ifndef CPPUNIT_NO_STD_NAMESPACE
-#define CPPUNIT_NO_STD_NAMESPACE 1
-#endif // CPPUNIT_NO_STD_NAMESPACE
+# if !defined(CPPUNIT_NO_NAMESPACE)
+#  define CPPUNIT_NO_NAMESPACE 1
+# endif // !defined(CPPUNIT_NO_NAMESPACE)
+# if !defined(CPPUNIT_NO_STD_NAMESPACE)
+#  define CPPUNIT_NO_STD_NAMESPACE 1
+# endif // !defined(CPPUNIT_NO_STD_NAMESPACE)
 #endif // !defined(CPPUNIT_HAVE_NAMESPACES)
+
+/* Define CPPUNIT_STD_NEED_ALLOCATOR to 1 if you need to specify
+ * the allocator you used when instantiating STL container. Typically
+ * used for compilers that do not support template default parameter.
+ * CPPUNIT_STD_ALLOCATOR will be used as the allocator. Default is
+ * std::allocator. On some compilers, you may need to change this to
+ * std::allocator<T>.
+ */
+#if CPPUNIT_STD_NEED_ALLOCATOR
+# if !defined(CPPUNIT_STD_ALLOCATOR)
+#  define CPPUNIT_STD_ALLOCATOR std::allocator
+# endif // !defined(CPPUNIT_STD_ALLOCATOR)
+#endif // defined(CPPUNIT_STD_NEED_ALLOCATOR)
+
 
 // Compiler error location format for CompilerOutputter
 // If not define, assumes that it's gcc
 // See class CompilerOutputter for format.
-#ifndef CPPUNIT_COMPILER_LOCATION_FORMAT
-#define CPPUNIT_COMPILER_LOCATION_FORMAT "%f:%l:"
+#if !defined(CPPUNIT_COMPILER_LOCATION_FORMAT)
+# define CPPUNIT_COMPILER_LOCATION_FORMAT "%f:%l:"
 #endif
 
 // If CPPUNIT_HAVE_CPP_CAST is defined, then c++ style cast will be used,
 // otherwise, C style cast are used.
 #if defined( CPPUNIT_HAVE_CPP_CAST )
-#define CPPUNIT_CONST_CAST( TargetType, pointer ) \
+# define CPPUNIT_CONST_CAST( TargetType, pointer ) \
     const_cast<TargetType>( pointer )
-#else
-#define CPPUNIT_CONST_CAST( TargetType, pointer ) \
+#else // defined( CPPUNIT_HAVE_CPP_CAST )
+# define CPPUNIT_CONST_CAST( TargetType, pointer ) \
     ((TargetType)( pointer ))
-#endif
+#endif // defined( CPPUNIT_HAVE_CPP_CAST )
 
 // If CPPUNIT_NO_STD_NAMESPACE is defined then STL are in the global space.
 // => Define macro 'std' to nothing
 #if defined(CPPUNIT_NO_STD_NAMESPACE)
-#undef std
-#define std
+# undef std
+# define std
 #endif  // defined(CPPUNIT_NO_STD_NAMESPACE)
 
 // If CPPUNIT_NO_NAMESPACE is defined, then put CppUnit classes in the
 // global namespace: the compiler does not support namespace.
 #if defined(CPPUNIT_NO_NAMESPACE)
-#define CPPUNIT_NS_BEGIN
-#define CPPUNIT_NS_END
-#define CPPUNIT_NS(symbol) symbol
+# define CPPUNIT_NS_BEGIN
+# define CPPUNIT_NS_END
+# define CPPUNIT_NS
 #else   // defined(CPPUNIT_NO_NAMESPACE)
-#define CPPUNIT_NS_BEGIN namespace CppUnit {
-#define CPPUNIT_NS_END }
-#define CPPUNIT_NS(symbol) ::CppUnit::symbol
+# define CPPUNIT_NS_BEGIN namespace CppUnit {
+# define CPPUNIT_NS_END }
+# define CPPUNIT_NS CppUnit
 #endif  // defined(CPPUNIT_NO_NAMESPACE)
 
 /*! Stringize a symbol.
@@ -138,8 +152,8 @@
 
 /*! Defines wrap colunm for %CppUnit. Used by CompilerOuputter.
  */
-#ifndef CPPUNIT_WRAP_COLUMN
-#define CPPUNIT_WRAP_COLUMN 79
+#if !defined(CPPUNIT_WRAP_COLUMN)
+# define CPPUNIT_WRAP_COLUMN 79
 #endif
 
 
@@ -150,38 +164,41 @@
  * method.
  */
 #if CPPUNIT_HAVE_SSTREAM
-#   include <sstream>
-    namespace CppUnit {
-      class OStringStream : public std::ostringstream 
-      {
-      };
-    }
-#else 
-#if CPPUNIT_HAVE_CLASS_STRSTREAM
-#   include <string>
-#   if CPPUNIT_HAVE_STRSTREAM
-#       include <strstream>
-#   else
-#       include <strstream.h>
-#   endif
+# include <sstream>
+    CPPUNIT_NS_BEGIN
 
-    namespace CppUnit {
+    typedef std::ostringstream OStringStream;
+
+    CPPUNIT_NS_END
+#elif CPPUNIT_HAVE_CLASS_STRSTREAM
+# include <string>
+# if CPPUNIT_HAVE_STRSTREAM
+#   include <strstream>
+# else // CPPUNIT_HAVE_STRSTREAM
+#  include <strstream.h>
+# endif // CPPUNIT_HAVE_CLASS_STRSTREAM
+
+    CPPUNIT_NS_BEGIN
+
       class OStringStream : public std::ostrstream 
       {
       public:
           std::string str()
           {
-            (*this) << '\0';
-            std::string msg(std::ostrstream::str());
-            std::ostrstream::freeze(false);
-            return msg;
+//            (*this) << '\0';
+//            std::string msg(std::ostrstream::str());
+//            std::ostrstream::freeze(false);
+//            return msg;
+// Alternative implementation that don't rely on freeze which is not
+// available on some platforms:
+            return std::string( std::ostrstream::str(), pcount() );
           }
       };
-    }
-#else
+
+    CPPUNIT_NS_END
+#else // CPPUNIT_HAVE_CLASS_STRSTREAM
 #   error Cannot define CppUnit::OStringStream.
-#endif
-#endif
+#endif // CPPUNIT_HAVE_SSTREAM
 
 
 #endif // CPPUNIT_PORTABILITY_H

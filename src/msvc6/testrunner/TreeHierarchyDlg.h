@@ -21,10 +21,10 @@ class TreeHierarchyDlg : public cdxCDynamicDialog
 public:
 	TreeHierarchyDlg(CWnd* pParent = NULL);   // standard constructor
 
-  void setRootTest( CppUnit::Test *test );
-  CppUnit::Test *getSelectedTest() const;
+  void setRootTest( CPPUNIT_NS::Test *test );
+  CPPUNIT_NS::Test *getSelectedTest() const;
 
-  static bool isSuite( CppUnit::Test *test );
+  static bool isSuite( CPPUNIT_NS::Test *test );
 
   // Dialog Data
 	//{{AFX_DATA(TreeHierarchyDlg)
@@ -53,16 +53,16 @@ protected:
 	DECLARE_MESSAGE_MAP();
 
 private:
-  typedef std::vector<CppUnit::Test *> Tests;
+  typedef std::vector<CPPUNIT_NS::Test *> Tests;
 
   void fillTree();
-  HTREEITEM addTest( CppUnit::Test *test, 
+  HTREEITEM addTest( CPPUNIT_NS::Test *test, 
                      HTREEITEM hParent );
-  void addTestSuiteChildrenTo( CppUnit::Test *suite,
+  void addTestSuiteChildrenTo( CPPUNIT_NS::Test *suite,
                                HTREEITEM hItemSuite );
 
   void sortByName( Tests &tests ) const;
-  CppUnit::Test *findSelectedTest();
+  CPPUNIT_NS::Test *findSelectedTest();
 
   enum
   {
@@ -71,8 +71,8 @@ private:
   };
 
   CImageList m_imageList;
-  CppUnit::Test *m_selectedTest;
-  CppUnit::Test *m_rootTest;
+  CPPUNIT_NS::Test *m_selectedTest;
+  CPPUNIT_NS::Test *m_rootTest;
 };
 
 //{{AFX_INSERT_LOCATION}}

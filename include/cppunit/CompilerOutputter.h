@@ -3,7 +3,6 @@
 
 #include <cppunit/Portability.h>
 #include <cppunit/Outputter.h>
-#include <vector>
 #include <iostream>
 
 CPPUNIT_NS_BEGIN

@@ -42,8 +42,8 @@ MockTestListener::MockTestListener( std::string name )
 
 
 void 
-MockTestListener::setExpectFailure( CppUnit::Test *failedTest,
-                                    CppUnit::Exception *thrownException,
+MockTestListener::setExpectFailure( CPPUNIT_NS::Test *failedTest,
+                                    CPPUNIT_NS::Exception *thrownException,
                                     bool isError )
 {
   m_hasExpectationForAddFailure = true;
@@ -79,7 +79,7 @@ MockTestListener::setExpectedAddFailureCall( int callCount )
 
 
 void 
-MockTestListener::setExpectStartTest( CppUnit::Test *test )
+MockTestListener::setExpectStartTest( CPPUNIT_NS::Test *test )
 {
   m_hasExpectationForStartTest = true;
   m_hasParametersExpectationForStartTest = true;
@@ -97,7 +97,7 @@ MockTestListener::setExpectedStartTestCall( int callCount )
 
 
 void 
-MockTestListener::setExpectEndTest( CppUnit::Test *test )
+MockTestListener::setExpectEndTest( CPPUNIT_NS::Test *test )
 {
   m_hasExpectationForEndTest = true;
   m_hasParametersExpectationForEndTest = true;
@@ -115,7 +115,7 @@ MockTestListener::setExpectedEndTestCall( int callCount )
 
 
 void 
-MockTestListener::setExpectStartSuite( CppUnit::Test *test )
+MockTestListener::setExpectStartSuite( CPPUNIT_NS::Test *test )
 {
   m_hasExpectationForStartSuite = true;
   m_hasParametersExpectationForStartSuite = true;
@@ -133,7 +133,7 @@ MockTestListener::setExpectedStartSuiteCall( int callCount )
 
 
 void 
-MockTestListener::setExpectEndSuite( CppUnit::Test *test )
+MockTestListener::setExpectEndSuite( CPPUNIT_NS::Test *test )
 {
   m_hasExpectationForEndSuite = true;
   m_hasParametersExpectationForEndSuite = true;
@@ -151,8 +151,8 @@ MockTestListener::setExpectedEndSuiteCall( int callCount )
 
 
 void 
-MockTestListener::setExpectStartTestRun( CppUnit::Test *test,
-                                         CppUnit::TestResult *eventManager )
+MockTestListener::setExpectStartTestRun( CPPUNIT_NS::Test *test,
+                                         CPPUNIT_NS::TestResult *eventManager )
 {
   m_hasExpectationForStartTestRun = true;
   m_hasParametersExpectationForStartTestRun = true;
@@ -171,8 +171,8 @@ MockTestListener::setExpectedStartTestRunCall( int callCount )
 
 
 void 
-MockTestListener::setExpectEndTestRun( CppUnit::Test *test,
-                                       CppUnit::TestResult *eventManager )
+MockTestListener::setExpectEndTestRun( CPPUNIT_NS::Test *test,
+                                       CPPUNIT_NS::TestResult *eventManager )
 {
   m_hasExpectationForEndTestRun = true;
   m_hasParametersExpectationForEndTestRun = true;
@@ -191,7 +191,7 @@ MockTestListener::setExpectedEndTestRunCall( int callCount )
 
 
 void 
-MockTestListener::addFailure( const CppUnit::TestFailure &failure )
+MockTestListener::addFailure( const CPPUNIT_NS::TestFailure &failure )
 {
   if ( m_hasExpectationForAddFailure  ||  m_hasExpectationForSomeFailure )
     ++m_addFailureCall;
@@ -215,7 +215,7 @@ MockTestListener::addFailure( const CppUnit::TestFailure &failure )
 
 
 void 
-MockTestListener::startTest( CppUnit::Test *test )
+MockTestListener::startTest( CPPUNIT_NS::Test *test )
 {
   if ( m_hasExpectationForStartTest )
   {
@@ -234,7 +234,7 @@ MockTestListener::startTest( CppUnit::Test *test )
 
 
 void 
-MockTestListener::endTest( CppUnit::Test *test )
+MockTestListener::endTest( CPPUNIT_NS::Test *test )
 {
   if ( m_hasExpectationForEndTest )
   {
@@ -252,7 +252,7 @@ MockTestListener::endTest( CppUnit::Test *test )
 
 
 void 
-MockTestListener::startSuite( CppUnit::Test *test )
+MockTestListener::startSuite( CPPUNIT_NS::Test *test )
 {
   if ( m_hasExpectationForStartSuite )
   {
@@ -270,7 +270,7 @@ MockTestListener::startSuite( CppUnit::Test *test )
 
 
 void 
-MockTestListener::endSuite( CppUnit::Test *test )
+MockTestListener::endSuite( CPPUNIT_NS::Test *test )
 {
   if ( m_hasExpectationForEndSuite )
   {
@@ -288,8 +288,8 @@ MockTestListener::endSuite( CppUnit::Test *test )
 
 
 void 
-MockTestListener::startTestRun( CppUnit::Test *test, 
-                                CppUnit::TestResult *eventManager )
+MockTestListener::startTestRun( CPPUNIT_NS::Test *test, 
+                                CPPUNIT_NS::TestResult *eventManager )
 {
   if ( m_hasExpectationForStartTestRun )
   {
@@ -309,8 +309,8 @@ MockTestListener::startTestRun( CppUnit::Test *test,
 
 
 void 
-MockTestListener::endTestRun( CppUnit::Test *test, 
-                              CppUnit::TestResult *eventManager )
+MockTestListener::endTestRun( CPPUNIT_NS::Test *test, 
+                              CPPUNIT_NS::TestResult *eventManager )
 {
   if ( m_hasExpectationForEndTestRun )
   {

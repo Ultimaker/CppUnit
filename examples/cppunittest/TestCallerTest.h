@@ -8,7 +8,7 @@
 #include "MockTestListener.h"
 #include "TrackedTestCase.h"
 
-class TestCallerTest : public CppUnit::TestFixture, 
+class TestCallerTest : public CPPUNIT_NS::TestFixture, 
                               Tracker
 {
   CPPUNIT_TEST_SUITE( TestCallerTest );
@@ -35,7 +35,7 @@ public:
   void testExpectedExceptionNotCaught();
 
 private:
-  class ExceptionThrower : public CppUnit::TestCase
+  class ExceptionThrower : public CPPUNIT_NS::TestCase
   {
   public:
     void testThrowFailureException();
@@ -64,7 +64,7 @@ private:
   int m_testCount;
   const std::string m_testName;
   MockTestListener *m_testListener;
-  CppUnit::TestResult *m_result;
+  CPPUNIT_NS::TestResult *m_result;
 };
 
 
