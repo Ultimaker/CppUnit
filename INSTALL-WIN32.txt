@@ -197,3 +197,7 @@ defined in include/msvc6/testrunner/TestPlugInInterface.h.
 See examples/msvc6/TestPlugIn/TestPlugInInterfaceImpl.* for an example.
 Be warned, that runner is still experimental and have not been tested
 much.
+  
+  If you did a batch build, run TestPlugInRunnerd.exe and choose dll
+  examples/cppunittest/DebugPlugIn/CppUnitTestPlugInd.dll, or
+  examples/simple/DebugPlugIn/simple_plugind.dll to test it out.
