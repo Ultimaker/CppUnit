@@ -1,5 +1,41 @@
 2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * src/cppunit/TypeInfoHelper.cpp: added work around for bug #565481.
+    gcc 3.0 RTTI name() returns the type prefixed with a number (the
+    length of the type). The work around strip the number.
+
+  * src/msvc6/testpluginrunner/TestPlugInRunnerApp.cpp: registry key is now
+    set. Allow to save settings.
+
+  * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.h:
+  * src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp: added layout 
+    initialization for resizing.
+
+  * src/msvc6/testpluginrunner/TestPlugRunner.rc:
+  * src/msvc6/testpluginrunner/TestPlugInRunner.dsp: added TestRunner 
+    project files. Somehow I can't get cdxCDynamicDialog to compile
+    as a MFC extension. Included all sources files and resources
+    as a very dirt work around.
+
+  * src/msvc6/testrunner/TestRunnerDlg.h:
+  * src/msvc6/testrunner/TestRunnerDlg.cpp:
+  * src/msvc6/testrunner/TestRunnerModel.h: those classes are no longer
+    exported in the MFC extension. See TestPlugInRunner issue with
+    cdxCDynamicDialog.
+
+  * include/cppunit/Message.h:
+  * include/cppunit/TestPath.h:
+  * include/cppunit/TestResult.h:
+  * include/cppunit/TestResultCollector.h:
+  * include/cppunit/TestSuite.h:
+  * include/cppunit/TestFactoryRegistry.h:
+  * include/cppunit/XmlElement.h:
+  * include/cppunit/TypeInfoHelper.h: commented out STL template export
+    in DLL. This caused conflicts when instantiting the same template in
+    a user project.
+
+2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+
   * src/cppunit/CompilerOutputter.cpp: fixed bug #549762 (line wrap).
 
   * src/msvc6/testrunner/DynamicWindow/*: added. Dynamic Window library

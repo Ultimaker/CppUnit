@@ -18,7 +18,7 @@ namespace CppUnit
 class XmlElement;
 
 #if CPPUNIT_NEED_DLL_DECL
-  template class CPPUNIT_API std::deque<XmlElement *>;
+//  template class CPPUNIT_API std::deque<XmlElement *>;
 #endif
 
 

@@ -13,7 +13,7 @@
 /*! \class TestRunnerModel
  * \brief This class represents a model for the test runner.
  */
-class AFX_CLASS_EXPORT TestRunnerModel
+class TestRunnerModel
 {
 public:
   static const CString settingKey;

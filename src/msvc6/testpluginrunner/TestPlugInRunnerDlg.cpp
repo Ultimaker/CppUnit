@@ -184,3 +184,14 @@ TestPlugInRunnerDlg::loadDll( std::string path )
   m_model->selectHistoryTest( plugInModel().rootTest() );
   updateHistoryCombo();
 }
+
+
+void 
+TestPlugInRunnerDlg::initializeLayout()
+{
+  TestRunnerDlg::initializeLayout();
+
+  AddSzXControl( IDC_CHOOSE_DLL, mdRepos );
+  AddSzXControl( IDC_RELOAD_DLL, mdRepos );
+
+}

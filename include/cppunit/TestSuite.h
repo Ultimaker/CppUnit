@@ -14,7 +14,7 @@
 namespace CppUnit {
 
 #if CPPUNIT_NEED_DLL_DECL
-  template class CPPUNIT_API std::vector<Test *>;
+//  template class CPPUNIT_API std::vector<Test *>;
 #endif
 
 

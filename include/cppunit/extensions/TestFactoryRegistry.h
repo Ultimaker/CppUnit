@@ -17,7 +17,7 @@ namespace CppUnit {
 class TestSuite;
 
 #if CPPUNIT_NEED_DLL_DECL
-  template class CPPUNIT_API std::set<TestFactory *>;
+//  template class CPPUNIT_API std::set<TestFactory *>;
 #endif
 
 

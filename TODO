@@ -10,7 +10,7 @@
   - TextUi::TestRunner should use CppUnit::TestRunner as a base class
   - Modify MfcUi::TestRunner to expose TestResult (which allow specific TestListener
     for global initialization).
-  - [DONE]Make Exception message more flexible: introduce a Message object which contains:
+  - [DONE] Make Exception message more flexible: introduce a Message object which contains:
     - a short description ('assertion failed', 'equality assertion failed'...)
     - detail strings: "Expected : 3", "Actual   : 5"...
     => this provide a structured way to specify failure details, and let the ouputter
@@ -27,10 +27,7 @@
   - add tests for test plug-in
 
 * VC++ TestRunner:
-  - Make it possible to specify the registry path where settings are stored.
-    Current method use the path defined in the CWinApp. This does not work
-    for console application
-  - Add "details" field to show detail of the selected failed test:
+  - [DONE] Add "details" field to show detail of the selected failed test:
     - suite and test name,
     - failure message. If possible separate "was" and "expected" in the
       forthcoming assertEquals() to make comparison easier,

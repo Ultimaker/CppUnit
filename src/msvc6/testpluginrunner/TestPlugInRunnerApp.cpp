@@ -55,6 +55,8 @@ BOOL TestPlugInRunnerApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
+  SetRegistryKey(_T("CppUnit Test Plug-In Runner"));
+
   TestPlugInRunnerModel model;
 	TestPlugInRunnerDlg dlg( &model );
 	m_pMainWnd = &dlg;

@@ -49,6 +49,11 @@ protected:
   afx_msg void OnReloadDll();
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP();
+
+protected:
+  virtual void initializeLayout();
+
+
 private:
   TestPlugInRunnerModel &plugInModel();
 

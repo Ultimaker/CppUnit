@@ -91,8 +91,11 @@ TestRunnerDlg::OnInitDialog()
 {
   cdxCDynamicDialog::OnInitDialog();
 
-//    m_hAccelerator = ::LoadAccelerators( AfxGetResourceHandle(),
+#ifdef CPPUNIT_SUBCLASSING_TESTRUNNERDLG_BUILD
+  m_hAccelerator = ::LoadAccelerators( AfxGetResourceHandle(),
+#else
   m_hAccelerator = ::LoadAccelerators( g_testRunnerResource,
+#endif
                                        MAKEINTRESOURCE( IDR_ACCELERATOR_TEST_RUNNER ) );
 // It always fails!!! I don't understand why. Complain about not finding the resource name!
   ASSERT( m_hAccelerator !=NULL );
@@ -628,7 +631,7 @@ TestRunnerDlg::displayFailureDetailsFor( int failureIndex )
   if ( failureIndex >= 0  &&  failureIndex < m_result->failures().size() )
     details = m_result->failures()[ failureIndex ]->thrownException()->what();
 
-  details.Replace( "\n", "\r\n" );
+  details.Replace( _T("\n"), _T("\r\n") );
 
   m_details.SetWindowText( details );
 }

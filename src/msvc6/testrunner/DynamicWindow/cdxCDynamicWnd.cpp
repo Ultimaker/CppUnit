@@ -498,10 +498,10 @@ void cdxCDynamicWnd::DoInitWindow(CWnd & rWnd, const CSize & szInitial)
 #ifdef _DEBUG
 	if(!(rWnd.GetStyle() & WS_CLIPCHILDREN) && !(m_nFlags & flSWPCopyBits))
 	{
-		TRACE(_T("***\n"
-					"*** cdxCDynamicWnd class note: If your window flickers too much, add the WS_CLIPCHILDREN style to it\n"
-					"***                            or try to set the flSWPCopyBits flags !!!\n"
-					"***\n"));
+		TRACE(_T("***\n")
+					_T("*** cdxCDynamicWnd class note: If your window flickers too much, add the WS_CLIPCHILDREN style to it\n")
+					_T("***                            or try to set the flSWPCopyBits flags !!!\n")
+					_T("***\n"));
 	}
 #endif
 

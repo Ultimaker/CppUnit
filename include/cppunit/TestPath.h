@@ -15,7 +15,7 @@ namespace CppUnit {
 class Test;
 
 #if CPPUNIT_NEED_DLL_DECL
-  template class CPPUNIT_API std::deque<Test *>;
+//  template class CPPUNIT_API std::deque<Test *>;
 #endif
 
 

@@ -16,7 +16,7 @@ namespace CppUnit
 {
 
 #if CPPUNIT_NEED_DLL_DECL
-  template class CPPUNIT_API std::deque<std::string>;
+//  template class CPPUNIT_API std::deque<std::string>;
 #endif
 
 /*! \brief Message associated to an Exception.

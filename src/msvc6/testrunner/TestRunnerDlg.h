@@ -46,8 +46,8 @@ class TestRunnerModel;
 /////////////////////////////////////////////////////////////////////////////
 // TestRunnerDlg dialog
 
-class AFX_EXT_CLASS TestRunnerDlg : public cdxCDynamicDialog,
-                                    public CppUnit::TestListener
+class TestRunnerDlg : public cdxCDynamicDialog,
+                      public CppUnit::TestListener
 {
 public:
   TestRunnerDlg( TestRunnerModel *model,

@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 cppunit_dll.lib testrunner.lib /nologo /subsystem:windows /machine:I386 /libpath:"../../../lib/"
+# ADD LINK32 cppunit_dll.lib winmm.lib /nologo /subsystem:windows /machine:I386 /libpath:"../../../lib/"
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
 
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 cppunitd_dll.lib testrunnerd.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"../../../lib/"
+# ADD LINK32 cppunitd_dll.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"../../../lib/"
 
 !ENDIF 
 
@@ -90,6 +90,10 @@ LINK32=link.exe
 # Begin Group "Resource Files"
 
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# Begin Source File
+
+SOURCE=.\res\errortype.bmp
+# End Source File
 # Begin Source File
 
 SOURCE=.\res\ico00001.ico
@@ -105,6 +109,10 @@ SOURCE=..\testrunner\res\ico00002.ico
 # Begin Source File
 
 SOURCE=..\testrunner\res\idr_test.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\test_type.bmp
 # End Source File
 # Begin Source File
 
@@ -251,15 +259,7 @@ SOURCE=..\..\..\lib\testrunner.dll
 
 !IF  "$(CFG)" == "TestPlugInRunner - Win32 Release"
 
-# Begin Custom Build - Updating $(InputPath)
-IntDir=.\Release
-InputPath=..\..\..\lib\testrunner.dll
-InputName=testrunner
-
-"$(IntDir)\$(InputName).dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	copy $(InputPath) $(IntDir)\$(InputName).dll
-
-# End Custom Build
+# PROP Exclude_From_Build 1
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
 
@@ -267,11 +267,6 @@ InputName=testrunner
 
 !ENDIF 
 
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\lib\testrunnercd.dll
-# PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
 
@@ -283,18 +278,189 @@ SOURCE=..\..\..\lib\testrunnerd.dll
 
 !ELSEIF  "$(CFG)" == "TestPlugInRunner - Win32 Debug"
 
-# Begin Custom Build - Updating DLL: $(InputPath)
-IntDir=.\Debug
-InputPath=..\..\..\lib\testrunnerd.dll
-
-"$(IntDir)\testrunnerd.dll" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	copy $(InputPath) $(IntDir)\testrunnerd.dll
-
-# End Custom Build
+# PROP Exclude_From_Build 1
 
 !ENDIF 
 
 # End Source File
+# End Group
+# Begin Group "TestRunner-Was-In-Dll"
+
+# PROP Default_Filter ""
+# Begin Group "UserInterface"
+
+# PROP Default_Filter ""
+# Begin Group "DynamicWindow"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicBar.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicControlsManager.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicControlsManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicDialog.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicDialog.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicFormView.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicFormView.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicPropSheet.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicPropSheet.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicWnd.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicWnd.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicWndEx.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCDynamicWndEx.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCSizeIconCtrl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\cdxCSizeIconCtrl.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\SizeCBar.cpp
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\DynamicWindow\SizeCBar.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=..\testrunner\ListCtrlFormatter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ListCtrlFormatter.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ListCtrlSetter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ListCtrlSetter.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\MsDevCallerListCtrl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\MsDevCallerListCtrl.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ProgressBar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ProgressBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\TestRunnerDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\TestRunnerDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\TreeHierarchyDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\TreeHierarchyDlg.h
+# End Source File
+# End Group
+# Begin Group "Components"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\testrunner\ActiveTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\ActiveTest.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\MfcSynchronizationObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\TestRunnerModel.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\TestRunnerModel.h
+# End Source File
+# End Group
+# Begin Group "NewFiles"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\testrunner\MostRecentTests.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\testrunner\MostRecentTests.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\include\msvc6\DSPlugin\TestRunnerDSPluginVC6_i.c
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# End Group
 # End Group
 # Begin Source File
 
