@@ -46,10 +46,10 @@ class TestResultCollector;
  *   }
  * 
  *  // Run the test and don't wait a key if post build check.
- *   bool wasSucessful = runner.run( "", !selfTest );
+ *   bool wasSuccessful = runner.run( "", !selfTest );
  * 
  *   // Return error code 1 if the one of test failed.
- *   return wasSucessful ? 0 : 1;
+ *   return wasSuccessful ? 0 : 1;
  * }
  * \endcode
  */
@@ -105,7 +105,7 @@ public:
 
   void write();
 
-  virtual void printSucess();
+  virtual void printSuccess();
   virtual void printFailureReport();
   virtual void printFailuresList();
   virtual void printStatistics();

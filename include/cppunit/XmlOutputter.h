@@ -101,8 +101,8 @@ public:
   virtual Node *makeRootNode();
   virtual void addFailedTests( FailedTests &failedTests,
                                Node *rootNode );
-  virtual void addSucessfulTests( FailedTests &failedTests,
-                                  Node *rootNode );
+  virtual void addSuccessfulTests( FailedTests &failedTests,
+                                   Node *rootNode );
   virtual void addStatistics( Node *rootNode );
   virtual void addFailedTest( Test *test,
                               TestFailure *failure,
@@ -110,9 +110,9 @@ public:
                               Node *testsNode );
   virtual void addFailureLocation( TestFailure *failure,
                                    Node *testNode );
-  virtual void addSucessfulTest( Test *test, 
-                                 int testNumber,
-                                 Node *testsNode );
+  virtual void addSuccessfulTest( Test *test, 
+                                  int testNumber,
+                                  Node *testsNode );
 protected:
   virtual void fillFailedTestsMap( FailedTests &failedTests );
 

@@ -367,10 +367,6 @@ SOURCE=..\..\include\cppunit\Portability.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\ui\text\TestRunner.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\TextTestRunner.cpp
 # End Source File
 # Begin Source File
@@ -383,11 +379,7 @@ SOURCE=..\..\include\cppunit\TextTestRunner.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\TestSucessListener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\TestSucessListener.h
+SOURCE=.\TestSuccessListener.cpp
 # End Source File
 # Begin Source File
 

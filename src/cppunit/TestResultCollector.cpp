@@ -7,7 +7,7 @@ namespace CppUnit
 
 
 TestResultCollector::TestResultCollector( SynchronizationObject *syncObject )
-    : TestSucessListener( syncObject )
+    : TestSuccessListener( syncObject )
 {
   reset();
 }
@@ -24,7 +24,7 @@ TestResultCollector::~TestResultCollector()
 void 
 TestResultCollector::reset()
 {
-  TestSucessListener::reset();
+  TestSuccessListener::reset();
 
   ExclusiveZone zone( m_syncObject ); 
   m_testErrors = 0;
@@ -44,7 +44,7 @@ TestResultCollector::startTest( Test *test )
 void 
 TestResultCollector::addFailure( const TestFailure &failure )
 {
-  TestSucessListener::addFailure( failure );
+  TestSuccessListener::addFailure( failure );
 
   ExclusiveZone zone( m_syncObject ); 
   if ( failure.isError() )

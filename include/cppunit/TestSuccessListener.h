@@ -1,5 +1,5 @@
-#ifndef CPPUNIT_TESTSUCESSLISTENER_H
-#define CPPUNIT_TESTSUCESSLISTENER_H
+#ifndef CPPUNIT_TESTSUCCESSLISTENER_H
+#define CPPUNIT_TESTSUCCESSLISTENER_H
 
 #include <cppunit/SynchronizedObject.h>
 #include <cppunit/TestListener.h>
@@ -11,16 +11,16 @@ namespace CppUnit
 /*! \brief TestListener that checks if any test case failed.
  * \ingroup TrackingTestExecution
  */
-class CPPUNIT_API TestSucessListener : public TestListener,
-                                       public SynchronizedObject
+class CPPUNIT_API TestSuccessListener : public TestListener,
+                                        public SynchronizedObject
 {
 public:
-  /*! Constructs a TestSucessListener object.
+  /*! Constructs a TestSuccessListener object.
    */
-  TestSucessListener( SynchronizationObject *syncObject = 0 );
+  TestSuccessListener( SynchronizationObject *syncObject = 0 );
 
   /// Destructor.
-  virtual ~TestSucessListener();
+  virtual ~TestSuccessListener();
 
   virtual void reset();
 
@@ -30,11 +30,11 @@ public:
   virtual bool wasSuccessful() const;
 
 private:
-  bool m_sucess;
+  bool m_success;
 };
 
 
 } //  namespace CppUnit
 
 
-#endif  // CPPUNIT_TESTSUCESSLISTENER_H
+#endif  // CPPUNIT_TESTSUCCESSLISTENER_H

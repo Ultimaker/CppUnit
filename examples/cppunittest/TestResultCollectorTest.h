@@ -17,7 +17,7 @@ class TestResultCollectorTest : public CppUnit::TestFixture,
   CPPUNIT_TEST( testWasSuccessfulWithErrors );
   CPPUNIT_TEST( testWasSuccessfulWithFailures );
   CPPUNIT_TEST( testWasSuccessfulWithErrorsAndFailures );
-  CPPUNIT_TEST( testWasSuccessfulWithSucessfulTest );
+  CPPUNIT_TEST( testWasSuccessfulWithSuccessfulTest );
   CPPUNIT_TEST( testSynchronizationAddFailure );
   CPPUNIT_TEST( testSynchronizationStartTest );
   CPPUNIT_TEST( testSynchronizationRunTests );
@@ -44,7 +44,7 @@ public:
   void testWasSuccessfulWithErrors();
   void testWasSuccessfulWithFailures();
   void testWasSuccessfulWithErrorsAndFailures();
-  void testWasSuccessfulWithSucessfulTest();
+  void testWasSuccessfulWithSuccessfulTest();
 
   void testSynchronizationAddFailure();
   void testSynchronizationStartTest();

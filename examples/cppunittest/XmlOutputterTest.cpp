@@ -134,7 +134,7 @@ XmlOutputterTest::testWriteXmlResultWithNoTest()
   std::string expectedXml = 
     "<TestRun>"
       "<FailedTests></FailedTests>"
-      "<SucessfulTests></SucessfulTests>"
+      "<SuccessfulTests></SuccessfulTests>"
       "<Statistics>"
         "<Tests>0</Tests>"
         "<FailuresTotal>0</FailuresTotal>"
@@ -169,7 +169,7 @@ XmlOutputterTest::testWriteXmlResultWithOneFailure()
           "<Message>message failure1</Message>"
         "</FailedTest>"
       "</FailedTests>"
-      "<SucessfulTests></SucessfulTests>"
+      "<SuccessfulTests></SuccessfulTests>"
       "<Statistics>"
         "<Tests>1</Tests>"
         "<FailuresTotal>1</FailuresTotal>"
@@ -200,7 +200,7 @@ XmlOutputterTest::testWriteXmlResultWithOneError()
           "<Message>message error1</Message>"
         "</FailedTest>"
       "</FailedTests>"
-      "<SucessfulTests></SucessfulTests>"
+      "<SuccessfulTests></SuccessfulTests>"
       "<Statistics>"
         "<Tests>1</Tests>"
         "<FailuresTotal>1</FailuresTotal>"
@@ -213,7 +213,7 @@ XmlOutputterTest::testWriteXmlResultWithOneError()
 
 
 void 
-XmlOutputterTest::testWriteXmlResultWithOneSucess()
+XmlOutputterTest::testWriteXmlResultWithOneSuccess()
 {
   addTest( "test1" );
 
@@ -225,11 +225,11 @@ XmlOutputterTest::testWriteXmlResultWithOneSucess()
   std::string expectedXml = 
     "<TestRun>"
       "<FailedTests></FailedTests>"
-      "<SucessfulTests>"
+      "<SuccessfulTests>"
         "<Test id=\"1\">"
           "<Name>test1</Name>"
         "</Test>"
-      "</SucessfulTests>"
+      "</SuccessfulTests>"
       "<Statistics>"
         "<Tests>1</Tests>"
         "<FailuresTotal>0</FailuresTotal>"
@@ -242,7 +242,7 @@ XmlOutputterTest::testWriteXmlResultWithOneSucess()
 
 
 void 
-XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
+XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess()
 {
   addTestFailure( "test1", "failure1" );
   addTestError( "test2", "error1" );
@@ -286,14 +286,14 @@ XmlOutputterTest::testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess()
           "<Message>error2</Message>"
         "</FailedTest>"
       "</FailedTests>"
-     "<SucessfulTests>"
+     "<SuccessfulTests>"
         "<Test id=\"5\">"
           "<Name>test5</Name>"
         "</Test>"
         "<Test id=\"7\">"
           "<Name>test7</Name>"
         "</Test>"
-      "</SucessfulTests>"
+      "</SuccessfulTests>"
       "<Statistics>"
         "<Tests>7</Tests>"
         "<FailuresTotal>5</FailuresTotal>"

@@ -25,8 +25,8 @@ class XmlOutputterTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testWriteXmlResultWithNoTest );
   CPPUNIT_TEST( testWriteXmlResultWithOneFailure );
   CPPUNIT_TEST( testWriteXmlResultWithOneError );
-  CPPUNIT_TEST( testWriteXmlResultWithOneSucess );
-  CPPUNIT_TEST( testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess );
+  CPPUNIT_TEST( testWriteXmlResultWithOneSuccess );
+  CPPUNIT_TEST( testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -52,8 +52,8 @@ public:
   void testWriteXmlResultWithNoTest();
   void testWriteXmlResultWithOneFailure();
   void testWriteXmlResultWithOneError();
-  void testWriteXmlResultWithOneSucess();
-  void testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSucess();
+  void testWriteXmlResultWithOneSuccess();
+  void testWriteXmlResultWithThreeFailureTwoErrorsAndTwoSuccess();
 
 private:
   /// Prevents the use of the copy constructor.

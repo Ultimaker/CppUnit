@@ -43,14 +43,14 @@ void
 CompilerOutputter::write()
 {
   if ( m_result->wasSuccessful() )
-    printSucess();
+    printSuccess();
   else
     printFailureReport();
 }
 
 
 void 
-CompilerOutputter::printSucess()
+CompilerOutputter::printSuccess()
 {
   m_stream  << "OK (" << m_result->runTests()  << ")"  
             <<  std::endl;

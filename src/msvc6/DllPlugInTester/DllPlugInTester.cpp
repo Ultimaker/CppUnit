@@ -153,7 +153,7 @@ _tmain( int argc,
         TCHAR* argv[], 
         TCHAR* envp[] )
 {
-  const int sucessReturnCode = 0;
+  const int successReturnCode = 0;
   const int failureReturnCode = 1;
 
   // check command line
@@ -180,13 +180,13 @@ _tmain( int argc,
   const TCHAR *plugFunctionName = _T("GetTestPlugInInterface");
   GetTestPlugInInterfaceFunction plug = (GetTestPlugInInterfaceFunction)
       ::GetProcAddress( dllHandle, plugFunctionName );
-  bool wasSucessful = false;
+  bool wasSuccessful = false;
   try
   {
     if ( plug != NULL )
     {
       TestPlugInInterface *theInterface = (*plug)();
-      wasSucessful = runDllTest( theInterface->makeTest(), argv+2, argc-2 );
+      wasSuccessful = runDllTest( theInterface->makeTest(), argv+2, argc-2 );
     }
     else
     {
@@ -206,7 +206,7 @@ _tmain( int argc,
 
   ::FreeLibrary( dllHandle );
 
-  return wasSucessful ? sucessReturnCode : failureReturnCode;
+  return wasSuccessful ? successReturnCode : failureReturnCode;
 }
 
 

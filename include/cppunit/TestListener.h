@@ -54,7 +54,7 @@ class TestFailure;
  * };
  * \endcode
  *   
- * And another example that track failure/sucess at test suite level and captures
+ * And another example that track failure/success at test suite level and captures
  * the TestPath of each suite:
  * \code
  * class SuiteTracker : public CppUnit::TestListener

@@ -235,7 +235,7 @@ XmlOutputter::makeRootNode()
   fillFailedTestsMap( failedTests );
 
   addFailedTests( failedTests, rootNode );
-  addSucessfulTests( failedTests, rootNode );
+  addSuccessfulTests( failedTests, rootNode );
   addStatistics( rootNode );
 
   return rootNode;
@@ -273,10 +273,10 @@ XmlOutputter::addFailedTests( FailedTests &failedTests,
 
 
 void
-XmlOutputter::addSucessfulTests( FailedTests &failedTests,
+XmlOutputter::addSuccessfulTests( FailedTests &failedTests,
                                            Node *rootNode )
 {
-  Node *testsNode = new Node( "SucessfulTests" );
+  Node *testsNode = new Node( "SuccessfulTests" );
   rootNode->addNode( testsNode );
 
   const TestResultCollector::Tests &tests = m_result->tests();
@@ -284,7 +284,7 @@ XmlOutputter::addSucessfulTests( FailedTests &failedTests,
   {
     Test *test = tests[testNumber];
     if ( failedTests.find( test ) == failedTests.end() )
-      addSucessfulTest( test, testNumber+1, testsNode );
+      addSuccessfulTest( test, testNumber+1, testsNode );
   }
 }
 
@@ -337,7 +337,7 @@ XmlOutputter::addFailureLocation( TestFailure *failure,
 
 
 void
-XmlOutputter::addSucessfulTest( Test *test, 
+XmlOutputter::addSuccessfulTest( Test *test, 
                                           int testNumber,
                                           Node *testsNode )
 {

@@ -8,7 +8,7 @@
 #pragma warning( disable: 4251 )  // X needs to have dll-interface to be used by clients of class Z
 #endif
 
-#include <cppunit/TestSucessListener.h>
+#include <cppunit/TestSuccessListener.h>
 #include <deque>
 
 
@@ -35,7 +35,7 @@ namespace CppUnit
  * by the framework.
  * \see TestListener, TestFailure.
  */
-class CPPUNIT_API TestResultCollector : public TestSucessListener
+class CPPUNIT_API TestResultCollector : public TestSuccessListener
 {
 public:
   typedef std::deque<TestFailure *> TestFailures;

@@ -1,3 +1,24 @@
+	New in CppUnit 1.9.2:
+	----------------------
+
+	In short:
+	- Cleaner XML output
+
+* XmlOutputter:
+
+  - XML output is now indented. Nodes that don't have children are one line 
+    tag. The output can now easily be read.
+
+* Compatibility break:
+
+  - class TestSucessListener was renamed to TestSuccessListener.
+
+  - XmlOutput: renamed tag <SuccessfulTests> to <SuccessfulTests>
+
+  - Global fix of the 'success' typo (was misspelled 'sucess'). Main impacts are listed
+    above, but check your own code in case you override some protected/private methods.
+
+
 	New in CppUnit 1.9.0:
 	----------------------
 
@@ -130,7 +151,7 @@
   cppunittest example for a demo.
 
 * TextTestRunner (TextTestRunner.h):
-  -run() returns a boolean indicating is the run was sucessful.
+  -run() returns a boolean indicating is the run was successful.
   -the constructor and setOutputter() allow you do define a specific outputter
   to print the test result (CompilerOutputter, TextOutputter, XmlOutputter...)
   -result() provide access to the result of the test run.

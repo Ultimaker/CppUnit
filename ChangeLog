@@ -1,5 +1,33 @@
 2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+	* NEWS: updated.
+
+	* include/cppunit/TestSucessListener.h:
+	* src/cppunit/TestSucessListener.cpp: renamed TestSuccessListener
+
+	* doc/cookbook.dox:
+	* src/msvc6/DllPlugInTester/DllPlugInTester.cpp:
+	* examples/cppunittest/TestResultCollectorTest.h:
+	* examples/cppunittest/TestResultCollectorTest.cpp:
+	* examples/cppunittest/XmlOutputterTest.h:
+	* examples/cppunittest/XmlOutputterTest.cpp:
+	* include/cppunit/CompilerOutputter.h:
+	* include/cppunit/TestListener.h:
+	* include/cppunit/XmlOutputter.h:
+	* src/cppunit/XmlOutputter.cpp:
+	* src/cppunit/CompilerOutputter.cpp: fixed 'success' typo (was misspelled
+	'sucess').
+
+	* include/cppunit/TestResultCollector.h:
+	* src/cppunit/TestResultCollector.cpp: updated (renaming of 
+	  TestSucessListener).
+
+	* src/cppunit/XmlOutputter.cpp:
+	* examples/cppunittest/XmlOutputterTest.cpp: Changed SucessfulTests tag to
+	SucessfulTests.
+
+2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
 	* include/cppunit/XmlOutputter.h:
 	* src/cppunit/XmlOutputter.cpp: Made XML output more human readable. Idented element.
 
@@ -9,6 +37,8 @@
 	  at the end of element content.
 
 2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* Snapshot 1.9.0
 
 	* NEWS: updated
 

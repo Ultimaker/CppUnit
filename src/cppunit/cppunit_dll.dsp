@@ -310,11 +310,11 @@ SOURCE=..\..\include\cppunit\TestResultCollector.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TestSucessListener.cpp
+SOURCE=.\TestSuccessListener.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\TestSucessListener.h
+SOURCE=..\..\include\cppunit\TestSuccessListener.h
 # End Source File
 # Begin Source File
 
@@ -367,6 +367,14 @@ SOURCE=..\..\include\cppunit\Portability.h
 # Begin Source File
 
 SOURCE=.\TestRunner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\ui\text\TestRunner.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TextTestRunner.cpp
 # End Source File
 # Begin Source File
 
