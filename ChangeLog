@@ -1,4 +1,72 @@
-2001-10-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunit/Asserter.h :
+	* src/cppunit/Asserter.cpp : added. Helper to create assertion macros.
+
+	* src/cppunit/cppunit.dsp :
+	* src/cppunit/Makefile.am :
+	* include/cppunit/Makefile.am : added Asserter.h and Asserter.cpp.
+
+	* include/cppunit/Exception.h :
+	* src/cppunit/Exception.cpp : added constructor that take a 
+	SourceLine argument. Deprecated static constant and old constructor.
+	Fixed some constness issues.
+
+	* examples/cppunittest/ExceptionTest.cpp : Refactored.
+
+	* NEWS : partially updated (need to be more detailed)
+
+	* include/cppunit/NotEqualException.h :
+	* src/cppunit/NotEqualException.cpp : added constructor that take a 
+	SourceLine argument. Deprecated old constructor. Added a third element
+	to compose message.
+
+	* examples/cppunittest/NotEqualExceptionTest.cpp : moved to "Core"
+	suite. Added test for SourceLine() and additionalMessage(). 
+	Refactored.
+
+	* include/cppunit/SourceLine.h :
+	* src/cppunit/SourceLine.cpp : added. Result of applying 
+	IntroduceParameterObject refactoring on filename & line number...
+
+	* include/cppunit/TestAssert.h : 
+	* src/cppunit/TestAssert.cpp : deprecated old assert functions.
+	added functions assertEquals() and assertDoubleEquals() which use
+	SourceLine.
+
+	* src/cppunit/TestCase.cpp : Modified for SourceLine.
+
+	* include/cppunit/TestFailure.h :
+	* src/cppunit/TestFailure.cpp : added failedTestName(), and 
+	sourceLine().
+
+	* src/msvc6/testrunner/TestRunnerDlg.cpp : modified to use SourceLine.
+
+	* include/cppunit/TextTestResult.h :
+	* src/cppunit/TextTestResult.cpp : corrected include order and
+	switched to angled brackets. Refactored. Don't print failure location
+	if not available. Not equal failure dump additional message if 
+	available.
+
+	* src/cppunit/TextTestRunner.cpp : run() now returns a boolean to
+	indicate if the run was sucessful.
+
+	* src/cppunit/XmlTestResultOutputter.cpp : replaced itoa() with
+	OStringStream. Refactored.
+
+	* examples/cppunittest/XmlUniformiser.h :
+	* examples/cppunittest/XmlUniformiser.cpp : 
+	CPPUNITTEST_ASSERT_XML_EQUAL capture failure location. Refactored
+	checkXmlEqual().
+
+	* examples/cppunittest/XmlUniformiserTest.h :
+	* examples/cppunittest/XmlUniformiserTest.cpp : added test for
+	CPPUNITTEST_ASSERT_XML_EQUAL.
+
+	* include/cppunit/XmlTestResultOutputter.h :
+	* src/cppunit/XmlTestResultOutputter.cpp : updated to use SourceLine.
+
+2001-10-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
 	* NEWS : updated.
 

@@ -4,28 +4,51 @@
 namespace CppUnit {
 
 
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
+/*!
+ * \deprecated Use SourceLine::isValid() instead.
+ */
 const std::string Exception::UNKNOWNFILENAME = "<unknown>";
 
+/*!
+ * \deprecated Use SourceLine::isValid() instead.
+ */
 const long Exception::UNKNOWNLINENUMBER = -1;
+#endif
 
 
 /// Construct the exception
-Exception::Exception (const Exception& other) : std::exception (other)
+Exception::Exception( const Exception &other ) : 
+    std::exception( other )
 { 
-  m_message       = other.m_message; 
-  m_lineNumber    = other.m_lineNumber;
-  m_fileName      = other.m_fileName;
+  m_message = other.m_message; 
+  m_sourceLine = other.m_sourceLine;
 } 
 
 
+/*!
+ * \deprecated Use other constructor instead.
+ */
+Exception::Exception( std::string message, 
+                      SourceLine sourceLine ) : 
+    m_message( message ), 
+    m_sourceLine( sourceLine )
+{
+}
+
+
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
+/*!
+ * \deprecated Use other constructor instead.
+ */
 Exception::Exception( std::string message, 
                       long lineNumber, 
                       std::string fileName ) : 
     m_message( message ), 
-    m_lineNumber( lineNumber ), 
-    m_fileName( fileName )
+    m_sourceLine( fileName, lineNumber )
 {
 }
+#endif
 
 
 /// Destruct the exception
@@ -36,15 +59,14 @@ Exception::~Exception () throw()
 
 /// Perform an assignment
 Exception& 
-Exception::operator=( const Exception& other )
+Exception::operator =( const Exception& other )
 { 
-  SuperClass::operator= (other);
+  SuperClass::operator =(other);
 
-  if (&other != this) 
+  if ( &other != this )
   {
-    m_message       = other.m_message; 
-    m_lineNumber    = other.m_lineNumber;
-    m_fileName      = other.m_fileName;
+    m_message = other.m_message; 
+    m_sourceLine = other.m_sourceLine;
   }
 
   return *this; 
@@ -58,21 +80,32 @@ Exception::what() const throw ()
   return m_message.c_str (); 
 }
 
+/// Location where the error occured
+SourceLine 
+Exception::sourceLine() const
+{
+  return m_sourceLine;
+}
 
+
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 /// The line on which the error occurred
 long 
-Exception::lineNumber()
+Exception::lineNumber() const
 { 
-  return m_lineNumber; 
+  return m_sourceLine.isValid() ? m_sourceLine.lineNumber() : 
+                                  UNKNOWNLINENUMBER; 
 }
 
 
 /// The file in which the error occurred
 std::string 
-Exception::fileName()
+Exception::fileName() const
 { 
-  return m_fileName; 
+  return m_sourceLine.isValid() ? m_sourceLine.fileName() : 
+                                  UNKNOWNFILENAME;
 }
+#endif
 
 
 Exception *

@@ -6,8 +6,9 @@
 
 namespace CppUnit {
 
-class Test;
 class Exception;
+class SourceLine;
+class Test;
 
 
 /*! \brief Record of a failed test execution.
@@ -31,7 +32,11 @@ public:
 
   Exception *thrownException() const;
 
+  SourceLine sourceLine() const;
+
   bool isError() const;
+
+  std::string failedTestName() const;
   
   std::string toString() const;
 

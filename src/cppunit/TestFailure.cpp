@@ -36,12 +36,29 @@ TestFailure::thrownException() const
 }
 
 
+/// Gets the failure location.
+SourceLine 
+TestFailure::sourceLine() const
+{
+  return m_thrownException->sourceLine();
+}
+
+
 /// Indicates if the failure is a failed assertion or an error.
 bool 
 TestFailure::isError() const
 {
   return m_isError;
 }
+
+
+/// Gets the name of the failed test.
+std::string 
+TestFailure::failedTestName() const
+{
+  return m_failedTest->getName();
+}
+
 
 /// Returns a short description of the failure.
 std::string 

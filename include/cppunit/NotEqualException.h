@@ -7,39 +7,49 @@
 namespace CppUnit {
 
 
-  class NotEqualException : public Exception
-  {
-  public:
-    NotEqualException( std::string expected,
-                       std::string actual, 
-                       long lineNumber = UNKNOWNLINENUMBER, 
-                       std::string fileName = UNKNOWNFILENAME );
+class NotEqualException : public Exception
+{
+public:
+  NotEqualException( std::string expected,
+                     std::string actual, 
+                     SourceLine sourceLine = SourceLine(),
+                     std::string additionalMessage = "" );
 
-    NotEqualException( const NotEqualException &other );
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
+  NotEqualException( std::string expected,
+                     std::string actual, 
+                     long lineNumber, 
+                     std::string fileName );
+#endif
+
+  NotEqualException( const NotEqualException &other );
 
 
-    virtual ~NotEqualException() throw();
+  virtual ~NotEqualException() throw();
 
-    std::string expectedValue() const;
+  std::string expectedValue() const;
 
-    std::string actualValue() const;
+  std::string actualValue() const;
 
-    /*! Copy operator.
-     * @param other Object to copy.
-     * @return Reference on this object.
-     */
-    NotEqualException &operator =( const NotEqualException &other );
+  std::string additionalMessage() const;
 
-    Exception *clone() const;
+  /*! Copy operator.
+   * @param other Object to copy.
+   * @return Reference on this object.
+   */
+  NotEqualException &operator =( const NotEqualException &other );
 
-    bool isInstanceOf( const Type &type ) const;
+  Exception *clone() const;
 
-    static Type type();
+  bool isInstanceOf( const Type &type ) const;
 
-  private:
-    std::string m_expected;
-    std::string m_actual;
-  };
+  static Type type();
+
+private:
+  std::string m_expected;
+  std::string m_actual;
+  std::string m_additionalMessage;
+};
 
 }  // namespace CppUnit
 

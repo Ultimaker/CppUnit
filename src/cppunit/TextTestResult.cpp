@@ -1,8 +1,9 @@
+#include <cppunit/Exception.h>
+#include <cppunit/NotEqualException.h>
+#include <cppunit/Test.h>
+#include <cppunit/TextTestResult.h>
 #include <iostream>
-#include "cppunit/TextTestResult.h"
-#include "cppunit/Exception.h"
-#include "cppunit/NotEqualException.h"
-#include "cppunit/Test.h"
+
 
 namespace CppUnit {
 
@@ -39,7 +40,10 @@ TextTestResult::printFailures( std::ostream &stream )
   TestFailures::const_iterator itFailure = failures().begin();
   int failureNumber = 1;
   while ( itFailure != failures().end() ) 
+  {
+    stream  <<  std::endl;
     printFailure( *itFailure++, failureNumber++, stream );
+  }
 }
 
 
@@ -54,7 +58,7 @@ TextTestResult::printFailure( TestFailure *failure,
   stream << ' ';
   printFailureType( failure, stream );
   stream << ' ';
-  printFailureLocation( failure->thrownException(), stream );
+  printFailureLocation( failure->sourceLine(), stream );
   stream << std::endl;
   printFailureDetail( failure->thrownException(), stream );
   stream << std::endl;
@@ -88,11 +92,14 @@ TextTestResult::printFailureType( TestFailure *failure,
 
 
 void 
-TextTestResult::printFailureLocation( Exception *thrownException,
+TextTestResult::printFailureLocation( SourceLine sourceLine,
                                       std::ostream &stream )
 {
-  stream << "line: " << thrownException->lineNumber()
-         << ' ' << thrownException->fileName();
+  if ( !sourceLine.isValid() )
+    return;
+
+  stream << "line: " << sourceLine.lineNumber()
+         << ' ' << sourceLine.fileName();
 }
 
 
@@ -105,6 +112,12 @@ TextTestResult::printFailureDetail( Exception *thrownException,
     NotEqualException *e = (NotEqualException*)thrownException;
     stream << "expected: " << e->expectedValue() << std::endl
            << "but was:  " << e->actualValue();
+    if ( !e->additionalMessage().empty() )
+    {
+      stream  << std::endl;
+      stream  <<  "additional message:"  <<  std::endl
+              <<  e->additionalMessage();
+    }
   }
   else
   {
@@ -129,13 +142,30 @@ TextTestResult::printHeader( std::ostream &stream )
     stream << std::endl << "OK (" << runTests () << " tests)" 
            << std::endl;
   else
-    stream << std::endl
-           << "!!!FAILURES!!!" << std::endl
-           << "Test Results:" << std::endl
-           << "Run:  "  << runTests()
-           << "   Failures: "  << testFailures()
-           << "   Errors: "  << testErrors()
-           << std::endl;
+  {
+    stream << std::endl;
+    printFailureWarning( stream );
+    printStatistics( stream );
+  }
+}
+
+
+void 
+TextTestResult::printFailureWarning( std::ostream &stream )
+{
+  stream  << "!!!FAILURES!!!" << std::endl;
+}
+
+
+void 
+TextTestResult::printStatistics( std::ostream &stream )
+{
+  stream  << "Test Results:" << std::endl;
+
+  stream  <<  "Run:  "  <<  runTests()
+          <<  "   Failures: "  <<  testFailures()
+          <<  "   Errors: "  <<  testErrors()
+          <<  std::endl;
 }
 
 

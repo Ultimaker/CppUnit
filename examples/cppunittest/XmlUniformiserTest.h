@@ -21,6 +21,8 @@ class XmlUniformiserTest : public CppUnit::TestCase
   CPPUNIT_TEST( testSkipComment );
   CPPUNIT_TEST( testElementWithContent );
   CPPUNIT_TEST( testElementsHierarchyWithContents );
+  CPPUNIT_TEST( testAssertXmlEqualFail );
+  CPPUNIT_TEST( testAssertXmlEqualPass );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -45,6 +47,9 @@ public:
   void testSkipComment();
   void testElementWithContent();
   void testElementsHierarchyWithContents();
+
+  void testAssertXmlEqualFail();
+  void testAssertXmlEqualPass();
 
 private:
   void check( const std::string &xml, 

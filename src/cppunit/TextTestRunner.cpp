@@ -37,34 +37,31 @@ TextTestRunner::addTest( Test *test )
  *                 of an added test.
  * \param doWait if \c true then the user must press the RETURN key 
  *               before the run() method exit.
+ * \return \c true is the test was successful, \c false if the test
+ *         failed or was not found.
  */
-
-void 
+bool
 TextTestRunner::run( std::string testName,
                      bool doWait )
 {
-  runTestByName( testName );
+  bool sucessful = runTestByName( testName );
   wait( doWait );
+  return sucessful;
 }
 
 
-void 
+bool
 TextTestRunner::runTestByName( std::string testName )
 {
   if ( testName.empty() )
-  {
-    runTest( m_suite );
-  }
-  else
-  { 
-    Test *test = findTestByName( testName );
-    if ( test != NULL )
-      runTest( test );
-    else
-    {
-      std::cout << "Test " << testName << " not found." << std::endl;
-    }
-  }
+    return runTest( m_suite );
+
+  Test *test = findTestByName( testName );
+  if ( test != NULL )
+    return runTest( test );
+
+  std::cout << "Test " << testName << " not found." << std::endl;
+  return false;
 }
 
 
@@ -94,12 +91,13 @@ TextTestRunner::findTestByName( std::string name ) const
 }
 
 
-void 
+bool
 TextTestRunner::runTest( Test *test )
 {
   TextTestResult result;
   test->run( &result );
   std::cout << result << std::endl;
+  return result.wasSuccessful();
 }
 
 

@@ -139,8 +139,9 @@ XmlTestResultOutputter::Node::escape( std::string value ) const
 std::string 
 XmlTestResultOutputter::Node::asString( int value )
 {
-  char buffer[16];
-  return ::itoa( value, buffer, 10 );
+  OStringStream stream;
+  stream << value;
+  return stream.str();
 }
 
 
@@ -286,14 +287,20 @@ XmlTestResultOutputter::makeFailedTestNode( Test *test,
   testNode->addNode( new Node( "FailureType", 
                                failure->isError() ? "Error" : "Assertion" ) );
 
-  if ( thrownException->lineNumber() != Exception::UNKNOWNLINENUMBER )
-  {
-    Node *locationNode = new Node( "Location" );
-    testNode->addNode( locationNode );
-    locationNode->addNode( new Node( "File", thrownException->fileName() ) );
-    locationNode->addNode( new Node( "Line", thrownException->lineNumber() ) );
-  }
+  if ( failure->sourceLine().isValid() )
+    testNode->addNode( makeFailureLocationNode( failure ) );
   return testNode;
+}
+
+
+XmlTestResultOutputter::Node *
+XmlTestResultOutputter::makeFailureLocationNode( TestFailure *failure )
+{
+  Node *locationNode = new Node( "Location" );
+  SourceLine sourceLine = failure->sourceLine();
+  locationNode->addNode( new Node( "File", sourceLine.fileName() ) );
+  locationNode->addNode( new Node( "Line", sourceLine.lineNumber() ) );
+  return locationNode;
 }
 
 

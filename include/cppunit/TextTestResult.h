@@ -1,11 +1,12 @@
 #ifndef CPPUNIT_TEXTTESTRESULT_H
 #define CPPUNIT_TEXTTESTRESULT_H
 
-#include <iostream>
 #include <cppunit/TestResult.h>
+#include <iostream>
 
 namespace CppUnit {
 
+class SourceLine;
 class Exception;
 class Test;
 
@@ -28,10 +29,12 @@ class TextTestResult : public TestResult
                                        std::ostream &stream );
     virtual void printFailureType( TestFailure *failure,
                                    std::ostream &stream );
-    virtual void printFailureLocation( Exception *thrownException,
+    virtual void printFailureLocation( SourceLine sourceLine,
                                        std::ostream &stream );
     virtual void printFailureDetail( Exception *thrownException,
                                      std::ostream &stream );
+    virtual void printFailureWarning( std::ostream &stream );
+    virtual void printStatistics( std::ostream &stream );
 };
 
 /** insertion operator for easy output */

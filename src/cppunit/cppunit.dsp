@@ -178,6 +178,14 @@ SOURCE=..\..\include\cppunit\extensions\TypeInfoHelper.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\Asserter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Asserter.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Exception.cpp
 # End Source File
 # Begin Source File
@@ -191,6 +199,14 @@ SOURCE=.\NotEqualException.cpp
 # Begin Source File
 
 SOURCE=..\..\include\cppunit\NotEqualException.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SourceLine.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\SourceLine.h
 # End Source File
 # Begin Source File
 
@@ -284,6 +300,10 @@ SOURCE=..\..\include\cppunit\Portability.h
 # Begin Source File
 
 SOURCE=..\..\ChangeLog
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\Makefile.am
 # End Source File
 # Begin Source File
 

@@ -137,9 +137,9 @@ XmlTestResultOutputterTest::testWriteXmlResultWithOneFailure()
   CppUnit::TestResult result;
   CppUnit::TestCase test1( "test1" );
   result.startTest( &test1 );
+  CppUnit::SourceLine sourceLine( "test.cpp", 3 );
   result.addFailure( &test1, new CppUnit::Exception( "message failure1", 
-                                                     3, 
-                                                     "test.cpp" ) );
+                                                     sourceLine ) );
   result.endTest( &test1 );
 
   CppUnit::OStringStream stream;

@@ -12,11 +12,36 @@
 
 * Fail with arbitrary message: CPPUNIT_FAIL
 
+* NotEqualException / additional mesage ### to detail ###
+
+* TextTestRunner / return ### to detail ###
+
+* Helpers to construct your own assertion
+
+### to detail ###
+  CPPUNIT_SOURCELINE()
+  Asserter
+
+  Example:
+void 
+checkXmlEqual( std::string expectedXml,
+               std::string actualXml,
+               CppUnit::SourceLine sourceLine );
+
+/// Asserts that two XML strings are equivalent.
+#define CPPUNITTEST_ASSERT_XML_EQUAL( expected, actual ) \
+    ::CppUnitTest::checkXmlEqual( expected, actual,      \
+				  CPPUNIT_SOURCELINE() )
+
 * XML Output
 
   You can dump the TestResult as an XML document using XmlTestResultOutputter.
   See examples/cppunittest/XmlTestResultOutputterTest.cpp for document
   structure and usage.
+
+* Deprecated
+  You must define the symbol CPPUNIT_ENABLE_SOURCELINE_DEPRECATED to enable 
+  old Exception constructor, UNKNOWNFILENAME and UNKNOWNLINENUMBER.
 
 * Compatibility break:
   - TestListener::addError() was removed. addFailure() is used to report
@@ -24,6 +49,7 @@ any kind of failure.
   - TestResult::errors() was removed. Use failures() instead.
   - TestResult::failures() now reports all kind of failures.
   - TestResult::failures() returns a const reference.
+  - TestAssert  ### to detail ###
 
 
 	New in CppUnit 1.6.1

@@ -3,7 +3,7 @@
 
 #include <cppunit/Portability.h>
 #include <cppunit/Exception.h>
-#include <string>
+#include <cppunit/Asserter.h>
 
 
 namespace CppUnit {
@@ -27,22 +27,23 @@ namespace CppUnit {
 
   namespace TestAssert
   {
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
     void assertImplementation( bool         condition, 
                                std::string  conditionExpression = "",
-                               long lineNumber = Exception::UNKNOWNLINENUMBER,
-                               std::string  fileName = Exception::UNKNOWNFILENAME );
+                               long lineNumber,
+                               std::string  fileName );
 
     void assertNotEqualImplementation( std::string expected,
                                        std::string actual,
-                                       long lineNumber = Exception::UNKNOWNLINENUMBER,
-                                       std::string fileName = Exception::UNKNOWNFILENAME );
+                                       long lineNumber,
+                                       std::string fileName );
       
 
     template <class T>
     void assertEquals( const T& expected,
                        const T& actual,
-                       long lineNumber = Exception::UNKNOWNLINENUMBER,
-                       std::string fileName = Exception::UNKNOWNFILENAME )
+                       long lineNumber,
+                       std::string fileName )
     {
       if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
       {
@@ -56,8 +57,30 @@ namespace CppUnit {
     void assertEquals( double expected, 
                        double actual, 
                        double delta, 
-                       long lineNumber = Exception::UNKNOWNLINENUMBER,
-                       std::string fileName = Exception::UNKNOWNFILENAME);
+                       long lineNumber,
+                       std::string fileName );
+
+#else   //                  using SourceLine
+
+    template <class T>
+    void assertEquals( const T& expected,
+                       const T& actual,
+                       SourceLine sourceLine )
+    {
+      if ( !assertion_traits<T>::equal(expected,actual) ) // lazy toString conversion...
+      {
+        Asserter::failNotEqual( assertion_traits<T>::toString(expected),
+                                assertion_traits<T>::toString(actual),
+                                sourceLine );
+      }
+    }
+
+    void assertDoubleEquals( double expected,
+                             double actual,
+                             double delta,
+                             SourceLine sourceLine );
+
+#endif
   }
 
 
@@ -67,17 +90,15 @@ namespace CppUnit {
  * redeeming qualities.
  */
 #if CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION
-
-#  define CPPUNIT_ASSERT(condition)\
-    (CppUnit::TestAssert::assertImplementation ((condition),(#condition),\
-        __LINE__, __FILE__))
-
+#  define CPPUNIT_ASSERT(condition)                        \
+  ( ::CppUnit::Asserter::failIf( !(condition),             \
+                                 (#condition),             \
+                                 CPPUNIT_SOURCELINE() ) )
 #else
-
-#  define CPPUNIT_ASSERT(condition)\
-    (CppUnit::TestAssert::assertImplementation ((condition),"",\
-        __LINE__, __FILE__))
-
+#  define CPPUNIT_ASSERT(condition)                        \
+  ( ::CppUnit::Asserter::failIf( !(condition),             \ 
+                                 "",                       \
+                                 CPPUNIT_SOURCELINE() ) )
 #endif
 
 /** Assertion with a user specified message.
@@ -86,32 +107,41 @@ namespace CppUnit {
  * \param condition If this condition evaluates to \c false then the
  *                  test failed.
  */
-#define CPPUNIT_ASSERT_MESSAGE(message,condition)\
-  (CppUnit::TestAssert::assertImplementation( condition, \
-                                              message, \
-                                              __LINE__, \
-                                              __FILE__ ) )
+#define CPPUNIT_ASSERT_MESSAGE(message,condition)          \
+  ( ::CppUnit::Asserter::failIf( !(condition),             \
+                                 message,                  \
+                                 CPPUNIT_SOURCELINE() ) )
 
 /** Failure with a user specified message.
  * \param message Message reported in diagnostic.
  */
-#define CPPUNIT_FAIL( message ) \
-                     CPPUNIT_ASSERT_MESSAGE( message, false )
+#define CPPUNIT_FAIL( message )                            \
+  ( ::CppUnit::Asserter::fail( message,                    \
+                               CPPUNIT_SOURCELINE() ) )
 
+#ifdef CPPUNIT_ENABLE_SOURCELINE_DEPRECATED
 /// Generalized macro for primitive value comparisons
 /** Equality and string representation can be defined with
  * an appropriate assertion_traits class.
  * A diagnostic is printed if actual and expected values disagree.
  */
-#define CPPUNIT_ASSERT_EQUAL(expected,actual)\
-  (CppUnit::TestAssert::assertEquals ((expected),\
-    (actual),__LINE__,__FILE__))
+#define CPPUNIT_ASSERT_EQUAL(expected,actual)                    \
+  ( ::CppUnit::TestAssert::assertEquals( (expected),             \
+                                         (actual),               \
+                                         __LINE__, __FILE__ ) )
+#else
+#define CPPUNIT_ASSERT_EQUAL(expected,actual)                     \
+  ( ::CppUnit::TestAssert::assertEquals( (expected),              \
+                                         (actual),                \
+                                         CPPUNIT_SOURCELINE() ) )
+#endif
 
 /// Macro for primitive value comparisons
-#define CPPUNIT_ASSERT_DOUBLES_EQUAL(expected,actual,delta)\
-  (CppUnit::TestAssert::assertEquals ((expected),\
-    (actual),(delta),__LINE__,__FILE__))
-
+#define CPPUNIT_ASSERT_DOUBLES_EQUAL(expected,actual,delta)       \
+  ( ::CppUnit::TestAssert::assertDoubleEquals( (expected),        \
+                                               (actual),          \
+                                               (delta),           \
+                                               CPPUNIT_SOURCELINE() ) )
 
 // Backwards compatibility
 

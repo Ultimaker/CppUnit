@@ -33,14 +33,14 @@ public:
     TextTestRunner();
     virtual ~TextTestRunner();
 
-    void run( std::string testName ="",
+    bool run( std::string testName ="",
               bool wait = false );
 
     void addTest( Test *test );
 
 protected:
-    void runTest( Test *test );
-    void runTestByName( std::string testName );
+    bool runTest( Test *test );
+    bool runTestByName( std::string testName );
     void wait( bool doWait );
 
     Test *findTestByName( std::string name ) const;

@@ -1,6 +1,7 @@
 #ifndef CPPUNITTEST_XMLUNIFORMISER_H
 #define CPPUNITTEST_XMLUNIFORMISER_H
 
+#include <cppunit/SourceLine.h>
 #include <cppunit/TestAssert.h>
 #include <string>
 
@@ -51,12 +52,14 @@ private:
 
 void 
 checkXmlEqual( std::string expectedXml,
-               std::string actualXml );
+               std::string actualXml,
+               CppUnit::SourceLine sourceLine );
 
 
 /// Asserts that two XML strings are equivalent.
 #define CPPUNITTEST_ASSERT_XML_EQUAL( expected, actual ) \
-            CppUnitTest::checkXmlEqual( expected, actual )
+    ::CppUnitTest::checkXmlEqual( expected, actual,      \
+                                  CPPUNIT_SOURCELINE() )
 
 
 

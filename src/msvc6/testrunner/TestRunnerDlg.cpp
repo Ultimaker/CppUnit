@@ -170,12 +170,15 @@ void TestRunnerDlg::OnRun()
 }
 
 
-void TestRunnerDlg::addListEntry (std::string type, CppUnit::TestResult *result, CppUnit::Test *test, CppUnit::Exception *e)
+void 
+TestRunnerDlg::addListEntry( std::string type, 
+                             CppUnit::TestResult *result, 
+                             CppUnit::Test *test, 
+                             CppUnit::Exception *e )
 {
-//    char        stage [80];
-//    LV_ITEM     lvi;
-    CListCtrl   *listCtrl       = (CListCtrl *)GetDlgItem (IDC_LIST);
-    int         currentEntry    = result->testErrors () + result->testFailures ()-1;
+    CListCtrl *listCtrl = (CListCtrl *)GetDlgItem (IDC_LIST);
+    int currentEntry = result->testErrors() + 
+                       result->testFailures() -1;
 
     ErrorTypeBitmaps errorType;
     if ( type == "Failure" )
@@ -194,17 +197,17 @@ void TestRunnerDlg::addListEntry (std::string type, CppUnit::TestResult *result,
     setter.addSubItem( e->what() );
 
     // Set the line number
-    if (e->lineNumber () == CppUnit::Exception::UNKNOWNLINENUMBER)
-      setter.addSubItem( "?" );
-    else
+    if (e->sourceLine().isValid() )
     {
       char tmp[64];
-      sprintf( tmp, "%ld", e->lineNumber() );
+      sprintf( tmp, "%ld", e->sourceLine().lineNumber() );
       setter.addSubItem( tmp );
     }
+    else
+      setter.addSubItem( "" );
 
     // Set the file name
-    setter.addSubItem( e->fileName() );
+    setter.addSubItem( e->sourceLine().fileName() );
 
 /* In place of the missing detail fiedl...
     std::string dump = "Test: " + test->getName() + "\n";

@@ -91,6 +91,7 @@ public:
   virtual Node *makeFailedTestNode( Test *test,
                                     TestFailure *failure,
                                     int testNumber );
+  virtual Node *makeFailureLocationNode( TestFailure *failure );
   virtual Node *makeSucessfulTestNode( Test *test, 
                                        int testNumber );
 protected:

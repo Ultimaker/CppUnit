@@ -4,41 +4,42 @@ namespace CppUnitTest
 {
 
 
+
+int 
+notEqualIndex( std::string expectedXml,
+               std::string actualXml )
+{
+  int index = 0;
+  while ( index < actualXml.length()  &&  
+          index < expectedXml.length()  &&
+          actualXml[index] == expectedXml[index] )
+    ++index;
+
+  return index;
+}
+
+
 /// Asserts that two XML string are equivalent.
 void 
 checkXmlEqual( std::string expectedXml,
-               std::string actualXml )
+               std::string actualXml,
+               CppUnit::SourceLine sourceLine )
 {
   std::string expected = XmlUniformiser( expectedXml ).stripped();
   std::string actual = XmlUniformiser( actualXml ).stripped();
-  int index =0;
-  while ( index < actual.length()  &&  
-          index < expected.length() )
-  {
-    if ( actual[index] != expected[index] )
-    {
-      CppUnit::OStringStream message;
-      message  <<  "expected xml: "  <<  expected << "\n"
-               <<  "actual xml  : "  <<  actual  <<  "\n"
-               <<  "differ at column: "  <<  index  << "\n"
-               <<  "expected: "  <<  expected.substr(index) << "\n"
-               <<  "but was : "  <<  actual.substr( index );
-      CPPUNIT_FAIL( message.str() );
-    }
 
-    ++index;
-  }
+  if ( expected == actual )
+    return;
 
-  if ( actual.length() != expected.length() )
-  {
-      CppUnit::OStringStream message;
-      message  <<  "expected: "  <<  expected << "\n"
-               <<  "was     : "  <<  actual  <<  "\n"
-               <<  "differ at column: "  <<  index  << "\n"
-               <<  "expected: "  <<  expected.substr(index) << "\n"
-               <<  "but was : "  <<  actual.substr( index );
-      CPPUNIT_FAIL( message.str() );
-  }
+  int index = notEqualIndex( expected, actual );
+  CppUnit::OStringStream message;
+  message  <<  "differ at index: "  <<  index  << "\n"
+           <<  "expected: "  <<  expected.substr(index) << "\n"
+           <<  "but was : "  <<  actual.substr( index );
+  ::CppUnit::Asserter::failNotEqual( expected,
+                                     actual,
+                                     sourceLine,
+                                     message.str() );
 }
 
 

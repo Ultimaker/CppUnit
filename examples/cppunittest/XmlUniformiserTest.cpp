@@ -1,7 +1,8 @@
+#include <cppunit/NotEqualException.h>
+#include <stdlib.h>
 #include "UnitTestToolSuite.h"
 #include "XmlUniformiserTest.h"
 #include "XmlUniformiser.h"
-#include <stdlib.h>
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( XmlUniformiserTest, 
                                        CppUnitTest::unitTestToolSuiteName() );
@@ -123,6 +124,30 @@ XmlUniformiserTest::testSkipComment()
 {
   check( "<!-- skip comment-->",
          "" );
+}
+
+
+void 
+XmlUniformiserTest::testAssertXmlEqualFail()
+{
+  try
+  {
+    CPPUNITTEST_ASSERT_XML_EQUAL( "<Test>", "<Tes>" );
+    CPPUNIT_FAIL( "CppUnit::NotEqualException expected" );
+  }
+  catch ( CppUnit::NotEqualException &e )
+  {
+    CPPUNIT_ASSERT_EQUAL( e.expectedValue(), std::string("<Test>" ) );
+    CPPUNIT_ASSERT_EQUAL( e.actualValue(), std::string("<Tes>" ) );
+    CPPUNIT_ASSERT( !e.additionalMessage().empty() );
+    CPPUNIT_ASSERT( e.sourceLine().isValid() );
+  }
+}
+
+void 
+XmlUniformiserTest::testAssertXmlEqualPass()
+{
+  CPPUNITTEST_ASSERT_XML_EQUAL( "<Test>", "<Test>" );
 }
 
 
