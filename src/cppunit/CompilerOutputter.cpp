@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cppunit/NotEqualException.h>
 #include <cppunit/SourceLine.h>
 #include <cppunit/TestResult.h>
@@ -178,18 +179,45 @@ CompilerOutputter::printStatistics()
 std::string
 CompilerOutputter::wrap( std::string message )
 {
-  const int maxLineLength = 80;
+  Lines lines = splitMessageIntoLines( message );
   std::string wrapped;
-  int index =0;
-  while ( index < message.length() )
+  for ( Lines::iterator it = lines.begin(); it != lines.end(); ++it )
   {
-    std::string line( message.substr( index, maxLineLength ) );
-    wrapped += line;
-    index += maxLineLength;
-    if ( index < message.length() )
-      wrapped += "\n";
+    std::string line( *it );
+    const int maxLineLength = 80;
+    int index =0;
+    while ( index < line.length() )
+    {
+      std::string line( line.substr( index, maxLineLength ) );
+      wrapped += line;
+      index += maxLineLength;
+      if ( index < line.length() )
+        wrapped += "\n";
+    }
+    wrapped += '\n';
   }
   return wrapped;
+}
+
+
+CompilerOutputter::Lines 
+CompilerOutputter::splitMessageIntoLines( std::string message )
+{
+  Lines lines;
+
+  std::string::iterator itStart = message.begin();
+  while ( true )
+  {
+    std::string::iterator itEol = std::find( itStart, 
+                                             message.end(), 
+                                             '\n' );
+    lines.push_back( message.substr( itStart - message.begin(),
+                                     itEol - itStart ) );
+    if ( itEol == message.end() )
+      break;
+    itStart = itEol +1;
+  }
+  return lines;
 }
 
 

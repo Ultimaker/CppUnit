@@ -32,6 +32,11 @@ with result().
   Asserter namespace contains functions used to construct and throw exception
   to report failure. See Asserter documentation for an example of usage.
 
+* TestRunner
+
+  - Qt TestRunner : a test runner for the Qt library (http://www.trolltech.com).
+    See examples/qt for an example of use.
+
 * Output
 
   - XML output : You can dump the TestResult as an XML document using 

@@ -1,3 +1,11 @@
+2001-10-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+	* include/cppunitui/* : added, Qt TestRunner.
+
+	* examples/qt/* : added, example showing the use of Qt TestRunner.
+
+	* src/qttestrunner : added, source of the Qt TestRunner DLL.
+
 2001-10-08  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* src/cppunit/Exception.cpp (what): Remove "throw()" qualifier, to

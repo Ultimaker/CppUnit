@@ -2,6 +2,7 @@
 #define CPPUNIT_COMPILERTESTRESULTOUTPUTTER_H
 
 #include <cppunit/Portability.h>
+#include <vector>
 #include <iostream>
 
 namespace CppUnit
@@ -51,6 +52,9 @@ private:
 
   /// Prevents the use of the copy operator.
   void operator =( const CompilerOutputter &copy );
+
+  typedef std::vector<std::string> Lines;
+  static Lines splitMessageIntoLines( std::string message );
 
 private:
   TestResult *m_result;
