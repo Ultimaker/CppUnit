@@ -82,7 +82,8 @@ template <typename ClassUnderTest> void Orthodox<ClassUnderTest>::runTest ()
 
 
 // Exercise a call
-template <typename ClassUnderTest> ClassUnderTest Orthodox<ClassUnderTest>::call (ClassUnderTest object)
+template <typename ClassUnderTest> 
+ClassUnderTest Orthodox<ClassUnderTest>::call (ClassUnderTest object)
 {
     return object;
 }

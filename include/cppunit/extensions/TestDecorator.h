@@ -21,7 +21,7 @@ public:
                 ~TestDecorator  ();
 
     int         countTestCases  () const;
-    void        run             (TestResult *result) const;
+    void        run             (TestResult *result);
     std::string toString        () const;
     std::string getName         () const;
 
@@ -46,7 +46,7 @@ inline TestDecorator::countTestCases () const
 { return m_test->countTestCases (); }
 
 
-inline void TestDecorator::run (TestResult *result) const
+inline void TestDecorator::run (TestResult *result)
 { m_test->run (result); }
 
 

@@ -14,43 +14,24 @@ class TestResult;
  * Does not assume ownership of the test it decorates
  *
  */
-
 class RepeatedTest : public TestDecorator 
 {
 public:
-                        RepeatedTest (Test *test, int timesRepeat)
-                            : TestDecorator (test), m_timesRepeat (timesRepeat) {}
+    RepeatedTest( Test *test, 
+                  int timesRepeat ) : 
+        TestDecorator( test ), 
+        m_timesRepeat(timesRepeat) {}
 
-    int                 countTestCases ();
-    std::string         toString ();
-    void                run (TestResult *result);
+    int countTestCases();
+    std::string toString();
+    void run( TestResult *result );
 
 private:
     RepeatedTest( const RepeatedTest & );
-    void operator( const RepeatedTest & );
+    void operator=( const RepeatedTest & );
 
-    const int           m_timesRepeat;
+    const int m_timesRepeat;
 };
-
-
-// Counts the number of test cases that will be run by this test.
-inline RepeatedTest::countTestCases ()
-{ return TestDecorator::countTestCases () * m_timesRepeat; }
-
-// Returns the name of the test instance. 
-inline std::string RepeatedTest::toString ()
-{ return TestDecorator::toString () + " (repeated)"; }
-
-// Runs a repeated test
-inline void RepeatedTest::run (TestResult *result)
-{
-    for (int n = 0; n < m_timesRepeat; n++) {
-        if (result->shouldStop ())
-            break;
-
-        TestDecorator::run (result);
-    }
-}
 
 
 

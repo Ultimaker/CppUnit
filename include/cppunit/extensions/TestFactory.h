@@ -20,4 +20,4 @@ namespace CppUnit {
 
 }  // namespace CppUnit
 
-#endif  // CPPUNIT_EXTENSIONS_ABSTRACTTESTFACTORY_H
+#endif  // CPPUNIT_EXTENSIONS_TESTFACTORY_H

@@ -12,12 +12,13 @@ class TestResult;
 class TestSetUp : public TestDecorator 
 {
 public:
-                    TestSetUp (Test *test) : TestDecorator (test) {}
-                    run (TestResult *result);
+    TestSetUp (Test *test) : TestDecorator (test) {}
+
+    void run (TestResult *result);
 
 protected:
-    void            setUp () {}
-    void            tearDown () {}
+    virtual void setUp () {}
+    virtual void tearDown () {}
 
 private:
   TestSetUp( const TestSetUp & );
@@ -25,8 +26,13 @@ private:
 };
 
 
-inline TestSetup::run (TestResult *result)
-{ setUp (); TestDecorator::run (result); tearDown (); }
+inline void
+TestSetUp::run (TestResult *result)
+{ 
+  setUp (); 
+  TestDecorator::run (result); 
+  tearDown (); 
+}
 
 
 } //  namespace CppUnit

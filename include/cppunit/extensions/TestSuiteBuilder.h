@@ -49,12 +49,30 @@ namespace CppUnit {
         m_suite->addTest( test );
       }
 
-      void addTestCaller( std::string name, TestMethod testMethod )
+      void addTestCaller( std::string methodName, 
+                          TestMethod testMethod )
       {
           Test *test = 
-              new TestCaller<Fixture>( m_suite->getName() + "." + name, 
+              new TestCaller<Fixture>( makeTestName( methodName ), 
                                        testMethod );
           addTest( test );
+      }
+
+      void addTestCaller( std::string methodName, 
+                          TestMethod testMethod, 
+                          Fixture *fixture )
+      {
+          Test *test = 
+              new TestCaller<Fixture>( makeTestName( methodName ), 
+                                       testMethod,
+                                       fixture);
+          addTest( test );
+      }
+
+    protected:
+      std::string makeTestName( const std::string &methodName )
+      {
+        return m_suite->getName() + "." + methodName;
       }
 
     private:

@@ -98,15 +98,15 @@
  * \param ATestCaseType Type of the test case class.
  * \see CPPUNIT_TEST_SUB_SUITE, CPPUNIT_TEST, CPPUNIT_TEST_SUITE_END, CPPUNIT_TEST_SUITE_REGISTRATION.
  */
-#define CPPUNIT_TEST_SUITE( ATestCaseType )                                  \
-  private:                                                              \
-    typedef ATestCaseType __ThisTestCaseType;                           \
-  public:                                                               \
-    template<typename TestCaseType>                                     \
-    static void                                                         \
-    registerTests( CppUnit::TestSuiteBuilder<TestCaseType> &suite,      \
-                   TestCaseType *test )                                 \
-    {
+#define CPPUNIT_TEST_SUITE( ATestCaseType )                               \
+  private:                                                                \
+    typedef ATestCaseType __ThisTestCaseType;                             \
+  public:                                                                 \
+    static void                                                           \
+    registerTests( CppUnit::TestSuite *suite,                             \
+                   CppUnit::TestFactory *factory )                        \
+    {                                                                     \
+      CppUnit::TestSuiteBuilder<__ThisTestCaseType> builder( suite );
 
 
 /** Begin test suite (includes parent suite)
@@ -138,11 +138,11 @@
  * \param ASuperClass   Type of the parent class.
  * \see CPPUNIT_TEST_SUITE.
  */
-#define CPPUNIT_TEST_SUB_SUITE( ATestCaseType, ASuperClass )                       \
-  private:                                                                    \
-    typedef ASuperClass __ThisSuperClassType;                                 \
-  CPPUNIT_TEST_SUITE( ATestCaseType );                                             \
-      __ThisSuperClassType::registerTests( suite, test )
+#define CPPUNIT_TEST_SUB_SUITE( ATestCaseType, ASuperClass )  \
+  private:                                                    \
+    typedef ASuperClass __ThisSuperClassType;                 \
+    CPPUNIT_TEST_SUITE( ATestCaseType );                      \
+      __ThisSuperClassType::registerTests( suite, factory )
 
 
 /** Add a method to the suite.
@@ -151,8 +151,10 @@
  *                   type: void testMethod();
  * \see  CPPUNIT_TEST_SUITE.
  */
-#define CPPUNIT_TEST( testMethod )                                           \
-      suite.addTestCaller( #testMethod, &__ThisTestCaseType::testMethod ) 
+#define CPPUNIT_TEST( testMethod )                                      \
+      builder.addTestCaller( #testMethod,                               \
+                             &__ThisTestCaseType::testMethod ,          \
+                             (__ThisTestCaseType*)factory->makeTest() ) 
 
 
 /** End declaration of the test suite.
@@ -162,17 +164,25 @@
  * \see  CPPUNIT_TEST_SUITE.
  * \see  CPPUNIT_TEST_SUITE_REGISTRATION.
  */
-#define CPPUNIT_TEST_SUITE_END()                                             \
-}                                                                       \
-    static CppUnit::Test *suite()                                       \
-    {                                                                   \
-      __ThisTestCaseType *test =NULL;                                   \
-      CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
-          suite __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType );                  \
-      __ThisTestCaseType::registerTests( suite, test );                 \
-      return suite.takeSuite();                                         \
+#define CPPUNIT_TEST_SUITE_END()                                        \
+      builder.takeSuite();                                              \
     }                                                                   \
-  private:
+    static CppUnit::TestSuite *suite()                                  \
+    {                                                                   \
+      CppUnit::TestSuiteBuilder<__ThisTestCaseType>                     \
+          builder __CPPUNIT_SUITE_CTOR_ARGS( ATestCaseType );           \
+      ThisTestCaseFactory factory;                                      \
+      __ThisTestCaseType::registerTests( builder.suite(), &factory );   \
+      return builder.takeSuite();                                       \
+    }                                                                   \
+  private:                                                              \
+    class ThisTestCaseFactory : public CppUnit::TestFactory             \
+    {                                                                   \
+      virtual CppUnit::Test *makeTest()                                 \
+      {                                                                 \
+        return new __ThisTestCaseType();                                \
+      }                                                                 \
+    };
 
 #define __CPPUNIT_CONCATENATE_DIRECT( s1, s2 ) s1##s2
 #define __CPPUNIT_CONCATENATE( s1, s2 ) __CPPUNIT_CONCATENATE_DIRECT( s1, s2 )
