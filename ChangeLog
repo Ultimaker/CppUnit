@@ -1,3 +1,10 @@
+2001-06-18  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* include/cppunit/Portability.h (CPPUNIT_USE_TYPEINFO):
+	(CPPUNIT_ENABLE_NAKED_ASSERT):
+	(CPPUNIT_HAVE_CPP_SOURCEANNOTATION): Fix setting of
+	default values.
+
 2001-06-17  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* configure.in: Require autoconf 2.50 or better.

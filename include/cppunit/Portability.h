@@ -10,25 +10,30 @@
 #    include <cppunit/config-auto.h>
 #endif
 
-/* set non platform specific defines */
 
+/* Options that the library user may switch on or off.
+ * If the user has not done so, we chose default values.
+ */
+
+/* FIXME: does not belong in Portability.h (?) */
 /* Define to 1 if the compiler supports Run-Time Type Identification */
-#ifdef CPPUNIT_DONT_USE_TYPEINFO
-#define CPPUNIT_USE_TYPEINFO                0
-#else
-#define CPPUNIT_USE_TYPEINFO                1
+#ifndef CPPUNIT_USE_TYPEINFO
+#define CPPUNIT_USE_TYPEINFO                CPPUNIT_HAVE_RTTI
 #endif
+
 
 /* Define to 1 if you wish to have the old-style macros
    assert(), assertEqual(), assertDoublesEqual(), and assertLongsEqual() */
-#ifdef CPPUNIT_DISABLE_NAKED_ASSERT
+#ifndef CPPUNIT_ENABLE_NAKED_ASSERT
 #define CPPUNIT_ENABLE_NAKED_ASSERT         0
-#else
-#define CPPUNIT_ENABLE_NAKED_ASSERT         1
 #endif
 
+
 /* Define to 1 if the preprocessor expands (#foo) to "foo" (quotes incl.) */
+#ifndef CPPUNIT_HAVE_CPP_SOURCEANNOTATION
 #define CPPUNIT_HAVE_CPP_SOURCEANNOTATION   1
+#endif
+
 
 
 /* perform portability hacks */
