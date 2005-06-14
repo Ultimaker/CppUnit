@@ -47,7 +47,7 @@
     This was contributed by Max Quatember and Andreas Pfaffenbichler.
 
   - Progress bar: now use system color to draw border 
-    (patch from bug #1165875).
+    (patch from bug #1165875 contributed by Pieter Van Dyck).
 
 * Compilation:
 
