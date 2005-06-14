@@ -1,3 +1,7 @@
+2005-06-14  Baptiste Lepilleur <gaiacrtn@free.fr>
+  * src/msvc6/testrunner/ProgressBar.cpp: applied patch from bug #1165875,
+    (use system color for border instead of hard-coded color).
+
 2005-02-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * examples/hierarchy/BoardGameTest.h:

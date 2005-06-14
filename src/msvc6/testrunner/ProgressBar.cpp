@@ -52,14 +52,14 @@ void
 ProgressBar::paintBackground( CDC &dc )
 {
   CBrush brshBackground;
-  CPen penGray( PS_SOLID, 1, RGB (128, 128, 128) );
-  CPen penWhite( PS_SOLID, 1, RGB (255, 255, 255) );
+  CPen penShade( PS_SOLID, 1, GetSysColor(COLOR_3DSHADOW) );
+  CPen penLight( PS_SOLID, 1, GetSysColor(COLOR_3DHILIGHT) );
 
   VERIFY( brshBackground.CreateSolidBrush( ::GetSysColor (COLOR_BTNFACE) ) );
 
   dc.FillRect( m_bounds, &brshBackground );
   
-  CPen *pOldPen = dc.SelectObject( &penGray );
+  CPen *pOldPen = dc.SelectObject( &penShade );
   int xRight = m_bounds.left + m_bounds.Width() -1;
   int yBottom = m_bounds.top + m_bounds.Height() -1;
   {
@@ -70,7 +70,7 @@ ProgressBar::paintBackground( CDC &dc )
     dc.LineTo( m_bounds.left, yBottom );
   }
 
-  dc.SelectObject( &penWhite );
+  dc.SelectObject( &penLight );
   {
     dc.MoveTo( xRight, m_bounds.top );
     dc.LineTo( xRight, yBottom );

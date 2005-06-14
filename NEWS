@@ -46,6 +46,9 @@
     to the failure location in the open IDE (no add-in necessary). 
     This was contributed by Max Quatember and Andreas Pfaffenbichler.
 
+  - Progress bar: now use system color to draw border 
+    (patch from bug #1165875).
+
 * Compilation:
 
   - MinGW: patch #1024428 contributed by astar, fixed compilation issue in
