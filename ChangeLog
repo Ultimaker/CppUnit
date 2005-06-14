@@ -6,6 +6,9 @@
   * configure.in: MinGW, cygwin: enable build of shared library when using 
     libtool. patch #1194394 contributed by Stéphane Fillod.
 
+  * cppunit.m4: applied patch #1076398 contributed by Henner Sudek. Fix 
+    version number comparison in AM_PATH_CPPUNIT.
+
 2005-02-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * examples/hierarchy/BoardGameTest.h:

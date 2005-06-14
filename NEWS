@@ -57,6 +57,14 @@
   - MinGW, cygwin: enable build of shared library when using libtool. 
     patch #1194394 contributed by Stéphane Fillod.
 
+  - autotool: applied patch #1076398 contributed by Henner Sudek. Quote:
+		 "This patch allows AM_PATH_CPPUNIT to accept version
+		numbers without minor and micro version.
+		Now you can do:
+		AM_PATH_CPPUNIT(1.9)
+		instead of
+		AM_PATH_CPPUNIT(1.9.0)"
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
