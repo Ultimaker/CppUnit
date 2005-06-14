@@ -9,6 +9,11 @@
   * cppunit.m4: applied patch #1076398 contributed by Henner Sudek. Fix 
     version number comparison in AM_PATH_CPPUNIT.
 
+  * contrib/xml-xsl/cppunit2junit.txt
+  * contrib/xml-xsl/cppunit2junit.xsl
+  * contrib/readme.txt: XSLT for compatibility with Ant junit xml formatter.
+    Patch #1112053 contributed by Norbert Barbosa.
+
 2005-02-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * examples/hierarchy/BoardGameTest.h:

@@ -74,6 +74,12 @@
     to ensure they are thread-safe even if std::string copy constructor
     is not (usually on reference count based implementation).
 
+* Contrib:
+
+  - added XSLT for compatibility with Ant junit xml formatter.
+    Patch #1112053 contributed by Norbert Barbosa.
+    See xml-xsl/cppunit2junit.xsl and cppunit2junit.txt for details.
+
 * (Possible) Compatiblity break:
 
   - All text output is now done on cout() instead of sometime cerr & 
