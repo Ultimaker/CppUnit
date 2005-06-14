@@ -57,6 +57,7 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_LANG(C++)
 
+AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 # check for dlopen,dlsym... or shl_load, shl_findsym...

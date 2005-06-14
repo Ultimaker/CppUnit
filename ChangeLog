@@ -2,6 +2,10 @@
   * src/msvc6/testrunner/ProgressBar.cpp: applied patch from bug #1165875,
     (use system color for border instead of hard-coded color).
 
+  * src/cppunit/Makefile.am:
+  * configure.in: MinGW, cygwin: enable build of shared library when using 
+    libtool. patch #1194394 contributed by Stéphane Fillod.
+
 2005-02-23 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * examples/hierarchy/BoardGameTest.h:

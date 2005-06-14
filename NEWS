@@ -54,6 +54,9 @@
   - MinGW: patch #1024428 contributed by astar, fixed compilation issue in
     Win32DynamicLibraryManager.cpp.
 
+  - MinGW, cygwin: enable build of shared library when using libtool. 
+    patch #1194394 contributed by Stéphane Fillod.
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
