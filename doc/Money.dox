@@ -31,7 +31,7 @@ First, you need to compile %CppUnit libraries:
 - In the batch build dialog, select all projects and press the build button.
 - The resulting libraries can be found in the $CPPUNIT/lib/ directory.
 
-Once it is done, you need to tell VC++ where are the includes and librairies
+Once it is done, you need to tell VC++ where are the includes and libraries
 to use them in other projects. Open the 'Tools/Options...' dialog, and in the
 'Directories' tab, select 'include files' in the combo. Add a new entry that
 points to $CPPUNIT/include/. Change to 'libraries files' in the combo and 
@@ -93,7 +93,7 @@ MoneyApp_LDFLAGS = $(CPPUNIT_LIBS) -ldl\endverbatim
             
 \section sec_running_test Running our tests
 
-We have a main that doesn't do anything. Let's start by adding the mecanics
+We have a main that doesn't do anything. Let's start by adding the mechanics
 to run our tests (remember, test before you code ;-) ). For this example, 
 we will use a TextTestRunner with the CompilerOutputter for post-build 
 testing:
@@ -154,7 +154,7 @@ Let's adds that to our project, In the project settings, in the
 'post-build step' tab:
 - Select 'All configurations' (upper left combo)
 - In the 'Post-build description', enter 'Unit testing...'
-- In 'post-build command(s)', add a new line: <tt>\$(TargetPath)$</tt>
+- In 'post-build command(s)', add a new line: <tt>\$(TargetPath)</tt>
 
 <tt>\$(TargetPath)</tt> expands into the name of your application:
 Debug\MoneyApp.exe in debug configuration and Release\MoneyApp.exe in release
@@ -166,7 +166,7 @@ depending on weither or not a test failed. If the code returned by
 an application is not 0 in post-build step, it tell VC++ that the build
 step failed.
 
-Compile. Notices that the application's output is now in the build window.
+Compile. Notice that the application's output is now in the build window.
 How convenient!
 
   (Unix: tips to integrate make check into various IDE?)
@@ -290,7 +290,7 @@ MoneyTest::testConstructor()
 }\endcode
 
 Well, we finally have a good start of what our Money class will
-look likes. Let's start implementing...
+look like. Let's start implementing...
 
 <tt>Money.h</tt>
 \code
@@ -331,7 +331,7 @@ Hum, an assertion failed! Press F4, and we jump to the assertion
 that checks the currency of the constructed money object. The report
 indicates that string is not equal to expected value. There is only
 two ways for this to happen: the member was badly initialized or we
-returned the wrong value. After a quick check, we fin out it is the former.
+returned the wrong value. After a quick check, we find out it is the former.
 Let's fix that:
 
 <tt>Money.h</tt>
@@ -343,7 +343,7 @@ Let's fix that:
   }\endcode
 
 Compile. Our test finally pass!
-Let's add some functionnalities to our Money class.
+Let's add some functionnality to our Money class.
 
 
   
@@ -417,7 +417,7 @@ with \c operator \c !=. Let's fix that:
     return !(*this == other);
   }\endcode
 
-Compile, run. Finaly got it working!
+Compile, run. Finally got it working!
 
 
 
@@ -488,7 +488,7 @@ public:
   void testAddThrow();
 };\endcode
 
-By convention, you ends the name of such tests with \c 'Throw', that way, you
+By convention, you end the name of such tests with \c 'Throw', that way, you
 know that the test expect an exception to be thrown. Let's write our test case:
 
 <tt>MoneyTest.cpp</tt>
@@ -534,10 +534,10 @@ public:
     return *this;
   }\endcode
 
-  Compile. Our test finaly pass!
+  Compile. Our test finaly passes!
 
   TODO:
-- Copy constructor/Assigment operator
+- Copy constructor/Assignment operator
 - Introducing fixtures
 - ?
 
