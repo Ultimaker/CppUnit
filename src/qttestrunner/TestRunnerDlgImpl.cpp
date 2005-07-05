@@ -180,6 +180,7 @@ TestRunnerDlg::reportFailure( TestFailureInfo *failure )
 {
   QListViewItem *item = new TestFailureListViewItem( failure, 
                                                      _listFailures );
+  item->setMultiLinesEnabled( true );
   item->setText( indexType, 
                  failure->isError() ? tr("Error") : tr("Failure") );
   std::string failedtestName = failure->failedTestName().c_str();

@@ -14,6 +14,12 @@ TestResultCollector::TestResultCollector( SynchronizationObject *syncObject )
 
 TestResultCollector::~TestResultCollector()
 {
+}
+
+
+void 
+TestResultCollector::freeFailures()
+{
   TestFailures::iterator itFailure = m_failures.begin();
   while ( itFailure != m_failures.end() )
     delete *itFailure++;
@@ -26,6 +32,7 @@ TestResultCollector::reset()
   TestSuccessListener::reset();
 
   ExclusiveZone zone( m_syncObject ); 
+  freeFailures();
   m_testErrors = 0;
   m_tests.clear();
   m_failures.clear();

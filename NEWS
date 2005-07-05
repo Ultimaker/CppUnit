@@ -40,6 +40,9 @@
     'stand-alone' attribute of the XML header optional. 
     See XmlOutputter::setStandalone() & XmlDocument::setStandalone().
 
+  - Better integration of compiler output for gcc on Mac OS X with Xcode
+    (contributed by Claus Broch).
+
 * MFC Test Runner
 
   - Integration with VC++ 7.0 & 7.1. Double clicking on a failure will now
@@ -48,6 +51,10 @@
 
   - Progress bar: now use system color to draw border 
     (patch from bug #1165875 contributed by Pieter Van Dyck).
+
+* QT Test Runner
+
+  - Fixed display of multi-line messages (patch contributed by Karol Szkudlarek).
 
 * Compilation:
 
@@ -65,6 +72,11 @@
 		instead of
 		AM_PATH_CPPUNIT(1.9.0)"
 
+* Documentation:
+
+  - Corrected many typos in cookbook and money example. Thanks to all
+    those who helped !
+
 * Bug Fix:
 
   - cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
@@ -73,6 +85,8 @@
   - Message/SourceLine: copy constructor have been specifically implemented
     to ensure they are thread-safe even if std::string copy constructor
     is not (usually on reference count based implementation).
+
+  - TestResultCollector: fixed memory leak occuring when calling reset().
 
 * Contrib:
 

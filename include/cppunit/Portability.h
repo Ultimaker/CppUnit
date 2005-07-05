@@ -79,7 +79,12 @@
 // If not define, assumes that it's gcc
 // See class CompilerOutputter for format.
 #if !defined(CPPUNIT_COMPILER_LOCATION_FORMAT)
+#if defined(__GNUC__) && ( defined(__APPLE_CPP__) || defined(__APPLE_CC__) )
+// gcc/Xcode integration on Mac OS X
+# define CPPUNIT_COMPILER_LOCATION_FORMAT "%p:%l: " 
+#else
 # define CPPUNIT_COMPILER_LOCATION_FORMAT "%f:%l:"
+#endif
 #endif
 
 // If CPPUNIT_HAVE_CPP_CAST is defined, then c++ style cast will be used,

@@ -1,4 +1,19 @@
-2005-06-14  Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/TestResultCollector.h
+  * src/cppunit/TestResultCollector.cpp: fixed memory leak 
+    occuring when calling reset().
+
+  * src/cppunit/DllMain.cpp: added work-around for mingw compilation
+    for BLENDFUNCTION macro issue when including windows.h.
+
+  * src/qttestrunner/TestRunnerDlgImpl.cpp: fixed display of multiline 
+    messages.
+
+  * include/cppunit/Portability.h: better integration of compiler output 
+    for gcc on Mac OS X with Xcode (contributed by Claus Broch).
+
+2005-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
   * src/msvc6/testrunner/ProgressBar.cpp: applied patch from bug #1165875,
     (use system color for border instead of hard-coded color).
 
