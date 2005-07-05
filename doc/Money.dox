@@ -82,8 +82,7 @@ TESTS = MoneyApp
 check_PROGRAMS = $(TESTS)
 MoneyApp_SOURCES = Money.h MoneyTest.h MoneyTest.cpp MoneyApp.cpp
 MoneyApp_CXXFLAGS = $(CPPUNIT_CFLAGS)
-MoneyApp_LDFLAGS = $(CPPUNIT_LIBS)
-MoneyApp_LDFLAGS = -ldl\endverbatim
+MoneyApp_LDFLAGS = $(CPPUNIT_LIBS) -ldl\endverbatim
 
 
   
@@ -305,7 +304,7 @@ class Money
 public:
   Money( double amount, std::string currency )
     : m_amount( amount )
-    , m_currency( m_currency )
+    , m_currency( currency )
   {
   }
 
