@@ -1,5 +1,10 @@
 2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
+  * Examples/simple/Makefile.am: do not install 'simple' programm 
+    (patch #1230784).
+
+2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+
   * include/cppunit/TestResultCollector.h
   * src/cppunit/TestResultCollector.cpp: fixed memory leak 
     occuring when calling reset().

@@ -2,7 +2,7 @@ EXTRA_DIST = simple.dsp simple_plugin.dsp SimplePlugIn.cpp
 
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 
-bin_PROGRAMS=simple
+noinst_PROGRAMS=simple
 
 simple_SOURCES= ExampleTestCase.cpp Main.cpp  ExampleTestCase.h
 
