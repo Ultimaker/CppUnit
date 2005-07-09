@@ -1,3 +1,17 @@
+2005-07-09 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * doc/Money.dox:
+  * include/cppunit/TestSuite.h: 
+  * include/cppunit/XmlOutputterHook.h: applied Brad Hards patch 
+    that correct miscellaneous doc generation issues (unescaped <>, \...).
+
+  * include/cppunit/plugin/TestPlugIn.h:
+  * include/cppunit/CompilerOutputter.h:
+  * doc/CppUnit-win.dox: removed a few documentation generation warnings.
+
+  * config/bb_enable_doxygen.m4: applied Brad Hards patch to remove warning
+    when running ./autogen.sh or aclocal.
+
 2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * Examples/simple/Makefile.am: do not install 'simple' programm 
