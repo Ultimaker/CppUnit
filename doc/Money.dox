@@ -385,7 +385,7 @@ MoneyTest::testEqual()
   CPPUNIT_ASSERT( money123FF == money123FF );     // ==
   CPPUNIT_ASSERT( money12FF != money123FF );      // != amount
   CPPUNIT_ASSERT( money123USD != money123FF );    // != currency
-  CPPUNIT_ASSERT( money12USD != money123FF );    // != currency and != amount
+  CPPUNIT_ASSERT( money12USD != money123FF );     // != currency and != amount
 }\endcode
 
   Let's implements \c operator \c == and \c operator \c != in Money.h:
@@ -439,8 +439,8 @@ MoneyTest::testAdd()
   money += money12FF;
 
   // Check
-  CPPUNIT_ASSERT_EQUAL( expectedMoney == money.getAmount() );  // += works
-  CPPUNIT_ASSERT( &money == &(money += money12FF) );           // += returns ref. on 'this'.
+  CPPUNIT_ASSERT( expectedMoney == money );           // add works
+  CPPUNIT_ASSERT( &money == &(money += money12FF) );  // add returns ref. on 'this'.
 }\endcode
 
   While writing that test case, you ask yourself, what is the result of
@@ -537,6 +537,7 @@ public:
   Compile. Our test finaly passes!
 
   TODO:
+- How to use CPPUNIT_ASSERT_EQUALS with Money
 - Copy constructor/Assignment operator
 - Introducing fixtures
 - ?

@@ -12,6 +12,8 @@
   * config/bb_enable_doxygen.m4: applied Brad Hards patch to remove warning
     when running ./autogen.sh or aclocal.
 
+  * doc/money.dox: fixed bad usage of CPPUNIT_ASSERT_EQUALS.
+
 2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * Examples/simple/Makefile.am: do not install 'simple' programm 
