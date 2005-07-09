@@ -102,7 +102,7 @@ struct CppUnitTestPlugIn
  * The signature of the exported function is:
  * \code
  * CppUnitTestPlugIn *CPPUNIT_PLUGIN_EXPORTED_NAME(void);
- * \endif
+ * \endcode
  */
 #define CPPUNIT_PLUGIN_EXPORTED_NAME cppunitTestPlugIn
 

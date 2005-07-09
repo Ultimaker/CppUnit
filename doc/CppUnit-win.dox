@@ -760,7 +760,8 @@ PREDEFINED             = CPPUNIT_HAVE_CPP_SOURCE_ANNOTATION \
                          CPPUNIT_HAVE_NAMESPACES=1 \
                          CPPUNIT_NS_BEGIN="namespace CppUnit {" \
                          CPPUNIT_NS_END=} \
-                         CPPUNIT_NS=CppUnit
+                         CPPUNIT_NS=CppUnit \
+                         CPPUNIT_HAVE_WIN32_DLL_LOADER
 
 # If the MACRO_EXPANSION and EXPAND_PREDEF_ONLY tags are set to YES then 
 # this tag can be used to specify a list of macro names that should be expanded. 

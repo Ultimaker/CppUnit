@@ -157,7 +157,7 @@ Let's adds that to our project, In the project settings, in the
 - In 'post-build command(s)', add a new line: <tt>\$(TargetPath)</tt>
 
 <tt>\$(TargetPath)</tt> expands into the name of your application:
-Debug\MoneyApp.exe in debug configuration and Release\MoneyApp.exe in release
+Debug\\MoneyApp.exe in debug configuration and Release\\MoneyApp.exe in release
 configuration.
 
 What we are doing is say to VC++ to run our application for each build. 
