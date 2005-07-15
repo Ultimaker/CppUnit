@@ -1,3 +1,8 @@
+2005-07-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * config/bb_enable_doxygen.m4: Rolled back Brad Hards patch as it break
+    generation of doc/Makefile.am.
+
 2005-07-09 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * doc/Money.dox:
