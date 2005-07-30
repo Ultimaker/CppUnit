@@ -31,8 +31,12 @@
 #endif
 
 /* define if the compiler supports Run-Time Type Identification */
-#ifndef CPPUNIT_HAVE_RTTI 
-#define CPPUNIT_HAVE_RTTI  1 
+#ifndef CPPUNIT_HAVE_RTTI
+# ifdef _CPPRTTI // Defined by the compiler option /GR
+#  define CPPUNIT_HAVE_RTTI 1
+# else
+#  define CPPUNIT_HAVE_RTTI 0
+# endif
 #endif
 
 /* Define to 1 to use type_info::name() for class names */
