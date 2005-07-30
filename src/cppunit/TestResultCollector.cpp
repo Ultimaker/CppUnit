@@ -14,6 +14,7 @@ TestResultCollector::TestResultCollector( SynchronizationObject *syncObject )
 
 TestResultCollector::~TestResultCollector()
 {
+  freeFailures();
 }
 
 
@@ -23,6 +24,7 @@ TestResultCollector::freeFailures()
   TestFailures::iterator itFailure = m_failures.begin();
   while ( itFailure != m_failures.end() )
     delete *itFailure++;
+  m_failures.clear();
 }
 
 
@@ -35,7 +37,6 @@ TestResultCollector::reset()
   freeFailures();
   m_testErrors = 0;
   m_tests.clear();
-  m_failures.clear();
 }
 
 
