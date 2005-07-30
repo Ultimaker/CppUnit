@@ -86,7 +86,7 @@
  * \endcode
  *
  * The interface CppUnitTestPlugIn is automatically implemented by the previous
- * macro. You can define your one implementation.
+ * macro. You can define your own implementation.
  *
  * To provide your custom implementation of the plug-in interface, you must:
  * - create a class that implements the CppUnitTestPlugIn interface
