@@ -1,3 +1,10 @@
+2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+  * include/cppunit/config/config-msvc6.h: auto-detect if RTTI are enabled 
+    the _CPPRTTI macro (defined by the compiler when enabling RTTI).
+  
+  * src/cppunit/TestResultCollector.cpp: fixed memory leak in destructor.
+
 2005-07-15 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * config/bb_enable_doxygen.m4: Rolled back Brad Hards patch as it break
