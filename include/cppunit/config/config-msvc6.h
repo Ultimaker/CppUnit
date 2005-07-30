@@ -61,6 +61,10 @@
 # define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
 #endif
 
+// Define to 1 if the compiler support C++ style cast.
+#define CPPUNIT_HAVE_CPP_CAST 1
+
+
 // Uncomment to turn on STL wrapping => use this to test compilation. 
 // This will make CppUnit subclass std::vector & co to provide default
 // parameter.

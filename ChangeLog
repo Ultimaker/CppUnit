@@ -2,6 +2,9 @@
 
   * include/cppunit/config/config-msvc6.h: auto-detect if RTTI are enabled 
     the _CPPRTTI macro (defined by the compiler when enabling RTTI).
+
+  * include/cppunit/config/config-msvc6.h: added missing macro definition
+    CPPUNIT_HAVE_CPP_CAST.
   
   * src/cppunit/TestResultCollector.cpp: fixed memory leak in destructor.
 
