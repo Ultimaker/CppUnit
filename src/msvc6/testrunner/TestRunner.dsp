@@ -45,7 +45,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /Zd /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -56,7 +56,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
 # ADD LINK32 ..\..\..\lib\cppunit.lib winmm.lib /nologo /subsystem:windows /dll /machine:I386 /def:".\TestRunner.def"
-# SUBTRACT LINK32 /pdb:none
+# SUBTRACT LINK32 /pdb:none /incremental:yes
 # Begin Special Build Tool
 TargetDir=.\Release
 TargetPath=.\Release\TestRunner.dll
@@ -80,7 +80,7 @@ PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(Targe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /Zi /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -90,7 +90,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /debug /machine:I386 /def:".\TestRunner.def" /out:"Debug\testrunnerd.dll" /pdbtype:sept
+# ADD LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /incremental:no /debug /machine:I386 /def:".\TestRunner.def" /out:"Debug\testrunnerd.dll" /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 TargetDir=.\Debug
@@ -116,7 +116,7 @@ PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(Targe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GR /GX /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_AFXEXT" /D "WIN32" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_UNICODE" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /Zd /O2 /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "NDEBUG" /D "_UNICODE" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -128,7 +128,7 @@ LINK32=link.exe
 # ADD BASE LINK32 ..\..\..\lib\cppunit.lib winmm.lib /nologo /subsystem:windows /dll /machine:I386 /def:".\TestRunner.def" /out:"..\..\..\lib\testrunner.dll" /implib:"..\..\..\lib\testrunner.lib"
 # SUBTRACT BASE LINK32 /pdb:none
 # ADD LINK32 ..\..\..\lib\cppunit.lib winmm.lib /nologo /subsystem:windows /dll /machine:I386 /def:".\TestRunner.def" /out:"ReleaseUnicode\testrunneru.dll"
-# SUBTRACT LINK32 /pdb:none
+# SUBTRACT LINK32 /pdb:none /incremental:yes
 # Begin Special Build Tool
 TargetDir=.\ReleaseUnicode
 TargetPath=.\ReleaseUnicode\testrunneru.dll
@@ -153,7 +153,7 @@ PostBuild_Cmds=copy "$(TargetPath)" ..\..\..\lib\$(TargetName).dll	copy "$(Targe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_AFXEXT" /D "WIN32" /FR /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_UNICODE" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /Zi /Od /I "..\..\..\include" /I "..\..\..\include\msvc6" /D "_DEBUG" /D "_UNICODE" /D "_AFXEXT" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "WIN32" /D "OEMRESOURCE" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -164,7 +164,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\lib\testrunnerd.dll" /implib:"..\..\..\lib\testrunnerd.lib" /pdbtype:sept
 # SUBTRACT BASE LINK32 /profile /pdb:none /map
-# ADD LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /debug /machine:I386 /def:".\TestRunner.def" /out:"DebugUnicode\testrunnerud.dll" /pdbtype:sept
+# ADD LINK32 ..\..\..\lib\cppunitd.lib winmm.lib /nologo /subsystem:windows /dll /incremental:no /debug /machine:I386 /def:".\TestRunner.def" /out:"DebugUnicode\testrunnerud.dll" /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 TargetDir=.\DebugUnicode

@@ -1,4 +1,8 @@
 2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * include/cppunit/config/SourcePrefix.h: added, prefix added at begining of sources
+    to remove warning. Removed most warning when compiling with VC++ 6sp6.
+
+2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/config/config-msvc6.h: auto-detect if RTTI are enabled 
     the _CPPRTTI macro (defined by the compiler when enabling RTTI).
