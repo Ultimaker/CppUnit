@@ -1,6 +1,7 @@
 // MoneyTest.cpp
 
 #include "StdAfx.h"
+#include <cppunit/config/SourcePrefix.h>
 #include "Money.h"
 #include "MoneyTest.h"
 
@@ -65,7 +66,7 @@ MoneyTest::testAdd()
   money += money12FF;
 
   // Check
-  CPPUNIT_ASSERT( expectedMoney == money );           // add works
+  CPPUNIT_ASSERT_EQUAL( expectedMoney, money );           // add works
   CPPUNIT_ASSERT( &money == &(money += money12FF) );  // add returns ref. on 'this'.
 }
 

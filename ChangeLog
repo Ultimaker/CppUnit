@@ -2,6 +2,9 @@
   * include/cppunit/config/SourcePrefix.h: added, prefix added at begining of sources
     to remove warning. Removed most warning when compiling with VC++ 6sp6.
 
+  * examples/money/Money.h: 
+  * examples/money/MoneyTest.cpp: added assert equal usage.
+
 2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
 
   * include/cppunit/config/config-msvc6.h: auto-detect if RTTI are enabled 
