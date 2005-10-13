@@ -92,6 +92,7 @@ public:
 
    virtual ~OStream()
    {
+     flush();
    }
 
    OStream &flush()
@@ -169,21 +170,21 @@ public:
    OStream &operator <<( float v )
    {
       char buffer[128];
-      sprintf( buffer, "%f", double(v) );
+      sprintf( buffer, "%.16g", double(v) );
       return write( buffer );
    }
 
    OStream &operator <<( double v )
    {
       char buffer[128];
-      sprintf( buffer, "%f", v );
+      sprintf( buffer, "%.16g", v );
       return write( buffer );
    }
 
    OStream &operator <<( long double v )
    {
       char buffer[128];
-      sprintf( buffer, "%f", double(v) );
+      sprintf( buffer, "%.16g", double(v) );
       return write( buffer );
    }
 
