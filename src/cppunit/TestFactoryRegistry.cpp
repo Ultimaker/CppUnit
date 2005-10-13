@@ -1,3 +1,4 @@
+#include <cppunit/config/SourcePrefix.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/portability/CppUnitMap.h>
 #include <cppunit/TestSuite.h>

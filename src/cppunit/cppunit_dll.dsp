@@ -457,6 +457,10 @@ SOURCE=..\..\include\cppunit\Portability.h
 
 SOURCE=..\..\include\cppunit\config\SelectDllLoader.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\include\cppunit\config\SourcePrefix.h
+# End Source File
 # End Group
 # Begin Group "textui"
 

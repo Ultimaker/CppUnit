@@ -1,3 +1,4 @@
+#include <cppunit/config/SourcePrefix.h>  // disabled unwanted warning on vc++ 6.0
 #include <cppunit/TestResult.h>
 #include <cppunit/XmlOutputter.h>
 #include <cppunit/plugin/TestPlugIn.h>

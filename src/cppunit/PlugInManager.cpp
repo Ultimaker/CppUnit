@@ -1,3 +1,4 @@
+#include <cppunit/config/SourcePrefix.h>
 #include <cppunit/XmlOutputterHook.h>
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)

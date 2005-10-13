@@ -1,3 +1,4 @@
+#include <cppunit/config/SourcePrefix.h>
 #include <cppunit/TestRunner.h>
 #include <cppunit/TestPath.h>
 #include <cppunit/TestResult.h>

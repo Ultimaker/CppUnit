@@ -1,5 +1,6 @@
 // ==> Implementation of cppunit/ui/text/TestRunner.h
 
+#include <cppunit/config/SourcePrefix.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TextTestResult.h>
 #include <cppunit/TextOutputter.h>

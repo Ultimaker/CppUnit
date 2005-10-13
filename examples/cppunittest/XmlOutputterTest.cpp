@@ -1,3 +1,4 @@
+#include <cppunit/config/SourcePrefix.h>
 #include <cppunit/XmlOutputter.h>
 #include <cppunit/TestFailure.h>
 #include <cppunit/XmlOutputter.h>

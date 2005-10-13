@@ -1,3 +1,4 @@
+#include <cppunit/config/SourcePrefix.h>
 #include "FailureException.h"
 #include "HelperMacrosTest.h"
 #include "HelperSuite.h"

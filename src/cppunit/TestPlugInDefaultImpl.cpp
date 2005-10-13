@@ -1,4 +1,4 @@
-#include <cppunit/Portability.h>
+#include <cppunit/config/SourcePrefix.h>
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
