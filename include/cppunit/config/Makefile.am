@@ -6,4 +6,5 @@ libcppunitinclude_HEADERS = \
 	config-mac.h \
 	config-msvc6.h \
 	SelectDllLoader.h \
-	CppUnitApi.h
+	CppUnitApi.h \
+  SourcePrefix.h
