@@ -1,4 +1,4 @@
-SET VERSION=1.10.4
+SET VERSION=1.11.2
 doxygen CppUnit-win.dox
 xcopy FAQ html /Y
 
