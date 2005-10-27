@@ -7,6 +7,8 @@
 // Functions stdCOut() & stdCErr() which returns a reference on cout & cerr stream (or our
 // custom stream).
 
+#include <cppunit/Portability.h>
+
 
 #if defined( CPPUNIT_NO_STREAM )
 
