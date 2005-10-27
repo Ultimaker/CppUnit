@@ -1,3 +1,6 @@
+2005-10-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * include/cppunit/TestAssert.h: added missing #include <stdio.h>
+
 2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
   * include/cppunit/config/SourcePrefix.h: added, prefix added at begining of sources
     to remove warning. Removed most warning when compiling with VC++ 6sp6.

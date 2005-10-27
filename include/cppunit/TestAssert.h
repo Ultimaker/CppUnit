@@ -5,7 +5,7 @@
 #include <cppunit/Exception.h>
 #include <cppunit/Asserter.h>
 #include <cppunit/portability/Stream.h>
-
+#include <stdio.h>
 #include <float.h> // For struct assertion_traits<double>
 
 
