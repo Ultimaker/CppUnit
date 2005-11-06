@@ -1,3 +1,21 @@
+2005-11-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * include/cppunit/config/SourcePrefix.h: disable warning #4996
+    (sprintf is deprecated) for visual studio 2005.
+  
+  * include/cppunit/TestAssert.h: use sprintf_s instead of sprintf for 
+    visual studio 2005.
+    
+  * examples/ClockerPlugIn/ClockerPlugIn.cpp
+  * examples/DumperPlugIn/DumperPlugIn.cpp: use SourcePrefix.h. Fixed
+    wrong macro usage to implement DllMain.
+    
+  * examples/msvc6/HostApp/ExamplesTestCase.h
+  * examples/msvc6/HostApp/ExamplesTestCase.cpp
+  * examples/simple/ExamplesTestCase.h
+  * examples/simple/ExamplesTestCase.cpp: removed divideByZero test case
+    as it cause some crash on some platforms.
+ 
+
 2005-10-27 Baptiste Lepilleur <gaiacrtn@free.fr>
   * include/cppunit/TestAssert.h: added missing #include <stdio.h>
 

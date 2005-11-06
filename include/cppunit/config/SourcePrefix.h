@@ -5,6 +5,9 @@
 
 #ifdef _MSC_VER
 #pragma warning(disable: 4018 4284 4146)
+#if _MSC_VER >= 1400
+#pragma warning(disable: 4996)		// sprintf is deprecated
+#endif
 #endif
 
 

@@ -29,13 +29,6 @@ void ExampleTestCase::testAdd()
 }
 
 
-void ExampleTestCase::testDivideByZero()
-{
-  int zero = 0;
-  int result = 8 / zero;
-}
-
-
 void ExampleTestCase::testEquals()
 {
   long* l1 = new long(12);
