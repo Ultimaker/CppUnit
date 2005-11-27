@@ -1,3 +1,6 @@
+2005-11-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * doc/cookbook.dox: fixed type (patch #1334567)
+
 2005-11-06 Baptiste Lepilleur <gaiacrtn@free.fr>
   * include/cppunit/config/SourcePrefix.h: disable warning #4996
     (sprintf is deprecated) for visual studio 2005.

@@ -147,7 +147,7 @@ public:
 \endcode
 
 Once we have this fixture, we can add the complex 
-addition test case any any others that we need 
+addition test case and any others that we need 
 over the course of our development.
 
 
