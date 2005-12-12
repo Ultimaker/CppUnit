@@ -1,2 +1,2 @@
 SET PATH=%PATH%;..\..\lib
-Example.exe
+Debug\qt_example.exe

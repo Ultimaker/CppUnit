@@ -180,14 +180,14 @@ TestRunnerDlg::reportFailure( TestFailureInfo *failure )
 {
   QListViewItem *item = new TestFailureListViewItem( failure, 
                                                      _listFailures );
-  item->setMultiLinesEnabled( true );
   item->setText( indexType, 
                  failure->isError() ? tr("Error") : tr("Failure") );
   std::string failedtestName = failure->failedTestName().c_str();
   item->setText( indexTestName, QString::fromLatin1( failedtestName.c_str() ) );
 
   CPPUNIT_NS::Exception *thrownException = failure->thrownException();
-  item->setText( indexMessage, thrownException->what() );
+//2.0  item->setText( indexMessage, thrownException->what() );
+  item->setText( indexMessage, QString(thrownException->what()).stripWhiteSpace() );
   item->setText( indexFilename, failure->sourceLine().fileName().c_str() );
   item->setText( indexLineNumber,
                  QString::number( failure->sourceLine().lineNumber() ) );

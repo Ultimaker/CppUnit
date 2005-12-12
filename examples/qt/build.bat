@@ -1,3 +1,2 @@
-tmake Example.pro -o Makefile
-nmake clean
+qmake qt_example.pro
 nmake

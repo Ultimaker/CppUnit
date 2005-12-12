@@ -1,4 +1,4 @@
-#include "ExampleTestCase.h"
+#include "ExampleTestCases.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION( ExampleTestCase );
 
@@ -25,13 +25,6 @@ void ExampleTestCase::testAdd ()
 {
    double result = m_value1 + m_value2;
    CPPUNIT_ASSERT (result == 6.0);
-}
-
-
-void ExampleTestCase::testDivideByZero ()
-{
-   int	zero	= 0;
-   int result	= 8 / zero;
 }
 
 
