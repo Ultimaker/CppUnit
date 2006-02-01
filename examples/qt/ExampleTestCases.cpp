@@ -1,34 +1,38 @@
 #include "ExampleTestCases.h"
 
-CPPUNIT_TEST_SUITE_REGISTRATION( ExampleTestCase );
+CPPUNIT_TEST_SUITE_REGISTRATION( ExampleTestCases );
 
-void ExampleTestCase::example ()
+void ExampleTestCases::example ()
 {
    CPPUNIT_ASSERT_DOUBLES_EQUAL (1.0, 1.1, 0.05);
    CPPUNIT_ASSERT (1 == 0);
    CPPUNIT_ASSERT (1 == 1);
 }
 
-
-void ExampleTestCase::anotherExample ()
+void ExampleTestCases::anotherExample ()
 {
    CPPUNIT_ASSERT (1 == 2);
 }
 
-void ExampleTestCase::setUp ()
+void ExampleTestCases::setUp ()
 {
    m_value1 = 2.0;
    m_value2 = 3.0;
 }
 
-void ExampleTestCase::testAdd ()
+void ExampleTestCases::testAdd ()
 {
    double result = m_value1 + m_value2;
    CPPUNIT_ASSERT (result == 6.0);
 }
 
+void ExampleTestCases::testDivideByZero ()
+{
+   int	zero	= 0;
+   int result	= 8 / zero;
+}
 
-void ExampleTestCase::testEquals ()
+void ExampleTestCases::testEquals ()
 {
    std::auto_ptr<long>	l1 (new long (12));
    std::auto_ptr<long>	l2 (new long (12));
