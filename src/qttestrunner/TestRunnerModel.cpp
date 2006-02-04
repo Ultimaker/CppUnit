@@ -137,7 +137,7 @@ TestRunnerModel::stopRunningTest()
 
 // Called from the TestRunnerThread.
 void 
-TestRunnerModel::startTest( CPPUNIT_NS::Test *test )
+TestRunnerModel::startTest( CPPUNIT_NS::Test * /*test*/ )
 {
 }
 
@@ -154,7 +154,7 @@ TestRunnerModel::addFailure( const CPPUNIT_NS::TestFailure &failure )
 
 // Called from the TestRunnerThread.
 void 
-TestRunnerModel::endTest( CPPUNIT_NS::Test *test )
+TestRunnerModel::endTest( CPPUNIT_NS::Test * /*test*/ )
 {
   int numberOfTestCaseRun;
   {
