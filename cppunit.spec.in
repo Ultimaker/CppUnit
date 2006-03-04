@@ -51,6 +51,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libcppunit.a
 %doc AUTHORS COPYING INSTALL NEWS README THANKS ChangeLog TODO BUGS doc/FAQ
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+ 
 %files doc
 %doc doc/html/*
 
