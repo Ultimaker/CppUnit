@@ -96,6 +96,8 @@
     Patch #1112053 contributed by Norbert Barbosa.
     See xml-xsl/cppunit2junit.xsl and cppunit2junit.txt for details.
 
+  - xml-xsl/report.xsl has been fixed to work with current xml output.
+
 * (Possible) Compatiblity break:
 
   - All text output is now done on cout() instead of sometime cerr & 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding='shift_jis' standalone='yes' ?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/TR/WD-xsl" version="1.0" xml:lang="ja">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xml:lang="ja">
 
 <xsl:template match="/">
 <HTML>
@@ -66,8 +66,8 @@ SPAN.critical		{ color:#880000; font-weight:bold; }
 	</xsl:if>
 </xsl:template>
   
-<xsl:template match="SucessfulTests">
-    <H2>SucessfulTests</H2>
+<xsl:template match="SuccessfulTests">
+    <H2>SuccessfulTests</H2>
     <xsl:choose>
 	<xsl:when test="Test">
 	<TABLE>

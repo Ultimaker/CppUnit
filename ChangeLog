@@ -1,3 +1,17 @@
+2006-03-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * contrib/xml-xsl/report.xsl: reported correction posted on the wiki.
+
+2006-02-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * include/cppunit/TestListener.h: 
+  * src/qttestrunner/TestRunnerModel.cpp: removed compilation warning.
+
+2006-02-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * examples/qt: integrated Ernst patch from qt examples.
+
+2005-12-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * src/qttestrunner: integrated Ernst patch for QtTestRunner and Qt 3.x.
+    Enhanced qmake project files to handle multiple build configuration
+
 2005-11-27 Baptiste Lepilleur <gaiacrtn@free.fr>
   * doc/cookbook.dox: fixed type (patch #1334567)
 
