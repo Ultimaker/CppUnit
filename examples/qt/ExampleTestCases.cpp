@@ -26,12 +26,6 @@ void ExampleTestCases::testAdd ()
    CPPUNIT_ASSERT (result == 6.0);
 }
 
-void ExampleTestCases::testDivideByZero ()
-{
-   int	zero	= 0;
-   int result	= 8 / zero;
-}
-
 void ExampleTestCases::testEquals ()
 {
    std::auto_ptr<long>	l1 (new long (12));
