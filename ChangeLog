@@ -1,8 +1,14 @@
 2006-03-04 Baptiste Lepilleur <gaiacrtn@free.fr>
   * contrib/xml-xsl/report.xsl: reported correction posted on the wiki.
+
   * removed debian/ directory. An up to date patch can be found at:
     packages.debian.org.
+
   * cppunit.spec.in: applied patch #1242905 partially (%post and %postun).
+
+  * cppunit.pc.in:
+  * configure.in:
+  * Makefile.am: integrated patch from Rober Leight to generate pkg-config.
 
 2006-02-04 Baptiste Lepilleur <gaiacrtn@free.fr>
   * include/cppunit/TestListener.h: 

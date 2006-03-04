@@ -58,6 +58,9 @@
 
 * Compilation:
 
+  - The standard pkg-config file is now generated on unix (contributed by 
+    Robert Leight).
+
   - MinGW: patch #1024428 contributed by astar, fixed compilation issue in
     Win32DynamicLibraryManager.cpp.
 

@@ -3,6 +3,10 @@ ACLOCAL_AMFLAGS = -I config
 
 SUBDIRS = src include examples doc
 
+pkgconfigdatadir = $(libdir)/pkgconfig
+
+pkgconfigdata_DATA = cppunit.pc
+
 bin_SCRIPTS = cppunit-config
 man_MANS = cppunit-config.1
 

@@ -117,6 +117,7 @@ AC_DEFINE_UNQUOTED(USE_TYPEINFO_NAME,$cppunit_val,
 
 AC_OUTPUT([
   Makefile 
+  cppunit.pc
   cppunit.spec
   cppunit-config
   src/Makefile
