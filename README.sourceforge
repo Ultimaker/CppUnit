@@ -5,7 +5,9 @@
 
 	Bump up release version in:
 	 - include/cppunit/Portability.h
+	 - configure.in
 	 - doc/makedox.bat
+	 - NEWS
 
 	make distcheck
 	make doc-dist
