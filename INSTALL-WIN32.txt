@@ -9,9 +9,10 @@ Quick Steps to compile & run a sample using the GUI TestRunner:
   VC7 will ask you if you want to convert, anwser 'yes to all'.
 - Make HostApp the Active project
 - Compile
-- in VC++, Tools/Customize.../Add-ins and macro files/Browse...
-- select the file lib/TestRunnerDSPlugIn.dll and press ok to register
-  the add-ins (double-click on failure = open file in VC++).
+- For Visual Studio 6 only:
+   - in VC++, Tools/Customize.../Add-ins and macro files/Browse...
+   - select the file lib/TestRunnerDSPlugIn.dll and press ok to register
+     the add-ins (double-click on failure = open file in VC++).
 - Run the project
 
 
@@ -31,9 +32,10 @@ Use this to test DLL in your post-build step, or debug them.
 * TestRunner (testrunner.dll) : a MFC extension DLL to run and browser unit 
 tests from a GUI.
 
-* DSPlugIn (lib/TestRunnerDSPlugIn.dll) : a VC++ add-in used by 
+* DSPlugIn (lib/TestRunnerDSPlugIn.dll) : a VC++ 6.0 add-in used by 
 testrunner.dll. If you double-click on a failure in the MFC TestRunner,
 a running instance of VC++ will open the file and highlight the line.
+This add-ins is not required for Visual Studio 7.
 
 * TestPlugInRunner : (Warning: experimental) a VC++ 
 application to run test plug-in. A test plug-in is a DLL that publish a 
@@ -143,7 +145,7 @@ DllPlugInTesterd.exe : test plug-in runner, "Debug Multithreaded DLL", static li
 
 Notes that the DllPlugInTester(d).exe version of this tools does not allow
 to use the automatic test registration that comes along with test plug-in.
-You probably don't want to use them unless you really now what you are doing.
+You probably don't want to use them unless you really know what you are doing.
 
 
 Using CppUnit:
