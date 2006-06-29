@@ -3,6 +3,16 @@
   * src/cppunit/TextTestRunner.cpp: applied patch #1210013 to remove
     hidden virtual function warning.
 
+  * autogen.sh: applied patch #1449380 contributed by Sander Temme
+    to allow running autogen on Mac OS X.
+
+  * doc/header.html: updated to handle new tabs css required for
+    html doc generated with doxygen 1.4.7.
+
+  * src/msvc6/testrunner/MsDevCallerListCtrl.cpp: applied correction
+    provided to fix bug #1498175 (double click on failure does not
+    goto failure).
+
 2006-03-04 Baptiste Lepilleur <gaiacrtn@free.fr>
   * contrib/xml-xsl/report.xsl: reported correction posted on the wiki.
 

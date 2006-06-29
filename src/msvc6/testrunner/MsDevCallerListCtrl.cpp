@@ -217,17 +217,10 @@ END_MESSAGE_MAP()
 
 void MsDevCallerListCtrl::OnDblclk(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-   CPoint pt;
-   GetCursorPos( &pt);
-   ScreenToClient( &pt);
+   // get index of selected item
+   POSITION pos = GetFirstSelectedItemPosition();
+   int hotItem = GetNextSelectedItem(pos);
 
-   // some dirty hack to get some selection
-   // should get the border-width + 1, but WINDOWINFO
-   // is not supported in Win95
-   pt.x = 5;
-
-   UINT flags = 0;
-   int hotItem = HitTest( pt, &flags);
    CString lineNumber = GetItemText( hotItem, m_lineNumberSubItem);
    CString fileName = GetItemText( hotItem, m_fileNameSubItem);
 
