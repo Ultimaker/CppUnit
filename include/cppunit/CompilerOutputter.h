@@ -85,7 +85,7 @@ public:
    * Some examples:
    *
    * - VC++ error location format: "%p(%l):" => produce "G:\prg\MyTest.cpp(43):"
-   * - GCC error location format: "%f:%l:" => produce "MyTest.cpp(43):"
+   * - GCC error location format: "%f:%l:" => produce "MyTest.cpp:43:"
    * 
    * Thoses are the two compilers currently <em>supported</em> (gcc format is used if
    * VC++ is not detected). If you want your compiler to be automatically supported by
