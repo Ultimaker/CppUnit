@@ -133,4 +133,12 @@ TextTestRunner::setOutputter( Outputter *outputter )
 }
 
 
+void 
+TextTestRunner::run( TestResult &controller,
+                     const std::string &testPath )
+{
+  TestRunner::run( controller, testPath );
+}
+
+
 CPPUNIT_NS_END

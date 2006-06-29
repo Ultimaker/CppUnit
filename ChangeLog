@@ -1,3 +1,8 @@
+2006-06-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+  * include/cppunit/ui/text/TextTestRunner.h
+  * src/cppunit/TextTestRunner.cpp: applied patch #1210013 to remove
+    hidden virtual function warning.
+
 2006-03-04 Baptiste Lepilleur <gaiacrtn@free.fr>
   * contrib/xml-xsl/report.xsl: reported correction posted on the wiki.
 
@@ -8,7 +13,7 @@
 
   * cppunit.pc.in:
   * configure.in:
-  * Makefile.am: integrated patch from Rober Leight to generate pkg-config.
+  * Makefile.am: integrated patch from Robert Leight to generate pkg-config.
 
 2006-02-04 Baptiste Lepilleur <gaiacrtn@free.fr>
   * include/cppunit/TestListener.h: 
