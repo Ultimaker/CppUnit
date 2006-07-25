@@ -25,8 +25,6 @@ CFG=DSPlugIn - Win32 Debug Unicode
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
-# PROP Scc_ProjName "DSPlugIn"
-# PROP Scc_LocalPath ".."
 CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
