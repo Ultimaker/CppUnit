@@ -162,8 +162,33 @@ END
 // Bitmap
 //
 
-CPP_UNIT_TEST_RUNNER_IDB_ERROR_TYPE          BITMAP  DISCARDABLE     "res\\errortype.bmp"
-CPP_UNIT_TEST_RUNNER_IDB_TEST_TYPE           BITMAP  DISCARDABLE     "res\\test_type.bmp"
+CPP_UNIT_TEST_RUNNER_IDB_ERROR_TYPE BITMAP  DISCARDABLE     "res\\errortype.bmp"
+CPP_UNIT_TEST_RUNNER_IDB_TEST_TYPE BITMAP  DISCARDABLE     "res\\test_type.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+CPP_UNIT_TEST_RUNNER_PLUG_IN_IDR_TEST_PLUGIN_RUNNER ICON    DISCARDABLE     "res\\TestPlugInRunner.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_SELECT_TEST   "You must select a test!"
+    IDS_ERRORLIST_TYPE      "Type"
+    IDS_ERRORLIST_NAME      "Name"
+    IDS_ERRORLIST_FAILED_CONDITION "Failed Condition"
+    IDS_ERRORLIST_LINE_NUMBER "Line Number"
+    IDS_ERRORLIST_FILE_NAME "File Name"
+END
+
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -213,31 +238,6 @@ BEGIN
 END
 
 #endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-CPP_UNIT_TEST_RUNNER_PLUG_IN_IDR_TEST_PLUGIN_RUNNER ICON    DISCARDABLE     "res\\TestPlugInRunner.ico"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ERROR_SELECT_TEST   "You must select a test!"
-    IDS_ERRORLIST_TYPE      "Type"
-    IDS_ERRORLIST_NAME      "Name"
-    IDS_ERRORLIST_FAILED_CONDITION "Failed Condition"
-    IDS_ERRORLIST_LINE_NUMBER "Line Number"
-    IDS_ERRORLIST_FILE_NAME "File Name"
-END
 
 #endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////

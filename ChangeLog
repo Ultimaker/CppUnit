@@ -3,6 +3,10 @@
    * lib/.keepme: added dummy file to prevent lib/ removal by some
      unzip clients. Fixed bug #1527877 .
 
+   * src/msvc6/TesRunner/TestRunner.rc:
+   * src/msvc6/testpluginrunner/TestPlugInRunner.rc: Fixed bug #1528212
+     (some resources wrongly tagged as French).
+
 2006-06-29 Baptiste Lepilleur <blep@users.sourceforge.net>
   * include/cppunit/ui/text/TextTestRunner.h
   * src/cppunit/TextTestRunner.cpp: applied patch #1210013 to remove
