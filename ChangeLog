@@ -1,4 +1,9 @@
-2006-06-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+2006-06-29 Baptiste Lepilleur <blep@users.sourceforge.net>
+   * Makefile.am:
+   * lib/.keepme: added dummy file to prevent lib/ removal by some
+     unzip clients. Fixed bug #1527877 .
+
+2006-06-29 Baptiste Lepilleur <blep@users.sourceforge.net>
   * include/cppunit/ui/text/TextTestRunner.h
   * src/cppunit/TextTestRunner.cpp: applied patch #1210013 to remove
     hidden virtual function warning.
@@ -13,7 +18,7 @@
     provided to fix bug #1498175 (double click on failure does not
     goto failure).
 
-2006-03-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+2006-03-04 Baptiste Lepilleur <blep@users.sourceforge.net>
   * contrib/xml-xsl/report.xsl: reported correction posted on the wiki.
 
   * removed debian/ directory. An up to date patch can be found at:
@@ -25,21 +30,21 @@
   * configure.in:
   * Makefile.am: integrated patch from Robert Leight to generate pkg-config.
 
-2006-02-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+2006-02-04 Baptiste Lepilleur <blep@users.sourceforge.net>
   * include/cppunit/TestListener.h: 
   * src/qttestrunner/TestRunnerModel.cpp: removed compilation warning.
 
-2006-02-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+2006-02-01 Baptiste Lepilleur <blep@users.sourceforge.net>
   * examples/qt: integrated Ernst patch from qt examples.
 
-2005-12-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-12-12 Baptiste Lepilleur <blep@users.sourceforge.net>
   * src/qttestrunner: integrated Ernst patch for QtTestRunner and Qt 3.x.
     Enhanced qmake project files to handle multiple build configuration
 
-2005-11-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-11-27 Baptiste Lepilleur <blep@users.sourceforge.net>
   * doc/cookbook.dox: fixed type (patch #1334567)
 
-2005-11-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-11-06 Baptiste Lepilleur <blep@users.sourceforge.net>
   * include/cppunit/config/SourcePrefix.h: disable warning #4996
     (sprintf is deprecated) for visual studio 2005.
   
@@ -57,17 +62,17 @@
     as it cause some crash on some platforms.
  
 
-2005-10-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-10-27 Baptiste Lepilleur <blep@users.sourceforge.net>
   * include/cppunit/TestAssert.h: added missing #include <stdio.h>
 
-2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-30 Baptiste Lepilleur <blep@users.sourceforge.net>
   * include/cppunit/config/SourcePrefix.h: added, prefix added at begining of sources
     to remove warning. Removed most warning when compiling with VC++ 6sp6.
 
   * examples/money/Money.h: 
   * examples/money/MoneyTest.cpp: added assert equal usage.
 
-2005-07-30 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-30 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/config/config-msvc6.h: auto-detect if RTTI are enabled 
     the _CPPRTTI macro (defined by the compiler when enabling RTTI).
@@ -77,7 +82,7 @@
   
   * src/cppunit/TestResultCollector.cpp: fixed memory leak in destructor.
 
-2005-07-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-15 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * config/bb_enable_doxygen.m4: Rolled back Brad Hards patch as it break
     generation of doc/Makefile.am.
@@ -87,7 +92,7 @@
 
   * development snapshot release 1.11.0.
 
-2005-07-09 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-09 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * doc/Money.dox:
   * include/cppunit/TestSuite.h: 
@@ -103,12 +108,12 @@
 
   * doc/money.dox: fixed bad usage of CPPUNIT_ASSERT_EQUALS.
 
-2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * Examples/simple/Makefile.am: do not install 'simple' programm 
     (patch #1230784).
 
-2005-07-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-07-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/TestResultCollector.h
   * src/cppunit/TestResultCollector.cpp: fixed memory leak 
@@ -123,7 +128,7 @@
   * include/cppunit/Portability.h: better integration of compiler output 
     for gcc on Mac OS X with Xcode (contributed by Claus Broch).
 
-2005-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-06-14 Baptiste Lepilleur <blep@users.sourceforge.net>
   * src/msvc6/testrunner/ProgressBar.cpp: applied patch from bug #1165875,
     (use system color for border instead of hard-coded color).
 
@@ -139,14 +144,14 @@
   * contrib/readme.txt: XSLT for compatibility with Ant junit xml formatter.
     Patch #1112053 contributed by Norbert Barbosa.
 
-2005-02-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+2005-02-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * examples/hierarchy/BoardGameTest.h:
   * examples/hierarchy/ChessTest.h: fixed compilation issue, prefixed access 
     to class member with 'this' (inheriting from template parameter 
     dependent class).
 
-2004-11-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-11-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Message.h
   * include/cppunit/SourceLine.h:
@@ -154,12 +159,12 @@
   * src/cppunit/SourceLine.cpp: provided thread-safe copy constructor on
     platform that do not provide thread-safe copy constructor for std::string.
 
-2004-11-08 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-11-08 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/TestAssert.h: fixed portability bug pointed out by
     Neil Ferguson.
 
-2004-11-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-11-06 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/TestAssert.h: integrated Neil Ferguson patch for high
     precision conversion to string for double number. Modified the patch
@@ -170,14 +175,14 @@
   * src/cppunit/Win32DynamicLibraryManager.cpp: integrated patch #1024428,
     MinGW compilation under Windows XP. 
 
-2004-11-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-11-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/TestAssert.h:
   * src/cppunit/TestAssert.cpp: integrated Neil Ferguson patch for missing
     _MESSAGE assertion variants. Also enhanced the failure message of a 
     few assertions.
 
-2004-09-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-09-10 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/msvc6/DSPlugIn/StdAfx.h: add #error to prevent compilation on VC 7.
 
@@ -186,7 +191,7 @@
     features on double click contributed by Max Quatember and 
     Andreas Pfaffenbichler.
 
-2004-08-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-08-01 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/XmlOutputter.h:
   * include/cppunit/tools/XmlDocument.h:
@@ -194,7 +199,7 @@
   * src/cppunit/XmlOutputter.cpp: integrated patch #997006 from Akos Maroy. 
     This patch makes the 'standalone' attribute in XML header optional.
 
-2004-06-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-06-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Portability.h: moved OStringStream alias definition to
     portability/Stream.h. User need to define EVC4 to indicate that 
@@ -220,13 +225,13 @@
     The exact list of impact files can be obtain in CVS using tags:
     TG_CPPUNIT_NO_STREAM_BEFORE & TG_CPPUNIT_NO_STREAM_AFTER.
 
-2004-06-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-06-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * cppunit.m4: patch #946302, AM_PATH_CPPUNIT doesn't report result 
     if CppUnit is missing.
 
 
-2004-06-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-06-18 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * Release 10.0.2
 
@@ -248,7 +253,7 @@
   * src/msvc6/testpluginrunner/TestPlugInRunnerModel.h: bug #952912, 
     memory leaks when loading/reloading plug-ins.
 
-2004-06-17 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-06-17 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Portability.h:
   * include/cppunit/plugin/TestPlugIn.h: fixed report compilation issue 
@@ -264,7 +269,7 @@
   * src/*/*.dsp: bug #933154, post build fail in directory with spaces.
 
 
-2004-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-06-16 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * release 1.10.0
 
@@ -272,11 +277,11 @@
 
   * examples/*/*.dsp: fixed project settings (rtti not enabled).
 
-2004-03-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-03-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * release 1.9.14
 
-2004-03-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-03-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * cppunit-config.in: bug #903363, missing -ldl from the output of
     cppunit-config --libs. Fixed thanks Eric Blossom patch.
@@ -303,11 +308,11 @@
     CPPUNIT_TEST_EXCEPTION).
     
 
-2004-02-20 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-02-20 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * release 1.9.12
 
-2004-02-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+2004-02-18 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * configure.in:
   * makefile.am:
@@ -316,18 +321,18 @@
     Neil Ferguson <nferguso@eso.org> to use gcc c++ abi to demangle typeinfo
 	name when available.
 
-2003-05-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-05-15 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/plugin/testplugin.h: fixed bug #767358, wrong
     preprocessor symbol for SHL_LOADER.
 
-2003-05-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-05-15 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/config/config-msvc6.h: changed the compiler outputter 
     default format (CPPUNIT_COMPILER_LOCATION_FORMAT) for Visual Studio 7.0.
     Assertion now appears in the task list.
 
-2003-05-07 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-05-07 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/Makefile.am: removed TestSuiteBuilder.h
 
@@ -352,22 +357,22 @@
 
   * INSTALL-unix: added build instruction for HP-UX.
 
-2003-04-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-04-06 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/TestSuiteBuilder.h: removed (unused)
 
-2003-03-31 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-03-31 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/cppunit/DynamicLibraryManager.cpp: fixed compilation issue on Mingw
     (bug #711583)
 
-2003-03-20 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-03-20 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/TestNamer.h:
   * src/cppunit/TestNamer.cpp: Fixed bug #704684, TestNamer has non-virtual
     destructor.
 
-2003-03-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-03-15 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/msvc6/testrunner/DynamicWindow/cdxCDynamicWndEx.cpp:
   * examples/msvc6/CppUnitTestApp/CppUnitTestApp.cpp:
@@ -392,7 +397,7 @@
   * include/cppunit/extension/ExceptionTestCaseDecorator.h: removed dll export
     on template (caused link error on vc7).
 
-2003-03-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-03-11 Baptiste Lepilleur <blep@users.sourceforge.net>
   * config/bb_enable_doxygen.m4:
   * doc/Makefile.am: applied Luke Dunstan's fix for bug #700730 (spaces not
     allowed in doxygen path)
@@ -412,22 +417,22 @@
   * src/examples/money/Money.h: partially applied patch #699794. Fixed 
     compilation issues with Borland C++ 6.
 
-2003-01-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+2003-01-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/TestNamer.h: fixed bug #662666 (missing include
     for typeinfo).
 
-2002-12-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-12-12 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/cppunit/TestResult.cpp: TestFailure are no longer passed as temporary,
     but explicitely instantiated on the stack. Work around AIX compiler bug.
 
-2002-12-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-12-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/TextTestResult.h: added missing dll export for 
     operator << (bug #610119).
 
-2002-12-02 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-12-02 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/plugin/DynamicLibraryManagerException.h: added constructor
     to fix compilation issues on recents version of gcc and sun CC (bug #619059)
@@ -440,7 +445,7 @@
     IsUp() in cdxCDynamicWnd::DoOnGetMinMaxInfo() before calling 
     GetBorderSize() which caused an assertion. Bug #643612.
 
-2002-09-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-09-10 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/TestSuiteBuilderContext.h:
   * src/cppunit/TestSuiteBuilderContext.cpp: added addProperty() and
@@ -463,16 +468,16 @@
   * examples/cppunittests/*Suite.h: bug #603666. Added missing Portability.h
     include.
 
-2002-09-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-09-01 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/ui/text/TextTestRunner.h: fixed header guards.
 
-2002-08-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-29 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/TestResult.h:
   * src/cppunit/TestResult.cpp: fixed shouldStop() bug.
 
-2002-08-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-29 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/CompilerOutputter.h:
   * include/cppunit/Exception.h:
@@ -495,7 +500,7 @@
   * include/cppunit/TestResult.h:
   * src/cppunit/TestResult.cpp: moved documentation to header.
 
-2002-08-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-29 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Asserter.h:
   * include/cppunit/Message.h:
@@ -504,7 +509,7 @@
   * include/cppunit/tools/XmlDocument.h:
   * include/cppunit/tools/XmlElement.h: Fixed a few documentation bugs.
 
-2002-08-28 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-28 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Portability.h: added CPPUNIT_STATIC_CAST.
 
@@ -525,7 +530,7 @@
   * examples/cppunittest/HelperMacrosTest.cpp: updated against 
     HelperMacros.h changes.
 
-2002-08-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-27 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * CodingGuideLines.txt: updated for OS/390 C++ limitation.
 
@@ -555,7 +560,7 @@
 	* cppunit.m4: Doc fix: MINIMUM-VERSION is not optional when using
 	this macro.
 
-2002-08-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-04 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/cppunit/XmlDocument.cpp: fixed compatility bug with C++ builder.
 
@@ -574,12 +579,12 @@
   * src/cppunit/PlugInManager.cpp: updated against PlugInParameter
     change.
 
-2002-08-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/XmlOutputterHook.h: integrated Stephan Stapel
 	documentation update.
 
-2002-08-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-08-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Exception.h:
   * src/cppunit/Exception.h: added setMessage().
@@ -638,7 +643,7 @@
   * examples/cppunittest/ExceptionTestCaseDecoratorTest.cpp: added. Unit 
     tests for ExceptionTestCaseDecoratorTest.
 
-2002-07-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-16 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Protector.h:
   * src/cppunit/Protector.cpp: added. Base class for protectors.
@@ -655,7 +660,7 @@
   * src/cppunit/TestCase.cpp:
   * src/cppunit/TestResult.cpp: updated to use protector.
 
-2002-07-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * CodingGuideLines.txt: added. CppUnit's coding guidelines for portability.
 
@@ -686,7 +691,7 @@
   * examples/ClockerPlugIn/ClockerModel.h: use CppUnit STL wrapper instead
     of STL container.
 
-2002-07-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/ui/text/TestRunner.h: 
   * src/cppunit/TextTestRunner.cpp: Renamed TextUi::TestRunner 
@@ -741,7 +746,7 @@
   * src/cppunit/TestSuite.h: 
   replaced occurence of std::vector by CppUnitVector.
 
-2002-07-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-12 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/config/Portability.h: If the compiler does not support
     namespace (CPPUNIT_HAVE_NAMESPACES=0), define CPPUNIT_NO_STD_NAMESPACE
@@ -767,7 +772,7 @@
     CPPUNIT_NS_BEGIN and CPPUNIT_NS_END macros are expanded. This help
     generates the documentation using the CppUnit namespace.
 
-2002-07-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-11 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Portability.h: added macro CPPUNIT_CONST_CAST.
 
@@ -780,7 +785,7 @@
   * src/cppunit/Test.cpp: made findTestPath(), findTest() and resolvePath()
     const methods.
 
-2002-07-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-10 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/AutoRegisterSuite.h:
   * include/cppunit/extensions/Orthodox.h:
@@ -803,12 +808,12 @@
   * examples/cppunittest/MockTestCase.cpp: removed the usage of 'mutable'
     keyword.
 
-2002-07-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-04 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/msvc6/DSPlugIn/DSPlugIn.dsp: updated so that only the release
     configuration get copied to the lib/ directory.
 
-2002-07-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-07-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/XmlOutputter.h: fixed XmlOutputter constructed default
     value initializatino which caused compilation error with BC5.
@@ -842,7 +847,7 @@
     now created in the intermediate directory. A post-build rule is used to
     copy them to the lib/ directory.
 
-2002-06-17 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-17 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/AdditionalMessage.h:
   * src/cppunit/AdditionalMessage.cpp: added. Class to help passing 
@@ -858,7 +863,7 @@
   * src/cppunit/CompilerOutputter.cpp: use CPPUNIT_WRAP_COLUMN instead
     of hard-coded value.
 
-2002-06-16 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-16 Baptiste Lepilleur <blep@users.sourceforge.net>
   
   * bumped version to 1.9.9
 
@@ -909,7 +914,7 @@
     which is the reason why empty lines where not printed in 
     CompilerOutputter.
 
-2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/plugin/PlugInManager.h:
   * src/cppunit/PlugInManager.cpp: added two methods to use the plug-in
@@ -968,7 +973,7 @@
   * examples/cppunittest/XmlOutputterTest.cpp: added tests for 
     XmlOutputterHook.
 
-2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/cppunit/TypeInfoHelper.cpp: added work around for bug #565481.
     gcc 3.0 RTTI name() returns the type prefixed with a number (the
@@ -1004,7 +1009,7 @@
     in DLL. This caused conflicts when instantiting the same template in
     a user project.
 
-2002-06-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/cppunit/CompilerOutputter.cpp: fixed bug #549762 (line wrap).
 
@@ -1033,7 +1038,7 @@
   * src/msvc6/testrunner/TestRunner.rc: named all static fill ID for resizing.
     Added an invisble static field for progress bar placement.
 
-2002-06-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * doc/other_documentation.dox: fixed some typos.
 
@@ -1055,7 +1060,7 @@
   * src/qttestrunner/TestRunnerModel.h: applied Thomas Neidhart's patch,
     'Some minor fixes to compile QTTestrunner under Linux.'.
 
-2002-06-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/Asserter.h:
   * src/cppunit/Asserter.cpp: added functions that take a Message as a 
@@ -1104,7 +1109,7 @@
   * examples/cppunittest/MessageTest.h:
   * examples/cppunittest/MessageTest.cpp: added. Unit test for Message.
 
-2002-06-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-11 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * install-unix: added some hints extracted from bug #544684 on how to compile
     for Solaris/Forte C++ compiler.
@@ -1123,13 +1128,13 @@
   * examples/cppunittest/HelperMacrosTest.cpp: added unit tests for
     CPPUNIT_TEST_CUSTOM, CPPUNIT_TEST_CUSTOMS and CPPUNIT_TEST_ADD.
 
-2002-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-06-01 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * doc/cookbook.dox: fixed bug.
 
   * install-unix: added compilation instruction for Solaris/Sun 6.0
 
-2002-05-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-05-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/extensions/TestSuiteBuilder.h: updated to use TestNamer. Removed
     template method addTestCallerForException() which should solve the compilation
@@ -1142,7 +1147,7 @@
   * include/cppunit/extensions/TestNamer.h:
   * src/cppunit/TestNamer.cpp: added, TestNamer to name test case and fixture.
 
-2002-05-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-05-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * include/cppunit/XmlOutputter.h:
   * src/cppunit/XmlOutputter.cpp: extracted class XmlOutputter::Node to 
@@ -1165,7 +1170,7 @@
   * examples/cppunittest/XmlElementTest.cpp: added, tests extracted from
   XmlOutputterTest.
 
-2002-05-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-05-21 Baptiste Lepilleur <blep@users.sourceforge.net>
 
   * src/msvc6/testrunner/MsDevCallerListCtrl.h:
   * src/msvc6/testrunner/MsDevCallerListCtrl.cpp:
@@ -1185,7 +1190,7 @@
 
   * THANKS: added Marco Welti to the list.
 
-2002-05-07 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-05-07 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/DllPlugInTester/CommandLineParser.cpp: fixed compilation issue.
 
@@ -1193,7 +1198,7 @@
 	* src/msvc6/TestRunner/ActiveTest.cpp: reindented. bugfix: thread
 	handle resource leak (bug #553424).
 
-2002-04-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/cppunit/XmlOutputter.cpp: bugfix, use ISO-8859-1 encoding if an
 	  empty string is given.
@@ -1204,7 +1209,7 @@
 	  the user to press a key before exiting (Philippe Lavoie patch, 
 	  with change).
 
-2002-04-22 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-22 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/plugin/DynamicLibraryManagerException.h: removed
 	  trailing ',' in enum.
@@ -1212,13 +1217,13 @@
 	* examples/ClockerPlugIn/ClockerListener.cpp: bugfix, average test
 	  case time computation.
 
-2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-21 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* bumped version to 1.9.7
 
 	* comitted stuffs I forgot to in 1.9.6.
 
-2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-21 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* contrib/bc5/bcc-makefile.zip: updated, generic makefile for
 	  Borland 5.5, contributed by project cuppa.
@@ -1228,7 +1233,7 @@
 
 	* release 1.9.6
 
-2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-21 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/DllPlugInTester/makefile.am: removed ld.so from LDADD flags.
 
@@ -1247,7 +1252,7 @@
 
 	* doc/Money.dox: added. Article that go along with the Money example.
 
-2002-04-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-21 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* THANKS: updated
 
@@ -1301,7 +1306,7 @@
 	  plug-in that dump the test tree.
 
 
-2002-04-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/cppunit/PlugInManager.cpp: fixed bug in unload().
 
@@ -1329,7 +1334,7 @@
 	* examples/msvc6/EasyTestPlugIn/*: projects replaced with the 
 	  crossplatform projecct examples/simple/simple_plugin.dsp.
 
-2002-04-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* configure.in: added some makefile.am
 
@@ -1342,7 +1347,7 @@
 	  portable.
 
 
-2002-04-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-18 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* bumped version to 1.9.3
 
@@ -1408,7 +1413,7 @@
 	  against cppunit dll, those are now the default configuration (static linking
 	  don't make much sense for plug-in).
 
-2002-04-15 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-15 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* release 1.9.2.
 
@@ -1467,7 +1472,7 @@
 
 	* examples/cppunittest/TestResultCollectorTest.cpp: fixed typo.
 
-2002-04-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* NEWS: updated.
 
@@ -1495,7 +1500,7 @@
 	* examples/cppunittest/XmlOutputterTest.cpp: Changed SucessfulTests tag to
 	SucessfulTests.
 
-2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/XmlOutputter.h:
 	* src/cppunit/XmlOutputter.cpp: Made XML output more human readable. Idented element.
@@ -1505,7 +1510,7 @@
 	* examples/cppunittest/XmlUniformiserTest.cpp: modified to ignore trailing space
 	  at the end of element content.
 
-2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Snapshot 1.9.0
 
@@ -1563,7 +1568,7 @@
 	  debugging of DLL.
 	  
 
-2002-04-13 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-13 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/CompilerOutputter.h:
 	* src/cppunit/CompilerOutputter.h: deprecated defaultOuputter(). Added 
@@ -1596,7 +1601,7 @@
 	* examples/cppunittest/TestResultTest.cpp: added tests for startSuite() 
 	  and endSuite().
 
-2002-04-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-12 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Makefile.am: added examples/qt to tar ball release.
 
@@ -1679,13 +1684,13 @@
 	* examples/cppunittest/TestSuiteTest.cpp: added test for TestComposite and 
 	  new Test interface.
 
-2002-04-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-11 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* configure.in: bumped version to 1.9.0
 	
 	* NEWS: added version 1.9.0
 
-2002-04-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-11 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* doc/FAQ: removed question about the Exception::operator =() problem.
 
@@ -1700,14 +1705,14 @@
 
 	* configure.in: Output the new include/*/Makefiles.
 
-2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-10 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Makefile.am: removed directory cppunitui from copy when making
 	the dist.
 
 	* include/cppunit/ui: added Makefile.am for dist and install.
 
-2002-04-10 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-10 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunitui/: moved to include/cppunit/ui (fix unix
 	install problem).
@@ -1727,11 +1732,11 @@
 
 	* NEWS: added compatibility break for 1.7.10 users.
 
-2002-04-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* examples/cppunittest/CppUnitTestMain.cpp: never wait for a key press.
 
-2002-04-04 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-04-04 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* NEW: added CPPUNIT_ASSERT_EQUAL_MESSAGE compatiblity break.
 
@@ -1743,11 +1748,11 @@
 	* examples/cppunittest/MockTestListener.cpp: updated to reflect
 	change on CPPUNIT_ASSERT_EQUAL_MESSAGE.
 
-2002-03-28 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-28 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* configure.in: bumped version to 1.7.11
 
-2002-03-28 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-28 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* doc/cookbook.html: removed. Replaced by cookbook.doc.
 
@@ -1813,7 +1818,7 @@
 	* examples/cppunittest/CppUnitTestMain.cpp: updated to use 
 	CppUnit::TextUi::TestRunner.
 
-2002-03-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-27 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/msvc/testrunner/TestRunner.h: updated doc. reindented.
 
@@ -1826,7 +1831,7 @@
 
 	* include/cppunitui/qt/TestRunner.h: doc update.
 
-2002-03-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-27 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* makefile.am: added src/CppUnitLibraries.dsw, new contribution, and
 	src/qttestrunner.
@@ -1885,15 +1890,15 @@
 	fixture instantiation (the ChessBoard::testReset test case was using 
 	BoardGame fixture instance instead of ChessBoard).
 
-2002-03-26 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-26 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* configure.in: bumped version to 1.7.9
 
-2002-03-26 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-26 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/msvc6/testpluginrunner/TestPlugInRunner.dsp: fixed release configuration.
 
-2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/makefile.am: removed TestRegistry.h
 	
@@ -1927,11 +1932,11 @@
 	* include/cppunit/TestCase.h: inherits setUp() and tearDown() from 
 	class TestFixture.
 
-2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* configure.in: bumped version to 1.7.7
 
-2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/config-msvc6.h:
 	* include/cppunit/Portability.h
@@ -1945,7 +1950,7 @@
 
 	* src/cppunit/DllMain.cpp: added some defines to speed up compilation a bit.
 
-2002-03-25 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-25 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* INSTALL-WIN32.txt: updated for MFC Unicode TestRunner.
 
@@ -1970,7 +1975,7 @@
 
 	* examples/msvc6/HostApp/HostApp.dsp: added Unicode configurations.
 
-2002-03-24 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-24 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* INSTALL-WIN32.txt: added some info to build cppunit as a DLL.
 
@@ -2020,16 +2025,16 @@
 
 	* src/cppunit/DllMain.cpp: added, contains Dll entry point.
 
-2002-03-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-06 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/cppunit/TextTestProgressListener.cpp: flush the stream after each
 	progess step.
 
-2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* configure.in: updated version number to 1.7.4
 
-2002-03-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-03-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/makefile.am:
 	* src/cppunit/makefile.am: added missing SynchronizedObject and 
@@ -2037,7 +2042,7 @@
 
 	* generated 1.7.3 tar ball.
 
-2002-02-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-02-29 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* inclued/cppunit/XmlOutputter.h:
 	* inclued/cppunit/XmlOutputter.cpp: added optional parameter to constructor
@@ -2045,7 +2050,7 @@
 
 	* configure.in: updated version number to 1.7.3
 
-2002-02-28 Baptiste Lepilleur <gaiacrtn@free.fr>
+2002-02-28 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* NEW: updated and restructured.
 
@@ -2202,7 +2207,7 @@
 
 	* INSTALL-unix: Add note about cygwin.
 
-2001-10-24 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-24 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp:
 	* examples/msvc6/HostApp/HostApp.dsp: use custom file build instead
@@ -2253,12 +2258,12 @@
 	* doc/Doxyfile.in (GENERATE_MAN): Do not generate man pages.
 	* doc/Makefile.am: Do not make man directories.
 
-2001-10-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/Exception.h:
 	* src/cppunit/Exception.cpp: what(), added back the throw() qualifier.
 
-2001-10-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunitui/* : added, Qt TestRunner.
 
@@ -2271,7 +2276,7 @@
 	* src/cppunit/Exception.cpp (what): Remove "throw()" qualifier, to
 	match earlier change to header.
 
-2001-10-07 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-07 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/CompilerTestResultOutputter.h :
 	renamed CompilerOutputter.h
@@ -2326,7 +2331,7 @@
 	XmlTestResultOutputter to XmlOuputter, XmlTestResultOutputterTest
 	to XmlOutputterTest.
 
-2001-10-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-06 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/CompilerTestResultOutputter.h :
 	* src/cppunit/CompilerTestResultOutputter.cpp : added. Output result
@@ -2349,7 +2354,7 @@
 	* src/cppunit/TextTestRunner.cpp : skip a line after printing 
 	progress.
 
-2001-10-06 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-06 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* examples/cppunittest/CppUnitTestMain.cpp : application returns
 	0 is test suite run sucessfuly, 1 otherwise.
@@ -2372,7 +2377,7 @@
 	the runner. Added result() to retreive the result. Printing the
 	result is now optinal (enabled by default).
 
-2001-10-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/Asserter.h :
 	* src/cppunit/Asserter.cpp : added. Helper to create assertion macros.
@@ -2440,7 +2445,7 @@
 	* include/cppunit/XmlTestResultOutputter.h :
 	* src/cppunit/XmlTestResultOutputter.cpp : updated to use SourceLine.
 
-2001-10-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* NEWS : updated.
 
@@ -2469,7 +2474,7 @@
 
 	* src/testrunner/TestRunnerDlg.cpp: removed disabled code.
 
-2001-10-03 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-03 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/TestFailure.cpp :
 	* include/cppunit/TestFailure.h : fixed some constness issues. Added
@@ -2502,7 +2507,7 @@
 	* examples/cppunittest/TestResultTest.cpp : modified to suit the
 	new TestResult. 
 
-2001-10-02 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-02 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/extensions/TestFactoryRegistry.h
 	* src/cppunit/TestFactoryRegistry.cpp : fixed memory leaks that 
@@ -2549,7 +2554,7 @@
 	Makefile.am, HelperSuite.h, CoreSuite.h, ExtensionSuite.h,
 	CppUnitTestSuite.h and CppUnitTestSuite.cpp.
 
-2001-10-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-10-01 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* NEWS : updated.
 
@@ -2601,7 +2606,7 @@
 	* src/cppunit/RepeatedTest.cpp (countTestCases, toString): 
 	Add const qualifier to function.
 
-2001-09-30 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-30 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* contrib/msvc/CppUnit.WWTpl: added, template for WorkSpace Whiz! 
 	to create new classes and unit tests.
@@ -2639,7 +2644,7 @@
 
 	* configure.in: Set version to 1.6.1.
 
-2001-09-29 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-29 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* example/cppunittest/TestCaller.*: remove some memory leaks.
 	TestCaller exception catching features is now tested correctly.
@@ -2657,7 +2662,7 @@
 
 	* README: Note about file BUGS.
 
-2001-09-24 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-24 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/TestAssert.h : changed header order to remove
 	warning on VC++
@@ -2690,7 +2695,7 @@
 
 	* AUTHORS: Put myself on the list.
 
-2001-09-21 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-21 Baptiste Lepilleur <blep@users.sourceforge.net>
 	
 	* include/cppunit/TestFailure.h : made destructor virtual.
 
@@ -2718,7 +2723,7 @@
 	Patrick Hartling reports the former is required for the SGI
 	MIPSpro 7.3.1.2 compiler.
 
-2001-09-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* examples/cppunittest/makefile.am : added TestSetupTest.(cpp/h)
 
@@ -2752,7 +2757,7 @@
 	* include/cppunit/Portability.h: Qualify ostrstream with std.
 	Suggested by Patrick Hartling.
 
-2001-09-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-18 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* examples/examples.dsw:
 	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsw:
@@ -2765,7 +2770,7 @@
 	* include/msvc6/testrunner/TestPlugInInterface.h: does not define
 	NOMINMAX if already defined.
 
-2001-09-17 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-17 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Makefile.am: Added INSTALL-WIN32.txt to EXTRA_DIST.
 
@@ -2812,7 +2817,7 @@
 	* include/cppunit/Makefile.am (libcppunitinclude_HEADERS): Remove
 	TestFixture.h.
 
-2001-09-14 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-09-14 Baptiste Lepilleur <blep@users.sourceforge.net>
 	* src/msvc6/testrunner/TestRunner.dsp: fixed release configuration.
 
 	* src/msvc6/testrunner/TestRunner.dsw: added DSPlugIn.dsp. TestRunner
@@ -2999,7 +3004,7 @@
 	* src/cppunit/Makefile.am (INCLUDES): Search
 	$(top_builddir)/include for <cppunit/config-auto.h>.
 
-2001-06-27 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-06-27 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* examples/msvc6/CppUnitTestApp/CppUnitTestApp.dsp:
 	moved dll copy from post-build to custom build setting, so that the 
@@ -3090,7 +3095,7 @@
 	CPPUNIT_FUNC_STRING_COMPARE_STRING_FIRST
 	
 
-2001-06-12 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-06-12 Baptiste Lepilleur <blep@users.sourceforge.net>
 	
 	* include/cppunit/NotEqualException.h
 	* src/cppunit/NotEqualException.h:
@@ -3130,7 +3135,7 @@
 	* include/cppunit/TestCaller.h (NoExceptionExpected): Fix
 	constructor name.
 
-2001-06-11 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-06-11 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* include/cppunit/Exception.h: now inherit from std::exception
 	instead of ::exception. Added clone(), type(), and isInstanceOf()
@@ -3196,7 +3201,7 @@
 	TestSuite, TestDecoratorTest, TestSetUp, RepeatedTestTest,
 	Orthodox, Exception.
 
-2001-06-05 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-06-05 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/cppunit/TypeInfoHelper.cpp: removed #include <config.h>,
 	cppunit/config.h was already included.
@@ -3299,7 +3304,7 @@
 	examples/cppunittest/TestResultTest (suite): removed dependency on
 	RTTI.
 	
-2001-06-01 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-06-01 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* added project cppunittest to examples/: unit tests to test cppunit.
 	The main file is CppUnitTestMain.cpp. Unit tests have been implemented
@@ -3352,7 +3357,7 @@
 	* doc/cookbook.html: Update all code examples, except for TestRunner
 	section.
 
-2001-05-23 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-05-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Updated CU_TEST_SUITE macro documentation. It is now stated
 	explicitly that you do not need to specify template parameter as
@@ -3366,13 +3371,13 @@
 	  '--copy'.
 	* config: removed generated files from CVS.
 
-2001-05-20 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-05-20 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Fixed bug #424320 (VC++ TestRunner): access violation caused by
 	NULL pointer in history list. NULL pointer are not added to the
 	history anymore.
 
-2001-05-19 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-05-19 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Added some items to the TODO list for VC++ TestRunner.
   
@@ -3397,7 +3402,7 @@
   
 	* Updated hierarchy example to use TextTestRunner.
 
-2001-05-18 Baptiste Lepilleur <gaiacrtn@free.fr>
+2001-05-18 Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* Symbol CU_USE_TYPEINFO must be defined instead of USE_TYPEINFO
 	to compile RTTI.
