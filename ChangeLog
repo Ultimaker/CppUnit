@@ -1,3 +1,7 @@
+2006-10-26 Baptiste Lepilleur <blep@users.sourceforge.net>
+   * include/cppunit/TestResult.h:
+   * include/cppunit/ui/Config.h: fixed compilation issues with QtTestRunner.
+
 2006-06-29 Baptiste Lepilleur <blep@users.sourceforge.net>
    * Makefile.am:
    * lib/.keepme: added dummy file to prevent lib/ removal by some
