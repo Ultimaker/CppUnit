@@ -1,3 +1,8 @@
+2007-01-11  Steve M. Robbins  <smr@sumost.ca>
+
+	* config/bb_enable_doxygen.m4 (BB_ENABLE_DOXYGEN): Add quotes
+	around function name, BB_ENABLE_DOXYGEN.
+
 2006-10-26 Baptiste Lepilleur <blep@users.sourceforge.net>
    * include/cppunit/TestResult.h:
    * include/cppunit/ui/Config.h: fixed compilation issues with QtTestRunner.
