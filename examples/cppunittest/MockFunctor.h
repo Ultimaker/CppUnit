@@ -11,12 +11,12 @@ class MockFunctor : public CPPUNIT_NS::Functor
 {
 public:
   MockFunctor()
-    : m_shouldThrow( false )
+    : m_shouldSucceed( true )
+    , m_shouldThrow( false )
     , m_shouldThrowFailureException( false )
     , m_hasExpectation( false )
     , m_actualCallCount( 0 )
     , m_expectedCallCount( 0 )
-    , m_shouldSucceed( true )
   {
   }
 

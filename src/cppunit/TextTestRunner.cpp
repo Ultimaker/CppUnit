@@ -18,9 +18,9 @@ CPPUNIT_NS_BEGIN
  * \param outputter used to print text result. Owned by the runner.
  */
 TextTestRunner::TextTestRunner( Outputter *outputter ) 
-    : m_outputter( outputter )
-    , m_result( new TestResultCollector() )
+    : m_result( new TestResultCollector() )
     , m_eventManager( new TestResult() )
+    , m_outputter( outputter )
 {
   if ( !m_outputter )
     m_outputter = new TextOutputter( m_result, stdCOut() );

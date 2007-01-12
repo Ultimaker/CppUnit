@@ -4,8 +4,8 @@ CPPUNIT_NS_BEGIN
 
 
 TestCaseDecorator::TestCaseDecorator( TestCase *test )
-    : m_test( test )
-    , TestCase( test->getName() )
+    : TestCase( test->getName() ),
+      m_test( test )
 { 
 }
 

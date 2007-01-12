@@ -41,8 +41,8 @@ checkXmlEqual( std::string expectedXml,
 
 
 XmlUniformiser::XmlUniformiser( const std::string &xml ) :
-    m_xml( xml ),
-    m_index( 0 )
+    m_index( 0 ),
+    m_xml( xml )
 {
 }
 

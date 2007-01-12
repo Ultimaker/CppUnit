@@ -3,14 +3,14 @@
 
 CommandLineParser::CommandLineParser( int argc, 
                                       const char *argv[] )
-    : m_currentArgument( 0 )
-    , m_useCompiler( false )
+    : m_useCompiler( false )
     , m_useXml( false )
     , m_briefProgress( false )
     , m_noProgress( false )
     , m_useText( false )
     , m_useCout( false )
     , m_waitBeforeExit( false )
+    , m_currentArgument( 0 )
 {
   for ( int index =1; index < argc; ++index )
   {

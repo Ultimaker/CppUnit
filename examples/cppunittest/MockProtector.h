@@ -19,10 +19,10 @@ class MockProtector : public CPPUNIT_NS::Protector
 {
 public:
   MockProtector()
-    : m_expectException( false )
-    , m_hasExpectation( false )
-    , m_wasCalled( false )
+    : m_wasCalled( false )
     , m_wasTrapped( false )
+    , m_expectException( false )
+    , m_hasExpectation( false )
     , m_shouldPropagateException( false )
   {
   }

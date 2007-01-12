@@ -1,5 +1,16 @@
 2007-01-11  Steve M. Robbins  <smr@sumost.ca>
 
+	* examples/cppunittest/MockFunctor.h:
+	* examples/cppunittest/MockProtector.h:
+	* examples/cppunittest/XmlOutputterTest.cpp:
+	* examples/cppunittest/XmlUniformiser.cpp:
+	* src/DllPlugInTester/CommandLineParser.cpp:
+	* src/cppunit/DynamicLibraryManagerException.cpp:
+	* src/cppunit/TestCaseDecorator.cpp:
+	* src/cppunit/TextTestRunner.cpp:
+	* src/cppunit/XmlDocument.cpp: Arrange field initializers in
+	correct order.
+
 	* include/cppunit/plugin/TestPlugIn.h (struct CppUnitTestPlugIn): 
 	* include/cppunit/extensions/TestFixtureFactory.h (class TestFixtureFactory): 
 	* include/cppunit/XmlOutputterHook.h (XmlOutputterHook): Add

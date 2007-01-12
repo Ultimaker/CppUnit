@@ -9,8 +9,8 @@ DynamicLibraryManagerException::DynamicLibraryManagerException(
                                          const std::string &libraryName,
                                          const std::string &errorDetail,
                                          Cause cause )
-    : m_cause( cause )
-    , std::runtime_error( "" )
+    : std::runtime_error( "" ),
+      m_cause( cause )
 {
   if ( cause == loadingFailed )
     m_message = "Failed to load dynamic library: " + libraryName + "\n" + 

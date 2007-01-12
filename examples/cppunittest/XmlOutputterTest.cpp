@@ -230,11 +230,11 @@ public:
             int &statisticsCalls,
             int &successfulTestCalls,
             int &failedTestCalls )
-      : m_successfulTestCalls( successfulTestCalls )
-      , m_failedTestCalls( failedTestCalls )
-      , m_beginCalls( beginCalls )
+      : m_beginCalls( beginCalls )
       , m_endCalls( endCalls )
       , m_statisticsCalls( statisticsCalls )
+      , m_successfulTestCalls( successfulTestCalls )
+      , m_failedTestCalls( failedTestCalls )
   {
   }
 

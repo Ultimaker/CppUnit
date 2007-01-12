@@ -8,8 +8,8 @@ CPPUNIT_NS_BEGIN
 
 XmlDocument::XmlDocument( const std::string &encoding,
                           const std::string &styleSheet )
-  : m_rootElement( new XmlElement( "DummyRoot" ) )
-  , m_styleSheet( styleSheet )
+  : m_styleSheet( styleSheet )
+  , m_rootElement( new XmlElement( "DummyRoot" ) )
   , m_standalone( true )
 {
   setEncoding( encoding );
