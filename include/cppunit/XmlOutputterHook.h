@@ -153,6 +153,8 @@ public:
    */
   virtual void statisticsAdded( XmlDocument *document,
                                 XmlElement *statisticsElement );
+
+  virtual ~XmlOutputterHook() {}
 };
 
 

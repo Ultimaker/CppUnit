@@ -1,5 +1,10 @@
 2007-01-11  Steve M. Robbins  <smr@sumost.ca>
 
+	* include/cppunit/plugin/TestPlugIn.h (struct CppUnitTestPlugIn): 
+	* include/cppunit/extensions/TestFixtureFactory.h (class TestFixtureFactory): 
+	* include/cppunit/XmlOutputterHook.h (XmlOutputterHook): Add
+	virtual destructor to virtual class.
+
 	* examples/cppunittest/TestAssertTest.cpp: Put a C++ statement in
 	the first argument of CPPUNIT_ASSERT_THROW() and
 	CPPUNIT_ASSERT_NO_THROW().

@@ -92,6 +92,8 @@ struct CppUnitTestPlugIn
    * unregistered.
    */
   virtual void uninitialize( CPPUNIT_NS::TestFactoryRegistry *registry ) =0;
+
+  virtual ~CppUnitTestPlugIn() {}
 };
 
 
