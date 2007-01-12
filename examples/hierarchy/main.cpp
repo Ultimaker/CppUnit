@@ -15,9 +15,7 @@ main(int argc, char** argv)
   runner.addTest( BoardGameTest<BoardGame>::suite() );
   runner.addTest( ChessTest<Chess>::suite() );
 
-  bool wasSucessful = runner.run();
+  bool wasSuccessful = runner.run();
 
-  // should be:
-  //  return wasSuccessful ? 0 : 1;
-  return 0;
+  return wasSuccessful ? 0 : 1;
 }

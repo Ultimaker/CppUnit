@@ -1,6 +1,8 @@
 EXTRA_DIST = hierarchy.dsw hierarchy.dsp
 
 TESTS = hierarchy
+XFAIL_TESTS = hierarchy
+
 check_PROGRAMS = $(TESTS)
 
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include

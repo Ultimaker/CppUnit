@@ -1,5 +1,10 @@
 2007-01-11  Steve M. Robbins  <smr@sumost.ca>
 
+	* examples/hierarchy/main.cpp (main): Return value now reflects
+	whether tests passed.
+	* examples/hierarchy/Makefile.am (XFAIL_TESTS): New.  Mark hierachy
+	test program as an expected failure.
+
 	* Makefile.am (dist-hook): Don't fail if $(distdir)/lib already
 	exists.
 
