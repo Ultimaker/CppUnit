@@ -1,5 +1,9 @@
 2007-01-11  Steve M. Robbins  <smr@sumost.ca>
 
+	* examples/cppunittest/TestAssertTest.cpp: Put a C++ statement in
+	the first argument of CPPUNIT_ASSERT_THROW() and
+	CPPUNIT_ASSERT_NO_THROW().
+
 	* examples/hierarchy/main.cpp (main): Return value now reflects
 	whether tests passed.
 	* examples/hierarchy/Makefile.am (XFAIL_TESTS): New.  Mark hierachy
