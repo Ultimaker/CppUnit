@@ -1,5 +1,8 @@
 2007-01-11  Steve M. Robbins  <smr@sumost.ca>
 
+	* Makefile.am (dist-hook): Don't fail if $(distdir)/lib already
+	exists.
+
 	* config/bb_enable_doxygen.m4 (BB_ENABLE_DOXYGEN): Add quotes
 	around function name, BB_ENABLE_DOXYGEN.
 
