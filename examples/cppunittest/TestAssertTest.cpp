@@ -171,7 +171,11 @@ TestAssertTest::testAssertDoubleEquals()
 
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.1, 1.2, 0.09 ) );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.2, 1.1, 0.09 ) );
+}
 
+void 
+TestAssertTest::testAssertDoubleNonFinite()
+{
   double inf = std::numeric_limits<double>::infinity();
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( inf, 0.0, 1.0 ) );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 0.0, inf, 1.0 ) );

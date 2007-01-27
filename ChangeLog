@@ -1,5 +1,11 @@
 2007-01-27  Steve M. Robbins  <smr@sumost.ca>
 
+	* examples/cppunittest/TestAssertTest.cpp:
+	* examples/cppunittest/TestAssertTest.h: Remove declaration of
+	unimplemented functions testAssertDoubleNotEquals1 and
+	testAssertDoubleNotEquals2.  Factor new method
+	testAssertDoubleNonFinite out of existing testAssertDoubleEquals.
+
 	* src/cppunit/Win32DynamicLibraryManager.cpp (doLoadLibrary): 
 	Unconditionally use ANSI version of LoadLibrary() and other
 	functions with string arguments.
