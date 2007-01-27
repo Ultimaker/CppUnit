@@ -1,11 +1,19 @@
-#if HAVE_CMATH
-#   include <cmath>
-#else
-#   include <math.h>
-#endif
-
 #include <cppunit/TestAssert.h>
 
+#include <math.h>
+
+#if !defined(CPPUNIT_HAVE_ISFINITE)
+
+    static inline bool isfinite( double x )
+    {
+#if defined(CPPUNIT_HAVE_FINITE)
+	return finite( x );
+#else
+        return ( x * 0.0 ) == 0.0;
+#endif
+    }
+
+#endif
 
 CPPUNIT_NS_BEGIN
 
@@ -21,7 +29,13 @@ assertDoubleEquals( double expected,
                          assertion_traits<double>::toString(delta) );
   msg.addDetail( AdditionalMessage(message) );
 
-  Asserter::failNotEqualIf( fabs( expected - actual ) > delta,
+  bool equal;
+  if ( isfinite(expected) && isfinite(actual) )
+      equal = fabs( expected - actual ) <= delta;
+  else
+      equal = expected == actual;
+
+  Asserter::failNotEqualIf( !equal,
                             assertion_traits<double>::toString(expected),
                             assertion_traits<double>::toString(actual),
                             sourceLine, 
