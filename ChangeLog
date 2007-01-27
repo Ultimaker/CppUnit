@@ -1,3 +1,9 @@
+2007-01-27  Steve M. Robbins  <smr@sumost.ca>
+
+	* src/cppunit/Win32DynamicLibraryManager.cpp (doLoadLibrary): 
+	Unconditionally use ANSI version of LoadLibrary() and other
+	functions with string arguments.
+
 2007-01-26  Steve M. Robbins  <smr@sumost.ca>
 
 	* config/ax_cxx_have_isfinite.m4: New.  Autoconf macro that tests

@@ -9,6 +9,7 @@
 * Portability: 
 
   - Fixed some compilation issue for QtTestRunner.
+  - Code should build on Windows in UNICODE mode.
 
   New in CppUnit 1.12.0:
   ----------------------
