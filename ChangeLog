@@ -1,3 +1,13 @@
+2007-01-26  Steve M. Robbins  <smr@sumost.ca>
+
+	* config/ax_cxx_have_isfinite.m4: New.  Autoconf macro that tests
+	for finite() in C++ mode.
+	* configure.in: Check for isfinite() and finite().
+
+	* examples/cppunittest/TestAssertTest.cpp (testAssertDoubleEquals): 
+	* src/cppunit/TestAssert.cpp (assertDoubleEquals): Account for
+	non-finite values.
+
 2007-01-11  Steve M. Robbins  <smr@sumost.ca>
 
 	* examples/cppunittest/MockFunctor.h:
