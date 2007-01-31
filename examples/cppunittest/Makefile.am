@@ -6,6 +6,8 @@ check_PROGRAMS = $(TESTS)
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 
 cppunittestmain_SOURCES = \
+	assertion_traitsTest.cpp \
+	assertion_traitsTest.h \
 	BaseTestCase.cpp \
 	BaseTestCase.h \
 	CoreSuite.h \

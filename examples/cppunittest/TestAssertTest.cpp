@@ -135,7 +135,6 @@ TestAssertTest::testAssertEqual()
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_EQUAL( 1, 2 ) );
 }
 
-
 void 
 TestAssertTest::testAssertMessageTrue()
 {
@@ -171,6 +170,26 @@ TestAssertTest::testAssertDoubleEquals()
 
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.1, 1.2, 0.09 ) );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.2, 1.1, 0.09 ) );
+}
+
+/*
+ * Test that the error message from CPPUNIT_ASSERT_DOUBLES_EQUAL() 
+ * has more than the default 6 digits of precision.
+ */
+void 
+TestAssertTest::testAssertDoubleEqualsPrecision()
+{
+  std::string failure( "2.000000001" );
+  try
+  {
+    CPPUNIT_ASSERT_DOUBLES_EQUAL( 1.0, 2.000000001, 1 );
+  }
+  catch( CPPUNIT_NS::Exception &e )
+  {
+    checkMessageContains( &e, failure );
+    return;
+  }
+  CPPUNIT_FAIL( "Expected assertion failure" );
 }
 
 void 

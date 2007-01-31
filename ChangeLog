@@ -1,3 +1,17 @@
+2007-01-30  Steve M. Robbins  <smr@sumost.ca>
+
+	* examples/cppunittest/assertion_traitsTest.h:
+	* examples/cppunittest/assertion_traitsTest.cpp: New.  Test
+	assertion_traits<>.
+
+	* examples/cppunittest/Makefile.am: Add
+	assertion_traitsTest.{h,cpp}.
+
+	* examples/cppunittest/TestAssertTest.h:
+	* examples/cppunittest/TestAssertTest.cpp: Add
+	testAssertDoubleEqualsPrecision() to test precision of failure
+	message.
+
 2007-01-27  Steve M. Robbins  <smr@sumost.ca>
 
 	* examples/cppunittest/TestAssertTest.cpp:
