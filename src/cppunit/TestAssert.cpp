@@ -1,19 +1,5 @@
 #include <cppunit/TestAssert.h>
-
-#include <math.h>
-
-#if !defined(CPPUNIT_HAVE_ISFINITE)
-
-    static inline bool isfinite( double x )
-    {
-#if defined(CPPUNIT_HAVE_FINITE)
-	return finite( x );
-#else
-        return ( x * 0.0 ) == 0.0;
-#endif
-    }
-
-#endif
+#include <cppunit/portability/FloatingPoint.h>
 
 CPPUNIT_NS_BEGIN
 
@@ -30,10 +16,23 @@ assertDoubleEquals( double expected,
   msg.addDetail( AdditionalMessage(message) );
 
   bool equal;
-  if ( isfinite(expected) && isfinite(actual) )
+  if ( floatingPointIsFinite(expected)  &&  floatingPointIsFinite(actual) )
       equal = fabs( expected - actual ) <= delta;
   else
-      equal = expected == actual;
+  {
+    // If expected or actual is not finite, it may be +inf, -inf or NaN (Not a Number).
+    // Value of +inf or -inf leads to a true equality regardless of delta if both
+    // expected and actual have the same value (infinity sign).
+    // NaN Value should always lead to a failed equality.
+    if ( floatingPointIsUnordered(expected)  ||  floatingPointIsUnordered(actual) )
+    { 
+       equal = false;  // expected or actual is a NaN
+    }
+    else // ordered values, +inf or -inf comparison
+    {
+       equal = expected == actual;
+    }
+  }
 
   Asserter::failNotEqualIf( !equal,
                             assertion_traits<double>::toString(expected),

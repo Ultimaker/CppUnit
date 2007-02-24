@@ -176,6 +176,14 @@ PostBuild_Cmds=$(TargetPath)
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\assertion_traitsTest.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\assertion_traitsTest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\ExceptionTest.cpp
 # End Source File
 # Begin Source File

@@ -60,6 +60,11 @@
 # define CPPUNIT_COMPILER_LOCATION_FORMAT "%p(%l):"
 #endif
 
+/* define to 1 if the compiler has _finite() */
+#ifndef CPPUNIT_HAVE__FINITE
+#define CPPUNIT_HAVE__FINITE 1 
+#endif
+
 // Uncomment to turn on STL wrapping => use this to test compilation. 
 // This will make CppUnit subclass std::vector & co to provide default
 // parameter.

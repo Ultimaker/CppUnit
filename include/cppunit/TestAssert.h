@@ -109,6 +109,7 @@ void assertEquals( const T& expected,
 /*! \brief (Implementation) Asserts that two double are equals given a tolerance.
  * Use CPPUNIT_ASSERT_DOUBLES_EQUAL instead of this function.
  * \sa Asserter::failNotEqual().
+ * \sa CPPUNIT_ASSERT_DOUBLES_EQUAL for detailed semantic of the assertion.
  */
 void CPPUNIT_API assertDoubleEquals( double expected,
                                      double actual,
@@ -218,6 +219,13 @@ void CPPUNIT_API assertDoubleEquals( double expected,
 
 /*! \brief Macro for primitive double value comparisons. 
  * \ingroup Assertions
+ *
+ * The assertion pass if both expected and actual are finite and
+ * \c fabs( \c expected - \c actual ) <= \c delta.
+ * If either \c expected or actual are infinite (+/- inf), the 
+ * assertion pass if \c expected == \c actual.
+ * If either \c expected or \c actual is a NaN (not a number), then
+ * the assertion fails.
  */
 #define CPPUNIT_ASSERT_DOUBLES_EQUAL(expected,actual,delta)        \
   ( CPPUNIT_NS::assertDoubleEquals( (expected),            \
@@ -230,6 +238,7 @@ void CPPUNIT_API assertDoubleEquals( double expected,
 /*! \brief Macro for primitive double value comparisons, setting a 
  * user-supplied message in case of failure. 
  * \ingroup Assertions
+ * \sa CPPUNIT_ASSERT_DOUBLES_EQUAL for detailed semantic of the assertion.
  */
 #define CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE(message,expected,actual,delta)  \
   ( CPPUNIT_NS::assertDoubleEquals( (expected),            \

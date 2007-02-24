@@ -1,3 +1,22 @@
+2007-02-24  Baptiste Lepilleur <blep@users.sourceforge.net>
+
+	* src/cppunit/TestAssert.cpp (assertDoubleEquals): Moved finite & NaN 
+     tests to include/cppunit/portability/FloatingPoint.h. Changed 
+     implementation assertDoubleEquals to explicitly test for NaN 
+     in case of non-finite values to force equality failure in the 
+     presence of NaN. Previous implementation failed on Microsoft 
+     Visual Studio 6 (on this platform: NaN == NaN).
+	* examples/cppunittest/TestAssertTest.cpp: Add more unit tests to
+     test the portable floating-point primitive. Added missing 
+     include <limits>.
+
+   * include/cppunit/portability/Makefile.am:
+   * include/cppunit/portability/FloatingPoint.h: Added file. Extracted
+     isfinite() from TestAssert.cpp.
+
+   * include/cppunit/config-evc4:
+   * include/cppunit/config-msvc6: Added support for _finite().
+
 2007-01-30  Steve M. Robbins  <smr@sumost.ca>
 
 	* examples/cppunittest/assertion_traitsTest.h:

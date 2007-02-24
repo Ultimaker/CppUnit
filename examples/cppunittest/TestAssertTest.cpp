@@ -1,6 +1,8 @@
 #include "CoreSuite.h"
 #include "TestAssertTest.h"
+#include <cppunit/portability/FloatingPoint.h>
 #include <algorithm>
+#include <limits>
 
 /*
  Note:
@@ -192,16 +194,45 @@ TestAssertTest::testAssertDoubleEqualsPrecision()
   CPPUNIT_FAIL( "Expected assertion failure" );
 }
 
+
 void 
 TestAssertTest::testAssertDoubleNonFinite()
 {
   double inf = std::numeric_limits<double>::infinity();
+  double nan = std::numeric_limits<double>::quiet_NaN();
+  // test our portable floating-point primitives that detect NaN values
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsUnordered( nan ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( inf ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( -inf ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( 1.0 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( 1.5 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( 2.0 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( 2.5 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( 0.0 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( -1.0 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsUnordered( -2.0 ) );
+  // test our portable floating-point primitives that detect finite values
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( 0.0 ) );
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( 0.5 ) );
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( 1.0 ) );
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( 1.5 ) );
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( 2.0 ) );
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( 2.5 ) );
+  CPPUNIT_ASSERT( CPPUNIT_NS::floatingPointIsFinite( -1.5 ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsFinite( nan ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsFinite( inf ) );
+  CPPUNIT_ASSERT( !CPPUNIT_NS::floatingPointIsFinite( -inf ) );
+  // Infinity tests
+  CPPUNIT_ASSERT( inf == inf );
+  CPPUNIT_ASSERT( -inf == -inf );
+  CPPUNIT_ASSERT( -inf != inf );
+  CPPUNIT_ASSERT( -inf < inf );
+  CPPUNIT_ASSERT( inf > -inf );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( inf, 0.0, 1.0 ) );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( 0.0, inf, 1.0 ) );
   CPPUNIT_ASSERT_ASSERTION_PASS( CPPUNIT_ASSERT_DOUBLES_EQUAL( inf, inf, 1.0 ) );
-
-  double nan = std::numeric_limits<double>::quiet_NaN();
-  CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( nan, 0.0, 1.0 ) );
+  // NaN tests 
+  CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( nan, 0.0, 1.0 ) ); // this one fails
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( nan, nan, 1.0 ) );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( nan, inf, 1.0 ) );
   CPPUNIT_ASSERT_ASSERTION_FAIL( CPPUNIT_ASSERT_DOUBLES_EQUAL( inf, nan, 1.0 ) );
