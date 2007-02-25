@@ -1,3 +1,7 @@
+2007-02-24  Steve M. Robbins  <smr@sumost.ca>
+
+	* include/cppunit/portability/FloatingPoint.h: Include Portability.h.
+
 2007-02-24  Baptiste Lepilleur <blep@users.sourceforge.net>
 
 	* src/cppunit/TestAssert.cpp (assertDoubleEquals): Moved finite & NaN 
