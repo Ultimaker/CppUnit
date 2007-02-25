@@ -274,7 +274,7 @@ ComplexNumberTest:
 
 \code
 public: 
-  static CppUnit::Test *suite()
+  static CppUnit::TestSuite *suite()
   {
     CppUnit::TestSuite *suiteOfTests = new CppUnit::TestSuite( "ComplexNumberTest" );
     suiteOfTests->addTest( new CppUnit::TestCaller<ComplexNumberTest>( 
