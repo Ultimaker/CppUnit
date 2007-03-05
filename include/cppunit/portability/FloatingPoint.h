@@ -7,8 +7,11 @@
 CPPUNIT_NS_BEGIN
 
 /// \brief Tests if a floating-point is a NaN.
-// According to IEEE-754 floating point standard, NaN comparison should always
-// be 'false'. 
+// According to IEEE-754 floating point standard, 
+// (see e.g. page 8 of
+// http://www.cs.berkeley.edu/~wkahan/ieee754status/ieee754.ps) 
+// all comparisons with NaN are false except "x != x", which is true.
+//
 // At least Microsoft Visual Studio 6 is known not to implement this test correctly.
 // It emits the following code to test equality:
 //  fcomp       qword ptr [nan]
@@ -32,12 +35,12 @@ inline bool floatingPointIsUnordered( double x )
 
 /// \brief Tests if a floating-point is finite.
 /// @return \c true if x is neither a NaN, nor +inf, nor -inf, \c false otherwise.
-inline bool floatingPointIsFinite( double x )
+inline int floatingPointIsFinite( double x )
 {
 #if defined(CPPUNIT_HAVE_ISFINITE)
-   return (bool)isfinite( x );
+   return isfinite( x );
 #elif defined(CPPUNIT_HAVE_FINITE)
-   return (bool)finite( x );
+   return finite( x );
 #elif defined(CPPUNIT_HAVE__FINITE)
    return _finite(x);
 #else

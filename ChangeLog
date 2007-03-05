@@ -1,3 +1,8 @@
+2007-03-04  Steve M. Robbins  <smr@sumost.ca>
+
+	* include/cppunit/portability/FloatingPoint.h (floatingPointIsFinite): Change
+	return type to int, following the convention of isfinite(), finite(), etc.
+
 2007-02-25  Baptiste Lepilleur <blep@users.sourceforge.net>
 
    * doc/cookbook.dox: changed suite() to return a TestSuite instead
