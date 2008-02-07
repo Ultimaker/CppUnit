@@ -8,7 +8,7 @@
 
 #include <cppunit/Test.h>
 #include <cppunit/TestListener.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qobject.h>
 #include <qthread.h>
 #include "TestFailureInfo.h"

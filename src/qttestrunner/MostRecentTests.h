@@ -8,7 +8,7 @@
 
 #include <cppunit/Test.h>
 #include <qstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qobject.h>
 
 

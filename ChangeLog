@@ -1,3 +1,9 @@
+2008-02-07  Steve M. Robbins  <smr@sumost.ca>
+
+	* src/qttestrunner/MostRecentTests.h: 
+	* src/qttestrunner/TestRunnerModel.h: Change from <qlist.h> to
+	replacment <qptrlist.h>; avoids use of compatibility headers.
+
 2007-03-04  Steve M. Robbins  <smr@sumost.ca>
 
 	* include/cppunit/portability/FloatingPoint.h (floatingPointIsFinite): Change
