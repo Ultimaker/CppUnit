@@ -1,5 +1,19 @@
 2008-02-20  Steve M. Robbins  <smr@sumost.ca>
 
+	* Changes to build without warnings using gcc -Wall -W -ansi.
+	Applied patch [1898225] to remove name of unused argument and use
+	no-arg version of main(). Tested on both GCC 4.2.3 and a
+	prerelease of GCC 4.3.0.
+	* examples/cppunittest/assertion_traitsTest.cpp (test_toString):
+	Change template parameter of
+	CPPUNIT_NS::assertion_traits<char*>::toString() to const char*,
+	avoiding a deprecated conversion from string literal to char*.
+	* src/DllPlugInTester/CommandLineParserTest.cpp (parse): move
+	semicolon of empty loop body to its own line, avoiding a warning
+	in GCC 4.3.
+
+2008-02-20  Steve M. Robbins  <smr@sumost.ca>
+
 	* configure.in: Update CPPUNIT_MICRO_VERSION for release 1.12.1.
 
 2008-02-07  Steve M. Robbins  <smr@sumost.ca>
