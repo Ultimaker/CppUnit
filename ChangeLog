@@ -1,5 +1,10 @@
 2008-02-20  Steve M. Robbins  <smr@sumost.ca>
 
+	* examples/money/MoneyTest.h (TestFixture): Change deprecated
+	CPPUNIT_TEST_EXCEPTION to simple CPPUNIT_TEST.
+	* examples/money/MoneyTest.cpp (testAddThrow): Wrap throwing
+	expression "money += money123FF" inside CPPUNIT_ASSERT_THROW().
+
 	* Changes to build without warnings using gcc -Wall -W -ansi.
 	Applied patch [1898225] to remove name of unused argument and use
 	no-arg version of main(). Tested on both GCC 4.2.3 and a
