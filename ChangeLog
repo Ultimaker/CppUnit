@@ -1,3 +1,8 @@
+2008-10-12  Baptiste Lepilleur <blep@users.sourceforge.net>
+
+   * doc/cookbook.dox: fixed typos.
+
+
 2008-02-20  Steve M. Robbins  <smr@sumost.ca>
 
 	* examples/money/MoneyTest.h (TestFixture): Change deprecated
