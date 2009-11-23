@@ -1,9 +1,19 @@
-Applied patch #2807259
-      contributed by Jan Echternach. LIBADD_DL contains a list of libraries
-      like "-ldl". Thus, it should be in LDADD instead of LDFLAGS in case
-      one of the libraries depends on a path set in LDFLAGS.
-      
+  New in CppUnit 1.12.2:
+  ----------------------
 
+* Portability:
+
+* Compilation:
+
+   - Fixed compilation issue with Microsoft Visual Studio.Net 2008 and
+     added Visual Studio  projects (.vcproj).
+     
+   - Changes to build without warnings using gcc -Wall -W -ansi 
+     (patch #1898225 contributed by dpkatz)
+
+   - Libraries flags such as "-ldl" are now in LDADD instead of LIBADD_DL
+     ( patch #2807259 contributed by Jan Echternach).
+      
   New in CppUnit 1.12.1:
   ----------------------
 
