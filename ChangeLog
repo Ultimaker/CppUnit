@@ -1,3 +1,14 @@
+2009-11-23 Baptiste Lepilleur <blep@users.sourceforge.net>
+
+    * src/DllPlugInTester/Makefile.am:
+    * examples/cppunittest/Makefile.am:
+    * examples/money/Makefile.am:
+    * examples/simple/Makefile.am:
+    * examples/hierarchy/Makefile.am: Applied patch #2807259
+      contributed by Jan Echternach. LIBADD_DL contains a list of libraries
+      like "-ldl". Thus, it should be in LDADD instead of LDFLAGS in case
+      one of the libraries depends on a path set in LDFLAGS.
+
 2008-02-21  Steve M. Robbins  <smr@sumost.ca>
 	* examples/cppunittest/OrthodoxTest.h:
 	* examples/cppunittest/XMLOutputterTest.cpp:
