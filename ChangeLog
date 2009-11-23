@@ -1,3 +1,23 @@
+2008-02-21  Steve M. Robbins  <smr@sumost.ca>
+	* examples/cppunittest/OrthodoxTest.h:
+	* examples/cppunittest/XMLOutputterTest.cpp:
+	* examples/hierarchy/main.cpp:
+	* include/cppunit/extensions/ExceptionTestCaseDecorator.h:
+	* src/cppunit/BriefTestProgressListener.cpp:
+	* src/cppunit/TestFactoryRegistry.cpp:
+	* src/cppunit/TestPlugInDefaultImpl.cpp:
+	* src/cppunit/TestSuccessListener.cpp:
+	* src/cppunit/TextProgressListener.cpp:
+	* src/cppunit/XmlOutputterHook.cpp:
+	* src/DllPlugInTester/CommandLineParserTest.cpp:
+	* src/DllPlugInTester/DllPlugInTesterTest.cpp: Changes to suppress 
+	warnings of gcc -Wall -W -ansi, mainly from patch [1898225].
+
+2008-12-16 Andy Dent
+	* src/msvc6/testrunner/MsDevCallerListCtrl.cpp: 
+	* INSTALL-VS.Net2008.txt: Added updated project and instructions for 
+	building under Visual Studio.Net 2008 and fixed compilation issue.
+
 2008-10-12  Baptiste Lepilleur <blep@users.sourceforge.net>
 
    * doc/cookbook.dox: fixed typos.
