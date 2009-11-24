@@ -162,11 +162,17 @@
 /// \internal
 #define _CPPUNIT_DO_JOIN2( symbol1, symbol2 ) symbol1##symbol2
 
+/// \internal Unique suffix for variable name. Can be overridden in platform specific
+/// config-*.h. Default to line number.
+#ifndef CPPUNIT_UNIQUE_COUNTER
+# define CPPUNIT_UNIQUE_COUNTER __LINE__
+#endif
+
 /*! Adds the line number to the specified string to create a unique identifier.
  * \param prefix Prefix added to the line number to create a unique identifier.
  * \see CPPUNIT_TEST_SUITE_REGISTRATION for an example of usage.
  */
-#define CPPUNIT_MAKE_UNIQUE_NAME( prefix ) CPPUNIT_JOIN( prefix, __LINE__ )
+#define CPPUNIT_MAKE_UNIQUE_NAME( prefix ) CPPUNIT_JOIN( prefix, CPPUNIT_UNIQUE_COUNTER )
 
 /*! Defines wrap colunm for %CppUnit. Used by CompilerOuputter.
  */

@@ -2,6 +2,10 @@
   ----------------------
 
 * Portability:
+   - Added support for macro CPPUNIT_UNIQUE_COUNTER to config-*.h. It
+     should expands to a unique number per translation unit. Default
+     to __LINE__ if not defined. Use __COUNTER__ on MSVS 7.0+.
+     (Bug #2031696)
 
 * Compilation:
 

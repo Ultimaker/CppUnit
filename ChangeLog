@@ -1,9 +1,15 @@
 2009-11-24 Baptiste Lepilleur <blep@users.sourceforge.net>
 	* src/cppunit/TestResult.cpp: flush stdout & stderr in destructor
 	  to avoid message loss in case of crash (bug #2832029).
+
 	* include/cppunit/plugin/TestPlugIn.h: 
 	* include/cppunit/plugin/TestPlugInDefaultImpl.h: added missing dllexport
 	  for CppUnitTestPlugIn.
+
+	* include/cppunit/portability/config-msvc6.h:
+	* include/cppunit/portability/Portability.h: Added macro 
+	  CPPUNIT_UNIQUE_COUNTER on MSVS 7.0+ using __COUNTER__ to
+	  fix bug #2031696.
 
 2009-11-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
