@@ -40,7 +40,7 @@ CPPUNIT_NS_END
  * \see CPPUNIT_PLUGIN_IMPLEMENT, CPPUNIT_PLUGIN_EXPORTED_FUNCTION_IMPL
  * \see CppUnit::TestPlugInDefaultImpl, CppUnit::XmlOutputter.
  */
-struct CppUnitTestPlugIn
+struct CPPUNIT_API CppUnitTestPlugIn
 {
   /*! \brief Called just after loading the dynamic library. 
    *
