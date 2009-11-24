@@ -10,6 +10,10 @@
 	* include/cppunit/portability/Portability.h: Added macro 
 	  CPPUNIT_UNIQUE_COUNTER on MSVS 7.0+ using __COUNTER__ to
 	  fix bug #2031696.
+	  
+	* examples/examples2008.sln: Fixed compilation issue in debug
+	  configuration with VS2008 (due to incorrect configuration
+	  being picked up).
 
 2009-11-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
