@@ -18,6 +18,10 @@
 	* src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp: fixed
 	  memory leak in getCommandLineArguments() (bug #1721408).
 
+	* config/ax_cxx_gcc_abi_demangle.m4:
+	* src/cppunit/TypeInfoHelper.cpp: Fixed demangling of symbols on gcc 4.3
+	  (bug #2796543).
+
 2009-11-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
     * src/DllPlugInTester/Makefile.am:

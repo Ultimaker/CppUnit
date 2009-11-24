@@ -17,6 +17,8 @@
 
   - Libraries flags such as "-ldl" are now in LDADD instead of LIBADD_DL
     ( patch #2807259 contributed by Jan Echternach).
+
+  - Fixed detection of cxxabi.h with gcc 4.3 in configure (bug #2796543).
       
 * Test Plug-in Runner: 
   - fixed memory leak in TestPlugInRunnerDlg (#1721408)
