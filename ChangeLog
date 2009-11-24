@@ -14,6 +14,9 @@
 	* examples/examples2008.sln: Fixed compilation issue in debug
 	  configuration with VS2008 (due to incorrect configuration
 	  being picked up).
+	  
+	* src/msvc6/testpluginrunner/TestPlugInRunnerDlg.cpp: fixed
+	  memory leak in getCommandLineArguments() (bug #1721408).
 
 2009-11-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 

@@ -2,21 +2,25 @@
   ----------------------
 
 * Portability:
-   - Added support for macro CPPUNIT_UNIQUE_COUNTER to config-*.h. It
-     should expands to a unique number per translation unit. Default
-     to __LINE__ if not defined. Use __COUNTER__ on MSVS 7.0+.
-     (Bug #2031696)
+  - Added support for macro CPPUNIT_UNIQUE_COUNTER to config-*.h. It
+    should expands to a unique number per translation unit. Default
+    to __LINE__ if not defined. Use __COUNTER__ on MSVS 7.0+.
+    (Bug #2031696)
 
 * Compilation:
 
-   - Fixed compilation issue with Microsoft Visual Studio.Net 2008 and
-     added Visual Studio  projects (.vcproj).
+  - Fixed compilation issue with Microsoft Visual Studio.Net 2008 and
+    added Visual Studio  projects (.vcproj).
      
-   - Changes to build without warnings using gcc -Wall -W -ansi 
-     (patch #1898225 contributed by dpkatz)
+  - Changes to build without warnings using gcc -Wall -W -ansi 
+    (patch #1898225 contributed by dpkatz)
 
-   - Libraries flags such as "-ldl" are now in LDADD instead of LIBADD_DL
-     ( patch #2807259 contributed by Jan Echternach).
+  - Libraries flags such as "-ldl" are now in LDADD instead of LIBADD_DL
+    ( patch #2807259 contributed by Jan Echternach).
+      
+* Test Plug-in Runner: 
+  - fixed memory leak in TestPlugInRunnerDlg (#1721408)
+      
       
   New in CppUnit 1.12.1:
   ----------------------
