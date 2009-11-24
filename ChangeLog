@@ -1,3 +1,7 @@
+2009-11-24 Baptiste Lepilleur <blep@users.sourceforge.net>
+	* src/cppunit/TestResult.cpp: flush stdout & stderr in destructor
+	  to avoid message loss in case of crash (bug #2832029).
+
 2009-11-23 Baptiste Lepilleur <blep@users.sourceforge.net>
 
     * src/DllPlugInTester/Makefile.am:
