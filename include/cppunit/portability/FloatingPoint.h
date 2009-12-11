@@ -4,6 +4,11 @@
 #include <cppunit/Portability.h>
 #include <math.h>
 
+#if defined(__sun) && !defined(CPPUNIT_HAVE_ISFINITE) && defined(CPPUNIT_HAVE_FINITE)
+#include <ieeefp.h>
+  // <math.h> is still needed for usage of fabs in TestAssert.cpp
+#endif
+
 CPPUNIT_NS_BEGIN
 
 /// \brief Tests if a floating-point is a NaN.
