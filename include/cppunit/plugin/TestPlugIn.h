@@ -151,9 +151,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 #include <windows.h>
 #endif
 #define CPPUNIT_PLUGIN_IMPLEMENT_MAIN()               \
-  BOOL APIENTRY DllMain( HANDLE hModule,              \
-                         DWORD  ul_reason_for_call,   \
-                         LPVOID lpReserved )          \
+  BOOL APIENTRY DllMain( HANDLE, DWORD, LPVOID )      \
   {                                                   \
       return TRUE;                                    \
   }                                                   \
@@ -162,7 +160,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 // Unix
 #elif defined(CPPUNIT_HAVE_UNIX_DLL_LOADER) || defined(CPPUNIT_HAVE_UNIX_SHL_LOADER)
 #define CPPUNIT_PLUGIN_IMPLEMENT_MAIN()               \
-  int main( int argc, char *argv[] )                  \
+  int main( int, char *[] )                           \
   {                                                   \
     return 0;                                         \
   }                                                   \
