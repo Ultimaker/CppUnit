@@ -57,6 +57,8 @@ public:
            const std::string &detail2,
            const std::string &detail3 );
 
+  ~Message();
+
   Message &operator =( const Message &other );
 
   /*! \brief Returns the short description.

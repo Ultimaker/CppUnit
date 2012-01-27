@@ -47,6 +47,10 @@ Message::Message( const std::string &shortDescription,
   addDetail( detail1, detail2, detail3 );
 }
 
+Message::~Message()
+{
+}
+
 Message &
 Message::operator =( const Message &other )
 {
