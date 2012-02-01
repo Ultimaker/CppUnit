@@ -160,7 +160,7 @@ typedef CppUnitTestPlugIn *(*TestPlugInSignature)();
 // Unix
 #elif defined(CPPUNIT_HAVE_UNIX_DLL_LOADER) || defined(CPPUNIT_HAVE_UNIX_SHL_LOADER)
 #define CPPUNIT_PLUGIN_IMPLEMENT_MAIN()               \
-  int main( int, char *[] )                           \
+  int main()                                          \
   {                                                   \
     return 0;                                         \
   }                                                   \
