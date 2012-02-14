@@ -8,6 +8,12 @@
 #include <stdio.h>
 #include <float.h> // For struct assertion_traits<double>
 
+// Work around "passing 'T' chooses 'int' over 'unsigned int'" warnings when T
+// is an enum type:
+#if defined __GNUC__ && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 6))
+#pragma GCC system_header
+#endif
+
 
 CPPUNIT_NS_BEGIN
 
@@ -46,7 +52,16 @@ struct assertion_traits
     static std::string toString( const T& x )
     {
         OStringStream ost;
+// Work around "passing 'T' chooses 'int' over 'unsigned int'" warnings when T
+// is an enum type:
+#if defined __GNUC__ && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || __GNUC__ > 4)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-promo"
+#endif
         ost << x;
+#if defined __GNUC__ && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || __GNUC__ > 4)
+#pragma GCC diagnostic pop
+#endif
         return ost.str();
     }
 };
