@@ -24,7 +24,6 @@ AC_LANG([C++])
 # ===========================
 # Find required base packages
 # ===========================
-AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_CXX
 AC_PROG_INSTALL
@@ -36,11 +35,13 @@ AC_LIBTOOL_WIN32_DLL
 # ======================================
 # Check for various headers and settings
 # ======================================
-AC_CHECK_LIB([dl], [dlopen], [LIBADD_DL="-ldl"])
-AC_SUBST(LIBADD_DL)
-AC_CHECK_LIB([m],[isfinite],[AC_DEFINE([HAVE_ISFINITE],[1],[libm includes isfinite])])
+AC_HEADER_STDC
+AC_LTDL_DLLIB
+AC_CHECK_HEADERS(cmath,[],[],[/**/])
+AX_CXX_HAVE_ISFINITE
 AC_CHECK_FUNCS(finite)
 AX_CXX_HAVE_SSTREAM
+AC_CXX_HAVE_STRSTREAM
 
 # Enable doxygen
 BB_ENABLE_DOXYGEN
@@ -57,10 +58,13 @@ AC_ARG_ENABLE([typeinfo-name],
 )
 AS_IF([test x"$enable_typeinfo_name" = "xno" -o x"$HAVE_RTTI" != "x1"], [
 	use_typeinfo="yes"
+	typeinfoval="CPPUNIT_HAVE_RTTI"
 ], [
 	use_typeinfo="no"
+	typeinfoval="0"
 ])
-AM_CONDITIONAL(USE_TYPEINFO_NAME, [test "x$use_typeinfo" = "xyes"])
+AC_DEFINE_UNQUOTED(USE_TYPEINFO_NAME, [$typeinfoval],
+	[Define to 1 to use type_info::name() for class names])
 
 # =================================
 # Libtool/Version Makefile settings

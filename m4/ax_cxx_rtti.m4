@@ -46,7 +46,7 @@ return typeid (*ptr) == typeid (Derived);
  AC_LANG_RESTORE
 ])
 if test "$ax_cv_cxx_rtti" = yes; then
-  AC_DEFINE(HAVE_RTTI,,
+  AC_DEFINE(HAVE_RTTI,1,
             [define if the compiler supports Run-Time Type Identification])
 fi
 ])

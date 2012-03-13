@@ -36,6 +36,6 @@ using namespace std;
  AC_LANG_RESTORE
 ])
 if test "$ax_cv_cxx_have_sstream" = yes; then
-  AC_DEFINE(HAVE_SSTREAM,,[define if the compiler has stringstream])
+  AC_DEFINE(HAVE_SSTREAM,1,[define if the compiler has stringstream])
 fi
 ])

@@ -35,6 +35,6 @@ ax_cv_cxx_namespaces,
  AC_LANG_RESTORE
 ])
 if test "$ax_cv_cxx_namespaces" = yes; then
-  AC_DEFINE(HAVE_NAMESPACES,,[define if the compiler implements namespaces])
+  AC_DEFINE(HAVE_NAMESPACES,1,[define if the compiler implements namespaces])
 fi
 ])
