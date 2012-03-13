@@ -6,5 +6,5 @@ libcppunitinclude_HEADERS = \
 	CppUnitSet.h    \
 	CppUnitStack.h  \
 	CppUnitVector.h \
-   FloatingPoint.h \
-   Stream.h
+	FloatingPoint.h \
+	Stream.h

@@ -7,4 +7,4 @@ libcppunitinclude_HEADERS = \
 	config-msvc6.h \
 	SelectDllLoader.h \
 	CppUnitApi.h \
-  SourcePrefix.h
+	SourcePrefix.h

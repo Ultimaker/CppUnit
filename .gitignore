@@ -26,5 +26,7 @@ stamp-h1
 *.la
 .libs
 *.lo
+*.tar.*
 cppunit-config
 _configs.sed
+ChangeLog

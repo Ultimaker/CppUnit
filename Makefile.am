@@ -1,78 +1,82 @@
-ACLOCAL_AMFLAGS= -I m4
+ACLOCAL_AMFLAGS = -I m4
+
+.PHONY: release rpm docs doc-dist distclean-local dist-hook
 
 SUBDIRS = src include examples doc
 
-pkgconfigdatadir = $(libdir)/pkgconfig
-pkgconfigdata_DATA = cppunit.pc
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = cppunit.pc
 
 bin_SCRIPTS = cppunit-config
 man_MANS = cppunit-config.1
 
+doc_DATA = \
+	BUGS \
+	INSTALL \
+	INSTALL-unix \
+	INSTALL-WIN32.txt \
+	CodingGuideLines.txt \
+	AUTHORS \
+	doc/FAQ
+docinternal = \
+	doc/cookbook.dox \
+	doc/other_documentation.dox \
+	doc/header.html \
+	doc/footer.html \
+	doc/Money.dox \
+	doc/CppUnit-win.dox \
+	doc/makedox.bat
 
-EXTRA_DIST = BUGS INSTALL-unix INSTALL-WIN32.txt CodingGuideLines.txt	\
-	cppunit-config.1				                \
-	cppunit.m4 cppunit.spec.in cppunit.spec	        \
-	$(m4sources)					                \
-	contrib/msvc/CppUnit.WWTpl 			            \
-	contrib/msvc/readme.txt                         \
-	contrib/msvc/AddingUnitTestMethod.dsm           \
-	contrib/bc5/bcc-makefile.zip \
-	contrib/xml-xsl/tests.xml \
-	contrib/xml-xsl/report.xsl \
-	src/CppUnitLibraries.dsw \
-	lib/.keepme
+m4dir = $(datadir)/aclocal
+m4_DATA = cppunit.m4
 
-m4sources = \
-	config/ac_create_prefix_config_h.m4		\
-	config/ac_cxx_have_sstream.m4			\
-	config/ac_cxx_have_strstream.m4			\
-	config/ax_cxx_gcc_abi_demangle.m4		\
-	config/ac_cxx_namespaces.m4			\
-	config/ac_cxx_rtti.m4				\
-	config/ac_cxx_string_compare_string_first.m4	\
-	config/bb_enable_doxygen.m4			\
-	config/ac_dll.m4
+m4internal = \
+	m4/ac_cxx_have_strstream.m4 \
+	m4/ac_cxx_string_compare_string_first.m4 \
+	m4/ac_dll.m4 \
+	m4/ax_cxx_gcc_abi_demangle.m4 \
+	m4/ax_cxx_have_isfinite.m4 \
+	m4/ax_cxx_have_sstream.m4 \
+	m4/ax_cxx_namespaces.m4 \
+	m4/ax_cxx_rtti.m4 \
+	m4/ax_prefix_config_h.m4 \
+	m4/bb_enable_doxygen.m4 \
+	m4/README
 
-m4datadir = $(datadir)/aclocal
-m4data_DATA = cppunit.m4
+unusedfolders = \
+	src/msvc6 \
+	src/qttestrunner \
+	include/msvc6
 
-# Not sure what is creating the timestamp file.
-# The so_locations file only happens on IRIX.
-DISTCLEANFILES = config/stamp-h1 so_locations
+EXTRA_DIST = \
+	autogen.sh \
+	contrib \
+	examples \
+	$(pkgconfig_DATA) \
+	$(man_MANS) \
+	$(doc_DATA) \
+	$(m4_DATA) \
+	$(m4internal) \
+	$(docinternal) \
+	$(unusedfolders)
+
 
 dist-hook:
-	cp -dpR $(top_srcdir)/src/msvc6 $(distdir)/src
-	cp -dpR $(top_srcdir)/src/qttestrunner $(distdir)/src
-	cp -dpR $(top_srcdir)/include/msvc6 $(distdir)/include 
-	cp -dpR $(top_srcdir)/examples/msvc6 $(distdir)/examples
-	cp -dpR $(top_srcdir)/examples/qt $(distdir)/examples
-	test -d $(distdir)/lib || mkdir $(distdir)/lib
-	find $(distdir) -name CVS | xargs rm -rf
+	git log --date=short --pretty="format:@%cd  %an  <%ae>  [%H]%n%n%s%n%n%e%b" | sed -e "s|^\([^@]\)|\t\1|" -e "s|^@||" >$(distdir)/ChangeLog
 	perl -pi -e 's/\n/\r\n/g' `find $(distdir) -name '*.ds?'` \
 		$(distdir)/contrib/msvc/*			  \
 		$(distdir)/INSTALL-WIN32.txt
 
-.PHONY: release snapshot rpm docs doc-dist
-
 release:
-	rm -rf .deps */.deps
 	$(MAKE) distcheck
 
-snapshot:
-	$(MAKE) dist distdir=$(PACKAGE)-`date +%Y-%m-%d`
-
 rpm: dist
-	rpm -ta $(PACKAGE)-$(VERSION).tar.gz
-	mv -f /usr/src/redhat/SRPMS/$(PACKAGE)-$(VERSION)-*.rpm .
-	mv -f /usr/src/redhat/RPMS/*/$(PACKAGE)-$(VERSION)-*.rpm .
-	mv -f /usr/src/redhat/RPMS/*/$(PACKAGE)-doc-$(VERSION)-*.rpm .
-
-debian:
-	chmod a+x debian/rules
-	dpkg-buildpackage -rfakeroot -sa -us -uc -tc 
+	rpmbuild -ta $(PACKAGE)-$(VERSION).tar.xz
+	@rm -f $(PACKAGE)-$(VERSION).tar.xz
 
 doc-dist:
 	$(MAKE) -C doc doc-dist
-	mv -f doc/$(PACKAGE)-docs-$(VERSION).tar.gz .
+	mv -f doc/$(PACKAGE)-docs-$(VERSION).tar.xz .
 
-
+distclean-local:
+	rm -rf *.cache *~ $(PACKAGE)*.tar.*

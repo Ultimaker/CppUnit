@@ -7,7 +7,7 @@ check_PROGRAMS = $(TESTS)
 
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 
-hierarchy_SOURCES= BoardGame.cpp \
+hierarchy_SOURCES = BoardGame.cpp \
                    Chess.cpp \
                    main.cpp \
                    BoardGame.h \
@@ -15,6 +15,6 @@ hierarchy_SOURCES= BoardGame.cpp \
                    BoardGameTest.h \
                    ChessTest.h
 
-hierarchy_LDADD= \
+hierarchy_LDADD = \
   $(top_builddir)/src/cppunit/libcppunit.la \
   $(LIBADD_DL)
