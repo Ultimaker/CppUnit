@@ -15,7 +15,6 @@ static_pages = FAQ
 
 if DOC
 
-htmldir = $(pkgdatadir)/html
 html_DATA = $(static_pages) html/index.html
 
 install-data-hook:

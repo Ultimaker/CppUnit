@@ -1,10 +1,8 @@
-AUTOMAKE_OPTIONS = 1.4
-ACLOCAL_AMFLAGS = -I config
+ACLOCAL_AMFLAGS= -I m4
 
 SUBDIRS = src include examples doc
 
 pkgconfigdatadir = $(libdir)/pkgconfig
-
 pkgconfigdata_DATA = cppunit.pc
 
 bin_SCRIPTS = cppunit-config

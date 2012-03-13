@@ -2,7 +2,7 @@ EXTRA_DIST = DllPlugInTester.dsp DllPlugInTesterTest.dsp
 
 INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
 
-bin_PROGRAMS=DllPlugInTester
+bin_PROGRAMS = DllPlugInTester
 
 TESTS = DllPlugInTesterTest
 check_PROGRAMS = $(TESTS)

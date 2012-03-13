@@ -1,0 +1,177 @@
+# Process this file with autoconf to create configure.
+
+AC_PREREQ([2.65])
+
+# ====================
+# Version informations
+# ====================
+m4_define([cppunit_version_major],[1])
+m4_define([cppunit_version_minor],[13])
+m4_define([cppunit_version_micro],[0])
+m4_define([cppunit_version],[cppunit_version_major.cppunit_version_minor.cppunit_version_micro])
+m4_define([cppunit_interface_age], [0])
+m4_define([cppunit_binary_age], [0])
+
+# =============
+# Automake init
+# =============
+AC_INIT([cppunit],[cppunit_version])
+AC_CONFIG_MACRO_DIR([m4])
+AM_INIT_AUTOMAKE([1.11 foreign dist-xz dist-bzip2])
+AM_SILENT_RULES([yes])
+AC_LANG([C++])
+
+# ===========================
+# Find required base packages
+# ===========================
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_LIBTOOL
+AC_LIBTOOL_WIN32_DLL
+
+# ======================================
+# Check for various headers and settings
+# ======================================
+AC_CHECK_LIB([dl], [dlopen], [LIBADD_DL="-ldl"])
+AC_SUBST(LIBADD_DL)
+AC_CHECK_LIB([m],[isfinite],[AC_DEFINE([HAVE_ISFINITE],[1],[libm includes isfinite])])
+AC_CHECK_FUNCS(finite)
+AX_CXX_HAVE_SSTREAM
+
+# Enable doxygen
+BB_ENABLE_DOXYGEN
+
+# Compiler characteristics
+AC_CXX_RTTI
+AX_CXX_GCC_ABI_DEMANGLE
+AC_CXX_STRING_COMPARE_STRING_FIRST
+
+AC_ARG_ENABLE([typeinfo-name],
+	[AS_HELP_STRING([--disable-typeinfo-name], [Disable use of RTTI for class names])],
+	[enable_typeinfo_name="$enableval"],
+	[enable_typeinfo_name=yes]
+)
+AS_IF([test x"$enable_typeinfo_name" = "xno" -o x"$HAVE_RTTI" != "x1"], [
+	use_typeinfo="yes"
+], [
+	use_typeinfo="no"
+])
+AM_CONDITIONAL(USE_TYPEINFO_NAME, [test "x$use_typeinfo" = "xyes"])
+
+# =================================
+# Libtool/Version Makefile settings
+# =================================
+AC_SUBST(CPPUNIT_MAJOR_VERSION, [cppunit_version_major])
+AC_SUBST(CPPUNIT_MINOR_VERSION, [cppunit_version_minor])
+AC_SUBST(CPPUNIT_MICRO_VERSION, [cppunit_version_micro])
+AC_SUBST(CPPUNIT_BINARY_AGE, [cppunit_binary_age])
+AC_SUBST(CPPUNIT_INTERFACE_AGE, [cppunit_interface_age])
+LT_RELEASE=$CPPUNIT_MAJOR_VERSION.$CPPUNIT_MINOR_VERSION
+LT_CURRENT=`expr $CPPUNIT_MICRO_VERSION - $CPPUNIT_INTERFACE_AGE`
+LT_AGE=`expr $CPPUNIT_BINARY_AGE - $CPPUNIT_INTERFACE_AGE`
+
+AC_SUBST(LT_RELEASE)
+AC_SUBST(LT_CURRENT)
+AC_SUBST(LT_REVISION, [cppunit_interface_age])
+AC_SUBST(LT_AGE)
+
+# ================
+# Check for cflags
+# ================
+AC_ARG_ENABLE([werror],
+	[AS_HELP_STRING([--disable-werror], [Treat all warnings as errors, useful for development])],
+	[enable_werror="$enableval"],
+	[enable_werror=yes]
+)
+AS_IF([test x"$enable_werror" != "xno"], [
+	CFLAGS="$CFLAGS -Werror"
+	CXXFLAGS="$CXXFLAGS -Werror"
+])
+# Courtesy of Glib: Ensure MSVC-compatible struct packing convention
+# is used when compiling for Win32 with gcc.
+AS_IF([test "x$native_win32" = "xyes"], [
+	AC_CHECK_TOOL(WINDRES, windres)
+	AS_IF([test x"$GCC" = xyes], [
+		AC_MSG_CHECKING([how to get MSVC-compatible struct packing])
+		AS_IF([test -z "$ac_cv_prog_CC"], [
+			our_gcc="$CC"
+		], [
+			our_gcc="$ac_cv_prog_CC"
+		])
+		AS_IF([$our_gcc -v --help 2>/dev/null | grep ms-bitfields >/dev/null], [
+			msnative_struct="-mms-bitfields"
+			CFLAGS="$CFLAGS $msnative_struct"
+			CXXFLAGS="$CXXFLAGS $msnative_struct"
+			AC_MSG_RESULT([${msnative_struct}])
+		], [
+			AC_MSG_RESULT([no way])
+			AC_MSG_WARN([produced libraries might be incompatible with MSVC-compiled code])
+		])
+	])
+	CFLAGS="$CFLAGS -Wall -pedantic"
+	CXXFLAGS="$CXXFLAGS -Wall -pedantic"
+], [
+	AS_IF([test x"$GCC" = xyes], [
+		# Be tough with warnings and produce less careless code
+		CFLAGS="$CFLAGS -Wall -pedantic"
+		CXXFLAGS="$CXXFLAGS -Wall -pedantic -Weffc++"
+	])
+])
+CPPUNIT_CXXFLAGS="$CPPUNIT_CFLAGS"
+AC_SUBST(CPPUNIT_CXXFLAGS)
+
+# ==============
+# Setup config.h
+# ==============
+AM_CONFIG_HEADER([config.h])
+AX_PREFIX_CONFIG_H([include/cppunit/config-auto.h])
+
+# =====================
+# Prepare all .in files
+# =====================
+AC_CONFIG_FILES([
+	Makefile
+	cppunit.pc
+	cppunit.spec
+	cppunit-config
+	src/Makefile
+	src/DllPlugInTester/Makefile
+	src/cppunit/Makefile
+	include/Makefile
+	include/cppunit/Makefile
+	include/cppunit/config/Makefile
+	include/cppunit/extensions/Makefile
+	include/cppunit/plugin/Makefile
+	include/cppunit/portability/Makefile
+	include/cppunit/tools/Makefile
+	include/cppunit/ui/Makefile
+	include/cppunit/ui/mfc/Makefile
+	include/cppunit/ui/qt/Makefile
+	include/cppunit/ui/text/Makefile
+	doc/Makefile
+	doc/Doxyfile
+	examples/Makefile
+	examples/simple/Makefile
+	examples/hierarchy/Makefile
+	examples/cppunittest/Makefile
+	examples/ClockerPlugIn/Makefile
+	examples/DumperPlugIn/Makefile
+	examples/money/Makefile
+])
+AC_OUTPUT
+
+# ==============================================
+# Display final informations about configuration
+# ==============================================
+AC_MSG_NOTICE([
+==============================================================================
+Build configuration:
+	docs:            ${enable_doc}
+	werror:          ${enable_werror}
+	typeinfo-name:   ${use_typeinfo}
+==============================================================================
+])
