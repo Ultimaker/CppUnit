@@ -121,8 +121,9 @@ AS_IF([test "x$native_win32" = "xyes"], [
 ], [
 	AS_IF([test x"$GCC" = xyes], [
 		# Be tough with warnings and produce less careless code
+		# Weffc++ currently prints too much warnings
 		CFLAGS="$CFLAGS -Wall -pedantic"
-		CXXFLAGS="$CXXFLAGS -Wall -pedantic -Weffc++"
+		CXXFLAGS="$CXXFLAGS -Wall -pedantic" # -Weffc++"
 	])
 ])
 CPPUNIT_CXXFLAGS="$CPPUNIT_CFLAGS"
