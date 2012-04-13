@@ -1,3 +1,17 @@
+  New in CppUnit 1.13.0:
+  ----------------------
+
+* Compilation
+
+  - destructor of Message causes segfault when testing (rhbz#641350)
+
+  - use correct CPPUNIT_VERSION value (sf#2983798)
+
+  - allow -Werror builds
+    (various Libreoffice patches)
+
+  - finite in "ieeefp.h" instead of math.h on Solaris (sf#2912590)
+
   New in CppUnit 1.12.2:
   ----------------------
 
