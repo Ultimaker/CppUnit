@@ -1,5 +1,6 @@
 #include <cppunit/config/SourcePrefix.h>
 #include <cppunit/XmlOutputterHook.h>
+#include <stdint.h>
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 #include <cppunit/extensions/TestFactoryRegistry.h>
@@ -31,8 +32,8 @@ PlugInManager::load( const std::string &libraryFileName,
   info.m_fileName = libraryFileName;
   info.m_manager = new DynamicLibraryManager( libraryFileName );
 
-  TestPlugInSignature plug = (TestPlugInSignature)info.m_manager->findSymbol( 
-        CPPUNIT_STRINGIZE( CPPUNIT_PLUGIN_EXPORTED_NAME ) );
+  TestPlugInSignature plug = (TestPlugInSignature)((uintptr_t)info.m_manager->findSymbol( 
+        CPPUNIT_STRINGIZE( CPPUNIT_PLUGIN_EXPORTED_NAME ) ));
   info.m_interface = (*plug)();
 
   m_plugIns.push_back( info );
