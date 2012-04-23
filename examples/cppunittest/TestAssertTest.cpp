@@ -49,6 +49,8 @@ TestAssertTest::testAssertThrow()
    {
       int x;
       CPPUNIT_ASSERT_THROW( x = 1234, std::string );
+      // prevent warning
+      x += 1;
    }
    catch ( CPPUNIT_NS::Exception & )
    {
@@ -64,6 +66,8 @@ TestAssertTest::testAssertNoThrow()
 {
    int x;
    CPPUNIT_ASSERT_NO_THROW( x = 1234 );
+   // prevent warning
+   x += 1;
 
    try
    {
@@ -86,6 +90,8 @@ TestAssertTest::testAssertAssertionFail()
    {
       int x;
       CPPUNIT_ASSERT_ASSERTION_FAIL( x = 1234 );
+      // prevent warning
+      x += 1;
    }
    catch ( CPPUNIT_NS::Exception & )
    {
@@ -101,6 +107,8 @@ TestAssertTest::testAssertAssertionPass()
 {
    int x;
    CPPUNIT_ASSERT_ASSERTION_PASS( x = 1234 );
+   // prevent warning
+   x += 1;
 
    try
    {
