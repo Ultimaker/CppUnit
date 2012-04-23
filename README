@@ -1,7 +1,6 @@
 		CppUnit --- The C++ Unit Test Library
 		-------------------------------------
-		    http://cppunit.sourceforge.net
-
+            http://www.freedesktop.org/wiki/Software/cppunit
 
 CppUnit is the C++ port of the famous JUnit framework for unit
 testing.
@@ -10,10 +9,9 @@ For MSWindows installation notes, see INSTALL-WIN32.txt.
 For other systems -- including cygwin -- see INSTALL and INSTALL-unix.
 
 
-Bug reports are welcome.  Please use the SourceForge bug tracking
-system at http://sourceforge.net/projects/cppunit/.  Bugs that already
-appear in the file BUGS do not need to be reported.
+Bug reports are welcome. Please open bug reports for Cppunit at
+bugs.freedesktop.org under the component Libreoffice.
 
 Email to the current maintainers may be sent to
-<cppunit-devel@lists.sourceforge.net>.
+<libreoffice@lists.freedesktop.org>
 
