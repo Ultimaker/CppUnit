@@ -13,6 +13,10 @@ class TestAssertTest : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( testAssertAssertionPass );
   CPPUNIT_TEST( testAssert );
   CPPUNIT_TEST( testAssertEqual );
+  CPPUNIT_TEST( testAssertLess );
+  CPPUNIT_TEST( testAssertGreater );
+  CPPUNIT_TEST( testAssertLessEqual );
+  CPPUNIT_TEST( testAssertGreaterEqual );
   CPPUNIT_TEST( testAssertMessageTrue );
   CPPUNIT_TEST( testAssertMessageFalse );
   CPPUNIT_TEST( testAssertDoubleEquals );
@@ -39,6 +43,10 @@ public:
   void testAssert();
   
   void testAssertEqual();
+  void testAssertLess();
+  void testAssertGreater();
+  void testAssertLessEqual();
+  void testAssertGreaterEqual();
 
   void testAssertMessageTrue();
   void testAssertMessageFalse();
