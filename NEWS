@@ -12,6 +12,10 @@
 
   - finite in "ieeefp.h" instead of math.h on Solaris (sf#2912590)
 
+* Documentation
+
+  - Updated several false documentation entries (sf#2185407, sf#2186611)
+
   New in CppUnit 1.12.2:
   ----------------------
 
