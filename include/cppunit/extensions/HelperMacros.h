@@ -308,13 +308,13 @@
  * #include <vector>
  * class MyTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( MyTest );
- *   CPPUNIT_TEST_EXCEPTION( testVectorAtThrow, std::invalid_argument );
+ *   CPPUNIT_TEST_EXCEPTION( testVectorAtThrow, std::out_of_range );
  *   CPPUNIT_TEST_SUITE_END();
  * public:
  *   void testVectorAtThrow()
  *   {
  *     std::vector<int> v;
- *     v.at( 1 );     // must throw exception std::invalid_argument
+ *     v.at( 1 );     // must throw exception std::out_of_range
  *   }
  * };
  * \endcode
