@@ -168,6 +168,7 @@
       									       \
     struct CppUnitExDeleter { /* avoid deprecated auto_ptr warnings */         \
 	CPPUNIT_NS::TestSuite *suite;					       \
+	CppUnitExDeleter() : suite (0) {}				       \
 	~CppUnitExDeleter() { delete suite; }				       \
 	CPPUNIT_NS::TestSuite *release() {                                     \
 		CPPUNIT_NS::TestSuite *tmp = suite; suite = NULL; return tmp;  \
