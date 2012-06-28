@@ -13,10 +13,10 @@ static_pages = FAQ
 # However, the manpages do not appear to be tremendously useful, so
 # let's not bother.
 
-if DOC
-
 htmldir = $(pkgdatadir)/html
 html_DATA = $(static_pages) html/index.html
+
+if DOC
 
 install-data-hook:
 	cp -pR html/* $(DESTDIR)$(htmldir)
