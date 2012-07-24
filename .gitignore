@@ -1,0 +1,27 @@
+# Backup and temporary files.
+*~
+.*sw?
+\#*
+.DS_Store
+
+# Build-generated stuff.
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+build.log
+build_2.log
+config.log
+config.status
+config/
+configure
+cppunit-config
+cppunit.pc
+cppunit.spec
+
+# Compiled files.
+*.o
+*.lo
+*.la
+*.deps/
+*.libs/
