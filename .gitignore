@@ -19,8 +19,10 @@ cppunit-config
 cppunit.pc
 cppunit.spec
 doc/Doxyfile
+examples/simple/simple
 include/cppunit/config-auto.h
 libtool
+src/DllPlugInTester/DllPlugInTester
 
 # Compiled files.
 *.o
