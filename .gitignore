@@ -19,10 +19,14 @@ cppunit-config
 cppunit.pc
 cppunit.spec
 doc/Doxyfile
+examples/cppunittest/cppunittestmain
+examples/hierarchy/hierarchy
+examples/money/MoneyApp
 examples/simple/simple
 include/cppunit/config-auto.h
 libtool
 src/DllPlugInTester/DllPlugInTester
+src/DllPlugInTester/DllPlugInTesterTest
 
 # Compiled files.
 *.o
