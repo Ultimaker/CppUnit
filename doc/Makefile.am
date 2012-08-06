@@ -1,7 +1,11 @@
 .PHONY: install-data-hook uninstall-local clean-local
 
+htmldir=
+html_DATA=
+
 if DOC
-html_DATA = html/index.html
+htmldir += $(pkgdatadir)/html
+html_DATA += $(static_pages) html/index.html
 
 install-data-hook:
 	cp -pR html/* $(DESTDIR)$(htmldir)

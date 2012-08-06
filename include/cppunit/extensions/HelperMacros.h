@@ -165,18 +165,28 @@
  */
 #define CPPUNIT_TEST_SUITE_END()                                               \
     }                                                                          \
+      									       \
+    struct CppUnitExDeleter { /* avoid deprecated auto_ptr warnings */         \
+	CPPUNIT_NS::TestSuite *suite;					       \
+	CppUnitExDeleter() : suite (0) {}				       \
+	~CppUnitExDeleter() { delete suite; }				       \
+	CPPUNIT_NS::TestSuite *release() {                                     \
+		CPPUNIT_NS::TestSuite *tmp = suite; suite = NULL; return tmp;  \
+        }                                                                      \
+    };                                                                         \
                                                                                \
+public:									       \
     static CPPUNIT_NS::TestSuite *suite()                                      \
     {                                                                          \
       const CPPUNIT_NS::TestNamer &namer = getTestNamer__();                   \
-      std::auto_ptr<CPPUNIT_NS::TestSuite> suite(                              \
-             new CPPUNIT_NS::TestSuite( namer.getFixtureName() ));             \
+      CppUnitExDeleter guard;                                                  \
+      guard.suite = new CPPUNIT_NS::TestSuite( namer.getFixtureName() );       \
       CPPUNIT_NS::ConcretTestFixtureFactory<TestFixtureType> factory;          \
-      CPPUNIT_NS::TestSuiteBuilderContextBase context( *suite.get(),           \
+      CPPUNIT_NS::TestSuiteBuilderContextBase context( *guard.suite,           \
                                                        namer,                  \
                                                        factory );              \
       TestFixtureType::addTestsToSuite( context );                             \
-      return suite.release();                                                  \
+      return guard.release();                                                  \
     }                                                                          \
   private: /* dummy typedef so that the macro can still end with ';'*/         \
     typedef int CppUnitDummyTypedefForSemiColonEnding__
@@ -308,13 +318,13 @@
  * #include <vector>
  * class MyTest : public CppUnit::TestFixture {
  *   CPPUNIT_TEST_SUITE( MyTest );
- *   CPPUNIT_TEST_EXCEPTION( testVectorAtThrow, std::invalid_argument );
+ *   CPPUNIT_TEST_EXCEPTION( testVectorAtThrow, std::out_of_range );
  *   CPPUNIT_TEST_SUITE_END();
  * public:
  *   void testVectorAtThrow()
  *   {
  *     std::vector<int> v;
- *     v.at( 1 );     // must throw exception std::invalid_argument
+ *     v.at( 1 );     // must throw exception std::out_of_range
  *   }
  * };
  * \endcode

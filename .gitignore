@@ -29,4 +29,8 @@ stamp-h1
 *.tar.*
 cppunit-config
 _configs.sed
-ChangeLog
+
+examples/cppunittest/cppunittestmain
+examples/hierarchy/hierarchy
+examples/money/MoneyApp
+src/DllPlugInTester/DllPlugInTesterTest

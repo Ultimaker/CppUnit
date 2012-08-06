@@ -1,6 +1,12 @@
   New in CppUnit 1.13.0:
   ----------------------
 
+* Portability:
+  - Added support for macro CPPUNIT_UNIQUE_COUNTER to config-*.h. It
+    should expands to a unique number per translation unit. Default
+    to __LINE__ if not defined. Use __COUNTER__ on MSVS 7.0+.
+    (Bug #2031696)
+
 * Compilation
 
   - destructor of Message causes segfault when testing (rhbz#641350)
@@ -12,19 +18,8 @@
 
   - finite in "ieeefp.h" instead of math.h on Solaris (sf#2912590)
 
-  New in CppUnit 1.12.2:
-  ----------------------
-
-* Portability:
-  - Added support for macro CPPUNIT_UNIQUE_COUNTER to config-*.h. It
-    should expands to a unique number per translation unit. Default
-    to __LINE__ if not defined. Use __COUNTER__ on MSVS 7.0+.
-    (Bug #2031696)
-
-* Compilation:
-
-  - Fixed compilation issue with Microsoft Visual Studio.Net 2008 and
-    added Visual Studio  projects (.vcproj).
+  - Fixed compilation issue with Microsoft Visual Studio.Net 2005/2008 and
+    added Visual Studio 2005/2010  projects (.vcproj/.vcxproj)
      
   - Changes to build without warnings using gcc -Wall -W -ansi 
     (patch #1898225 contributed by dpkatz)
@@ -33,7 +28,13 @@
     ( patch #2807259 contributed by Jan Echternach).
 
   - Fixed detection of cxxabi.h with gcc 4.3 in configure (bug #2796543).
+
+  - made TestCaseDecorator copy c'tor and operator= private (fdo#51317)
       
+* Documentation
+
+  - Updated several false documentation entries (sf#2185407, sf#2186611)
+
 * Test Plug-in Runner: 
   - fixed memory leak in TestPlugInRunnerDlg (#1721408)
       

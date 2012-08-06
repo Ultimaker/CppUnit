@@ -64,8 +64,10 @@ namespace IDEHandler = VC6IdeHandler;
 
 #pragma warning( disable : 4278 )
 #pragma warning( disable : 4146 )
-#if (_MSC_VER < 1500)
+#if (_MSC_VER == 1300)
 #import "libid:80cc9f66-e7d8-4ddd-85b6-d9e6cd0e93e2" version("7.0") lcid("0") raw_interfaces_only named_guids
+#elif (_MSC_VER == 1400)
+#import "libid:80cc9f66-e7d8-4ddd-85b6-d9e6cd0e93e2" version("8.0") lcid("0") raw_interfaces_only named_guids
 #else
 #import "libid:80cc9f66-e7d8-4ddd-85b6-d9e6cd0e93e2" version("9.0") lcid("0") raw_interfaces_only named_guids
 #endif
