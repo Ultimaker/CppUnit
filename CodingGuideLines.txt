@@ -59,3 +59,16 @@ iostream, as well as exception support.
 
 --
 Baptiste Lepilleur <gaiacrtn@free.fr>
+
+CppUnit's version control system management
+--------------------------------------------
+
+- only commit patches that are known to build; other commits might just be reverted
+  to allow bisecting
+
+- work in feature branches until your feature is ready to merge, if the feature
+  may break the build ask for review on the libreoffice developer mailing list
+
+- new features and patches without bug report only in master
+  and not in stable branches
+
