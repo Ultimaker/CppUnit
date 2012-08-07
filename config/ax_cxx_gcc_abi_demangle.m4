@@ -15,7 +15,7 @@ ac_cv_cxx_gcc_abi_demangle,
  AC_LANG_CPLUSPLUS
  AC_TRY_COMPILE([#include <typeinfo>
 #include <cxxabi.h>
-#include <malloc.h> 
+#include <cstdlib>
 #include <string>
 
 template<typename TYPE>
