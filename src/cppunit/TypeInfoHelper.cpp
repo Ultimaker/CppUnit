@@ -24,8 +24,16 @@ TypeInfoHelper::getClassName( const std::type_info &info )
 
   c_name = abi::__cxa_demangle( info.name(), 0, 0, &status );
   
-  std::string name( c_name );
-  free( c_name );  
+  std::string name;
+  if(c_name)
+  {
+      name = std::string( c_name );
+      free( c_name );  
+  }
+  else
+  {
+      name = std::string( info.name() );
+  }
 
 #else   // CPPUNIT_HAVE_GCC_ABI_DEMANGLE
 
