@@ -6,7 +6,7 @@
 #include <string>
 
 #if CPPUNIT_HAVE_GCC_ABI_DEMANGLE
-#include <malloc.h>
+#include <cstdlib>
 #include <cxxabi.h>
 #endif
 
