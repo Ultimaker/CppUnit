@@ -7,7 +7,7 @@ AC_PREREQ([2.65])
 # ====================
 m4_define([cppunit_version_major],[1])
 m4_define([cppunit_version_minor],[13])
-m4_define([cppunit_version_micro],[0])
+m4_define([cppunit_version_micro],[1])
 m4_define([cppunit_version],[cppunit_version_major.cppunit_version_minor.cppunit_version_micro])
 m4_define([cppunit_interface_age], [0])
 m4_define([cppunit_binary_age], [0])
