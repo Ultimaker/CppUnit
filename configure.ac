@@ -6,8 +6,8 @@ AC_PREREQ([2.65])
 # Version informations
 # ====================
 m4_define([cppunit_version_major],[1])
-m4_define([cppunit_version_minor],[13])
-m4_define([cppunit_version_micro],[1])
+m4_define([cppunit_version_minor],[14])
+m4_define([cppunit_version_micro],[0])
 m4_define([cppunit_version],[cppunit_version_major.cppunit_version_minor.cppunit_version_micro])
 m4_define([cppunit_interface_age], [0])
 m4_define([cppunit_binary_age], [0])
@@ -86,6 +86,7 @@ AC_SUBST(LT_AGE)
 # ================
 # Check for cflags
 # ================
+
 AC_ARG_ENABLE([werror],
 	[AS_HELP_STRING([--disable-werror], [Treat all warnings as errors, useful for development])],
 	[enable_werror="$enableval"],
