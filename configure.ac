@@ -99,8 +99,8 @@ AS_IF([test x"$enable_werror" != "xno"], [
 AS_IF([test x"$GCC" = xyes], [
 	# Be tough with warnings and produce less careless code
 	# Weffc++ currently prints too much warnings
-	CFLAGS="$CFLAGS -Wall -pedantic"
-	CXXFLAGS="$CXXFLAGS -Wall -pedantic" # -Weffc++"
+	CFLAGS="$CFLAGS -Wall -Wextra -pedantic"
+	CXXFLAGS="$CXXFLAGS -Wall -Wextra -pedantic" # -Weffc++"
 ])
 CPPUNIT_CXXFLAGS="$CPPUNIT_CFLAGS"
 AC_SUBST(CPPUNIT_CXXFLAGS)
