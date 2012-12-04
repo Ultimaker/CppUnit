@@ -91,15 +91,15 @@ AC_SUBST(LT_AGE)
 # Debug
 # =====
 AC_ARG_ENABLE(debug,
-        AS_HELP_STRING([--enable-debug], [Build with debug features in mind.])],
-        [enable_debug="$enableval"],
-        [enable_debug=no]
+	AS_HELP_STRING([--enable-debug], [Build with debug features in mind.])],
+	[enable_debug="$enableval"],
+	[enable_debug=no]
 )
 AS_IF([test "x$enable_debug" != "xno"], [
-        CFLAGS="$CFLAGS -g"
-        CXXFLAGS="$CXXFLAGS -g"
+	CFLAGS="$CFLAGS -g"
+	CXXFLAGS="$CXXFLAGS -g"
 ], [
-        AC_DEFINE([NDEBUG], [], [Disable debugging information])
+	AC_DEFINE([NDEBUG], [], [Disable debugging information])
 ])
 
 AC_ARG_ENABLE([werror],
@@ -166,7 +166,7 @@ AC_OUTPUT
 AC_MSG_NOTICE([
 ==============================================================================
 Build configuration:
-        debug:           ${enable_debug}
+	debug:           ${enable_debug}
 	docs:            ${enable_doc}
 	werror:          ${enable_werror}
 	typeinfo-name:   ${use_typeinfo}
