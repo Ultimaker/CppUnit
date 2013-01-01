@@ -123,7 +123,7 @@ AC_SUBST(CPPUNIT_CXXFLAGS)
 # ==============
 # Setup config.h
 # ==============
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AX_PREFIX_CONFIG_H([include/cppunit/config-auto.h])
 
 # =====================
