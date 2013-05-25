@@ -34,7 +34,11 @@ DynamicLibraryManager::doFindSymbol( const std::string &symbol )
 std::string 
 DynamicLibraryManager::getLastErrorDetail() const
 {
-  return "";
+    const char* last_error = ::dlerror();
+    if(last_error)
+        return last_error;
+    else
+        return "";
 }
 
 
