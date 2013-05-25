@@ -79,7 +79,7 @@ void cdxCDynamicDialog::OnSizing(UINT fwSide, LPRECT pRect)
 	DoOnSizing(fwSide, pRect);
 }
 
-void cdxCDynamicDialog::OnTimer(UINT idEvent)
+void cdxCDynamicDialog::OnTimer(UINT_PTR idEvent)
 {
 	CDialog::OnTimer(idEvent);
 	DoOnTimer(idEvent);

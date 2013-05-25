@@ -676,7 +676,7 @@ void cdxCDynamicWnd::StartAntiFlickering(bool bIsBotRight)
  * Changes back the class style.
  */
 
-void cdxCDynamicWnd::DoOnTimer(UINT nIDEvent) 
+void cdxCDynamicWnd::DoOnTimer(UINT_PTR nIDEvent)
 {
 	if(IsWindow() && (nIDEvent == m_nMyTimerID))
 	{

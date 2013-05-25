@@ -254,7 +254,7 @@ public:
 	CSize						m_szMin,				// min/max CLIENT size (set to zero to disable)
 								m_szMax;
 	UINT						m_idSizeIcon;		// id of size icon (default to AFX_IDW_SIZE_BOX)
-	UINT						m_nMyTimerID;		// id of the timer used by me
+	UINT_PTR    				m_nMyTimerID;		// id of the timer used by me
 	bool						m_bUseScrollPos;	// use scroll position when moving controls
 
 public:
@@ -353,7 +353,7 @@ protected:
 	void DoOnDestroy();
 
 	void DoOnParentNotify(UINT message, LPARAM lParam);
-	void DoOnTimer(UINT nIDEvent);
+	void DoOnTimer(UINT_PTR nIDEvent);
 	void DoOnSize(UINT nType, int cx, int cy);
 	void DoOnSizing(UINT fwSide, LPRECT pRect);
 	void DoOnGetMinMaxInfo(MINMAXINFO FAR* lpMMI);
