@@ -1,3 +1,12 @@
+  New in CppUnit 1.13.2:
+  ---------------------
+
+* Portability:
+  - Supports 64 bit build on windows
+
+  - Report errors from dlopen and dlclose on windows through dlerror on
+    unix.
+
   New in CppUnit 1.13.0:
   ----------------------
 
