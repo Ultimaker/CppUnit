@@ -4,8 +4,16 @@
 * Portability:
   - Supports 64 bit build on windows
 
-  - Report errors from dlopen and dlclose on windows through dlerror on
-    unix.
+  - Report errors from dlopen and dlclose through dlerror on
+    unix/linux.
+
+  New in CppUnit 1.13.1:
+  ---------------------
+
+* Portability:
+  - Use portable way to use free (fdo#52536)
+
+  - Prevent crash when demangling fails with gcc (fdo#52539)
 
   New in CppUnit 1.13.0:
   ----------------------
