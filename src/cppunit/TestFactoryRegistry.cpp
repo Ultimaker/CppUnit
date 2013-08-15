@@ -50,6 +50,7 @@ private:
 
 public:
   TestFactoryRegistryList()
+    : m_registries()
   {
     stateFlag( exist );
   }
@@ -83,6 +84,7 @@ public:
 
 
 TestFactoryRegistry::TestFactoryRegistry( std::string name ) :
+    m_factories(),
     m_name( name )
 {
 }

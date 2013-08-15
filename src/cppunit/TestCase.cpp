@@ -34,6 +34,10 @@ public:
   }
 
 private:
+  // disable copying
+  TestCaseMethodFunctor( const TestCaseMethodFunctor& );
+  // disable copying
+  TestCaseMethodFunctor& operator=( const TestCaseMethodFunctor& );
   TestCase *m_target;
   Method m_method;
 };

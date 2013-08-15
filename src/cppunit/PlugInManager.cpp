@@ -13,6 +13,7 @@ CPPUNIT_NS_BEGIN
 
 
 PlugInManager::PlugInManager()
+    : m_plugIns()
 {
 }
 

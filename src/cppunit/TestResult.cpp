@@ -14,7 +14,8 @@ CPPUNIT_NS_BEGIN
 
 TestResult::TestResult( SynchronizationObject *syncObject )
     : SynchronizedObject( syncObject )
-    , m_protectorChain( new ProtectorChain() )
+    , m_listeners()
+    , m_protectorChain( new ProtectorChain )
     , m_stop( false )
 { 
   m_protectorChain->push( new DefaultProtector() );

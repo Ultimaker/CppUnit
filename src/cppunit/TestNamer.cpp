@@ -8,8 +8,8 @@ CPPUNIT_NS_BEGIN
 
 #if CPPUNIT_HAVE_RTTI
 TestNamer::TestNamer( const std::type_info &typeInfo )
+    : m_fixtureName( TypeInfoHelper::getClassName( typeInfo ) )
 {
-  m_fixtureName = TypeInfoHelper::getClassName( typeInfo );
 }
 #endif
 

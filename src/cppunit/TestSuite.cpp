@@ -8,6 +8,7 @@ CPPUNIT_NS_BEGIN
 /// Default constructor
 TestSuite::TestSuite( std::string name )
     : TestComposite( name )
+    , m_tests()
 {
 }
 

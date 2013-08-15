@@ -19,6 +19,8 @@ CPPUNIT_NS_BEGIN
 class CPPUNIT_API ProtectorChain : public Protector
 {
 public:
+  ProtectorChain();
+
   ~ProtectorChain();
 
   void push( Protector *protector );

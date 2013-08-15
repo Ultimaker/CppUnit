@@ -38,7 +38,7 @@ CPPUNIT_NS_BEGIN
 class CPPUNIT_API Message
 {
 public:
-  Message();
+  Message() {};
 
   // Ensure thread-safe copy by detaching the string.
   Message( const Message &other );
@@ -57,7 +57,7 @@ public:
            const std::string &detail2,
            const std::string &detail3 );
 
-  ~Message();
+  virtual ~Message();
 
   Message &operator =( const Message &other );
 

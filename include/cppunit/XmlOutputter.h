@@ -46,7 +46,7 @@ public:
    */
   XmlOutputter( TestResultCollector *result,
                 OStream &stream,
-                std::string encoding = std::string("ISO-8859-1") );
+                const std::string& encoding = std::string("ISO-8859-1") );
 
   /// Destructor.
   virtual ~XmlOutputter();
