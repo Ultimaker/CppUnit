@@ -42,17 +42,24 @@ class Message;
  *                    CPPUNIT_SOURCELINE() )
  * \endcode
  */
+
+#if defined __GNUC__
+#   define NORETURN __attribute__((noreturn))
+#else
+#   define NORETURN
+#endif
+
 struct Asserter
 {
   /*! \brief Throws a Exception with the specified message and location.
    */
-  static void CPPUNIT_API fail( const Message &message, 
+  NORETURN static void CPPUNIT_API fail( const Message &message, 
                                 const SourceLine &sourceLine = SourceLine() );
 
   /*! \brief Throws a Exception with the specified message and location.
    * \deprecated Use fail( Message, SourceLine ) instead.
    */
-  static void CPPUNIT_API fail( std::string message, 
+  NORETURN static void CPPUNIT_API fail( std::string message, 
                                 const SourceLine &sourceLine = SourceLine() );
 
   /*! \brief Throws a Exception with the specified message and location.
@@ -111,7 +118,7 @@ struct Asserter
    *                          what are the differences between the expected and actual value.
    * \param shortDescription Short description for the failure message.
    */
-  static void CPPUNIT_API failNotEqual( std::string expected, 
+  NORETURN static void CPPUNIT_API failNotEqual( std::string expected, 
                                         std::string actual, 
                                         const SourceLine &sourceLine,
                                         const AdditionalMessage &additionalMessage = AdditionalMessage(),
