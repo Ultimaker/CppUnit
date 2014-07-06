@@ -13,7 +13,7 @@ Asserter::fail( std::string message,
   fail( Message( "assertion failed", message ), sourceLine );
 }
 
-
+// coverity[+kill]
 void 
 Asserter::fail( const Message &message, 
                 const SourceLine &sourceLine )
