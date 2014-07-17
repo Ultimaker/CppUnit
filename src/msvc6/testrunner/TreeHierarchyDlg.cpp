@@ -103,7 +103,7 @@ TreeHierarchyDlg::addTest( CPPUNIT_NS::Test *test,
                                             hParent );
   if ( hItem != NULL )
   {
-    VERIFY( m_treeTests.SetItemData( hItem, (DWORD)test ) );
+    VERIFY( m_treeTests.SetItemData( hItem, (DWORD_PTR)test ) );
     if ( isSuite( test ) )
       addTestSuiteChildrenTo( test, hItem );
   }
@@ -185,7 +185,7 @@ TreeHierarchyDlg::findSelectedTest()
   HTREEITEM hItem = m_treeTests.GetSelectedItem();
   if ( hItem != NULL )
   {
-    DWORD data;
+    DWORD_PTR data;
     VERIFY( data = m_treeTests.GetItemData( hItem ) );
     return reinterpret_cast<CPPUNIT_NS::Test *>( data );
   }
