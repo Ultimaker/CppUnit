@@ -1,3 +1,10 @@
+  New in CppUnit 1.14.0:
+  ---------------------
+
+* Test Plug-in Runner: 
+  - Fixed crash on Win64 in test runner (fdo#81433)
+
+
   New in CppUnit 1.13.2:
   ---------------------
 
