@@ -6,6 +6,7 @@
 CPPUNIT_NS_BEGIN
 
 
+// coverity[+kill]
 void 
 Asserter::fail( std::string message, 
                 const SourceLine &sourceLine )
