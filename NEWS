@@ -4,6 +4,9 @@
 * Test Plug-in Runner: 
   - Fixed crash on Win64 in test runner (fdo#81433)
 
+  - Added new Assertion macros: ASSERT_LESS, ASSERT_GREATER,
+                    ASSERT_LESSEQUAL, ASSERT_GREATEREQUAL
+
 
   New in CppUnit 1.13.2:
   ---------------------
