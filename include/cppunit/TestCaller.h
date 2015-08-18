@@ -162,14 +162,7 @@ public:
 
   void runTest()
   { 
-//	  try {
-	    (m_fixture->*m_test)();
-//	  }
-//	  catch ( ExpectedException & ) {
-//	    return;
-//	  }
-
-//  	ExpectedExceptionTraits<ExpectedException>::expectedException();
+      (m_fixture->*m_test)();
   }  
 
   void setUp()
