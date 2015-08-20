@@ -11,19 +11,7 @@ CppUnit's coding guidelines for portability:
 - don't use the 'using directive', always use full qualification. For STL,
   always use std::.
 
-- don't use C++ style cast directly, instead use CppUnit's cast macro
-  (CPPUNIT_CONST_CAST).
-
 - don't use the mutable keyword, instead do a const cast.
-
-- don't use the typename keyword in template declaration, instead use 'class'.
-
-- don't make use of RTTI (typeid) or dynamic_cast mandatory.
-
-- don't use STL container directly, instead use CppUnit's wrapper located
-  in include/cppunit/portability. This help support compilers that don't 
-  support default template parameter and require an allocator to be 
-  specified.
 
 - don't use default template parameters. If needed, use STLPort wrapper
   technic (see include/cppunit/portability/).
@@ -35,30 +23,18 @@ CppUnit's coding guidelines for portability:
 - don't use default parameter value in template function. Not supported
   by all compiler (on OS/390 for instance).
 
-- don't use STL container at() method, instead use the array accessor [].
-  at() is not supported on some gcc versions.
-
 - dereferencing containers must be done by (*ref_ptr).data instead of
   ref_ptr->data.
 
+- don't use C++11/C++14 features in non-optional code
+
 In brief, it should be possible to compile CppUnit on a C++ compiler that do
 not have the following features:
-- C++ style cast
-- mutable and typename keyword
-- RTTI
 - template default parameters
 - templatized member functions (that is a template function declared within a
   class).
-- namespace
 
 As such, usage of those features should always be optional.
-
-Following those guidelines should allow to compile on most compilers, as long
-as STL are available (in std namespace or not), with some form of strstream and
-iostream, as well as exception support.
-
---
-Baptiste Lepilleur <gaiacrtn@free.fr>
 
 CppUnit's version control system management
 --------------------------------------------
