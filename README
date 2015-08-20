@@ -10,7 +10,7 @@ For other systems -- including cygwin -- see INSTALL and INSTALL-unix.
 
 
 Bug reports are welcome. Please open bug reports for Cppunit at
-bugs.freedesktop.org under the component Libreoffice.
+bugs.documentfoundation.org under the component cppunit.
 
 Email to the current maintainers may be sent to
 <libreoffice@lists.freedesktop.org>
