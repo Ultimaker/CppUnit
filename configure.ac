@@ -91,7 +91,7 @@ AC_SUBST(LT_AGE)
 # Debug
 # =====
 AC_ARG_ENABLE(debug,
-	AS_HELP_STRING([--enable-debug], [Build with debug features in mind.])],
+	AS_HELP_STRING([--enable-debug], [Build with debug symbols.]),
 	[enable_debug="$enableval"],
 	[enable_debug=no]
 )
