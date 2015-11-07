@@ -87,6 +87,22 @@ AC_SUBST(LT_AGE)
 # Check for cflags
 # ================
 
+# ================================================================
+# Check if optional features should be enabled (requires c++11)
+# ================================================================
+
+AC_ARG_ENABLE(optional_features,
+              [AS_HELP_STRING([--enable-optional-features], [Build with some optional features requiring C++11 support.])],
+              [enable_optional="$enableval"],
+              [enable_optional=yes]
+)
+
+AS_IF([test "x$enable_optional" != "xno"], [
+       AX_CXX_COMPILE_STDCXX_11(noext, mandatory)
+])
+
+AM_CONDITIONAL([WITH_OPTIONAL_FEATURES], [test "x$enable_optional" != "xno"])
+
 # =====
 # Debug
 # =====
@@ -166,9 +182,10 @@ AC_OUTPUT
 AC_MSG_NOTICE([
 ==============================================================================
 Build configuration:
-	debug:           ${enable_debug}
-	docs:            ${enable_doc}
-	werror:          ${enable_werror}
-	typeinfo-name:   ${use_typeinfo}
+	debug:              ${enable_debug}
+	docs:               ${enable_doc}
+	werror:             ${enable_werror}
+	typeinfo-name:      ${use_typeinfo}
+        optional-features:  ${enable_optional}
 ==============================================================================
 ])

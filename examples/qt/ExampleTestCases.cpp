@@ -1,4 +1,5 @@
 #include "ExampleTestCases.h"
+#include <cppunit/portability/SmartPtr.h>
 
 CPPUNIT_TEST_SUITE_REGISTRATION( ExampleTestCases );
 
@@ -28,8 +29,8 @@ void ExampleTestCases::testAdd ()
 
 void ExampleTestCases::testEquals ()
 {
-   std::auto_ptr<long>	l1 (new long (12));
-   std::auto_ptr<long>	l2 (new long (12));
+   CppUnitSmartPtr<long> l1 (new long (12));
+   CppUnitSmartPtr<long> l2 (new long (12));
    
    CPPUNIT_ASSERT_EQUAL (12, 12);
    CPPUNIT_ASSERT_EQUAL (12L, 12L);

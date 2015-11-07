@@ -7,4 +7,5 @@ libcppunitinclude_HEADERS = \
 	CppUnitStack.h  \
 	CppUnitVector.h \
 	FloatingPoint.h \
-	Stream.h
+	Stream.h \
+	SmartPtr.h
