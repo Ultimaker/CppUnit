@@ -81,3 +81,5 @@ doc-dist:
 
 distclean-local:
 	rm -rf *.cache *~ $(PACKAGE)*.tar.*
+
+DISTCLEANFILES = _configs.sed
