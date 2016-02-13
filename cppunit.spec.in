@@ -41,7 +41,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/cppunit-config
 %{_bindir}/DllPlugInTester
 %{_includedir}/cppunit/*
 %{_mandir}/man1/*

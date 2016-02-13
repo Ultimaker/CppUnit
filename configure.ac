@@ -149,7 +149,6 @@ AC_CONFIG_FILES([
 	Makefile
 	cppunit.pc
 	cppunit.spec
-	cppunit-config
 	src/Makefile
 	src/DllPlugInTester/Makefile
 	src/cppunit/Makefile

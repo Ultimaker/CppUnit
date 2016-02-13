@@ -27,7 +27,6 @@ stamp-h1
 .libs
 *.lo
 *.tar.*
-cppunit-config
 _configs.sed
 
 examples/cppunittest/cppunittestmain

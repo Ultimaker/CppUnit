@@ -7,9 +7,6 @@ SUBDIRS = src include examples doc
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = cppunit.pc
 
-bin_SCRIPTS = cppunit-config
-man_MANS = cppunit-config.1
-
 doc_DATA = \
 	BUGS \
 	INSTALL \
