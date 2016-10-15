@@ -25,7 +25,7 @@ docinternal = \
 	doc/makedox.bat
 
 m4dir = $(datadir)/aclocal
-m4_DATA = cppunit.m4
+m4_DATA =
 
 m4internal = \
 	m4/ac_cxx_have_strstream.m4 \
