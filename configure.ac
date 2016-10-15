@@ -65,6 +65,7 @@ AS_IF([test x"$enable_typeinfo_name" = "xno" -o x"$HAVE_RTTI" != "x1"], [
 ])
 AC_DEFINE_UNQUOTED(USE_TYPEINFO_NAME, [$typeinfoval],
 	[Define to 1 to use type_info::name() for class names])
+AX_CXX_COMPILE_STDCXX_11(noext, mandatory)
 
 # =================================
 # Libtool/Version Makefile settings
@@ -96,10 +97,6 @@ AC_ARG_ENABLE(optional_features,
               [enable_optional="$enableval"],
               [enable_optional=yes]
 )
-
-AS_IF([test "x$enable_optional" != "xno"], [
-       AX_CXX_COMPILE_STDCXX_11(noext, mandatory)
-])
 
 AM_CONDITIONAL([WITH_OPTIONAL_FEATURES], [test "x$enable_optional" != "xno"])
 
