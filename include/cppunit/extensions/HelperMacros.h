@@ -165,24 +165,15 @@
  */
 #define CPPUNIT_TEST_SUITE_END()                                               \
     }                                                                          \
-      									       \
-    struct CppUnitExDeleter { /* avoid deprecated auto_ptr warnings */         \
-	CPPUNIT_NS::TestSuite *suite;					       \
-	CppUnitExDeleter() : suite (nullptr) {}				       \
-	~CppUnitExDeleter() { delete suite; }				       \
-	CPPUNIT_NS::TestSuite *release() {                                     \
-		CPPUNIT_NS::TestSuite *tmp = suite; suite = nullptr; return tmp;  \
-        }                                                                      \
-    };                                                                         \
                                                                                \
 public:									       \
     static CPPUNIT_NS::TestSuite *suite()                                      \
     {                                                                          \
       const CPPUNIT_NS::TestNamer &namer = getTestNamer__();                   \
-      CppUnitExDeleter guard;                                                  \
-      guard.suite = new CPPUNIT_NS::TestSuite( namer.getFixtureName() );       \
+      std::unique_ptr<CPPUNIT_NS::TestSuite> guard(                            \
+              new CPPUNIT_NS::TestSuite( namer.getFixtureName() ));            \
       CPPUNIT_NS::ConcretTestFixtureFactory<TestFixtureType> factory;          \
-      CPPUNIT_NS::TestSuiteBuilderContextBase context( *guard.suite,           \
+      CPPUNIT_NS::TestSuiteBuilderContextBase context( *guard.get(),           \
                                                        namer,                  \
                                                        factory );              \
       TestFixtureType::addTestsToSuite( context );                             \
