@@ -9,7 +9,7 @@ Frequently Asked Questions:
    Yes, there is. Macros have been created to take care of the repetitive 
 work. Look up include/extensions/HelperMacros.h in CppUnit documentation. 
 Most of CppUnit test suite is also written that way since they remain 
-compatible as CppUnit evolve. They also use RTTI if available.
+compatible as CppUnit evolve.
 
 
 2) Questions related to Microsoft Visual VC++

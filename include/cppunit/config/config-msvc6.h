@@ -30,20 +30,6 @@
 #define CPPUNIT_HAVE_NAMESPACES  1 
 #endif
 
-/* define if the compiler supports Run-Time Type Identification */
-#ifndef CPPUNIT_HAVE_RTTI
-# ifdef _CPPRTTI // Defined by the compiler option /GR
-#  define CPPUNIT_HAVE_RTTI 1
-# else
-#  define CPPUNIT_HAVE_RTTI 0
-# endif
-#endif
-
-/* Define to 1 to use type_info::name() for class names */
-#ifndef CPPUNIT_USE_TYPEINFO_NAME 
-#define CPPUNIT_USE_TYPEINFO_NAME  CPPUNIT_HAVE_RTTI 
-#endif
-
 #define CPPUNIT_HAVE_SSTREAM 1
 
 /* Name of package */

@@ -34,11 +34,6 @@
 #define CPPUNIT_HAVE_NAMESPACES  1 
 #endif
 
-/* define if the compiler supports Run-Time Type Identification */
-#ifndef CPPUNIT_HAVE_RTTI 
-#define CPPUNIT_HAVE_RTTI  1 
-#endif
-
 /* define if the compiler has stringstream */
 #ifndef CPPUNIT_HAVE_SSTREAM 
 #define CPPUNIT_HAVE_SSTREAM  1 
@@ -47,11 +42,6 @@
 /* Define if you have the <strstream> header file. */
 #ifndef CPPUNIT_HAVE_STRSTREAM 
 #define CPPUNIT_HAVE_STRSTREAM  1 
-#endif
-
-/* Define to 1 to use type_info::name() for class names */
-#ifndef CPPUNIT_USE_TYPEINFO_NAME 
-#define CPPUNIT_USE_TYPEINFO_NAME  CPPUNIT_HAVE_RTTI 
 #endif
 
 /* _INCLUDE_CPPUNIT_CONFIG_MAC_H */

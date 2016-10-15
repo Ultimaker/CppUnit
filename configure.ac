@@ -47,24 +47,8 @@ AC_CXX_HAVE_STRSTREAM
 BB_ENABLE_DOXYGEN
 
 # Compiler characteristics
-AC_CXX_RTTI
 AX_CXX_GCC_ABI_DEMANGLE
 AC_CXX_STRING_COMPARE_STRING_FIRST
-
-AC_ARG_ENABLE([typeinfo-name],
-	[AS_HELP_STRING([--disable-typeinfo-name], [Disable use of RTTI for class names])],
-	[enable_typeinfo_name="$enableval"],
-	[enable_typeinfo_name=yes]
-)
-AS_IF([test x"$enable_typeinfo_name" = "xno" -o x"$HAVE_RTTI" != "x1"], [
-	use_typeinfo="yes"
-	typeinfoval="CPPUNIT_HAVE_RTTI"
-], [
-	use_typeinfo="no"
-	typeinfoval="0"
-])
-AC_DEFINE_UNQUOTED(USE_TYPEINFO_NAME, [$typeinfoval],
-	[Define to 1 to use type_info::name() for class names])
 AX_CXX_COMPILE_STDCXX_11(noext, mandatory)
 
 # =================================
@@ -83,6 +67,7 @@ AC_SUBST(LT_RELEASE)
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION, [cppunit_interface_age])
 AC_SUBST(LT_AGE)
+
 
 # ================
 # Check for cflags
@@ -181,7 +166,6 @@ Build configuration:
 	debug:              ${enable_debug}
 	docs:               ${enable_doc}
 	werror:             ${enable_werror}
-	typeinfo-name:      ${use_typeinfo}
         optional-features:  ${enable_optional}
 ==============================================================================
 ])

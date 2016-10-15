@@ -1,8 +1,6 @@
 #include <cppunit/Portability.h>
 #include <cppunit/extensions/TypeInfoHelper.h>
 
-#if CPPUNIT_HAVE_RTTI
-
 #include <string>
 
 #if CPPUNIT_HAVE_GCC_ABI_DEMANGLE
@@ -12,7 +10,6 @@
 
 
 CPPUNIT_NS_BEGIN
-
 
 std::string 
 TypeInfoHelper::getClassName( const std::type_info &info )
@@ -59,7 +56,4 @@ TypeInfoHelper::getClassName( const std::type_info &info )
   return name;
 }
 
-
 CPPUNIT_NS_END
-
-#endif // CPPUNIT_HAVE_RTTI
