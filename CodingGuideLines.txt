@@ -13,9 +13,6 @@ CppUnit's coding guidelines for portability:
 
 - don't use the mutable keyword, instead do a const cast.
 
-- don't use default template parameters. If needed, use STLPort wrapper
-  technic (see include/cppunit/portability/).
-
 - don't use templatized member functions (template method declared inside a
   class), instead declares them as simple template functions (even
   mainstream compiler such as VC++ 6 as trouble with them).
@@ -23,14 +20,8 @@ CppUnit's coding guidelines for portability:
 - don't use default parameter value in template function. Not supported
   by all compiler (on OS/390 for instance).
 
-- dereferencing containers must be done by (*ref_ptr).data instead of
-  ref_ptr->data.
-
-- don't use C++11/C++14 features in non-optional code
-
 In brief, it should be possible to compile CppUnit on a C++ compiler that do
 not have the following features:
-- template default parameters
 - templatized member functions (that is a template function declared within a
   class).
 
@@ -47,4 +38,3 @@ CppUnit's version control system management
 
 - new features and patches without bug report only in master
   and not in stable branches
-
