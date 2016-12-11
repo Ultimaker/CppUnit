@@ -2,7 +2,7 @@
 #define CPPUNIT_HELPER_COMMANDLINEPARSER_H
 
 #include <cppunit/Portability.h>
-#include <cppunit/portability/CppUnitDeque.h>
+#include <deque>
 #include <cppunit/plugin/PlugInParameters.h>
 #include <string>
 #include <stdexcept>
@@ -113,10 +113,10 @@ protected:
   bool m_waitBeforeExit;
   std::string m_testPath;
 
-  typedef CppUnitDeque<CommandLinePlugInInfo> PlugIns;
+  typedef std::deque<CommandLinePlugInInfo> PlugIns;
   PlugIns m_plugIns;
 
-  typedef CppUnitDeque<std::string> Arguments;
+  typedef std::deque<std::string> Arguments;
   Arguments m_arguments;
   unsigned int m_currentArgument;
 

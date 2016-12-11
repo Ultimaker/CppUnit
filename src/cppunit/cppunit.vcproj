@@ -415,26 +415,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\cppunit\portability\CppUnitDeque.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\include\cppunit\portability\CppUnitMap.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\include\cppunit\portability\CppUnitSet.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\include\cppunit\portability\CppUnitStack.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\include\cppunit\portability\CppUnitVector.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\include\cppunit\portability\FloatingPoint.h"
 				>
 			</File>

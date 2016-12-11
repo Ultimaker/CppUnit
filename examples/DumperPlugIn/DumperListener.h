@@ -6,7 +6,7 @@
 #ifndef DUMPERLISTENER_H
 #define DUMPERLISTENER_H
 
-#include <cppunit/portability/CppUnitStack.h>
+#include <stack>
 #include <cppunit/TestListener.h>
 #include <cppunit/TestPath.h>
 
@@ -54,7 +54,7 @@ private:
   int m_testCount;
   int m_suiteWithTestCount;
 
-  CppUnitStack<bool> m_suiteHasTest;
+  std::stack<bool> m_suiteHasTest;
 };
 
 

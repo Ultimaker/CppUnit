@@ -52,7 +52,7 @@ MfcTestRunner::addTest( CPPUNIT_NS::Test *test )
 
 
 void            
-MfcTestRunner::addTests( const CppUnitVector<CPPUNIT_NS::Test *> &tests )
+MfcTestRunner::addTests( const std::vector<CPPUNIT_NS::Test *> &tests )
 { 
   for ( Tests::const_iterator it=tests.begin();
         it != tests.end();

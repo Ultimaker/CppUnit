@@ -61,20 +61,6 @@
 # endif // !defined(CPPUNIT_NO_STD_NAMESPACE)
 #endif // !defined(CPPUNIT_HAVE_NAMESPACES)
 
-/* Define CPPUNIT_STD_NEED_ALLOCATOR to 1 if you need to specify
- * the allocator you used when instantiating STL container. Typically
- * used for compilers that do not support template default parameter.
- * CPPUNIT_STD_ALLOCATOR will be used as the allocator. Default is
- * std::allocator. On some compilers, you may need to change this to
- * std::allocator<T>.
- */
-#if CPPUNIT_STD_NEED_ALLOCATOR
-# if !defined(CPPUNIT_STD_ALLOCATOR)
-#  define CPPUNIT_STD_ALLOCATOR std::allocator
-# endif // !defined(CPPUNIT_STD_ALLOCATOR)
-#endif // defined(CPPUNIT_STD_NEED_ALLOCATOR)
-
-
 // Compiler error location format for CompilerOutputter
 // If not define, assumes that it's gcc
 // See class CompilerOutputter for format.

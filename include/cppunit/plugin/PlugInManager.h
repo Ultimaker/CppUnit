@@ -96,7 +96,7 @@ private:
   void operator =( const PlugInManager &copy );
 
 private:
-  typedef CppUnitDeque<PlugInInfo> PlugIns;
+  typedef std::deque<PlugInInfo> PlugIns;
   PlugIns m_plugIns;
 };
 

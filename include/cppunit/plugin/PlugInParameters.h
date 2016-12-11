@@ -5,7 +5,7 @@
 
 #if !defined(CPPUNIT_NO_TESTPLUGIN)
 
-#include <cppunit/portability/CppUnitDeque.h>
+#include <deque>
 #include <string>
 
 CPPUNIT_NS_BEGIN

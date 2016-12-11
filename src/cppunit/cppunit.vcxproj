@@ -328,11 +328,6 @@
     <ClInclude Include="..\..\include\cppunit\config\config-mac.h" />
     <ClInclude Include="..\..\include\cppunit\config\config-msvc6.h" />
     <ClInclude Include="..\..\include\cppunit\config\CppUnitApi.h" />
-    <ClInclude Include="..\..\include\cppunit\portability\CppUnitDeque.h" />
-    <ClInclude Include="..\..\include\cppunit\portability\CppUnitMap.h" />
-    <ClInclude Include="..\..\include\cppunit\portability\CppUnitSet.h" />
-    <ClInclude Include="..\..\include\cppunit\portability\CppUnitStack.h" />
-    <ClInclude Include="..\..\include\cppunit\portability\CppUnitVector.h" />
     <ClInclude Include="..\..\include\cppunit\portability\FloatingPoint.h" />
     <ClInclude Include="..\..\include\cppunit\Portability.h" />
     <ClInclude Include="..\..\include\cppunit\config\SelectDllLoader.h" />

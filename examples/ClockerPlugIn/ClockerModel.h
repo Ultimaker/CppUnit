@@ -7,9 +7,9 @@
 #define CLOCKERMODEL_H
 
 #include <cppunit/TestPath.h>
-#include <cppunit/portability/CppUnitVector.h>
-#include <cppunit/portability/CppUnitMap.h>
-#include <cppunit/portability/CppUnitStack.h>
+#include <vector>
+#include <map>
+#include <stack>
 #include <string>
 
 #ifdef CLOCKER_USE_WINNTTIMER
@@ -67,7 +67,7 @@ private:
     CPPUNIT_NS::TestPath m_path;
     Timer m_timer;
     bool m_isSuite;
-    CppUnitVector<int> m_childIndexes;
+    std::vector<int> m_childIndexes;
   };
 
   /// Prevents the use of the copy constructor.
@@ -82,11 +82,11 @@ private:
   int m_testCaseCount;
   double m_totalTestCaseTime;
 
-  typedef CppUnitMap<CPPUNIT_NS::Test *, int> TestToIndexes;
+  typedef std::map<CPPUNIT_NS::Test *, int> TestToIndexes;
   
   TestToIndexes m_testToIndexes;
-  CppUnitStack<int> m_testIndexes;
-  CppUnitVector<TestInfo> m_tests;
+  std::stack<int> m_testIndexes;
+  std::vector<TestInfo> m_tests;
 };
 
 

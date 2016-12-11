@@ -431,26 +431,6 @@ SOURCE=..\..\include\cppunit\config\CppUnitApi.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\include\cppunit\portability\CppUnitDeque.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\portability\CppUnitMap.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\portability\CppUnitSet.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\portability\CppUnitStack.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\include\cppunit\portability\CppUnitVector.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\include\cppunit\Portability.h
 # End Source File
 # Begin Source File

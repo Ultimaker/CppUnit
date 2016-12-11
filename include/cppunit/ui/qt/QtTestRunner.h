@@ -6,7 +6,7 @@
 #ifndef CPPUNIT_QTUI_QTTESTRUNNER_H
 #define CPPUNIT_QTUI_QTTESTRUNNER_H
 
-#include <cppunit/portability/CppUnitVector.h>
+#include <vector>
 #include "Config.h"
 
 CPPUNIT_NS_BEGIN
@@ -62,7 +62,7 @@ private:
   Test *getRootTest();
 
 private:
-  typedef CppUnitVector<Test *> Tests;
+  typedef std::vector<Test *> Tests;
   Tests *_tests;
 
   TestSuite *_suite;

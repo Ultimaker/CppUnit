@@ -2,7 +2,7 @@
 #define CPPUNIT_HELPER_TESTSUITEBUILDERCONTEXT_H
 
 #include <cppunit/Portability.h>
-#include <cppunit/portability/CppUnitMap.h>
+#include <map>
 #include <string>
 
 #if CPPUNIT_NEED_DLL_DECL
@@ -81,7 +81,7 @@ protected:
   // shared std::map in dll bug in VC6.
   // See http://www.dinkumware.com/vc_fixes.html for detail.
   typedef std::pair<std::string,std::string> Property;
-  typedef CppUnitVector<Property> Properties;
+  typedef std::vector<Property> Properties;
 
   TestSuite &m_suite;
   const TestNamer &m_namer;
