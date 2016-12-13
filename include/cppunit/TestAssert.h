@@ -5,8 +5,10 @@
 #include <cppunit/Exception.h>
 #include <cppunit/Asserter.h>
 #include <cppunit/portability/Stream.h>
+#include <type_traits>
 #include <stdio.h>
 #include <float.h> // For struct assertion_traits<double>
+#include <type_traits>
 
 // Work around "passing 'T' chooses 'int' over 'unsigned int'" warnings when T
 // is an enum type:
@@ -17,6 +19,35 @@
 
 CPPUNIT_NS_BEGIN
 
+namespace impl {
+
+// work around to handle C++11 enum class correctly. We need an own conversion to std::string
+// as there is no implicit coversion to int for enum class.
+template<typename T, typename Enable = void>
+struct toString
+{
+    static std::string toStringImpl(const T& x)
+    {
+        OStringStream ost;
+        ost << x;
+
+        return ost.str();
+    }
+};
+
+template<typename T>
+struct toString<T, typename std::enable_if<std::is_enum<T>::value >::type>
+{
+    static std::string toStringImpl(const T& x)
+    {
+        OStringStream ost;
+        ost << static_cast<typename std::underlying_type<T>::type>(x);
+
+        return ost.str();
+    }
+};
+
+}
 
 /*! \brief Traits used by CPPUNIT_ASSERT* macros.
  *
@@ -71,21 +102,9 @@ struct assertion_traits
 
     static std::string toString( const T& x )
     {
-        OStringStream ost;
-// Work around "passing 'T' chooses 'int' over 'unsigned int'" warnings when T
-// is an enum type:
-#if defined __GNUC__ && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || __GNUC__ > 4)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wsign-promo"
-#endif
-        ost << x;
-#if defined __GNUC__ && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || __GNUC__ > 4)
-#pragma GCC diagnostic pop
-#endif
-        return ost.str();
+        return impl::toString<T>::toStringImpl(x);
     }
 };
-
 
 /*! \brief Traits used by CPPUNIT_ASSERT_DOUBLES_EQUAL(). 
  * 
