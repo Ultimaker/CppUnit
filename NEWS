@@ -2,9 +2,17 @@
   ---------------------
 
 * Portability:
-  - Always build with C++11
+  - Always build with C++11.
 
-  - Always require RTTI support
+  - Always require RTTI support.
+
+  - Removed support for compilers that don't support
+    default template arguments with standard containers.
+
+  - Removed portability headers for wrapper around
+    standard containers.
+
+  - Support C++11 enum class in asserter.
 
 * Test Plug-in Runner: 
   - Fixed crash on Win64 in test runner (fdo#81433)
