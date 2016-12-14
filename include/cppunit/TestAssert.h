@@ -23,29 +23,25 @@ namespace impl {
 
 // work around to handle C++11 enum class correctly. We need an own conversion to std::string
 // as there is no implicit coversion to int for enum class.
-template<typename T, typename Enable = void>
-struct toString
-{
-    static std::string toStringImpl(const T& x)
-    {
-        OStringStream ost;
-        ost << x;
-
-        return ost.str();
-    }
-};
 
 template<typename T>
-struct toString<T, typename std::enable_if<std::is_enum<T>::value >::type>
+typename std::enable_if<!std::is_enum<T>::value, std::string>::type toStringImpl(const T& x)
 {
-    static std::string toStringImpl(const T& x)
-    {
-        OStringStream ost;
-        ost << static_cast<typename std::underlying_type<T>::type>(x);
+    OStringStream ost;
+    ost << x;
 
-        return ost.str();
-    }
-};
+    return ost.str();
+}
+
+template<typename T>
+typename std::enable_if<std::is_enum<T>::value, std::string>::type toStringImpl(const T& x)
+{
+    OStringStream ost;
+    ost << static_cast<typename std::underlying_type<T>::type>(x);
+
+    return ost.str();
+}
+
 
 }
 
@@ -102,7 +98,7 @@ struct assertion_traits
 
     static std::string toString( const T& x )
     {
-        return impl::toString<T>::toStringImpl(x);
+        return impl::toStringImpl(x);
     }
 };
 
