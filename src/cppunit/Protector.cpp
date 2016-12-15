@@ -2,7 +2,6 @@
 #include <cppunit/Message.h>
 #include <cppunit/Protector.h>
 #include <cppunit/TestResult.h>
-#include <cppunit/portability/SmartPtr.h>
 #include "ProtectorContext.h"
 #include <memory>
 
@@ -22,7 +21,7 @@ void
 Protector::reportError( const ProtectorContext &context,
                         const Exception &error ) const
 {
-  CppUnitSmartPtr<Exception> actualError( error.clone() );
+  std::unique_ptr<Exception> actualError( error.clone() );
   actualError->setMessage( actualMessage( actualError->message(), context ) );
   context.m_result->addError( context.m_test, 
                               actualError.release() );
@@ -43,7 +42,7 @@ void
 Protector::reportFailure( const ProtectorContext &context,
                           const Exception &failure ) const
 {
-  CppUnitSmartPtr<Exception> actualFailure( failure.clone() );
+  std::unique_ptr<Exception> actualFailure( failure.clone() );
   actualFailure->setMessage( actualMessage( actualFailure->message(), context ) );
   context.m_result->addFailure( context.m_test, 
                                 actualFailure.release() );

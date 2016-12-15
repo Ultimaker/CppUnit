@@ -1,7 +1,8 @@
 #include "CoreSuite.h"
 #include "ExceptionTest.h"
-#include <cppunit/portability/SmartPtr.h>
 #include <cppunit/Exception.h>
+
+#include <memory>
 
 
 CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( ExceptionTest,
@@ -79,7 +80,7 @@ ExceptionTest::testClone()
 {
   CPPUNIT_NS::SourceLine sourceLine( "fileName.cpp", 123 );
   CPPUNIT_NS::Exception e( CPPUNIT_NS::Message("message"), sourceLine  );
-  CppUnitSmartPtr<CPPUNIT_NS::Exception> other( e.clone() );
+  std::unique_ptr<CPPUNIT_NS::Exception> other( e.clone() );
   checkIsSame( e, *other.get() );
 }
 
