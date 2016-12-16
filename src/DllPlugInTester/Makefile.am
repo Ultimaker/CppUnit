@@ -1,6 +1,6 @@
 EXTRA_DIST = DllPlugInTester.dsp DllPlugInTesterTest.dsp
 
-INCLUDES = -I$(top_builddir)/include -I$(top_srcdir)/include
+AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_srcdir)/include
 
 bin_PROGRAMS = DllPlugInTester
 
