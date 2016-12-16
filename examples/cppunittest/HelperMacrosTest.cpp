@@ -77,6 +77,19 @@ public:
   }
 };
 
+class ParameterizedTestFixture : public CPPUNIT_NS::TestFixture
+{
+    CPPUNIT_TEST_SUITE(ParameterizedTestFixture);
+    CPPUNIT_TEST_PARAMETERIZED(testMethod, {1, 2, 3, 4});
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+
+    void testMethod(int /*val*/)
+    {
+    }
+};
+
 
 #undef TEST_ADD_N_MOCK
 #define TEST_ADD_N_MOCK( totalCount )                                              \
@@ -223,5 +236,15 @@ HelperMacrosTest::testAddTest()
   m_testListener->setExpectedAddFailureCall( 0 );
 
   suite->run( m_result );
+  m_testListener->verify();
+}
+
+void
+HelperMacrosTest::testParameterizedTests()
+{
+  std::unique_ptr<CPPUNIT_NS::TestSuite> suite( ParameterizedTestFixture::suite() );
+  m_testListener->setExpectedStartTestCall(4);
+  m_testListener->setExpectedAddFailureCall( 0 );
+  suite->run(m_result);
   m_testListener->verify();
 }

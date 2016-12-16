@@ -3,6 +3,7 @@
 
 #include <cppunit/Portability.h>
 #include <string>
+#include <cppunit/tools/StringHelper.h>
 
 #include <typeinfo>
 
@@ -62,6 +63,12 @@ public:
    *         test.
    */
   virtual std::string getTestNameFor( const std::string &testMethodName ) const;
+
+  template<typename E>
+  std::string getTestNameFor( const std::string& testMethodName, const E& val) const
+  {
+      return getTestNameFor(testMethodName) + " with parameter: " + CPPUNIT_NS::StringHelper::toString(val);
+  }
 
 protected:
   std::string m_fixtureName;

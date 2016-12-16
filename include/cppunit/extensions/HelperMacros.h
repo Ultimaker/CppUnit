@@ -301,6 +301,17 @@ public:									       \
                   &TestFixtureType::testMethod,           \
                   context.makeFixture() ) ) )
 
+#define CPPUNIT_TEST_PARAMETERIZED( testMethod, ... )    \
+    for (auto& i : __VA_ARGS__)                                  \
+    {                                                           \
+        TestFixtureType* fixture = context.makeFixture();       \
+        CPPUNIT_TEST_SUITE_ADD_TEST(                            \
+        ( new CPPUNIT_NS::TestCaller<TestFixtureType>(          \
+                    context.getTestNameFor(#testMethod, i),     \
+                    std::bind(&TestFixtureType::testMethod, fixture, i),          \
+                    fixture)));                                  \
+    }
+
 /*! \brief Add a test which fail if the specified exception is not caught.
  *
  * Example:

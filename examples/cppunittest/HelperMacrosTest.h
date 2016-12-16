@@ -16,6 +16,7 @@ class HelperMacrosTest : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( testExceptionNotCaught );
   CPPUNIT_TEST( testCustomTests );
   CPPUNIT_TEST( testAddTest );
+  CPPUNIT_TEST( testParameterizedTests );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -38,6 +39,8 @@ public:
   void testCustomTest();
   void testCustomTests();
   void testAddTest();
+
+  void testParameterizedTests();
 
 private:
   HelperMacrosTest( const HelperMacrosTest &copy );

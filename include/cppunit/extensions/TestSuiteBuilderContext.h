@@ -62,6 +62,21 @@ public:
    */
   std::string getTestNameFor( const std::string &testMethodName ) const;
 
+  /*! \brief Returns the name of the test for the specified method with the corresponding parameter.
+   *
+   * \param testMethodName Name (including a parameter) of the method that implements a test.
+   * \return A string that is the concatenation of the test fixture name
+   *         (returned by getFixtureName()), \a testMethodName,
+   *         separated using '::' and the parameter. This provides a fairly unique name for a given
+   *         test. The parameter must be convertable to std::string through operator<<
+   *         or a specialization of CPPUNIT_NS::StringHelper::toString needs to exist.
+   */
+  template<typename T>
+  std::string getTestNameFor( const std::string &testMethodName, const T& value ) const
+  {
+      return m_namer.getTestNameFor(testMethodName, value);
+  }
+
   /*! \brief Adds property pair.
    * \param key   PropertyKey string to add.
    * \param value PropertyValue string to add.

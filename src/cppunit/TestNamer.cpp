@@ -1,5 +1,6 @@
 #include <cppunit/extensions/TestNamer.h>
 #include <cppunit/extensions/TypeInfoHelper.h>
+#include <cppunit/tools/StringHelper.h>
 #include <string>
 
 CPPUNIT_NS_BEGIN
