@@ -5,10 +5,9 @@
 #include <cppunit/Exception.h>
 #include <cppunit/Asserter.h>
 #include <cppunit/portability/Stream.h>
-#include <type_traits>
+#include <cppunit/tools/StringHelper.h>
 #include <stdio.h>
 #include <float.h> // For struct assertion_traits<double>
-#include <type_traits>
 
 // Work around "passing 'T' chooses 'int' over 'unsigned int'" warnings when T
 // is an enum type:
@@ -18,32 +17,6 @@
 
 
 CPPUNIT_NS_BEGIN
-
-namespace impl {
-
-// work around to handle C++11 enum class correctly. We need an own conversion to std::string
-// as there is no implicit coversion to int for enum class.
-
-template<typename T>
-typename std::enable_if<!std::is_enum<T>::value, std::string>::type toStringImpl(const T& x)
-{
-    OStringStream ost;
-    ost << x;
-
-    return ost.str();
-}
-
-template<typename T>
-typename std::enable_if<std::is_enum<T>::value, std::string>::type toStringImpl(const T& x)
-{
-    OStringStream ost;
-    ost << static_cast<typename std::underlying_type<T>::type>(x);
-
-    return ost.str();
-}
-
-
-}
 
 /*! \brief Traits used by CPPUNIT_ASSERT* macros.
  *
@@ -98,7 +71,7 @@ struct assertion_traits
 
     static std::string toString( const T& x )
     {
-        return impl::toStringImpl(x);
+        return CPPUNIT_NS::StringHelper::toString(x);
     }
 };
 
