@@ -502,7 +502,7 @@ void assertGreaterEqual( const T& expected,
 
 
 // implementation detail
-#if CPPUNIT_USE_TYPEINFO_NAME
+#if defined(CPPUNIT_USE_TYPEINFO_NAME)
 #define CPPUNIT_EXTRACT_EXCEPTION_TYPE_( exception, no_rtti_message ) \
    CPPUNIT_NS::TypeInfoHelper::getClassName( typeid(exception) )
 #else

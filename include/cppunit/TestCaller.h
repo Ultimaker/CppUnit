@@ -5,7 +5,7 @@
 #include <cppunit/TestCase.h>
 
 
-#if CPPUNIT_USE_TYPEINFO_NAME
+#if defined(CPPUNIT_USE_TYPEINFO_NAME)
 #  include <cppunit/extensions/TypeInfoHelper.h>
 #endif
 
@@ -33,7 +33,7 @@ struct ExpectedExceptionTraits
 {
   static void expectedException()
   {
-#if CPPUNIT_USE_TYPEINFO_NAME
+#if defined(CPPUNIT_USE_TYPEINFO_NAME)
     throw Exception( Message(
                          "expected exception not thrown",
                          "Expected exception type: " + 

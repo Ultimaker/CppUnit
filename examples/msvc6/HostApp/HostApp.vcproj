@@ -439,7 +439,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\..\include,..\..\..\include\msvc6"
-				PreprocessorDefinitions="_DEBUG;_WINDOWS;WIN32;CPPUNIT_USE_TYPEINFO_NAME=0"
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;WIN32"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
