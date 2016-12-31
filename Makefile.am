@@ -35,7 +35,6 @@ m4internal = \
 	m4/ax_cxx_have_isfinite.m4 \
 	m4/ax_cxx_have_sstream.m4 \
 	m4/ax_cxx_namespaces.m4 \
-	m4/ax_cxx_rtti.m4 \
 	m4/ax_cxx_compile_stdcxx_11.m4 \
 	m4/ax_prefix_config_h.m4 \
 	m4/bb_enable_doxygen.m4 \
