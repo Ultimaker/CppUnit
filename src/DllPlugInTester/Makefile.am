@@ -1,4 +1,4 @@
-EXTRA_DIST = DllPlugInTester.dsp DllPlugInTesterTest.dsp
+EXTRA_DIST =
 
 AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_srcdir)/include
 
