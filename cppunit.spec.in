@@ -15,7 +15,7 @@ CppUnit is the C++ port of the famous JUnit framework for unit testing.
 Test output is in XML for automatic testing and GUI based for supervised tests.
 
 %package doc
-Summary: HTML formatted API documention for Log for C++
+Summary: HTML formatted API documentation for Log for C++
 Group: Development/Libraries
 Requires: %name = %version
 
@@ -53,12 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
- 
+
 %files doc
 %doc doc/html/*
 
 %changelog
-* Mon Jul  4 2005 Patrice Dumas <dumas@centre-cired.fr>  
-- update using the fedora template  
+* Mon Jul  4 2005 Patrice Dumas <dumas@centre-cired.fr>
+- update using the fedora template
 * Sat Apr 14 2001 Bastiaan Bakker <bastiaan.bakker@lifeline.nl>
 - Initial release
