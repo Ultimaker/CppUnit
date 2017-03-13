@@ -16,7 +16,7 @@ typedef cdxCSizeIconCtrl	cdxCSizeCtrl;
 //
 // cdxCDynamicControlsManager.h : header file
 // -----------------------------------------------------------------------
-// Author:  Hans Bühler (hans.buehler@student.hu-berlin.de)
+// Author:  Hans BÃ¼hler (hans.buehler@student.hu-berlin.de)
 //          codex design (http://www-pool.mathematik.hu-berlin.de/~codex
 // Version: 1.5
 // Release: 5 (Mar 1999 to www.codeguru.com)
@@ -78,7 +78,7 @@ typedef cdxCSizeIconCtrl	cdxCSizeCtrl;
  *		DoDestroyWindow()		-	by DestroyWindow().
  *
  * See cdxCSizingDialog.h for an example.
- * 
+ *
  * NOTE:
  * Unfortunately, we cannot derive this class from CObject, because
  * those macros DECLARE_xxx are too lame to handle multipile derived
@@ -389,7 +389,7 @@ public:
 
 /*
  * this function transforms a control's original position (rectOriginal) into
- * its new rectangle by taking the the difference between the original window's
+ * its new rectangle by taking the difference between the original window's
  * size (szDelta).
  */
 

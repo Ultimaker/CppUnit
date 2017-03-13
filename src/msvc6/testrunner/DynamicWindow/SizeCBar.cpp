@@ -47,7 +47,7 @@
 //      VC++ 6.0.
 //  o   And, of course, many thanks to all of you who used this code,
 //      for the invaluable feedback I received.
-//      
+//
 /////////////////////////////////////////////////////////////////////////
 
 
@@ -146,11 +146,11 @@ BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
 /////////////////////////////////////////////////////////////////////////
 // CSizingControlBar message handlers
 
-int CSizingControlBar::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int CSizingControlBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (baseCSizingControlBar::OnCreate(lpCreateStruct) == -1)
         return -1;
-    
+
     // querry SPI_GETDRAGFULLWINDOWS system parameter
     // OnSettingChange() will update m_bDragShowContent
     m_bDragShowContent = FALSE;
@@ -158,13 +158,13 @@ int CSizingControlBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
         &m_bDragShowContent, 0);
 
     m_arrBars.Add(this);        // register
-    
+
 //    m_dwSCBStyle |= SCBS_SHOWEDGES;
 
     return 0;
 }
 
-BOOL CSizingControlBar::DestroyWindow() 
+BOOL CSizingControlBar::DestroyWindow()
 {
     int nPos = FindSizingBar(this);
     ASSERT(nPos >= 0);
@@ -235,7 +235,7 @@ CSize CSizingControlBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
             AlignControlBars();
 
     m_bParentSizing = FALSE;
-    
+
     CSize szRet = bHorz ? m_szHorz : m_szVert;
     szRet.cx = max(m_szMin.cx, szRet.cx);
     szRet.cy = max(m_szMin.cy, szRet.cy);
@@ -283,7 +283,7 @@ void CSizingControlBar::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 /////////////////////////////////////////////////////////////////////////
 // Mouse Handling
 //
-void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point) 
+void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
     if (m_pDockBar != NULL)
     {
@@ -296,7 +296,7 @@ void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point)
         CWnd::OnLButtonDown(nFlags, point);
 }
 
-void CSizingControlBar::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void CSizingControlBar::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
     if (m_pDockBar != NULL)
     {
@@ -308,7 +308,7 @@ void CSizingControlBar::OnLButtonDblClk(UINT nFlags, CPoint point)
         CWnd::OnLButtonDblClk(nFlags, point);
 }
 
-void CSizingControlBar::OnNcLButtonDown(UINT nHitTest, CPoint point) 
+void CSizingControlBar::OnNcLButtonDown(UINT nHitTest, CPoint point)
 {
     if (IsFloating())
     {
@@ -322,7 +322,7 @@ void CSizingControlBar::OnNcLButtonDown(UINT nHitTest, CPoint point)
         StartTracking(nHitTest); // sizing edge hit
 }
 
-void CSizingControlBar::OnNcLButtonUp(UINT nHitTest, CPoint point) 
+void CSizingControlBar::OnNcLButtonUp(UINT nHitTest, CPoint point)
 {
     if (nHitTest == HTCLOSE)
         m_pDockSite->ShowControlBar(this, FALSE, FALSE); // hide
@@ -330,7 +330,7 @@ void CSizingControlBar::OnNcLButtonUp(UINT nHitTest, CPoint point)
     baseCSizingControlBar::OnNcLButtonUp(nHitTest, point);
 }
 
-void CSizingControlBar::OnLButtonUp(UINT nFlags, CPoint point) 
+void CSizingControlBar::OnLButtonUp(UINT nFlags, CPoint point)
 {
     if (m_bTracking)
         StopTracking();
@@ -338,23 +338,23 @@ void CSizingControlBar::OnLButtonUp(UINT nFlags, CPoint point)
     baseCSizingControlBar::OnLButtonUp(nFlags, point);
 }
 
-void CSizingControlBar::OnRButtonDown(UINT nFlags, CPoint point) 
+void CSizingControlBar::OnRButtonDown(UINT nFlags, CPoint point)
 {
     if (m_bTracking)
         StopTracking();
-    
+
     baseCSizingControlBar::OnRButtonDown(nFlags, point);
 }
 
-void CSizingControlBar::OnMouseMove(UINT nFlags, CPoint point) 
+void CSizingControlBar::OnMouseMove(UINT nFlags, CPoint point
 {
     if (m_bTracking)
         OnTrackUpdateSize(point);
-    
+
     baseCSizingControlBar::OnMouseMove(nFlags, point);
 }
 
-void CSizingControlBar::OnCaptureChanged(CWnd *pWnd) 
+void CSizingControlBar::OnCaptureChanged(CWnd *pWnd)
 {
     if (m_bTracking && (pWnd != this))
         StopTracking();
@@ -363,9 +363,9 @@ void CSizingControlBar::OnCaptureChanged(CWnd *pWnd)
 }
 
 void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
-                                     NCCALCSIZE_PARAMS FAR* lpncsp) 
+                                     NCCALCSIZE_PARAMS FAR* lpncsp)
 {
-    // compute the the client area
+    // compute the client area
     CRect rcClient = lpncsp->rgrc[0];
     rcClient.DeflateRect(5, 5);
 
