@@ -7,17 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DllPlugInTester", "DllPlugI
 		{EB329AF7-E267-3B00-09A4-FF1F909E4FB5} = {EB329AF7-E267-3B00-09A4-FF1F909E4FB5}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestPlugInRunner", "msvc6\testpluginrunner\TestPlugInRunner.vcxproj", "{8FEDF6A8-2D35-C692-2CC3-B71090935E66}"
-	ProjectSection(ProjectDependencies) = postProject
-		{71E8BC4A-C01E-61B8-6C5B-682FD03A6DCB} = {71E8BC4A-C01E-61B8-6C5B-682FD03A6DCB}
-		{EB329AF7-E267-3B00-09A4-FF1F909E4FB5} = {EB329AF7-E267-3B00-09A4-FF1F909E4FB5}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestRunner", "msvc6\testrunner\TestRunner.vcxproj", "{71E8BC4A-C01E-61B8-6C5B-682FD03A6DCB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{338B9353-C5CC-FCA6-A584-73425CEDD569} = {338B9353-C5CC-FCA6-A584-73425CEDD569}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cppunit", "cppunit\cppunit.vcxproj", "{338B9353-C5CC-FCA6-A584-73425CEDD569}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cppunit_dll", "cppunit\cppunit_dll.vcxproj", "{EB329AF7-E267-3B00-09A4-FF1F909E4FB5}"

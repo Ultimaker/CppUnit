@@ -189,8 +189,6 @@ printUsage( const std::string &applicationName )
  * #include <msvc6/testrunner/TestPlugInInterface.h>
  * \endcode.
  *
- * See examples/msvc6/TestPlugIn for an example of post-build testing.
- *
  * If no test path is specified, they all the test of the suite returned by the DLL
  * are run. If a test path is specified, then only the specified test is run. The test
  * path must be prefixed by ':'.

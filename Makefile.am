@@ -40,9 +40,7 @@ m4internal = \
 	m4/bb_enable_doxygen.m4 \
 	m4/README
 
-unusedfolders = \
-	src/msvc6 \
-	include/msvc6
+unusedfolders =
 
 EXTRA_DIST = \
 	autogen.sh \

@@ -30,6 +30,10 @@
 
   - QT test runner
 
+  - msvc6 test runners
+
+  - msvc6 plugin
+
   New in CppUnit 1.13.2:
   ---------------------
 

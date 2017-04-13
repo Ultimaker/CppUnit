@@ -18,21 +18,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "CppUnitTestApp"=.\msvc6\CppUnitTestApp\CppUnitTestApp.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name TestRunner
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "CppUnitTestMain"=.\cppunittest\CppUnitTestMain.dsp - Package Owner=<4>
 
 Package=<5>
@@ -103,51 +88,6 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name cppunit_dll
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "HostApp"=.\msvc6\HostApp\HostApp.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name TestRunner
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "TestPlugInRunner"=..\src\msvc6\testpluginrunner\TestPlugInRunner.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name cppunit_dll
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "TestRunner"=..\src\msvc6\testrunner\TestRunner.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name cppunit
     End Project Dependency
 }}}
 

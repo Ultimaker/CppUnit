@@ -16,6 +16,3 @@ and includes the timing in the XML output.
 
 DumperPlugIn/: a 'TestListener' plug-in that dumps the test hierarchy as a tree or in
 a flattened format (using TestPath).
-
-msvc6/: VC++ specific examples.
-	HostApp/: Like 'simple' but use the MFC TestRunner.
