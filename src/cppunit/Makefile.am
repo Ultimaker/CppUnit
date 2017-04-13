@@ -10,7 +10,6 @@ lib_LTLIBRARIES = libcppunit.la
 libcppunit_la_SOURCES = \
   AdditionalMessage.cpp \
   Asserter.cpp \
-  BeOsDynamicLibraryManager.cpp \
   BriefTestProgressListener.cpp \
   CompilerOutputter.cpp \
   DefaultProtector.h \

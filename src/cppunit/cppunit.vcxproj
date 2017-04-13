@@ -299,7 +299,6 @@
     <ClCompile Include="TestCaseDecorator.cpp" />
     <ClCompile Include="TestDecorator.cpp" />
     <ClCompile Include="TestSetUp.cpp" />
-    <ClCompile Include="BeOsDynamicLibraryManager.cpp" />
     <ClCompile Include="DynamicLibraryManager.cpp" />
     <ClCompile Include="DynamicLibraryManagerException.cpp" />
     <ClCompile Include="PlugInManager.cpp" />

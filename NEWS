@@ -34,6 +34,8 @@
 
   - msvc6 plugin
 
+  - BeOS support
+
   New in CppUnit 1.13.2:
   ---------------------
 

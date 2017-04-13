@@ -309,7 +309,6 @@ copy "$(TargetDir)$(TargetName).lib" ..\..\lib\$(TargetName).lib</Command>
     <ClCompile Include="TestSuccessListener.cpp" />
     <ClCompile Include="TextTestProgressListener.cpp" />
     <ClCompile Include="TextTestResult.cpp" />
-    <ClCompile Include="BeosDynamicLibraryManager.cpp" />
     <ClCompile Include="DynamicLibraryManager.cpp" />
     <ClCompile Include="DynamicLibraryManagerException.cpp" />
     <ClCompile Include="PlugInManager.cpp" />
