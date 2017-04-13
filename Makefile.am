@@ -46,6 +46,7 @@ EXTRA_DIST = \
 	autogen.sh \
 	contrib \
 	examples \
+	lib/.keepme \
 	$(pkgconfig_DATA) \
 	$(man_MANS) \
 	$(doc_DATA) \
