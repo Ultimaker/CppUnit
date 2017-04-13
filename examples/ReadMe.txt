@@ -19,4 +19,3 @@ a flattened format (using TestPath).
 
 msvc6/: VC++ specific examples.
 	HostApp/: Like 'simple' but use the MFC TestRunner.
-qt/: QT specific examples.

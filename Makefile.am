@@ -42,7 +42,6 @@ m4internal = \
 
 unusedfolders = \
 	src/msvc6 \
-	src/qttestrunner \
 	include/msvc6
 
 EXTRA_DIST = \

@@ -26,6 +26,10 @@
 * Test Plug-in Runner: 
   - Fixed crash on Win64 in test runner (fdo#81433)
 
+* Removed features
+
+  - QT test runner
+
   New in CppUnit 1.13.2:
   ---------------------
 

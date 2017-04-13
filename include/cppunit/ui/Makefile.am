@@ -1,1 +1,1 @@
-SUBDIRS = text mfc qt
+SUBDIRS = text mfc
