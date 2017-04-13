@@ -130,7 +130,6 @@ AC_CONFIG_FILES([
 	include/cppunit/portability/Makefile
 	include/cppunit/tools/Makefile
 	include/cppunit/ui/Makefile
-	include/cppunit/ui/mfc/Makefile
 	include/cppunit/ui/text/Makefile
 	doc/Makefile
 	doc/Doxyfile

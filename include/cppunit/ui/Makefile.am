@@ -1,1 +1,1 @@
-SUBDIRS = text mfc
+SUBDIRS = text
