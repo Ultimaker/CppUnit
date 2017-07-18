@@ -36,6 +36,16 @@ typename std::enable_if<std::is_enum<T>::value, std::string>::type toString(cons
     return ost.str();
 }
 
+template<> inline std::string toString(const signed char& x)
+{
+    return toString(static_cast<int>(x));
+}
+
+template<> inline std::string toString(const unsigned char& x)
+{
+    return toString(static_cast<unsigned int>(x));
+}
+
 }
 
 
