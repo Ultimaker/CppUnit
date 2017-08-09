@@ -61,10 +61,10 @@ set(HeaderDirs
     include
 )
 
-configure_file("config-auto.h.in" "config-auto.h")
+configure_file("config-auto.h.in" "cppunit/config-auto.h")
 
 #Build CppUnit's library.
-include_directories(${HeaderDirs})
+include_directories(${HeaderDirs} ${CMAKE_BINARY_DIR})
 add_library(CppUnit STATIC ${Sources})
 
 #Installation.
