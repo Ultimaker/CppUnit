@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.2.3)
-project(CppUnit)
+project(cppunit)
 set(CPPUNIT_PACKAGE_NAME cppunit CACHE STRING "Name of the package to build.")
 set(CPPUNIT_MAJOR_VERSION 1 CACHE STRING "Major (first) version number.")
 set(CPPUNIT_MINOR_VERSION 14 CACHE STRING "Minor (second) version number.")
 set(CPPUNIT_PATCH_VERSION 2 CACHE STRING "Patch (third) version number.")
+set(CPPUNIT_VERSION "${CPPUNIT_MAJOR_VERSION}.${CPPUNIT_MINOR_VERSION}.${CPPUNIT_PATCH_VERSION}")
 
 set(Sources
     src/cppunit/AdditionalMessage.cpp
@@ -63,10 +64,36 @@ set(HeaderDirs
 
 configure_file("config-auto.h.in" "cppunit/config-auto.h")
 
-#Build CppUnit's library.
+#Build cppunit's library.
 include_directories(${HeaderDirs} ${CMAKE_BINARY_DIR})
-add_library(CppUnit STATIC ${Sources})
+add_library(cppunit STATIC ${Sources})
 
 #Installation.
 include(GNUInstallDirs)
-install(TARGETS CppUnit DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS cppunit
+    EXPORT cppunit-targets
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(EXPORT cppunit-targets
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit
+)
+
+install(
+    DIRECTORY include
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
+    FILES_MATCHING PATTERN *.h
+    REGEX "msvc6" EXCLUDE
+)
+
+install(FILES ${CMAKE_BINARY_DIR}/cppunit/config-auto.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cppunit)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(cppunitConfig.cmake.in ${CMAKE_BINARY_DIR}/cppunitConfig.cmake INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit)
+write_basic_package_version_file(${CMAKE_BINARY_DIR}/cppunitConfigVersion.cmake VERSION ${CPPUNIT_VERSION} COMPATIBILITY SameMajorVersion)
+
+install(FILES
+    ${CMAKE_BINARY_DIR}/cppunitConfig.cmake
+    ${CMAKE_BINARY_DIR}/cppunitConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit
+)
