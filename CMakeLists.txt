@@ -6,6 +6,12 @@ set(CPPUNIT_MINOR_VERSION 14 CACHE STRING "Minor (second) version number.")
 set(CPPUNIT_PATCH_VERSION 2 CACHE STRING "Patch (third) version number.")
 set(CPPUNIT_VERSION "${CPPUNIT_MAJOR_VERSION}.${CPPUNIT_MINOR_VERSION}.${CPPUNIT_PATCH_VERSION}")
 
+if(NOT ${CMAKE_VERSION} VERSION_LESS 3.1)
+    set(CMAKE_CXX_STANDARD 11)
+else()
+    set(CMAKE_CXX_FLAGS "-std=c++11")
+endif()
+
 set(Sources
     src/cppunit/AdditionalMessage.cpp
     src/cppunit/Asserter.cpp
