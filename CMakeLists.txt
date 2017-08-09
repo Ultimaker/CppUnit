@@ -56,18 +56,10 @@ set(HeaderDirs
     src/cppunit
     include
 )
-set(SourcesAbsolute "")
-foreach(Source ${Sources})
-    list(APPEND SourcesAbsolute ${CMAKE_SOURCE_DIR}/${Source})
-endforeach()
-set(HeaderDirsAbsolute "")
-foreach(HeaderDir ${HeaderDirs})
-    list(APPEND HeaderDirsAbsolute ${CMAKE_SOURCE_DIR}/${HeaderDir})
-endforeach()
 
 #Build CppUnit's library.
-include_directories(${HeaderDirsAbsolute})
-add_library(CppUnit STATIC ${SourcesAbsolute})
+include_directories(${HeaderDirs})
+add_library(CppUnit STATIC ${Sources})
 
 #Installation.
 include(GNUInstallDirs)
