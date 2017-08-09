@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.2.3)
 project(CppUnit)
+set(CPPUNIT_PACKAGE_NAME cppunit CACHE STRING "Name of the package to build.")
+set(CPPUNIT_MAJOR_VERSION 1 CACHE STRING "Major (first) version number.")
+set(CPPUNIT_MINOR_VERSION 14 CACHE STRING "Minor (second) version number.")
+set(CPPUNIT_PATCH_VERSION 2 CACHE STRING "Patch (third) version number.")
 
 set(Sources
     src/cppunit/AdditionalMessage.cpp
@@ -56,6 +60,8 @@ set(HeaderDirs
     src/cppunit
     include
 )
+
+configure_file("config-auto.h.in" "config-auto.h")
 
 #Build CppUnit's library.
 include_directories(${HeaderDirs})
