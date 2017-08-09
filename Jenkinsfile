@@ -13,8 +13,8 @@ parallel_nodes(["linux && cura", "windows && cura"]) {
                     branch = "master"
                 }
 
-                sh 'cmake .. -DCMAKE_PREFIX_PATH=/opt/ultimaker/cura-build-environment/${branch} -DCMAKE_BUILD_TYPE=Release'
-                sh 'make'
+                cmake '..', '-DCMAKE_PREFIX_PATH="${env.CURA_ENVIRONMENT_PATH}/${branch}" -DCMAKE_BUILD_TYPE=Release'
+                make ''
             }
         }
     }
