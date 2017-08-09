@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2.3)
+cmake_minimum_required(VERSION 2.8.12)
 project(cppunit)
 set(CPPUNIT_PACKAGE_NAME cppunit CACHE STRING "Name of the package to build.")
 set(CPPUNIT_MAJOR_VERSION 1 CACHE STRING "Major (first) version number.")
