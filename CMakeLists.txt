@@ -63,16 +63,19 @@ set(Sources
     src/cppunit/XmlOutputter.cpp
     src/cppunit/XmlOutputterHook.cpp
 )
-set(HeaderDirs
-    src/cppunit
-    include
-)
 
 configure_file("config-auto.h.in" "cppunit/config-auto.h")
 
 #Build cppunit's library.
-include_directories(${HeaderDirs} ${CMAKE_BINARY_DIR})
 add_library(cppunit STATIC ${Sources})
+add_library(cppunit::cppunit ALIAS cppunit)
+target_include_directories(cppunit
+    PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/cppunit>
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        $<INSTALL_INTERFACE:include>)
 
 #Installation.
 include(GNUInstallDirs)
@@ -82,24 +85,25 @@ install(TARGETS cppunit
 )
 
 install(EXPORT cppunit-targets
+    NAMESPACE cppunit::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit
 )
 
 install(
     DIRECTORY include
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
+    DESTINATION .
     FILES_MATCHING PATTERN *.h
     REGEX "msvc6" EXCLUDE
 )
 
-install(FILES ${CMAKE_BINARY_DIR}/cppunit/config-auto.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cppunit)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cppunit/config-auto.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cppunit)
 
 include(CMakePackageConfigHelpers)
-configure_package_config_file(cppunitConfig.cmake.in ${CMAKE_BINARY_DIR}/cppunitConfig.cmake INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit)
-write_basic_package_version_file(${CMAKE_BINARY_DIR}/cppunitConfigVersion.cmake VERSION ${CPPUNIT_VERSION} COMPATIBILITY SameMajorVersion)
+configure_package_config_file(cppunitConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/cppunitConfig.cmake INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit)
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/cppunitConfigVersion.cmake VERSION ${CPPUNIT_VERSION} COMPATIBILITY SameMajorVersion)
 
 install(FILES
-    ${CMAKE_BINARY_DIR}/cppunitConfig.cmake
-    ${CMAKE_BINARY_DIR}/cppunitConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/cppunitConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/cppunitConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit
 )
