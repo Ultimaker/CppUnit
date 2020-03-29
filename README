@@ -1,3 +1,22 @@
+                           ARCHIVED
+                           --------
+
+This repository is archived. It used to be necessary to build and run
+the tests on CuraEngine: https://github.com/Ultimaker/CuraEngine
+However CuraEngine has since switched to a different testing framework.
+
+Ultimaker has contributed a CMake build system to this repository. You
+may fork the repository and use it according to CppUnit's license. But
+we never intended to maintain this project beyond Ultimaker's needs
+for it. For future contributions, we refer you to FreeDesktop's
+efforts to maintain the library:
+
+https://www.freedesktop.org/wiki/Software/cppunit/
+
+For questions about this archival, contact Ghostkeeper (using the
+e-mail address in one of his recent commits).
+
+
 		CppUnit --- The C++ Unit Test Library
 		-------------------------------------
             http://www.freedesktop.org/wiki/Software/cppunit
