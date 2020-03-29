@@ -127,7 +127,7 @@
 
 /* Name of package */
 #ifndef CPPUNIT_PACKAGE 
-#define CPPUNIT_PACKAGE  "${CPPUNIT_PACKAGE_NAME}"
+#define CPPUNIT_PACKAGE  "${PROJECT_NAME}"
 #endif
 
 /* Define to the address where bug reports for this package should be sent. */
@@ -136,18 +136,18 @@
 #endif
 
 /* Define to the full name of this package. */
-#ifndef CPPUNIT_PACKAGE_NAME 
-#define CPPUNIT_PACKAGE_NAME  "${CPPUNIT_PACKAGE_NAME}"
+#ifndef CPPUNIT_PACKAGE_NAME
+#define CPPUNIT_PACKAGE_NAME  "${PROJECT_NAME}"
 #endif
 
 /* Define to the full name and version of this package. */
 #ifndef CPPUNIT_PACKAGE_STRING 
-#define CPPUNIT_PACKAGE_STRING  "${CPPUNIT_PACKAGE_NAME} ${CPPUNIT_MAJOR_VERSION}.${CPPUNIT_MINOR_VERSION}.${CPPUNIT_PATCH_VERSION}"
+#define CPPUNIT_PACKAGE_STRING  "${PROJECT_NAME} ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
 #endif
 
 /* Define to the one symbol short name of this package. */
 #ifndef CPPUNIT_PACKAGE_TARNAME 
-#define CPPUNIT_PACKAGE_TARNAME  "${CPPUNIT_PACKAGE_NAME}"
+#define CPPUNIT_PACKAGE_TARNAME  "${PROJECT_NAME}"
 #endif
 
 /* Define to the home page for this package. */
@@ -157,7 +157,7 @@
 
 /* Define to the version of this package. */
 #ifndef CPPUNIT_PACKAGE_VERSION 
-#define CPPUNIT_PACKAGE_VERSION  "${CPPUNIT_MAJOR_VERSION}.${CPPUNIT_MINOR_VERSION}.${CPPUNIT_PATCH_VERSION}"
+#define CPPUNIT_PACKAGE_VERSION  "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
 #endif
 
 /* Define to 1 if you have the ANSI C header files. */
@@ -171,8 +171,8 @@
 #endif
 
 /* Version number of package */
-#ifndef CPPUNIT_VERSION 
-#define CPPUNIT_VERSION  "${CPPUNIT_MAJOR_VERSION}.${CPPUNIT_MINOR_VERSION}.${CPPUNIT_PATCH_VERSION}"
+#ifndef CPPUNIT_VERSION
+#define CPPUNIT_VERSION  "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
 #endif
  
 /* _INCLUDE_CPPUNIT_CONFIG_AUTO_H */

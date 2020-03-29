@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 2.8.12)
-project(cppunit)
-set(CPPUNIT_PACKAGE_NAME cppunit CACHE STRING "Name of the package to build.")
-set(CPPUNIT_MAJOR_VERSION 1 CACHE STRING "Major (first) version number.")
-set(CPPUNIT_MINOR_VERSION 14 CACHE STRING "Minor (second) version number.")
-set(CPPUNIT_PATCH_VERSION 2 CACHE STRING "Patch (third) version number.")
-set(CPPUNIT_VERSION "${CPPUNIT_MAJOR_VERSION}.${CPPUNIT_MINOR_VERSION}.${CPPUNIT_PATCH_VERSION}")
+cmake_policy(SET CMP0048 NEW)
+
+project(cppunit VERSION 1.14.2 LANGUAGES CXX)
 
 if(NOT ${CMAKE_VERSION} VERSION_LESS 3.1)
     set(CMAKE_CXX_STANDARD 11)
@@ -100,7 +97,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cppunit/config-auto.h DESTINATION ${CM
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(cppunitConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/cppunitConfig.cmake INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cppunit)
-write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/cppunitConfigVersion.cmake VERSION ${CPPUNIT_VERSION} COMPATIBILITY SameMajorVersion)
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/cppunitConfigVersion.cmake COMPATIBILITY SameMajorVersion)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/cppunitConfig.cmake

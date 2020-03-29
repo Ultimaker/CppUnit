@@ -19,8 +19,8 @@
 #endif
 
 // Version number of package
-#ifndef CPPUNIT_VERSION 
-#define CPPUNIT_VERSION  "1.14.0"
+#ifndef CPPUNIT_VERSION
+#define CPPUNIT_VERSION  "1.14.2"
 #endif
  
 #include <cppunit/config/CppUnitApi.h>    // define CPPUNIT_API & CPPUNIT_NEED_DLL_DECL
